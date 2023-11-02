@@ -1,0 +1,14 @@
+<!-- <input class="form-check-input" *ngIf="!value" type="checkbox" required (change)="onChangeValue($event.target.checked)"> -->
+<label class="form-check-label" *ngIf="type!='toggle'">
+    <input class="form-check-input" type="checkbox" [disabled]="isViewDetail" (change)="onChangeValue($event.target.checked)" [(ngModel)]="value">
+    <span class="form-check-sign">
+      <span class="check"></span>
+    </span>
+</label>
+<div class="togglebutton" *ngIf="type=='toggle'">
+    <label>
+    {{title}} 
+    <input type="checkbox" [disabled]="isViewDetail" (change)="onChangeValue($event.target.checked)" [(ngModel)]="value">
+    <span class="toggle"></span>
+  </label>
+</div>

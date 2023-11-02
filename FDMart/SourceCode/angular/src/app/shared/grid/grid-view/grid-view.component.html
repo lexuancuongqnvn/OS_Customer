@@ -1,0 +1,173 @@
+    <kendo-grid 
+        [kendoGridBinding]="gridView" 
+        kendoGridSelectBy="id" 
+        [selectedKeys]="mySelection" 
+        [pageSize]="10"
+        [pageable]="true" 
+        [sortable]="true" 
+        [groupable]="false" 
+        [reorderable]="true" 
+        [resizable]="true" [height]="480"
+        [columnMenu]="{ filter: true }"
+        (cellClick)="selectRow($event)"
+    >
+    <ng-template kendoGridToolbarTemplate>
+        <kendo-textbox class="k-textbox-search" 
+        [width]="200" [placeholder]="placeholder" 
+        kendoTextBox (input)="onFilter($event)">
+        </kendo-textbox>
+        <kendo-grid-spacer></kendo-grid-spacer>
+        <button kendoGridExcelCommand type="button" icon="file-excel">
+            <!-- {{ customMsgService.translate('exportExcel') }} -->
+        </button>
+        <button kendoGridPDFCommand icon="file-pdf">
+            <!-- {{ customMsgService.translate('exportPdf') }}  -->
+        </button>
+    </ng-template>
+    
+    <kendo-grid-checkbox-column [width]="45" [headerClass]="{ 'text-center': true }" [class]="{ 'text-center': true }"
+        [resizable]="false" [columnMenu]="false" [showSelectAll]="true">
+    </kendo-grid-checkbox-column>
+    <kendo-grid-column [title]="'STT'" [width]="45" field="indexRow"  [resizable]="false" [columnMenu]="false">
+         <ng-template kendoGridCellTemplate let-dataItem>
+            <span>{{ dataItem['indexRow'] }}</span>
+        </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column *ngFor="let item of GenRowTable;let i = index" [hidden]="item.columN_NAME == 'id' || item.typE_ID == 16 || item.columN_NAME == 'code'" field="{{item.columN_NAME}}" [title]="item.name" [width]="item.width" class="{{item.clasS_INSERT}}">
+        <ng-template kendoGridCellTemplate let-dataItem *ngIf="item.typE_ID == 1000">
+            <div class="customer-photo" [ngStyle]="{ 'background-image': photoURL(dataItem) }"></div>
+        </ng-template>
+        <!-- 1	int -->
+        <!-- 2	char -->
+        <!-- 3	Long text -->
+         <ng-template kendoGridCellTemplate let-dataItem *ngIf="item.typE_ID == 1 || item.typE_ID == 2 || item.typE_ID == 3">
+            <span [ngClass]="{ 'red text-bold': dataItem.budget < 0 }">{{ dataItem[item.columN_NAME] }}</span>
+        </ng-template>
+        <!-- 5	Date -->
+        <!-- 9	datetime -->
+        <!-- 10	dateranges -->
+         <ng-template kendoGridCellTemplate let-dataItem *ngIf="item.typE_ID == 10">
+            <!-- {{ dataItem[item.columN_NAME] | kendoDate: item.format }} -->
+            {{ formatDateRanges(dataItem[item.columN_NAME],item.format) }}
+        </ng-template>
+        <!-- 11	time -->
+        <ng-template kendoGridCellTemplate let-dataItem *ngIf="item.typE_ID == 5 || item.typE_ID == 9 || item.typE_ID == 11">
+            <!-- {{ dataItem[item.columN_NAME] | kendoDate: item.format }} -->
+            {{ formatDate(dataItem[item.columN_NAME],item.format) }}
+        </ng-template>
+        <!-- 6	Images -->
+        <ng-template kendoGridCellTemplate let-dataItem *ngIf="item.typE_ID == 6">
+            <img src="{{ dataItem[item.columN_NAME] }}" [width]="100" />
+        </ng-template>
+        <!-- 7	meadia -->
+        <!-- 8	multimedia -->
+        
+        <!-- 12	Multivalue -->
+
+        <!-- 13	colorpicker -->
+
+        <!-- 14	float -->
+        
+        <!-- 15	money -->
+        <ng-template kendoGridCellTemplate let-dataItem *ngIf="item.typE_ID == 15">
+            <span [ngClass]="{ 'red text-bold': dataItem[item.columN_NAME] < 0 }"> 
+                {{ dataItem[item.columN_NAME] | CurrencyCustom}}
+            </span>
+        </ng-template>
+        <!-- 19	Rating -->
+
+        <!-- 20	IsOnline -->
+
+        <!-- 21	Engagement -->
+
+        <!-- 22	Phone/ Identity card -->
+
+        <!-- 23	Checkbox -->
+        <!-- 4	Switch -->
+        <ng-template kendoGridCellTemplate let-dataItem *ngIf="item.typE_ID == 23 || item.typE_ID == 4" class="text-center">
+            <input type="checkbox" #terms kendoCheckBox [disabled]="true" [checked]="dataItem[item.columN_NAME]"/>
+        </ng-template>
+    </kendo-grid-column>
+    <!-- <kendo-grid-column field="{{item.columN_NAME}}" [title]="item.name" [width]="220">
+    </kendo-grid-column> -->
+    <!-- 
+    <kendo-grid-column field="country" [title]="title" [width]="100" [class]="{ 'text-center': true }"
+        [resizable]="false">
+        <ng-template kendoGridCellTemplate let-dataItem>
+            <img class="flag" [src]="flagURL(dataItem)" width="30" />
+        </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="isOnline" [title]="title" [width]="100" [class]="{ 'text-center': true }"
+        [resizable]="false" filter="boolean">
+        <ng-template kendoGridCellTemplate let-dataItem>
+            <span *ngIf="dataItem.isOnline === true" class="badge badge-success"> Online </span>
+            <span *ngIf="dataItem.isOnline === false" class="badge badge-danger"> Offline </span>
+        </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="rating" [title]="title" [width]="110" [resizable]="false" filter="numeric">
+        <ng-template kendoGridCellTemplate let-dataItem>
+            <app-kendo-rating [value]="dataItem.rating" [max]="5"></app-kendo-rating>
+        </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="target" [title]="title" [width]="230" [resizable]="false" filter="numeric">
+        <ng-template kendoGridCellTemplate let-dataItem>
+            <kendo-sparkline type="bar" [data]="dataItem.target" [tooltip]="{ visible: false }" [transitions]="true"
+                [seriesDefaults]="{
+                                labels: {
+                                    background: 'none',
+                                    visible: true,
+                                    format: '{0}%'
+                                }
+                            }">
+                <kendo-chart-area [opacity]="0" [width]="200"></kendo-chart-area>
+                <kendo-chart-value-axis>
+                    <kendo-chart-value-axis-item [min]="0" [max]="130"> </kendo-chart-value-axis-item>
+                </kendo-chart-value-axis>
+            </kendo-sparkline>
+        </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="budget" [title]="title" [width]="100" filter="numeric">
+        <ng-template kendoGridCellTemplate let-dataItem>
+            <span [ngClass]="{ 'red text-bold': dataItem.budget < 0 }"> {{ dataItem.budget | currency }}
+            </span>
+        </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="phone" [title]="title" [width]="130">
+    </kendo-grid-column>
+    <kendo-grid-column field="address" [title]="title" [width]="200">
+    </kendo-grid-column>
+    <kendo-grid-column field="address" [title]="title" [width]="200">
+        <ng-template kendoGridCellTemplate let-dataItem>
+            <input type="checkbox" #terms kendoCheckBox />
+        </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="address" [title]="title" [width]="200">
+        <ng-template kendoGridCellTemplate let-dataItem>
+            {{ value | kendoDate: "MM/dd/yyyy" }}
+        </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="address" [title]="title" [width]="200">
+        <ng-template kendoGridCellTemplate let-dataItem>
+            <img src="https://bihaku.vn/wp-content/uploads/2020/11/5-6.jpg" [width]="100" />
+        </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="address" [title]="title" [width]="200">
+        <ng-template kendoGridCellTemplate let-dataItem>
+            {{ value | kendoDate: "MM/dd/yyyy" }} - {{ value | kendoDate: "MM/dd/yyyy" }}
+        </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="address" [title]="title" [width]="200">
+        <ng-template kendoGridCellTemplate let-dataItem>
+            <kendo-colorpicker (valueChange)="onChange($event)" (activeColorClick)="activeColor($event)">
+            </kendo-colorpicker>
+        </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="address" [title]="title" [width]="200">
+        <ng-template kendoGridCellTemplate let-dataItem>
+            2343546 vnđ
+            <kendo-numerictextbox [format]="formatOptions" [value]="0" [min]="0"></kendo-numerictextbox>
+        </ng-template>
+    </kendo-grid-column> -->
+    <kendo-grid-pdf fileName="Employees.pdf" [repeatHeaders]="true"></kendo-grid-pdf>
+    <kendo-grid-excel fileName="Employees.xlsx"></kendo-grid-excel>
+</kendo-grid>

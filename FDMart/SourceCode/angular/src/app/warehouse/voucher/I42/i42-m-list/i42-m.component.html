@@ -1,0 +1,12 @@
+<form method="#" action="#" class="form-data form-view-master">
+    <!-- <nav class="nav nav-menu-state">
+        <a class="nav-link active" aria-current="page" href="#">Active | </a>
+        <a class="nav-link" href="#">Link</a>
+        <a class="nav-link" href="#">Link</a>
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+    </nav> -->
+    <app-toolbar #toolbar [tableName]="tbName" [CurrenFrom]="CurrenFrom" [classInsert]="'form-30082023'"></app-toolbar>
+    <alert-message #alertMessage></alert-message>
+    <osoft-data-grid #DataGridGenRowTable [isShowComponentFilter]="true" [tableName]="tbName" [dataSource]="listGenRowTable" (selectedRowsDataOutput)="onSelectedRowsData($event)" (OnSelectRow)="selectRow($event)"></osoft-data-grid>
+</form>
+<dialog-acction #dialogDelete [content]="'Bạn có chắc chắn muốn xóa? \n Are you sure you want to delete?'" [title]="'Vui lòng xác nhận \n / Confirm'" (confirmOutput)="onDelete($event)"></dialog-acction>

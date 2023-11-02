@@ -1,0 +1,400 @@
+<!-- <div class="card-container k-form-edit">
+    <div class="example-wrapper toolbar form-group">
+        <kendo-buttongroup look="flat">
+            <button kendoButton (click)="onSave()" class="btn-toolbar" icon="save" look="flat">
+                Lưu
+            </button>
+            <button kendoButton (click)="onDelete()" class="btn-toolbar" icon="delete" look="flat">
+                Xóa
+            </button>
+            <button kendoButton (click)="onSearch()" class="btn-toolbar" icon="search" look="flat">
+                Tìm kiếm
+            </button>
+        </kendo-buttongroup>
+    </div>
+    <div class="example-wrapper form-group">
+        <div class="example-wrapper">
+            <div class="" >
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <kendo-label [for]="tbName" [text]="'Tên bảng'">: </kendo-label>
+                                </div>
+                                <div class="col-md-9" >
+                                <kendo-combobox 
+                                        [data]="listItemsCombobox"
+                                        [textField]="'name'"
+                                        [valueField]="'tablE_NAME'"
+                                        [placeholder]="'--Select table--'"
+                                        [allowCustom]="true"
+                                        (valueChange)="onChangeValueCombobox($event)"
+                                        >
+                                    </kendo-combobox>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <kendo-label [for]="tbName" [text]="'Tên tiếng việt'">: </kendo-label>
+                                </div>
+                                <div class="col-md-9" >
+                                    <kendo-textbox 
+                                        [clearButton]="true" 
+                                        #namE_VN="ngModel"
+                                        name="namE_VN"
+                                        [(ngModel)]="filterInput.namE_VN"
+                                    ></kendo-textbox>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <kendo-label [for]="tbName" [text]="'Tên tiếng anh'">: </kendo-label>
+                                </div>
+                                <div class="col-md-9" >
+                                    <kendo-textbox 
+                                        [clearButton]="true" 
+                                        #namE_EN="ngModel"
+                                        name="namE_EN"
+                                        [(ngModel)]="filterInput.namE_EN"
+                                    ></kendo-textbox>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-component form-group">
+    <kendo-grid
+        [data]="genGridView" 
+        id="'SYS_ActionsOnTable_ENTITY'" 
+        #{{tbName}} 
+        kendoGridSelectBy="indexRow"
+        (add)="addHandler()"
+        [groupable]="false" 
+        [reorderable]="true" 
+        [resizable]="true" 
+        [pageSize]="state.take"
+        [skip]="state.skip"
+        [sort]="state.sort"
+        [sortable]="true"
+        [pageable]="true"
+        [height]="480"
+        (dataStateChange)="dataStateChange($event,'SYS_ActionsOnTable_ENTITY')"
+        [columnMenu]="{ filter: true }"
+    >
+    <ng-template kendoGridToolbarTemplate>
+        <label>Danh sách hành động</label>
+        <kendo-grid-spacer></kendo-grid-spacer>
+        <button type="button" kendoGridExcelCommand icon="file-excel"></button>
+        <button type="button" kendoGridPDFCommand icon="file-pdf"></button>
+        <button type="button" kendoButton icon="add" (click)="addNewRow(tbName)"></button>
+        <button type="button" kendoButton icon="delete" (click)="ClearSelected(tbName)"></button>
+    </ng-template>
+        <kendo-grid-checkbox-column 
+        [width]="45" 
+        [headerClass]="{ 'text-center': true }" 
+        [class]="{ 'text-center': true }"
+        class="form-acction-sys {{tbName}}"
+        [resizable]="false" 
+        [columnMenu]="false" 
+        [showSelectAll]="true">
+        </kendo-grid-checkbox-column>
+        <kendo-grid-column [title]="'STT'" [width]="45" field="indexRow"  [resizable]="false" [columnMenu]="false">
+            <ng-template kendoGridCellTemplate let-dataItem>
+                <span>{{ dataItem['indexRow'] }}</span>
+            </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="id" [hidden]="true" [title]="'ID'" [width]="250" class="column-id">
+            <ng-template kendoGridCellTemplate let-dataItem>
+                <kendo-numerictextbox
+                    (valueChange)="onChangeValue($event, id)" 
+                    [min]="0" 
+                    [max]="10000000"
+                    #id="ngModel"
+                    name="id"
+                    [(ngModel)]="dataItem['id']" 
+                    [autoCorrect]="false">
+                </kendo-numerictextbox>
+            </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="colAccountID" [hidden]="true" [title]="'ID user có quyền'" [width]="250" class="column-colAccountID">
+            <ng-template kendoGridCellTemplate let-dataItem>
+                <kendo-numerictextbox
+                    (valueChange)="onChangeValue($event, id)" 
+                    [min]="0" 
+                    [max]="10000000"
+                    #colAccountID="ngModel"
+                    name="colAccountID"
+                    [(ngModel)]="dataItem['colAccountID']" 
+                    [autoCorrect]="false">
+                </kendo-numerictextbox>
+            </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="active" [title]="'Kích hoạt'" [width]="150" class="column-active">
+            <ng-template kendoGridCellTemplate let-dataItem>
+                <kendo-switch 
+                    (valueChange)="onChangeValue($event, id)" 
+                    #active="ngModel"
+                    name="active"
+                    [(ngModel)]="dataItem['active']"
+                ></kendo-switch>
+            </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="role" [title]="'Role'" [width]="150" class="column-role">
+            <ng-template kendoGridCellTemplate let-dataItem>
+                <kendo-switch 
+                    (valueChange)="onChangeValue($event, id)" 
+                    #role="ngModel"
+                    name="role"
+                    [(ngModel)]="dataItem['role']"
+                ></kendo-switch>
+            </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="name" [hidden]="true" [title]="'name'" [width]="250" class="column-name">
+            <ng-template kendoGridCellTemplate let-dataItem>
+                <kendo-textbox 
+                    [clearButton]="true" 
+                    (valueChange)="onChangeValue($event, id)"
+                    #name="ngModel"
+                    name="name"
+                    [(ngModel)]="dataItem['name']"
+                ></kendo-textbox>
+            </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="indexRow" [hidden]="true" [title]="'indexRow'" [width]="250" class="column-indexRow">
+            <ng-template kendoGridCellTemplate let-dataItem>
+                <kendo-textbox 
+                    [clearButton]="true" 
+                    (valueChange)="onChangeValue($event, id)"
+                    #indexRow="ngModel"
+                    indexRow="indexRow"
+                    [(ngModel)]="dataItem['indexRow']"
+                ></kendo-textbox>
+            </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="namE_VN" [title]="'namE_VN'" [width]="250" class="column-namE_VN">
+            <ng-template kendoGridCellTemplate let-dataItem>
+                <kendo-textbox 
+                    [clearButton]="true" 
+                    (valueChange)="onChangeValue($event, id)"
+                    #namE_VN="ngModel"
+                    namE_VN="namE_VN"
+                    [(ngModel)]="dataItem['namE_VN']"
+                ></kendo-textbox>
+            </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="namE_EN" [title]="'namE_EN'" [width]="250" class="column-namE_EN">
+            <ng-template kendoGridCellTemplate let-dataItem>
+                <kendo-textbox 
+                    [clearButton]="true" 
+                    (valueChange)="onChangeValue($event, id)"
+                    #namE_EN="ngModel"
+                    namE_EN="namE_EN"
+                    [(ngModel)]="dataItem['namE_EN']"
+                ></kendo-textbox>
+            </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="tbName" [title]="'tbName'" [width]="250" class="column-tbName">
+            <ng-template kendoGridCellTemplate let-dataItem>
+                <kendo-textbox 
+                    [clearButton]="true" 
+                    (valueChange)="onChangeValue($event, id)"
+                    #tbName="ngModel"
+                    tbName="tbName"
+                    [(ngModel)]="dataItem['tbName']"
+                ></kendo-textbox>
+            </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="link" [title]="'link'" [width]="250" class="column-link">
+            <ng-template kendoGridCellTemplate let-dataItem>
+                <kendo-textbox 
+                    [clearButton]="true" 
+                    (valueChange)="onChangeValue($event, id)"
+                    #link="ngModel"
+                    link="link"
+                    [(ngModel)]="dataItem['link']"
+                ></kendo-textbox>
+            </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="storedName" [title]="'storedName'" [width]="250" class="column-storedName">
+            <ng-template kendoGridCellTemplate let-dataItem>
+                <kendo-textbox 
+                    [clearButton]="true" 
+                    (valueChange)="onChangeValue($event, id)"
+                    #storedName="ngModel"
+                    storedName="storedName"
+                    [(ngModel)]="dataItem['storedName']"
+                ></kendo-textbox>
+            </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="onInit" [title]="'onInit'" [width]="250" class="column-onInit">
+            <ng-template kendoGridCellTemplate let-dataItem>
+                <kendo-textbox 
+                    [clearButton]="true" 
+                    (valueChange)="onChangeValue($event, id)"
+                    #onInit="ngModel"
+                    onInit="onInit"
+                    [(ngModel)]="dataItem['onInit']"
+                ></kendo-textbox>
+            </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="classForm" [title]="'classForm'" [width]="250" class="column-classForm">
+            <ng-template kendoGridCellTemplate let-dataItem>
+                <kendo-textbox 
+                    [clearButton]="true" 
+                    (valueChange)="onChangeValue($event, id)"
+                    #classForm="ngModel"
+                    classForm="classForm"
+                    [(ngModel)]="dataItem['classForm']"
+                ></kendo-textbox>
+            </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="onForm" [title]="'onForm'" [width]="250" class="column-onForm">
+            <ng-template kendoGridCellTemplate let-dataItem>
+                <kendo-textbox 
+                    [clearButton]="true" 
+                    (valueChange)="onChangeValue($event, id)"
+                    #onForm="ngModel"
+                    onForm="onForm"
+                    [(ngModel)]="dataItem['onForm']"
+                ></kendo-textbox>
+            </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="icon" [title]="'icon'" [width]="250" class="column-icon">
+            <ng-template kendoGridCellTemplate let-dataItem>
+                <kendo-textbox 
+                    [clearButton]="true" 
+                    (valueChange)="onChangeValue($event, id)"
+                    #icon="ngModel"
+                    icon="icon"
+                    [(ngModel)]="dataItem['icon']"
+                ></kendo-textbox>
+            </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="position" [title]="'Vị trí'" [width]="250" class="column-position">
+            <ng-template kendoGridCellTemplate let-dataItem>
+                <kendo-numerictextbox
+                    (valueChange)="onChangeValue($event, id)" 
+                    [min]="0" 
+                    [max]="10000000"
+                    #position="ngModel"
+                    name="position"
+                    [(ngModel)]="dataItem['position']" 
+                    [autoCorrect]="false">
+                </kendo-numerictextbox>
+            </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="keyService" [title]="'keyService'" [width]="250" class="column-keyService">
+            <ng-template kendoGridCellTemplate let-dataItem>
+                <kendo-textbox 
+                    [clearButton]="true" 
+                    (valueChange)="onChangeValue($event, id)"
+                    #keyService="ngModel"
+                    keyService="keyService"
+                    [(ngModel)]="dataItem['keyService']"
+                ></kendo-textbox>
+            </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="permission" [title]="'permission'" [width]="250" class="column-permission">
+            <ng-template kendoGridCellTemplate let-dataItem>
+                <kendo-textbox 
+                    [clearButton]="true" 
+                    (valueChange)="onChangeValue($event, id)"
+                    #permission="ngModel"
+                    permission="permission"
+                    [(ngModel)]="dataItem['permission']"
+                ></kendo-textbox>
+            </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="param" [title]="'param'" [width]="250" class="column-param">
+            <ng-template kendoGridCellTemplate let-dataItem>
+                <kendo-textbox 
+                    [clearButton]="true" 
+                    (valueChange)="onChangeValue($event, id)"
+                    #param="ngModel"
+                    param="param"
+                    [(ngModel)]="dataItem['param']"
+                ></kendo-textbox>
+            </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="rollBack" [title]="'rollBack'" [width]="250" class="column-rollBack">
+            <ng-template kendoGridCellTemplate let-dataItem>
+                <kendo-textbox 
+                    [clearButton]="true" 
+                    (valueChange)="onChangeValue($event, id)"
+                    #rollBack="ngModel"
+                    rollBack="rollBack"
+                    [(ngModel)]="dataItem['rollBack']"
+                ></kendo-textbox>
+            </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="rollNext" [title]="'rollNext'" [width]="250" class="column-rollNext">
+            <ng-template kendoGridCellTemplate let-dataItem>
+                <kendo-textbox 
+                    [clearButton]="true" 
+                    (valueChange)="onChangeValue($event, id)"
+                    #rollNext="ngModel"
+                    rollNext="rollNext"
+                    [(ngModel)]="dataItem['rollNext']"
+                ></kendo-textbox>
+            </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="lisT_ACCTIONS" [title]="'lisT_ACCTIONS'" [width]="250" class="column-lisT_ACCTIONS">
+            <ng-template kendoGridCellTemplate let-dataItem>
+                <kendo-textbox 
+                    [clearButton]="true" 
+                    (valueChange)="onChangeValue($event, id)"
+                    #lisT_ACCTIONS="ngModel"
+                    lisT_ACCTIONS="lisT_ACCTIONS"
+                    [(ngModel)]="dataItem['lisT_ACCTIONS']"
+                ></kendo-textbox>
+            </ng-template>
+        </kendo-grid-column>
+    </kendo-grid>
+    </div>
+</div>
+<dialog-acction #dialogDelete [content]="'Bạn có chắc chắn muốn xóa?'" [title]="'Vui lòng xác nhận'" (confirmOutput)="confirmDelete()"></dialog-acction> -->
+
+<div class="card-container k-form-edit form-jqgrid-edit">
+    <app-toolbar #toolbar [tableName]="tbName" [CurrenFrom]="CurrenFrom"></app-toolbar>
+    <div class="example-wrapper form-group">
+        <div class="example-wrapper">
+            <div class="">
+                <div class="form-group filter">
+                    <div class="row div-filter">
+                        <!-- Begin filter -->
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="id_task_content" class="bmd-label-floating title-input">Bảng</label>
+                                <input-selectpicker-v2 #SelectStatusTaskPicker [value]="filterInput.tbName" (ValueOutput)="onSelectTbNameTask2($event)" [multiple]="false" [list]="listTbName" [FieldValue]="'tbName'" [FieldDisplay]="'name'" [ColumnName]="'tbName'" [Class]="'selectpicker-filter-working'"
+                                    [title]="'Tình trạng'"></input-selectpicker-v2>
+                            </div>
+                        </div>
+                        <div class="col-4" *ngIf="autorenew">
+                            <div class="form-group">
+                                <a href="javascript:;" (click)="onAutorenew($event)">
+                                    <span class="material-icons">autorenew</span>Tạo tự động
+                                </a>
+                            </div>
+                        </div>
+                        <!-- end filter -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-component form-group">
+        <!-- <jqgrid-list #gridList (ValueOutput)="selectRow($event)" [colModel]="col_model" [table]="tbName" [title]="'Danh sách dự án'"></jqgrid-list> -->
+        <jqgrid-edit #gridMenuEdit [colModel]="col_model_edit" [table]="tbName" [title]="'Danh sách chức năng'"></jqgrid-edit>
+    </div>
+    <dialog-acction #dialogDelete [content]="'Bạn có chắc chắn muốn xóa?'" [title]="'Vui lòng xác nhận'" (confirmOutput)="confirmDelete()"></dialog-acction>
+</div>
+<!-- Edit -->

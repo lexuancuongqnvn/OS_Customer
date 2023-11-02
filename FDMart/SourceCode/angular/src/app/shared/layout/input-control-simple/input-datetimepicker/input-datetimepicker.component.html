@@ -1,0 +1,6 @@
+<!-- <div class="form-group">
+    <input type="text" [disabled]="disabled" class="form-control datepicker" (valueChange)="onChangeValue($event)" value="{{value}}">
+</div> -->
+<input type="text" [disabled]="isViewDetail" id="{{ColumnName}}" class="datepicker" value="{{value | DateTimeFormatPipe}}">
+
+<input style="display:none;" type="text" id="input-{{ColumnName}}" (click)="onChangeValue($event)" value="{{value}}">

@@ -1,0 +1,287 @@
+kendo-grid-toolbar.k-toolbar.k-grid-toolbar {
+    background-color: #4b8ef1 !important;
+    color: white !important;
+}
+
+.form-control.datepicker {
+    background: white !important;
+    padding: 5px !important;
+    border-radius: 5px !important;
+    border: 1px solid #ababab;
+}
+
+.bootstrap-datetimepicker-widget.dropdown-menu.usetwentyfour.bottom.open {
+    z-index: 100000 !important;
+    opacity: 1;
+    position: absolute;
+}
+
+
+/* nav.navbar.navbar-expand-lg.navbar-transparent.navbar-absolute.fixed-top {
+    color: white;
+    background-color: #121213ba !important;
+} */
+
+.action-frid-edit-right {
+    float: right;
+}
+
+.row.header-grid {
+    width: 100%;
+}
+
+button.k-button.k-grid-add-command {
+    float: right;
+}
+
+.btn-add {
+    right: 7% !important;
+    bottom: 0 !important;
+}
+
+.btn-delete {
+    right: 0 !important;
+    bottom: 0 !important;
+}
+
+.k-fab-md {
+    padding: 0.5rem 0.5em !important;
+}
+
+.k-fab-primary {
+    background-color: #ff5200 !important;
+}
+
+form.form-login {
+    margin-top: 10% !important;
+}
+
+.k-breadcrumb-link,
+.k-breadcrumb-root-link {
+    padding: 0.5rem 0.1rem !important;
+}
+
+.k-numerictextbox,
+.k-input,
+.k-textbox {
+    width: 100% !important;
+}
+
+kendo-textbox.k-textbox-search {
+    width: 200px !important;
+}
+
+.k-form-view,
+.k-form-edit {
+    margin: 0 !important;
+}
+
+.k-fab-pill {
+    border-radius: 0.5rem !important;
+}
+
+.k-upload {
+    border-color: #ffffff !important;
+}
+
+kendo-datepicker.k-widget.k-datepicker,
+kendo-datetimepicker.k-widget.k-datetimepicker,
+kendo-timepicker.k-widget.k-timepicker {
+    width: 100% !important;
+}
+
+.k-textarea {
+    width: 100% !important;
+}
+
+.upload-files {
+    margin: 0rem 0.5rem 0rem 0.5rem !important;
+}
+
+.upload-files-select>.k-dropzone {
+    display: none !important;
+}
+
+.select2-container--open {
+    z-index: 100000;
+}
+
+.inline-edit-cell.money {
+    text-align: right !important;
+}
+
+.card-container {
+    padding: 0px !important;
+}
+
+.form-group.filter {
+    padding: 0px 20px 0px 20px !important;
+}
+
+
+/* 
+ ::-webkit-scrollbar {
+    width: 7px;
+}
+
+::-webkit-scrollbar:hover {
+    width: 11px;
+} */
+
+
+/* Track */
+
+ ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-track:hover {
+    border-radius: 5px;
+}
+
+
+/* Handle */
+
+ ::-webkit-scrollbar-thumb {
+    background: #c5c5c58c;
+    border-radius: 5px;
+}
+
+
+/* Handle on hover */
+
+ ::-webkit-scrollbar-thumb:hover {
+    background: #c5c5c58c;
+}
+
+div#div-alert-message {
+    padding: 0px 15px 0px 15px;
+}
+
+.div-filter {
+    padding: 0 20px 0 20px !important;
+}
+
+.ct-chart .ct-series-b .ct-slice-pie {
+    fill: #4caf50 !important;
+}
+
+.ct-chart .ct-series-b .ct-slice-pie {
+    stroke: #4caf50 !important;
+}
+
+.div-col-name-dep {
+    display: initial !important;
+    padding-right: 10px;
+}
+
+#PieChartTask>svg>g.ct-series-a {
+    fill: #FF721C !important;
+    stroke: #FF721C !important;
+}
+
+#PieChartTask>svg>g.ct-series-b {
+    fill: #FFEE1C !important;
+    stroke: #FFEE1C !important;
+}
+
+#PieChartTask>svg>g.ct-series-c {
+    fill: #BEFF1C !important;
+    stroke: #BEFF1C !important;
+}
+
+#PieChartTask>svg>g.ct-series-d {
+    fill: #1CFFBE !important;
+    stroke: #1CFFBE !important;
+}
+
+#PieChartTask>svg>g.ct-series-e {
+    fill: #1CFFF1 !important;
+    stroke: #1CFFF1 !important;
+}
+
+#PieChartTask>svg>g.ct-series-f {
+    fill: #1CC1FF !important;
+    stroke: #1CC1FF !important;
+}
+
+#PieChartTask>svg>g.ct-series-g {
+    fill: #1F1CFF !important;
+    stroke: #1F1CFF !important;
+}
+
+#PieChartTask>svg>g.ct-series-h {
+    fill: #6B1CFF !important;
+    stroke: #6B1CFF !important;
+}
+
+#PieChartTask>svg>g.ct-series-j {
+    fill: #9F1CFF !important;
+    stroke: #9F1CFF !important;
+}
+
+#PieChartTask>svg>g.ct-series-k {
+    fill: #FF1CCB !important;
+    stroke: #FF1CCB !important;
+}
+
+#PieChartTask>svg>g.ct-series-l {
+    fill: #922B21 !important;
+    stroke: #922B21 !important;
+}
+
+#PieChartTask>svg>g.ct-series-m {
+    fill: #4A235A !important;
+    stroke: #4A235A !important;
+}
+
+#PieChartTask>svg>g.ct-series-n {
+    fill: #1B4F72 !important;
+    stroke: #1B4F72 !important;
+}
+
+#PieChartTask>svg>g.ct-series-o {
+    fill: #0E6251 !important;
+    stroke: #0E6251 !important;
+}
+
+#PieChartTask>svg>g.ct-series-p {
+    fill: #145A32 !important;
+    stroke: #145A32 !important;
+}
+
+#PieChartTask>svg>g.ct-series-q {
+    fill: #7D6608 !important;
+    stroke: #7D6608 !important;
+}
+
+#PieChartTask>svg>g.ct-series-r {
+    fill: #784212 !important;
+    stroke: #784212 !important;
+}
+
+#PieChartTask>svg>g.ct-series-s {
+    fill: #7B7D7D !important;
+    stroke: #7B7D7D !important;
+}
+
+#PieChartTask>svg>g.ct-series-t {
+    fill: #17202A !important;
+    stroke: #17202A !important;
+}
+
+.ct-label {
+    fill: white !important;
+}
+
+div#headingTwo {
+    padding: 5px !important;
+}
+
+@media only screen and (max-width: 600px) {
+    .container-fluid {
+        padding-right: 0 !important;
+        padding-left: 0 !important;
+    }
+}

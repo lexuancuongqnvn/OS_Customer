@@ -1,0 +1,88 @@
+<div class="card-container k-form-edit">
+    <app-toolbar #toolbar [tableName]="tbName" [CurrenFrom]="CurrenFrom"></app-toolbar>
+    <div class="example-wrapper form-group">
+        <div class="example-wrapper">
+            <div class="">
+                <div class="form-group">
+                    <div class="row div-filter">
+                        <!-- Begin filter -->
+                        <!-- Tên -->
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="id_name" class="">Tên</label>
+                                <input type="text" #name="ngModel" name="name" [(ngModel)]="filterInput.name" [value]="filterInput.name" class="form-control" id="id_name">
+                            </div>
+                        </div>
+                        <!-- end filter -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-component form-group">
+        <jqgrid-list #gridMenuList (ValueOutput)="selectRow($event);" [colModel]="col_model" [table]="tbName" [title]="'Danh sách nhóm sản phẩm'"></jqgrid-list>
+    </div>
+    <dialog-acction #dialogDelete [content]="'Bạn có chắc chắn muốn xóa?'" [title]="'Vui lòng xác nhận'" (confirmOutput)="confirmDelete()"></dialog-acction>
+</div>
+<!-- Edit -->
+<sidenav-add-edit #sidenavAddEdit [title]="'Chỉnh sửa thông tin menu'" *ngIf="isEdit" class="form-sidenav-edit">
+    <form method="#" action="#" style="padding: 20px;">
+        <app-toolbar #toolbarEdit [tableName]="tbName" [CurrenFrom]="getCurrenFrom"></app-toolbar>
+        <div class="row">
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="name" class="bmd-label-floating title-input">Tên</label>
+                    <input type="text" #name="ngModel" name="name" [(ngModel)]="InputModel.name" [value]="InputModel.name" class="form-control" id="name">
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="status" class="bmd-label-floating title-input">Trạng thái</label>
+                    <input-checkbox #checkboxStatus (ValueOutput)="onChangeValue($event,'status')" [value]="InputModel.status"></input-checkbox>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="type_gift" class="">Loại quà tặng</label><br>
+                    <input-selectpicker-v2 #SelectTypeGiftPicker (ValueOutput)="onSelectTypeGift($event)" [value]="InputModel.type_gift" [multiple]="false" [list]="listTypeGift" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'type_gift'"></input-selectpicker-v2>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="type_value" class="">Hình thức khuyến mãi</label><br>
+                    <input-selectpicker-v2 #SelectTypeValuePicker (ValueOutput)="onSelectTypeValue($event)" [value]="InputModel.type_value" [multiple]="false" [list]="listTypeValueGift" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'type_value'"></input-selectpicker-v2>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="code_master" class="">Giá trị khuyến mãi</label><br>
+                    <input-money #moneyValue (ValueOutput)="onChangeValue($event,'value')" [colName]="'value'" [value]="InputModel.value"></input-money>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="code_master" class="">Ngày bắt đầu</label><br>
+                    <input-datepicker [ColumnName]="'start_date'" name="start_date" [value]="InputModel.start_date" (ValueOutput)="valueStartDate($event,'start_date')"></input-datepicker>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="code_master" class="">Ngày kết thúc</label><br>
+                    <input-datepicker [ColumnName]="'end_date'" name="end_date" [value]="InputModel.end_date" (ValueOutput)="valueStartDate($event,'end_date')"></input-datepicker>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="code_master" class="">Giá trị đơn hàng áp dụng (áp dụng cho đơn hàng từ)</label><br>
+                    <input-money #moneyOrderValue (ValueOutput)="onChangeValue($event,'order_value')" [colName]="'order_value'" [value]="InputModel.order_value"></input-money>
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="form-group">
+                    <label for="notes" class="bmd-label-floating title-input">Mô tả</label>
+                    <textarea class="form-control" id="notes" rows="3" #notes="ngModel" name="notes" [(ngModel)]="InputModel.notes" [value]="InputModel.notes"></textarea>
+                </div>
+            </div>
+        </div>
+    </form>
+</sidenav-add-edit>

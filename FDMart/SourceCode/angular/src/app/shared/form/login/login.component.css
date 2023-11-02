@@ -1,0 +1,73 @@
+.k-avatar {
+    margin-left: 80px;
+    font-size: 30px;
+}
+
+.example {
+    display: flex;
+    justify-content: center;
+}
+
+.k-form {
+    width: 240px;
+}
+
+a.forgot-login {
+    font-size: small;
+    margin: 18px 0px 0px 33px;
+}
+
+a.register {
+    font-size: 14px;
+    margin: 18px 0px 0px 33px;
+    text-align: right;
+}
+
+.example.theme-login {
+    height: 100vh;
+    width: 100vw;
+    background-image: url("src/assets/img/background-login.jpg");
+    background-color: #cccccc;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.message-sucess {
+    color: green !important;
+}
+
+.message-error {
+    color: red !important;
+}
+
+span.span-version {
+    left: auto;
+    right: 10px;
+    position: absolute;
+    bottom: 0px;
+}
+
+a.user-storage {
+    text-align: center !important;
+    display: block;
+    color: #00bcd4;
+    font-weight: 600;
+    width: 100% !important;
+}
+
+.username,
+.password {
+    padding: 5px !important;
+    border: 2px solid grey !important;
+    border-radius: 50px !important;
+    height: 40px !important;
+    background-image: none !important;
+    margin: 2px !important;
+    border-color: #795548 !important;
+}
+
+.username:focus,
+.password:focus {
+    border: 4px solid #FFC107 !important;
+}

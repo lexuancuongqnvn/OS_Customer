@@ -1,0 +1,10 @@
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\ERP.Common\bin\x64\Debug\netcoreapp3.1\ERP.Common.deps.json
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\ERP.Common\bin\x64\Debug\netcoreapp3.1\ERP.Common.dll
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\ERP.Common\bin\x64\Debug\netcoreapp3.1\ERP.Common.pdb
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\ERP.Common\obj\x64\Debug\netcoreapp3.1\ERP.Common.csproj.AssemblyReference.cache
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\ERP.Common\obj\x64\Debug\netcoreapp3.1\ERP.Common.GeneratedMSBuildEditorConfig.editorconfig
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\ERP.Common\obj\x64\Debug\netcoreapp3.1\ERP.Common.AssemblyInfoInputs.cache
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\ERP.Common\obj\x64\Debug\netcoreapp3.1\ERP.Common.AssemblyInfo.cs
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\ERP.Common\obj\x64\Debug\netcoreapp3.1\ERP.Common.csproj.CoreCompileInputs.cache
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\ERP.Common\obj\x64\Debug\netcoreapp3.1\ERP.Common.dll
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\ERP.Common\obj\x64\Debug\netcoreapp3.1\ERP.Common.pdb

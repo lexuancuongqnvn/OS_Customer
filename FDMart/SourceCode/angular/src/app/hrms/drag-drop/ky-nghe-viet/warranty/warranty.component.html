@@ -1,0 +1,619 @@
+<div class="card-container k-form-edit" style="width:2000px;">
+    <div class="warranty-wrapper form-group">
+        <div class="warranty-wrapper">
+            <div class="card-collapse">
+                <div class="card-header" role="tab" id="headingTwo">
+                    <h5 class="mb-0">
+                        <a class="collapsed" style="color: #00bcd4 !important;" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Click để lọc dữ liệu
+                            <i class="material-icons">keyboard_arrow_down</i>
+                        </a>
+                    </h5>
+                </div>
+                <div id="collapseTwo" style="padding: 5px 10px 5px 0;" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
+                    <div class="card-body">
+                        <div class="">
+                            <div class="form-group filter">
+                                <div class="row div-filter">
+                                    <!-- Begin filter -->
+                                    <!-- Chủ đề -->
+                                    <div class="col-4 col-sm-3 col-md-3 col-lg-2 col-xl-2">
+                                        <div class="form-group">
+                                            <label for="topic_code" class="">Bộ phận</label><br>
+                                            <input-selectpicker-v2 #SelectProjectTopicPicker (ValueOutput)="onFilter($event,'topic_code')" [multiple]="false" [list]="[]" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'topic_code'" [title]="'Dự án'"></input-selectpicker-v2>
+                                        </div>
+                                    </div>
+                                    <!-- Ngày kết thúc -->
+                                    <div class="col-4 col-sm-3 col-md-3 col-lg-2 col-xl-2">
+                                        <div class="form-group">
+                                            <label for="id_progress_task" class="label-title">Ngày bắt đầu</label>
+                                            <input-datepicker [ColumnName]="'start_date'" name="start_date" (ValueOutput)="onFilter($event,'start_date')"></input-datepicker>
+                                        </div>
+                                    </div>
+                                    <!-- Ngày bắt đầu -->
+                                    <div class="col-4 col-sm-3 col-md-3 col-lg-2 col-xl-2">
+                                        <div class="form-group">
+                                            <label for="id_stop_date" class="label-title">Ngày kết thúc</label>
+                                            <input-datepicker [ColumnName]="'stop_date'" name="stop_date" (ValueOutput)="onFilter($event,'stop_date')"></input-datepicker>
+                                        </div>
+                                    </div>
+                                    <!-- Tiến độ sửa chữa/ bảo hành-->
+                                    <div class="col-4 col-sm-3 col-md-3 col-lg-2 col-xl-2">
+                                        <div class="form-group">
+                                            <label for="topic_code" class="">Tiến độ sửa chữa/ bảo hành</label><br>
+                                            <input-selectpicker-v2 #SelectIsDonePicker (ValueOutput)="onFilter($event,'is_done')" [multiple]="false" [list]="[]" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'is_done'"></input-selectpicker-v2>
+                                        </div>
+                                    </div>
+                                    <div class="col-12"></div>
+                                    <!-- Model -->
+                                    <div class="col-4 col-sm-3 col-md-3 col-lg-2 col-xl-2">
+                                        <div class="form-group">
+                                            <label for="des_model2" class=" label-title">Model</label><br>
+                                            <input type="text" #des_model2="ngModel" name="des_model2" [(ngModel)]="WarrantyFilter.des_model" class="form-control" id="des_model2">
+                                        </div>
+                                    </div>
+                                    <!-- số Sevice tag -->
+                                    <div class="col-4 col-sm-3 col-md-3 col-lg-2 col-xl-2">
+                                        <div class="form-group">
+                                            <label for="des_sevice_tag2" class=" label-title">số Sevice tag</label><br>
+                                            <input type="text" #des_sevice_tag2="ngModel" name="des_sevice_tag2" [(ngModel)]="WarrantyFilter.des_sevice_tag" class="form-control" id="des_sevice_tag2">
+                                        </div>
+                                    </div>
+                                    <div class="col-4 col-sm-3 col-md-3 col-lg-2 col-xl-2">
+                                        <div class="form-group">
+                                            <label for="machine_status2" class=" label-title">Tình trạng máy</label><br>
+                                            <input type="text" #machine_status2="ngModel" name="machine_status2" [(ngModel)]="WarrantyFilter.machine_status" class="form-control" id="machine_status2" />
+                                        </div>
+                                    </div>
+                                    <div class="col-4 col-sm-3 col-md-3 col-lg-2 col-xl-2">
+                                        <div class="form-group">
+                                            <button class="btn btn-info" (click)="onLoadProject()" style="margin-top: 15px;">
+                                                <span class="btn-label">
+                                                  <i class="material-icons">search</i>
+                                                </span>
+                                                Tìm kiếm
+                                              <div class="ripple-container"></div></button>
+                                        </div>
+                                    </div>
+                                    <!-- end filter -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-component form-group" [style]="'width: 2000px;min-height: 70vh;padding-left: 20px;'">
+        <div cdkDropListGroup>
+            <div class="warranty-container" *ngFor="let task of InputModel.project_Management_Tasks;let i = index">
+                <h5>
+                    <u class="{{task.code}}" style="font-weight: 500;">
+                        <div class="div-topic-name" style="white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;">
+                        <span *ngIf="task['is_block']" class="material-icons" style="color: rgb(13, 146, 30);">verified_user</span>
+                        <span *ngIf="!task['is_block']" class="material-icons" style="color: red;">remove_moderator</span>
+                        {{task.name}} ({{task['data']?task['data'].length:0}}) 
+                    </div>
+                    </u>
+                </h5>
+                <a href="javascript:;" *ngIf="task['is_block']" (click)="onAddTask(task)"><span style="display: flex;color: #00ad00;"><span class="material-icons"> add_circle </span> Thêm mới</span></a>
+                <a href="javascript:;" *ngIf="!task['is_block']"><span style="display: flex;color: #5f5f5f;"><span class="material-icons"> add_circle </span> Thêm mới</span></a>
+                <div cdkDropList id="List-{{task.id}}" [cdkDropListData]="task['data']" class="warranty-list" (cdkDropListDropped)="drop($event)">
+                    <div class="warranty-box" style="padding: 2px ​0px 0px 0p;" *ngFor="let item of task['data']" cdkDrag>
+                        <div class="list-group" style="width:100%">
+                            <a href="javascript:;" class="list-group-item list-group-item-action flex-column align-items-start" style="padding: 0px;">
+                                <div class="justify-content-between {{item.percent_done == 100?'done':'inprogress'}} {{item.code}}">
+                                    <h5 class="mb-1 h5-name">{{item.name}} </h5>
+                                    <div class="div-text-time">
+                                        <small class="text-muted"><i>{{item.date_add_f}}</i></small>
+                                    </div>
+                                </div>
+                                <p class="mb-1">
+                                    <span style="color: #57bb9a;display: flex;"><span class="material-icons">run_circle</span><b class="b-executor-name">{{item.executor_name}}</b><span class="material-icons span-icon-edit-executor" (click)="onChangeExecutor(item)">sync</span>
+                                    </span>
+                                    <span style="color: #57bb9a;"><span class="material-icons">location_pin</span>{{item['branch_name']}}</span><br/>
+                                    <span [innerText]="item.task_content"></span>
+                                </p>
+                                <small class="text-muted small-footer">
+                                    <a href="Javascript:;" class="a-serial" (click)="onClickSerial(item)">Serial: {{item['des_sevice_tag']}}</a>
+                                    <span class="material-icons span-icon-edit-serial">edit</span>
+                                    <span class="material-icons span-icon-edit-tag" (click)="onChangeFollower(item)">sell</span>
+                                </small>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <mat-slider min="1" max="100" step="1" value="1"></mat-slider>
+        </div>
+    </div>
+</div>
+<!-- Edit -->
+<sidenav-add-edit #sideAddEdit *ngIf="isEdit" (OnClose)="OnClose($event)" [title]="'Lịch sử của máy a'" class="form-sidenav-edit">
+    <form method="#" action="#" style="padding: 20px;" class="form-jqgrid-edit">
+        <app-toolbar #toolbarEdit [tableName]="tbName" [CurrenFrom]="getCurrenFrom"></app-toolbar>
+        <alert-message #alertMessage></alert-message>
+        <!-- Begin machine  -->
+        <div *ngIf="!isPermission && !isHistory && !isHistoryUpdate" class="row" style="padding-left: 20px;padding-right: 20px;">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-8 col-xl-8" style="padding-right: 20px;">
+                <div class="row general">
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3">
+                        <div class="row pd-0 mg-0">
+                            <div class="col-12 div-group-content">
+                                CHỨNG TỪ
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                <div class="form-group">
+                                    <label for="doc_number" class=" label-title">Số hiệu (chứng từ)<span *ngIf="listColumn['doc_number_required']" class="input-required">*</span></label><br>
+                                    <input type="text" #doc_number="ngModel" [disabled]="true" name="doc_number" [(ngModel)]="WarrantyModel.doc_number" [value]="WarrantyModel.doc_number" class="form-control {{listColumn['doc_number_required']?'required':''}}" id="doc_number">
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                <div class="form-group">
+                                    <label for="doc_date" class=" label-title">Ngày lập (Chứng từ)<span *ngIf="listColumn['doc_date_required']" class="input-required">*</span></label><br>
+                                    <input-datepicker [disabled]="listColumn['doc_date'] || WarrantyModel.code" [required]="listColumn['doc_date_required']" [ColumnName]="'doc_date'" [value]="WarrantyModel.doc_date" name="doc_date" (ValueOutput)="valueStartDate($event,'doc_date')"></input-datepicker>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-9 col-xl-9">
+                        <div class="row pd-0 mg-0">
+                            <div class="col-12 div-group-content">
+                                THÔNG TIN LIÊN HỆ
+                            </div>
+                            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4">
+                                <div class="form-group">
+                                    <label for="customer_name" class=" label-title">Công ty/ Khách hàng/ Nhân viên<span *ngIf="listColumn['customer_name_required']" class="input-required">*</span></label><br>
+                                    <input type="text" #customer_name="ngModel" [disabled]="disabled || listColumn['customer_name']" name="customer_name" [(ngModel)]="WarrantyModel.customer_name" [value]="WarrantyModel.customer_name" class="form-control {{listColumn['customer_name_required']?'required':''}}"
+                                        id="customer_name">
+                                </div>
+                            </div>
+                            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4">
+                                <div class="form-group">
+                                    <label for="customer_email" class=" label-title">Mail<span *ngIf="listColumn['customer_required']" class="input-required">*</span></label><br>
+                                    <input type="text" #customer_email="ngModel" [disabled]="disabled || listColumn['customer_email']" name="customer_email" [(ngModel)]="WarrantyModel.customer_email" [value]="WarrantyModel.customer_email" class="form-control {{listColumn['customer_email_required']?'required':''}}"
+                                        id="customer_email">
+                                </div>
+                            </div>
+                            <div class="col-12"></div>
+                            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4">
+                                <div class="form-group">
+                                    <label for="customer_phone" class=" label-title">Điện thoại<span *ngIf="listColumn['customer_phone_required']" class="input-required">*</span></label><br>
+                                    <input type="text" #customer_phone="ngModel" [disabled]="disabled || listColumn['customer_phone']" name="customer_phone" [(ngModel)]="WarrantyModel.customer_phone" [value]="WarrantyModel.customer_phone" class="form-control  {{listColumn['customer_phone_required']?'required':''}}"
+                                        id="customer_phone">
+                                </div>
+                            </div>
+                            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4">
+                                <div class="form-group">
+                                    <label for="customer_name_contact_phone" class=" label-title">Tên người liên hệ</label><br>
+                                    <input type="text" #customer_name_contact_phone="ngModel" [disabled]="disabled" name="customer_name_contact_phone" [(ngModel)]="WarrantyModel.customer_name_contact_phone" [value]="WarrantyModel.customer_name_contact_phone" class="form-control" id="customer_name_contact_phone">
+                                </div>
+                            </div>
+                            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4">
+                                <div class="form-group">
+                                    <label for="customer_address" class=" label-title">Địa chỉ<span *ngIf="listColumn['customer_address_required']" class="input-required">*</span></label><br>
+                                    <input type="text" #customer_address="ngModel" [disabled]="disabled || listColumn['customer_address']" name="customer_address" [(ngModel)]="WarrantyModel.customer_address" [value]="WarrantyModel.customer_address" class="form-control {{listColumn['customer_address_required']?'required':''}}"
+                                        id="customer_address">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-12 div-group-content">
+                        THÔNG TIN MÁY
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+                        <div class="form-group">
+                            <label for="des_model" class=" label-title">Model<span *ngIf="listColumn['des_model_required']" class="input-required">*</span></label><br>
+                            <input type="text" #des_model="ngModel" [disabled]="disabled || listColumn['des_model']" name="des_model" [(ngModel)]="WarrantyModel.des_model" [value]="WarrantyModel.des_model" class="form-control {{listColumn['des_model_required']?'required':''}}" id="des_model">
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+                        <div class="form-group">
+                            <label for="des_cpu" class=" label-title">CPU<span *ngIf="listColumn['des_cpu_required']" class="input-required">*</span></label><br>
+                            <input type="text" #des_cpu="ngModel" [disabled]="disabled || listColumn['des_cpu']" name="des_cpu" [(ngModel)]="WarrantyModel.des_cpu" [value]="WarrantyModel.des_cpu" class="form-control {{listColumn['des_cpu_required']?'required':''}}" id="des_cpu">
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+                        <div class="form-group">
+                            <label for="des_lcd" class=" label-title">LCD<span *ngIf="listColumn['des_lcd_required']" class="input-required">*</span></label>
+                            <input type="text" #name="ngModel" [disabled]="listColumn['des_lcd']" name="des_lcd" [(ngModel)]="WarrantyModel.des_lcd" [value]="WarrantyModel.des_lcd" class="form-control {{listColumn['des_lcd_required']?'required':''}}" id="des_lcd">
+                        </div>
+                    </div>
+                    <div class="col-12"></div>
+                    <div class="col-6 col-sm-6 col-md-3 col-lg-2 col-xl-2">
+                        <div class="form-group">
+                            <label for="des_ram" class=" label-title">RAM<span *ngIf="listColumn['des_ram_required']" class="input-required">*</span></label>
+                            <input type="number" #name="ngModel" [disabled]="listColumn['des_ram']" name="des_ram" [(ngModel)]="WarrantyModel.des_ram" [value]="WarrantyModel.des_ram" class="form-control {{listColumn['des_ram_required']?'required':''}}" id="des_ram">
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-sm-6 col-md-3 col-lg-2 col-xl-2">
+                        <div class="form-group">
+                            <label for="des_hdd" class=" label-title">HDD<span *ngIf="listColumn['des_hdd_required']" class="input-required">*</span></label>
+                            <div style="display: flex;">
+                                <input style="width: 80%;" type="number" #des_hdd="ngModel" [disabled]="listColumn['des_hdd']" name="des_hdd" [(ngModel)]="WarrantyModel.des_hdd" [value]="WarrantyModel.des_hdd" class="form-control {{listColumn['des_hdd_required']?'required':''}}" id="des_hdd">
+                                <input style="width: 20%;" type="text" #des_hdd_unit="ngModel" [disabled]="listColumn['des_hdd_unit']" name="des_hdd_unit" [(ngModel)]="WarrantyModel.des_hdd_unit" [value]="WarrantyModel.des_hdd_unit" class="form-control {{listColumn['des_hdd_unit_required']?'required':''}}"
+                                    id="des_hdd_unit">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-3 col-lg-2 col-xl-2">
+                        <div class="form-group">
+                            <label for="des_ssd" class=" label-title">SSD<span *ngIf="listColumn['des_ssd_required']" class="input-required">*</span></label>
+                            <div style="display: flex;">
+                                <input style="width: 80%;" type="number" #des_ssd="ngModel" [disabled]="listColumn['des_ssd']" name="des_ssd" [(ngModel)]="WarrantyModel.des_ssd" [value]="WarrantyModel.des_ssd" class="form-control {{listColumn['des_ssd_required']?'required':''}}" id="des_ssd">
+                                <input style="width: 20%;" type="text" #des_ssd_unit="ngModel" [disabled]="listColumn['des_ssd_unit']" name="des_ssd_unit" [(ngModel)]="WarrantyModel.des_ssd_unit" [value]="WarrantyModel.des_ssd_unit" class="form-control {{listColumn['des_ssd_unit_required']?'required':''}}"
+                                    id="des_ssd_unit">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-4 col-lg-2 col-xl-2" style="padding-top: 21px;">
+                        <div class="form-group">
+                            <input-checkbox [type]="'toggle'" [disabled]="listColumn['des_is_battery']" [title]="'Pin'" (ValueOutput)="onChangeValue($event,'des_is_battery')" [value]="WarrantyModel.des_is_battery"></input-checkbox>
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-4 col-lg-2 col-xl-2" style="padding-top: 21px;">
+                        <div class="form-group">
+                            <input-checkbox [type]="'toggle'" [disabled]="listColumn['des_is_charger']" [title]="'Sạc'" (ValueOutput)="onChangeValue($event,'des_is_charger')" [value]="WarrantyModel.des_is_charger"></input-checkbox>
+                        </div>
+                    </div>
+
+                    <div class="col-12"></div>
+                    <div class="col-6 col-sm-6 col-md-4 col-lg-2 col-xl-2">
+                        <div class="form-group">
+                            <label for="des_sevice_tag" class=" label-title">Số Sevice tag<span *ngIf="listColumn['des_sevice_tag_required']" class="input-required">*</span></label><br>
+                            <input type="text" #des_sevice_tag="ngModel" [disabled]="disabled || listColumn['des_sevice_tag']" name="des_sevice_tag" [(ngModel)]="WarrantyModel.des_sevice_tag" [value]="WarrantyModel.des_sevice_tag" class="form-control {{listColumn['des_sevice_tag_required']?'required':''}}"
+                                id="des_sevice_tag">
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-4 col-lg-2 col-xl-2">
+                        <div class="form-group">
+                            <label for="des_cpu" class=" label-title">Khác</label><br>
+                            <input type="text" #des_cpu="ngModel" [disabled]="disabled || listColumn['des_notes']" name="des_notes" [(ngModel)]="WarrantyModel.des_notes" [value]="WarrantyModel.des_notes" class="form-control" id="des_notes">
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-4 col-lg-2 col-xl-2">
+                        <div class="form-group">
+                            <label for="des_password" class=" label-title">Mật khẩu HĐH</label><br>
+                            <input type="text" #des_password="ngModel" [disabled]="disabled || listColumn['des_password']" name="des_password" [(ngModel)]="WarrantyModel.des_password" [value]="WarrantyModel.des_password" class="form-control" id="des_password">
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-4 col-lg-2 col-xl-2">
+                        <div class="form-group">
+                            <label for="des_password_bios" class=" label-title">Mật khẩu Bios</label><br>
+                            <input type="text" #des_password_bios="ngModel" [disabled]="disabled || listColumn['des_password_bios']" name="des_password_bios" [(ngModel)]="WarrantyModel.des_password_bios" [value]="WarrantyModel.des_password_bios" class="form-control" id="des_password_bios">
+                        </div>
+                    </div>
+                    <div class="col-12 div-group-content">
+                        THÔNG TIN KIỂM TRA
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+                        <div class="form-group">
+                            <label for="sell_date" class=" label-title">Ngày bán<span *ngIf="listColumn['sell_date_required']" class="input-required">*</span></label><br>
+                            <input-datepicker [ColumnName]="'sell_date'" [required]="listColumn['sell_date_required']" [disabled]="listColumn['sell_date']" [value]="WarrantyModel.sell_date" name="sell_date" (ValueOutput)="valueStartDate($event,'sell_date')"></input-datepicker>
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+                        <div class="form-group">
+                            <label for="machine_status" class=" label-title">Tình trạng máy<span *ngIf="listColumn['machine_status_required']" class="input-required">*</span></label><br>
+                            <textarea type="text" #machine_status="ngModel" [disabled]="disabled || listColumn['machine_status']" name="machine_status" [(ngModel)]="WarrantyModel.machine_status" [value]="WarrantyModel.machine_status" class="form-control {{listColumn['machine_status_required']?'required':''}}"
+                                id="machine_status"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+                        <div class="form-group">
+                            <label for="warranty_type" class=" label-title">Chế độ<span *ngIf="listColumn['warranty_type_required']" class="input-required">*</span></label>
+                            <input-selectpicker-v2 #SelectWarrantyPicker [disabled]="listColumn['warranty_type']" (ValueOutput)="onSelect($event,'warranty_type')" [value]="WarrantyModel.warranty_type" [multiple]="false" [list]="warranty_type" [FieldValue]="'code'" [FieldDisplay]="'name'"
+                                [ColumnName]="'warranty_type'" [title]="''"></input-selectpicker-v2>
+                        </div>
+                    </div>
+                    <div class="col-12 div-group-content">
+                        THÔNG TIN TRẢ MÁY
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+                        <div class="form-group">
+                            <label for="customer_return_date" class=" label-title">Ngày trả lại<span *ngIf="listColumn['customer_return_date_required']" class="input-required">*</span></label><br>
+                            <input-datepicker [ColumnName]="'customer_return_date'" [required]="listColumn['customer_return_date_required']" [disabled]="listColumn['customer_return_date']" [value]="WarrantyModel.customer_return_date" name="customer_return_date" (ValueOutput)="valueStartDate($event,'customer_return_date')"></input-datepicker>
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+                        <div class="form-group">
+                            <label for="customer_notes" class=" label-title">Ghi chú trả lại<span *ngIf="listColumn['customer_notes_required']" class="input-required">*</span></label><br>
+                            <textarea type="text" #customer_notes="ngModel" [disabled]="disabled || listColumn['customer_notes']" name="customer_notes" [(ngModel)]="WarrantyModel.customer_notes" [value]="WarrantyModel.customer_notes" class="form-control {{listColumn['customer_notes_required']?'required':''}}"
+                                id="customer_notes"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3" style="padding-top: 21px;">
+                        <div class="form-group">
+                            <input-checkbox [type]="'toggle'" [title]="'Hoàn thành'" (ValueOutput)="onChangeValue($event,'is_done')" [value]="WarrantyModel.is_done"></input-checkbox>
+                        </div>
+                    </div>
+                    <div class="col-12 div-group-content">
+                        KẾ TOÁN
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                        <div class="form-group">
+                            <label for="accounting_notes" class=" label-title">Ghi chú (Kế toán)<span *ngIf="listColumn['accounting_notes_required']" class="input-required">*</span></label><br>
+                            <textarea type="text" #accounting_notes="ngModel" [disabled]="disabled || listColumn['accounting_notes']" name="accounting_notes" [(ngModel)]="WarrantyModel.accounting_notes" [value]="WarrantyModel.accounting_notes" class="form-control {{listColumn['accounting_notes_required']?'required':''}}"
+                                id="accounting_notes"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4" style="padding-left: 20px;border-left: 3px solid gray;">
+                <!-- Begin Histoty -->
+                <div class="row">
+                    <h3 class="h3-action">Hoạt động</h3>
+                    <div class="col-12" style="text-align: center;">
+                        <small><i>Số lượng hoạt động được hiển thị theo loại chứng từ</i></small>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" style="max-height: 95vh;overflow-y: scroll;width:100%">
+                        <!-- <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
+                {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
+              </button> -->
+                        <ul class="timeline timeline-simple" style="margin-top: 0;">
+                            <li class="timeline-inverted" *ngFor="let item of listTaskHistory;let i = index">
+                                <div class="timeline-badge info" style="background-color: #57bb9a;">
+                                    {{i+1}}
+                                </div>
+                                <div class="timeline-panel">
+                                    <div class="timeline-heading">
+                                        <span class="badge badge-pill badge-info" style="background-color: #57bb9a;"><b>Bộ phận: {{item.topic_name}}</b></span>
+                                    </div>
+                                    <div class="timeline-body">
+                                        <div>
+                                            <p [innerText]="item.task_content"></p>
+                                            <p style="display: flex;"><b style="display: flex;color: #57bb9a;"><span class="material-icons">directions_run</span>Người phụ trách</b>: <u>{{item.executor_name}}</u></p>
+                                            <p style="display: flex;"><b style="display: flex;color: #57bb9a;"><span class="material-icons">task_alt</span>TG hoàn thành</b>: {{item.account_move_hour_done?item.account_move_hour_done:0}} giờ</p>
+                                            <p style="display: flex;"><b style="display: flex;min-width: 85px;color: #57bb9a;"><span class="material-icons">description</span>Diễn giải</b>: <span class="span-color{{(item.account_move_hour_done && item.account_move_hour_done)>0?'':'-yellow'}}"
+                                                    [innerHTML]="item.account_move_logtime_description"></span></p>
+                                        </div>
+                                    </div>
+                                    <h6>
+                                        <i class="ti-time"></i> <u>{{item.account_move_name}}</u> đã chuyển lúc <b>{{item.date_add_f}}</b>
+                                    </h6>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- End Histoty -->
+            </div>
+        </div>
+        <div *ngIf="isPermission" class="row" style="padding-left: 20px;padding-right: 20px;">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="py-12">
+                            <form class="form-jqgrid-edit" method="#" action="#">
+                                <jqgrid-edit [minHeight]="600" #gridPermissionEdit [colModel]="col_model_permission_edit" [table]="tbName" [title]="'Phân quyền'"></jqgrid-edit>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div *ngIf="isHistory" class="row" style="padding-left: 20px;padding-right: 20px;">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header card-header-rose card-header-icon">
+                                <div class="card-icon">
+                                    <i class="material-icons">assignment</i>
+                                </div>
+                                <h4 class="card-title">Danh sách lịch sử in phiếu biên nhận</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">Tổng lần in ({{listPrintHistorys.length}})</th>
+                                                <th>Thời điểm in</th>
+                                                <th>Người in</th>
+                                                <th>Loại biên nhận</th>
+                                                <th>Chi nhánh</th>
+                                                <th class="text-right">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let item of listPrintHistorys;let i=index">
+                                                <td class="text-center">{{i+1}}</td>
+                                                <td>{{item.datetime_print_f}}</td>
+                                                <td>{{item.account_print_name}}</td>
+                                                <td>{{item.warranty_type_name}}</td>
+                                                <td>{{item.banch_print_name}}</td>
+                                                <td class="td-actions text-right">
+                                                    <a href="{{baseUrl+item.link_file_print}}" target="_blank"><i class="material-icons">print</i></a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div *ngIf="isHistoryUpdate" class="row" style="padding-left: 20px;padding-right: 20px;">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header card-header-rose card-header-icon">
+                                <div class="card-icon">
+                                    <i class="material-icons">assignment</i>
+                                </div>
+                                <h4 class="card-title">Danh sách lịch sử cập nhật thông tin máy</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">Tổng lần sửa ({{listPrintHistoryUpdates.length}})</th>
+                                                <th>Người sửa</th>
+                                                <th>Số hiệu CT</th>
+                                                <th>Ngày tạo CT</th>
+                                                <th>Số điện thoại</th>
+                                                <th>Model</th>
+                                                <th>CPU</th>
+                                                <th>RAM</th>
+                                                <th>HDD</th>
+                                                <th>HDD UNIT</th>
+                                                <th>SSD</th>
+                                                <th>SSD UNIT</th>
+                                                <th>Pin</th>
+                                                <th>Sạc</th>
+                                                <th>Khác</th>
+                                                <th>Số Sevice tag</th>
+                                                <th>Mật khẩu HĐH</th>
+                                                <th>Mật khẩu Bios</th>
+                                                <th>Tình Trạng máy</th>
+                                                <th>Ngày bán</th>
+                                                <th>Chế độ BH/SC</th>
+                                                <th>Ngày trả</th>
+                                                <th>Phần note kế toán</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let item of listPrintHistoryUpdates;let i=index">
+                                                <td class="text-center">{{i+1}}</td>
+                                                <td [innerHTML]="item.log_account_modified_name"></td>
+                                                <td [innerHTML]="item.doc_number"></td>
+                                                <td [innerHTML]="item.doc_date_f"></td>
+                                                <td [innerHTML]="item.customer_phone"></td>
+                                                <td [innerHTML]="item.des_model"></td>
+                                                <td [innerHTML]="item.des_cpu_f"></td>
+                                                <td [innerHTML]="item.des_ram_f"></td>
+                                                <td [innerHTML]="item.des_hdd_f"></td>
+                                                <td [innerHTML]="item.des_hdd_unit_f"></td>
+                                                <td [innerHTML]="item.des_ssd_f"></td>
+                                                <td [innerHTML]="item.des_ssd_unit_f"></td>
+                                                <td [innerHTML]="item.des_is_battery_f"></td>
+                                                <td [innerHTML]="item.des_is_charger_f"></td>
+                                                <td [innerHTML]="item.des_notes"></td>
+                                                <td [innerHTML]="item.des_sevice_tag"></td>
+                                                <td [innerHTML]="item.des_password"></td>
+                                                <td [innerHTML]="item.des_password_bios"></td>
+                                                <td>
+                                                    <div [innerHTML]="item.machine_status"></div>
+                                                </td>
+                                                <td [innerHTML]="item.sell_date_f"></td>
+                                                <td [innerHTML]="item.warranty_type"></td>
+                                                <td [innerHTML]="item.customer_return_date_f"></td>
+                                                <td [innerHTML]="item.accounting_notes"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- End machine  -->
+    </form>
+</sidenav-add-edit>
+<dialog-acction #dialogUpdate [title]="'Logtime'" (confirmOutput)="confirmUpdate()">
+    <div class="row">
+        <div class="col-12">
+            <div class="form-group">
+                <label for="hour_done" class=" label-title">Thời gian hoàn thành công việc (giờ)<span class="input-required">*</span>
+                    <br/><small><i>Tổng thời gian đã làm công việc này của bạn là bao lâu?</i></small>
+                </label>
+                <input type="number" #hour_done="ngModel" name="hour_done" [(ngModel)]="updateTaskModel.hour_done" class="form-control" id="hour_done">
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="form-group">
+                <label for="logtime_description" class=" label-title">Diễn giải công việc đã làm<span class="input-required">*</span>
+                    <br/><small><i>Mô tả chi tiết công việc đã làm trong thời gian ở trên!</i></small>
+                </label>
+                <textarea type="number" #logtime_description="ngModel" name="logtime_description" [(ngModel)]="updateTaskModel.logtime_description" class="form-control" id="logtime_description"></textarea>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="form-group">
+                <label for="executor" class=" label-title">Người phụ trách tiếp theo<span class="input-required">*</span>
+                    <br/><small><i>Chọn người phụ trách tiếp theo và hoàn thành công việc của bạn!</i></small></label><br/>
+                <input-selectpicker-v2 #SelectExecutorPicker (ValueOutput)="onSelectDialog($event,'executor')" [multiple]="false" [list]="listEmployee" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'executor'" [title]="''"></input-selectpicker-v2>
+            </div>
+        </div>
+    </div>
+</dialog-acction>
+<dialog-acction #dialogChangeExecutor [title]="'Thay đổi người phụ trách'" (confirmOutput)="confirmChangeExecutor()">
+    <div class="row">
+        <div class="col-12">
+            <div class="form-group">
+                <label for="executor" class=" label-title">Người phụ trách tiếp theo<span class="input-required">*</span></label><br/>
+                <input-selectpicker-v2 #SelectExecutorPicker (ValueOutput)="onSelectDialog($event,'executor')" [multiple]="false" [list]="listEmployee" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'executor'" [title]="''"></input-selectpicker-v2>
+            </div>
+        </div>
+    </div>
+</dialog-acction>
+<dialog-acction #dialogChangeFollower [title]="'Thêm nhân viên/phòng ban theo dõi'" (confirmOutput)="confirmChangeFollower()">
+    <div class="row">
+        <div class="card-body ">
+            <ul class="nav nav-pills nav-pills-warning" role="tablist">
+                <li class="nav-item" style="width: 45%;">
+                    <a class="nav-link active show" data-toggle="tab" href="#link1" role="tablist">
+                  Nhân viên
+                </a>
+                </li>
+                <li class="nav-item" style="width: 45%;">
+                    <a class="nav-link" data-toggle="tab" href="#link2" role="tablist">
+                  Phòng ban
+                </a>
+                </li>
+            </ul>
+            <div class="tab-content tab-space">
+                <div class="tab-pane active show" id="link1">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="followers" class=" label-title">Người theo dõi</label>
+                                <br/><small><i>danh sách nhân viên chưa theo dõi!</i></small><br/>
+                                <input-selectpicker-v2 #SelectFollowerPicker (ValueOutput)="onSelectDialog($event,'followers')" [multiple]="true" [list]="listEmployee" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'followers'" [title]="''"></input-selectpicker-v2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="link2">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="department_followers" class=" label-title">Phòng ban theo dõi</label>
+                                <br/><small><i>danh sách phòng ban chưa theo dõi!</i></small><br/>
+                                <input-selectpicker-v2 #SelectDepartmentFollowerPicker (ValueOutput)="onSelectDialog($event,'department_followers')" [multiple]="true" [list]="listDepartment" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'department_followers'" [title]="''"></input-selectpicker-v2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</dialog-acction>
+<dialog-acction #dialogBranch [title]="'Chọn chi nhánh'" (confirmOutput)="confirmBranch()">
+    <div class="row">
+        <div class="col-12">
+            <div class="form-group">
+                <label for="branch_code" class=" label-title">Danh sách chi nhánh<span class="input-required">*</span></label><br/>
+                <input-selectpicker-v2 #SelectBranchPicker (ValueOutput)="onSelect($event,'branch_code')" [multiple]="false" [list]="listBranchs" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'branch_code'" [title]="''"></input-selectpicker-v2>
+            </div>
+        </div>
+    </div>
+</dialog-acction>
+
+<a target="_blank" rel="noopener" style="display: none;" id="a-print-newtag" href="{{WarrantyModel['link_file']}}"></a>

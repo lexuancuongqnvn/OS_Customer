@@ -1,0 +1,3 @@
+<input type="text" id="{{ColumnName}}" class="form-control datepicker" value="{{value | TimeFormatPipe}}">
+
+<input style="display:none;" type="text" id="input-{{ColumnName}}" (click)="onChangeValue($event)" value="{{value}}">

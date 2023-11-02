@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Platforms>AnyCPU;x64</Platforms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Impls\Warehouse\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\ERP.System\ERP.System.csproj" />
+    <ProjectReference Include="..\..\POS\POS.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="ERP.Common">
+      <HintPath>..\..\ERP.Common\bin\Debug\netcoreapp3.1\ERP.Common.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

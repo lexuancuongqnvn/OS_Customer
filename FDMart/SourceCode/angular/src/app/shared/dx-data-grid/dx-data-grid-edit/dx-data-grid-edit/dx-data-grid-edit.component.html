@@ -1,0 +1,1457 @@
+<div class="long-title" *ngIf="isShowTitle">
+    <span _ngcontent-nbj-c1231="" style="
+    font-size: 15px;
+    font-weight: 700;
+">{{title}} :</span>
+</div>
+<div id="div-grid-edit" (click)="filtercolumn()" style="display: none;"></div>
+<dx-data-grid *ngIf="genRowTableDetail.length > 0" id="grid{{tableName}}-{{keyExpr}}" class="data-grid-edit" [dataSource]="dataSource" [minHeight]="400" [showBorders]="true" [showRowLines]="true" [allowColumnReordering]="true" [allowColumnResizing]="true"
+    keyExpr="{{keyExpr}}" [showBorders]="true" (onRowInserted)="$event.component.navigateToRow($event.key)" (onEditingStart)="logEvent('EditingStart')" (onInitNewRow)="logEvent('InitNewRow')" (onRowInserting)="logEvent('RowInserting')" (onRowInserted)="logEvent('RowInserted')"
+    (onRowUpdating)="logEvent('RowUpdating')" (onRowUpdated)="logEvent('RowUpdated')" (onRowRemoving)="logEvent('RowRemoving')" (onRowRemoved)="logEvent('RowRemoved')" (onSaving)="logEvent('Saving')" (onSaved)="logEvent('Saved')" (onEditCanceling)="logEvent('EditCanceling')"
+    (onEditCanceled)="logEvent('EditCanceled')" (onCellClick)="onCellClick($event,genRowTableDetail)" (onSelectionChanged)="selectionChanged($event)">
+    <dxo-selection [selectAllMode]="allMode" [showCheckBoxesMode]="checkBoxesMode" mode="multiple"></dxo-selection>
+
+    <dxo-scrolling rowRenderingMode="virtual"> </dxo-scrolling>
+
+    <dxo-paging [pageSize]="15"> </dxo-paging>
+    <dxo-pager [visible]="true" [allowedPageSizes]="[15, 50, 100, 200,500,1000,10000]" [showPageSizeSelector]="true" [showInfo]="true" [showNavigationButtons]="true">
+    </dxo-pager>
+    <dxo-header-filter [visible]="true"></dxo-header-filter>
+
+    <dxo-search-panel [visible]="true"></dxo-search-panel>
+    <dxo-editing mode="cell" [allowUpdating]="!isDisabled" [allowAdding]="!isDisabled">
+    </dxo-editing>
+
+    <dxi-column *ngFor="let row of genRowTableDetail" [visible]="!row.iS_HIDDEN" [fixed]="row.iS_FIXED" dataField="{{row.columN_NAME}}" editCellTemplate="{{row.editortype+row.typE_ID+row.editoroptions.stt}}Template" [calculateFilterExpression]="calculateFilterExpression"
+        caption="{{row.name}}" [width]="row.width?row.width:100" headerCellTemplate="titleHeaderTemplate" [cellTemplate]="(row.typE_ID == 28 || row.typE_ID == 12) ? 
+        cellTemplate:((row.typE_ID == 15 || row.typE_ID == 14 || row.typE_ID == 1) ? cellTemplateNumber :
+        (row.typE_ID == 5 ?cellTemplateDate5 :(row.typE_ID == 9 ?cellTemplateDate9: (row.typE_ID == 11 && cellTemplateDate11))) 
+        )">
+        <dxi-validation-rule *ngIf="row.required === true" type="required"></dxi-validation-rule>
+        <dxo-lookup *ngIf="row.typE_ID == 12 || row.typE_ID == 28 || row.typE_ID == 24 || row.typE_ID == 25 || row.typE_ID == 27" [dataSource]="row.editoroptions.items" displayExpr="{{row.displayexpr}}" valueExpr="{{row.valueexpr}}">
+        </dxo-lookup>
+    </dxi-column>
+
+    <div *dxTemplate="let info of 'titleHeaderTemplate'">
+        <p style="color: white;font-weight: 500;">{{info.column.caption}}</p>
+    </div>
+
+    <div *ngFor="let row of genRowTableDetail">
+        <div *ngIf="row.typE_ID == 24">
+            <div *ngIf="row.editoroptions.stt == 1">
+                <div *dxTemplate="let cellInfo of 'dxSelectBox241Template'">
+                    <dx-select-box searchEnabled="true" (onValueChanged)="cellInfo.setValue($event.value);changeSelectBox24($event,cellInfo,row.editoroptions.items,row.valueexpr,row)" (onSelectionChanged)="cellInfo.component.updateDimensions()" [inputAttr]="{ 'aria-label': '{{row.name}}' }"
+                        [dataSource]="row.editoroptions.items" displayExpr="{{row.displayexpr}}" valueExpr="{{row.valueexpr}}" [value]="cellInfo.value" [showClearButton]="true">
+                    </dx-select-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 2">
+                <div *dxTemplate="let cellInfo of 'dxSelectBox242Template'">
+                    <dx-select-box searchEnabled="true" (onValueChanged)="cellInfo.setValue($event.value);changeSelectBox24($event,cellInfo,row.editoroptions.items,row.valueexpr,row)" (onSelectionChanged)="cellInfo.component.updateDimensions()" [inputAttr]="{ 'aria-label': '{{row.name}}' }"
+                        [dataSource]="row.editoroptions.items" displayExpr="{{row.displayexpr}}" valueExpr="{{row.valueexpr}}" [value]="cellInfo.value" [showClearButton]="true">
+                    </dx-select-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 3">
+                <div *dxTemplate="let cellInfo of 'dxSelectBox243Template'">
+                    <dx-select-box searchEnabled="true" (onValueChanged)="cellInfo.setValue($event.value);changeSelectBox24($event,cellInfo,row.editoroptions.items,row.valueexpr,row)" (onSelectionChanged)="cellInfo.component.updateDimensions()" [inputAttr]="{ 'aria-label': '{{row.name}}' }"
+                        [dataSource]="row.editoroptions.items" displayExpr="{{row.displayexpr}}" valueExpr="{{row.valueexpr}}" [value]="cellInfo.value" [showClearButton]="true">
+                    </dx-select-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 4">
+                <div *dxTemplate="let cellInfo of 'dxSelectBox244Template'">
+                    <dx-select-box searchEnabled="true" (onValueChanged)="cellInfo.setValue($event.value);changeSelectBox24($event,cellInfo,row.editoroptions.items,row.valueexpr,row)" (onSelectionChanged)="cellInfo.component.updateDimensions()" [inputAttr]="{ 'aria-label': '{{row.name}}' }"
+                        [dataSource]="row.editoroptions.items" displayExpr="{{row.displayexpr}}" valueExpr="{{row.valueexpr}}" [value]="cellInfo.value" [showClearButton]="true">
+                    </dx-select-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 5">
+                <div *dxTemplate="let cellInfo of 'dxSelectBox245Template'">
+                    <dx-select-box searchEnabled="true" (onValueChanged)="cellInfo.setValue($event.value);changeSelectBox24($event,cellInfo,row.editoroptions.items,row.valueexpr,row)" (onSelectionChanged)="cellInfo.component.updateDimensions()" [inputAttr]="{ 'aria-label': '{{row.name}}' }"
+                        [dataSource]="row.editoroptions.items" displayExpr="{{row.displayexpr}}" valueExpr="{{row.valueexpr}}" [value]="cellInfo.value" [showClearButton]="true">
+                    </dx-select-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 6">
+                <div *dxTemplate="let cellInfo of 'dxSelectBox246Template'">
+                    <dx-select-box searchEnabled="true" (onValueChanged)="cellInfo.setValue($event.value);changeSelectBox24($event,cellInfo,row.editoroptions.items,row.valueexpr,row)" (onSelectionChanged)="cellInfo.component.updateDimensions()" [inputAttr]="{ 'aria-label': '{{row.name}}' }"
+                        [dataSource]="row.editoroptions.items" displayExpr="{{row.displayexpr}}" valueExpr="{{row.valueexpr}}" [value]="cellInfo.value" [showClearButton]="true">
+                    </dx-select-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 7">
+                <div *dxTemplate="let cellInfo of 'dxSelectBox247Template'">
+                    <dx-select-box searchEnabled="true" (onValueChanged)="cellInfo.setValue($event.value);changeSelectBox24($event,cellInfo,row.editoroptions.items,row.valueexpr,row)" (onSelectionChanged)="cellInfo.component.updateDimensions()" [inputAttr]="{ 'aria-label': '{{row.name}}' }"
+                        [dataSource]="row.editoroptions.items" displayExpr="{{row.displayexpr}}" valueExpr="{{row.valueexpr}}" [value]="cellInfo.value" [showClearButton]="true">
+                    </dx-select-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 8">
+                <div *dxTemplate="let cellInfo of 'dxSelectBox248Template'">
+                    <dx-select-box searchEnabled="true" (onValueChanged)="cellInfo.setValue($event.value);changeSelectBox24($event,cellInfo,row.editoroptions.items,row.valueexpr,row)" (onSelectionChanged)="cellInfo.component.updateDimensions()" [inputAttr]="{ 'aria-label': '{{row.name}}' }"
+                        [dataSource]="row.editoroptions.items" displayExpr="{{row.displayexpr}}" valueExpr="{{row.valueexpr}}" [value]="cellInfo.value" [showClearButton]="true">
+                    </dx-select-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 9">
+                <div *dxTemplate="let cellInfo of 'dxSelectBox249Template'">
+                    <dx-select-box searchEnabled="true" (onValueChanged)="cellInfo.setValue($event.value);changeSelectBox24($event,cellInfo,row.editoroptions.items,row.valueexpr,row)" (onSelectionChanged)="cellInfo.component.updateDimensions()" [inputAttr]="{ 'aria-label': '{{row.name}}' }"
+                        [dataSource]="row.editoroptions.items" displayExpr="{{row.displayexpr}}" valueExpr="{{row.valueexpr}}" [value]="cellInfo.value" [showClearButton]="true">
+                    </dx-select-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 10">
+                <div *dxTemplate="let cellInfo of 'dxSelectBox2410Template'">
+                    <dx-select-box searchEnabled="true" (onValueChanged)="cellInfo.setValue($event.value);changeSelectBox24($event,cellInfo,row.editoroptions.items,row.valueexpr,row)" (onSelectionChanged)="cellInfo.component.updateDimensions()" [inputAttr]="{ 'aria-label': '{{row.name}}' }"
+                        [dataSource]="row.editoroptions.items" displayExpr="{{row.displayexpr}}" valueExpr="{{row.valueexpr}}" [value]="cellInfo.value" [showClearButton]="true">
+                    </dx-select-box>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="row.typE_ID == 12">
+            <div *ngIf="row.editoroptions.stt == 1">
+                <div *dxTemplate="let cellInfo of 'dxTagBox121Template'">
+                    <dx-tag-box [dataSource]="row.editoroptions.items" [value]="cellInfo.value" valueExpr="{{row.valueexpr}}" displayExpr="{{row.displayexpr}}" [showSelectionControls]="true" [maxDisplayedTags]="3" [showMultiTagOnly]="false" [inputAttr]="{ 'aria-label': '{{row.name}}' }"
+                        applyValueMode="useButtons" [searchEnabled]="true" (onValueChanged)="cellInfo.setValue($event.value);onSavTagboxMultiOption($event,cellInfo,row.editoroptions.items,row.valueexpr,row)" (onSelectionChanged)="cellInfo.component.updateDimensions()">
+                    </dx-tag-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 2">
+                <div *dxTemplate="let cellInfo of 'dxTagBox122Template'">
+                    <dx-tag-box [dataSource]="row.editoroptions.items" [value]="cellInfo.value" valueExpr="{{row.valueexpr}}" displayExpr="{{row.displayexpr}}" [showSelectionControls]="true" [maxDisplayedTags]="3" [showMultiTagOnly]="false" [inputAttr]="{ 'aria-label': '{{row.name}}' }"
+                        applyValueMode="useButtons" [searchEnabled]="true" (onValueChanged)="cellInfo.setValue($event.value)" (onSelectionChanged)="cellInfo.component.updateDimensions()">
+                    </dx-tag-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 3">
+                <div *dxTemplate="let cellInfo of 'dxTagBox123Template'">
+                    <dx-tag-box [dataSource]="row.editoroptions.items" [value]="cellInfo.value" valueExpr="{{row.valueexpr}}" displayExpr="{{row.displayexpr}}" [showSelectionControls]="true" [maxDisplayedTags]="3" [showMultiTagOnly]="false" [inputAttr]="{ 'aria-label': '{{row.name}}' }"
+                        applyValueMode="useButtons" [searchEnabled]="true" (onValueChanged)="cellInfo.setValue($event.value)" (onSelectionChanged)="cellInfo.component.updateDimensions()">
+                    </dx-tag-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 4">
+                <div *dxTemplate="let cellInfo of 'dxTagBox124Template'">
+                    <dx-tag-box [dataSource]="row.editoroptions.items" [value]="cellInfo.value" valueExpr="{{row.valueexpr}}" displayExpr="{{row.displayexpr}}" [showSelectionControls]="true" [maxDisplayedTags]="3" [showMultiTagOnly]="false" [inputAttr]="{ 'aria-label': '{{row.name}}' }"
+                        applyValueMode="useButtons" [searchEnabled]="true" (onValueChanged)="cellInfo.setValue($event.value)" (onSelectionChanged)="cellInfo.component.updateDimensions()">
+                    </dx-tag-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 5">
+                <div *dxTemplate="let cellInfo of 'dxTagBox125Template'">
+                    <dx-tag-box [dataSource]="row.editoroptions.items" [value]="cellInfo.value" valueExpr="{{row.valueexpr}}" displayExpr="{{row.displayexpr}}" [showSelectionControls]="true" [maxDisplayedTags]="3" [showMultiTagOnly]="false" [inputAttr]="{ 'aria-label': '{{row.name}}' }"
+                        applyValueMode="useButtons" [searchEnabled]="true" (onValueChanged)="cellInfo.setValue($event.value)" (onSelectionChanged)="cellInfo.component.updateDimensions()">
+                    </dx-tag-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 6">
+                <div *dxTemplate="let cellInfo of 'dxTagBox126Template'">
+                    <dx-tag-box [dataSource]="row.editoroptions.items" [value]="cellInfo.value" valueExpr="{{row.valueexpr}}" displayExpr="{{row.displayexpr}}" [showSelectionControls]="true" [maxDisplayedTags]="3" [showMultiTagOnly]="false" [inputAttr]="{ 'aria-label': '{{row.name}}' }"
+                        applyValueMode="useButtons" [searchEnabled]="true" (onValueChanged)="cellInfo.setValue($event.value)" (onSelectionChanged)="cellInfo.component.updateDimensions()">
+                    </dx-tag-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 7">
+                <div *dxTemplate="let cellInfo of 'dxTagBox127Template'">
+                    <dx-tag-box [dataSource]="row.editoroptions.items" [value]="cellInfo.value" valueExpr="{{row.valueexpr}}" displayExpr="{{row.displayexpr}}" [showSelectionControls]="true" [maxDisplayedTags]="3" [showMultiTagOnly]="false" [inputAttr]="{ 'aria-label': '{{row.name}}' }"
+                        applyValueMode="useButtons" [searchEnabled]="true" (onValueChanged)="cellInfo.setValue($event.value)" (onSelectionChanged)="cellInfo.component.updateDimensions()">
+                    </dx-tag-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 8">
+                <div *dxTemplate="let cellInfo of 'dxTagBox128Template'">
+                    <dx-tag-box [dataSource]="row.editoroptions.items" [value]="cellInfo.value" valueExpr="{{row.valueexpr}}" displayExpr="{{row.displayexpr}}" [showSelectionControls]="true" [maxDisplayedTags]="3" [showMultiTagOnly]="false" [inputAttr]="{ 'aria-label': '{{row.name}}' }"
+                        applyValueMode="useButtons" [searchEnabled]="true" (onValueChanged)="cellInfo.setValue($event.value)" (onSelectionChanged)="cellInfo.component.updateDimensions()">
+                    </dx-tag-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 9">
+                <div *dxTemplate="let cellInfo of 'dxTagBox129Template'">
+                    <dx-tag-box [dataSource]="row.editoroptions.items" [value]="cellInfo.value" valueExpr="{{row.valueexpr}}" displayExpr="{{row.displayexpr}}" [showSelectionControls]="true" [maxDisplayedTags]="3" [showMultiTagOnly]="false" [inputAttr]="{ 'aria-label': '{{row.name}}' }"
+                        applyValueMode="useButtons" [searchEnabled]="true" (onValueChanged)="cellInfo.setValue($event.value)" (onSelectionChanged)="cellInfo.component.updateDimensions()">
+                    </dx-tag-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 10">
+                <div *dxTemplate="let cellInfo of 'dxTagBox1210Template'">
+                    <dx-tag-box [dataSource]="row.editoroptions.items" [value]="cellInfo.value" valueExpr="{{row.valueexpr}}" displayExpr="{{row.displayexpr}}" [showSelectionControls]="true" [maxDisplayedTags]="3" [showMultiTagOnly]="false" [inputAttr]="{ 'aria-label': '{{row.name}}' }"
+                        applyValueMode="useButtons" [searchEnabled]="true" (onValueChanged)="cellInfo.setValue($event.value)" (onSelectionChanged)="cellInfo.component.updateDimensions()">
+                    </dx-tag-box>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="row.typE_ID == 23">
+            <div *ngIf="row.editoroptions.stt == 1">
+                <div *dxTemplate="let cellInfo of 'dxCheckBox231Template'">
+                    <dx-check-box (onValueChanged)="changeCheckBox23($event,cellInfo,row)" [value]="cellInfo.value"></dx-check-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 2">
+                <div *dxTemplate="let cellInfo of 'dxCheckBox232Template'">
+                    <dx-check-box (onValueChanged)="changeCheckBox23($event,cellInfo,row)" [value]="cellInfo.value"></dx-check-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 3">
+                <div *dxTemplate="let cellInfo of 'dxCheckBox233Template'">
+                    <dx-check-box (onValueChanged)="changeCheckBox23($event,cellInfo,row)" [value]="cellInfo.value"></dx-check-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 4">
+                <div *dxTemplate="let cellInfo of 'dxCheckBox234Template'">
+                    <dx-check-box (onValueChanged)="changeCheckBox23($event,cellInfo,row)" [value]="cellInfo.value"></dx-check-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 5">
+                <div *dxTemplate="let cellInfo of 'dxCheckBox235Template'">
+                    <dx-check-box (onValueChanged)="changeCheckBox23($event,cellInfo,row)" [value]="cellInfo.value"></dx-check-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 6">
+                <div *dxTemplate="let cellInfo of 'dxCheckBox236Template'">
+                    <dx-check-box (onValueChanged)="changeCheckBox23($event,cellInfo,row)" [value]="cellInfo.value"></dx-check-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 7">
+                <div *dxTemplate="let cellInfo of 'dxCheckBox237Template'">
+                    <dx-check-box (onValueChanged)="changeCheckBox23($event,cellInfo,row)" [value]="cellInfo.value"></dx-check-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 8">
+                <div *dxTemplate="let cellInfo of 'dxCheckBox238Template'">
+                    <dx-check-box (onValueChanged)="changeCheckBox23($event,cellInfo,row)" [value]="cellInfo.value"></dx-check-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 9">
+                <div *dxTemplate="let cellInfo of 'dxCheckBox239Template'">
+                    <dx-check-box (onValueChanged)="changeCheckBox23($event,cellInfo,row)" [value]="cellInfo.value"></dx-check-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 10">
+                <div *dxTemplate="let cellInfo of 'dxCheckBox2310Template'">
+                    <dx-check-box (onValueChanged)="changeCheckBox23($event,cellInfo,row)" [value]="cellInfo.value"></dx-check-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 11">
+                <div *dxTemplate="let cellInfo of 'dxCheckBox2311Template'">
+                    <dx-check-box (onValueChanged)="changeCheckBox23($event,cellInfo,row)" [value]="cellInfo.value"></dx-check-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 12">
+                <div *dxTemplate="let cellInfo of 'dxCheckBox2312Template'">
+                    <dx-check-box (onValueChanged)="changeCheckBox23($event,cellInfo,row)" [value]="cellInfo.value"></dx-check-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 13">
+                <div *dxTemplate="let cellInfo of 'dxCheckBox2313Template'">
+                    <dx-check-box (onValueChanged)="changeCheckBox23($event,cellInfo,row)" [value]="cellInfo.value"></dx-check-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 14">
+                <div *dxTemplate="let cellInfo of 'dxCheckBox2314Template'">
+                    <dx-check-box (onValueChanged)="changeCheckBox23($event,cellInfo,row)" [value]="cellInfo.value"></dx-check-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 15">
+                <div *dxTemplate="let cellInfo of 'dxCheckBox2315Template'">
+                    <dx-check-box (onValueChanged)="changeCheckBox23($event,cellInfo,row)" [value]="cellInfo.value"></dx-check-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 16">
+                <div *dxTemplate="let cellInfo of 'dxCheckBox2316Template'">
+                    <dx-check-box (onValueChanged)="changeCheckBox23($event,cellInfo,row)" [value]="cellInfo.value"></dx-check-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 17">
+                <div *dxTemplate="let cellInfo of 'dxCheckBox2317Template'">
+                    <dx-check-box (onValueChanged)="changeCheckBox23($event,cellInfo,row)" [value]="cellInfo.value"></dx-check-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 18">
+                <div *dxTemplate="let cellInfo of 'dxCheckBox2318Template'">
+                    <dx-check-box (onValueChanged)="changeCheckBox23($event,cellInfo,row)" [value]="cellInfo.value"></dx-check-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 19">
+                <div *dxTemplate="let cellInfo of 'dxCheckBox2319Template'">
+                    <dx-check-box (onValueChanged)="changeCheckBox23($event,cellInfo,row)" [value]="cellInfo.value"></dx-check-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 20">
+                <div *dxTemplate="let cellInfo of 'dxCheckBox2320Template'">
+                    <dx-check-box (onValueChanged)="changeCheckBox23($event,cellInfo,row)" [value]="cellInfo.value"></dx-check-box>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="row.typE_ID == 27">
+            <div *ngIf="row.editoroptions.stt == 1">
+                <div *dxTemplate="let cellInfo of 'dxSelectBox271Template'">
+                    <dx-drop-down-box [opened]="isDropBoxOpened" (onValueChanged)="cellInfo.setValue($event.value)" (onSelectionChanged)="cellInfo.component.updateDimensions()" [(value)]="cellInfo.value" valueExpr="{{row.valueexpr}}" displayExpr="{{row.displayexpr}}" placeholder="Select a value..."
+                        [showClearButton]="true" [dataSource]="row.editoroptions.items">
+                        <dxo-drop-down-options [width]="row.editoroptions.optionWidth" [height]="600"></dxo-drop-down-options>
+                        <div *dxTemplate="let data of 'content'">
+                            <osoft-data-grid [isFilter]="row.editoroptions.isFilter" [dataSourceFilter]="row.editoroptions.itemsFilter" [isFilter]="row.editoroptions.isFilter" [dataSourceFilter]="row.editoroptions.itemsFilter" (selectedRowsDataOutput)="onSelectRowGridDropdown2($event,cellInfo,row)"
+                                [keyExpr]="row.valueexpr" (onClickCancel)="onSaveDropDownOption($event,cellInfo,row.editoroptions.items,row.valueexpr,row)" (onClickOK)="onSaveDropDownOption($event,cellInfo,row.editoroptions.items,row.valueexpr,row)" [showFilterRow]="true"
+                                [currentSelectedRowKeys]="[cellInfo.value]" [selection]="false" [height]="400" [tableName]="row.droP_DOWN_TABLE" [type]="'BY-TABLE-NAME'" [dataSource]="row.editoroptions.items" (OnSelectRow)="onSelectRowGridDropdown($event,i,column)"></osoft-data-grid>
+                        </div>
+                    </dx-drop-down-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 2">
+                <div *dxTemplate="let cellInfo of 'dxSelectBox272Template'">
+                    <dx-drop-down-box [opened]="isDropBoxOpened" (onValueChanged)="cellInfo.setValue($event.value)" (onSelectionChanged)="cellInfo.component.updateDimensions()" [(value)]="cellInfo.value" valueExpr="{{row.valueexpr}}" displayExpr="{{row.displayexpr}}" placeholder="Select a value..."
+                        [showClearButton]="true" [dataSource]="row.editoroptions.items">
+                        <dxo-drop-down-options [width]="row.editoroptions.optionWidth" [height]="600"></dxo-drop-down-options>
+                        <div *dxTemplate="let data of 'content'">
+                            <osoft-data-grid [isFilter]="row.editoroptions.isFilter" [dataSourceFilter]="row.editoroptions.itemsFilter" (selectedRowsDataOutput)="onSelectRowGridDropdown2($event,cellInfo,row)" [keyExpr]="row.valueexpr" (onClickCancel)="onSaveDropDownOption($event,cellInfo,row.editoroptions.items,row.valueexpr,row)"
+                                (onClickOK)="onSaveDropDownOption($event,cellInfo,row.editoroptions.items,row.valueexpr,row)" [showFilterRow]="true" [currentSelectedRowKeys]="[cellInfo.value]" [selection]="false" [height]="400" [tableName]="row.droP_DOWN_TABLE"
+                                [type]="'BY-TABLE-NAME'" [dataSource]="row.editoroptions.items" (OnSelectRow)="onSelectRowGridDropdown($event,i,column)"></osoft-data-grid>
+                        </div>
+                    </dx-drop-down-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 3">
+                <div *dxTemplate="let cellInfo of 'dxSelectBox273Template'">
+                    <dx-drop-down-box [opened]="isDropBoxOpened" (onValueChanged)="cellInfo.setValue($event.value)" (onSelectionChanged)="cellInfo.component.updateDimensions()" [(value)]="cellInfo.value" valueExpr="{{row.valueexpr}}" displayExpr="{{row.displayexpr}}" placeholder="Select a value..."
+                        [showClearButton]="true" [dataSource]="row.editoroptions.items">
+                        <dxo-drop-down-options [width]="row.editoroptions.optionWidth" [height]="600"></dxo-drop-down-options>
+                        <div *dxTemplate="let data of 'content'">
+                            <osoft-data-grid [isFilter]="row.editoroptions.isFilter" [dataSourceFilter]="row.editoroptions.itemsFilter" (selectedRowsDataOutput)="onSelectRowGridDropdown2($event,cellInfo,row)" [keyExpr]="row.valueexpr" (onClickCancel)="onSaveDropDownOption($event,cellInfo,row.editoroptions.items,row.valueexpr,row)"
+                                (onClickOK)="onSaveDropDownOption($event,cellInfo,row.editoroptions.items,row.valueexpr,row)" [showFilterRow]="true" [currentSelectedRowKeys]="[cellInfo.value]" [selection]="false" [height]="400" [tableName]="row.droP_DOWN_TABLE"
+                                [type]="'BY-TABLE-NAME'" [dataSource]="row.editoroptions.items" (OnSelectRow)="onSelectRowGridDropdown($event,i,column)"></osoft-data-grid>
+                        </div>
+                    </dx-drop-down-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 4">
+                <div *dxTemplate="let cellInfo of 'dxSelectBox274Template'">
+                    <dx-drop-down-box [opened]="isDropBoxOpened" (onValueChanged)="cellInfo.setValue($event.value)" (onSelectionChanged)="cellInfo.component.updateDimensions()" [(value)]="cellInfo.value" valueExpr="{{row.valueexpr}}" displayExpr="{{row.displayexpr}}" placeholder="Select a value..."
+                        [showClearButton]="true" [dataSource]="row.editoroptions.items">
+                        <dxo-drop-down-options [width]="row.editoroptions.optionWidth" [height]="600"></dxo-drop-down-options>
+                        <div *dxTemplate="let data of 'content'">
+                            <osoft-data-grid [isFilter]="row.editoroptions.isFilter" [dataSourceFilter]="row.editoroptions.itemsFilter" (selectedRowsDataOutput)="onSelectRowGridDropdown2($event,cellInfo,row)" [keyExpr]="row.valueexpr" (onClickCancel)="onSaveDropDownOption($event,cellInfo,row.editoroptions.items,row.valueexpr,row)"
+                                (onClickOK)="onSaveDropDownOption($event,cellInfo,row.editoroptions.items,row.valueexpr,row)" [showFilterRow]="true" [currentSelectedRowKeys]="[cellInfo.value]" [selection]="false" [height]="400" [tableName]="row.droP_DOWN_TABLE"
+                                [type]="'BY-TABLE-NAME'" [dataSource]="row.editoroptions.items" (OnSelectRow)="onSelectRowGridDropdown($event,i,column)"></osoft-data-grid>
+                        </div>
+                    </dx-drop-down-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 5">
+                <div *dxTemplate="let cellInfo of 'dxSelectBox275Template'">
+                    <dx-drop-down-box [opened]="isDropBoxOpened" (onValueChanged)="cellInfo.setValue($event.value)" (onSelectionChanged)="cellInfo.component.updateDimensions()" [(value)]="cellInfo.value" valueExpr="{{row.valueexpr}}" displayExpr="{{row.displayexpr}}" placeholder="Select a value..."
+                        [showClearButton]="true" [dataSource]="row.editoroptions.items">
+                        <dxo-drop-down-options [width]="row.editoroptions.optionWidth" [height]="600"></dxo-drop-down-options>
+                        <div *dxTemplate="let data of 'content'">
+                            <osoft-data-grid [isFilter]="row.editoroptions.isFilter" [dataSourceFilter]="row.editoroptions.itemsFilter" (selectedRowsDataOutput)="onSelectRowGridDropdown2($event,cellInfo,row)" [keyExpr]="row.valueexpr" (onClickCancel)="onSaveDropDownOption($event,cellInfo,row.editoroptions.items,row.valueexpr,row)"
+                                (onClickOK)="onSaveDropDownOption($event,cellInfo,row.editoroptions.items,row.valueexpr,row)" [showFilterRow]="true" [currentSelectedRowKeys]="[cellInfo.value]" [selection]="false" [height]="400" [tableName]="row.droP_DOWN_TABLE"
+                                [type]="'BY-TABLE-NAME'" [dataSource]="row.editoroptions.items" (OnSelectRow)="onSelectRowGridDropdown($event,i,column)"></osoft-data-grid>
+                        </div>
+                    </dx-drop-down-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 6">
+                <div *dxTemplate="let cellInfo of 'dxSelectBox276Template'">
+                    <dx-drop-down-box [opened]="isDropBoxOpened" (onValueChanged)="cellInfo.setValue($event.value)" (onSelectionChanged)="cellInfo.component.updateDimensions()" [(value)]="cellInfo.value" valueExpr="{{row.valueexpr}}" displayExpr="{{row.displayexpr}}" placeholder="Select a value..."
+                        [showClearButton]="true" [dataSource]="row.editoroptions.items">
+                        <dxo-drop-down-options [width]="row.editoroptions.optionWidth" [height]="600"></dxo-drop-down-options>
+                        <div *dxTemplate="let data of 'content'">
+                            <osoft-data-grid [isFilter]="row.editoroptions.isFilter" [dataSourceFilter]="row.editoroptions.itemsFilter" (selectedRowsDataOutput)="onSelectRowGridDropdown2($event,cellInfo,row)" [keyExpr]="row.valueexpr" (onClickCancel)="onSaveDropDownOption($event,cellInfo,row.editoroptions.items,row.valueexpr,row)"
+                                (onClickOK)="onSaveDropDownOption($event,cellInfo,row.editoroptions.items,row.valueexpr,row)" [showFilterRow]="true" [currentSelectedRowKeys]="[cellInfo.value]" [selection]="false" [height]="400" [tableName]="row.droP_DOWN_TABLE"
+                                [type]="'BY-TABLE-NAME'" [dataSource]="row.editoroptions.items" (OnSelectRow)="onSelectRowGridDropdown($event,i,column)"></osoft-data-grid>
+                        </div>
+                    </dx-drop-down-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 7">
+                <div *dxTemplate="let cellInfo of 'dxSelectBox277Template'">
+                    <dx-drop-down-box [opened]="isDropBoxOpened" (onValueChanged)="cellInfo.setValue($event.value)" (onSelectionChanged)="cellInfo.component.updateDimensions()" [(value)]="cellInfo.value" valueExpr="{{row.valueexpr}}" displayExpr="{{row.displayexpr}}" placeholder="Select a value..."
+                        [showClearButton]="true" [dataSource]="row.editoroptions.items">
+                        <dxo-drop-down-options [width]="row.editoroptions.optionWidth" [height]="600"></dxo-drop-down-options>
+                        <div *dxTemplate="let data of 'content'">
+                            <osoft-data-grid [isFilter]="row.editoroptions.isFilter" [dataSourceFilter]="row.editoroptions.itemsFilter" (selectedRowsDataOutput)="onSelectRowGridDropdown2($event,cellInfo,row)" [keyExpr]="row.valueexpr" (onClickCancel)="onSaveDropDownOption($event,cellInfo,row.editoroptions.items,row.valueexpr,row)"
+                                (onClickOK)="onSaveDropDownOption($event,cellInfo,row.editoroptions.items,row.valueexpr,row)" [showFilterRow]="true" [currentSelectedRowKeys]="[cellInfo.value]" [selection]="false" [height]="400" [tableName]="row.droP_DOWN_TABLE"
+                                [type]="'BY-TABLE-NAME'" [dataSource]="row.editoroptions.items" (OnSelectRow)="onSelectRowGridDropdown($event,i,column)"></osoft-data-grid>
+                        </div>
+                    </dx-drop-down-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 8">
+                <div *dxTemplate="let cellInfo of 'dxSelectBox278Template'">
+                    <dx-drop-down-box [opened]="isDropBoxOpened" (onValueChanged)="cellInfo.setValue($event.value)" (onSelectionChanged)="cellInfo.component.updateDimensions()" [(value)]="cellInfo.value" valueExpr="{{row.valueexpr}}" displayExpr="{{row.displayexpr}}" placeholder="Select a value..."
+                        [showClearButton]="true" [dataSource]="row.editoroptions.items">
+                        <dxo-drop-down-options [width]="row.editoroptions.optionWidth" [height]="600"></dxo-drop-down-options>
+                        <div *dxTemplate="let data of 'content'">
+                            <osoft-data-grid [isFilter]="row.editoroptions.isFilter" [dataSourceFilter]="row.editoroptions.itemsFilter" (selectedRowsDataOutput)="onSelectRowGridDropdown2($event,cellInfo,row)" [keyExpr]="row.valueexpr" (onClickCancel)="onSaveDropDownOption($event,cellInfo,row.editoroptions.items,row.valueexpr,row)"
+                                (onClickOK)="onSaveDropDownOption($event,cellInfo,row.editoroptions.items,row.valueexpr,row)" [showFilterRow]="true" [currentSelectedRowKeys]="[cellInfo.value]" [selection]="false" [height]="400" [tableName]="row.droP_DOWN_TABLE"
+                                [type]="'BY-TABLE-NAME'" [dataSource]="row.editoroptions.items" (OnSelectRow)="onSelectRowGridDropdown($event,i,column)"></osoft-data-grid>
+                        </div>
+                    </dx-drop-down-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 9">
+                <div *dxTemplate="let cellInfo of 'dxSelectBox279Template'">
+                    <dx-drop-down-box [opened]="isDropBoxOpened" (onValueChanged)="cellInfo.setValue($event.value)" (onSelectionChanged)="cellInfo.component.updateDimensions()" [(value)]="cellInfo.value" valueExpr="{{row.valueexpr}}" displayExpr="{{row.displayexpr}}" placeholder="Select a value..."
+                        [showClearButton]="true" [dataSource]="row.editoroptions.items">
+                        <dxo-drop-down-options [width]="row.editoroptions.optionWidth" [height]="600"></dxo-drop-down-options>
+                        <div *dxTemplate="let data of 'content'">
+                            <osoft-data-grid [isFilter]="row.editoroptions.isFilter" [dataSourceFilter]="row.editoroptions.itemsFilter" (selectedRowsDataOutput)="onSelectRowGridDropdown2($event,cellInfo,row)" [keyExpr]="row.valueexpr" (onClickCancel)="onSaveDropDownOption($event,cellInfo,row.editoroptions.items,row.valueexpr,row)"
+                                (onClickOK)="onSaveDropDownOption($event,cellInfo,row.editoroptions.items,row.valueexpr,row)" [showFilterRow]="true" [currentSelectedRowKeys]="[cellInfo.value]" [selection]="false" [height]="400" [tableName]="row.droP_DOWN_TABLE"
+                                [type]="'BY-TABLE-NAME'" [dataSource]="row.editoroptions.items" (OnSelectRow)="onSelectRowGridDropdown($event,i,column)"></osoft-data-grid>
+                        </div>
+                    </dx-drop-down-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 10">
+                <div *dxTemplate="let cellInfo of 'dxSelectBox2710Template'">
+                    <dx-drop-down-box [opened]="isDropBoxOpened" (onValueChanged)="cellInfo.setValue($event.value)" (onSelectionChanged)="cellInfo.component.updateDimensions()" [(value)]="cellInfo.value" valueExpr="{{row.valueexpr}}" displayExpr="{{row.displayexpr}}" placeholder="Select a value..."
+                        [showClearButton]="true" [dataSource]="row.editoroptions.items">
+                        <dxo-drop-down-options [width]="row.editoroptions.optionWidth" [height]="600"></dxo-drop-down-options>
+                        <div *dxTemplate="let data of 'content'">
+                            <osoft-data-grid [isFilter]="row.editoroptions.isFilter" [dataSourceFilter]="row.editoroptions.itemsFilter" (selectedRowsDataOutput)="onSelectRowGridDropdown2($event,cellInfo,row)" [keyExpr]="row.valueexpr" (onClickCancel)="onSaveDropDownOption($event,cellInfo,row.editoroptions.items,row.valueexpr,row)"
+                                (onClickOK)="onSaveDropDownOption($event,cellInfo,row.editoroptions.items,row.valueexpr,row)" [showFilterRow]="true" [currentSelectedRowKeys]="[cellInfo.value]" [selection]="false" [height]="400" [tableName]="row.droP_DOWN_TABLE"
+                                [type]="'BY-TABLE-NAME'" [dataSource]="row.editoroptions.items" (OnSelectRow)="onSelectRowGridDropdown($event,i,column)"></osoft-data-grid>
+                        </div>
+                    </dx-drop-down-box>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="row.typE_ID == 1">
+            <div *ngIf="row.editoroptions.stt == 1">
+                <div *dxTemplate="let cellInfo of 'dxNumberBox11Template'">
+                    <dx-number-box alignment="right" (onValueChanged)="changeNumberBox1($event,cellInfo,row)" format="{{row.dx_format?row.dx_format:'#'}}" [value]="cellInfo.value" [inputAttr]="{ style: 'text-align: right;' }" [showSpinButtons]="true" [showClearButton]="false"></dx-number-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 2">
+                <div *dxTemplate="let cellInfo of 'dxNumberBox12Template'">
+                    <dx-number-box alignment="right" (onValueChanged)="changeNumberBox1($event,cellInfo,row)" format="{{row.dx_format?row.dx_format:'#'}}" [value]="cellInfo.value" [inputAttr]="{ style: 'text-align: right;' }" [showSpinButtons]="true" [showClearButton]="false"></dx-number-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 3">
+                <div *dxTemplate="let cellInfo of 'dxNumberBox13Template'">
+                    <dx-number-box alignment="right" (onValueChanged)="changeNumberBox1($event,cellInfo,row)" format="{{row.dx_format?row.dx_format:'#'}}" [value]="cellInfo.value" [inputAttr]="{ style: 'text-align: right;' }" [showSpinButtons]="true" [showClearButton]="false"></dx-number-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 4">
+                <div *dxTemplate="let cellInfo of 'dxNumberBox14Template'">
+                    <dx-number-box alignment="right" (onValueChanged)="changeNumberBox1($event,cellInfo,row)" format="{{row.dx_format?row.dx_format:'#'}}" [value]="cellInfo.value" [inputAttr]="{ style: 'text-align: right;' }" [showSpinButtons]="true" [showClearButton]="false"></dx-number-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 5">
+                <div *dxTemplate="let cellInfo of 'dxNumberBox15Template'">
+                    <dx-number-box alignment="right" (onValueChanged)="changeNumberBox1($event,cellInfo,row)" format="{{row.dx_format?row.dx_format:'#'}}" [value]="cellInfo.value" [inputAttr]="{ style: 'text-align: right;' }" [showSpinButtons]="true" [showClearButton]="false"></dx-number-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 6">
+                <div *dxTemplate="let cellInfo of 'dxNumberBox16Template'">
+                    <dx-number-box alignment="right" (onValueChanged)="changeNumberBox1($event,cellInfo,row)" format="{{row.dx_format?row.dx_format:'#'}}" [value]="cellInfo.value" [inputAttr]="{ style: 'text-align: right;' }" [showSpinButtons]="true" [showClearButton]="false"></dx-number-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 7">
+                <div *dxTemplate="let cellInfo of 'dxNumberBox17Template'">
+                    <dx-number-box alignment="right" (onValueChanged)="changeNumberBox1($event,cellInfo,row)" format="{{row.dx_format?row.dx_format:'#'}}" [value]="cellInfo.value" [inputAttr]="{ style: 'text-align: right;' }" [showSpinButtons]="true" [showClearButton]="false"></dx-number-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 8">
+                <div *dxTemplate="let cellInfo of 'dxNumberBox18Template'">
+                    <dx-number-box alignment="right" (onValueChanged)="changeNumberBox1($event,cellInfo,row)" format="{{row.dx_format?row.dx_format:'#'}}" [value]="cellInfo.value" [inputAttr]="{ style: 'text-align: right;' }" [showSpinButtons]="true" [showClearButton]="false"></dx-number-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 9">
+                <div *dxTemplate="let cellInfo of 'dxNumberBox19Template'">
+                    <dx-number-box alignment="right" (onValueChanged)="changeNumberBox1($event,cellInfo,row)" format="{{row.dx_format?row.dx_format:'#'}}" [value]="cellInfo.value" [inputAttr]="{ style: 'text-align: right;' }" [showSpinButtons]="true" [showClearButton]="false"></dx-number-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 10">
+                <div *dxTemplate="let cellInfo of 'dxNumberBox110Template'">
+                    <dx-number-box alignment="right" (onValueChanged)="changeNumberBox1($event,cellInfo,row)" format="{{row.dx_format?row.dx_format:'#'}}" [value]="cellInfo.value" [inputAttr]="{ style: 'text-align: right;' }" [showSpinButtons]="true" [showClearButton]="false"></dx-number-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 11">
+                <div *dxTemplate="let cellInfo of 'dxNumberBox111Template'">
+                    <dx-number-box alignment="right" (onValueChanged)="changeNumberBox1($event,cellInfo,row)" format="{{row.dx_format?row.dx_format:'#'}}" [value]="cellInfo.value" [inputAttr]="{ style: 'text-align: right;' }" [showSpinButtons]="true" [showClearButton]="false"></dx-number-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 12">
+                <div *dxTemplate="let cellInfo of 'dxNumberBox112Template'">
+                    <dx-number-box alignment="right" (onValueChanged)="changeNumberBox1($event,cellInfo,row)" format="{{row.dx_format?row.dx_format:'#'}}" [value]="cellInfo.value" [inputAttr]="{ style: 'text-align: right;' }" [showSpinButtons]="true" [showClearButton]="false"></dx-number-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 13">
+                <div *dxTemplate="let cellInfo of 'dxNumberBox113Template'">
+                    <dx-number-box alignment="right" (onValueChanged)="changeNumberBox1($event,cellInfo,row)" format="{{row.dx_format?row.dx_format:'#'}}" [value]="cellInfo.value" [inputAttr]="{ style: 'text-align: right;' }" [showSpinButtons]="true" [showClearButton]="false"></dx-number-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 14">
+                <div *dxTemplate="let cellInfo of 'dxNumberBox114Template'">
+                    <dx-number-box alignment="right" (onValueChanged)="changeNumberBox1($event,cellInfo,row)" format="{{row.dx_format?row.dx_format:'#'}}" [value]="cellInfo.value" [inputAttr]="{ style: 'text-align: right;' }" [showSpinButtons]="true" [showClearButton]="false"></dx-number-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 15">
+                <div *dxTemplate="let cellInfo of 'dxNumberBox115Template'">
+                    <dx-number-box alignment="right" (onValueChanged)="changeNumberBox1($event,cellInfo,row)" format="{{row.dx_format?row.dx_format:'#'}}" [value]="cellInfo.value" [inputAttr]="{ style: 'text-align: right;' }" [showSpinButtons]="true" [showClearButton]="false"></dx-number-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 16">
+                <div *dxTemplate="let cellInfo of 'dxNumberBox116Template'">
+                    <dx-number-box alignment="right" (onValueChanged)="changeNumberBox1($event,cellInfo,row)" format="{{row.dx_format?row.dx_format:'#'}}" [value]="cellInfo.value" [inputAttr]="{ style: 'text-align: right;' }" [showSpinButtons]="true" [showClearButton]="false"></dx-number-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 17">
+                <div *dxTemplate="let cellInfo of 'dxNumberBox117Template'">
+                    <dx-number-box alignment="right" (onValueChanged)="changeNumberBox1($event,cellInfo,row)" format="{{row.dx_format?row.dx_format:'#'}}" [value]="cellInfo.value" [inputAttr]="{ style: 'text-align: right;' }" [showSpinButtons]="true" [showClearButton]="false"></dx-number-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 18">
+                <div *dxTemplate="let cellInfo of 'dxNumberBox118Template'">
+                    <dx-number-box alignment="right" (onValueChanged)="changeNumberBox1($event,cellInfo,row)" format="{{row.dx_format?row.dx_format:'#'}}" [value]="cellInfo.value" [inputAttr]="{ style: 'text-align: right;' }" [showSpinButtons]="true" [showClearButton]="false"></dx-number-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 19">
+                <div *dxTemplate="let cellInfo of 'dxNumberBox119Template'">
+                    <dx-number-box alignment="right" (onValueChanged)="changeNumberBox1($event,cellInfo,row)" format="{{row.dx_format?row.dx_format:'#'}}" [value]="cellInfo.value" [inputAttr]="{ style: 'text-align: right;' }" [showSpinButtons]="true" [showClearButton]="false"></dx-number-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 20">
+                <div *dxTemplate="let cellInfo of 'dxNumberBox120Template'">
+                    <dx-number-box alignment="right" (onValueChanged)="changeNumberBox1($event,cellInfo,row)" format="{{row.dx_format?row.dx_format:'#'}}" [value]="cellInfo.value" [inputAttr]="{ style: 'text-align: right;' }" [showSpinButtons]="true" [showClearButton]="false"></dx-number-box>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="row.typE_ID == 14">
+            <div *ngIf="row.editoroptions.stt == 1">
+                <div *dxTemplate="let cellInfo of 'dxNumberBox141Template'">
+                    <dx-number-box alignment="right" (onValueChanged)="changeNumberBox1($event,cellInfo,row)" format="{{row.dx_format?row.dx_format:'#'}}" [value]="cellInfo.value" [inputAttr]="{ style: 'text-align: right;' }" [showSpinButtons]="true" [showClearButton]="false"></dx-number-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 2">
+                <div *dxTemplate="let cellInfo of 'dxNumberBox142Template'">
+                    <dx-number-box alignment="right" (onValueChanged)="changeNumberBox1($event,cellInfo,row)" format="{{row.dx_format?row.dx_format:'#'}}" [value]="cellInfo.value" [inputAttr]="{ style: 'text-align: right;' }" [showSpinButtons]="true" [showClearButton]="false"></dx-number-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 3">
+                <div *dxTemplate="let cellInfo of 'dxNumberBox143Template'">
+                    <dx-number-box alignment="right" (onValueChanged)="changeNumberBox1($event,cellInfo,row)" format="{{row.dx_format?row.dx_format:'#'}}" [value]="cellInfo.value" [inputAttr]="{ style: 'text-align: right;' }" [showSpinButtons]="true" [showClearButton]="false"></dx-number-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 4">
+                <div *dxTemplate="let cellInfo of 'dxNumberBox144Template'">
+                    <dx-number-box alignment="right" (onValueChanged)="changeNumberBox1($event,cellInfo,row)" format="{{row.dx_format?row.dx_format:'#'}}" [value]="cellInfo.value" [inputAttr]="{ style: 'text-align: right;' }" [showSpinButtons]="true" [showClearButton]="false"></dx-number-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 5">
+                <div *dxTemplate="let cellInfo of 'dxNumberBox145Template'">
+                    <dx-number-box alignment="right" (onValueChanged)="changeNumberBox1($event,cellInfo,row)" format="{{row.dx_format?row.dx_format:'#'}}" [value]="cellInfo.value" [inputAttr]="{ style: 'text-align: right;' }" [showSpinButtons]="true" [showClearButton]="false"></dx-number-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 6">
+                <div *dxTemplate="let cellInfo of 'dxNumberBox146Template'">
+                    <dx-number-box alignment="right" (onValueChanged)="changeNumberBox1($event,cellInfo,row)" format="{{row.dx_format?row.dx_format:'#'}}" [value]="cellInfo.value" [inputAttr]="{ style: 'text-align: right;' }" [showSpinButtons]="true" [showClearButton]="false"></dx-number-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 7">
+                <div *dxTemplate="let cellInfo of 'dxNumberBox147Template'">
+                    <dx-number-box alignment="right" (onValueChanged)="changeNumberBox1($event,cellInfo,row)" format="{{row.dx_format?row.dx_format:'#'}}" [value]="cellInfo.value" [inputAttr]="{ style: 'text-align: right;' }" [showSpinButtons]="true" [showClearButton]="false"></dx-number-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 8">
+                <div *dxTemplate="let cellInfo of 'dxNumberBox148Template'">
+                    <dx-number-box alignment="right" (onValueChanged)="changeNumberBox1($event,cellInfo,row)" format="{{row.dx_format?row.dx_format:'#'}}" [value]="cellInfo.value" [inputAttr]="{ style: 'text-align: right;' }" [showSpinButtons]="true" [showClearButton]="false"></dx-number-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 9">
+                <div *dxTemplate="let cellInfo of 'dxNumberBox149Template'">
+                    <dx-number-box alignment="right" (onValueChanged)="changeNumberBox1($event,cellInfo,row)" format="{{row.dx_format?row.dx_format:'#'}}" [value]="cellInfo.value" [inputAttr]="{ style: 'text-align: right;' }" [showSpinButtons]="true" [showClearButton]="false"></dx-number-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 10">
+                <div *dxTemplate="let cellInfo of 'dxNumberBox1410Template'">
+                    <dx-number-box alignment="right" (onValueChanged)="changeNumberBox1($event,cellInfo,row)" format="{{row.dx_format?row.dx_format:'#'}}" [value]="cellInfo.value" [inputAttr]="{ style: 'text-align: right;' }" [showSpinButtons]="true" [showClearButton]="false"></dx-number-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 11">
+                <div *dxTemplate="let cellInfo of 'dxNumberBox1411Template'">
+                    <dx-number-box alignment="right" (onValueChanged)="changeNumberBox1($event,cellInfo,row)" format="{{row.dx_format?row.dx_format:'#'}}" [value]="cellInfo.value" [inputAttr]="{ style: 'text-align: right;' }" [showSpinButtons]="true" [showClearButton]="false"></dx-number-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 12">
+                <div *dxTemplate="let cellInfo of 'dxNumberBox1412Template'">
+                    <dx-number-box alignment="right" (onValueChanged)="changeNumberBox1($event,cellInfo,row)" format="{{row.dx_format?row.dx_format:'#'}}" [value]="cellInfo.value" [inputAttr]="{ style: 'text-align: right;' }" [showSpinButtons]="true" [showClearButton]="false"></dx-number-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 13">
+                <div *dxTemplate="let cellInfo of 'dxNumberBox1413Template'">
+                    <dx-number-box alignment="right" (onValueChanged)="changeNumberBox1($event,cellInfo,row)" format="{{row.dx_format?row.dx_format:'#'}}" [value]="cellInfo.value" [inputAttr]="{ style: 'text-align: right;' }" [showSpinButtons]="true" [showClearButton]="false"></dx-number-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 14">
+                <div *dxTemplate="let cellInfo of 'dxNumberBox1414Template'">
+                    <dx-number-box alignment="right" (onValueChanged)="changeNumberBox1($event,cellInfo,row)" format="{{row.dx_format?row.dx_format:'#'}}" [value]="cellInfo.value" [inputAttr]="{ style: 'text-align: right;' }" [showSpinButtons]="true" [showClearButton]="false"></dx-number-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 15">
+                <div *dxTemplate="let cellInfo of 'dxNumberBox1415Template'">
+                    <dx-number-box alignment="right" (onValueChanged)="changeNumberBox1($event,cellInfo,row)" format="{{row.dx_format?row.dx_format:'#'}}" [value]="cellInfo.value" [inputAttr]="{ style: 'text-align: right;' }" [showSpinButtons]="true" [showClearButton]="false"></dx-number-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 16">
+                <div *dxTemplate="let cellInfo of 'dxNumberBox1416Template'">
+                    <dx-number-box alignment="right" (onValueChanged)="changeNumberBox1($event,cellInfo,row)" format="{{row.dx_format?row.dx_format:'#'}}" [value]="cellInfo.value" [inputAttr]="{ style: 'text-align: right;' }" [showSpinButtons]="true" [showClearButton]="false"></dx-number-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 17">
+                <div *dxTemplate="let cellInfo of 'dxNumberBox1417Template'">
+                    <dx-number-box alignment="right" (onValueChanged)="changeNumberBox1($event,cellInfo,row)" format="{{row.dx_format?row.dx_format:'#'}}" [value]="cellInfo.value" [inputAttr]="{ style: 'text-align: right;' }" [showSpinButtons]="true" [showClearButton]="false"></dx-number-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 18">
+                <div *dxTemplate="let cellInfo of 'dxNumberBox1418Template'">
+                    <dx-number-box alignment="right" (onValueChanged)="changeNumberBox1($event,cellInfo,row)" format="{{row.dx_format?row.dx_format:'#'}}" [value]="cellInfo.value" [inputAttr]="{ style: 'text-align: right;' }" [showSpinButtons]="true" [showClearButton]="false"></dx-number-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 19">
+                <div *dxTemplate="let cellInfo of 'dxNumberBox1419Template'">
+                    <dx-number-box alignment="right" (onValueChanged)="changeNumberBox1($event,cellInfo,row)" format="{{row.dx_format?row.dx_format:'#'}}" [value]="cellInfo.value" [inputAttr]="{ style: 'text-align: right;' }" [showSpinButtons]="true" [showClearButton]="false"></dx-number-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 20">
+                <div *dxTemplate="let cellInfo of 'dxNumberBox1420Template'">
+                    <dx-number-box alignment="right" (onValueChanged)="changeNumberBox1($event,cellInfo,row)" format="{{row.dx_format?row.dx_format:'#'}}" [value]="cellInfo.value" [inputAttr]="{ style: 'text-align: right;' }" [showSpinButtons]="true" [showClearButton]="false"></dx-number-box>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="row.typE_ID == 15">
+            <div *ngIf="row.editoroptions.stt == 1">
+                <div *dxTemplate="let cellInfo of 'dxNumberBox151Template'">
+                    <dx-number-box alignment="right" (onValueChanged)="changeNumberBox1($event,cellInfo,row)" format="{{row.dx_format?row.dx_format:'#'}}" [value]="cellInfo.value" [inputAttr]="{ style: 'text-align: right;' }" [showSpinButtons]="true" [showClearButton]="false"></dx-number-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 2">
+                <div *dxTemplate="let cellInfo of 'dxNumberBox152Template'">
+                    <dx-number-box alignment="right" (onValueChanged)="changeNumberBox1($event,cellInfo,row)" format="{{row.dx_format?row.dx_format:'#'}}" [value]="cellInfo.value" [inputAttr]="{ style: 'text-align: right;' }" [showSpinButtons]="true" [showClearButton]="false"></dx-number-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 3">
+                <div *dxTemplate="let cellInfo of 'dxNumberBox153Template'">
+                    <dx-number-box alignment="right" (onValueChanged)="changeNumberBox1($event,cellInfo,row)" format="{{row.dx_format?row.dx_format:'#'}}" [value]="cellInfo.value" [inputAttr]="{ style: 'text-align: right;' }" [showSpinButtons]="true" [showClearButton]="false"></dx-number-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 4">
+                <div *dxTemplate="let cellInfo of 'dxNumberBox154Template'">
+                    <dx-number-box alignment="right" (onValueChanged)="changeNumberBox1($event,cellInfo,row)" format="{{row.dx_format?row.dx_format:'#'}}" [value]="cellInfo.value" [inputAttr]="{ style: 'text-align: right;' }" [showSpinButtons]="true" [showClearButton]="false"></dx-number-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 5">
+                <div *dxTemplate="let cellInfo of 'dxNumberBox155Template'">
+                    <dx-number-box alignment="right" (onValueChanged)="changeNumberBox1($event,cellInfo,row)" format="{{row.dx_format?row.dx_format:'#'}}" [value]="cellInfo.value" [inputAttr]="{ style: 'text-align: right;' }" [showSpinButtons]="true" [showClearButton]="false"></dx-number-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 6">
+                <div *dxTemplate="let cellInfo of 'dxNumberBox156Template'">
+                    <dx-number-box alignment="right" (onValueChanged)="changeNumberBox1($event,cellInfo,row)" format="{{row.dx_format?row.dx_format:'#'}}" [value]="cellInfo.value" [inputAttr]="{ style: 'text-align: right;' }" [showSpinButtons]="true" [showClearButton]="false"></dx-number-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 7">
+                <div *dxTemplate="let cellInfo of 'dxNumberBox157Template'">
+                    <dx-number-box alignment="right" (onValueChanged)="changeNumberBox1($event,cellInfo,row)" format="{{row.dx_format?row.dx_format:'#'}}" [value]="cellInfo.value" [inputAttr]="{ style: 'text-align: right;' }" [showSpinButtons]="true" [showClearButton]="false"></dx-number-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 8">
+                <div *dxTemplate="let cellInfo of 'dxNumberBox158Template'">
+                    <dx-number-box alignment="right" (onValueChanged)="changeNumberBox1($event,cellInfo,row)" format="{{row.dx_format?row.dx_format:'#'}}" [value]="cellInfo.value" [inputAttr]="{ style: 'text-align: right;' }" [showSpinButtons]="true" [showClearButton]="false"></dx-number-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 9">
+                <div *dxTemplate="let cellInfo of 'dxNumberBox159Template'">
+                    <dx-number-box alignment="right" (onValueChanged)="changeNumberBox1($event,cellInfo,row)" format="{{row.dx_format?row.dx_format:'#'}}" [value]="cellInfo.value" [inputAttr]="{ style: 'text-align: right;' }" [showSpinButtons]="true" [showClearButton]="false"></dx-number-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 10">
+                <div *dxTemplate="let cellInfo of 'dxNumberBox1510Template'">
+                    <dx-number-box alignment="right" (onValueChanged)="changeNumberBox1($event,cellInfo,row)" format="{{row.dx_format?row.dx_format:'#'}}" [value]="cellInfo.value" [inputAttr]="{ style: 'text-align: right;' }" [showSpinButtons]="true" [showClearButton]="false"></dx-number-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 11">
+                <div *dxTemplate="let cellInfo of 'dxNumberBox1511Template'">
+                    <dx-number-box alignment="right" (onValueChanged)="changeNumberBox1($event,cellInfo,row)" format="{{row.dx_format?row.dx_format:'#'}}" [value]="cellInfo.value" [inputAttr]="{ style: 'text-align: right;' }" [showSpinButtons]="true" [showClearButton]="false"></dx-number-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 12">
+                <div *dxTemplate="let cellInfo of 'dxNumberBox1512Template'">
+                    <dx-number-box alignment="right" (onValueChanged)="changeNumberBox1($event,cellInfo,row)" format="{{row.dx_format?row.dx_format:'#'}}" [value]="cellInfo.value" [inputAttr]="{ style: 'text-align: right;' }" [showSpinButtons]="true" [showClearButton]="false"></dx-number-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 13">
+                <div *dxTemplate="let cellInfo of 'dxNumberBox1513Template'">
+                    <dx-number-box alignment="right" (onValueChanged)="changeNumberBox1($event,cellInfo,row)" format="{{row.dx_format?row.dx_format:'#'}}" [value]="cellInfo.value" [inputAttr]="{ style: 'text-align: right;' }" [showSpinButtons]="true" [showClearButton]="false"></dx-number-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 14">
+                <div *dxTemplate="let cellInfo of 'dxNumberBox1514Template'">
+                    <dx-number-box alignment="right" (onValueChanged)="changeNumberBox1($event,cellInfo,row)" format="{{row.dx_format?row.dx_format:'#'}}" [value]="cellInfo.value" [inputAttr]="{ style: 'text-align: right;' }" [showSpinButtons]="true" [showClearButton]="false"></dx-number-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 15">
+                <div *dxTemplate="let cellInfo of 'dxNumberBox1515Template'">
+                    <dx-number-box alignment="right" (onValueChanged)="changeNumberBox1($event,cellInfo,row)" format="{{row.dx_format?row.dx_format:'#'}}" [value]="cellInfo.value" [inputAttr]="{ style: 'text-align: right;' }" [showSpinButtons]="true" [showClearButton]="false"></dx-number-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 16">
+                <div *dxTemplate="let cellInfo of 'dxNumberBox1516Template'">
+                    <dx-number-box alignment="right" (onValueChanged)="changeNumberBox1($event,cellInfo,row)" format="{{row.dx_format?row.dx_format:'#'}}" [value]="cellInfo.value" [inputAttr]="{ style: 'text-align: right;' }" [showSpinButtons]="true" [showClearButton]="false"></dx-number-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 17">
+                <div *dxTemplate="let cellInfo of 'dxNumberBox1517Template'">
+                    <dx-number-box alignment="right" (onValueChanged)="changeNumberBox1($event,cellInfo,row)" format="{{row.dx_format?row.dx_format:'#'}}" [value]="cellInfo.value" [inputAttr]="{ style: 'text-align: right;' }" [showSpinButtons]="true" [showClearButton]="false"></dx-number-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 18">
+                <div *dxTemplate="let cellInfo of 'dxNumberBox1518Template'">
+                    <dx-number-box alignment="right" (onValueChanged)="changeNumberBox1($event,cellInfo,row)" format="{{row.dx_format?row.dx_format:'#'}}" [value]="cellInfo.value" [inputAttr]="{ style: 'text-align: right;' }" [showSpinButtons]="true" [showClearButton]="false"></dx-number-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 19">
+                <div *dxTemplate="let cellInfo of 'dxNumberBox1519Template'">
+                    <dx-number-box alignment="right" (onValueChanged)="changeNumberBox1($event,cellInfo,row)" format="{{row.dx_format?row.dx_format:'#'}}" [value]="cellInfo.value" [inputAttr]="{ style: 'text-align: right;' }" [showSpinButtons]="true" [showClearButton]="false"></dx-number-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 20">
+                <div *dxTemplate="let cellInfo of 'dxNumberBox1520Template'">
+                    <dx-number-box alignment="right" (onValueChanged)="changeNumberBox1($event,cellInfo,row)" format="{{row.dx_format?row.dx_format:'#'}}" [value]="cellInfo.value" [inputAttr]="{ style: 'text-align: right;' }" [showSpinButtons]="true" [showClearButton]="false"></dx-number-box>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="row.typE_ID == 5 || row.typE_ID == 9 || row.typE_ID == 10 || row.typE_ID == 11">
+            <div *ngIf="row.typE_ID == 5">
+                <div *ngIf="row.editoroptions.stt == 1">
+                    <div *dxTemplate="let cellInfo of 'dxDateBox51Template'">
+                        <dx-input-datepicker [placeholder]="row.name" [showClearButton]="true" [useMaskBehavior]="true" [format]="row.dx_format" type="date" [value]="cellInfo.value" [inputAttr]="{ 'aria-label': '{{row.name}}' }" (ValueOutput)="handleValueChangedDate($event,cellInfo,row)">
+                        </dx-input-datepicker>
+                    </div>
+                </div>
+                <div *ngIf="row.editoroptions.stt == 2">
+                    <div *dxTemplate="let cellInfo of 'dxDateBox52Template'">
+                        <dx-input-datepicker [placeholder]="row.name" [showClearButton]="true" [useMaskBehavior]="true" [format]="row.dx_format" type="date" [value]="cellInfo.value" [inputAttr]="{ 'aria-label': '{{row.name}}' }" (ValueOutput)="handleValueChangedDate($event,cellInfo,row)">
+                        </dx-input-datepicker>
+                    </div>
+                </div>
+                <div *ngIf="row.editoroptions.stt == 3">
+                    <div *dxTemplate="let cellInfo of 'dxDateBox53Template'">
+                        <dx-input-datepicker [placeholder]="row.name" [showClearButton]="true" [useMaskBehavior]="true" [format]="row.dx_format" type="date" [value]="cellInfo.value" [inputAttr]="{ 'aria-label': '{{row.name}}' }" (ValueOutput)="handleValueChangedDate($event,cellInfo,row)">
+                        </dx-input-datepicker>
+                    </div>
+                </div>
+                <div *ngIf="row.editoroptions.stt == 4">
+                    <div *dxTemplate="let cellInfo of 'dxDateBox54Template'">
+                        <dx-input-datepicker [placeholder]="row.name" [showClearButton]="true" [useMaskBehavior]="true" [format]="row.dx_format" type="date" [value]="cellInfo.value" [inputAttr]="{ 'aria-label': '{{row.name}}' }" (ValueOutput)="handleValueChangedDate($event,cellInfo,row)">
+                        </dx-input-datepicker>
+                    </div>
+                </div>
+                <div *ngIf="row.editoroptions.stt == 5">
+                    <div *dxTemplate="let cellInfo of 'dxDateBox55Template'">
+                        <dx-input-datepicker [placeholder]="row.name" [showClearButton]="true" [useMaskBehavior]="true" [format]="row.dx_format" type="date" [value]="cellInfo.value" [inputAttr]="{ 'aria-label': '{{row.name}}' }" (ValueOutput)="handleValueChangedDate($event,cellInfo,row)">
+                        </dx-input-datepicker>
+                    </div>
+                </div>
+                <div *ngIf="row.editoroptions.stt == 6">
+                    <div *dxTemplate="let cellInfo of 'dxDateBox56Template'">
+                        <dx-input-datepicker [placeholder]="row.name" [showClearButton]="true" [useMaskBehavior]="true" [format]="row.dx_format" type="date" [value]="cellInfo.value" [inputAttr]="{ 'aria-label': '{{row.name}}' }" (ValueOutput)="handleValueChangedDate($event,cellInfo,row)">
+                        </dx-input-datepicker>
+                    </div>
+                </div>
+                <div *ngIf="row.editoroptions.stt == 7">
+                    <div *dxTemplate="let cellInfo of 'dxDateBox57Template'">
+                        <dx-input-datepicker [placeholder]="row.name" [showClearButton]="true" [useMaskBehavior]="true" [format]="row.dx_format" type="date" [value]="cellInfo.value" [inputAttr]="{ 'aria-label': '{{row.name}}' }" (ValueOutput)="handleValueChangedDate($event,cellInfo,row)">
+                        </dx-input-datepicker>
+                    </div>
+                </div>
+                <div *ngIf="row.editoroptions.stt == 8">
+                    <div *dxTemplate="let cellInfo of 'dxDateBox58Template'">
+                        <dx-input-datepicker [placeholder]="row.name" [showClearButton]="true" [useMaskBehavior]="true" [format]="row.dx_format" type="date" [value]="cellInfo.value" [inputAttr]="{ 'aria-label': '{{row.name}}' }" (ValueOutput)="handleValueChangedDate($event,cellInfo,row)">
+                        </dx-input-datepicker>
+                    </div>
+                </div>
+                <div *ngIf="row.editoroptions.stt == 9">
+                    <div *dxTemplate="let cellInfo of 'dxDateBox59Template'">
+                        <dx-input-datepicker [placeholder]="row.name" [showClearButton]="true" [useMaskBehavior]="true" [format]="row.dx_format" type="date" [value]="cellInfo.value" [inputAttr]="{ 'aria-label': '{{row.name}}' }" (ValueOutput)="handleValueChangedDate($event,cellInfo,row)">
+                        </dx-input-datepicker>
+                    </div>
+                </div>
+                <div *ngIf="row.editoroptions.stt == 10">
+                    <div *dxTemplate="let cellInfo of 'dxDateBox510Template'">
+                        <dx-input-datepicker [placeholder]="row.name" [showClearButton]="true" [useMaskBehavior]="true" [format]="row.dx_format" type="date" [value]="cellInfo.value" [inputAttr]="{ 'aria-label': '{{row.name}}' }" (ValueOutput)="handleValueChangedDate($event,cellInfo,row)">
+                        </dx-input-datepicker>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="row.typE_ID == 9">
+                <div *ngIf="row.editoroptions.stt == 1">
+                    <div *dxTemplate="let cellInfo of 'dxDateBox91Template'">
+                        <dx-input-datepicker [placeholder]="row.name" [showClearButton]="true" [useMaskBehavior]="true" [format]="row.dx_format" type="date" [value]="cellInfo.value" [inputAttr]="{ 'aria-label': '{{row.name}}' }" (ValueOutput)="handleValueChangedDate($event,cellInfo,row)">
+                        </dx-input-datepicker>
+                    </div>
+                </div>
+                <div *ngIf="row.editoroptions.stt == 2">
+                    <div *dxTemplate="let cellInfo of 'dxDateBox92Template'">
+                        <dx-input-datepicker [placeholder]="row.name" [showClearButton]="true" [useMaskBehavior]="true" [format]="row.dx_format" type="date" [value]="cellInfo.value" [inputAttr]="{ 'aria-label': '{{row.name}}' }" (ValueOutput)="handleValueChangedDate($event,cellInfo,row)">
+                        </dx-input-datepicker>
+                    </div>
+                </div>
+                <div *ngIf="row.editoroptions.stt == 3">
+                    <div *dxTemplate="let cellInfo of 'dxDateBox93Template'">
+                        <dx-input-datepicker [placeholder]="row.name" [showClearButton]="true" [useMaskBehavior]="true" [format]="row.dx_format" type="date" [value]="cellInfo.value" [inputAttr]="{ 'aria-label': '{{row.name}}' }" (ValueOutput)="handleValueChangedDate($event,cellInfo,row)">
+                        </dx-input-datepicker>
+                    </div>
+                </div>
+                <div *ngIf="row.editoroptions.stt == 4">
+                    <div *dxTemplate="let cellInfo of 'dxDateBox94Template'">
+                        <dx-input-datepicker [placeholder]="row.name" [showClearButton]="true" [useMaskBehavior]="true" [format]="row.dx_format" type="date" [value]="cellInfo.value" [inputAttr]="{ 'aria-label': '{{row.name}}' }" (ValueOutput)="handleValueChangedDate($event,cellInfo,row)">
+                        </dx-input-datepicker>
+                    </div>
+                </div>
+                <div *ngIf="row.editoroptions.stt == 5">
+                    <div *dxTemplate="let cellInfo of 'dxDateBox95Template'">
+                        <dx-input-datepicker [placeholder]="row.name" [showClearButton]="true" [useMaskBehavior]="true" [format]="row.dx_format" type="date" [value]="cellInfo.value" [inputAttr]="{ 'aria-label': '{{row.name}}' }" (ValueOutput)="handleValueChangedDate($event,cellInfo,row)">
+                        </dx-input-datepicker>
+                    </div>
+                </div>
+                <div *ngIf="row.editoroptions.stt == 6">
+                    <div *dxTemplate="let cellInfo of 'dxDateBox96Template'">
+                        <dx-input-datepicker [placeholder]="row.name" [showClearButton]="true" [useMaskBehavior]="true" [format]="row.dx_format" type="date" [value]="cellInfo.value" [inputAttr]="{ 'aria-label': '{{row.name}}' }" (ValueOutput)="handleValueChangedDate($event,cellInfo,row)">
+                        </dx-input-datepicker>
+                    </div>
+                </div>
+                <div *ngIf="row.editoroptions.stt == 7">
+                    <div *dxTemplate="let cellInfo of 'dxDateBox97Template'">
+                        <dx-input-datepicker [placeholder]="row.name" [showClearButton]="true" [useMaskBehavior]="true" [format]="row.dx_format" type="date" [value]="cellInfo.value" [inputAttr]="{ 'aria-label': '{{row.name}}' }" (ValueOutput)="handleValueChangedDate($event,cellInfo,row)">
+                        </dx-input-datepicker>
+                    </div>
+                </div>
+                <div *ngIf="row.editoroptions.stt == 8">
+                    <div *dxTemplate="let cellInfo of 'dxDateBox98Template'">
+                        <dx-input-datepicker [placeholder]="row.name" [showClearButton]="true" [useMaskBehavior]="true" [format]="row.dx_format" type="date" [value]="cellInfo.value" [inputAttr]="{ 'aria-label': '{{row.name}}' }" (ValueOutput)="handleValueChangedDate($event,cellInfo,row)">
+                        </dx-input-datepicker>
+                    </div>
+                </div>
+                <div *ngIf="row.editoroptions.stt == 9">
+                    <div *dxTemplate="let cellInfo of 'dxDateBox99Template'">
+                        <dx-input-datepicker [placeholder]="row.name" [showClearButton]="true" [useMaskBehavior]="true" [format]="row.dx_format" type="date" [value]="cellInfo.value" [inputAttr]="{ 'aria-label': '{{row.name}}' }" (ValueOutput)="handleValueChangedDate($event,cellInfo,row)">
+                        </dx-input-datepicker>
+                    </div>
+                </div>
+                <div *ngIf="row.editoroptions.stt == 10">
+                    <div *dxTemplate="let cellInfo of 'dxDateBox910Template'">
+                        <dx-input-datepicker [placeholder]="row.name" [showClearButton]="true" [useMaskBehavior]="true" [format]="row.dx_format" type="date" [value]="cellInfo.value" [inputAttr]="{ 'aria-label': '{{row.name}}' }" (ValueOutput)="handleValueChangedDate($event,cellInfo,row)">
+                        </dx-input-datepicker>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="row.typE_ID == 10">
+                <div *ngIf="row.editoroptions.stt == 1">
+                    <div *dxTemplate="let cellInfo of 'dxDateBox101Template'">
+                        <dx-input-datepicker [placeholder]="row.name" [showClearButton]="true" [useMaskBehavior]="true" [format]="row.dx_format" type="date" [value]="cellInfo.value" [inputAttr]="{ 'aria-label': '{{row.name}}' }" (ValueOutput)="handleValueChangedDate($event,cellInfo,row)">
+                        </dx-input-datepicker>
+                    </div>
+                </div>
+                <div *ngIf="row.editoroptions.stt == 2">
+                    <div *dxTemplate="let cellInfo of 'dxDateBox102Template'">
+                        <dx-input-datepicker [placeholder]="row.name" [showClearButton]="true" [useMaskBehavior]="true" [format]="row.dx_format" type="date" [value]="cellInfo.value" [inputAttr]="{ 'aria-label': '{{row.name}}' }" (ValueOutput)="handleValueChangedDate($event,cellInfo,row)">
+                        </dx-input-datepicker>
+                    </div>
+                </div>
+                <div *ngIf="row.editoroptions.stt == 3">
+                    <div *dxTemplate="let cellInfo of 'dxDateBox103Template'">
+                        <dx-input-datepicker [placeholder]="row.name" [showClearButton]="true" [useMaskBehavior]="true" [format]="row.dx_format" type="date" [value]="cellInfo.value" [inputAttr]="{ 'aria-label': '{{row.name}}' }" (ValueOutput)="handleValueChangedDate($event,cellInfo,row)">
+                        </dx-input-datepicker>
+                    </div>
+                </div>
+                <div *ngIf="row.editoroptions.stt == 4">
+                    <div *dxTemplate="let cellInfo of 'dxDateBox104Template'">
+                        <dx-input-datepicker [placeholder]="row.name" [showClearButton]="true" [useMaskBehavior]="true" [format]="row.dx_format" type="date" [value]="cellInfo.value" [inputAttr]="{ 'aria-label': '{{row.name}}' }" (ValueOutput)="handleValueChangedDate($event,cellInfo,row)">
+                        </dx-input-datepicker>
+                    </div>
+                </div>
+                <div *ngIf="row.editoroptions.stt == 5">
+                    <div *dxTemplate="let cellInfo of 'dxDateBox105Template'">
+                        <dx-input-datepicker [placeholder]="row.name" [showClearButton]="true" [useMaskBehavior]="true" [format]="row.dx_format" type="date" [value]="cellInfo.value" [inputAttr]="{ 'aria-label': '{{row.name}}' }" (ValueOutput)="handleValueChangedDate($event,cellInfo,row)">
+                        </dx-input-datepicker>
+                    </div>
+                </div>
+                <div *ngIf="row.editoroptions.stt == 6">
+                    <div *dxTemplate="let cellInfo of 'dxDateBox106Template'">
+                        <dx-input-datepicker [placeholder]="row.name" [showClearButton]="true" [useMaskBehavior]="true" [format]="row.dx_format" type="date" [value]="cellInfo.value" [inputAttr]="{ 'aria-label': '{{row.name}}' }" (ValueOutput)="handleValueChangedDate($event,cellInfo,row)">
+                        </dx-input-datepicker>
+                    </div>
+                </div>
+                <div *ngIf="row.editoroptions.stt == 7">
+                    <div *dxTemplate="let cellInfo of 'dxDateBox107Template'">
+                        <dx-input-datepicker [placeholder]="row.name" [showClearButton]="true" [useMaskBehavior]="true" [format]="row.dx_format" type="date" [value]="cellInfo.value" [inputAttr]="{ 'aria-label': '{{row.name}}' }" (ValueOutput)="handleValueChangedDate($event,cellInfo,row)">
+                        </dx-input-datepicker>
+                    </div>
+                </div>
+                <div *ngIf="row.editoroptions.stt == 8">
+                    <div *dxTemplate="let cellInfo of 'dxDateBox108Template'">
+                        <dx-input-datepicker [placeholder]="row.name" [showClearButton]="true" [useMaskBehavior]="true" [format]="row.dx_format" type="date" [value]="cellInfo.value" [inputAttr]="{ 'aria-label': '{{row.name}}' }" (ValueOutput)="handleValueChangedDate($event,cellInfo,row)">
+                        </dx-input-datepicker>
+                    </div>
+                </div>
+                <div *ngIf="row.editoroptions.stt == 9">
+                    <div *dxTemplate="let cellInfo of 'dxDateBox109Template'">
+                        <dx-input-datepicker [placeholder]="row.name" [showClearButton]="true" [useMaskBehavior]="true" [format]="row.dx_format" type="date" [value]="cellInfo.value" [inputAttr]="{ 'aria-label': '{{row.name}}' }" (ValueOutput)="handleValueChangedDate($event,cellInfo,row)">
+                        </dx-input-datepicker>
+                    </div>
+                </div>
+                <div *ngIf="row.editoroptions.stt == 10">
+                    <div *dxTemplate="let cellInfo of 'dxDateBox1010Template'">
+                        <dx-input-datepicker [placeholder]="row.name" [showClearButton]="true" [useMaskBehavior]="true" [format]="row.dx_format" type="date" [value]="cellInfo.value" [inputAttr]="{ 'aria-label': '{{row.name}}' }" (ValueOutput)="handleValueChangedDate($event,cellInfo,row)">
+                        </dx-input-datepicker>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="row.typE_ID == 11">
+                <div *ngIf="row.editoroptions.stt == 1">
+                    <div *dxTemplate="let cellInfo of 'dxDateBox111Template'">
+                        <dx-input-datepicker [placeholder]="row.name" [showClearButton]="true" [useMaskBehavior]="true" [format]="row.dx_format" type="date" [value]="cellInfo.value" [inputAttr]="{ 'aria-label': '{{row.name}}' }" (ValueOutput)="handleValueChangedDate($event,cellInfo,row)">
+                        </dx-input-datepicker>
+                    </div>
+                </div>
+                <div *ngIf="row.editoroptions.stt == 2">
+                    <div *dxTemplate="let cellInfo of 'dxDateBox112Template'">
+                        <dx-input-datepicker [placeholder]="row.name" [showClearButton]="true" [useMaskBehavior]="true" [format]="row.dx_format" type="date" [value]="cellInfo.value" [inputAttr]="{ 'aria-label': '{{row.name}}' }" (ValueOutput)="handleValueChangedDate($event,cellInfo,row)">
+                        </dx-input-datepicker>
+                    </div>
+                </div>
+                <div *ngIf="row.editoroptions.stt == 3">
+                    <div *dxTemplate="let cellInfo of 'dxDateBox113Template'">
+                        <dx-input-datepicker [placeholder]="row.name" [showClearButton]="true" [useMaskBehavior]="true" [format]="row.dx_format" type="date" [value]="cellInfo.value" [inputAttr]="{ 'aria-label': '{{row.name}}' }" (ValueOutput)="handleValueChangedDate($event,cellInfo,row)">
+                        </dx-input-datepicker>
+                    </div>
+                </div>
+                <div *ngIf="row.editoroptions.stt == 4">
+                    <div *dxTemplate="let cellInfo of 'dxDateBox114Template'">
+                        <dx-input-datepicker [placeholder]="row.name" [showClearButton]="true" [useMaskBehavior]="true" [format]="row.dx_format" type="date" [value]="cellInfo.value" [inputAttr]="{ 'aria-label': '{{row.name}}' }" (ValueOutput)="handleValueChangedDate($event,cellInfo,row)">
+                        </dx-input-datepicker>
+                    </div>
+                </div>
+                <div *ngIf="row.editoroptions.stt == 5">
+                    <div *dxTemplate="let cellInfo of 'dxDateBox115Template'">
+                        <dx-input-datepicker [placeholder]="row.name" [showClearButton]="true" [useMaskBehavior]="true" [format]="row.dx_format" type="date" [value]="cellInfo.value" [inputAttr]="{ 'aria-label': '{{row.name}}' }" (ValueOutput)="handleValueChangedDate($event,cellInfo,row)">
+                        </dx-input-datepicker>
+                    </div>
+                </div>
+                <div *ngIf="row.editoroptions.stt == 6">
+                    <div *dxTemplate="let cellInfo of 'dxDateBox116Template'">
+                        <dx-input-datepicker [placeholder]="row.name" [showClearButton]="true" [useMaskBehavior]="true" [format]="row.dx_format" type="date" [value]="cellInfo.value" [inputAttr]="{ 'aria-label': '{{row.name}}' }" (ValueOutput)="handleValueChangedDate($event,cellInfo,row)">
+                        </dx-input-datepicker>
+                    </div>
+                </div>
+                <div *ngIf="row.editoroptions.stt == 7">
+                    <div *dxTemplate="let cellInfo of 'dxDateBox117Template'">
+                        <dx-input-datepicker [placeholder]="row.name" [showClearButton]="true" [useMaskBehavior]="true" [format]="row.dx_format" type="date" [value]="cellInfo.value" [inputAttr]="{ 'aria-label': '{{row.name}}' }" (ValueOutput)="handleValueChangedDate($event,cellInfo,row)">
+                        </dx-input-datepicker>
+                    </div>
+                </div>
+                <div *ngIf="row.editoroptions.stt == 8">
+                    <div *dxTemplate="let cellInfo of 'dxDateBox118Template'">
+                        <dx-input-datepicker [placeholder]="row.name" [showClearButton]="true" [useMaskBehavior]="true" [format]="row.dx_format" type="date" [value]="cellInfo.value" [inputAttr]="{ 'aria-label': '{{row.name}}' }" (ValueOutput)="handleValueChangedDate($event,cellInfo,row)">
+                        </dx-input-datepicker>
+                    </div>
+                </div>
+                <div *ngIf="row.editoroptions.stt == 9">
+                    <div *dxTemplate="let cellInfo of 'dxDateBox119Template'">
+                        <dx-input-datepicker [placeholder]="row.name" [showClearButton]="true" [useMaskBehavior]="true" [format]="row.dx_format" type="date" [value]="cellInfo.value" [inputAttr]="{ 'aria-label': '{{row.name}}' }" (ValueOutput)="handleValueChangedDate($event,cellInfo,row)">
+                        </dx-input-datepicker>
+                    </div>
+                </div>
+                <div *ngIf="row.editoroptions.stt == 10">
+                    <div *dxTemplate="let cellInfo of 'dxDateBox1110Template'">
+                        <dx-input-datepicker [placeholder]="row.name" [showClearButton]="true" [useMaskBehavior]="true" [format]="row.dx_format" type="date" [value]="cellInfo.value" [inputAttr]="{ 'aria-label': '{{row.name}}' }" (ValueOutput)="handleValueChangedDate($event,cellInfo,row)">
+                        </dx-input-datepicker>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="row.typE_ID == 4">
+            <div *ngIf="row.editoroptions.stt == 1">
+                <div *dxTemplate="let cellInfo of 'dxSwitch41Template'">
+                    <dx-switch [value]="cellInfo.value"></dx-switch>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 2">
+                <div *dxTemplate="let cellInfo of 'dxSwitch42Template'">
+                    <dx-switch [value]="cellInfo.value"></dx-switch>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 3">
+                <div *dxTemplate="let cellInfo of 'dxSwitch43Template'">
+                    <dx-switch [value]="cellInfo.value"></dx-switch>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 4">
+                <div *dxTemplate="let cellInfo of 'dxSwitch44Template'">
+                    <dx-switch [value]="cellInfo.value"></dx-switch>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 5">
+                <div *dxTemplate="let cellInfo of 'dxSwitch45Template'">
+                    <dx-switch [value]="cellInfo.value"></dx-switch>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 6">
+                <div *dxTemplate="let cellInfo of 'dxSwitch46Template'">
+                    <dx-switch [value]="cellInfo.value"></dx-switch>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 7">
+                <div *dxTemplate="let cellInfo of 'dxSwitch47Template'">
+                    <dx-switch [value]="cellInfo.value"></dx-switch>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 8">
+                <div *dxTemplate="let cellInfo of 'dxSwitch48Template'">
+                    <dx-switch [value]="cellInfo.value"></dx-switch>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 9">
+                <div *dxTemplate="let cellInfo of 'dxSwitch49Template'">
+                    <dx-switch [value]="cellInfo.value"></dx-switch>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 10">
+                <div *dxTemplate="let cellInfo of 'dxSwitch410Template'">
+                    <dx-switch [value]="cellInfo.value"></dx-switch>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="row.typE_ID == 6">
+            <div *ngIf="row.editoroptions.stt == 1">
+                <div *dxTemplate="let cellInfo of 'dxTagBox61Template'">
+                    <dx-tag-box [items]="row.editoroptions.items" displayExpr="{{row.displayexpr}}" valueExpr="{{row.valueexpr}}" [value]="cellInfo.value" [showSelectionControls]="true" applyValueMode="useButtons" [searchEnabled]="true" [grouped]="true"></dx-tag-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 2">
+                <div *dxTemplate="let cellInfo of 'dxTagBox62Template'">
+                    <dx-tag-box [items]="row.editoroptions.items" displayExpr="{{row.displayexpr}}" valueExpr="{{row.valueexpr}}" [value]="cellInfo.value" [showSelectionControls]="true" applyValueMode="useButtons" [searchEnabled]="true" [grouped]="true"></dx-tag-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 3">
+                <div *dxTemplate="let cellInfo of 'dxTagBox63Template'">
+                    <dx-tag-box [items]="row.editoroptions.items" displayExpr="{{row.displayexpr}}" valueExpr="{{row.valueexpr}}" [value]="cellInfo.value" [showSelectionControls]="true" applyValueMode="useButtons" [searchEnabled]="true" [grouped]="true"></dx-tag-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 4">
+                <div *dxTemplate="let cellInfo of 'dxTagBox64Template'">
+                    <dx-tag-box [items]="row.editoroptions.items" displayExpr="{{row.displayexpr}}" valueExpr="{{row.valueexpr}}" [value]="cellInfo.value" [showSelectionControls]="true" applyValueMode="useButtons" [searchEnabled]="true" [grouped]="true"></dx-tag-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 5">
+                <div *dxTemplate="let cellInfo of 'dxTagBox65Template'">
+                    <dx-tag-box [items]="row.editoroptions.items" displayExpr="{{row.displayexpr}}" valueExpr="{{row.valueexpr}}" [value]="cellInfo.value" [showSelectionControls]="true" applyValueMode="useButtons" [searchEnabled]="true" [grouped]="true"></dx-tag-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 6">
+                <div *dxTemplate="let cellInfo of 'dxTagBox66Template'">
+                    <dx-tag-box [items]="row.editoroptions.items" displayExpr="{{row.displayexpr}}" valueExpr="{{row.valueexpr}}" [value]="cellInfo.value" [showSelectionControls]="true" applyValueMode="useButtons" [searchEnabled]="true" [grouped]="true"></dx-tag-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 7">
+                <div *dxTemplate="let cellInfo of 'dxTagBox67Template'">
+                    <dx-tag-box [items]="row.editoroptions.items" displayExpr="{{row.displayexpr}}" valueExpr="{{row.valueexpr}}" [value]="cellInfo.value" [showSelectionControls]="true" applyValueMode="useButtons" [searchEnabled]="true" [grouped]="true"></dx-tag-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 8">
+                <div *dxTemplate="let cellInfo of 'dxTagBox68Template'">
+                    <dx-tag-box [items]="row.editoroptions.items" displayExpr="{{row.displayexpr}}" valueExpr="{{row.valueexpr}}" [value]="cellInfo.value" [showSelectionControls]="true" applyValueMode="useButtons" [searchEnabled]="true" [grouped]="true"></dx-tag-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 9">
+                <div *dxTemplate="let cellInfo of 'dxTagBox69Template'">
+                    <dx-tag-box [items]="row.editoroptions.items" displayExpr="{{row.displayexpr}}" valueExpr="{{row.valueexpr}}" [value]="cellInfo.value" [showSelectionControls]="true" applyValueMode="useButtons" [searchEnabled]="true" [grouped]="true"></dx-tag-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 10">
+                <div *dxTemplate="let cellInfo of 'dxTagBox610Template'">
+                    <dx-tag-box [items]="row.editoroptions.items" displayExpr="{{row.displayexpr}}" valueExpr="{{row.valueexpr}}" [value]="cellInfo.value" [showSelectionControls]="true" applyValueMode="useButtons" [searchEnabled]="true" [grouped]="true"></dx-tag-box>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="row.typE_ID == 28">
+            <div *ngIf="row.editoroptions.stt == 1">
+                <div *dxTemplate="let cellInfo of 'dxTagBox281Template'">
+                    <dx-drop-down-box [opened]="isDropBoxOpened" (onOpened)="onOpenedDropDownOption($event,cellInfo,row.editoroptions.items,row.valueexpr)" (onClosed)="onClosedDropDownOption($event,cellInfo,row)" [(value)]="cellInfo.value" valueExpr="{{row.valueexpr}}" displayExpr="{{row.displayexpr}}"
+                        placeholder="Select a value..." [showClearButton]="true" [dataSource]="row.editoroptions.items">
+                        <dxo-drop-down-options [width]="row.editoroptions.optionWidth" [height]="600"></dxo-drop-down-options>
+                        <osoft-data-grid [isFilter]="row.editoroptions.isFilter" [dataSourceFilter]="row.editoroptions.itemsFilter" (selectedRowsDataOutput)="onSelectRowGridDropdown2($event,cellInfo,row)" [keyExpr]="row.valueexpr" (onClickCancel)="onSaveDropDownOption($event,cellInfo,row.editoroptions.items,row.valueexpr,row)"
+                            (onClickOK)="onSaveDropDownOption($event,cellInfo,row.editoroptions.items,row.valueexpr,row)" [showFilterRow]="true" [currentSelectedRowKeys]="cellInfo.value" [selection]="true" [height]="400" [tableName]="row.droP_DOWN_TABLE"
+                            [type]="'BY-TABLE-NAME'" [dataSource]="row.editoroptions.items" (OnSelectAllRow)="onSelectRowGridDropdown($event,cellInfo,row)"></osoft-data-grid>
+                    </dx-drop-down-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 2">
+                <div *dxTemplate="let cellInfo of 'dxTagBox282Template'">
+                    <dx-drop-down-box [opened]="isDropBoxOpened" (onOpened)="onOpenedDropDownOption($event,cellInfo,row.editoroptions.items,row.valueexpr)" (onClosed)="onClosedDropDownOption($event,cellInfo,row)" [(value)]="cellInfo.value" valueExpr="{{row.valueexpr}}" displayExpr="{{row.displayexpr}}"
+                        placeholder="Select a value..." [showClearButton]="true" [dataSource]="row.editoroptions.items">
+                        <dxo-drop-down-options [width]="row.editoroptions.optionWidth" [height]="600"></dxo-drop-down-options>
+                        <osoft-data-grid [isFilter]="row.editoroptions.isFilter" [dataSourceFilter]="row.editoroptions.itemsFilter" (selectedRowsDataOutput)="onSelectRowGridDropdown2($event,cellInfo,row)" [keyExpr]="row.valueexpr" (onClickCancel)="onSaveDropDownOption($event,cellInfo,row.editoroptions.items,row.valueexpr,row)"
+                            (onClickOK)="onSaveDropDownOption($event,cellInfo,row.editoroptions.items,row.valueexpr,row)" [showFilterRow]="true" [currentSelectedRowKeys]="cellInfo.value" [selection]="true" [height]="400" [tableName]="row.droP_DOWN_TABLE"
+                            [type]="'BY-TABLE-NAME'" [dataSource]="row.editoroptions.items" (OnSelectAllRow)="onSelectRowGridDropdown($event,cellInfo,row)"></osoft-data-grid>
+                    </dx-drop-down-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 3">
+                <div *dxTemplate="let cellInfo of 'dxTagBox283Template'">
+                    <dx-drop-down-box [opened]="isDropBoxOpened" (onOpened)="onOpenedDropDownOption($event,cellInfo,row.editoroptions.items,row.valueexpr)" (onClosed)="onClosedDropDownOption($event,cellInfo,row)" [(value)]="cellInfo.value" valueExpr="{{row.valueexpr}}" displayExpr="{{row.displayexpr}}"
+                        placeholder="Select a value..." [showClearButton]="true" [dataSource]="row.editoroptions.items">
+                        <dxo-drop-down-options [width]="row.editoroptions.optionWidth" [height]="600"></dxo-drop-down-options>
+                        <osoft-data-grid [isFilter]="row.editoroptions.isFilter" [dataSourceFilter]="row.editoroptions.itemsFilter" (selectedRowsDataOutput)="onSelectRowGridDropdown2($event,cellInfo,row)" [keyExpr]="row.valueexpr" (onClickCancel)="onSaveDropDownOption($event,cellInfo,row.editoroptions.items,row.valueexpr,row)"
+                            (onClickOK)="onSaveDropDownOption($event,cellInfo,row.editoroptions.items,row.valueexpr,row)" [showFilterRow]="true" [currentSelectedRowKeys]="cellInfo.value" [selection]="true" [height]="400" [tableName]="row.droP_DOWN_TABLE"
+                            [type]="'BY-TABLE-NAME'" [dataSource]="row.editoroptions.items" (OnSelectAllRow)="onSelectRowGridDropdown($event,cellInfo,row)"></osoft-data-grid>
+                    </dx-drop-down-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 4">
+                <div *dxTemplate="let cellInfo of 'dxTagBox284Template'">
+                    <dx-drop-down-box [opened]="isDropBoxOpened" (onOpened)="onOpenedDropDownOption($event,cellInfo,row.editoroptions.items,row.valueexpr)" (onClosed)="onClosedDropDownOption($event,cellInfo,row)" [(value)]="cellInfo.value" valueExpr="{{row.valueexpr}}" displayExpr="{{row.displayexpr}}"
+                        placeholder="Select a value..." [showClearButton]="true" [dataSource]="row.editoroptions.items">
+                        <dxo-drop-down-options [width]="row.editoroptions.optionWidth" [height]="600"></dxo-drop-down-options>
+                        <osoft-data-grid [isFilter]="row.editoroptions.isFilter" [dataSourceFilter]="row.editoroptions.itemsFilter" (selectedRowsDataOutput)="onSelectRowGridDropdown2($event,cellInfo,row)" [keyExpr]="row.valueexpr" (onClickCancel)="onSaveDropDownOption($event,cellInfo,row.editoroptions.items,row.valueexpr,row)"
+                            (onClickOK)="onSaveDropDownOption($event,cellInfo,row.editoroptions.items,row.valueexpr,row)" [showFilterRow]="true" [currentSelectedRowKeys]="cellInfo.value" [selection]="true" [height]="400" [tableName]="row.droP_DOWN_TABLE"
+                            [type]="'BY-TABLE-NAME'" [dataSource]="row.editoroptions.items" (OnSelectAllRow)="onSelectRowGridDropdown($event,cellInfo,row)"></osoft-data-grid>
+                    </dx-drop-down-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 5">
+                <div *dxTemplate="let cellInfo of 'dxTagBox285Template'">
+                    <dx-drop-down-box [opened]="isDropBoxOpened" (onOpened)="onOpenedDropDownOption($event,cellInfo,row.editoroptions.items,row.valueexpr)" (onClosed)="onClosedDropDownOption($event,cellInfo,row)" [(value)]="cellInfo.value" valueExpr="{{row.valueexpr}}" displayExpr="{{row.displayexpr}}"
+                        placeholder="Select a value..." [showClearButton]="true" [dataSource]="row.editoroptions.items">
+                        <dxo-drop-down-options [width]="row.editoroptions.optionWidth" [height]="600"></dxo-drop-down-options>
+                        <osoft-data-grid [isFilter]="row.editoroptions.isFilter" [dataSourceFilter]="row.editoroptions.itemsFilter" (selectedRowsDataOutput)="onSelectRowGridDropdown2($event,cellInfo,row)" [keyExpr]="row.valueexpr" (onClickCancel)="onSaveDropDownOption($event,cellInfo,row.editoroptions.items,row.valueexpr,row)"
+                            (onClickOK)="onSaveDropDownOption($event,cellInfo,row.editoroptions.items,row.valueexpr,row)" [showFilterRow]="true" [currentSelectedRowKeys]="cellInfo.value" [selection]="true" [height]="400" [tableName]="row.droP_DOWN_TABLE"
+                            [type]="'BY-TABLE-NAME'" [dataSource]="row.editoroptions.items" (OnSelectAllRow)="onSelectRowGridDropdown($event,cellInfo,row)"></osoft-data-grid>
+                    </dx-drop-down-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 6">
+                <div *dxTemplate="let cellInfo of 'dxTagBox286Template'">
+                    <dx-drop-down-box [opened]="isDropBoxOpened" (onOpened)="onOpenedDropDownOption($event,cellInfo,row.editoroptions.items,row.valueexpr)" (onClosed)="onClosedDropDownOption($event,cellInfo,row)" [(value)]="cellInfo.value" valueExpr="{{row.valueexpr}}" displayExpr="{{row.displayexpr}}"
+                        placeholder="Select a value..." [showClearButton]="true" [dataSource]="row.editoroptions.items">
+                        <dxo-drop-down-options [width]="row.editoroptions.optionWidth" [height]="600"></dxo-drop-down-options>
+                        <osoft-data-grid [isFilter]="row.editoroptions.isFilter" [dataSourceFilter]="row.editoroptions.itemsFilter" (selectedRowsDataOutput)="onSelectRowGridDropdown2($event,cellInfo,row)" [keyExpr]="row.valueexpr" (onClickCancel)="onSaveDropDownOption($event,cellInfo,row.editoroptions.items,row.valueexpr,row)"
+                            (onClickOK)="onSaveDropDownOption($event,cellInfo,row.editoroptions.items,row.valueexpr,row)" [showFilterRow]="true" [currentSelectedRowKeys]="cellInfo.value" [selection]="true" [height]="400" [tableName]="row.droP_DOWN_TABLE"
+                            [type]="'BY-TABLE-NAME'" [dataSource]="row.editoroptions.items" (OnSelectAllRow)="onSelectRowGridDropdown($event,cellInfo,row)"></osoft-data-grid>
+                    </dx-drop-down-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 7">
+                <div *dxTemplate="let cellInfo of 'dxTagBox287Template'">
+                    <dx-drop-down-box [opened]="isDropBoxOpened" (onOpened)="onOpenedDropDownOption($event,cellInfo,row.editoroptions.items,row.valueexpr)" (onClosed)="onClosedDropDownOption($event,cellInfo,row)" [(value)]="cellInfo.value" valueExpr="{{row.valueexpr}}" displayExpr="{{row.displayexpr}}"
+                        placeholder="Select a value..." [showClearButton]="true" [dataSource]="row.editoroptions.items">
+                        <dxo-drop-down-options [width]="row.editoroptions.optionWidth" [height]="600"></dxo-drop-down-options>
+                        <osoft-data-grid [isFilter]="row.editoroptions.isFilter" [dataSourceFilter]="row.editoroptions.itemsFilter" (selectedRowsDataOutput)="onSelectRowGridDropdown2($event,cellInfo,row)" [keyExpr]="row.valueexpr" (onClickCancel)="onSaveDropDownOption($event,cellInfo,row.editoroptions.items,row.valueexpr,row)"
+                            (onClickOK)="onSaveDropDownOption($event,cellInfo,row.editoroptions.items,row.valueexpr,row)" [showFilterRow]="true" [currentSelectedRowKeys]="cellInfo.value" [selection]="true" [height]="400" [tableName]="row.droP_DOWN_TABLE"
+                            [type]="'BY-TABLE-NAME'" [dataSource]="row.editoroptions.items" (OnSelectAllRow)="onSelectRowGridDropdown($event,cellInfo,row)"></osoft-data-grid>
+                    </dx-drop-down-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 8">
+                <div *dxTemplate="let cellInfo of 'dxTagBox288Template'">
+                    <dx-drop-down-box [opened]="isDropBoxOpened" (onOpened)="onOpenedDropDownOption($event,cellInfo,row.editoroptions.items,row.valueexpr)" (onClosed)="onClosedDropDownOption($event,cellInfo,row)" [(value)]="cellInfo.value" valueExpr="{{row.valueexpr}}" displayExpr="{{row.displayexpr}}"
+                        placeholder="Select a value..." [showClearButton]="true" [dataSource]="row.editoroptions.items">
+                        <dxo-drop-down-options [width]="row.editoroptions.optionWidth" [height]="600"></dxo-drop-down-options>
+                        <osoft-data-grid [isFilter]="row.editoroptions.isFilter" [dataSourceFilter]="row.editoroptions.itemsFilter" (selectedRowsDataOutput)="onSelectRowGridDropdown2($event,cellInfo,row)" [keyExpr]="row.valueexpr" (onClickCancel)="onSaveDropDownOption($event,cellInfo,row.editoroptions.items,row.valueexpr,row)"
+                            (onClickOK)="onSaveDropDownOption($event,cellInfo,row.editoroptions.items,row.valueexpr,row)" [showFilterRow]="true" [currentSelectedRowKeys]="cellInfo.value" [selection]="true" [height]="400" [tableName]="row.droP_DOWN_TABLE"
+                            [type]="'BY-TABLE-NAME'" [dataSource]="row.editoroptions.items" (OnSelectAllRow)="onSelectRowGridDropdown($event,cellInfo,row)"></osoft-data-grid>
+                    </dx-drop-down-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 9">
+                <div *dxTemplate="let cellInfo of 'dxTagBox289Template'">
+                    <dx-drop-down-box [opened]="isDropBoxOpened" (onOpened)="onOpenedDropDownOption($event,cellInfo,row.editoroptions.items,row.valueexpr)" (onClosed)="onClosedDropDownOption($event,cellInfo,row)" [(value)]="cellInfo.value" valueExpr="{{row.valueexpr}}" displayExpr="{{row.displayexpr}}"
+                        placeholder="Select a value..." [showClearButton]="true" [dataSource]="row.editoroptions.items">
+                        <dxo-drop-down-options [width]="row.editoroptions.optionWidth" [height]="600"></dxo-drop-down-options>
+                        <osoft-data-grid [isFilter]="row.editoroptions.isFilter" [dataSourceFilter]="row.editoroptions.itemsFilter" (selectedRowsDataOutput)="onSelectRowGridDropdown2($event,cellInfo,row)" [keyExpr]="row.valueexpr" (onClickCancel)="onSaveDropDownOption($event,cellInfo,row.editoroptions.items,row.valueexpr,row)"
+                            (onClickOK)="onSaveDropDownOption($event,cellInfo,row.editoroptions.items,row.valueexpr,row)" [showFilterRow]="true" [currentSelectedRowKeys]="cellInfo.value" [selection]="true" [height]="400" [tableName]="row.droP_DOWN_TABLE"
+                            [type]="'BY-TABLE-NAME'" [dataSource]="row.editoroptions.items" (OnSelectAllRow)="onSelectRowGridDropdown($event,cellInfo,row)"></osoft-data-grid>
+                    </dx-drop-down-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 10">
+                <div *dxTemplate="let cellInfo of 'dxTagBox2810Template'">
+                    <dx-drop-down-box [opened]="isDropBoxOpened" (onOpened)="onOpenedDropDownOption($event,cellInfo,row.editoroptions.items,row.valueexpr)" (onClosed)="onClosedDropDownOption($event,cellInfo,row)" [(value)]="cellInfo.value" valueExpr="{{row.valueexpr}}" displayExpr="{{row.displayexpr}}"
+                        placeholder="Select a value..." [showClearButton]="true" [dataSource]="row.editoroptions.items">
+                        <dxo-drop-down-options [width]="row.editoroptions.optionWidth" [height]="600"></dxo-drop-down-options>
+                        <osoft-data-grid [isFilter]="row.editoroptions.isFilter" [dataSourceFilter]="row.editoroptions.itemsFilter" (selectedRowsDataOutput)="onSelectRowGridDropdown2($event,cellInfo,row)" [keyExpr]="row.valueexpr" (onClickCancel)="onSaveDropDownOption($event,cellInfo,row.editoroptions.items,row.valueexpr,row)"
+                            (onClickOK)="onSaveDropDownOption($event,cellInfo,row.editoroptions.items,row.valueexpr,row)" [showFilterRow]="true" [currentSelectedRowKeys]="cellInfo.value" [selection]="true" [height]="400" [tableName]="row.droP_DOWN_TABLE"
+                            [type]="'BY-TABLE-NAME'" [dataSource]="row.editoroptions.items" (OnSelectAllRow)="onSelectRowGridDropdown($event,cellInfo,row)"></osoft-data-grid>
+                    </dx-drop-down-box>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="row.typE_ID == 3">
+            <div *ngIf="row.editoroptions.stt == 1">
+                <div *dxTemplate="let cellInfo of 'dxTextArea31Template'">
+                    <dx-text-area (onValueChanged)="changeTextAreaBox17($event,cellInfo,row)" [(value)]="cellInfo.value" [(autoResizeEnabled)]="autoResizeEnabled" [inputAttr]="{ 'aria-label': '{{row.name}}' }"></dx-text-area>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 2">
+                <div *dxTemplate="let cellInfo of 'dxTextArea32Template'">
+                    <dx-text-area (onValueChanged)="changeTextAreaBox17($event,cellInfo,row)" [(value)]="cellInfo.value" [(autoResizeEnabled)]="autoResizeEnabled" [inputAttr]="{ 'aria-label': '{{row.name}}' }"></dx-text-area>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 3">
+                <div *dxTemplate="let cellInfo of 'dxTextArea33Template'">
+                    <dx-text-area (onValueChanged)="changeTextAreaBox17($event,cellInfo,row)" [(value)]="cellInfo.value" [(autoResizeEnabled)]="autoResizeEnabled" [inputAttr]="{ 'aria-label': '{{row.name}}' }"></dx-text-area>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 4">
+                <div *dxTemplate="let cellInfo of 'dxTextArea34Template'">
+                    <dx-text-area (onValueChanged)="changeTextAreaBox17($event,cellInfo,row)" [(value)]="cellInfo.value" [(autoResizeEnabled)]="autoResizeEnabled" [inputAttr]="{ 'aria-label': '{{row.name}}' }"></dx-text-area>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 5">
+                <div *dxTemplate="let cellInfo of 'dxTextArea35Template'">
+                    <dx-text-area (onValueChanged)="changeTextAreaBox17($event,cellInfo,row)" [(value)]="cellInfo.value" [(autoResizeEnabled)]="autoResizeEnabled" [inputAttr]="{ 'aria-label': '{{row.name}}' }"></dx-text-area>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 6">
+                <div *dxTemplate="let cellInfo of 'dxTextArea36Template'">
+                    <dx-text-area (onValueChanged)="changeTextAreaBox17($event,cellInfo,row)" [(value)]="cellInfo.value" [(autoResizeEnabled)]="autoResizeEnabled" [inputAttr]="{ 'aria-label': '{{row.name}}' }"></dx-text-area>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 7">
+                <div *dxTemplate="let cellInfo of 'dxTextArea37Template'">
+                    <dx-text-area (onValueChanged)="changeTextAreaBox17($event,cellInfo,row)" [(value)]="cellInfo.value" [(autoResizeEnabled)]="autoResizeEnabled" [inputAttr]="{ 'aria-label': '{{row.name}}' }"></dx-text-area>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 8">
+                <div *dxTemplate="let cellInfo of 'dxTextArea38Template'">
+                    <dx-text-area (onValueChanged)="changeTextAreaBox17($event,cellInfo,row)" [(value)]="cellInfo.value" [(autoResizeEnabled)]="autoResizeEnabled" [inputAttr]="{ 'aria-label': '{{row.name}}' }"></dx-text-area>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 9">
+                <div *dxTemplate="let cellInfo of 'dxTextArea39Template'">
+                    <dx-text-area (onValueChanged)="changeTextAreaBox17($event,cellInfo,row)" [(value)]="cellInfo.value" [(autoResizeEnabled)]="autoResizeEnabled" [inputAttr]="{ 'aria-label': '{{row.name}}' }"></dx-text-area>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 10">
+                <div *dxTemplate="let cellInfo of 'dxTextArea310Template'">
+                    <dx-text-area (onValueChanged)="changeTextAreaBox17($event,cellInfo,row)" [(value)]="cellInfo.value" [(autoResizeEnabled)]="autoResizeEnabled" [inputAttr]="{ 'aria-label': '{{row.name}}' }"></dx-text-area>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="row.typE_ID == 17">
+            <div *ngIf="row.editoroptions.stt == 1">
+                <div *dxTemplate="let cellInfo of 'dxTextArea171Template'">
+                    <dx-text-area (onValueChanged)="changeTextAreaBox17($event,cellInfo,row)" [(value)]="cellInfo.value" [(autoResizeEnabled)]="autoResizeEnabled" [inputAttr]="{ 'aria-label': '{{row.name}}' }"></dx-text-area>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 2">
+                <div *dxTemplate="let cellInfo of 'dxTextArea172Template'">
+                    <dx-text-area (onValueChanged)="changeTextAreaBox17($event,cellInfo,row)" [(value)]="cellInfo.value" [(autoResizeEnabled)]="autoResizeEnabled" [inputAttr]="{ 'aria-label': '{{row.name}}' }"></dx-text-area>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 3">
+                <div *dxTemplate="let cellInfo of 'dxTextArea173Template'">
+                    <dx-text-area (onValueChanged)="changeTextAreaBox17($event,cellInfo,row)" [(value)]="cellInfo.value" [(autoResizeEnabled)]="autoResizeEnabled" [inputAttr]="{ 'aria-label': '{{row.name}}' }"></dx-text-area>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 4">
+                <div *dxTemplate="let cellInfo of 'dxTextArea174Template'">
+                    <dx-text-area (onValueChanged)="changeTextAreaBox17($event,cellInfo,row)" [(value)]="cellInfo.value" [(autoResizeEnabled)]="autoResizeEnabled" [inputAttr]="{ 'aria-label': '{{row.name}}' }"></dx-text-area>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 5">
+                <div *dxTemplate="let cellInfo of 'dxTextArea175Template'">
+                    <dx-text-area (onValueChanged)="changeTextAreaBox17($event,cellInfo,row)" [(value)]="cellInfo.value" [(autoResizeEnabled)]="autoResizeEnabled" [inputAttr]="{ 'aria-label': '{{row.name}}' }"></dx-text-area>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 6">
+                <div *dxTemplate="let cellInfo of 'dxTextArea176Template'">
+                    <dx-text-area (onValueChanged)="changeTextAreaBox17($event,cellInfo,row)" [(value)]="cellInfo.value" [(autoResizeEnabled)]="autoResizeEnabled" [inputAttr]="{ 'aria-label': '{{row.name}}' }"></dx-text-area>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 7">
+                <div *dxTemplate="let cellInfo of 'dxTextArea177Template'">
+                    <dx-text-area (onValueChanged)="changeTextAreaBox17($event,cellInfo,row)" [(value)]="cellInfo.value" [(autoResizeEnabled)]="autoResizeEnabled" [inputAttr]="{ 'aria-label': '{{row.name}}' }"></dx-text-area>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 8">
+                <div *dxTemplate="let cellInfo of 'dxTextArea178Template'">
+                    <dx-text-area (onValueChanged)="changeTextAreaBox17($event,cellInfo,row)" [(value)]="cellInfo.value" [(autoResizeEnabled)]="autoResizeEnabled" [inputAttr]="{ 'aria-label': '{{row.name}}' }"></dx-text-area>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 9">
+                <div *dxTemplate="let cellInfo of 'dxTextArea179Template'">
+                    <dx-text-area (onValueChanged)="changeTextAreaBox17($event,cellInfo,row)" [(value)]="cellInfo.value" [(autoResizeEnabled)]="autoResizeEnabled" [inputAttr]="{ 'aria-label': '{{row.name}}' }"></dx-text-area>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 10">
+                <div *dxTemplate="let cellInfo of 'dxTextArea1710Template'">
+                    <dx-text-area (onValueChanged)="changeTextAreaBox17($event,cellInfo,row)" [(value)]="cellInfo.value" [(autoResizeEnabled)]="autoResizeEnabled" [inputAttr]="{ 'aria-label': '{{row.name}}' }"></dx-text-area>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="row.typE_ID == 2">
+            <div *ngIf="row.editoroptions.stt == 1">
+                <div *dxTemplate="let cellInfo of 'dxTextBox21Template'">
+                    <dx-text-box (onValueChanged)="changeTextBox2($event,cellInfo,row)" value="{{cellInfo.value}}" [inputAttr]="{ 'aria-label': '{{row.name}}' }"></dx-text-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 2">
+                <div *dxTemplate="let cellInfo of 'dxTextBox22Template'">
+                    <dx-text-box (onValueChanged)="changeTextBox2($event,cellInfo,row)" value="{{cellInfo.value}}" [inputAttr]="{ 'aria-label': '{{row.name}}' }"></dx-text-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 3">
+                <div *dxTemplate="let cellInfo of 'dxTextBox23Template'">
+                    <dx-text-box (onValueChanged)="changeTextBox2($event,cellInfo,row)" value="{{cellInfo.value}}" [inputAttr]="{ 'aria-label': '{{row.name}}' }"></dx-text-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 4">
+                <div *dxTemplate="let cellInfo of 'dxTextBox24Template'">
+                    <dx-text-box (onValueChanged)="changeTextBox2($event,cellInfo,row)" value="{{cellInfo.value}}" [inputAttr]="{ 'aria-label': '{{row.name}}' }"></dx-text-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 5">
+                <div *dxTemplate="let cellInfo of 'dxTextBox25Template'">
+                    <dx-text-box (onValueChanged)="changeTextBox2($event,cellInfo,row)" value="{{cellInfo.value}}" [inputAttr]="{ 'aria-label': '{{row.name}}' }"></dx-text-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 6">
+                <div *dxTemplate="let cellInfo of 'dxTextBox26Template'">
+                    <dx-text-box (onValueChanged)="changeTextBox2($event,cellInfo,row)" value="{{cellInfo.value}}" [inputAttr]="{ 'aria-label': '{{row.name}}' }"></dx-text-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 7">
+                <div *dxTemplate="let cellInfo of 'dxTextBox27Template'">
+                    <dx-text-box (onValueChanged)="changeTextBox2($event,cellInfo,row)" value="{{cellInfo.value}}" [inputAttr]="{ 'aria-label': '{{row.name}}' }"></dx-text-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 8">
+                <div *dxTemplate="let cellInfo of 'dxTextBox28Template'">
+                    <dx-text-box (onValueChanged)="changeTextBox2($event,cellInfo,row)" value="{{cellInfo.value}}" [inputAttr]="{ 'aria-label': '{{row.name}}' }"></dx-text-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 9">
+                <div *dxTemplate="let cellInfo of 'dxTextBox29Template'">
+                    <dx-text-box (onValueChanged)="changeTextBox2($event,cellInfo,row)" value="{{cellInfo.value}}" [inputAttr]="{ 'aria-label': '{{row.name}}' }"></dx-text-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 10">
+                <div *dxTemplate="let cellInfo of 'dxTextBox210Template'">
+                    <dx-text-box (onValueChanged)="changeTextBox2($event,cellInfo,row)" value="{{cellInfo.value}}" [inputAttr]="{ 'aria-label': '{{row.name}}' }"></dx-text-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 11">
+                <div *dxTemplate="let cellInfo of 'dxTextBox211Template'">
+                    <dx-text-box (onValueChanged)="changeTextBox2($event,cellInfo,row)" value="{{cellInfo.value}}" [inputAttr]="{ 'aria-label': '{{row.name}}' }"></dx-text-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 12">
+                <div *dxTemplate="let cellInfo of 'dxTextBox212Template'">
+                    <dx-text-box (onValueChanged)="changeTextBox2($event,cellInfo,row)" value="{{cellInfo.value}}" [inputAttr]="{ 'aria-label': '{{row.name}}' }"></dx-text-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 13">
+                <div *dxTemplate="let cellInfo of 'dxTextBox213Template'">
+                    <dx-text-box (onValueChanged)="changeTextBox2($event,cellInfo,row)" value="{{cellInfo.value}}" [inputAttr]="{ 'aria-label': '{{row.name}}' }"></dx-text-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 14">
+                <div *dxTemplate="let cellInfo of 'dxTextBox214Template'">
+                    <dx-text-box (onValueChanged)="changeTextBox2($event,cellInfo,row)" value="{{cellInfo.value}}" [inputAttr]="{ 'aria-label': '{{row.name}}' }"></dx-text-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 15">
+                <div *dxTemplate="let cellInfo of 'dxTextBox215Template'">
+                    <dx-text-box (onValueChanged)="changeTextBox2($event,cellInfo,row)" value="{{cellInfo.value}}" [inputAttr]="{ 'aria-label': '{{row.name}}' }"></dx-text-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 16">
+                <div *dxTemplate="let cellInfo of 'dxTextBox216Template'">
+                    <dx-text-box (onValueChanged)="changeTextBox2($event,cellInfo,row)" value="{{cellInfo.value}}" [inputAttr]="{ 'aria-label': '{{row.name}}' }"></dx-text-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 17">
+                <div *dxTemplate="let cellInfo of 'dxTextBox217Template'">
+                    <dx-text-box (onValueChanged)="changeTextBox2($event,cellInfo,row)" value="{{cellInfo.value}}" [inputAttr]="{ 'aria-label': '{{row.name}}' }"></dx-text-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 18">
+                <div *dxTemplate="let cellInfo of 'dxTextBox218Template'">
+                    <dx-text-box (onValueChanged)="changeTextBox2($event,cellInfo,row)" value="{{cellInfo.value}}" [inputAttr]="{ 'aria-label': '{{row.name}}' }"></dx-text-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 19">
+                <div *dxTemplate="let cellInfo of 'dxTextBox219Template'">
+                    <dx-text-box (onValueChanged)="changeTextBox2($event,cellInfo,row)" value="{{cellInfo.value}}" [inputAttr]="{ 'aria-label': '{{row.name}}' }"></dx-text-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 20">
+                <div *dxTemplate="let cellInfo of 'dxTextBox220Template'">
+                    <dx-text-box (onValueChanged)="changeTextBox2($event,cellInfo,row)" value="{{cellInfo.value}}" [inputAttr]="{ 'aria-label': '{{row.name}}' }"></dx-text-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 21">
+                <div *dxTemplate="let cellInfo of 'dxTextBox221Template'">
+                    <dx-text-box (onValueChanged)="changeTextBox2($event,cellInfo,row)" value="{{cellInfo.value}}" [inputAttr]="{ 'aria-label': '{{row.name}}' }"></dx-text-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 22">
+                <div *dxTemplate="let cellInfo of 'dxTextBox222Template'">
+                    <dx-text-box (onValueChanged)="changeTextBox2($event,cellInfo,row)" value="{{cellInfo.value}}" [inputAttr]="{ 'aria-label': '{{row.name}}' }"></dx-text-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 23">
+                <div *dxTemplate="let cellInfo of 'dxTextBox223Template'">
+                    <dx-text-box (onValueChanged)="changeTextBox2($event,cellInfo,row)" value="{{cellInfo.value}}" [inputAttr]="{ 'aria-label': '{{row.name}}' }"></dx-text-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 24">
+                <div *dxTemplate="let cellInfo of 'dxTextBox224Template'">
+                    <dx-text-box (onValueChanged)="changeTextBox2($event,cellInfo,row)" value="{{cellInfo.value}}" [inputAttr]="{ 'aria-label': '{{row.name}}' }"></dx-text-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 25">
+                <div *dxTemplate="let cellInfo of 'dxTextBox225Template'">
+                    <dx-text-box (onValueChanged)="changeTextBox2($event,cellInfo,row)" value="{{cellInfo.value}}" [inputAttr]="{ 'aria-label': '{{row.name}}' }"></dx-text-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 26">
+                <div *dxTemplate="let cellInfo of 'dxTextBox226Template'">
+                    <dx-text-box (onValueChanged)="changeTextBox2($event,cellInfo,row)" value="{{cellInfo.value}}" [inputAttr]="{ 'aria-label': '{{row.name}}' }"></dx-text-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 27">
+                <div *dxTemplate="let cellInfo of 'dxTextBox227Template'">
+                    <dx-text-box (onValueChanged)="changeTextBox2($event,cellInfo,row)" value="{{cellInfo.value}}" [inputAttr]="{ 'aria-label': '{{row.name}}' }"></dx-text-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 28">
+                <div *dxTemplate="let cellInfo of 'dxTextBox228Template'">
+                    <dx-text-box (onValueChanged)="changeTextBox2($event,cellInfo,row)" value="{{cellInfo.value}}" [inputAttr]="{ 'aria-label': '{{row.name}}' }"></dx-text-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 29">
+                <div *dxTemplate="let cellInfo of 'dxTextBox229Template'">
+                    <dx-text-box (onValueChanged)="changeTextBox2($event,cellInfo,row)" value="{{cellInfo.value}}" [inputAttr]="{ 'aria-label': '{{row.name}}' }"></dx-text-box>
+                </div>
+            </div>
+            <div *ngIf="row.editoroptions.stt == 30">
+                <div *dxTemplate="let cellInfo of 'dxTextBox230Template'">
+                    <dx-text-box (onValueChanged)="changeTextBox2($event,cellInfo,row)" value="{{cellInfo.value}}" [inputAttr]="{ 'aria-label': '{{row.name}}' }"></dx-text-box>
+                </div>
+            </div>
+        </div>
+    </div>
+    <dxo-toolbar>
+        <dxi-item location="after">
+            <dx-button style="margin-right: 5px;" (onClick)="AddRecords(keyExpr)" [disabled]="isDisabled" icon="add" text="Add" [title]="'Add a Record'">
+            </dx-button>
+            <dx-button style="margin-right: 5px;" (onClick)="deleteRecords(keyExpr)" [disabled]="!selectedItemKeys.length || isDisabled" icon="trash" text="Delete" [title]="'Delete Selected Records'">
+            </dx-button>
+            <dx-button text="Copy" icon="copy" [disabled]="!selectedItemKeys.length || isDisabled" (onClick)="cloneIconClick($event,keyExpr,column_name)" [title]="'Copy Selected Records'"></dx-button>
+        </dxi-item>
+    </dxo-toolbar>
+</dx-data-grid>
+<dx-check-box style="display: none;" [value]="refreshGrid"></dx-check-box>

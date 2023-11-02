@@ -1,0 +1,51 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "fc6665a4-3fed-41d5-8205-442da49cbbbc": {
+      "ProjectGuid": "fc6665a4-3fed-41d5-8205-442da49cbbbc",
+      "DisplayName": "ERP.Web",
+      "ColorIndex": 0
+    },
+    "d171fa9d-5f2f-452c-933f-c8c9bbe96284": {
+      "ProjectGuid": "d171fa9d-5f2f-452c-933f-c8c9bbe96284",
+      "DisplayName": "HRMS",
+      "ColorIndex": 1
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    },
+    "0848855f-177b-4628-9931-6a822b6c6dfa": {
+      "ProjectGuid": "0848855f-177b-4628-9931-6a822b6c6dfa",
+      "DisplayName": "Process",
+      "ColorIndex": 2
+    },
+    "accc0bf5-adc4-4d81-b4eb-70a76cbc6d3f": {
+      "ProjectGuid": "accc0bf5-adc4-4d81-b4eb-70a76cbc6d3f",
+      "DisplayName": "ERP.Common",
+      "ColorIndex": 3
+    },
+    "dbfd3a23-b3a6-4881-822a-4de419e68d12": {
+      "ProjectGuid": "dbfd3a23-b3a6-4881-822a-4de419e68d12",
+      "DisplayName": "ERP.System",
+      "ColorIndex": 4
+    },
+    "242abdb4-9566-4bfd-94f3-0518e92bc424": {
+      "ProjectGuid": "242abdb4-9566-4bfd-94f3-0518e92bc424",
+      "DisplayName": "SignalR",
+      "ColorIndex": 5
+    },
+    "760ba60e-859a-49f9-859d-9969b12cbcda": {
+      "ProjectGuid": "760ba60e-859a-49f9-859d-9969b12cbcda",
+      "DisplayName": "POS",
+      "ColorIndex": 6
+    },
+    "98e3f7ac-9d40-4cff-8c1f-94d92429489a": {
+      "ProjectGuid": "98e3f7ac-9d40-4cff-8c1f-94d92429489a",
+      "DisplayName": "WMS",
+      "ColorIndex": 7
+    }
+  },
+  "NextColorIndex": 8
+}

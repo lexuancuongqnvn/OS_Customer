@@ -1,0 +1,49 @@
+<div class="card-container k-form-edit">
+    <app-toolbar #toolbar [tableName]="tbName" [CurrenFrom]="CurrenFrom"></app-toolbar>
+    <div class="example-wrapper form-group">
+        <div class="example-wrapper">
+            <div class="">
+                <div class="form-group filter">
+                    <div class="row div-filter">
+                        <!-- Begin filter -->
+                        <!-- end filter -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-component form-group">
+        <jqgrid-list #gridList (ValueOutput)="selectRow($event)" [colModel]="col_model" [table]="tbName" [title]="'Danh sách phòng ban'"></jqgrid-list>
+    </div>
+    <dialog-acction #dialogDelete [content]="'Bạn có chắc chắn muốn xóa?'" [title]="'Vui lòng xác nhận'" (confirmOutput)="confirmDelete()"></dialog-acction>
+</div>
+<!-- Edit -->
+<sidenav-add-edit #sidenavAddEdit [title]="'Chỉnh sửa thông tin phòng ban'" *ngIf="isEdit" class="form-sidenav-edit">
+    <form method="#" action="#" style="padding: 20px;" class="form-jqgrid-edit">
+        <app-toolbar #toolbarEdit [tableName]="tbName" [CurrenFrom]="getCurrenFrom"></app-toolbar>
+        <alert-message #alertMessage></alert-message>
+        <div class="row">
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="id_name" class=" label-title">Tên phòng ban</label>
+                    <input type="text" #name="ngModel" name="name" [(ngModel)]="InputModel.name" [value]="InputModel.name" class="form-control" id="id_name">
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="form-group">
+                    <label for="id_start_date" class=" label-title">Người duyệt worktime</label>
+                    <input-selectpicker-v2 #SelectPicker (ValueOutput)="onSelect($event,'allow_approve_worktime')" [value]="InputModel.allow_approve_worktime" [multiple]="false" [list]="listEmployee" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'allow_approve_worktime'"
+                        [title]="'Người tạo'"></input-selectpicker-v2>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="id_stop_date" class=" label-title">Người được ủy quyền duyệt worktime</label>
+                    <input-selectpicker-v2 #SelectPicker1 (ValueOutput)="onSelect($event,'authorize_approve_worktime')" [value]="InputModel.authorize_approve_worktime" [multiple]="true" [list]="listEmployee" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'authorize_approve_worktime'"
+                        [title]="'Người tạo'"></input-selectpicker-v2>
+                </div>
+            </div>
+            <jqgrid-edit #gridPositionEdit [colModel]="col_model_edit" [table]="tbName_sub" [title]="'Danh sách vị trí'"></jqgrid-edit>
+        </div>
+    </form>
+</sidenav-add-edit>

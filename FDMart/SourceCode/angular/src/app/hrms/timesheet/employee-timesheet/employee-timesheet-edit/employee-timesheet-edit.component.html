@@ -1,0 +1,318 @@
+<div class="card-container k-form-edit">
+    <!-- <app-toolbar #toolbar [tableName]="tbName" [CurrenFrom]="getCurrenFrom"></app-toolbar> -->
+    <div class="example-wrapper form-group">
+        <div class="">
+            <div class="form-group filter">
+                <div class="row div-filter">
+                    <!-- Begin filter -->
+
+                    <!-- end filter -->
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="div-calendar">
+                <div class="div-left-list-employee" *ngIf="(listEmployee.length > 1 && employeeModel.is_show_list_employee) || username == 'ROOT'">
+                    <ul class="list-group employee-list-group">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <div class="form-search">
+                                <input type="text" (keyup)="onkeypressSearch($event)" placeholder="Tìm kiếm" class="form-control" id="employee_name_search">
+                            </div>
+                        </li>
+                        <li *ngFor="let item of listEmployeeT;let i = index" (click)="onSelectEmployee(item)" class="list-group-item d-flex justify-content-between align-items-center {{item['class']}}">
+                            <div [innerHTML]="item.avarta_html"></div>
+                            <a href="javascript:;" class="a-emp-name"> {{item['name']}}</a>
+                            <span class="badge badge-primary badge-pill">{{item['work_day']}}</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="{{employeeModel.is_show_list_employee || username == 'ROOT' ?'div-right-calendar':'col-12'}}">
+                    <div class="card card-calendar">
+                        <div class="row div-chart-2">
+                            <div class="col-lg-3 col-md-6 col-sm-6">
+                                <div class="card card-stats">
+                                    <div class="card-header card-header-warning card-header-icon">
+                                        <div class="card-icon">
+                                            <i class="material-icons">functions</i>
+                                        </div>
+                                        <p class="card-category">Tổng công hưởng lương </p>
+                                        <h3 class="card-title">{{employeeModel.work_day?employeeModel.work_day:0}}</h3>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="stats">
+                                            <i class="material-icons">task</i> Cập nhật sau khi chấm công
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-6">
+                                <div class="card card-stats">
+                                    <div class="card-header card-header-rose card-header-icon">
+                                        <div class="card-icon">
+                                            <i class="material-icons">task</i>
+                                        </div>
+                                        <p class="card-category">Tổng giờ tăng ca</p>
+                                        <h3 class="card-title">{{totalOvertime}}</h3>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="stats">
+                                            <i class="material-icons">av_timer</i> Cập nhật theo đơn từ
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-6">
+                                <div class="card card-stats">
+                                    <div class="card-header card-header-success card-header-icon">
+                                        <div class="card-icon">
+                                            <i class="material-icons">published_with_changes</i>
+                                        </div>
+                                        <p class="card-category">Tổng số lần đi muộn - về sớm</p>
+                                        <h3 class="card-title"> {{totalLate}} - {{totalSoon}}</h3>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="stats">
+                                            <i class="material-icons">av_timer</i> Cập nhật sau khi chấm công
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-6">
+                                <div class="card card-stats">
+                                    <div class="card-header card-header-info card-header-icon">
+                                        <div class="card-icon">
+                                            <i class="material-icons">running_with_errors</i>
+                                        </div>
+                                        <p class="card-category">Tổng số ngày nghỉ</p>
+                                        <h3 class="card-title">{{totalDayOff}}</h3>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="stats">
+                                            <i class="material-icons">av_timer</i> Cập nhật theo đơn từ
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body div-card-fullCalendar">
+                            <div id="fullCalendar"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="display: none;" class="change-date" (click)="onResetSearch()"></div>
+        <div style="display: none;" class="update-target" (click)="onUpdateTarget()"></div>
+        <style>
+            #const-hour {
+                padding-bottom: 0px;
+                padding-top: 15px;
+                margin-top: 3px;
+                max-width: 50px;
+                width: 30px;
+            }
+            
+            .edit-hour-on {
+                height: 25px !important;
+                width: 100px !important;
+                /* border-radius: 18px 18px 18px 0px; */
+                margin: -17% 0px -26px 69% !important;
+                color: black !important;
+                text-align: right;
+                /* z-index: 1000 !important; */
+                display: none;
+            }
+            
+            .hover-edit-hour-on:hover+.edit-hour-on,
+            .edit-hour-on:hover {
+                display: block !important;
+            }
+            
+            .search-employee {
+                width: 100%;
+            }
+        </style>
+    </div>
+</div>
+<!-- Edit -->
+<sidenav-add-edit #sidenavAddEdit [title]="'Lịch sử chấm công'" *ngIf="isEdit" class="form-sidenav-edit">
+    <form method="#" action="#" style="padding: 20px;" class="form-jqgrid-edit">
+        <alert-message #alertMessage></alert-message>
+        <div class="row div-result-checkin">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Ảnh</th>
+                        <th scope="col">Thời gian</th>
+                        <th scope="col">Tình trạng</th>
+                        <th scope="col">Bản đồ</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of listHistory">
+                        <th scope="row">
+                            <img style="max-width: 256px;width: 100%;" [src]="item.link_image">
+                        </th>
+                        <td>{{item.check_in}}</td>
+                        <td>
+                            <span *ngIf="item.status_checkin == 0" style="color: green;">Thành công</span>
+                            <span *ngIf="item.status_checkin != 0" style="color: red;">Thất bại</span>
+                        </td>
+                        <td>
+                            <a href="javascript:;" (click)="OpenMap(item.id)"><i>Xem trên bản đồ</i></a>
+                        </td>
+                        <td>
+                            <div *ngIf="item['open']">
+                                <iframe width="400" height="100%" id="iframe-map-{{item['id']}}" [src]="item['link']" scrolling="no" frameborder="0"></iframe>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </form>
+</sidenav-add-edit>
+<sidenav-add-edit #sidenavUpdateTarget [title]="" *ngIf="isTarget" class="form-sidenav-edit">
+    <form method="#" action="#" style="padding: 20px;" class="form-jqgrid-edit">
+        <app-toolbar #toolbarEdit [tableName]="'KNV_Update_Target'" [CurrenFrom]="getCurrenFrom"></app-toolbar>
+        <alert-message #alertMessage></alert-message>
+        <div class="row div-result-checkin">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col" style="font-weight: 700;">#</th>
+                        <th scope="col" style="font-weight: 700;">Lương/ phụ cấp theo doanh số</th>
+                        <th scope="col" style="font-weight: 700;">Chỉ tiêu</th>
+                        <th scope="col" style="font-weight: 700;">Doanh số thực tế</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of listLabourContractAppendix;let i = index;">
+                        <th style="text-align: center;">{{i+1}}</th>
+                        <td style="text-align: center;">{{item.name}}</td>
+                        <td style="text-align: center;">{{item.taget}}{{item.taget_unit=='PERCENT'?' %':' SL'}}</td>
+                        <td style="text-align: center;">
+                            <div class="row">
+                                <div class="col-10">
+                                    <div class="form-group">
+                                        <input type="number" #name="ngModel" name="day_number{{i+1}}" [(ngModel)]="item.sales" [value]="item.sales" class="form-control" id="day_number{{i+1}}">
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </form>
+</sidenav-add-edit>
+<div id="history_checkin" (click)="LoadHistory()"></div>
+<dialog-acction #dialogHistory [width]="500" [title]="'Kết quả chấm công - '+modelResult.date_name_vn_in_week">
+    <div class="row">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td colspan="2">
+                        <div class="card">
+                            <div class="card-body">
+                                <div id="accordion" role="tablist">
+                                    <div class="card-collapse">
+                                        <div class="card-header" role="tab" id="headingOne">
+                                            <h5 class="mb-0">
+                                                <a data-toggle="collapse" (click)="appenMap('iframe-map-in',modelResult.latitude_in,modelResult.longitude_in)" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="collapsed">
+                                        Vào ca
+                                        <i class="material-icons">keyboard_arrow_down</i>
+                                      </a>
+                                            </h5>
+                                        </div>
+                                        <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion" style="">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <span>Ca làm việc </span> <br />
+                                                            <label class="label-title">{{modelResult.work_shift_name_in}}</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <span>Thời gian chấm công</span> <br />
+                                                            <label class="label-title">{{modelResult.check_in_time_f}}</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <span>Địa điểm chấm công</span> <br />
+                                                            <label class="label-title">{{modelResult.branch_name_in}}</label> <br />
+                                                            <span>{{modelResult.branch_address_in}}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12" *ngIf="modelResult.latitude_in">
+                                                        <iframe width="100%" height="100%" id="iframe-map-in" [src]="''" scrolling="no" frameborder="0"></iframe>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-collapse">
+                                        <div class="card-header" role="tab" id="headingThree">
+                                            <h5 class="mb-0">
+                                                <a class="collapsed" (click)="appenMap('iframe-map-out',modelResult.latitude_out,modelResult.longitude_out)" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                    Ra ca
+                                        <i class="material-icons">keyboard_arrow_down</i>
+                                      </a>
+                                            </h5>
+                                        </div>
+                                        <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <span>Ca làm việc</span> <br />
+                                                            <label class="label-title">{{modelResult.work_shift_name_out}}</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <span>Thời gian chấm công</span> <br />
+                                                            <label class="label-title">{{modelResult.check_out_time_f}}</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <span>Địa điểm chấm công</span> <br />
+                                                            <label class="label-title">{{modelResult.branch_name_out}}</label> <br />
+                                                            <span>{{modelResult.branch_address_out}}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12" *ngIf="modelResult.latitude_out">
+                                                        <iframe width="100%" height="100%" id="iframe-map-out" [src]="''" scrolling="no" frameborder="0"></iframe>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="info">Đi muộn</td>
+                    <td class="value">{{modelResult.late}} phút</td>
+                </tr>
+                <tr>
+                    <td class="info">Về sớm</td>
+                    <td class="value">{{modelResult.soon}} phút</td>
+                </tr>
+                <tr>
+                    <td class="info bold">Tổng công</td>
+                    <td class="value bold">{{modelResult['work_day_totals']}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</dialog-acction>

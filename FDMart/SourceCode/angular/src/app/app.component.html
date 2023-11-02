@@ -1,0 +1,47 @@
+<app-login *ngIf="showtheme == false"></app-login>
+<block-ui>
+    <app-layout *ngIf="showtheme == true"></app-layout>
+    <!-- <app-header *ngIf="showtheme == true">
+    <div class="menu-button">
+        <span class="k-icon hamburger-icon" (click)="drawer.toggle()"></span>
+    </div>
+  </app-header> -->
+    <!-- <kendo-drawer-container *ngIf="showtheme == true">
+    <kendo-drawer 
+      #drawer 
+      [items]="getDataMenu['parents']" 
+      mode="push" 
+      [expanded]="true" 
+      [autoCollapse]="false"
+      (select)="onSelect($event)">
+      <ng-template kendoDrawerItemTemplate let-item>
+        <div class="k-level-{{ item.level }} icon-level">
+          <span class="k-icon {{ item.icon }}"></span>
+        </div>
+        {{item.text }}
+        <span *ngIf="item.expanded && item.children" class="k-icon k-i-arrow-chevron-down"
+          style="margin-left: auto; line-height: inherit"></span>
+
+        <span *ngIf="!item.expanded && item.children" class="k-icon k-i-arrow-chevron-right"
+          style="margin-left: auto; line-height: inherit"></span>
+      </ng-template>
+    </kendo-drawer>
+
+    <kendo-drawer-content>
+      <drawer-content [selectedItem]="selected"></drawer-content>
+      <dashboard-home></dashboard-home>
+      <app-layout></app-layout>
+      <router-outlet></router-outlet>
+    </kendo-drawer-content>
+  </kendo-drawer-container> -->
+
+</block-ui>
+
+<kendo-dialog title="Exist Login!" *ngIf="_exist" (close)="OK()" #dialogExist>
+    <p style="margin: 30px; text-align: center;">Đã hết phiên đăng nhập.</p>
+    <kendo-dialog-actions>
+        <button kendoButton (click)="OK()" [primary]="true">
+      OK
+    </button>
+    </kendo-dialog-actions>
+</kendo-dialog>

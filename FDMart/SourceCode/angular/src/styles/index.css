@@ -1,0 +1,262 @@
+label.title-grid {
+    font-size: 15pt;
+    color: white;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.k-drawer-item {
+    padding: 0 0 0 0 !important;
+}
+
+.icon-level {
+    padding: 0px 4px 0 4px !important;
+}
+
+.sidebar {
+    /* background-image: url("../assets/img/sidebar-1.jpg") !important; */
+    background-color: #223e9c;
+}
+
+.sidebar-wrapper,
+.logo {
+    background: #223e9c;
+}
+
+.simple-text {
+    color: white !important;
+}
+
+span.fc-time {
+    display: none !important;
+}
+
+
+/* .dropdown.bootstrap-select {
+    width: 100% !important;
+} */
+
+
+/* button.btn.dropdown-toggle.bs-placeholder.select-with-transition.branch,
+.dropdown.bootstrap-select.show-tick.-filter {
+    padding-right: 0;
+    width: 50% !important;
+    max-width: 50% !important;
+} */
+
+
+/* button.btn.dropdown-toggle.select-with-transition.ca {
+    width: 29%;
+    max-width: 29%;
+    padding-right: 0;
+} */
+
+body {
+    font-family: Calibri !important;
+}
+
+span.select2.select2-container.select2-container--classic.select2-container--disabled,
+input:disabled {
+    background-color: #b1b1b1 !important;
+    color: rgb(84, 84, 84) !important;
+}
+
+
+/* Begin dashboard hrm */
+
+.status-type-new {
+    width: 10px;
+    height: 10px;
+    background: #0065d6;
+    color: #0065d6;
+}
+
+.div-title-project {
+    text-align: center;
+    background-color: #010183;
+    margin: 13px 0px 10px 13px;
+    max-width: 98.5% !important;
+}
+
+.div-title-department,
+.div-title-time {
+    text-align: center;
+    background-color: #010183;
+    max-width: 98.5% !important;
+}
+
+.span-title-project {
+    color: white;
+    font-weight: 700;
+    padding-top: 8px;
+}
+
+.div-title-department,
+.div-title-time {
+    color: white;
+    font-weight: 700;
+    padding-top: 0px;
+}
+
+.card {
+    margin: 0 !important;
+    border-radius: 0 !important;
+}
+
+button.btn.btn-link.collapsed {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+
+/* 
+.col-w-50 {
+margin: 0;
+padding: 0;
+} */
+
+.col-pie {
+    padding-right: 0 !important;
+}
+
+
+/* .col-table-1,
+.col-w-50,
+table {
+    background: white;
+} */
+
+.status-type-done {
+    width: 10px;
+    height: 10px;
+    background: #00d631;
+    color: #00d631;
+}
+
+.status-type-inprogress {
+    width: 10px;
+    height: 10px;
+    background: #ff721c;
+    color: #ff721c;
+}
+
+.text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    /* number of lines to show */
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.a-hiden {
+    bottom: 0;
+    position: absolute;
+    right: 10px;
+}
+
+video {
+    border-radius: 50% !important;
+    border: 15px solid white;
+}
+
+.row.div-chart-2 {
+    margin: 0 !important;
+}
+
+.input-required {
+    color: red;
+}
+
+input[type="number"] {
+    text-align: right !important;
+}
+
+.mat-step:hover,
+.mat-step.active {
+    background: #c7c7c7;
+}
+
+mat-step-header[tabindex="0"] {
+    background: #c7c7c7;
+}
+
+.mat-step-icon {
+    border-radius: 50%;
+    height: 24px;
+    width: 24px;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.mat-step-header .mat-step-icon-selected,
+.mat-step-header .mat-step-icon-state-done,
+.mat-step-header .mat-step-icon-state-edit {
+    background-color: #3f51b5;
+    color: #fff;
+}
+
+.select2-container--classic .select2-selection--single[aria-disabled="true"] {
+    background-image: linear-gradient(to bottom, #b1b1b1 50%, #b1b1b1 100%);
+}
+
+.timesheet-segment .timesheet-tooltiptext {
+    visibility: hidden;
+    color: #fff;
+    text-align: center;
+    position: absolute;
+    z-index: 1000;
+}
+
+.timesheet-segment:hover .timesheet-tooltiptext {
+    visibility: visible;
+}
+
+.timesheet-segment-table {
+    background: #ff9800 !important;
+    border-radius: 5px !important;
+}
+
+.timesheet-segment-table>thead>tr>th {
+    min-width: 90px;
+}
+
+.select2-container--default .select2-results__option--selected,
+li.select2-results__option.select2-results__option--selectable.select2-results__option--selected {
+    background-color: #ddd;
+}
+
+.ui-jqgrid .s-ico {
+    width: 1em !important;
+}
+
+.ui-jqgrid .s-ico>.ui-grid-ico-sort.fa {
+    width: 100% !important;
+    ;
+    line-height: 1em !important;
+    top: 0 !important;
+}
+
+.ui-jqgrid .s-ico>.ui-icon-desc.fa {
+    color: green !important;
+}
+
+.ui-jqgrid .s-ico>.ui-icon-asc.fa {
+    color: red !important;
+}
+
+.k-button.k-flat:focus {
+    color: #03a9f4 !important;
+}
+
+input.money {
+    text-align: right !important;
+}
+
+input.datepicker.required {
+    border-bottom: 2px solid red;
+}
+
+
+/* End dashboard hrm */

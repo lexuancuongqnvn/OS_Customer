@@ -1,0 +1,22 @@
+.example-wrapper.toolbar {
+    background-color: #164478;
+}
+
+.btn-toolbar {
+    color: white;
+}
+
+.toolbar.form-30082023 {
+    position: fixed;
+    top: 52px;
+    width: 84%;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.btn-toolbar-eidt {
+    border-color: #fff !important;
+}
+
+.btn-toolbar-eidt:hover {
+    border-color: #ddd !important;
+}

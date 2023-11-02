@@ -1,0 +1,54 @@
+<div class="card-container k-form-edit">
+    <app-toolbar #toolbar [tableName]="tbName" [CurrenFrom]="CurrenFrom"></app-toolbar>
+    <div class="example-wrapper form-group">
+        <div class="example-wrapper">
+            <div class="">
+                <div class="form-group filter">
+                    <div class="row div-filter">
+                        <!-- Begin filter -->
+                        <div class="col-4 col-sm-4 col-md-3 col-lg-1 col-xl-1">
+                            <div class="form-group">
+                                <label for="id_name" class="">Tháng </label>
+                                <input-selectpicker-v2 #SelectMonthPicker (ValueOutput)="onSelectFilter($event,'month')" [multiple]="false" [list]="listMonth" [FieldValue]="'month'" [FieldDisplay]="'name'" [ColumnName]="'month'" [title]="''"></input-selectpicker-v2>
+                            </div>
+                        </div>
+                        <div class="col-4 col-sm-4 col-md-3 col-lg-1 col-xl-1">
+                            <div class="form-group">
+                                <label for="id_name" class="">Năm </label>
+                                <input-datepicker [ColumnName]="'year'" name="year" (ValueOutput)="onSelectFilter($event,'year')" [format]="'YYYY'"></input-datepicker>
+                            </div>
+                        </div>
+                        <div class="col-4 col-sm-4 col-md-3 col-lg-2 col-xl-2">
+                            <div class="form-group">
+                                <label for="sales_date_from" class="">Ngày bán từ</label>
+                                <input-datepicker [ColumnName]="'sales_date_from'" name="sales_date_from" (ValueOutput)="onSelectFilter($event,'sales_date_from')"></input-datepicker>
+                            </div>
+                        </div>
+                        <div class="col-4 col-sm-4 col-md-3 col-lg-2 col-xl-2">
+                            <div class="form-group">
+                                <label for="sales_date_to" class="">Ngày bán đến</label>
+                                <input-datepicker [ColumnName]="'sales_date_to'" name="sales_date_to" (ValueOutput)="onSelectFilter($event,'sales_date_to')"></input-datepicker>
+                            </div>
+                        </div>
+                        <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+                            <div class="form-group">
+                                <label for="id_name" class="">Nhân viên</label>
+                                <input-selectpicker-v2 #SelectEmployeePicker (ValueOutput)="onSelectFilter($event,'employee_code')" [multiple]="true" [list]="listEmployee" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'employee_code'" [title]="''"></input-selectpicker-v2>
+                            </div>
+                        </div>
+                        <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+                            <div class="form-group">
+                                <label for="machine_name" class="">Tên máy</label>
+                                <input type="text" #machine_name="ngModel" name="machine_name" [(ngModel)]="filterInput.machine_name" class="form-control">
+                            </div>
+                        </div>
+                        <!-- end filter -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-component form-group">
+        <jqgrid-list #gridList [grouping]="true" [groupField]="['employee_name']" (ValueOutput)="selectRow($event)" [colModel]="col_model" [table]="tbName" [title]="'Danh sách máy trong tháng'"></jqgrid-list>
+    </div>
+</div>

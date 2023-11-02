@@ -1,0 +1,122 @@
+<!-- <div class="example theme-login" *ngIf="forgotPassword == false">
+    <form class="k-form form-login" [formGroup]="form">
+        <fieldset class="k-form-fieldset">
+            <kendo-formfield>
+                <kendo-textbox formControlName="username" [clearButton]="true" #username required></kendo-textbox>
+                <kendo-formhint>Your Username</kendo-formhint>
+                <kendo-formerror>Error: Username is required</kendo-formerror>
+            </kendo-formfield>
+            <kendo-formfield>
+                <kendo-textbox formControlName="password" #password required [clearButton]="true">
+                    <ng-template kendoTextBoxSuffixTemplate>
+                        <button kendoButton look="clear" icon="eye" (click)="toggleVisibility()"></button>
+                    </ng-template>
+                </kendo-textbox>
+                <kendo-formhint>Your password</kendo-formhint>
+                <kendo-formerror>Error: Password is required</kendo-formerror>
+            </kendo-formfield>
+            <label class="{{class}}">{{message}}</label>
+            <div class="k-form-buttons">
+                <button class="k-button k-primary" (click)="login()">Đăng nhập</button>
+                <a href="javascript:;" (click)="onForgotPassword()" class="forgot-login">Quên mật khẩu?</a>
+            </div>
+        </fieldset>
+    </form>
+</div> -->
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+<forgot-password *ngIf="forgotPassword == true && register == false"></forgot-password>
+<!-- <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top text-white">
+    <div class="container">
+        <div class="navbar-wrapper">
+            <a class="navbar-brand" href="#pablo">Login Page</a>
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="navbar-toggler-icon icon-bar"></span>
+      <span class="navbar-toggler-icon icon-bar"></span>
+      <span class="navbar-toggler-icon icon-bar"></span>
+    </button>
+        <div class="collapse navbar-collapse justify-content-end">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a href="../dashboard.html" class="nav-link">
+                        <i class="material-icons">dashboard</i> Dashboard
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a href="javascript:;" (click)="register = true;UpdateView();" class="nav-link">
+                        <i class="material-icons">person_add</i> Register
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="login.html" class="nav-link">
+                        <i class="material-icons">fingerprint</i> Login
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a href="lock.html" class="nav-link">
+                        <i class="material-icons">lock_open</i> Lock
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav> -->
+<div class="wrapper wrapper-full-page" *ngIf="forgotPassword == false && register == false">
+    <div class="page-header login-page header-filter" filter-color="black" style="background-image: url('../../assets/img/login.jpg'); background-size: cover; background-position: top center;">
+        <!--   you can change the color of the filter page using: data-color="blue | purple | green | orange | red | rose " -->
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-8 ml-auto mr-auto">
+                    <form class="form" method="" action="#">
+                        <div class="card card-login card-hidden" style="padding: 10px;border-radius: 15px !important;">
+                            <div class="card-body ">
+                                <h3 style="text-align: center;font-weight: 600;">Đăng nhập</h3>
+                                <a *ngIf="ShowUserName" (click)="onClickUserName()" class="card-description text-center user-storage" href="javascript:;">Đăng nhập với: {{userStorage.firstName+' '+userStorage.lastName}}</a>
+                                <span class="bmd-form-group">
+                  <div class="input-group" *ngIf="!ShowUserName">
+                            <input [(ngModel)]="userModel.username" name="username" #username="ngModel" type="email" class="form-control username" placeholder="Tài khoản..." required>
+                        </div>
+                        </span>
+                                <span class="bmd-form-group">
+                  <div class="input-group">
+                <input [(ngModel)]="userModel.password" (keyup.enter)="login()" name="password" #password="ngModel" type="password" class="form-control password" placeholder="Mật khẩu..." required>
+                    <div class="input-group-prepend" style="position: absolute;right: 7px;top: 0px;z-index: 10000;">
+                            <span class="input-group-text" style="padding: 7px 0px 0px 5px !important;">
+                                <a href="javascript:;">
+                                    <i class="material-icons" (click)="login()" style="border: 1px solid #767676;padding: 1px;border-radius: 50%;">arrow_forward</i>
+                                </a>
+                            </span>
+                            </div>
+                        </div>
+                        </span>
+                        <label style="color: red;">{{message}}</label>
+                </div>
+                <div class="card-footer justify-content-center" style="display: contents;">
+                    <!-- <a href="javascript:;" (click)="login()" class="btn btn-rose btn-link btn-lg">
+                  Đăng nhập
+                </a> -->
+                    <a href="javascript:;" (click)="onForgotPassword()" class="forgot-login">Quên mật khẩu?</a>
+                    <span class="span-version">V04.02.23.08.30</span>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+<footer class="footer" style="background-color: #8080808a;">
+    <div class="container">
+        <nav class="float-left">
+            <ul>
+                <li>
+                    <a href="#">
+                Copyright ©2023 OSOFT. All rights reserved.
+              </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</footer>
+</div>
+</div>
+<register *ngIf="register == true"></register>

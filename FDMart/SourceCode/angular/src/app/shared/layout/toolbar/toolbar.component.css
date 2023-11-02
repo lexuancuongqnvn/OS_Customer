@@ -1,0 +1,51 @@
+.example-wrapper.toolbar {
+    background-color: #164478;
+}
+
+.btn-toolbar {
+    color: white;
+}
+
+
+/* .example-wrapper.toolbar {
+    margin: 10px 0px 10px 0px !important;
+} */
+
+.toolbar.form-30082023 {
+    position: fixed;
+    top: 52px;
+    width: 84%;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    /* margin: 0px 0px 10px 0px !important; */
+}
+
+.toolbar.form-30082023-mini {
+    width: 94% !important;
+}
+
+.btn-toolbar-view {
+    border-color: #fff !important;
+}
+
+.btn-toolbar-view:hover {
+    border-color: #ddd !important;
+}
+
+.span-menuwraper {
+    border-right: 1px solid white;
+}
+
+.text-menuwraper {
+    padding: 5px;
+    color: white;
+    font-size: 14px;
+    font-weight: 400;
+    text-decoration: underline;
+}
+
+div#toolsPanel {
+    display: flex;
+    background: #0F6CBD!important;
+    padding: 4px;
+    margin: 4px;
+}

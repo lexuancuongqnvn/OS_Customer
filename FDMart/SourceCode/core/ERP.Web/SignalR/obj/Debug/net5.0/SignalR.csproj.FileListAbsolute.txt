@@ -1,0 +1,11 @@
+D:\SourceCode\HRM\core\ERP.Web\SignalR\bin\Debug\net5.0\SignalR.deps.json
+D:\SourceCode\HRM\core\ERP.Web\SignalR\bin\Debug\net5.0\SignalR.dll
+D:\SourceCode\HRM\core\ERP.Web\SignalR\bin\Debug\net5.0\ref\SignalR.dll
+D:\SourceCode\HRM\core\ERP.Web\SignalR\bin\Debug\net5.0\SignalR.pdb
+D:\SourceCode\HRM\core\ERP.Web\SignalR\obj\Debug\net5.0\SignalR.GeneratedMSBuildEditorConfig.editorconfig
+D:\SourceCode\HRM\core\ERP.Web\SignalR\obj\Debug\net5.0\SignalR.AssemblyInfoInputs.cache
+D:\SourceCode\HRM\core\ERP.Web\SignalR\obj\Debug\net5.0\SignalR.AssemblyInfo.cs
+D:\SourceCode\HRM\core\ERP.Web\SignalR\obj\Debug\net5.0\SignalR.csproj.CoreCompileInputs.cache
+D:\SourceCode\HRM\core\ERP.Web\SignalR\obj\Debug\net5.0\SignalR.dll
+D:\SourceCode\HRM\core\ERP.Web\SignalR\obj\Debug\net5.0\ref\SignalR.dll
+D:\SourceCode\HRM\core\ERP.Web\SignalR\obj\Debug\net5.0\SignalR.pdb

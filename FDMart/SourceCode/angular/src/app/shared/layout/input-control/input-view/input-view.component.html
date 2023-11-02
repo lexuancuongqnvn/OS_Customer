@@ -1,0 +1,93 @@
+    <!-- Number -->
+    <label *ngIf="type == 1 || type == 19 || type == 21" >{{objValueByID[getKey(tableName, colName, id)]}} </label>
+    <!-- Date -->
+    <label *ngIf="type == 5" >{{formatDate(objValueByID[getKey(tableName, colName, id)],format)}} </label>
+    <!-- Datetime -->
+    <label *ngIf="type == 9" >{{formatDate(objValueByID[getKey(tableName, colName, id)],format)}}</label>
+    <!-- 10	dateranges -->
+    <label *ngIf="type == 10" >{{formatDateRanges(objValueByID[getKey(tableName, colName, id)],format)}}</label>
+    <!-- Time -->
+    <label *ngIf="type == 11" >{{formatDate(objValueByID[getKey(tableName, colName, id)],format)}} </label>
+    <!-- 12	Multivalue -->
+    <kendo-multiselect *ngIf="type == 12"
+        [checkboxes]="true"
+        [autoClose]="false"
+        [disabled]="true"
+        [textField]="'Name'"
+        [valueField]="'id'"
+        [placeholder]="'--NULL--'"
+        [(value)]="objValueByID[getKey(tableName, colName, id)]"
+        [data]="listItemsMultivalue"
+        (valueChange)="onChangeValueMultivalue($event, id)"
+        #{{name}}="ngModel"
+        name="{{name}}"
+        [(ngModel)]="objValueByID[getKey(tableName, colName, id)]"
+    ></kendo-multiselect>
+    <!-- ColorPicker -->
+    <label *ngIf="type == 13" >{{objValueByID[getKey(tableName, colName, id)]}} </label>
+    <!-- Float -->
+    <label *ngIf="type == 14" >{{objValueByID[getKey(tableName, colName, id)]}} </label>
+    <!-- MaskedTextBox -->
+    <kendo-maskedtextbox  *ngIf="type == 100"
+        mask="9-000"
+        (valueChange)="onChangeValue($event, id)"
+        #{{name}}="ngModel"
+        name="{{name}}"
+        [(ngModel)]="objValueByID[getKey(tableName, colName, id)]"
+    ></kendo-maskedtextbox>
+    <!-- Money -->
+    <label *ngIf="type == 15" >{{ objValueByID[getKey(tableName, colName, id)] | CurrencyCustom}} </label>
+    <!-- Phone -->
+    <label *ngIf="type == 22" >{{objValueByID[getKey(tableName, colName, id)]}} </label>
+    <!-- Switch -->
+    <kendo-switch *ngIf="type == 4 || type==20" 
+        (valueChange)="onChangeValue($event, id)" 
+        #{{name}}="ngModel"
+        [disabled]="true"
+        name="{{name}}"
+        [(ngModel)]="objValueByID[getKey(tableName, colName, id)]"
+    ></kendo-switch>
+    <!-- File -->
+     <div class="example-config row upload-files" *ngIf="type==6 || type==7">
+        <div class="col-6" style="margin-left: -12px;">
+            <file-picker [CurrenFrom]="CurrenFrom" [codeEdit]="codeEdit" [multiple]="false" [accounT_ID]="idUser" [id]="id" [pageTitle]="'Uplpad file'" (ValueFilesOutput)="onChangeValueFile($event,id)" [myFiles]="objValueByID[getKey(tableName, colName, id)]" [key]="getKey(tableName, colName, id)" [colName]="colName" [tableName]="tableName"></file-picker>
+        </div>
+        <div class="col-6">
+            <span class="value-file">{{numberFile}} file</span>
+        </div>
+    </div>
+    <!-- Files -->
+    <div class="example-config row upload-files" *ngIf="type==8">
+        <div class="col-6" style="margin-left: -12px;">
+            <file-picker [CurrenFrom]="CurrenFrom" [codeEdit]="codeEdit" [multiple]="true" [accounT_ID]="idUser" [id]="id" [pageTitle]="'Uplpad files'" (ValueFilesOutput)="onChangeValueFile($event,id)"  [myFiles]="objValueByID[getKey(tableName, colName, id)]" [key]="getKey(tableName, colName, id)" [colName]="colName" [tableName]="tableName"></file-picker>
+        </div>
+        <div class="col-6">
+            <span class="value-file">{{numberFile}} files</span>
+        </div>
+    </div>
+    <!-- TextBox -->
+    <label *ngIf="type == 2" >{{objValueByID[getKey(tableName, colName, id)]}} </label>
+    <!-- TextArea -->
+    <label *ngIf="type == 3 || type == 17" >{{objValueByID[getKey(tableName, colName, id)]}} </label>
+    <!-- CheckBox (checked: {{ checked }}) -->
+    <input *ngIf="type == 23" 
+        (click)="onChangeValue($event.currentTarget.checked, id)" 
+        type="checkbox" kendoCheckBox 
+        [disabled]="true"
+        #{{name}}="ngModel"
+        name="{{name}}"
+        [(ngModel)]="objValueByID[getKey(tableName, colName, id)]"
+    />
+    <!-- combobox -->
+    <label *ngIf="type == 24" >{{objValueByID[getKey(tableName, colName, id)]}} </label>
+    <!-- autocomplete -->
+    <kendo-autocomplete *ngIf="type == 25" 
+        [data]="listItems"
+        [valueField]="'id'"
+        [allowCustom]="true"
+        (valueChange)="onChangeValue($event, id)"
+        #{{name}}="ngModel"
+        name="{{name}}"
+        [(ngModel)]="value"
+      >
+      </kendo-autocomplete>

@@ -1,0 +1,193 @@
+<div class="card-container k-form-edit">
+    <app-toolbar #toolbar [tableName]="tbName" [CurrenFrom]="CurrenFrom"></app-toolbar>
+    <div class="example-wrapper form-group">
+        <div class="example-wrapper">
+            <div class="">
+                <div class="form-group filter">
+                    <div class="row div-filter">
+                        <!-- Begin filter -->
+                        <!-- end filter -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-component form-group">
+        <jqgrid-list #gridList (ValueOutput)="selectRow($event)" [colModel]="col_model" [table]="tbName" [title]="'Danh sách chi nhánh'"></jqgrid-list>
+    </div>
+    <dialog-acction #dialogDelete [content]="'Bạn có chắc chắn muốn xóa?'" [title]="'Vui lòng xác nhận'" (confirmOutput)="confirmDelete()"></dialog-acction>
+</div>
+<!-- Edit -->
+<sidenav-add-edit #sidenavAddEdit [title]="''" *ngIf="isEdit" class="form-sidenav-edit">
+    <form method="#" action="#" style="padding: 20px;" class="form-jqgrid-edit">
+        <app-toolbar #toolbarEdit [tableName]="tbName" [CurrenFrom]="getCurrenFrom"></app-toolbar>
+        <alert-message #alertMessage></alert-message>
+        <div class="row">
+            <div class="col-12 col-sm-10 col-md-8 col-lg-4 col-xl-4">
+                <label for="name" class="">Tên chi nhánh</label><br>
+                <input type="text" [disabled]="false" #name="ngModel" name="name" [(ngModel)]="InputModel.name" [value]="InputModel.name" class="form-control" id="name">
+            </div>
+            <div class="col-12 col-sm-10 col-md-8 col-lg-4 col-xl-4">
+                <label for="distance" class="">Bán kính chấm công tối đa (mét)</label><br>
+                <input type="number" [disabled]="false" #distance="ngModel" name="distance" [(ngModel)]="InputModel.distance" [value]="InputModel.distance" class="form-control" id="distance">
+            </div>
+            <div class="col-12 col-sm-10 col-md-8 col-lg-4 col-xl-4"><label class="labels"></label>
+                <label for="distance" class="">Logo</label><br>
+                <img [src]="BASE_URL+InputModel.url_logo">
+                <input-file-upload [colName]="'url_logo'" [isDomain]="false" [hidden]="false" [multiple]="false" [tableName]="'HRM_Branch'" (ValueOutput)="valueUpload($event,'url_logo')"></input-file-upload>
+            </div>
+
+            <div class="col-12"></div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <th scope="row">Thứ 2</th>
+                            <td>
+                                <div class="form-group">
+                                    <input-checkbox [type]="'toggle'" [title]="''" (ValueOutput)="valueStartDate($event,'is_mo')" [value]="InputModel.is_mo"></input-checkbox>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <input-timepicker [ColumnName]="'from_mo'" name="from_mo" [value]="InputModel.from_mo" (ValueOutput)="valueStartDate($event,'from_mo')"></input-timepicker>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <input-timepicker [ColumnName]="'to_mo'" name="to_mo" [value]="InputModel.to_mo" (ValueOutput)="valueStartDate($event,'to_mo')"></input-timepicker>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Thứ 3</th>
+                            <td>
+                                <div class="form-group">
+                                    <input-checkbox [type]="'toggle'" [title]="''" (ValueOutput)="valueStartDate($event,'is_tu')" [value]="InputModel.is_tu"></input-checkbox>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <input-timepicker [ColumnName]="'from_tu'" name="from_tu" [value]="InputModel.from_tu" (ValueOutput)="valueStartDate($event,'from_tu')"></input-timepicker>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <input-timepicker [ColumnName]="'to_tu'" name="to_tu" [value]="InputModel.to_tu" (ValueOutput)="valueStartDate($event,'to_tu')"></input-timepicker>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Thứ 4</th>
+                            <td>
+                                <div class="form-group">
+                                    <input-checkbox [type]="'toggle'" [title]="''" (ValueOutput)="valueStartDate($event,'is_we')" [value]="InputModel.is_we"></input-checkbox>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <input-timepicker [ColumnName]="'from_we'" name="from_we" [value]="InputModel.from_we" (ValueOutput)="valueStartDate($event,'from_we')"></input-timepicker>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <input-timepicker [ColumnName]="'to_we'" name="to_we" [value]="InputModel.to_we" (ValueOutput)="valueStartDate($event,'to_we')"></input-timepicker>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Thứ 5</th>
+                            <td>
+                                <div class="form-group">
+                                    <input-checkbox [type]="'toggle'" [title]="''" (ValueOutput)="valueStartDate($event,'is_th')" [value]="InputModel.is_th"></input-checkbox>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <input-timepicker [ColumnName]="'from_th'" name="from_th" [value]="InputModel.from_th" (ValueOutput)="valueStartDate($event,'from_th')"></input-timepicker>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <input-timepicker [ColumnName]="'to_th'" name="to_th" [value]="InputModel.to_th" (ValueOutput)="valueStartDate($event,'to_th')"></input-timepicker>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Thứ 6</th>
+                            <td>
+                                <div class="form-group">
+                                    <input-checkbox [type]="'toggle'" [title]="''" (ValueOutput)="valueStartDate($event,'is_fr')" [value]="InputModel.is_fr"></input-checkbox>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <input-timepicker [ColumnName]="'from_fr'" name="from_fr" [value]="InputModel.from_fr" (ValueOutput)="valueStartDate($event,'from_fr')"></input-timepicker>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <input-timepicker [ColumnName]="'to_fr'" name="to_fr" [value]="InputModel.to_fr" (ValueOutput)="valueStartDate($event,'to_fr')"></input-timepicker>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Thứ 7</th>
+                            <td>
+                                <div class="form-group">
+                                    <input-checkbox [type]="'toggle'" [title]="''" (ValueOutput)="valueStartDate($event,'is_sa')" [value]="InputModel.is_sa"></input-checkbox>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <input-timepicker [ColumnName]="'from_sa'" name="from_sa" [value]="InputModel.from_sa" (ValueOutput)="valueStartDate($event,'from_sa')"></input-timepicker>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <input-timepicker [ColumnName]="'to_sa'" name="to_sa" [value]="InputModel.to_sa" (ValueOutput)="valueStartDate($event,'to_sa')"></input-timepicker>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Chủ nhật</th>
+                            <td>
+                                <div class="form-group">
+                                    <input-checkbox [type]="'toggle'" [title]="''" (ValueOutput)="valueStartDate($event,'is_su')" [value]="InputModel.is_su"></input-checkbox>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <input-timepicker [ColumnName]="'from_su'" name="from_su" [value]="InputModel.from_su" (ValueOutput)="valueStartDate($event,'from_su')"></input-timepicker>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <input-timepicker [ColumnName]="'to_su'" name="to_su" [value]="InputModel.to_su" (ValueOutput)="valueStartDate($event,'to_su')"></input-timepicker>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-12 col-sm-10 col-md-8 col-lg-4 col-xl-4">
+                <button type="button" class="btn btn-info" (click)="onAdd()">Lấy vị trí hiện tại</button>
+            </div>
+            <div class="col-12"></div>
+            <!-- Phòng ban -->
+            <div class="col-12 col-sm-10 col-md-8 col-lg-4 col-xl-4">
+                <div class="form-group">
+                    <label for="start_date" class=" label-title">Vị trí theo google map<span class="input-required">*</span></label><br>
+                    <small>Latitude:</small>
+                    <input type="number" #lat="ngModel" name="lat" [(ngModel)]="InputModel.lat" [value]="InputModel.lat" class="form-control" id="lat">
+                    <small>Longitude:</small>
+                    <input type="number" #long="ngModel" name="long" [(ngModel)]="InputModel.long" [value]="InputModel.long" class="form-control" id="long">
+                </div>
+            </div>
+            <div class="col-12 col-sm-10 col-md-8 col-lg-4 col-xl-4">
+                <iframe width="500" height="500" id="iframe-map" [src]="''" scrolling="no" frameborder="0"></iframe>
+            </div>
+
+        </div>
+    </form>
+</sidenav-add-edit>

@@ -1,0 +1,27 @@
+<div class="row" *ngIf="isLoading">
+    <div class="col-12 div-title" style="background-color: #164478;">
+        <label class="label-name-jqgrid">{{title}}</label>
+        <div class="div-action-grid">
+            <a href="javascript:;" *ngIf="import" class="label-name-jqgrid-right" (click)="inport('import-'+table)">
+                <span class="material-icons">file_upload</span>Import
+                <excel-import #excelImport (ValueOutput)="Respond($event)"></excel-import>
+                <input type="file" class="form-control file {{table}}" style="display:none;" id="import-{{table}}" (change)="handleFileInput($event)" name="file" [multiple]="false">
+            </a>
+            <a href="javascript:;" *ngIf="export" (click)="exportExcel()" class="label-name-jqgrid-right">
+                <span class="material-icons">file_download</span>Export
+            </a>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="div-jqgrid div-jqgrid-edit">
+            <table id="{{id_jqgrid}}"></table>
+            <div id="{{id_pager}}"></div>
+        </div>
+    </div>
+</div>
+<input *ngIf="isLoading" class="id-selected-{{table}}" (click)="onSelectRows($event)" style="display: none;">
+<div id="div-delete-{{table}}" (click)="DeleteRow(table)" style="display: none;"></div>
+<div style="display: none !important;">
+    <table id="table-export-{{table}}"></table>
+</div>
+<input type="text" value="" class="form-control " style="display:none;" id="value-autocomplated-search" (click)="autocomplatedText($event,table)">

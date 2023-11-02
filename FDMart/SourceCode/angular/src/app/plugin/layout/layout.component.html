@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from demos.creative-tim.com/material-dashboard-pro/examples/dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 16 May 2019 07:46:19 GMT -->
+<!-- Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<!-- /Added by HTTrack -->
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>
+        {{titleApp}}
+    </title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+    <!-- Extra details for Live View on GitHub Pages -->
+    <!-- Canonical SEO -->
+    <link rel="canonical" href="https://OSoft.vn" />
+    <!--  Social tags      -->
+    <meta name="keywords" content=" html dashboard, html css dashboard, web dashboard, bootstrap 4 dashboard, bootstrap 4, css3 dashboard, bootstrap 4 admin, material dashboard bootstrap 4 dashboard, frontend, responsive bootstrap 4 dashboard, material design, material dashboard bootstrap 4 dashboard">
+    <meta name="description" content="Material Dashboard PRO is a Premium Material Bootstrap 4 Admin with a fresh, new design inspired by Google's Material Design.">
+    <!-- Schema.org markup for Google+ -->
+    <meta itemprop="name" content="{{titleApp}}">
+    <meta itemprop="description" content="Material Dashboard PRO is a Premium Material Bootstrap 4 Admin with a fresh, new design inspired by Google's Material Design.">
+    <meta itemprop="image" content="../../../s3.amazonaws.com/OSoft_bucket/products/51/original/opt_mdp_thumbnail.jpg">
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" content="product">
+    <meta name="twitter:site" content="@OSoft">
+    <meta name="twitter:title" content="{{titleApp}}">
+    <meta name="twitter:description" content="Material Dashboard PRO is a Premium Material Bootstrap 4 Admin with a fresh, new design inspired by Google's Material Design.">
+    <meta name="twitter:creator" content="@OSoft">
+    <meta name="twitter:image" content="../../../s3.amazonaws.com/OSoft_bucket/products/51/original/opt_mdp_thumbnail.jpg">
+    <!-- Open Graph data -->
+    <meta property="fb:app_id" content="655968634437471">
+    <meta property="og:title" content="{{titleApp}}" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="dashboard.html" />
+    <meta property="og:image" content="../../../s3.amazonaws.com/OSoft_bucket/products/51/original/opt_mdp_thumbnail.jpg" />
+    <meta property="og:description" content="Material Dashboard PRO is a Premium Material Bootstrap 4 Admin with a fresh, new design inspired by Google's Material Design." />
+    <meta property="og:site_name" content="OSoft ERP" />
+    <!--     Fonts and icons     -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+
+    <!-- <link rel="stylesheet" href="../assets/css/font-awesome.min.css"> -->
+    <!-- CSS Files -->
+    <!-- <link href="../assets/css/material-dashboard.minf066.css" rel="stylesheet" /> -->
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <!-- <link href="../assets/demo/demo.css" rel="stylesheet" /> -->
+</head>
+
+<body class="layout-soft">
+    <dx-drawer [openedStateMode]="selectedOpenMode" [position]="selectedPosition" [revealMode]="selectedRevealMode" template="template" [opened]="false" [closeOnOutsideClick]="false">
+        <div *dxTemplate="let data of 'template'" class="dbody" style="width: 400px;padding-top: 44px;background: white;border-left: 1px solid #03A9F4;">
+            <div class="header-drawer-opened">
+                <a href="javascript:;" (click)="zoomDrawer()"><i style="font-size: 18px;padding-right: 8px; " class="dx-icon-{{zooming==true?'arrowright':'arrowleft'}}"></i></a>
+                <a href="javascript:;">{{titleDrawer}}</a>
+                <i class="dx-icon-close" (click)="onClickDrawer()"></i>
+            </div>
+            <div *ngIf="drawerSelected && drawerSelected.key === 'Announce'" class="body-drawer collapse-Announce" id="Announce" (scroll)="onScroll($event)">
+                <div *ngFor="let item of listNotification" class="div-notification {{item.isRead?'notification-new':''}}">
+                    <a class="a-notification" href="javascript:;" (click)="onClickReadNotification(item)">
+                        <span [innerHTML]="item.message"></span>
+                        <small>{{item.string_time}}</small>
+                    </a>
+                </div>
+            </div>
+            <div *ngIf="drawerSelected && drawerSelected.key === 'Account'" id="drwAccount" class="body-drawer collapse-Account" aria-labelledby="navbarDropdownProfile">
+                <div class="user" style="display: flex;">
+                    <div class="photo">
+                        <img style="height: 50px;" src="{{avtIMG}}" />
+                    </div>
+                    <div class="user-info" style="padding-top: 15px;">
+                        <a data-toggle="collapse" (click)="hidenShowMenu('user')" href="javascript:;" class="username nav-user">
+                            <span style="font-size: 18px;font-weight: 700;">
+                            {{fullName}}
+                            <b class="caret"></b>
+                        </span>
+                        </a>
+                    </div>
+                </div>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="/user-my-profile">{{translate('Thông tin cá nhân','Profile')}}</a>
+                <a class="dropdown-item" href="/setting-login">{{translate('Cài đặt','Setting')}}</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="javascript:;" (click)="logOut();">{{translate('Đăng xuất','Logout')}}</a>
+            </div>
+            <div *ngIf="drawerSelected && drawerSelected.key === 'Apps'" id="drwApps" class="body-drawer collapse-Apps">
+                <table class="table tb-apps">
+                    <tbody>
+                        <tr *ngFor="let app of List_Appssubarrays">
+                            <td *ngIf="app[0]" class="td-tb-apps" (click)="onChangeAndSaveApp(app[0])">
+                                <img style="height:35px;display: block;margin-left: auto;margin-right: auto;" src="{{app[0].icon}}">
+                                <soan>{{app[0].name}}<i *ngIf="app[0].active" class="dx-icon-check" style="color: rgb(0, 255, 0);"></i></soan>
+                            </td>
+                            <td *ngIf="app[1]" class="td-tb-apps" (click)="onChangeAndSaveApp(app[1])">
+                                <img style="height:35px;display: block;margin-left: auto;margin-right: auto;" src="{{app[1].icon}}">
+                                <soan>{{app[1].name}}<i *ngIf="app[1].active" class="dx-icon-check" style="color: rgb(0, 255, 0);"></i></soan>
+                            </td>
+                            <td *ngIf="app[2]" class="td-tb-apps" (click)="onChangeAndSaveApp(app[2])">
+                                <img style="height:35px;display: block;margin-left: auto;margin-right: auto;" src="{{app[2].icon}}">
+                                <soan>{{app[2].name}}<i *ngIf="app[2].active" class="dx-icon-check" style="color: rgb(0, 255, 0);"></i></soan>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div *ngIf="drawerSelected && drawerSelected.key === 'voucherDate'" id="drwvoucherDate" class="body-drawer collapse-Apps">
+                <div class="dx-fieldset">
+                    <div class="dx-field">
+                        <dx-select-box [disabled]="false" label="{{translate('Năm tài chính','Voucher year')}}" searchEnabled="true" [dataSource]="List_Voucher_Year" displayExpr="name" valueExpr="year" [value]="selectedYear" [showClearButton]="true" (onValueChanged)="onChangeVoucherDate($event)"
+                            [stylingMode]="stylingMode" [labelMode]="labelMode">
+                        </dx-select-box>
+                    </div>
+                    <div class="dx-field">
+                        <dx-select-box [disabled]="false" label="{{translate('Đơn vị','Branh')}} " searchEnabled="true" [dataSource]="List_Branch" displayExpr="name" valueExpr="code" [value]="selectedVoucherBranch" [showClearButton]="true" (onValueChanged)="onChangeVoucherBranch($event)"
+                            [stylingMode]="stylingMode" [labelMode]="labelMode">
+                        </dx-select-box>
+                    </div>
+                </div>
+                <div class="options" style="padding: 5px;">
+                    <div class="caption">{{translate('Khóa sổ','Block book')}} </div>
+
+                    <div class="dx-field">
+                        <dx-button style="float: right;" stylingMode="outlined" text="{{translate('Cập nhật','Update')}}" type="success" (onClick)="onUpdate($event)">
+                        </dx-button>
+                    </div>
+                    <div class="dx-fieldset">
+                        <div class="dx-field">
+                            <dx-select-box [disabled]="false" label="{{translate('Khóa sổ theo','Block book by')}} " searchEnabled="true" [dataSource]="List_Type_Block_Book" displayExpr="name" valueExpr="id" [value]="selectedBlockBookId" [showClearButton]="true" (onValueChanged)="onChangeBlockBookDate($event)"
+                                [stylingMode]="stylingMode" [labelMode]="labelMode">
+                            </dx-select-box>
+                        </div>
+                    </div>
+                    <div class="dx-fieldset" *ngIf="selectedBlockBookId == 1 || selectedBlockBookId == 2">
+                        <dx-select-box *ngIf="selectedBlockBookId == 2" [disabled]="false" label="{{translate('Đơn vị','Branh')}} " searchEnabled="true" [dataSource]="List_Branch" displayExpr="name" valueExpr="code" [value]="selectedBranch" [showClearButton]="true" (onValueChanged)="onChangeBlockBookBranch($event)"
+                            [stylingMode]="stylingMode" [labelMode]="labelMode">
+                        </dx-select-box>
+                    </div>
+                    <div class="dx-fieldset" *ngIf="selectedBlockBookId == 1 || selectedBlockBookId == 2">
+                        <dx-date-box [disabled]="false" displayFormat="dd/MM/yyyy" [name]="translate('Khóa đến ngày','Block to date')" [placeholder]="translate('Khóa đến ngày','Block to date')" [showClearButton]="true" [useMaskBehavior]="true" [format]="'dd/MM/yyyy'" type="date"
+                            [value]="blockDate" [name]="translate('Khóa đến ngày',' Block to date')" (onValueChanged)="handleValueChangedDate($event)" [stylingMode]="stylingMode" [labelMode]="labelMode" [required]="true">
+                        </dx-date-box>
+                    </div>
+                    <div *ngIf="selectedBlockBookId == 3">
+                        <dx-data-grid id="gridContainer" [dataSource]="dataSource" [allowColumnResizing]="true" [minHeight]="400" [keyExpr]="'code'" [allowColumnReordering]="true" [width]="'100%'" [showBorders]="true" [showRowLines]="true">
+                            <dxo-header-filter [visible]="true"></dxo-header-filter>
+                            <dxo-scrolling rowRenderingMode="virtual"> </dxo-scrolling>
+                            <dxo-editing mode="cell" [allowUpdating]="true">
+                            </dxo-editing>
+                            <dxi-column headerCellTemplate="titleHeaderTemplate" caption="{{translate('Công ty','Company')}} " [allowEditing]="false" [width]="50" dataField="company_name" [groupIndex]="0"></dxi-column>
+                            <dxi-column headerCellTemplate="titleHeaderTemplate" caption="{{translate('Phân hệ','Module')}} " [allowEditing]="false" [width]="50" dataField="module_name" [groupIndex]="1"></dxi-column>
+                            <dxi-column headerCellTemplate="titleHeaderTemplate" caption="{{translate('Phiếu','Voucher')}} " [allowEditing]="false" [width]="100" dataField="voucher_name"></dxi-column>
+                            <dxi-column headerCellTemplate="titleHeaderTemplate" caption="{{translate('Khóa đến ngày','Block to date')}} " [format]="'dd/MM/yyyy'" editCellTemplate="dxDateBoxTemplate" displayFormat="dd/MM/yyyy" [cellTemplate]="cellTemplateDate" dataType="date" [width]="100"
+                                dataField="block_to_date"></dxi-column>
+                            <div *dxTemplate="let info of 'titleHeaderTemplate'">
+                                <p style="color: white;font-weight: 500;">{{info.column.caption}}</p>
+                            </div>
+                            <dxo-search-panel [visible]="true"></dxo-search-panel>
+                            <dxo-paging [pageSize]="15"></dxo-paging>
+                            <dxo-group-panel [visible]="false"></dxo-group-panel>
+                            <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
+                            <div *dxTemplate="let cellInfo of 'dxDateBoxTemplate'">
+                                <dx-date-box [stylingMode]="stylingMode" [labelMode]="labelMode" displayFormat="dd/MM/yyyy" [placeholder]="translate('Khóa đến ngày','Block to date')" [showClearButton]="true" [useMaskBehavior]="true" [value]="cellInfo.value" type="date" pickerType="calendar"
+                                    (onValueChanged)="handleValueChangedDateGrid($event,cellInfo)">
+                                </dx-date-box>
+                            </div>
+                        </dx-data-grid>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="content">
+            <div class="wrapper ">
+                <div class="sidebar" data-color="rose" data-background-color="black" style="padding-top: 50px;">
+                    <!-- <div class="logo">
+                        <a href="/" class="simple-text logo-normal">{{appName}}</a>
+                    </div> -->
+                    <div class="sidebar-wrapper">
+                        <div style="position: fixed;top: 7px;right: 7px;display: block;">
+                            <a href="javascript:;" (click)="onCloseMenuMini()">
+                                <i class="material-icons">close</i>
+                            </a>
+                        </div>
+                        <div class="user">
+                            <div class="photo">
+                                <img src="{{avtIMG}}" />
+                            </div>
+                            <div class="user-info">
+                                <a data-toggle="collapse" (click)="hidenShowMenu('user')" href="javascript:;" class="username nav-user">
+                                    <span>
+                                    {{fullName}}
+                                    <b class="caret"></b>
+                                </span>
+                                </a>
+                                <div class="collapse collapse-user" id="collapseExample">
+                                    <ul class="nav">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/user-my-profile" (click)="onClickMenu('/user-my-profile',1000,0,'Thông tin cá nhân',false,null,null)">
+                                                <span class="sidebar-mini"> I </span>
+                                                <span class="sidebar-normal"> Thông tin cá nhân </span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/setting-login" (click)="onClickMenu('/setting-login',2000,0,'Cài đặt',false,null,null)">
+                                                <span class="sidebar-mini"> S </span>
+                                                <span class="sidebar-normal"> Cài đặt </span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/setting-login" (click)="onClickMenu('/setting-login',2000,0,'Cài đặt',false,null,null)">
+                                                <span class="sidebar-mini"> L </span>
+                                                <span class="sidebar-normal" (click)="logOut();">Đăng xuất</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="nav">
+                            <li class="nav-item nav-item-apps-on-mobile">
+                                <a class="nav-link" href="javascript:;" (click)="hidenShowMenuDrawer('Apps')">
+                                    <i class="material-icons">apps</i>
+                                    <p>Apps</p>
+                                </a>
+                            </li>
+                            <li class="nav-item li-menu-nav-item">
+                                <dx-text-box placeholder="{{translate('Tìm kiếm','Search')}}..." stylingMode="filled" (onValueChanged)="onSearchMenu($event)" [showClearButton]="true">
+                                </dx-text-box>
+                            </li>
+                            <li *ngFor="let item of listMenu" class="nav-item li-menu-nav-item {{item['classactive']}}" id="id-menu-{{item.code}}">
+                                <a *ngIf="item.syS_Menu_Sub.length == 0" class="nav-link a-nav-link" style="margin: 0px;" (click)="onClickMenu(item.link,item.id,0,item.name,item.iS_ROUTER_LINK,item,null)">
+                                    <!-- <i class="material-icons">{{item.icon}}</i> -->
+                                    <img width="28" height="28" [src]="item.icoN_BASE64" style="padding: 5px;" />
+                                    <p class="p-menu-name"> {{item.name}} </p>
+                                </a>
+                                <!-- is sub -->
+                                <a *ngIf="item.syS_Menu_Sub.length > 0" style="margin: 0px;" class="nav-link a-nav-link nav-{{item.id}} {{item['collapsed']}}" data-toggle="collapse" (click)="hidenShowMenu(item.id,item.id,-1)">
+                                    <!-- <i class="material-icons">{{item.icon}}</i> -->
+                                    <img width="28" height="28" [src]="item.icoN_BASE64" style="padding: 5px;" />
+                                    <p class="p-menu-name"> {{item.name}}
+                                        <b class="caret"></b>
+                                    </p>
+                                </a>
+                                <div *ngIf="item.syS_Menu_Sub.length > 0" class="collapse collapse-{{item.id}} {{item['show']}}" id="pagesExamples">
+                                    <ul class="nav">
+                                        <li *ngFor="let items of item.syS_Menu_Sub;let i = index;" class="nav-item li-menu-nav-item {{items['classactive']}}" id="id-menu-{{items.code}}">
+                                            <a class="nav-link a-menu-sub" (click)="onClickMenu(items.link,item.id,1,items.name,items.iS_ROUTER_LINK,item,items)">
+                                                <span class="sidebar-mini"> {{i+1}}</span>
+                                                <span class="sidebar-normal" title="{{items.name}}"> {{items.name}} </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="main-panel" style="overflow: hidden;">
+                    <!-- Navbar -->
+                    <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top" style="padding: 0px !important;
+            background-color: #0F6CBD!important;
+            overflow: hidden;
+            background-color: #333;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 10000;">
+                        <div class="container-fluid">
+                            <div class="navbar-wrapper">
+                                <div class="navbar-minimize">
+                                    <button id="minimizeSidebar" (click)="sidebarMini()" class="btn btn-just-icon btn-white btn-fab btn-round">
+                    <i class="material-icons text_align-center visible-on-sidebar-regular">more_vert</i>
+                    <i class="material-icons design_bullet-list-67 visible-on-sidebar-mini">view_list</i>
+                  </button>
+                                </div>
+                                <a class="navbar-brand" href="#pablo" style="padding:.225rem 0;">
+                                    <a href="/" class="h4-title-app" style="font-size: 15px !important;text-transform: uppercase;">{{branName}} | {{appName}}</a>
+                                    <!-- <h4 class="h4-title-app">{{titleApp}}</h4> -->
+                                </a>
+                            </div>
+                            <button class="navbar-toggler btn-navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="navbar-toggler-icon icon-bar"></span>
+                                <span class="navbar-toggler-icon icon-bar"></span>
+                                <span class="navbar-toggler-icon icon-bar"></span>
+                            </button>
+                            <div class="collapse navbar-collapse justify-content-end">
+                                <!-- <form class="navbar-form">
+                            <div class="input-group no-border">
+                                <input type="text" value="" class="form-control" placeholder="Search...">
+                                <button type="submit" class="btn btn-white btn-round btn-just-icon">
+                  <i class="material-icons">search</i>
+                  <div class="ripple-container"></div>
+                </button>
+                            </div>
+                        </form> -->
+                                <ul class="navbar-nav">
+                                    <li class="nav-item">
+                                        <a data-toggle="collapse" (click)="hidenShowMenuDrawer('voucherDate')" href="#voucherDate" aria-expanded="true" aria-controls="collapseOne" class="collapsed nav-link">
+                                            <i class="material-icons">calendar_month</i>
+                                            <p class="d-lg-none d-md-block">
+                                                calendar_month
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a data-toggle="collapse" (click)="hidenShowMenuDrawer('Apps')" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="collapsed nav-link">
+                                            <i class="material-icons">apps</i>
+                                            <p class="d-lg-none d-md-block">
+                                                Apps
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item dropdown nav-Announce collapse-Announce collapsed">
+                                        <a class="nav-link" href="javascript:;" id="navbarDropdownMenuLink" (click)="hidenShowMenuDrawer('Announce')" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="material-icons">notifications</i>
+                                            <span class="notification" *ngIf="counterNotification > 0">{{counterNotification}}</span>
+                                            <p class="d-lg-none d-md-block">
+                                                Thông báo <span class="notification" *ngIf="counterNotification > 0">{{counterNotification}}</span>
+                                            </p>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right collapse-Announce" id="Announce" aria-labelledby="navbarDropdownMenuLink" (scroll)="onScroll($event)">
+                                            <div *ngFor="let item of listNotification" class="div-notification">
+                                                <a *ngIf="!item.isRead" class="dropdown-item a-notification notification-new" (click)="onClickReadNotification(item)" href="javascript:;">
+                                                    <span [innerHTML]="item.message"></span>
+                                                    <small>{{item.string_time}}</small>
+                                                </a>
+                                                <a *ngIf="item.isRead" class="dropdown-item a-notification" href="javascript:;" (click)="onClickReadNotification(item)">
+                                                    <span [innerHTML]="item.message"></span>
+                                                    <small>{{item.string_time}}</small>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="nav-item dropdown nav-Account collapse-Account collapsed">
+                                        <a class="nav-link" href="javascript:;" id="navbarDropdownProfile" (click)="hidenShowMenuDrawer('Account')" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="material-icons">person</i>
+                                            <p class="d-lg-none d-md-block">
+                                                Tài khoản
+                                            </p>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right collapse-Account" aria-labelledby="navbarDropdownProfile">
+                                            <a class="dropdown-item" href="/user-my-profile">Thông tin cá nhân</a>
+                                            <a class="dropdown-item" href="/setting-login">Cài đặt</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="javascript:;" (click)="logOut();">Đăng xuất</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+
+                    <!-- End Navbar -->
+                    <div class="content content-1">
+                        <div class="content content-2">
+                            <div class="container-fluid router-outlet-content">
+                                <div class="card-collapse" style="background-color: #f8f9fa;margin-top: -10px;">
+                                    <!-- <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
+                                <div class="card-body">
+                                    <div class="page-categories">
+                                        <ul *ngIf="List_Apps.length == 0" class="nav nav-pills nav-pills-success nav-pills-icons" role="tablist">
+                                            <li class="nav-item">
+                                                <a class="nav-link " (click)="onChangeApp(app)" data-toggle="tab" href="#link0" role="tablist" style="box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5); ">
+                                                    <img width="50" src="../../../assets/img/gif/circle-loading.gif">Loading...
+                                                </a>
+                                            </li>
+                                        </ul>
+                                        <ul *ngIf="List_Apps.length > 0;let i=index" class="nav nav-pills nav-pills-success nav-pills-icons" role="tablist">
+                                            <li class="nav-item" *ngFor="let app of List_Apps">
+                                                <a class="nav-link " (click)="onChangeApp(app)" data-toggle="tab" href="#link0" role="tablist" style="box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);display: flex;">
+                                                    <div><img width="50" src="{{app.icon}}">{{app.name}}</div>
+                                                    <div><i *ngIf="app.active" style="color: #4CAF50;padding: 0px;font-size: 20px;" class="material-icons">check_circle</i></div>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" (click)="ConfirmChangeApp()" data-toggle="tab" href="#link0" role="tablist" style="color: #4CAF50;
+                                                margin: 10px;
+                                                padding: 5px;
+                                                font-size: 20px;
+                                                border: 1px solid;
+                                                border-radius: 10px;">
+                                                    <i style="color: #4CAF50;padding: 0px;font-size: 20px;" class="material-icons">check</i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div> -->
+                                    <!-- <div id="voucherDate" class="collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
+                                        <div class="card-body">
+                                            <div class="page-categories">
+                                                <ul *ngIf="List_Apps.length > 0;let i=index" class="nav nav-pills nav-pills-success nav-pills-icons" role="tablist">
+                                                    <li class="nav-item">
+                                                        <div class="form-group">
+                                                            <label for="voucher_date" class=" label-title">Năm tài chính/ Voucher Date</label>
+                                                            <input-datepicker [ColumnName]="'voucher_date'" [format]="'YYYY'" [value]="voucher_date" name="voucher_date" (ValueOutput)="onChangeVoucherDate($event)"></input-datepicker>
+                                                        </div>
+                                                        <button mat-button (click)="openConfirmDialog()">Open Confirm Dialog</button>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                </div>
+
+                                <router-outlet>
+                                </router-outlet>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-container k-form-edit">
+                        <dialog-acction #dialogChangeVoucherDate [content]="" [title]="'Vui lòng xác nhận'" (confirmOutput)="confirmChangeVoucherDate()">
+                            <h5>Dữ liệu sẽ làm mới trong kỳ {{selectedYear}}?</h5>
+                        </dialog-acction>
+                    </div>
+                    <!-- <dx-popup *ngIf="popupVisible && listMenuChoose.length > 0 && List_Apps.length > 0" [width]="widthPopup" [height]="heightPopup" [resizeEnabled]="true" [showTitle]="true" [title]="'Danh sách Apps'" [dragEnabled]="false" [(visible)]="popupVisible">
+                        <div class="popup-property-details">
+                            <div class="row">
+                                <div class="col-12">
+                                    <list-apps [DataGroups]="List_App_Group" [DataApps]="List_Apps" [DataMenus]="listMenuChoose">
+                                    </list-apps>
+                                </div>
+                            </div>
+                        </div>
+                    </dx-popup> -->
+                    <footer class="footer">
+                        <div class="container-fluid">
+                            <nav class="float-left">
+                                <ul>
+                                    <li>
+                                        <a href="#">
+                      Copyright OSoft
+                    </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                      About VN
+                    </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                      Blog
+                    </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                      Licenses
+                    </a>
+                                    </li>
+                                </ul>
+                            </nav>
+
+                        </div>
+                    </footer>
+                </div>
+                <div class="overlay"></div>
+            </div>
+            <script>
+                $(document).ready(function() {
+                    $().ready(function() {
+                        $sidebar = $('.sidebar');
+
+                        $sidebar_img_container = $sidebar.find('.sidebar-background');
+
+                        $full_page = $('.full-page');
+
+                        $sidebar_responsive = $('body > .navbar-collapse');
+
+                        window_width = $(window).width();
+
+                        fixed_plugin_open = $('.sidebar .sidebar-wrapper .nav li.active a p').html();
+
+                        if (window_width > 767 && fixed_plugin_open == 'Dashboard') {
+                            if ($('.fixed-plugin .dropdown').hasClass('show-dropdown')) {
+                                $('.fixed-plugin .dropdown').addClass('open');
+                            }
+                        }
+
+                        $('.fixed-plugin a').click(function(event) {
+                            // Alex if we click on switch, stop propagation of the event, so the dropdown will not be hide, otherwise we set the  section active
+                            if ($(this).hasClass('switch-trigger')) {
+                                if (event.stopPropagation) {
+                                    event.stopPropagation();
+                                } else if (window.event) {
+                                    window.event.cancelBubble = true;
+                                }
+                            }
+                        });
+
+                        $('.fixed-plugin .active-color span').click(function() {
+                            $full_page_background = $('.full-page-background');
+
+                            $(this).siblings().removeClass('active');
+                            $(this).addClass('active');
+
+                            var new_color = $(this).data('color');
+
+                            if ($sidebar.length != 0) {
+                                $sidebar.attr('data-color', new_color);
+                            }
+
+                            if ($full_page.length != 0) {
+                                $full_page.attr('filter-color', new_color);
+                            }
+
+                            if ($sidebar_responsive.length != 0) {
+                                $sidebar_responsive.attr('data-color', new_color);
+                            }
+                        });
+
+                        $('.fixed-plugin .background-color .badge').click(function() {
+                            $(this).siblings().removeClass('active');
+                            $(this).addClass('active');
+
+                            var new_color = $(this).data('background-color');
+
+                            if ($sidebar.length != 0) {
+                                $sidebar.attr('data-background-color', new_color);
+                            }
+                        });
+
+                        $('.fixed-plugin .img-holder').click(function() {
+                            $full_page_background = $('.full-page-background');
+
+                            $(this).parent('li').siblings().removeClass('active');
+                            $(this).parent('li').addClass('active');
+
+
+                            var new_image = $(this).find("img").attr('src');
+
+                            if ($sidebar_img_container.length != 0 && $('.switch-sidebar-image input:checked').length !=
+                                0) {
+                                $sidebar_img_container.fadeOut('fast', function() {
+                                    $sidebar_img_container.css('background-image', 'url("' + new_image + '")');
+                                    $sidebar_img_container.fadeIn('fast');
+                                });
+                            }
+
+                            if ($full_page_background.length != 0 && $('.switch-sidebar-image input:checked').length !=
+                                0) {
+                                var new_image_full_page = $('.fixed-plugin li.active .img-holder').find('img').data('src');
+
+                                $full_page_background.fadeOut('fast', function() {
+                                    $full_page_background.css('background-image', 'url("' + new_image_full_page + '")');
+                                    $full_page_background.fadeIn('fast');
+                                });
+                            }
+
+                            if ($('.switch-sidebar-image input:checked').length == 0) {
+                                var new_image = $('.fixed-plugin li.active .img-holder').find("img").attr('src');
+                                var new_image_full_page = $('.fixed-plugin li.active .img-holder').find('img').data('src');
+
+                                $sidebar_img_container.css('background-image', 'url("' + new_image + '")');
+                                $full_page_background.css('background-image', 'url("' + new_image_full_page + '")');
+                            }
+
+                            if ($sidebar_responsive.length != 0) {
+                                $sidebar_responsive.css('background-image', 'url("' + new_image + '")');
+                            }
+                        });
+
+                        $('.switch-sidebar-image input').change(function() {
+                            $full_page_background = $('.full-page-background');
+
+                            $input = $(this);
+
+                            if ($input.is(':checked')) {
+                                if ($sidebar_img_container.length != 0) {
+                                    $sidebar_img_container.fadeIn('fast');
+                                    $sidebar.attr('data-image', '#');
+                                }
+
+                                if ($full_page_background.length != 0) {
+                                    $full_page_background.fadeIn('fast');
+                                    $full_page.attr('data-image', '#');
+                                }
+
+                                background_image = true;
+                            } else {
+                                if ($sidebar_img_container.length != 0) {
+                                    $sidebar.removeAttr('data-image');
+                                    $sidebar_img_container.fadeOut('fast');
+                                }
+
+                                if ($full_page_background.length != 0) {
+                                    $full_page.removeAttr('data-image', '#');
+                                    $full_page_background.fadeOut('fast');
+                                }
+
+                                background_image = false;
+                            }
+                        });
+
+                        $('.switch-sidebar-mini input').change(function() {
+                            $body = $('body');
+
+                            $input = $(this);
+
+                            if (md.misc.sidebar_mini_active == true) {
+                                $('body').removeClass('sidebar-mini');
+                                md.misc.sidebar_mini_active = false;
+
+                                $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar();
+
+                            } else {
+
+                                $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar('destroy');
+
+                                setTimeout(function() {
+                                    $('body').addClass('sidebar-mini');
+
+                                    md.misc.sidebar_mini_active = true;
+                                }, 300);
+                            }
+
+                            // we simulate the window Resize so the charts will get updated in realtime.
+                            var simulateWindowResize = setInterval(function() {
+                                window.dispatchEvent(new Event('resize'));
+                            }, 180);
+
+                            // we stop the simulation of Window Resize after the animations are completed
+                            setTimeout(function() {
+                                clearInterval(simulateWindowResize);
+                            }, 1000);
+
+                        });
+                    });
+                });
+            </script>
+            <script>
+                $(document).ready(function() {
+                    // Javascript method's body can be found in assets/js/demos.js
+                    md.initDashboardPageCharts();
+                    md.initVectorMap();
+                });
+            </script>
+            <div class="div-show-app" style="display:none;" (click)="showSwalApp()"></div>
+            <input type="text" [value]="getModule" class="input app current" id="input-app-current" (click)="onChangeValue($event.target.value)">
+        </div>
+    </dx-drawer>
+</body>
+
+
+<!-- Mirrored from demos.creative-tim.com/material-dashboard-pro/examples/dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 16 May 2019 07:46:38 GMT -->
+
+</html>

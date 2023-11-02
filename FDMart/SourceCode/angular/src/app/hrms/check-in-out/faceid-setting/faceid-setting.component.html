@@ -1,0 +1,55 @@
+<!-- <div class="row">
+    <div class="col-lg-3 cards"></div>
+    <div class="col-lg-6 cards">
+        <div class="card card-pricing card-raised">
+            <div class="card-body">
+                <h6 class="card-category">CHẤM CÔNG</h6>
+                <div class="card-icon icon-rose">
+                    <i class="material-icons">photo_camera</i>
+                </div>
+                <p class="card-description">
+                    This is good if your company size is between 2 and 10 Persons.
+                </p>
+                <a href="#pablo" class="btn btn-rose btn-round">Bắt đầu</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 cards"></div>
+</div> -->
+<div style="text-align:center">
+    <h1>
+      check is {{counterCheck}}
+    </h1>
+
+    <div>
+      <webcam [height]="400" [width]="400" [trigger]="triggerObservable" (imageCapture)="handleImage($event)"
+       *ngIf="showWebcam"
+              [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable"
+              [videoOptions]="videoOptions"
+              [imageQuality]="1"
+              (cameraSwitched)="cameraWasSwitched($event)"
+              (initError)="handleInitError($event)"
+      ></webcam>
+      <br/>
+      <button class="actionBtn" (click)="triggerSnapshot();">Bắt đầu cài đặt</button>
+      <br/>
+      DeviceId: <input id="deviceId" type="text" [(ngModel)]="deviceId" style="width: 500px">
+      <button (click)="showNextWebcam(deviceId);">Activate</button>
+    </div>
+  </div>
+  
+  <div class="snapshot" *ngIf="webcamImage">
+    <h1 *ngIf="showWebcam" style="color: rgb(255, 115, 0);">
+      {{message}}
+    </h1>
+    <h1 *ngIf="!showWebcam" style="color: rgb(0, 124, 21);">
+      {{message}}
+    </h1>
+    <img [src]="webcamImage.imageAsDataUrl"/>
+  </div>
+  
+  <h4 *ngIf="errors.length > 0">Messages:</h4>
+  <ul *ngFor="let error of errors">
+    <li>{{error | json}}</li>
+  </ul>
+  

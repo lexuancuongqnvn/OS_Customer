@@ -1,0 +1,63 @@
+/* ... */
+
+#app-container {
+    width: 900px;
+    position: relative;
+}
+
+#selected-employee {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+::ng-deep .options {
+    padding: 20px;
+    margin-top: 20px;
+    background-color: rgba(191, 191, 191, 0.15);
+    position: relative;
+}
+
+ ::ng-deep .caption {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+ ::ng-deep .option {
+    margin-top: 10px;
+}
+
+ ::ng-deep .checkboxes-mode {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+}
+
+ ::ng-deep .option>.dx-selectbox {
+    width: 150px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+ ::ng-deep .option>span {
+    margin-right: 10px;
+}
+
+.dx-field-value-report {
+    float: left !important;
+    position: absolute !important;
+}
+
+::ng-deep .widget-container {
+    display: flex;
+}
+
+ ::ng-deep .widget-container>* {
+    height: 400px;
+    width: 50%;
+    padding: 10px;
+}
+
+ ::ng-deep .dx-scrollview-content {
+    min-height: 380px;
+}

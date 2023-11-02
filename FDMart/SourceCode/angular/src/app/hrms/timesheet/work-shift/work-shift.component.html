@@ -1,0 +1,316 @@
+<div class="card-container k-form-edit">
+    <app-toolbar #toolbar [tableName]="tbName" [CurrenFrom]="CurrenFrom"></app-toolbar>
+    <div class="example-wrapper form-group">
+        <div class="example-wrapper">
+            <div class="card-collapse">
+                <div class="card-header" role="tab" id="headingTwo">
+                    <h5 class="mb-0">
+                        <a class="collapsed" style="color: #00bcd4 !important;" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Click để lọc dữ liệu
+                            <i class="material-icons">keyboard_arrow_down</i>
+                        </a>
+                    </h5>
+                </div>
+                <div id="collapseTwo" style="padding: 5px 10px 5px 0;" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
+                    <div class="card-body">
+                        <div class="">
+                            <div class="form-group filter">
+                                <div class="row div-filter">
+                                    <!-- Begin filter -->
+                                    <!-- Tên -->
+                                    <div class="col-4 col-sm-3 col-md-3 col-lg-2 col-xl-2">
+                                        <div class="form-group">
+                                            <label for="name" class="label-title">Tên</label>
+                                            <input type="text" #name="ngModel" name="name" [(ngModel)]="filterInput.name" class="form-control" [value]="filterInput.name" id="name">
+                                        </div>
+                                    </div>
+                                    <!-- end filter -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-component form-group">
+        <jqgrid-list #gridList (ValueOutput)="selectRow($event)" [colModel]="col_model" [table]="tbName" [title]="'Danh sách ca trực'"></jqgrid-list>
+    </div>
+    <dialog-acction #dialogDelete [content]="'Bạn có chắc chắn muốn xóa?'" [title]="'Vui lòng xác nhận'" (confirmOutput)="confirmDelete()"></dialog-acction>
+</div>
+<!-- Edit -->
+<sidenav-add-edit #sidenavAddEdit [title]="title" *ngIf="isEdit" class="form-sidenav-edit">
+    <form method="#" action="#" style="padding: 20px;">
+        <app-toolbar #toolbarEdit [tableName]="tbName" [CurrenFrom]="getCurrenFrom"></app-toolbar>
+        <alert-message #alertMessage></alert-message>
+        <div class="div-calendar" style="padding: 0 20px 20px 20px;display: flex;">
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="id_name" class=" label-title">Tên ca trực (*)</label>
+                        <input type="text" #name="ngModel" name="name" [(ngModel)]="InputModel.name" [value]="InputModel.name" class="form-control" id="id_name">
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="row" style="height: 0px !important;" *ngIf="InputModel.monday || InputModel.tuesday || InputModel.wednesday  || InputModel.thursday || InputModel.friday || InputModel.saturday || InputModel.sunday">
+                        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                            <div class="form-group checkbox" style="margin: 31px 0 0;">
+                                <label for="status" class="bmd-label-floating title-input"> </label>
+                            </div>
+                        </div>
+                        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                            <div class="form-group">
+                                <label for="start_time" class=" label-title">Giờ vào ca (*)</label>
+                            </div>
+                        </div>
+                        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                            <div class="form-group">
+                                <label for="start_relax" class=" label-title">Giờ bắt đầu nghỉ giữa ca</label>
+                            </div>
+                        </div>
+                        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                            <div class="form-group">
+                                <label for="end_relax   " class=" label-title">Giờ kết thúc nghỉ giữa ca</label>
+                            </div>
+                        </div>
+                        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                            <div class="form-group">
+                                <label for="end_time" class=" label-title">Giờ ra ca (*)</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                            <div class="form-group checkbox" style="margin: 31px 0 0;">
+                                <label for="status" class="bmd-label-floating title-input">Thứ 2 </label>
+                                <input-checkbox (ValueOutput)="onChangeValue($event,'monday')" [value]="InputModel.monday"></input-checkbox>
+                            </div>
+                        </div>
+                        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2" *ngIf="InputModel.monday">
+                            <div class="form-group">
+                                <label for="start_time" class=" label-title"></label>
+                                <input-timepicker [ColumnName]="'start_time_monday'" name="start_time" [value]="valueDate('start_time','monday')" (ValueOutput)="onChangeDateValue($event,'start_time','monday')"></input-timepicker>
+                            </div>
+                        </div>
+                        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2" *ngIf="InputModel.monday">
+                            <div class="form-group">
+                                <label for="start_relax" class=" label-title"></label>
+                                <input-timepicker [ColumnName]="'start_relax_monday'" name="start_relax" [value]="valueDate('start_relax','monday')" (ValueOutput)="onChangeDateValue($event,'start_relax','monday')"></input-timepicker>
+                            </div>
+                        </div>
+                        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2" *ngIf="InputModel.monday">
+                            <div class="form-group">
+                                <label for="end_relax   " class=" label-title"></label>
+                                <input-timepicker [ColumnName]="'end_relax_monday'" name="end_relax" [value]="valueDate('end_relax','monday')" (ValueOutput)="onChangeDateValue($event,'end_relax','monday')"></input-timepicker>
+                            </div>
+                        </div>
+                        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2" *ngIf="InputModel.monday">
+                            <div class="form-group">
+                                <label for="end_time" class=" label-title"></label>
+                                <input-timepicker [ColumnName]="'end_time_monday'" name="end_time" [value]="valueDate('end_time','monday')" (ValueOutput)="onChangeDateValue($event,'end_time','monday')"></input-timepicker>
+                            </div>
+                        </div>
+                        <!-- <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                            <div class="form-group">
+                                <label for="total_time" class=" label-title">Tổng giờ (Tiếng)</label>
+                                <input type="text" [disabled]="true" #total_time="ngModel" name="total_time" [(ngModel)]="InputModel.total_time" [value]="InputModel.total_time" class="form-control" id="total_time">
+                            </div>
+                        </div> -->
+                    </div>
+                    <div class="row">
+                        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                            <div class="form-group checkbox" style="margin: 31px 0 0;">
+                                <label for="status" class="bmd-label-floating title-input">Thứ 3</label>
+                                <input-checkbox (ValueOutput)="onChangeValue($event,'tuesday')" [value]="InputModel.tuesday"></input-checkbox>
+                            </div>
+                        </div>
+                        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2" *ngIf="InputModel.tuesday">
+                            <div class="form-group">
+                                <label for="start_time" class=" label-title"></label>
+                                <input-timepicker [ColumnName]="'start_time_tuesday'" name="start_time" [value]="valueDate('start_time','tuesday')" (ValueOutput)="onChangeDateValue($event,'start_time','tuesday')"></input-timepicker>
+                            </div>
+                        </div>
+                        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2" *ngIf="InputModel.tuesday">
+                            <div class="form-group">
+                                <label for="start_relax" class=" label-title"></label>
+                                <input-timepicker [ColumnName]="'start_relax_tuesday'" name="start_relax" [value]="valueDate('start_relax','tuesday')" (ValueOutput)="onChangeDateValue($event,'start_relax','tuesday')"></input-timepicker>
+                            </div>
+                        </div>
+                        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2" *ngIf="InputModel.tuesday">
+                            <div class="form-group">
+                                <label for="end_relax   " class=" label-title"></label>
+                                <input-timepicker [ColumnName]="'end_relax_tuesday'" name="end_relax" [value]="valueDate('end_relax','tuesday')" (ValueOutput)="onChangeDateValue($event,'end_relax','tuesday')"></input-timepicker>
+                            </div>
+                        </div>
+                        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2" *ngIf="InputModel.tuesday">
+                            <div class="form-group">
+                                <label for="end_time" class=" label-title"></label>
+                                <input-timepicker [ColumnName]="'end_time_tuesday'" name="end_time" [value]="valueDate('end_time','tuesday')" (ValueOutput)="onChangeDateValue($event,'end_time','tuesday')"></input-timepicker>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                            <div class="form-group checkbox" style="margin: 31px 0 0;">
+                                <label for="status" class="bmd-label-floating title-input">Thứ 4</label>
+                                <input-checkbox (ValueOutput)="onChangeValue($event,'wednesday')" [value]="InputModel.wednesday"></input-checkbox>
+                            </div>
+                        </div>
+                        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2" *ngIf="InputModel.wednesday">
+                            <div class="form-group">
+                                <label for="start_time" class=" label-title"></label>
+                                <input-timepicker [ColumnName]="'start_time_wednesday'" name="start_time" [value]="valueDate('start_time','wednesday')" (ValueOutput)="onChangeDateValue($event,'start_time','wednesday')"></input-timepicker>
+                            </div>
+                        </div>
+                        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2" *ngIf="InputModel.wednesday">
+                            <div class="form-group">
+                                <label for="start_relax" class=" label-title"></label>
+                                <input-timepicker [ColumnName]="'start_relax_wednesday'" name="start_relax" [value]="valueDate('start_relax','wednesday')" (ValueOutput)="onChangeDateValue($event,'start_relax','wednesday')"></input-timepicker>
+                            </div>
+                        </div>
+                        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2" *ngIf="InputModel.wednesday">
+                            <div class="form-group">
+                                <label for="end_relax   " class=" label-title"></label>
+                                <input-timepicker [ColumnName]="'end_relax_wednesday'" name="end_relax" [value]="valueDate('end_relax','wednesday')" (ValueOutput)="onChangeDateValue($event,'end_relax','wednesday')"></input-timepicker>
+                            </div>
+                        </div>
+                        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2" *ngIf="InputModel.wednesday">
+                            <div class="form-group">
+                                <label for="end_time" class=" label-title"></label>
+                                <input-timepicker [ColumnName]="'end_time_wednesday'" name="end_time" [value]="valueDate('end_time','wednesday')" (ValueOutput)="onChangeDateValue($event,'end_time','wednesday')"></input-timepicker>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                            <div class="form-group checkbox" style="margin: 31px 0 0;">
+                                <label for="status" class="bmd-label-floating title-input">Thứ 5</label>
+                                <input-checkbox (ValueOutput)="onChangeValue($event,'thursday')" [value]="InputModel.thursday"></input-checkbox>
+                            </div>
+                        </div>
+                        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2" *ngIf="InputModel.thursday">
+                            <div class="form-group">
+                                <label for="start_time" class=" label-title"></label>
+                                <input-timepicker [ColumnName]="'start_time_thursday'" name="start_time" [value]="valueDate('start_time','thursday')" (ValueOutput)="onChangeDateValue($event,'start_time','thursday')"></input-timepicker>
+                            </div>
+                        </div>
+                        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2" *ngIf="InputModel.thursday">
+                            <div class="form-group">
+                                <label for="start_relax" class=" label-title"></label>
+                                <input-timepicker [ColumnName]="'start_relax_thursday'" name="start_relax" [value]="valueDate('start_relax','thursday')" (ValueOutput)="onChangeDateValue($event,'start_relax','thursday')"></input-timepicker>
+                            </div>
+                        </div>
+                        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2" *ngIf="InputModel.thursday">
+                            <div class="form-group">
+                                <label for="end_relax   " class=" label-title"></label>
+                                <input-timepicker [ColumnName]="'end_relax_thursday'" name="end_relax" [value]="valueDate('end_relax','thursday')" (ValueOutput)="onChangeDateValue($event,'end_relax','thursday')"></input-timepicker>
+                            </div>
+                        </div>
+                        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2" *ngIf="InputModel.thursday">
+                            <div class="form-group">
+                                <label for="end_time" class=" label-title"></label>
+                                <input-timepicker [ColumnName]="'end_time_thursday'" name="end_time" [value]="valueDate('end_time','thursday')" (ValueOutput)="onChangeDateValue($event,'end_time','thursday')"></input-timepicker>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                            <div class="form-group checkbox" style="margin: 31px 0 0;">
+                                <label for="status" class="bmd-label-floating title-input">Thứ 6</label>
+                                <input-checkbox (ValueOutput)="onChangeValue($event,'friday')" [value]="InputModel.friday"></input-checkbox>
+                            </div>
+                        </div>
+                        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2" *ngIf="InputModel.friday">
+                            <div class="form-group">
+                                <label for="start_time" class=" label-title"></label>
+                                <input-timepicker [ColumnName]="'start_time_friday'" name="start_time" [value]="valueDate('start_time','friday')" (ValueOutput)="onChangeDateValue($event,'start_time','friday')"></input-timepicker>
+                            </div>
+                        </div>
+                        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2" *ngIf="InputModel.friday">
+                            <div class="form-group">
+                                <label for="start_relax" class=" label-title"></label>
+                                <input-timepicker [ColumnName]="'start_relax_friday'" name="start_relax" [value]="valueDate('start_relax','friday')" (ValueOutput)="onChangeDateValue($event,'start_relax','friday')"></input-timepicker>
+                            </div>
+                        </div>
+                        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2" *ngIf="InputModel.friday">
+                            <div class="form-group">
+                                <label for="end_relax   " class=" label-title"></label>
+                                <input-timepicker [ColumnName]="'end_relax_friday'" name="end_relax" [value]="valueDate('end_relax','friday')" (ValueOutput)="onChangeDateValue($event,'end_relax','friday')"></input-timepicker>
+                            </div>
+                        </div>
+                        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2" *ngIf="InputModel.friday">
+                            <div class="form-group">
+                                <label for="end_time" class=" label-title"></label>
+                                <input-timepicker [ColumnName]="'end_time_friday'" name="end_time" [value]="valueDate('end_time','friday')" (ValueOutput)="onChangeDateValue($event,'end_time','friday')"></input-timepicker>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                            <div class="form-group checkbox" style="margin: 31px 0 0;">
+                                <label for="status" class="bmd-label-floating title-input">Thứ 7</label>
+                                <input-checkbox (ValueOutput)="onChangeValue($event,'saturday')" [value]="InputModel.saturday"></input-checkbox>
+                            </div>
+                        </div>
+                        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2" *ngIf="InputModel.saturday">
+                            <div class="form-group">
+                                <label for="start_time" class=" label-title"></label>
+                                <input-timepicker [ColumnName]="'start_time_saturday'" name="start_time" [value]="valueDate('start_time','saturday')" (ValueOutput)="onChangeDateValue($event,'start_time','saturday')"></input-timepicker>
+                            </div>
+                        </div>
+                        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2" *ngIf="InputModel.saturday">
+                            <div class="form-group">
+                                <label for="start_relax" class=" label-title"></label>
+                                <input-timepicker [ColumnName]="'start_relax_saturday'" name="start_relax" [value]="valueDate('start_relax','saturday')" (ValueOutput)="onChangeDateValue($event,'start_relax','saturday')"></input-timepicker>
+                            </div>
+                        </div>
+                        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2" *ngIf="InputModel.saturday">
+                            <div class="form-group">
+                                <label for="end_relax   " class=" label-title"></label>
+                                <input-timepicker [ColumnName]="'end_relax_saturday'" name="end_relax" [value]="valueDate('end_relax','saturday')" (ValueOutput)="onChangeDateValue($event,'end_relax','saturday')"></input-timepicker>
+                            </div>
+                        </div>
+                        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2" *ngIf="InputModel.saturday">
+                            <div class="form-group">
+                                <label for="end_time" class=" label-title"></label>
+                                <input-timepicker [ColumnName]="'end_time_saturday'" name="end_time" [value]="valueDate('end_time','saturday')" (ValueOutput)="onChangeDateValue($event,'end_time','saturday')"></input-timepicker>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                            <div class="form-group checkbox" style="margin: 31px 0 0;">
+                                <label for="status" class="bmd-label-floating title-input">Chủ nhật</label>
+                                <input-checkbox (ValueOutput)="onChangeValue($event,'sunday')" [value]="InputModel.sunday"></input-checkbox>
+                            </div>
+                        </div>
+                        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2" *ngIf="InputModel.sunday">
+                            <div class="form-group">
+                                <label for="start_time" class=" label-title"></label>
+                                <input-timepicker [ColumnName]="'start_time_sunday'" name="start_time" [value]="valueDate('start_time','sunday')" (ValueOutput)="onChangeDateValue($event,'start_time','sunday')"></input-timepicker>
+                            </div>
+                        </div>
+                        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2" *ngIf="InputModel.sunday">
+                            <div class="form-group">
+                                <label for="start_relax" class=" label-title"></label>
+                                <input-timepicker [ColumnName]="'start_relax_sunday'" name="start_relax" [value]="valueDate('start_relax','sunday')" (ValueOutput)="onChangeDateValue($event,'start_relax','sunday')"></input-timepicker>
+                            </div>
+                        </div>
+                        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2" *ngIf="InputModel.sunday">
+                            <div class="form-group">
+                                <label for="end_relax" class=" label-title"></label>
+                                <input-timepicker [ColumnName]="'end_relax_sunday'" name="end_relax" [value]="valueDate('end_relax','sunday')" (ValueOutput)="onChangeDateValue($event,'end_relax','sunday')"></input-timepicker>
+                            </div>
+                        </div>
+                        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2" *ngIf="InputModel.sunday">
+                            <div class="form-group">
+                                <label for="end_time" class=" label-title"></label>
+                                <input-timepicker [ColumnName]="'end_time_sunday'" name="end_time" [value]="valueDate('end_time','sunday')" (ValueOutput)="onChangeDateValue($event,'end_time','sunday')"></input-timepicker>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</sidenav-add-edit>

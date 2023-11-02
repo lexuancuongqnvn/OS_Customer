@@ -1,0 +1,76 @@
+<div class="card-container k-form-edit">
+    <app-toolbar #toolbar [tableName]="tbName" [CurrenFrom]="CurrenFrom"></app-toolbar>
+    <div class="example-wrapper form-group">
+        <div class="example-wrapper">
+            <div class="">
+                <div class="form-group filter">
+                    <div class="row div-filter">
+                        <!-- Begin filter -->
+                        <!-- Tên -->
+                        <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+                            <div class="form-group">
+                                <label for="id_name" class="">Tên</label>
+                                <input type="text" [disabled]="false" #name="ngModel" name="name" [(ngModel)]="filterInput.name" class="form-control" id="name">
+                            </div>
+                        </div>
+                        <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+                            <div class="form-group">
+                                <label for="year" class="">Năm</label>
+                                <input-datepicker [ColumnName]="'year'" name="year" (ValueOutput)="onSelectFilter($event,'year')" [format]="'YYYY'"></input-datepicker>
+                            </div>
+                        </div>
+                        <!-- end filter -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-component form-group">
+        <jqgrid-list #gridList (ValueOutput)="selectRow($event)" [colModel]="col_model" [table]="tbName" [title]="'Danh sách ngày lễ'"></jqgrid-list>
+    </div>
+    <dialog-acction #dialogDelete [content]="'Bạn có chắc chắn muốn xóa?'" [title]="'Vui lòng xác nhận'" (confirmOutput)="confirmDelete()"></dialog-acction>
+</div>
+<!-- Edit -->
+<sidenav-add-edit #sidenavAddEdit [title]="''" *ngIf="isEdit" class="form-sidenav-edit">
+    <form method="#" action="#" style="padding: 20px;" class="form-jqgrid-edit">
+        <app-toolbar #toolbarEdit [tableName]="tbName" [CurrenFrom]="getCurrenFrom"></app-toolbar>
+        <alert-message #alertMessage></alert-message>
+        <div class="row">
+            <div class="col-12">
+                <div class="col-12 col-sm-10 col-md-8 col-lg-4 col-xl-4">
+                    <label for="name" class="">Tên</label><br>
+                    <input type="text" [disabled]="false" #name="ngModel" name="name" [(ngModel)]="InputModel.name" [value]="InputModel.name" class="form-control" id="name">
+                </div>
+            </div>
+            <!-- <div class="col-12"></div>
+            <div class="col-12 col-sm-10 col-md-8 col-lg-4 col-xl-4">
+                <div class="form-group">
+                    <input-checkbox [type]="'toggle'" [title]="'Âm lịch'" (ValueOutput)="onChangeValue($event,'is_lunar')" [value]="InputModel.is_lunar"></input-checkbox>
+                </div>
+            </div> -->
+            <div class="col-12"></div>
+            <div class="col-12 col-sm-10 col-md-8 col-lg-4 col-xl-4">
+                <div class="form-group">
+                    <label for="start_date" class=" label-title">Ngày bắt đầu<span class="input-required">*</span></label><br>
+                    <input-datepicker [ColumnName]="'start_date'" name="start_date" (ValueOutput)="valueStartDate($event,'start_date')" [value]="InputModel.start_date"></input-datepicker>
+                    <!-- <small>Ngày</small>
+                    <input type="number" [disabled]="false" #start_day="ngModel" name="start_day" [(ngModel)]="InputModel.start_day" [value]="InputModel.start_day" class="form-control" id="start_day">
+                    <small>Tháng</small>
+                    <input type="number" [disabled]="false" #start_month="ngModel" name="start_month" [(ngModel)]="InputModel.start_month" [value]="InputModel.start_month" class="form-control" id="start_month"> -->
+                </div>
+            </div>
+            <div class="col-12"></div>
+            <div class="col-12 col-sm-10 col-md-8 col-lg-4 col-xl-4">
+                <div class="form-group">
+                    <label for="end_date" class=" label-title">Ngày kết thúc<span class="input-required">*</span></label><br>
+                    <input-datepicker [ColumnName]="'end_date'" name="end_date" (ValueOutput)="valueStartDate($event,'end_date')" [value]="InputModel.end_date"></input-datepicker>
+                    <!-- <small>Ngày</small>
+                    <input type="number" [disabled]="false" #end_day="ngModel" name="end_day" [(ngModel)]="InputModel.end_day" [value]="InputModel.end_day" class="form-control" id="end_day">
+                    <small>Tháng</small>
+                    <input type="number" [disabled]="false" #end_month="ngModel" name="end_month" [(ngModel)]="InputModel.end_month" [value]="InputModel.end_month" class="form-control" id="end_month"> -->
+                </div>
+            </div>
+
+        </div>
+    </form>
+</sidenav-add-edit>

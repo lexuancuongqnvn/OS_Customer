@@ -1,0 +1,163 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace HRMS.Shared
+{
+    public class CommonStoredProcedule
+    {
+        //Employee CuongLX 21/11/2021
+        public const string HRM_Employee_Positions_Search = "HRM_Employee_Positions_Search";
+        public const string HRM_Employee_Search = "HRM_Employee_Search";
+        public const string HRM_Employee_Insert = "HRM_Employee_Insert";
+        public const string HRM_Employee_Update = "HRM_Employee_Update";
+        public const string HRM_Employee_Delete = "HRM_Employee_Delete";
+        public const string HRM_District_City_Search = "HRM_District_City_Search";
+        public const string Part_Search = "Part_Search";
+        public const string HRM_Employee_Marital_Status_Search = "HRM_Employee_Marital_Status_Search";
+        public const string HRM_Timesheet_Employee_Mission_Allowance_Update = "HRM_Timesheet_Employee_Mission_Allowance_Update";
+        public const string HRM_Timesheet_Employee_Mission_Allowance_Approve = "HRM_Timesheet_Employee_Mission_Allowance_Approve";
+        public const string HRM_Timesheet_Employee_Mission_Allowance_Insert = "HRM_Timesheet_Employee_Mission_Allowance_Insert";
+        public const string HRM_Timesheet_Employee_Mission_Allowance_Delete = "HRM_Timesheet_Employee_Mission_Allowance_Delete";
+        public const string HRM_Timesheet_Employee_Mission_Allowance_Search = "HRM_Timesheet_Employee_Mission_Allowance_Search";
+        public const string HRM_Employee_Academic_Level_Search = "HRM_Employee_Academic_Level_Search";
+        public const string HRM_Employee_Certificate_Search = "HRM_Employee_Certificate_Search";
+        public const string HRM_Employee_Labour_Contract_Type_Search = "HRM_Employee_Labour_Contract_Type_Search";
+        public const string HRM_Employee_Labour_Contract_Delete = "HRM_Employee_Labour_Contract_Delete";
+        public const string HRM_Employee_Labour_Contract_Update = "HRM_Employee_Labour_Contract_Update";
+        public const string HRM_Employee_Labour_Contract_Insert = "HRM_Employee_Labour_Contract_Insert";
+        public const string HRM_Employee_Labour_Contract_Search = "HRM_Employee_Labour_Contract_Search";
+        public const string HRM_Employee_Labour_Contract_Salary_Search = "HRM_Employee_Labour_Contract_Salary_Search";
+        public const string HRM_Employee_Labour_Contract_Appendix_Search = "HRM_Employee_Labour_Contract_Appendix_Search";
+        public const string HRM_Employee_Labour_Contract_Appendix_Target_Sale_Level_Search = "HRM_Employee_Labour_Contract_Appendix_Target_Sale_Level_Search";
+        public const string HRM_Employee_Labour_Contract_Appendix_Target_Sale_Level_Update = "HRM_Employee_Labour_Contract_Appendix_Target_Sale_Level_Update";
+        public const string HRM_Employee_Labour_Contract_Salary_Deduction_Search = "HRM_Employee_Labour_Contract_Salary_Deduction_Search";
+        public const string HRM_Employee_Labour_Contract_Appendix_Target_Detail_Search = "HRM_Employee_Labour_Contract_Appendix_Target_Detail_Search";
+        public const string HRM_Employee_Labour_Contract_Appendix_Target_Detail_Insert = "HRM_Employee_Labour_Contract_Appendix_Target_Detail_Insert";
+        public const string HRM_Employee_Labour_Contract_Appendix_Target_Update = "HRM_Employee_Labour_Contract_Appendix_Target_Update";
+        public const string HRM_Employee_Labour_Contract_Curriculum_Vitae_Search = "HRM_Employee_Labour_Contract_Curriculum_Vitae_Search";
+        public const string HRM_Employee_Work_Procedure_Delete = "HRM_Employee_Work_Procedure_Delete";
+        public const string HRM_Employee_Work_Procedure_Insert = "HRM_Employee_Work_Procedure_Insert";
+        public const string HRM_Employee_Work_Procedure_Search = "HRM_Employee_Work_Procedure_Search";
+        public const string HRM_Employee_Work_Procedure_Update = "HRM_Employee_Work_Procedure_Update";
+        public const string HRM_Employee_Training_Search = "HRM_Employee_Training_Search";
+        public const string HRM_Employee_Occupational_Accident_Search = "HRM_Employee_Occupational_Accident_Search";
+        public const string HRM_Employee_Discipline_Search = "HRM_Employee_Discipline_Search";
+        public const string HRM_Employee_Evaluate_Search = "HRM_Employee_Evaluate_Search";
+        public const string HRM_Employee_Bonus_Search = "HRM_Employee_Bonus_Search";
+        public const string HRM_Employee_Check_In_Out_Search = "HRM_Employee_Check_In_Out_Search";
+        public const string HRM_Employee_Check_In_Out_Face_Training_Search = "HRM_Employee_Check_In_Out_Face_Training_Search";
+        public const string HRM_Employee_Check_In_Out_Face_Training_Update = "HRM_Employee_Check_In_Out_Face_Training_Update";
+        public const string HRM_Employee_Timesheet_Search = "HRM_Employee_Timesheet_Search";
+        public const string HRM_Employee_Check_In_Out_Insert = "HRM_Employee_Check_In_Out_Insert";
+        public const string HRM_Employee_Check_In_Out_Update = "HRM_Employee_Check_In_Out_Update";
+        public const string HRM_Timesheet_Employee_Overtime_Search = "HRM_Timesheet_Employee_Overtime_Search";
+        public const string HRM_Timesheet_Employee_Overtime_Update = "HRM_Timesheet_Employee_Overtime_Update";
+        public const string HRM_Timesheet_Employee_Overtime_Approve = "HRM_Timesheet_Employee_Overtime_Approve";
+        public const string HRM_Timesheet_Employee_Overtime_Insert = "HRM_Timesheet_Employee_Overtime_Insert";
+        public const string HRM_Timesheet_Employee_Update_Timkeeping_Search =  "HRM_Timesheet_Employee_Update_Timkeeping_Search";
+        public const string HRM_Timesheet_Employee_Update_Timkeeping_Update =  "HRM_Timesheet_Employee_Update_Timkeeping_Update";
+        public const string HRM_Timesheet_Employee_Update_Timkeeping_Approve = "HRM_Timesheet_Employee_Update_Timkeeping_Approve";
+        public const string HRM_Timesheet_Employee_Update_Timkeeping_Insert = "HRM_Timesheet_Employee_Update_Timkeeping_Insert";
+        public const string HRM_Holiday_Search = "HRM_Holiday_Search";
+        public const string HRM_Holiday_Actions = "HRM_Holiday_Actions";
+        public const string HRM_Timesheet_Employee_Overtime_Type_Search = "HRM_Timesheet_Employee_Overtime_Type_Search";
+        public const string HRM_Timesheet_Employee_Overtime_Type_Actions = "HRM_Timesheet_Employee_Overtime_Type_Actions";
+        public const string HRM_TimeSheet_Employee_Soon_Late_Regulation_Search = "HRM_TimeSheet_Employee_Soon_Late_Regulation_Search";
+        public const string HRM_TimeSheet_Employee_Soon_Late_Regulation_Update = "HRM_TimeSheet_Employee_Soon_Late_Regulation_Update";
+        public const string HRM_TimeSheet_Work_Shift_Detail_Search = "HRM_TimeSheet_Work_Shift_Detail_Search";
+        public const string HRM_Employee_Log_Paid_Holiday_Search = "HRM_Employee_Log_Paid_Holiday_Search";
+        //WorkingTime CuongLX 21/11/2021
+        public const string HRM_WorkingTime_Search = "HRM_WorkingTime_Search";
+        public const string HRM_Project_Management_Task_WorkTime_Search = "HRM_Project_Management_Task_WorkTime_Search";
+        public const string HRM_Project_Management_Task_WorkTime_Status_Search = "HRM_Project_Management_Task_WorkTime_Status_Search";
+        public const string HRM_Project_Management_Task_WorkTime_Bycode = "HRM_Project_Management_Task_WorkTime_Bycode";
+        public const string HRM_Project_Management_Task_WorkTime_Detail_Search = "HRM_Project_Management_Task_WorkTime_Detail_Search";
+        public const string HRM_Project_Management_Task_WorkTime_Insert = "HRM_Project_Management_Task_WorkTime_Insert";
+        public const string HRM_Project_Management_Task_WorkTime_Update = "HRM_Project_Management_Task_WorkTime_Update";
+        public const string HRM_Report_Employee_Management_Task_WorkTime_Search = "HRM_Report_Employee_Management_Task_WorkTime_Search";
+        //Workspace CuongLX 7/12/2021
+        public const string HRM_Workspace_Insert = "HRM_Workspace_Insert";
+        public const string HRM_Workspace_Update = "HRM_Workspace_Update";
+        public const string HRM_Workspace_Update_Timesheet = "HRM_Workspace_Update_Timesheet";
+        public const string HRM_Workspace_Delete = "HRM_Workspace_Delete";
+        public const string HRM_Workspace_Search = "HRM_Workspace_Search";
+        public const string HRM_Workspace_Master_Search = "HRM_Workspace_Master_Search";
+        public const string HRM_Workspace_Search_ByID = "HRM_Workspace_Search_ByID";
+
+        public const string HRM_Workspace_Comment_ByCode_Calendar = "HRM_Workspace_Comment_ByCode_Calendar";
+        public const string HRM_Workspace_Comment_Insert = "HRM_Workspace_Comment_Insert";
+        public const string HRM_Workspace_Comment_Update = "HRM_Workspace_Comment_Update";
+        public const string HRM_Employee_Check_In_Out_Warning_Actions = "HRM_Employee_Check_In_Out_Warning_Actions";
+
+        public const string HRM_Workspace_Timesheet_Search_By_IDCalendar = "HRM_Workspace_Timesheet_Search_By_IDCalendar";
+        //Branch CuongLX 21/11/2021
+        public const string HRM_Branch_Search = "HRM_Branch_Search";
+        public const string HRM_Branch_Actions = "HRM_Branch_Actions";
+        //TimeSheet CuongLX 21/11/2021
+        public const string HRM_TimeSheet_Search_Detail = "HRM_TimeSheet_Search_Detail";
+        public const string HRM_TimeSheet_Insert = "HRM_TimeSheet_Insert";
+        public const string HRM_Project_Management_Task_WorkTime_Report_Search = "HRM_Project_Management_Task_WorkTime_Report_Search";
+        public const string HRM_TimeSheet_Update = "HRM_TimeSheet_Update";
+        public const string HRM_TimeSheet_Search = "HRM_TimeSheet_Search";
+        public const string HRM_TimeSheet_Work_Shift_Actions = "HRM_TimeSheet_Work_Shift_Actions";
+        public const string HRM_TimeSheet_Work_Shift_Search = "HRM_TimeSheet_Work_Shift_Search";
+        public const string HRM_TimeSheet_Employee_Work_Shift_Delete = "HRM_TimeSheet_Employee_Work_Shift_Delete";
+        public const string HRM_TimeSheet_Employee_Work_Shift_Insert = "HRM_TimeSheet_Employee_Work_Shift_Insert";
+        public const string HRM_TimeSheet_Employee_Work_Shift_Update = "HRM_TimeSheet_Employee_Work_Shift_Update";
+        public const string HRM_TimeSheet_Employee_Work_Shift_Update_Name = "HRM_TimeSheet_Employee_Work_Shift_Update_Name";
+        public const string HRM_TimeSheet_Employee_Work_Shift_Search = "HRM_TimeSheet_Employee_Work_Shift_Search";
+        public const string HRM_TimeSheet_Employee_Work_Shift_Detail_Bycode = "HRM_TimeSheet_Employee_Work_Shift_Detail_Bycode";
+        public const string HRM_TimeSheet_Employee_Work_Shift_Bycode = "HRM_TimeSheet_Employee_Work_Shift_Bycode";
+        public const string HRM_TimeSheet_Employee_Work_Shift_Detail_All_Day_In_Month = "HRM_TimeSheet_Employee_Work_Shift_Detail_All_Day_In_Month";
+        public const string HRM_TimeSheet_Attendance_Insert= "HRM_TimeSheet_Attendance_Insert";
+        public const string HRM_TimeSheet_Attendance_Update = "HRM_TimeSheet_Attendance_Update";
+        public const string HRM_TimeSheet_Attendance_Approve = "HRM_TimeSheet_Attendance_Approve";
+        public const string HRM_TimeSheet_Employee_Soon_Late_Register_Approve = "HRM_TimeSheet_Employee_Soon_Late_Register_Approve";
+        public const string HRM_TimeSheet_Employee_Soon_Late_Register_Moving = "HRM_TimeSheet_Employee_Soon_Late_Register_Moving";
+        public const string HRM_TimeSheet_Attendance_Search = "HRM_TimeSheet_Attendance_Search";
+        public const string HRM_TimeSheet_Attendance_Search_Detail = "HRM_TimeSheet_Attendance_Search_Detail";
+        public const string HRM_TimeSheet_Attendance_Status_Insert = "HRM_TimeSheet_Attendance_Status_Insert";
+        public const string HRM_TimeSheet_Attendance_Status_Delete = "HRM_TimeSheet_Attendance_Status_Delete";
+        public const string HRM_TimeSheet_Attendance_Status_Update = "HRM_TimeSheet_Attendance_Status_Update";
+        public const string HRM_TimeSheet_Attendance_Status_Search = "HRM_TimeSheet_Attendance_Status_Search";
+        public const string HRM_TimeSheet_Attendance_Status_Search_Detail = "HRM_TimeSheet_Attendance_Status_Search_Detail";
+        public const string HRM_TimeSheet_Attendance_Type_Off_Insert = "HRM_TimeSheet_Attendance_Type_Off_Insert";
+        public const string HRM_TimeSheet_Attendance_Type_Off_Delete = "HRM_TimeSheet_Attendance_Type_Off_Delete";
+        public const string HRM_TimeSheet_Attendance_Type_Off_Update = "HRM_TimeSheet_Attendance_Type_Off_Update";
+        public const string HRM_TimeSheet_Attendance_Type_Off_Search = "HRM_TimeSheet_Attendance_Type_Off_Search";
+        public const string HRM_TimeSheet_Attendance_Type_Off_Search_Detail = "HRM_TimeSheet_Attendance_Type_Off_Search_Detail";
+        public const string HRM_TimeSheet_Employee_Soon_Late_Register_Insert = "HRM_TimeSheet_Employee_Soon_Late_Register_Insert";
+        public const string HRM_TimeSheet_Employee_Soon_Late_Register_Delete = "HRM_TimeSheet_Employee_Soon_Late_Register_Delete";
+        public const string HRM_TimeSheet_Employee_Soon_Late_Register_Update = "HRM_TimeSheet_Employee_Soon_Late_Register_Update";
+        public const string HRM_TimeSheet_Employee_Soon_Late_Register_Search = "HRM_TimeSheet_Employee_Soon_Late_Register_Search";
+        public const string HRM_TimeSheet_Employee_Soon_Late_Register_Search_Detail = "HRM_TimeSheet_Employee_Soon_Late_Register_Search_Detail";
+        public const string HRM_TimeSheet_Employee_Soon_Late_Register_Status_Search = "HRM_TimeSheet_Employee_Soon_Late_Register_Status_Search";
+        public const string HRM_TimeSheet_Employee_Soon_Late_Register_Type_Search = "HRM_TimeSheet_Employee_Soon_Late_Register_Type_Search";
+        //Project management 03/03/2022
+        public const string HRM_Project_Management_Delete = "HRM_Project_Management_Delete";
+        public const string HRM_Project_Management_Insert = "HRM_Project_Management_Insert";
+        public const string HRM_Project_Management_Search = "HRM_Project_Management_Search";
+        public const string HRM_Project_Management_Search_ByCode = "HRM_Project_Management_Search_ByCode";
+        public const string HRM_Project_Management_Task_Comment_Insert = "HRM_Project_Management_Task_Comment_Insert";
+        public const string HRM_Project_Management_Task_Comment_Search = "HRM_Project_Management_Task_Comment_Search";
+        public const string HRM_Project_Management_Task_Delete = "HRM_Project_Management_Task_Delete";
+        public const string HRM_Project_Management_Task_Insert = "HRM_Project_Management_Task_Insert";
+        public const string HRM_Project_Management_Task_Search = "HRM_Project_Management_Task_Search";
+        public const string HRM_Project_Management_Task_Status_Search = "HRM_Project_Management_Task_Status_Search";
+        public const string HRM_Project_Management_Task_Update = "HRM_Project_Management_Task_Update";
+        public const string HRM_Project_Management_Update = "HRM_Project_Management_Update";
+        public const string HRM_Project_Management_Task_Search_Menu = "HRM_Project_Management_Task_Search_Menu";
+        public const string HRM_Project_Management_Task_Historys_Search = "HRM_Project_Management_Task_Historys_Search";
+        public const string HRM_Project_Management_Task_Proprity_Level_Search = "HRM_Project_Management_Task_Proprity_Level_Search";
+        public const string HRM_Project_Management_Task_Proprity_Level_Actions = "HRM_Project_Management_Task_Proprity_Level_Actions";
+        public const string HRM_Project_Management_Task_Type_Search = "HRM_Project_Management_Task_Type_Search";
+        public const string HRM_Project_Management_Task_Type_Actions = "HRM_Project_Management_Task_Type_Actions";
+        public const string HRM_Project_Management_Report_Project_Percent_Search = "HRM_Project_Management_Report_Project_Percent_Search";
+        public const string HRM_Project_Management_Task_Notification_Update = "HRM_Project_Management_Task_Notification_Update";
+        public const string HRM_Project_Management_Task_Pin = "HRM_Project_Management_Task_Pin_Action";
+        public const string Notification_HRM_Search = "HRM_Notification_Search";
+        public const string HRM_Notification_View = "HRM_Notification_View";
+        public const string HRM_Notification_Read = "HRM_Notification_Read";
+    }
+}

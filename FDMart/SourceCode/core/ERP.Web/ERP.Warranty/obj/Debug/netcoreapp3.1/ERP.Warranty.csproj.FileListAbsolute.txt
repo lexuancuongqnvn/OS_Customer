@@ -1,0 +1,15 @@
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\ERP.Warranty\bin\Debug\netcoreapp3.1\ERP.Warranty.deps.json
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\ERP.Warranty\bin\Debug\netcoreapp3.1\ERP.Warranty.dll
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\ERP.Warranty\bin\Debug\netcoreapp3.1\ERP.Warranty.pdb
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\ERP.Warranty\bin\Debug\netcoreapp3.1\ERP.Common.dll
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\ERP.Warranty\bin\Debug\netcoreapp3.1\HRMS.dll
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\ERP.Warranty\bin\Debug\netcoreapp3.1\ERP.Common.pdb
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\ERP.Warranty\bin\Debug\netcoreapp3.1\HRMS.pdb
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\ERP.Warranty\obj\Debug\netcoreapp3.1\ERP.Warranty.csproj.AssemblyReference.cache
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\ERP.Warranty\obj\Debug\netcoreapp3.1\ERP.Warranty.GeneratedMSBuildEditorConfig.editorconfig
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\ERP.Warranty\obj\Debug\netcoreapp3.1\ERP.Warranty.AssemblyInfoInputs.cache
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\ERP.Warranty\obj\Debug\netcoreapp3.1\ERP.Warranty.AssemblyInfo.cs
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\ERP.Warranty\obj\Debug\netcoreapp3.1\ERP.Warranty.csproj.CoreCompileInputs.cache
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\ERP.Warranty\obj\Debug\netcoreapp3.1\ERP.Warranty.csproj.CopyComplete
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\ERP.Warranty\obj\Debug\netcoreapp3.1\ERP.Warranty.dll
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\ERP.Warranty\obj\Debug\netcoreapp3.1\ERP.Warranty.pdb

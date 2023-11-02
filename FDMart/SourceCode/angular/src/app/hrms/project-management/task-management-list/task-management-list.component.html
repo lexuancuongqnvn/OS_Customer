@@ -1,0 +1,396 @@
+<div class="card-container k-form-edit">
+    <app-toolbar #toolbar [tableName]="tbName" [CurrenFrom]="CurrenFrom"></app-toolbar>
+    <div class="example-wrapper form-group">
+        <div class="example-wrapper">
+            <div class="card-collapse">
+                <div class="card-header" role="tab" id="headingTwo">
+                    <h5 class="mb-0">
+                        <a class="collapsed" style="color: #00bcd4 !important;" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Click để lọc dữ liệu
+                            <i class="material-icons">keyboard_arrow_down</i>
+                        </a>
+                    </h5>
+                </div>
+                <div id="collapseTwo" style="padding: 5px 10px 5px 0;" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
+                    <div class="card-body">
+                        <div class="">
+                            <div class="form-group filter">
+                                <div class="row div-filter">
+                                    <!-- Begin filter -->
+                                    <!-- Dự án -->
+                                    <div class="col-12 col-sm-6 col-md-4 col-lg-2 col-xl-2">
+                                        <div class="form-group">
+                                            <label for="project_code" class="">Dự án</label><br>
+                                            <input-selectpicker-v2 #SelectProjectPicker (ValueOutput)="onSelectProject($event)" [multiple]="false" [list]="listProject" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'project_code'" [title]="'Dự án'"></input-selectpicker-v2>
+                                        </div>
+                                    </div>
+                                    <!-- Chủ đề -->
+                                    <div class="col-12 col-sm-6 col-md-4 col-lg-2 col-xl-2">
+                                        <div class="form-group">
+                                            <label for="project_code" class="">Chủ đề công việc</label><br>
+                                            <input-selectpicker-v2 #SelectProjectTopicPicker (ValueOutput)="onSelectProjectTopic($event)" [multiple]="false" [list]="listProjectTopic" [FieldValue]="'topic_code'" [FieldDisplay]="'topic_name'" [ColumnName]="'topic_code'" [title]="'Dự án'"></input-selectpicker-v2>
+                                        </div>
+                                    </div>
+                                    <!-- Mã task -->
+                                    <div class="col-12 col-sm-6 col-md-4 col-lg-2 col-xl-2">
+                                        <div class="form-group">
+                                            <label for="id_referent" class="label-title">Mã công việc</label>
+                                            <input type="text" #id_referent="ngModel" name="id_referent" [(ngModel)]="filterInput.id_referent" [value]="filterInput.id_referent" class="form-control" id="id_referent">
+                                        </div>
+                                    </div>
+                                    <!-- Tên -->
+                                    <div class="col-12 col-sm-6 col-md-4 col-lg-2 col-xl-2">
+                                        <div class="form-group">
+                                            <label for="name" class="label-title">Tên công việc</label>
+                                            <input type="text" #name="ngModel" name="name" [(ngModel)]="filterInput.name" class="form-control" id="name">
+                                        </div>
+                                    </div>
+                                    <!-- Nội dung task -->
+                                    <div class="col-12 col-sm-6 col-md-4 col-lg-2 col-xl-2">
+                                        <div class="form-group">
+                                            <label for="task_content" class="label-title">Nội dung công việc</label>
+                                            <input type="text" #task_content="ngModel" name="task_content" [(ngModel)]="filterInput.task_content" [value]="filterInput.task_content" class="form-control" id="task_content">
+                                        </div>
+                                    </div>
+                                    <!-- <div class="col-12"></div> -->
+                                    <!-- Kiển công việc -->
+                                    <div class="col-12 col-sm-6 col-md-4 col-lg-2 col-xl-2">
+                                        <div class="form-group">
+                                            <label for="type_code" class="">Kiển công việc</label><br>
+                                            <input-selectpicker-v2 #SelectTypePicker (ValueOutput)="onSelectType($event)" [multiple]="false" [list]="listType" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'type_code'" [title]="''"></input-selectpicker-v2>
+                                        </div>
+                                    </div>
+                                    <!-- Người tạo -->
+                                    <div class="col-12 col-sm-6 col-md-4 col-lg-2 col-xl-2">
+                                        <div class="form-group">
+                                            <label for="id_create_user" class="">Người tạo</label><br>
+                                            <input-selectpicker-v2 #SelectCreateUserPicker (ValueOutput)="onSelectCreateUser($event)" [multiple]="false" [list]="listEmployee" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'create_user'" [title]="'Người tạo'"></input-selectpicker-v2>
+                                        </div>
+                                    </div>
+                                    <!-- Mức độ ưu tiên -->
+                                    <div class="col-12 col-sm-6 col-md-4 col-lg-2 col-xl-2">
+                                        <div class="form-group">
+                                            <label for="priority_level" class="">Mức độ ưu tiên</label><br>
+                                            <input-selectpicker-v2 #SelectPriorityLevelPicker (ValueOutput)="onSelectPriorityLevel($event)" [multiple]="false" [list]="listPriorityLevel" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'priority_level'" [title]="''"></input-selectpicker-v2>
+                                        </div>
+                                    </div>
+                                    <!-- Người thực thi -->
+                                    <div class="col-12 col-sm-6 col-md-4 col-lg-2 col-xl-2">
+                                        <div class="form-group">
+                                            <label for="executor" class="label-title">Người được phân công</label>
+                                            <input-selectpicker-v2 #SelectProgressTaskPicker [value]="filterInput.executor" (ValueOutput)="onSelectProgressTask($event)" [multiple]="false" [list]="listEmployee" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'executor'" [Class]="'selectpicker-filter-working'"
+                                                [title]="'Người thực thi'"></input-selectpicker-v2>
+                                        </div>
+                                    </div>
+                                    <!-- Tình trạng -->
+                                    <div class="col-12 col-sm-6 col-md-4 col-lg-2 col-xl-2">
+                                        <div class="form-group">
+                                            <label for="id_task_content" class="label-title">Tình trạng</label>
+                                            <input-selectpicker-v2 #SelectStatusTaskPicker (ValueOutput)="onSelectStatusTask($event)" [multiple]="false" [list]="listStatus" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'status'" [Class]="'selectpicker-filter-working'" [title]="'Tình trạng'"></input-selectpicker-v2>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="col-12"></div> -->
+                                    <!-- Phòng ban -->
+                                    <div class="col-12 col-sm-6 col-md-4 col-lg-2 col-xl-2">
+                                        <div class="form-group">
+                                            <label for="department_code" class="">Phòng ban</label><br>
+                                            <input-selectpicker-v2 #SelectDepartmentPicker (ValueOutput)="onSelectDepartment($event)" [multiple]="false" [list]="listDepartment" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'department_code'" [title]="'Phòng ban'"></input-selectpicker-v2>
+                                        </div>
+                                    </div>
+                                    <!-- Ngày kết thúc -->
+                                    <div class="col-12 col-sm-6 col-md-4 col-lg-2 col-xl-2">
+                                        <div class="form-group">
+                                            <label for="id_progress_task" class="label-title">Ngày bắt đầu</label>
+                                            <input-datepicker [ColumnName]="'start_date'" name="start_date" (ValueOutput)="valueStartDate($event,'start_date')"></input-datepicker>
+                                        </div>
+                                    </div>
+                                    <!-- Ngày bắt đầu -->
+                                    <div class="col-12 col-sm-6 col-md-4 col-lg-2 col-xl-2">
+                                        <div class="form-group">
+                                            <label for="id_stop_date" class="label-title">Ngày kết thúc</label>
+                                            <input-datepicker [ColumnName]="'stop_date'" name="stop_date" (ValueOutput)="valueStartDate($event,'stop_date')"></input-datepicker>
+                                        </div>
+                                    </div>
+                                    <!-- Quan trọng -->
+                                    <div class="col-12 col-sm-6 col-md-4 col-lg-2 col-xl-2">
+                                        <div class="form-group">
+                                            <label for="id_stop_date" class="label-title">Quan trọng</label>
+                                            <div class="togglebutton">
+                                                <label>
+                                                  <input #important="ngModel" name="important" [(ngModel)]="filterInput.important" (volumechange)="onClickNotifi_f($event.taget.value)" type="checkbox">
+                                                  <span class="toggle"></span>
+                                                  Đánh dấu quan trọng
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Sắp xếp theo thời gian -->
+                                    <!-- <div class="col-12 col-sm-6 col-md-4 col-lg-2 col-xl-2">
+                                        <div class="form-group">
+                                            <label for="orderByDateAdd_code" class="">Sắp xếp theo thời gian</label><br>
+                                            <input-selectpicker-v2 #SelectOrderByDateAddPicker (ValueOutput)="onSelectOrderByDateAdd($event)" [multiple]="false" [list]="orderByDateAdd" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'orderByDateAdd_code'" [title]="'Sắp xếp theo thời gian'"></input-selectpicker-v2>
+                                        </div>
+                                    </div> -->
+                                    <!-- end filter -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-component form-group">
+        <jqgrid-list #gridList (ValueOutput)="selectRow($event)" [colModel]="col_model" [table]="tbName" [title]="'Danh sách công việc'"></jqgrid-list>
+    </div>
+    <dialog-acction #dialogDelete [content]="'Bạn có chắc chắn muốn xóa?'" [title]="'Vui lòng xác nhận'" (confirmOutput)="confirmDelete()"></dialog-acction>
+</div>
+<!-- Edit -->
+<sidenav-add-edit #sidenavAddEdit *ngIf="isEdit" class="form-sidenav-edit">
+    <form method="#" action="#" style="padding: 20px;">
+        <app-toolbar #toolbarEdit [tableName]="tbName" [CurrenFrom]="getCurrenFrom"></app-toolbar>
+        <alert-message #alertMessage></alert-message>
+        <div style="padding: 0 20px 20px 20px;display: flex;">
+            <div class="col-8" style="padding-right: 15px;">
+                <div class="row">
+                    <div class="col-12" *ngIf="InputModel.key_referent != undefined && InputModel.key_referent != null">
+                        <div class="form-group">
+                            <h5 for="id_referent1" class="h2-title">Mã công việc: {{InputModel.key_referent}}
+                                <a href="javascript:;" (click)="copyInputMessage(InputModel.key_referent)">
+                                    <span class="material-icons">file_copy</span> Copy
+                                </a>
+                                <a href="javascript:;" (click)="onClickPinTask(true)" *ngIf="!InputModel.is_pin">
+                                    <span class="material-icons" style="transform: rotate(90deg);">push_pin</span> Ghim
+                                </a>
+                                <a href="javascript:;" (click)="onClickPinTask(false)" *ngIf="InputModel.is_pin">
+                                    <span class="material-icons">push_pin</span> Bỏ ghim
+                                </a>
+                                <i *ngIf="copied"> Đã copy</i>
+                            </h5>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <a href="javascript:;" *ngFor="let item of listHistory" (click)="edittask(item['code'])">/{{item['name']}}</a>
+                    </div>
+                    <div class="col-12"></div>
+                    <div class="col-8">
+                        <div class="form-group">
+                            <label for="name" class="label-title">Tên công việc</label>
+                            <input type="text" [disabled]="disabled" #name="ngModel" name="name" [(ngModel)]="InputModel.name" [value]="InputModel.name" class="form-control" id="name2">
+                        </div>
+                    </div>
+                    <div class="col-12"></div>
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
+                        <div class="form-group">
+                            <label for="project_name" class="">Dự án</label><br>
+                            <input type="text" [disabled]="true" #project_name="ngModel" name="project_name" [(ngModel)]="InputModel.project_name" [value]="InputModel.project_name" class="form-control" id="project_name">
+                        </div>
+                    </div>
+                    <!-- Phòng ban -->
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4" *ngIf="display">
+                        <div class="form-group">
+                            <label for="department_code2" class="">Phòng ban</label><br>
+                            <input-selectpicker-v2 [disabled]="true" #SelectDepartmentPicker2 (ValueOutput)="onSelect($event,'department_code')" [value]="InputModel.department_code" [multiple]="false" [list]="listDepartment" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'department_code2'"
+                                [title]="'Phòng ban'"></input-selectpicker-v2>
+                        </div>
+                    </div>
+                    <!-- Người quản lý -->
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4" *ngIf="display">
+                        <div class="form-group">
+                            <label for="create_user2" class="label-title">Người quản lý</label>
+                            <input-selectpicker-v2 [disabled]="disabled || disabledPermission" #SelectCreateUserPicker2 [value]="InputModel.executor" (ValueOutput)="onSelect($event,'executor')" [multiple]="false" [list]="listEmployee" [FieldValue]="'code'" [FieldDisplay]="'name'"
+                                [ColumnName]="'create_user2'" [Class]="'selectpicker-filter-working'" [title]="'Người quản lý'"></input-selectpicker-v2>
+                        </div>
+                    </div>
+                    <!-- Phân công cho -->
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4" *ngIf="!display">
+                        <div class="form-group">
+                            <label for="id_progress_task" class="label-title">Phân công cho</label>
+                            <input-selectpicker-v2 [disabled]="disabled || disabledPermission" #SelectProgressTaskPicker2 [value]="InputModel.executor" (ValueOutput)="onSelect($event,'executor')" [multiple]="false" [list]="listEmployee" [FieldValue]="'code'" [FieldDisplay]="'name'"
+                                [ColumnName]="'executor2'" [Class]="'selectpicker-filter-working'" [title]="'Phân công cho'"></input-selectpicker-v2>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4" *ngIf="!display">
+                        <div class="form-group">
+                            <label for="type_code1" class="label-title">Kiểu công việc</label>
+                            <input-selectpicker-v2 [disabled]="disabled || disabledPermission" #SelectTypeTaskPicker [value]="InputModel.type_code" (ValueOutput)="onSelect($event,'type_code')" [multiple]="false" [list]="listType" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'type_code1'"
+                                [Class]="'selectpicker-filter-working'" [title]="'Kiểu công việc'"></input-selectpicker-v2>
+                        </div>
+                    </div>
+                    <!-- <div class="col-12"></div> -->
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
+                        <div class="form-group">
+                            <label for="start_date2" class="label-title">Ngày bắt đầu</label>
+                            <input-datepicker [disabled]="disabled || disabledPermission" [ColumnName]="'start_date2'" name="start_date2" [value]="InputModel.start_date" (ValueOutput)="valueStartDate($event,'start_date2')"></input-datepicker>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
+                        <div class="form-group">
+                            <label for="stop_date2" class="label-title">Ngày kết thúc</label>
+                            <input-datepicker [disabled]="disabled || disabledPermission" [ColumnName]="'stop_date2'" name="stop_date2" [value]="InputModel.stop_date" (ValueOutput)="valueStartDate($event,'stop_date2')"></input-datepicker>
+                        </div>
+                    </div>
+                    <!-- <div class="col-12"></div> -->
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
+                        <div class="form-group">
+                            <label for="priority_level" class="label-title">Mức độ ưu tiên</label>
+                            <input-selectpicker-v2 [disabled]="disabled || disabledPermission" #SelectPriorityLevelPicker2 [value]="InputModel.priority_level" (ValueOutput)="onSelect($event,'priority_level')" [multiple]="false" [list]="listPriorityLevel" [FieldValue]="'code'" [FieldDisplay]="'name'"
+                                [ColumnName]="'priority_level2'" [Class]="'selectpicker-filter-working'" [title]="'Mức độ ưu tiên'"></input-selectpicker-v2>
+                        </div>
+                    </div>
+                    <fieldset *ngIf="!display">
+                        <!-- <legend style="width: auto;font-size: 20px; font-weight: 500;color: #2196f3;">Logtime:</legend> -->
+                        <!-- Tình trạng -->
+                        <div class="row" style="margin: 0;">
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
+                                <div class="form-group">
+                                    <label for="status" class="label-title">Tình trạng</label>
+                                    <input-selectpicker-v2 [disabled]="disabled" #SelectStatusTaskPicker2 [value]="InputModel.status" (ValueOutput)="onSelect($event,'status')" [multiple]="false" [list]="listStatus" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'status2'" [Class]="'selectpicker-filter-working'"
+                                        [title]="'Tình trạng'"></input-selectpicker-v2>
+                                </div>
+                            </div>
+
+                            <!-- Tiến độ (%) -->
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
+                                <div class="form-group">
+                                    <label for="id_task_content" class="label-title">Tiến độ (%) (*)</label>
+                                    <input-selectpicker-v2 [disabled]="disabled" #SelectPercentDonePicker [value]="InputModel.percent_done" (ValueOutput)="onSelect($event,'percent_done')" [multiple]="false" [list]="listPercentDone" [FieldValue]="'value'" [FieldDisplay]="'name'" [ColumnName]="'percent_done'"
+                                        [Class]="'selectpicker-filter-working'" [title]="'Tiến độ'"></input-selectpicker-v2>
+                                </div>
+                            </div>
+                            <div class="col-12"></div>
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
+                                <div class="form-group">
+                                    <label for="hour_done" class="label-title">Thời gian hoàn thành (giờ)(*)</label>
+                                    <input type="number" [disabled]="disabled" #hour_done="ngModel" name="hour_done" [(ngModel)]="InputModel.hour_done" [value]="InputModel.hour_done" class="form-control" id="hour_done">
+                                </div>
+                            </div>
+                            <div class="col-8">
+                                <div class="form-group">
+                                    <label for="logtime_description" class="label-title">Diễn giải công việc(*)</label>
+                                    <input type="text" [disabled]="disabled" #logtime_description="ngModel" name="logtime_description" [(ngModel)]="InputModel.logtime_description" [value]="InputModel.logtime_description" class="form-control" id="logtime_description">
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="col-12">
+                        <label for="task_content" class="label-title">Mô tả:</label>
+                        <div class="form-group" *ngIf="getCurrenFrom == 'ViewDetail'">
+                            <div style="padding-left: 15px;width: 100%;overflow: auto;border: 2px solid #FF9800;border-radius: 5px;" [innerHTML]="InputModel.task_content"></div>
+                        </div>
+                        <angular-editor *ngIf="getCurrenFrom != 'ViewDetail'" [disabled]="disabled" #task_content="ngModel" name="task_content" [(ngModel)]="InputModel.task_content" [config]="config"></angular-editor>
+                    </div>
+                    <!-- <div class="col-12" *ngIf="display">
+                        <div class="form-group">
+                            <label for="task_content" class="label-title">công việc</label>
+                            <textarea type="text" #task_content="ngModel" name="task_content" [(ngModel)]="InputModel.task_content" [value]="InputModel.task_content" class="form-control" id="task_content"></textarea>
+                        </div>
+                    </div> -->
+                    <div class="col-12">
+                        Tác vụ con
+                        <a *ngIf="classForm != 'Add'" href="javascript:;" (click)="addNewtask(InputModel.code)" [disabled]="disabled">Thêm</a>
+                        <div class="col-12 div-striped"></div>
+                    </div>
+                    <div class="col-12">
+                        <div class="row" *ngIf="getCurrenFrom != 'Add'">
+                            <!-- Upload file -->
+                            <div class="col-12" *ngIf="getCurrenFrom == 'Edit' || getCurrenFrom == 'ViewDetail'">
+                                <div class="form-group">
+                                    <label for="content" class="label-title">Bình luận</label>
+                                    <div class="div-comment">
+                                        <div class="col-10">
+                                            <textarea type="text" #content="ngModel" name="content" [(ngModel)]="CommentModel.content" [value]="CommentModel.content" class="form-control" id="content"></textarea>
+                                            <input-file-upload [colName]="'attach_files'" [hidden]="false" [multiple]="true" [tableName]="'HRM_Project_Management_Task_Comment'" (ValueOutput)="valueFileComment($event)"></input-file-upload>
+                                        </div>
+                                        <div class="col-12 col-sm-6 col-md-4 col-lg-2 col-xl-2" *ngIf="CommentModel.content">
+                                            <a href="javascript:;" (click)="onSendComment()">
+                                             Gửi<span class="material-icons">send</span>
+                                        </a>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <ul class="list-group">
+                                            <li class="list-group-item file" *ngFor="let file of CommentModel['arr_attach_files']">
+                                                <span class="material-icons">{{get_icon_by_name_file(file['name'])}}</span>
+                                                <a href="javascript:;">{{file['name']}}</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <ul class="timeline timeline-simple">
+                                    <li class="timeline-inverted" *ngFor="let item of this.InputModel.hRM_Project_Management_Task_Comments">
+                                        <div class="timeline-badge danger">
+                                            <img class="photo" src="{{item.user_avartar}}">
+                                        </div>
+                                        <div class="timeline-panel">
+                                            <div class="timeline-heading">
+                                                <span class="badge badge-pill badge-danger">{{item.user_name}}</span>
+                                            </div>
+                                            <div class="timeline-body">
+                                                <p>{{item.content}}</p>
+                                                <div>
+                                                    <ul class="list-group">
+                                                        <li class="list-group-item file" *ngFor="let file of item['arr_attach_files']">
+                                                            <span *ngIf="!isImage(file['name'])" class="material-icons">{{get_icon_by_name_file(file['name'])}}</span>
+                                                            <a *ngIf="!isImage(file['name'])" href="javascript:;" (click)="download_file(file['url'],file['name'])">{{file['name']}}</a>
+
+                                                            <img *ngIf="isImage(file['name'])" class="img-cmt" src="{{BASE_URL + file['url']}}">
+                                                            <a *ngIf="isImage(file['name'])" href="javascript:;" (click)="download_file(file['url'],file['name'])">{{file['name']}}</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <h6>
+                                                <i class="ti-time"></i> {{item.date_add_f}}
+                                            </h6>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4 div-followers">
+                <h5 class="h2-history">Hoạt động</h5>
+                <div class="col-12" *ngIf="(getCurrenFrom == 'Edit' || getCurrenFrom == 'ViewDetail') && isShowNotifi">
+                    <div class="form-group div-live-task">
+                        <div class="div-live-task-sub">
+                            <div class="togglebutton">
+                                <label>
+                                  <input (click)="onClickNotifi('important')" type="checkbox" [checked]="InputModel.important">
+                                  <span class="toggle"></span>
+                                  Quan trọng
+                                </label>
+                            </div>
+                        </div>
+                        <a class="div-live-task-sub" (click)="onClickNotifi('remind')" href="javascript:;">Nhắc nhở công việc({{InputModel.remind?InputModel.remind:0}})</a>
+                        <a class="div-live-task-sub" (click)="onClickNotifi('remind_messenger')" href="javascript:;">Gửi đến messenger({{InputModel.remind_messenger?InputModel.remind_messenger:0}})</a>
+                    </div>
+                </div>
+                <div class="col-12" *ngIf="getCurrenFrom == 'Edit' || getCurrenFrom == 'ViewDetail'">
+                    <div class="form-group">
+                        <label for="followers" class="label-title">Theo dõi</label>
+                        <input-selectpicker-v2 [disabled]="disabled" #SelectFollowTaskPicker [value]="InputModel.followers" (ValueOutput)="onSelect($event,'followers')" [multiple]="true" [list]="listEmployee" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'followers'"
+                            [Class]="'selectpicker-filter-working'" [title]="'Người theo dõi'"></input-selectpicker-v2>
+                    </div>
+                </div>
+                <div class="list-group" *ngIf="getCurrenFrom == 'Edit' || getCurrenFrom == 'ViewDetail'">
+                    <ul class="list-group" *ngFor="let item of InputModel.hRM_Project_Management_Task_Historys">
+                        <label style="display:flex;"></label>
+                        <li class="list-group-item">
+                            <ul class="list-group history">
+                                <li class="list-group-item" [innerHTML]="item.title"></li>
+                                <li class="list-group-item" [innerHTML]="item.modified"></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </form>
+</sidenav-add-edit>
+<input style="display: none;" value="" id="add-new-task" (click)="addNewtask($event.target.value)" />
+<input style="display: none;" value="" id="edit-task" (click)="edittask($event.target.value)" />

@@ -1,0 +1,27 @@
+<div class="menu-wrapper content-width" *ngIf="getDataMenuWrapper.length >0">
+    <div class="tools-panel" id="toolsPanel">
+        <div *ngFor="let item of getDataMenuWrapper;let i=index">
+            <span class="text-menuwraper span-menuwraper"></span>
+            <a class="text-menuwraper" routerLink="{{item.url}}">
+                {{item.text}}
+              </a>
+            <!-- <a [routerLink]="['{{item.url}}']">{{item.text}}</a> -->
+        </div>
+    </div>
+</div>
+<div class="example-wrapper toolbar dx-fieldset {{classInsert}} {{getClassSidebarMini}}" style="margin: 0px 0px 10px 0px !important;border-radius: 5px;background-color: white">
+    <div class="fields-container">
+        <dx-button *ngIf="isBack" (onClick)="goBack()" class="toolbar-button btn-toolbar-view" style="margin-right: 5px;color: #881799;" icon="return" text="Back">
+        </dx-button>
+        <!-- <kendo-buttongroup look="flat" *ngFor="let item of getListAcction">
+            <button kendoButton [disabled]="item['role']" 
+            (click)="ClickAcction(item['id'],item['storedName'],item['param'],item['keyService'],item['classForm'])" 
+            class="btn-toolbar" icon="{{item['icon']}}" look="flat">
+                {{item['name']}}
+            </button>
+        </kendo-buttongroup> -->
+        <dx-button class="btn-toolbar-view toolbar-button" *ngFor="let item of getListAcction" [disabled]="item['role']" icon="{{item['icon']}}" text="{{item['name']}}" (onClick)="ClickAcction(item['id'],item['storedName'],item['param'],item['keyService'],item['classForm'])"
+            style="margin-right: 5px;color: '{{item.icon_color}}';">
+        </dx-button>
+    </div>
+</div>

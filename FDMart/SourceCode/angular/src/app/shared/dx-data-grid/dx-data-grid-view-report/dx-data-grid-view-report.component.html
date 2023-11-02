@@ -1,0 +1,396 @@
+<div id="accordion" *ngIf="genRowTableDetailFilter.length > 0">
+    <dx-accordion #accordion [dataSource]="companies" [collapsible]="true" [multiple]="false" [animationDuration]="300" [selectedItems]="[companies[0]]" id="accordion-container">
+        <div *dxTemplate="let ft of 'title'">
+            <a href="javascript:;"><i class="dx-icon-filter"></i>{{ ft.text }}</a>
+        </div>
+        <div *dxTemplate="let ft of 'item'">
+            <dx-form id="form" [colCount]="24" class="form-group-filter-row-24">
+                <dxi-item *ngFor="let item of genRowTableDetailFilter" itemType="group" cssClass="first-group filter-custom" [colSpan]="item.colspan?((item.typE_ID == 5 || item.typE_ID == 9 || item.typE_ID == 10 || item.typE_ID == 11)?6:item.colspan):6" caption="{{item.name}}:">
+                    <dx-form [colCount]="12" class="form-group-filter-row-12" *ngIf="item.typE_ID == 5 || item.typE_ID == 9 || item.typE_ID == 10 || item.typE_ID == 11">
+                        <dxi-item [colSpan]="4">
+                            <dx-select-box [disabled]="false" label="" [dataSource]="listTypeDateFilter" displayExpr="text" valueExpr="id" [(value)]="defaultDateFilter" [showClearButton]="false" (onValueChanged)="onChangeTypeFilterDate($event,item,item.columN_NAME+'_filter_type')"
+                                [stylingMode]="'underlined'" [labelMode]="labelMode">
+                            </dx-select-box>
+                        </dxi-item>
+                        <dxi-item [colSpan]="4">
+                            <dx-date-box type="date" displayFormat="{{formatDateDefault}}" [format]="formatDateDefault" [value]="getDataFilter(item.columN_NAME+'_start')" (onValueChanged)="onchangeFilter($event,item,item.columN_NAME+'_start')" label="{{translate('Từ','From')}}"
+                                [stylingMode]="stylingMode" [labelMode]="labelMode">
+                            </dx-date-box>
+                        </dxi-item>
+                        <dxi-item [colSpan]="4">
+                            <dx-date-box type="date" displayFormat="{{formatDateDefault}}" [format]="formatDateDefault" [value]="getDataFilter(item.columN_NAME+'_end')" (onValueChanged)="onchangeFilter($event,item,item.columN_NAME+'_end')" label="{{translate('Đến','To')}}" [stylingMode]="stylingMode"
+                                [labelMode]="labelMode">
+                            </dx-date-box>
+                        </dxi-item>
+                    </dx-form>
+                    <dx-form [colCount]="8" class="form-group-filter-row-12" *ngIf="item.typE_ID == 1 || item.typE_ID == 14 || item.typE_ID == 15">
+                        <dxi-item [colSpan]="4">
+                            <dx-number-box label="{{translate('Từ','From')}}" (onValueChanged)="onchangeFilter($event,item,item.columN_NAME+'_start')" [value]="getDataFilter(item.columN_NAME+'_start')" [stylingMode]="stylingMode" [labelMode]="labelMode" [showSpinButtons]="true"
+                                [showClearButton]="true" [inputAttr]="{ 'aria-label': 'With Spin And Buttons' }"></dx-number-box>
+                        </dxi-item>
+                        <dxi-item [colSpan]="4">
+                            <dx-number-box label="{{translate('Đến','To')}}" (onValueChanged)="onchangeFilter($event,item,item.columN_NAME+'_end')" [value]="getDataFilter(item.columN_NAME+'_end')" [stylingMode]="stylingMode" [labelMode]="labelMode" [showSpinButtons]="true" [showClearButton]="true"
+                                [inputAttr]="{ 'aria-label': 'With Spin And Buttons' }"></dx-number-box>
+                        </dxi-item>
+                    </dx-form>
+                    <dx-form [colCount]="8" class="form-group-filter-row-12" *ngIf="item.typE_ID == 2 || item.typE_ID == 3 || item.typE_ID == 17">
+                        <dxi-item [colSpan]="8">
+                            <dx-text-box placeholder="{{translate('Tìm kiếm','Search')}} {{item.name}}..." [value]="getDataFilter(item.columN_NAME)" (onValueChanged)="onchangeFilter($event,item,item.columN_NAME)"></dx-text-box>
+                        </dxi-item>
+                    </dx-form>
+                    <dx-form [colCount]="12" class="form-group-filter-row-12" *ngIf="item.typE_ID == 4 || item.typE_ID == 23">
+                        <dxi-item [colSpan]="12">
+                            <dx-switch [value]="getDataFilter(item.columN_NAME)" (onValueChanged)="onchangeFilter($event,item,item.columN_NAME)"></dx-switch>
+                        </dxi-item>
+                    </dx-form>
+                    <dx-form [colCount]="8" class="form-group-filter-row-12" *ngIf="item.typE_ID == 24">
+                        <dxi-item [colSpan]="8">
+                            <dx-select-box label="{{item.required ? '(*)' :''}}" searchEnabled="true" [inputAttr]="{ 'aria-label': '{{item.name}}' }" [dataSource]="item.editoroptions.items" displayExpr="{{item.displayexpr}}" valueExpr="{{item.valueexpr}}" [value]="item.editoroptions.value"
+                                [showClearButton]="true" (onValueChanged)="handleValueChanged2($event,item)" [stylingMode]="stylingMode" [labelMode]="labelMode">
+                                <dx-validator *ngIf="item.required">
+                                    <dxi-validation-rule type="required" message="{{item.name}} {{translate('Không được phép trống','is not required')}}"></dxi-validation-rule>
+                                </dx-validator>
+                            </dx-select-box>
+                        </dxi-item>
+                    </dx-form>
+                    <dx-form [colCount]="8" class="form-group-filter-row-12" *ngIf="item.typE_ID == 27">
+                        <dxi-item [colSpan]="8">
+                            <dx-drop-down-box label="{{item.required ? '(*)' :''}}" [opened]="item.isDropBoxOpened" (onOpened)="onOpenedDropDownOption($event,item)" [(value)]="item.editoroptions.value" valueExpr="{{item.valueexpr}}" displayExpr="{{item.displayexpr}}" placeholder="Select a value..."
+                                [showClearButton]="true" [dataSource]="item.editoroptions.items" [stylingMode]="stylingMode" [labelMode]="labelMode">
+                                <dxo-drop-down-options [width]="item.editoroptions.optionWidth"></dxo-drop-down-options>
+                                <dx-validator *ngIf="item.required">
+                                    <dxi-validation-rule type="required" message="{{item.name}} {{translate('Không được phép trống','is not required')}}"></dxi-validation-rule>
+                                </dx-validator>
+                                <osoft-data-grid id="{{item.columN_NAME}}" #dropdownbox (onClickCancel)="onSaveDropDownOption($event,item)" (onClickOK)="onSaveDropDownOption($event,item)" [keyExpr]="item.valueexpr" [showFilterRow]="true" [currentSelectedRowKeys]="item.editoroptions.value"
+                                    [selection]="false" [height]="450" [tableName]="item.droP_DOWN_TABLE" [type]="'BY-TABLE-NAME'" [dataSource]="item.editoroptions.items" (OnSelectRow)="onSelectRowGridDropdown($event,item)" (selectedRowsDataOutput)="selectedRowsDataGridDropdown($event,item,item.valueexpr)"></osoft-data-grid>
+                            </dx-drop-down-box>
+                        </dxi-item>
+                    </dx-form>
+                </dxi-item>
+            </dx-form>
+        </div>
+    </dx-accordion>
+</div>
+<dx-data-grid *ngIf="genRowTableDetail.length > 0" [minHeight]="200" height="100%" [hoverStateEnabled]="true" [(selectedRowKeys)]="currentSelectedRowKeys" id="{{tbName}}" [dataSource]="getDataSource" keyExpr="{{keyExpr}}" [showBorders]="true" [showRowLines]="true"
+    [allowColumnReordering]="true" [allowColumnResizing]="true" [columnAutoWidth]="false" (onSelectionChanged)="onSelectRow($event)" (onExporting)="onExporting($event)" [height]="height" [rowAlternationEnabled]="true">
+    <dxo-column-fixing [enabled]="true"></dxo-column-fixing>
+    <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
+    <dxo-selection [width]="30" *ngIf="selection == true" [selectAllMode]="allMode" [showCheckBoxesMode]="checkBoxesMode" mode="multiple"></dxo-selection>
+    <dxo-selection [width]="30" *ngIf="selection == false" [selectAllMode]="allMode" mode="single"></dxo-selection>
+
+    <dxo-scrolling rowRenderingMode="virtual"> </dxo-scrolling>
+
+    <dxo-paging [enabled]="true" [pageSize]="20"> </dxo-paging>
+    <dxo-pager [visible]="true" [allowedPageSizes]="[20, 50, 100, 200,500,1000,10000]" [displayMode]="displayMode" [showPageSizeSelector]="true" [showInfo]="true" [showNavigationButtons]="true">
+    </dxo-pager>
+
+    <dxi-column *ngFor="let row of genRowTableDetailGroup" [groupIndex]="row.indeX_GROUP" [cellTemplate]="(row.typE_ID == 28 || row.typE_ID == 12) ? 
+    cellTemplate:((row.typE_ID == 15 || row.typE_ID == 14 || row.typE_ID == 1) ? cellTemplateNumber :
+    (row.typE_ID == 5 ?cellTemplateDate5 :(row.typE_ID == 9 ?cellTemplateDate9: (row.typE_ID == 11 && cellTemplateDate11))) 
+    )" dataField="{{row.columN_NAME}}" caption="{{row.name}}" [width]="row.width" [fixed]="row.iS_FIXED" headerCellTemplate="titleHeaderTemplate"></dxi-column>
+
+    <dxi-column *ngFor="let row of genRowTableDetail" [cellTemplate]="(row.typE_ID == 28 || row.typE_ID == 12) ? 
+    cellTemplate:((row.typE_ID == 15 || row.typE_ID == 14 || row.typE_ID == 1) ? cellTemplateNumber :
+    (row.typE_ID == 5 ?cellTemplateDate5 :(row.typE_ID == 9 ?cellTemplateDate9: (row.typE_ID == 11 && cellTemplateDate11))) 
+    )" dataField="{{row.columN_NAME}}" caption="{{row.name}}" [width]="row.width" [fixed]="row.iS_FIXED" headerCellTemplate="titleHeaderTemplate"></dxi-column>
+
+    <dxo-filter-row [visible]="showFilterRow" [applyFilter]="currentFilter"></dxo-filter-row>
+    <dxo-header-filter [visible]="showHeaderFilter"></dxo-header-filter>
+
+    <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
+
+    <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+
+    <dxo-grouping [contextMenuEnabled]="true"></dxo-grouping>
+    <dxo-group-panel [visible]="true" emptyPanelText="Kéo tiêu đề cột vào đây để nhóm theo cột đó"></dxo-group-panel>
+
+    <div *dxTemplate="let info of 'titleHeaderTemplate'">
+        <p style="color: white;font-weight: 500;font-size: 15px;">{{info.column.caption}}</p>
+    </div>
+
+    <dxo-summary>
+        <dxi-group-item *ngFor="let row of genRowTableDetailSummary" [customizeText]="formatDecimal" column="{{row.columN_NAME}}" summaryType="{{row.summaryType_GROUP}}" valueFormat="{{row.valueFormat?row.valueFormat:'currency'}}" displayFormat="{0}" [showInGroupFooter]="row.showInGroupFooter_GROUP"
+            [alignByColumn]="row.alignByColumn_GROUP"></dxi-group-item>
+        <dxi-total-item *ngFor="let row of genRowTableDetailTotal" [customizeText]="formatDecimal" column="{{row.columN_NAME}}" summaryType="{{row.summaryType_GROUP}}" valueFormat="{{row.valueFormat?row.valueFormat:'currency'}}" displayFormat="{0}"></dxi-total-item>
+        <dxi-total-item column="OrderNumber" summaryType="count"></dxi-total-item>
+        <dxi-total-item column="OrderDate" summaryType="min" [customizeText]="customizeDate"></dxi-total-item>
+        <dxi-total-item column="SaleAmount" summaryType="sum" valueFormat="currency"></dxi-total-item>
+    </dxo-summary>
+
+    <dxo-editing *ngIf="editing == true" mode="form" [allowUpdating]="true" [allowAdding]="true" [allowDeleting]="true">
+    </dxo-editing>
+    <dxo-toolbar>
+        <dxi-item *ngIf="showFilterRow" location="before">
+            <div *dxTemplate>
+                <dx-button style="margin-right: 5px;" [text]="'OK'" width="136" stylingMode="outlined" type="default" (onClick)="onClickBtnOK()">
+                </dx-button>
+                <dx-button [text]="'Cancel'" width="136" stylingMode="outlined" type="danger" (onClick)="onClickBtnCancel()">
+                </dx-button>
+            </div>
+        </dxi-item>
+        <dxi-item location="after">
+            <div *dxTemplate>
+                <dx-button icon="refresh">
+                </dx-button>
+                <dx-button icon="export" [visible]="true" [disabled]="false" (click)="btnExportClick()">
+                </dx-button>
+            </div>
+        </dxi-item>
+        <dxi-item *ngIf="showFilterRow == false" name="columnChooserButton"></dxi-item>
+        <dxi-item *ngIf="showFilterRow == false" name="searchPanel"></dxi-item>
+        <dxi-item *ngIf="showFilterRow == false" name="addRowButton"></dxi-item>
+        <dxi-item *ngIf="showFilterRow == false" name="applyFilterButton"></dxi-item>
+        <dxi-item *ngIf="showFilterRow == false" name="revertButton"></dxi-item>
+        <dxi-item *ngIf="showFilterRow == false" name="saveButton"></dxi-item>
+        <dxi-item *ngIf="showFilterRow == false" name="exportButton"></dxi-item>
+        <dxi-item *ngIf="showFilterRow == false" name="groupPanel"></dxi-item>
+    </dxo-toolbar>
+    <!-- <dxo-export [enabled]="true" [formats]="['xlsx']" [allowExportSelectedData]="true"></dxo-export> -->
+    <!-- <dxo-export [enabled]="true" [formats]="['pdf']" [allowExportSelectedData]="true"></dxo-export> -->
+</dx-data-grid>
+<dx-popup [width]="450" [height]="350" [showTitle]="true" title="{{translate('Thông số xuất khẩu','Export parameters')}}" [dragEnabled]="false" [showCloseButton]="true" container=".dx-viewport" [(visible)]="popupVisible">
+    <div *dxTemplate="let data of 'content'">
+        <div class="dx-field">
+            <dx-select-box [dataSource]="dataSourceTemplate" [(selectedItem)]="selectedItem" [value]="selectedItem.code" showClearButton="true" displayExpr="name" valueExpr="code" label="{{translate('Mẫu','Template')}}" [stylingMode]="stylingMode" [labelMode]="labelMode">
+                <div *dxTemplate="let data of 'dropDownButton'">
+                    <i class="dx-icon dx-icon-{{data.report_icon}}"></i>
+                    <div *ngIf="!selectedItem" class="dx-dropdowneditor-icon"></div>
+                </div>
+                <div *dxTemplate="let data of 'item'" class="custom-item">
+                    <div class="product-name"> <i class="dx-icon dx-icon-{{data.report_icon}}"></i>{{ data.name }}</div>
+                </div>
+            </dx-select-box>
+        </div>
+        <div class="dx-field">
+            <dx-select-box [dataSource]="listTypeReport" [(selectedItem)]="selectedTypeItem" [value]="1" showClearButton="true" displayExpr="Name" valueExpr="ID" label="{{translate('Loại','Type')}}" [stylingMode]="stylingMode" [labelMode]="labelMode">
+            </dx-select-box>
+        </div>
+        <div class="dx-field">
+            <div class="row">
+                <div class="col-6" style="text-align: center;">
+                    <a href="javascript:;" (click)="onEditReport()"><i class="dx-icon dx-icon-preferences"></i>{{translate('Tùy chỉnh','Setup')}}</a>
+                </div>
+                <div class="col-6" style="text-align: center;">
+                    <a href="javascript:;" (click)="onExporting()"><i class="dx-icon dx-icon-download"></i>{{translate('Xuất khẩu','Export')}}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</dx-popup>
+<dx-popup [width]="500" [height]="450" [showTitle]="true" title="{{translate('Tùy chỉnh thông số xuất khẩu','Setup export parameters')}}" [dragEnabled]="false" [showCloseButton]="true" container=".dx-viewport" [(visible)]="popupSetupVisible">
+    <!-- <dxi-toolbar-item widget="dxButton" toolbar="bottom" location="before" [options]="saveButtonOptions">
+    </dxi-toolbar-item> -->
+    <div *dxTemplate="let data of 'content'">
+        <div class="row">
+            <div class="col-12">
+                <a href="javascript:;" *ngIf="rowReportSelected.code" (click)="btnPopupSetupReportClick()"><i class="dx-icon dx-icon-edit"></i>
+                {{translate('Sửa','Edit')}}</a>
+            </div>
+        </div>
+        <div id="data-grid-demo">
+            <dx-data-grid id="gridContainer" [dataSource]="dataSourceTemplate" (onSelectionChanged)="onSelectRowReport($event)" keyExpr="code" [showBorders]="true">
+                <dxo-paging [enabled]="false"></dxo-paging>
+                <dxo-selection mode="single"></dxo-selection>
+                <!-- <dxo-editing mode="popup" [allowUpdating]="true" [allowAdding]="false" [allowDeleting]="false">
+                </dxo-editing> -->
+                <div *dxTemplate="let info of 'titleHeaderTemplate'">
+                    <p style="color: white;font-weight: 500;font-size: 15px;">{{info.column.caption}}</p>
+                </div>
+
+                <dxi-column headerCellTemplate="titleHeaderTemplate" dataField="name" caption="{{translate('Tên','Name')}}"></dxi-column>
+                <dxi-column headerCellTemplate="titleHeaderTemplate" dataField="is_default" caption="{{translate('Mặc định','Default')}}" [width]="70"></dxi-column>
+                <dxi-column headerCellTemplate="titleHeaderTemplate" dataField="default_version" caption="{{translate('Phiên bản','Version')}}" [width]="70"></dxi-column>
+            </dx-data-grid>
+        </div>
+    </div>
+</dx-popup>
+<dx-popup [width]="'70%'" [height]="'70%'" [showTitle]="true" title="{{rowReportSelected.name}}" [dragEnabled]="false" [showCloseButton]="true" container=".dx-viewport" [(visible)]="popupSetupReportVisible">
+    <div *dxTemplate="let data of 'content'">
+        <div class="row">
+            <div class="col-12">
+                <dx-button stylingMode="contained" style="float: right;" text="{{translate('Lưu','Save')}}" icon="save" type="default" [width]="120" (onClick)="saveReportDetail($event)">
+                </dx-button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <div class="dx-field dx-field-report">
+                    <dx-switch [value]="rowReportSelected.sYS_Report_Infomation_Details[0].is_co_name" (onValueChanged)="onChangeReportDetail($event,'is_co_name')">
+                    </dx-switch>
+                    <span class="title">{{translate('Tên công ty','Company name')}}</span>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="dx-field dx-field-report">
+                    <dx-switch [value]="rowReportSelected.sYS_Report_Infomation_Details[0].is_co_address" (onValueChanged)="onChangeReportDetail($event,'is_co_address')">
+                    </dx-switch>
+                    <span class="title">{{translate('Địa chỉ công ty','Company address')}}</span>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="dx-field dx-field-report">
+                    <dx-switch [value]="rowReportSelected.sYS_Report_Infomation_Details[0].is_co_tax" (onValueChanged)="onChangeReportDetail($event,'is_co_tax')">
+                    </dx-switch>
+                    <span class="title">{{translate('Tax công ty','Company tax')}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <div class="dx-field dx-field-report">
+                    <dx-switch [value]="rowReportSelected.sYS_Report_Infomation_Details[0].is_co_phone" (onValueChanged)="onChangeReportDetail($event,'is_co_phone')">
+                    </dx-switch>
+                    <span class="title">{{translate('Phone công ty','Company phone')}}</span>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="dx-field dx-field-report">
+                    <dx-switch [value]="rowReportSelected.sYS_Report_Infomation_Details[0].is_co_tel" (onValueChanged)="onChangeReportDetail($event,'is_co_tel')">
+                    </dx-switch>
+                    <span class="title">{{translate('Tel công ty','Company address')}}</span>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="dx-field dx-field-report">
+                    <dx-switch [value]="rowReportSelected.sYS_Report_Infomation_Details[0].is_co_hotline" (onValueChanged)="onChangeReportDetail($event,'is_co_hotline')">
+                    </dx-switch>
+                    <span class="title">{{translate('Hotline công ty','Company hotline')}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <div class="dx-field dx-field-report">
+                    <dx-switch [value]="rowReportSelected.sYS_Report_Infomation_Details[0].is_qrcode" (onValueChanged)="onChangeReportDetail($event,'is_qrcode')">
+                    </dx-switch>
+                    <span class="title">{{translate('QRcode','QRCode')}}</span>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="dx-field dx-field-report">
+                    <dx-switch [value]="rowReportSelected.sYS_Report_Infomation_Details[0].is_title" (onValueChanged)="onChangeReportDetail($event,'is_title')">
+                    </dx-switch>
+                    <span class="title"> {{translate('Tiêu đề','Title')}}</span>
+                </div>
+            </div>
+            <div class="col-12"></div>
+            <div class="col-4">
+                <div class="dx-field dx-field-report">
+                    <dx-switch [value]="rowReportSelected.sYS_Report_Infomation_Details[0].is_title_footer" (onValueChanged)="onChangeReportDetail($event,'is_title_footer')">
+                    </dx-switch>
+                    <span class="title"> {{translate('Tiêu đề footer','Footer title')}}</span>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="dx-field dx-field-report">
+                    <dx-switch [value]="rowReportSelected.sYS_Report_Infomation_Details[0].is_no_footer" (onValueChanged)="onChangeReportDetail($event,'is_no_footer')">
+                    </dx-switch>
+                    <span class="title"> {{translate('Số hiệu footer','footer no title')}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3">
+                <div class="dx-field dx-field-report">
+                    <dx-select-box [disabled]="false" label="{{translate('Phiên bản','Version')}}" [dataSource]="listVersionReport" displayExpr="version" valueExpr="code" [value]="rowReportSelected.sYS_Report_Infomation_Details[0].version_code" [showClearButton]="false"
+                        (onValueChanged)="onChangeReportDetail($event,'version_code')" [stylingMode]="'underlined'" [labelMode]="labelMode">
+                    </dx-select-box>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="dx-field dx-field-report">
+                    <dx-switch [value]="rowReportSelected.is_default" (onValueChanged)="onChangeReportMaster($event,'is_default')">
+                    </dx-switch>
+                    <span class="title"> {{translate('Mặc định','Default')}}</span>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="dx-field dx-field-report">
+                    <span class="title">{{translate('Màu chữ tiêu đề footer','Text color footer title')}}</span>
+                    <dx-text-box placeholder="{{translate('Màu chữ tiêu đề footer','Text color footer title')}}" [value]="rowReportSelected.color_title_footer" (onValueChanged)="onChangeReportDetail($event,'color_title_footer')"></dx-text-box>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="dx-field dx-field-report">
+                    <span class="title">{{translate('Màu chữ số hiệu footer','Text color footer no')}}</span>
+                    <dx-text-box placeholder="{{translate('Màu chữ số hiệu footer','Text color footer no')}}" [value]="rowReportSelected.color_no_footer" (onValueChanged)="onChangeReportDetail($event,'color_no_footer')"></dx-text-box>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="widget-container">
+                    <dx-list [searchEnabled]="true" [dataSource]="listEmployee" keyExpr="employee_code">
+                        <dxo-item-dragging group="tasks" [data]="listEmployee" [allowReordering]="true" [onDragStart]="onDragStart" [onAdd]="onAdd" [onRemove]="onRemove" [onReorder]="onReorder">
+                        </dxo-item-dragging>
+                    </dx-list>
+                    <dx-list [dataSource]="listSign" (onItemClick)="onDisposing($event)" keyExpr="employee_code">
+                        <dxo-item-dragging group="tasks" [data]="listSign" [allowReordering]="true" [onDragStart]="onDragStart" [onAdd]="onAdd" [onRemove]="onRemove" [onReorder]="onReorder">
+                        </dxo-item-dragging>
+                    </dx-list>
+                    <div class="row" *ngIf="signItemReportSelected.employee_code">
+                        <span><i class="dx-icon dx-icon-edit"></i>
+                            {{translate('Cấu hình chữ ký','Congig sign')}}({{signItemReportSelected.text}})</span>
+                        <div class="col-6">
+                            <div class="col-12">
+                                <div class="dx-field dx-field-report">
+                                    <dx-switch [value]="signItemReportSelected.is_role_name" (onValueChanged)="onChangeSignReportDetail($event,'is_role_name')">
+                                    </dx-switch>
+                                    <span class="title"> {{translate('Chức vụ','Title name')}}</span>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="dx-field dx-field-report">
+                                    <dx-switch [value]="signItemReportSelected.is_sub_role_name" (onValueChanged)="onChangeSignReportDetail($event,'is_sub_role_name')">
+                                    </dx-switch>
+                                    <span class="title"> {{translate('Hành động','Action')}}</span>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="dx-field dx-field-report">
+                                    <dx-switch [value]="signItemReportSelected.is_show_default_sign" (onValueChanged)="onChangeSignReportDetail($event,'is_show_default_sign')">
+                                    </dx-switch>
+                                    <span class="title"> {{translate('Chữ ký','Sign')}}</span>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="dx-field dx-field-report">
+                                    <dx-switch [value]="signItemReportSelected.is_show_date_sign" (onValueChanged)="onChangeSignReportDetail($event,'is_show_date_sign')">
+                                    </dx-switch>
+                                    <span class="title"> {{translate('Ngày ký','Sign date')}}</span>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="dx-field dx-field-report">
+                                    <dx-switch [value]="signItemReportSelected.is_show_sign_fullname" (onValueChanged)="onChangeSignReportDetail($event,'is_show_sign_fullname')">
+                                    </dx-switch>
+                                    <span class="title"> {{translate('Họ tên','Fullname')}}</span>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="dx-field dx-field-report">
+                                    <dx-select-box [dataSource]="listPositionSign" (onValueChanged)="onChangeSignReportDetail($event,'position')" [value]="signItemReportSelected.position" showClearButton="true" displayExpr="Name" valueExpr="ID" label="{{translate('Vị trí','Position')}}"
+                                        [stylingMode]="stylingMode" [labelMode]="labelMode">
+                                    </dx-select-box>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="card" style="width: 11rem;">
+                                <div class="card-body">
+                                    <h5 class="card-title" style="text-align: center;">{{signItemReportSelected.is_role_name?signItemReportSelected.employee_info.role_name:''}}</h5>
+                                    <dx-text-box [value]="signItemReportSelected.sub_role_name" (onValueChanged)="onChangeSignReportDetail($event,'sub_role_name')"></dx-text-box>
+                                </div>
+                                <img *ngIf="signItemReportSelected.is_show_default_sign" class="card-img-top" src="{{signItemReportSelected.is_show_default_sign?signItemReportSelected.employee_info.default_sign:''}}" alt="Card image cap">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item" style="text-align: center;">{{signItemReportSelected.is_show_date_sign?'DD/MM/YYYY':''}}</li>
+                                    <li class="list-group-item" style="text-align: center;">{{signItemReportSelected.is_show_sign_fullname?signItemReportSelected.employee_info.full_name:''}}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</dx-popup>

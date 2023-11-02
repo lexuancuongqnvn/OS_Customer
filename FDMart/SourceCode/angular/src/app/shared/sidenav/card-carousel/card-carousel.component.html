@@ -1,0 +1,29 @@
+<div *ngIf="className !== '' && DataMenus.length > 0" class="card-carousel {{className}}">
+    <div *ngFor="let app of DataMenus;let i=index" class="card" id="{{(i+1)}}" title="{{app.name}}" module="{{app.module}}">
+        <div class="image-container" style="background-image: url('{{app.icoN_BASE64}}');background-repeat: no-repeat;
+        background-size: 8em auto;"></div>
+        <p>{{app.name}}</p>
+    </div>
+    <!-- <div class="card" id="2">
+        <div class="image-container"></div>
+        <p>2 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente, explicabo!</p>
+    </div>
+    <div class="card" id="3">
+        <div class="image-container"></div>
+        <p>3 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente, explicabo!</p>
+    </div>
+    <div class="card" id="4">
+        <div class="image-container"></div>
+        <p>4 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente, explicabo!</p>
+    </div>
+    <div class="card" id="5">
+        <div class="image-container"></div>
+        <p>5 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente, explicabo!</p>
+    </div> -->
+</div>
+<div *ngIf="className !== '' && DataMenus.length == 0" class="card-carousel {{className}}">
+    <div class="card" id="1">
+        <div class="image-container"></div>
+        <p>1 Không có dữ liệu/ No data</p>
+    </div>
+</div>

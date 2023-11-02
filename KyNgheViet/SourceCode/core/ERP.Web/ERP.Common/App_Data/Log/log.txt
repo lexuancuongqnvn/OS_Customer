@@ -1,0 +1,2 @@
+﻿E:\Cuong\SourceCode\SourceCode_v1_0_0_15072021\Core_2_2\Core_2_2\App_Data\Log\log.txt
+E:\Cuong\SourceCode\SourceCode_v1_0_0_15072021\Core_2_2\Common\App_Data\Log

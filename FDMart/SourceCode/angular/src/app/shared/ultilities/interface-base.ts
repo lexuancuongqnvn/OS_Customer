@@ -1,0 +1,12 @@
+import { Injectable } from "@angular/core";
+import { Tb_TestTheme_ENTITY, Tb_TestTheme_Sub1_ENTITY, Tb_TestTheme_Sub2_ENTITY, Tb_TestTheme_Sub3_ENTITY } from "../service-proxies/api-shared";
+
+@Injectable()
+export class InterfaceModels {
+    ListItem: any = {
+        tb_TestTheme: Tb_TestTheme_ENTITY,
+        tb_TestTheme_Sub1: Tb_TestTheme_Sub1_ENTITY,
+        tb_TestTheme_Sub2: Tb_TestTheme_Sub2_ENTITY,
+        tb_TestTheme_Sub3: Tb_TestTheme_Sub3_ENTITY
+    }
+}

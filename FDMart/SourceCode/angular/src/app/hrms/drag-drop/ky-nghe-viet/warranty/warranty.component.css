@@ -1,0 +1,161 @@
+.warranty-container {
+    width: 220px;
+    max-width: 100%;
+    margin: 0 25px 25px 0;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.warranty-list {
+    border: solid 1px #ccc;
+    min-height: 60px;
+    background: white;
+    border-radius: 4px;
+    overflow: hidden;
+    display: block;
+}
+
+.warranty-box {
+    padding: 2px 2px;
+    border-bottom: solid 1px #ccc;
+    color: rgba(0, 0, 0, 0.87);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    cursor: move;
+    background: white;
+    font-size: 14px;
+}
+
+.cdk-drag-preview {
+    box-sizing: border-box;
+    border-radius: 4px;
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-placeholder {
+    opacity: 0;
+}
+
+.cdk-drag-animating {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.warranty-box:last-child {
+    border: none;
+}
+
+.warranty-list.cdk-drop-list-dragging .warranty-box:not(.cdk-drag-placeholder) {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.justify-content-between {
+    font-weight: 500;
+    line-height: 0.9;
+}
+
+.justify-content-between.inprogress {
+    border-bottom: 1px solid #ff9800cf;
+    background: #ff9800cf;
+}
+
+.justify-content-between.done {
+    border-bottom: 1px solid #4caf50;
+    background: #4caf50;
+}
+
+.small-footer {
+    display: flex;
+}
+
+.a-branch {
+    float: right;
+}
+
+.mat-stepper-vertical {
+    margin-top: 8px;
+}
+
+.mat-form-field {
+    margin-top: 16px;
+}
+
+.mat-step:hover,
+.mat-step.active {}
+
+.h3-action {
+    width: 100%;
+    text-align: center;
+    font-weight: 700;
+}
+
+.h5-name {
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: 15px;
+}
+
+.div-text-time {
+    text-align: right;
+}
+
+.span-icon-edit-executor {
+    display: block;
+    position: absolute;
+    right: 0;
+}
+
+.span-icon-edit-serial {
+    display: none;
+}
+
+
+/* .b-executor-name:hover+.span-icon-edit-executor {
+    display: block;
+    position: absolute;
+    right: 0;
+} */
+
+.a-serial:hover+.span-icon-edit-serial {
+    display: block !important;
+    /* position: absolute;
+    right: 0; */
+}
+
+.div-topic-name {
+    width: 220px;
+}
+
+.div-topic-name:hover {
+    width: 350px;
+}
+
+.div-group-content {
+    color: green;
+    font-weight: 700;
+    border-bottom: 1px solid;
+}
+
+.pd-0 {
+    padding: 0;
+}
+
+.mg-0 {
+    margin: 0;
+}
+
+.span-icon-edit-tag {
+    display: block;
+    position: absolute;
+    right: 0;
+}
+
+b {
+    font-weight: 700 !important;
+}
+
+div#collapseTwo {
+    border-bottom: 1px solid green;
+}

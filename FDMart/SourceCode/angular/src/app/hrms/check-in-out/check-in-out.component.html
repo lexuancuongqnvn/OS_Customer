@@ -1,0 +1,97 @@
+<div style="text-align:center" *ngIf="deviceInfo.deviceType == 'mobile'">
+    <div class="center-content">
+        <img width="256" style="display: none;" id="face1" src="" class="margin" />
+        <div id="selectList1"></div>
+    </div>
+    <div class="center-content">
+        <img width="256" style="display: none;" id="face2" src="" class="margin" />
+        <div id="selectList1"></div>
+    </div>
+    <div class="croper"></div>
+    <div class="checkin-out-face" *ngIf="!isSettingFace">
+        <h5 style="color: red;" *ngIf="!showbtncheck">Bạn đang cách vị trí chấm công :{{distance}}m</h5>
+        <br /> <small *ngIf="!showbtncheck"> <i>Phạm vi chấm công tối đa {{maxLength}}m</i></small>
+        <small *ngIf="isMission"> <i [innerHTML]="missionaddress"></i></small>
+        <div class="snapshot " *ngIf="webcamImage ">
+            <div *ngIf="showWebcam ">
+                <h5 *ngIf="status_checkin > 0" style="color: rgb(255, 115, 0); ">
+                    {{message}}
+                </h5>
+                <!-- <a href="/check-in-out">Thử lại</a> -->
+            </div>
+            <h5 *ngIf="status_checkin == -1 && !showWebcam" style="color: rgb(255, 0, 0); ">
+                {{message}}
+                <a href="/check-in-out">Thử lại</a>
+            </h5>
+            <h5 *ngIf="!showWebcam && status_checkin == 0" style="color: rgb(0, 124, 21); ">
+                {{message}}
+            </h5>
+            <!-- <img *ngIf="!showWebcam " [src]="webcamImage.imageAsDataUrl " /> -->
+        </div>
+
+        <div>
+            <br />
+            <div class="div-checkin">
+                <div id="navi">
+                    <webcam [width]="256" [height]="256" [trigger]="triggerObservable" (imageCapture)="handleImage($event)" *ngIf="showWebcam && showbtncheck" [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable" [videoOptions]="videoOptions" [imageQuality]="1"
+                        (cameraSwitched)="cameraWasSwitched($event)" (initError)="handleInitError($event)"></webcam>
+                </div>
+                <div id="infoi">
+                    <img *ngIf="!showWebcam" [src]="gif_checkin" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-1"></div>
+                <div class="col-10">
+                    <div class="form-group">
+                        <label for="status" class="label-title" style="color: rgb(0, 0, 0);">Chi nhánh</label>
+                        <input-selectpicker-v2 #SelectBranchPicker [value]="employeeModel.branch_code" (ValueOutput)="onSelect($event,'branch_code')" [multiple]="false" [list]="listBranch" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'branch_code'" [Class]="'selectpicker-filter-working'"
+                            [title]="'Trạng thái'"></input-selectpicker-v2>
+                    </div>
+                </div>
+                <div class="col-1"></div>
+            </div>
+            <div class="row">
+                <div class="col-1"></div>
+                <div class="col-10">
+                    <div class="form-group">
+                        <label for="status" class="label-title" style="color: rgb(0, 0, 0);">Ca làm việc</label>
+                        <input-selectpicker-v2 #SelectWSPicker [value]="employeeModel.work_shift_code" (ValueOutput)="onSelectWS($event,'work_shift_code')" [multiple]="false" [list]="listWorkShift" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'work_shift_code'"
+                            [Class]="'selectpicker-filter-working'" [title]="'Trạng thái'"></input-selectpicker-v2>
+                    </div>
+                </div>
+                <div class="col-1"></div>
+            </div>
+            <br />
+            <button class="btn actionBtn" *ngIf="actionBtn && showbtncheck && btntitle != ''" (click)="triggerSnapshot();">{{btntitle}}</button>
+            <button type="button" class="btn btn-warning actionBtn" *ngIf="status_checkin == 1">{{message_checkin}}</button>
+            <!-- <button type="button" class="btn btn-success actionBtn" *ngIf="status_checkin == 0">{{message_checkin}}</button> -->
+            <div class="row" style="padding-top: 15px;">
+                <a href="javascript:;" style="width: 100%;text-align: center;position: absolute;" *ngIf="!isSettingFace" (click)="onClickSetting(true)">Thiết lập lại khuôn mặt</a>
+            </div>
+
+        </div>
+    </div>
+    <div class="setting-face" *ngIf="isSettingFace">
+        <br/>
+        <div id="navi" style="padding-top: 58px;">
+            <div *ngIf="!isShowTraining">
+                <webcam [width]="256" [height]="256" [trigger]="triggerObservable" (imageCapture)="handleImage($event)" [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable" [videoOptions]="videoOptions" [imageQuality]="1" (cameraSwitched)="cameraWasSwitched($event)"
+                    (initError)="handleInitError($event)"></webcam>
+            </div>
+            <button class="btn actionBtn" *ngIf="!isShowTraining" style="width:70%;padding: 5px;" (click)="triggerSnapshot();">Chụp ảnh {{currentFace}}</button>
+            <button class="btn actionBtn" *ngIf="isShowTraining" (click)="SaveFaceTraing()" style="width:70%;padding: 5px;">Hoàn tất</button>
+            <div class="div-img-setting">
+                <img width="128" class="img-training {{currentFace=='left'?'active':''}}" [src]="InputModel.hRM_Employee_Check_In_Out_Image_Trainings.left" (click)="setCurrentFace('left')">
+                <img width="128" class="img-training {{currentFace=='top'?'active':''}}" [src]="InputModel.hRM_Employee_Check_In_Out_Image_Trainings.top" (click)="setCurrentFace('top')">
+                <img width="128" class="img-training {{currentFace=='right'?'active':''}}" [src]="InputModel.hRM_Employee_Check_In_Out_Image_Trainings.right" (click)="setCurrentFace('right')">
+                <img width="128" class="img-training {{currentFace=='bottom'?'active':''}}" [src]="InputModel.hRM_Employee_Check_In_Out_Image_Trainings.bottom" (click)="setCurrentFace('bottom')">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="text-align:center" *ngIf="deviceInfo.deviceType != 'mobile'">
+    <h3>Truy cập điện thoại</h3>
+    <img src="../../../assets/img/warning-online-on-mobile.png">
+</div>

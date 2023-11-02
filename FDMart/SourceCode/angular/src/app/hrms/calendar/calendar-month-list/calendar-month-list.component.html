@@ -1,0 +1,33 @@
+<div class="card-container k-form-edit">
+    <app-toolbar #toolbar [tableName]="tbName" [CurrenFrom]="CurrenFrom"></app-toolbar>
+    <!-- <div class="example-wrapper toolbar">
+        <kendo-buttongroup look="flat">
+            <button kendoButton (click)="onSave()" class="btn-toolbar" icon="save" look="flat">
+                Lưu
+            </button>
+            <button kendoButton (click)="onDelete()" class="btn-toolbar" icon="delete" look="flat">
+                Xóa
+            </button>
+            <button kendoButton (click)="onSearch()" class="btn-toolbar" icon="search" look="flat">
+                Tìm kiếm
+            </button>
+        </kendo-buttongroup>
+    </div> -->
+    <!-- <div class="example-wrapper form-group">
+        <div class="example-wrapper">
+            <div class="">
+                <div class="form-group">
+                    <div class="row">
+                        Begin filter
+
+                        end filter
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <div class="card-component form-group">
+        <jqgrid-list #gridWorkSpace (ValueOutput)="selectRow($event)" [colModel]="col_model" [table]="tbName" [title]="'Danh sách ca trực nhân viên'"></jqgrid-list>
+    </div>
+</div>
+<dialog-acction #dialogDelete [content]="'Bạn có chắc chắn muốn xóa?'" [title]="'Vui lòng xác nhận'" (confirmOutput)="confirmDelete()"></dialog-acction>

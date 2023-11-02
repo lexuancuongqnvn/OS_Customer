@@ -1,0 +1,120 @@
+<div class="card-container k-form-edit">
+    <app-toolbar #toolbar [tableName]="tbName" [CurrenFrom]="CurrenFrom"></app-toolbar>
+    <div class="example-wrapper form-group">
+        <div class="example-wrapper">
+            <div class="">
+                <div class="form-group">
+                    <div class="row div-filter">
+                        <!-- Begin filter -->
+                        <!-- Tên -->
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="sku" class="">Mã</label>
+                                <input type="text" #sku="ngModel" name="sku" [(ngModel)]="filterInput.sku" [value]="filterInput.sku" class="form-control" id="sku">
+                            </div>
+                        </div>
+                        <!-- end filter -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-component form-group">
+        <jqgrid-list #gridMenuList (ValueOutput)="selectRow($event);" [colModel]="col_model" [table]="tbName" [title]="'Danh sách nhóm sản phẩm'"></jqgrid-list>
+    </div>
+    <dialog-acction #dialogDelete [content]="'Bạn có chắc chắn muốn xóa?'" [title]="'Vui lòng xác nhận'" (confirmOutput)="confirmDelete()"></dialog-acction>
+</div>
+<!-- Edit -->
+<sidenav-add-edit #sidenavAddEdit [title]="'Chỉnh sửa thông tin menu'" *ngIf="isEdit" class="form-sidenav-edit">
+    <form method="#" action="#" style="padding: 20px;">
+        <app-toolbar #toolbarEdit [tableName]="tbName" [CurrenFrom]="getCurrenFrom"></app-toolbar>
+        <div class="row">
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="sku2" class="bmd-label-floating title-input">Mã SKU</label>
+                    <input [disabled]="true" type="text" #sku2="ngModel" name="sku2" [(ngModel)]="InputModel.sku" [value]="InputModel.sku" class="form-control" id="sku2">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="symbol_brand" class="bmd-label-floating title-input">Ký hiệu thương hiệu</label>
+                    <input type="text" [maxlength]="4" #symbol_brand="ngModel" name="symbol_brand" [(ngModel)]="InputModel.symbol_brand" [value]="InputModel.symbol_brand" class="form-control" id="symbol_brand">
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="notes_brand" class="bmd-label-floating title-input">Thương hiệu</label>
+                    <input type="text" #notes_brand="ngModel" (keyup)="onKeyup($event,'notes_brand')" name="notes_brand" [(ngModel)]="InputModel.notes_brand" [value]="InputModel.notes_brand" class="form-control" id="notes_brand">
+                </div>
+            </div>
+            <div class="col-12"></div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="symbol_description" class="bmd-label-floating title-input">Ký hiệu diễn giải sản phẩm</label>
+                    <input type="text" [maxlength]="4" #symbol_description="ngModel" name="symbol_description" [(ngModel)]="InputModel.symbol_description" [value]="InputModel.symbol_description" class="form-control" id="symbol_description">
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="notes_description" class="bmd-label-floating title-input">Diễn giải sản phẩm</label>
+                    <input type="text" #notes_description="ngModel" (keyup)="onKeyup($event,'notes_description')" name="notes_description" [(ngModel)]="InputModel.notes_description" [value]="InputModel.notes_description" class="form-control" id="notes_description">
+                </div>
+            </div>
+            <div class="col-12"></div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="symbol_time" class="bmd-label-floating title-input">Ký hiệu ngày nhập</label>
+                    <input type="text" [maxlength]="4" #symbol_time="ngModel" name="symbol_time" [(ngModel)]="InputModel.symbol_time" [value]="InputModel.name" class="form-control" id="symbol_time">
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="notes_time" class="bmd-label-floating title-input">Chọn ngày nhập</label>
+                    <input-datepicker [ColumnName]="'notes_time'" [value]="filterInput.notes_time" name="notes_time" (ValueOutput)="onSelect($event,'notes_time')"></input-datepicker>
+                </div>
+            </div>
+            <div class="col-12"></div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="symbol_warehouse" class="bmd-label-floating title-input">Ký hiệu  kho</label>
+                    <input type="text" [maxlength]="4" #symbol_warehouse="ngModel" name="symbol_warehouse" [(ngModel)]="InputModel.symbol_warehouse" [value]="InputModel.symbol_warehouse" class="form-control" id="symbol_warehouse">
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="notes_warehouse" class="bmd-label-floating title-input">Chọn kho</label>
+                    <input-selectpicker-v2 type="text" (ValueOutput)="onSelect($event,'notes_warehouse')" #SelectWarehpusetPicker [value]="InputModel.notes_warehouse" [list]="listWarehouse" [value]="InputModel.notes_warehouse" [FieldValue]="'code'" [FieldDisplay]="'name'"
+                        [ColumnName]="'notes_warehouse'"></input-selectpicker-v2>
+                </div>
+            </div>
+            <div class="col-12"></div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="symbol_size" [maxlength]="4" class="bmd-label-floating title-input">Ký hiệu kích thước</label>
+                    <input type="text" #symbol_size="ngModel" name="symbol_size" [(ngModel)]="InputModel.symbol_size" [value]="InputModel.symbol_size" class="form-control" id="symbol_size">
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="notes_size" class="">Size <a href="javascript:;" (click)="AddSize()">Thêm (+)</a></label><br>
+                    <input-selectpicker-v2 #SelectSizeCodePicker (ValueOutput)="onSelect($event,'notes_size')" [value]="InputModel.notes_size" [multiple]="false" [list]="listSize" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'notes_size'"></input-selectpicker-v2>
+                </div>
+            </div>
+            <div class="col-12"></div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="symbol_color" [maxlength]="4" class="bmd-label-floating title-input">Ký hiệu màu</label>
+                    <input type="text" #name="ngModel" name="symbol_color" [(ngModel)]="InputModel.symbol_color" [value]="InputModel.symbol_color" class="form-control" id="symbol_color">
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="notes_color" class="">Màu <a href="javascript:;" (click)="AddColor()">Thêm (+)</a></label><br>
+                    <input-selectpicker-v2 #SelectColortPicker (ValueOutput)="onSelect($event,'notes_color')" [value]="InputModel.notes_color" [multiple]="false" [list]="listColor" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'notes_color'"></input-selectpicker-v2>
+                </div>
+            </div>
+        </div>
+    </form>
+</sidenav-add-edit>
