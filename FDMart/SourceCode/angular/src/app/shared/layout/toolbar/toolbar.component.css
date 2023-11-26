@@ -49,3 +49,9 @@ div#toolsPanel {
     padding: 4px;
     margin: 4px;
 }
+
+@media only screen and (max-width: 600px) {
+    .toolbar.form-30082023 {
+        width: 89% !important;
+    }
+}

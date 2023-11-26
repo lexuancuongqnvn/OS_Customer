@@ -170,6 +170,18 @@ export class LayoutComponentBase {
       
         return { startDate, endDate };
       }
+      hourUTC():number{
+    
+        // Current hour in UTC
+        const currentHourUTC = moment.utc().hour();
+        
+        // Current hour in local time zone
+        const currentHourLocal = moment().hour();
+        
+        // console.log('Current hour in UTC:', currentHourUTC);
+        // console.log('Current hour in local time zone:', currentHourLocal);
+        return currentHourLocal - currentHourUTC;
+      }
     public ClearValid(){
         $('.invalid').removeClass('invalid');
     }

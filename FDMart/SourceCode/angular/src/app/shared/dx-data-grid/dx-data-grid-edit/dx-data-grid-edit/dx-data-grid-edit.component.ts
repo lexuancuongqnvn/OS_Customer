@@ -45,6 +45,7 @@ export class DxDataGridEditComponent extends LayoutComponentBase implements OnIn
   @Input() tableName: string = '';
   @Input() type: string = null;
   @Input() isShowTitle: boolean = true;
+  @Input() showToolbar: boolean = true;
   @Input() onRefreshGrid: boolean = false;
   @Input() keyExpr: string = 'code';
   @Input() column_name: string = '';
@@ -578,8 +579,9 @@ export class DxDataGridEditComponent extends LayoutComponentBase implements OnIn
   cellTemplateDate11(container, options, e) {
     try {
       const noBreakSpace = '\u00A0';
-      let format = '';
-      const text = options.value && moment(options.value).format(format);
+      let format = 'HH:mm';
+      const text = options.value && moment(options.value._i).format(format);
+      // const text = options.value && moment(options.value).utc(true).format(format);
       container.textContent = text || noBreakSpace;
       container.title = text;
       container.style.textAlign = "right"

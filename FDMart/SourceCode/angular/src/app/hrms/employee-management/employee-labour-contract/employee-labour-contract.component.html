@@ -1,5 +1,5 @@
 <div class="card-container k-form-edit">
-    <app-toolbar #toolbar [tableName]="tbName" [CurrenFrom]="CurrenFrom"></app-toolbar>
+    <app-toolbar #toolbar [classInsert]="'form-30082023'" [tableName]="tbName" [CurrenFrom]="CurrenFrom"></app-toolbar>
     <div class="example-wrapper form-group">
         <div class="example-wrapper">
             <div class="">
@@ -34,7 +34,7 @@
 <!-- Edit -->
 <sidenav-add-edit #sidenavAddEdit *ngIf="isEdit" [tbName]="tbName" class="form-sidenav-edit">
     <form method="#" action="#" style="padding: 20px;" class="form-jqgrid-edit" [id]="'form-'+tbName">
-        <app-toolbar #toolbarEdit [tableName]="tbName" [CurrenFrom]="getCurrenFrom"></app-toolbar>
+        <app-toolbar #toolbarEdit [classInsert]="'form-30082023'" [tableName]="tbName" [CurrenFrom]="getCurrenFrom"></app-toolbar>
         <alert-message #alertMessage></alert-message>
         <div class="row" style="padding: 0 15px 0 15px;">
             <div class="col-2">

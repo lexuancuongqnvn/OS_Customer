@@ -1,5 +1,5 @@
 <div class="card-container k-form-edit">
-    <app-toolbar #toolbar [tableName]="tbName" [CurrenFrom]="CurrenFrom"></app-toolbar>
+    <app-toolbar #toolbar [classInsert]="'form-30082023'" [tableName]="tbName" [CurrenFrom]="CurrenFrom"></app-toolbar>
     <div class="example-wrapper form-group">
         <div class="example-wrapper">
             <div class="card-collapse">
@@ -47,7 +47,7 @@
 <!-- Edit -->
 <sidenav-add-edit #sidenavAddEdit *ngIf="isEdit" class="form-sidenav-edit">
     <form method="#" action="#" style="padding: 20px;">
-        <app-toolbar #toolbarEdit [tableName]="tbName" [CurrenFrom]="getCurrenFrom"></app-toolbar>
+        <app-toolbar #toolbarEdit [classInsert]="'form-30082023'" [tableName]="tbName" [CurrenFrom]="getCurrenFrom"></app-toolbar>
         <alert-message #alertMessage></alert-message>
         <div class="row" style="padding: 0 20px 20px 20px;display: flex;" *ngIf="!isShowRegulation">
             <!-- <div class="col-6 col-sm-5 col-md-4 col-lg-3 col-xl-3">

@@ -19,7 +19,7 @@
     <dxo-header-filter [visible]="true"></dxo-header-filter>
 
     <dxo-search-panel [visible]="true"></dxo-search-panel>
-    <dxo-editing mode="cell" [allowUpdating]="!isDisabled" [allowAdding]="!isDisabled">
+    <dxo-editing mode="cell" [allowUpdating]="!isDisabled" [allowAdding]="!isDisabled && showToolbar">
     </dxo-editing>
 
     <dxi-column *ngFor="let row of genRowTableDetail" [visible]="!row.iS_HIDDEN" [fixed]="row.iS_FIXED" dataField="{{row.columN_NAME}}" editCellTemplate="{{row.editortype+row.typE_ID+row.editoroptions.stt}}Template" [calculateFilterExpression]="calculateFilterExpression"
@@ -184,102 +184,102 @@
         <div *ngIf="row.typE_ID == 23">
             <div *ngIf="row.editoroptions.stt == 1">
                 <div *dxTemplate="let cellInfo of 'dxCheckBox231Template'">
-                    <dx-check-box (onValueChanged)="changeCheckBox23($event,cellInfo,row)" [value]="cellInfo.value"></dx-check-box>
+                    <dx-check-box [disabled]="isDisabled" (onValueChanged)="changeCheckBox23($event,cellInfo,row)" [value]="cellInfo.value"></dx-check-box>
                 </div>
             </div>
             <div *ngIf="row.editoroptions.stt == 2">
                 <div *dxTemplate="let cellInfo of 'dxCheckBox232Template'">
-                    <dx-check-box (onValueChanged)="changeCheckBox23($event,cellInfo,row)" [value]="cellInfo.value"></dx-check-box>
+                    <dx-check-box [disabled]="isDisabled" (onValueChanged)="changeCheckBox23($event,cellInfo,row)" [value]="cellInfo.value"></dx-check-box>
                 </div>
             </div>
             <div *ngIf="row.editoroptions.stt == 3">
                 <div *dxTemplate="let cellInfo of 'dxCheckBox233Template'">
-                    <dx-check-box (onValueChanged)="changeCheckBox23($event,cellInfo,row)" [value]="cellInfo.value"></dx-check-box>
+                    <dx-check-box [disabled]="isDisabled" (onValueChanged)="changeCheckBox23($event,cellInfo,row)" [value]="cellInfo.value"></dx-check-box>
                 </div>
             </div>
             <div *ngIf="row.editoroptions.stt == 4">
                 <div *dxTemplate="let cellInfo of 'dxCheckBox234Template'">
-                    <dx-check-box (onValueChanged)="changeCheckBox23($event,cellInfo,row)" [value]="cellInfo.value"></dx-check-box>
+                    <dx-check-box [disabled]="isDisabled" (onValueChanged)="changeCheckBox23($event,cellInfo,row)" [value]="cellInfo.value"></dx-check-box>
                 </div>
             </div>
             <div *ngIf="row.editoroptions.stt == 5">
                 <div *dxTemplate="let cellInfo of 'dxCheckBox235Template'">
-                    <dx-check-box (onValueChanged)="changeCheckBox23($event,cellInfo,row)" [value]="cellInfo.value"></dx-check-box>
+                    <dx-check-box [disabled]="isDisabled" (onValueChanged)="changeCheckBox23($event,cellInfo,row)" [value]="cellInfo.value"></dx-check-box>
                 </div>
             </div>
             <div *ngIf="row.editoroptions.stt == 6">
                 <div *dxTemplate="let cellInfo of 'dxCheckBox236Template'">
-                    <dx-check-box (onValueChanged)="changeCheckBox23($event,cellInfo,row)" [value]="cellInfo.value"></dx-check-box>
+                    <dx-check-box [disabled]="isDisabled" (onValueChanged)="changeCheckBox23($event,cellInfo,row)" [value]="cellInfo.value"></dx-check-box>
                 </div>
             </div>
             <div *ngIf="row.editoroptions.stt == 7">
                 <div *dxTemplate="let cellInfo of 'dxCheckBox237Template'">
-                    <dx-check-box (onValueChanged)="changeCheckBox23($event,cellInfo,row)" [value]="cellInfo.value"></dx-check-box>
+                    <dx-check-box [disabled]="isDisabled" (onValueChanged)="changeCheckBox23($event,cellInfo,row)" [value]="cellInfo.value"></dx-check-box>
                 </div>
             </div>
             <div *ngIf="row.editoroptions.stt == 8">
                 <div *dxTemplate="let cellInfo of 'dxCheckBox238Template'">
-                    <dx-check-box (onValueChanged)="changeCheckBox23($event,cellInfo,row)" [value]="cellInfo.value"></dx-check-box>
+                    <dx-check-box [disabled]="isDisabled" (onValueChanged)="changeCheckBox23($event,cellInfo,row)" [value]="cellInfo.value"></dx-check-box>
                 </div>
             </div>
             <div *ngIf="row.editoroptions.stt == 9">
                 <div *dxTemplate="let cellInfo of 'dxCheckBox239Template'">
-                    <dx-check-box (onValueChanged)="changeCheckBox23($event,cellInfo,row)" [value]="cellInfo.value"></dx-check-box>
+                    <dx-check-box [disabled]="isDisabled" (onValueChanged)="changeCheckBox23($event,cellInfo,row)" [value]="cellInfo.value"></dx-check-box>
                 </div>
             </div>
             <div *ngIf="row.editoroptions.stt == 10">
                 <div *dxTemplate="let cellInfo of 'dxCheckBox2310Template'">
-                    <dx-check-box (onValueChanged)="changeCheckBox23($event,cellInfo,row)" [value]="cellInfo.value"></dx-check-box>
+                    <dx-check-box [disabled]="isDisabled" (onValueChanged)="changeCheckBox23($event,cellInfo,row)" [value]="cellInfo.value"></dx-check-box>
                 </div>
             </div>
             <div *ngIf="row.editoroptions.stt == 11">
                 <div *dxTemplate="let cellInfo of 'dxCheckBox2311Template'">
-                    <dx-check-box (onValueChanged)="changeCheckBox23($event,cellInfo,row)" [value]="cellInfo.value"></dx-check-box>
+                    <dx-check-box [disabled]="isDisabled" (onValueChanged)="changeCheckBox23($event,cellInfo,row)" [value]="cellInfo.value"></dx-check-box>
                 </div>
             </div>
             <div *ngIf="row.editoroptions.stt == 12">
                 <div *dxTemplate="let cellInfo of 'dxCheckBox2312Template'">
-                    <dx-check-box (onValueChanged)="changeCheckBox23($event,cellInfo,row)" [value]="cellInfo.value"></dx-check-box>
+                    <dx-check-box [disabled]="isDisabled" (onValueChanged)="changeCheckBox23($event,cellInfo,row)" [value]="cellInfo.value"></dx-check-box>
                 </div>
             </div>
             <div *ngIf="row.editoroptions.stt == 13">
                 <div *dxTemplate="let cellInfo of 'dxCheckBox2313Template'">
-                    <dx-check-box (onValueChanged)="changeCheckBox23($event,cellInfo,row)" [value]="cellInfo.value"></dx-check-box>
+                    <dx-check-box [disabled]="isDisabled" (onValueChanged)="changeCheckBox23($event,cellInfo,row)" [value]="cellInfo.value"></dx-check-box>
                 </div>
             </div>
             <div *ngIf="row.editoroptions.stt == 14">
                 <div *dxTemplate="let cellInfo of 'dxCheckBox2314Template'">
-                    <dx-check-box (onValueChanged)="changeCheckBox23($event,cellInfo,row)" [value]="cellInfo.value"></dx-check-box>
+                    <dx-check-box [disabled]="isDisabled" (onValueChanged)="changeCheckBox23($event,cellInfo,row)" [value]="cellInfo.value"></dx-check-box>
                 </div>
             </div>
             <div *ngIf="row.editoroptions.stt == 15">
                 <div *dxTemplate="let cellInfo of 'dxCheckBox2315Template'">
-                    <dx-check-box (onValueChanged)="changeCheckBox23($event,cellInfo,row)" [value]="cellInfo.value"></dx-check-box>
+                    <dx-check-box [disabled]="isDisabled" (onValueChanged)="changeCheckBox23($event,cellInfo,row)" [value]="cellInfo.value"></dx-check-box>
                 </div>
             </div>
             <div *ngIf="row.editoroptions.stt == 16">
                 <div *dxTemplate="let cellInfo of 'dxCheckBox2316Template'">
-                    <dx-check-box (onValueChanged)="changeCheckBox23($event,cellInfo,row)" [value]="cellInfo.value"></dx-check-box>
+                    <dx-check-box [disabled]="isDisabled" (onValueChanged)="changeCheckBox23($event,cellInfo,row)" [value]="cellInfo.value"></dx-check-box>
                 </div>
             </div>
             <div *ngIf="row.editoroptions.stt == 17">
                 <div *dxTemplate="let cellInfo of 'dxCheckBox2317Template'">
-                    <dx-check-box (onValueChanged)="changeCheckBox23($event,cellInfo,row)" [value]="cellInfo.value"></dx-check-box>
+                    <dx-check-box [disabled]="isDisabled" (onValueChanged)="changeCheckBox23($event,cellInfo,row)" [value]="cellInfo.value"></dx-check-box>
                 </div>
             </div>
             <div *ngIf="row.editoroptions.stt == 18">
                 <div *dxTemplate="let cellInfo of 'dxCheckBox2318Template'">
-                    <dx-check-box (onValueChanged)="changeCheckBox23($event,cellInfo,row)" [value]="cellInfo.value"></dx-check-box>
+                    <dx-check-box [disabled]="isDisabled" (onValueChanged)="changeCheckBox23($event,cellInfo,row)" [value]="cellInfo.value"></dx-check-box>
                 </div>
             </div>
             <div *ngIf="row.editoroptions.stt == 19">
                 <div *dxTemplate="let cellInfo of 'dxCheckBox2319Template'">
-                    <dx-check-box (onValueChanged)="changeCheckBox23($event,cellInfo,row)" [value]="cellInfo.value"></dx-check-box>
+                    <dx-check-box [disabled]="isDisabled" (onValueChanged)="changeCheckBox23($event,cellInfo,row)" [value]="cellInfo.value"></dx-check-box>
                 </div>
             </div>
             <div *ngIf="row.editoroptions.stt == 20">
                 <div *dxTemplate="let cellInfo of 'dxCheckBox2320Template'">
-                    <dx-check-box (onValueChanged)="changeCheckBox23($event,cellInfo,row)" [value]="cellInfo.value"></dx-check-box>
+                    <dx-check-box [disabled]="isDisabled" (onValueChanged)="changeCheckBox23($event,cellInfo,row)" [value]="cellInfo.value"></dx-check-box>
                 </div>
             </div>
         </div>
@@ -911,61 +911,61 @@
             <div *ngIf="row.typE_ID == 11">
                 <div *ngIf="row.editoroptions.stt == 1">
                     <div *dxTemplate="let cellInfo of 'dxDateBox111Template'">
-                        <dx-input-datepicker [placeholder]="row.name" [showClearButton]="true" [useMaskBehavior]="true" [format]="row.dx_format" type="date" [value]="cellInfo.value" [inputAttr]="{ 'aria-label': '{{row.name}}' }" (ValueOutput)="handleValueChangedDate($event,cellInfo,row)">
+                        <dx-input-datepicker [type]="'time'" [placeholder]="row.name" [showClearButton]="true" [useMaskBehavior]="true" [format]="row.dx_format" type="date" [value]="cellInfo.value" [inputAttr]="{ 'aria-label': '{{row.name}}' }" (ValueOutput)="handleValueChangedDate($event,cellInfo,row)">
                         </dx-input-datepicker>
                     </div>
                 </div>
                 <div *ngIf="row.editoroptions.stt == 2">
                     <div *dxTemplate="let cellInfo of 'dxDateBox112Template'">
-                        <dx-input-datepicker [placeholder]="row.name" [showClearButton]="true" [useMaskBehavior]="true" [format]="row.dx_format" type="date" [value]="cellInfo.value" [inputAttr]="{ 'aria-label': '{{row.name}}' }" (ValueOutput)="handleValueChangedDate($event,cellInfo,row)">
+                        <dx-input-datepicker [type]="'time'" [placeholder]="row.name" [showClearButton]="true" [useMaskBehavior]="true" [format]="row.dx_format" type="date" [value]="cellInfo.value" [inputAttr]="{ 'aria-label': '{{row.name}}' }" (ValueOutput)="handleValueChangedDate($event,cellInfo,row)">
                         </dx-input-datepicker>
                     </div>
                 </div>
                 <div *ngIf="row.editoroptions.stt == 3">
                     <div *dxTemplate="let cellInfo of 'dxDateBox113Template'">
-                        <dx-input-datepicker [placeholder]="row.name" [showClearButton]="true" [useMaskBehavior]="true" [format]="row.dx_format" type="date" [value]="cellInfo.value" [inputAttr]="{ 'aria-label': '{{row.name}}' }" (ValueOutput)="handleValueChangedDate($event,cellInfo,row)">
+                        <dx-input-datepicker [type]="'time'" [placeholder]="row.name" [showClearButton]="true" [useMaskBehavior]="true" [format]="row.dx_format" type="date" [value]="cellInfo.value" [inputAttr]="{ 'aria-label': '{{row.name}}' }" (ValueOutput)="handleValueChangedDate($event,cellInfo,row)">
                         </dx-input-datepicker>
                     </div>
                 </div>
                 <div *ngIf="row.editoroptions.stt == 4">
                     <div *dxTemplate="let cellInfo of 'dxDateBox114Template'">
-                        <dx-input-datepicker [placeholder]="row.name" [showClearButton]="true" [useMaskBehavior]="true" [format]="row.dx_format" type="date" [value]="cellInfo.value" [inputAttr]="{ 'aria-label': '{{row.name}}' }" (ValueOutput)="handleValueChangedDate($event,cellInfo,row)">
+                        <dx-input-datepicker [type]="'time'" [placeholder]="row.name" [showClearButton]="true" [useMaskBehavior]="true" [format]="row.dx_format" type="date" [value]="cellInfo.value" [inputAttr]="{ 'aria-label': '{{row.name}}' }" (ValueOutput)="handleValueChangedDate($event,cellInfo,row)">
                         </dx-input-datepicker>
                     </div>
                 </div>
                 <div *ngIf="row.editoroptions.stt == 5">
                     <div *dxTemplate="let cellInfo of 'dxDateBox115Template'">
-                        <dx-input-datepicker [placeholder]="row.name" [showClearButton]="true" [useMaskBehavior]="true" [format]="row.dx_format" type="date" [value]="cellInfo.value" [inputAttr]="{ 'aria-label': '{{row.name}}' }" (ValueOutput)="handleValueChangedDate($event,cellInfo,row)">
+                        <dx-input-datepicker [type]="'time'" [placeholder]="row.name" [showClearButton]="true" [useMaskBehavior]="true" [format]="row.dx_format" type="date" [value]="cellInfo.value" [inputAttr]="{ 'aria-label': '{{row.name}}' }" (ValueOutput)="handleValueChangedDate($event,cellInfo,row)">
                         </dx-input-datepicker>
                     </div>
                 </div>
                 <div *ngIf="row.editoroptions.stt == 6">
                     <div *dxTemplate="let cellInfo of 'dxDateBox116Template'">
-                        <dx-input-datepicker [placeholder]="row.name" [showClearButton]="true" [useMaskBehavior]="true" [format]="row.dx_format" type="date" [value]="cellInfo.value" [inputAttr]="{ 'aria-label': '{{row.name}}' }" (ValueOutput)="handleValueChangedDate($event,cellInfo,row)">
+                        <dx-input-datepicker [type]="'time'" [placeholder]="row.name" [showClearButton]="true" [useMaskBehavior]="true" [format]="row.dx_format" type="date" [value]="cellInfo.value" [inputAttr]="{ 'aria-label': '{{row.name}}' }" (ValueOutput)="handleValueChangedDate($event,cellInfo,row)">
                         </dx-input-datepicker>
                     </div>
                 </div>
                 <div *ngIf="row.editoroptions.stt == 7">
                     <div *dxTemplate="let cellInfo of 'dxDateBox117Template'">
-                        <dx-input-datepicker [placeholder]="row.name" [showClearButton]="true" [useMaskBehavior]="true" [format]="row.dx_format" type="date" [value]="cellInfo.value" [inputAttr]="{ 'aria-label': '{{row.name}}' }" (ValueOutput)="handleValueChangedDate($event,cellInfo,row)">
+                        <dx-input-datepicker [type]="'time'" [placeholder]="row.name" [showClearButton]="true" [useMaskBehavior]="true" [format]="row.dx_format" type="date" [value]="cellInfo.value" [inputAttr]="{ 'aria-label': '{{row.name}}' }" (ValueOutput)="handleValueChangedDate($event,cellInfo,row)">
                         </dx-input-datepicker>
                     </div>
                 </div>
                 <div *ngIf="row.editoroptions.stt == 8">
                     <div *dxTemplate="let cellInfo of 'dxDateBox118Template'">
-                        <dx-input-datepicker [placeholder]="row.name" [showClearButton]="true" [useMaskBehavior]="true" [format]="row.dx_format" type="date" [value]="cellInfo.value" [inputAttr]="{ 'aria-label': '{{row.name}}' }" (ValueOutput)="handleValueChangedDate($event,cellInfo,row)">
+                        <dx-input-datepicker [type]="'time'" [placeholder]="row.name" [showClearButton]="true" [useMaskBehavior]="true" [format]="row.dx_format" type="date" [value]="cellInfo.value" [inputAttr]="{ 'aria-label': '{{row.name}}' }" (ValueOutput)="handleValueChangedDate($event,cellInfo,row)">
                         </dx-input-datepicker>
                     </div>
                 </div>
                 <div *ngIf="row.editoroptions.stt == 9">
                     <div *dxTemplate="let cellInfo of 'dxDateBox119Template'">
-                        <dx-input-datepicker [placeholder]="row.name" [showClearButton]="true" [useMaskBehavior]="true" [format]="row.dx_format" type="date" [value]="cellInfo.value" [inputAttr]="{ 'aria-label': '{{row.name}}' }" (ValueOutput)="handleValueChangedDate($event,cellInfo,row)">
+                        <dx-input-datepicker [type]="'time'" [placeholder]="row.name" [showClearButton]="true" [useMaskBehavior]="true" [format]="row.dx_format" type="date" [value]="cellInfo.value" [inputAttr]="{ 'aria-label': '{{row.name}}' }" (ValueOutput)="handleValueChangedDate($event,cellInfo,row)">
                         </dx-input-datepicker>
                     </div>
                 </div>
                 <div *ngIf="row.editoroptions.stt == 10">
                     <div *dxTemplate="let cellInfo of 'dxDateBox1110Template'">
-                        <dx-input-datepicker [placeholder]="row.name" [showClearButton]="true" [useMaskBehavior]="true" [format]="row.dx_format" type="date" [value]="cellInfo.value" [inputAttr]="{ 'aria-label': '{{row.name}}' }" (ValueOutput)="handleValueChangedDate($event,cellInfo,row)">
+                        <dx-input-datepicker [type]="'time'" [placeholder]="row.name" [showClearButton]="true" [useMaskBehavior]="true" [format]="row.dx_format" type="date" [value]="cellInfo.value" [inputAttr]="{ 'aria-label': '{{row.name}}' }" (ValueOutput)="handleValueChangedDate($event,cellInfo,row)">
                         </dx-input-datepicker>
                     </div>
                 </div>
@@ -1444,7 +1444,7 @@
             </div>
         </div>
     </div>
-    <dxo-toolbar>
+    <dxo-toolbar *ngIf="showToolbar">
         <dxi-item location="after">
             <dx-button style="margin-right: 5px;" (onClick)="AddRecords(keyExpr)" [disabled]="isDisabled" icon="add" text="Add" [title]="'Add a Record'">
             </dx-button>

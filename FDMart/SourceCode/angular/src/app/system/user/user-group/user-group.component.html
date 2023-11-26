@@ -1,5 +1,5 @@
 <div class="card-container k-form-edit">
-    <app-toolbar #toolbar [tableName]="tbName" [CurrenFrom]="CurrenFrom"></app-toolbar>
+    <app-toolbar #toolbar [classInsert]="'form-30082023'" [tableName]="tbName" [CurrenFrom]="CurrenFrom"></app-toolbar>
     <div class="example-wrapper form-group">
         <div class="example-wrapper">
             <div class="">
@@ -27,7 +27,7 @@
 <!-- Edit -->
 <sidenav-add-edit #sidenavAddEdit [title]="'Chỉnh sửa thông nhóm người dùng'" *ngIf="isEdit" class="form-sidenav-edit">
     <form method="#" action="#" style="padding: 20px;">
-        <app-toolbar #toolbarEdit [tableName]="tbName" [CurrenFrom]="getCurrenFrom"></app-toolbar>
+        <app-toolbar #toolbarEdit [classInsert]="'form-30082023'" [tableName]="tbName" [CurrenFrom]="getCurrenFrom"></app-toolbar>
         <alert-message #alertMessage></alert-message>
         <div class="row">
             <div class="col-4">

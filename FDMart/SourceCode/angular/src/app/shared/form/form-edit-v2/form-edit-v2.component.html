@@ -22,7 +22,7 @@
                             <div *ngFor="let panel of panels;let i=index" id="{{panel.code}}" class="tab-pane {{i==0&&'active'}}">
                                 <div *ngFor="let group of groups;let i = index">
                                     <div *ngIf="group.panelCode == panel.code" class="widgets-container row" style=" margin-right: -3px;margin-left: -3px">
-                                        <div *ngFor="let column of group.data" class="col-{{column.colspan?column.colspan:'6'}} pd-5">
+                                        <div *ngFor="let column of group.data" class="{{renColumnSpan(column.colspan)}} pd-5">
                                             <dx-text-box *ngIf="column.typE_ID == 2" [disabled]="column.editoroptions.disabled" label="{{column.name}}{{column.required ? '(*)' :''}}" (onValueChanged)="handleValueChanged2($event,column)" [value]="column.editoroptions.value" [inputAttr]="{ 'aria-label': '{{column.name}}' }"
                                                 [showClearButton]="true" [stylingMode]="stylingMode" [labelMode]="labelMode">
                                                 <dx-validator *ngIf="column.required">
@@ -88,7 +88,7 @@
                                             </dx-drop-down-box>
 
                                             <dx-input-datepicker *ngIf="column.typE_ID == 5 || column.typE_ID == 9 || column.typE_ID == 10 || column.typE_ID == 11" [name]="column.name" [disabled]="column.editoroptions.disabled" label="{{column.name}}{{column.required ? '(*)' :''}}" [placeholder]="column.name"
-                                                [showClearButton]="true" [useMaskBehavior]="true" [format]="column.dx_format" type="date" [value]="column.editoroptions.value" [inputAttr]="{ 'aria-label': '{{column.name}}' }" (ValueOutput)="handleValueChangedDate($event,column)"
+                                                [showClearButton]="true" [useMaskBehavior]="true" [format]="column.dx_format"  [value]="column.editoroptions.value" [inputAttr]="{ 'aria-label': '{{column.name}}' }" (ValueOutput)="handleValueChangedDate($event,column)"
                                                 [stylingMode]="stylingMode" [labelMode]="labelMode">
                                                 <dx-validator *ngIf="column.required">
                                                     <dxi-validation-rule type="required" message="{{column.name}} {{translate('Không được phép trống','is not required')}}"></dxi-validation-rule>
@@ -125,7 +125,7 @@
         <div *ngIf="panels.length == 0">
             <div class="widgets-container row" *ngFor="let group of groups;let i = index" style=" margin-right: -3px;margin-left: -3px">
                 <div *ngIf="group.name" class="title col-12">{{group.name}}</div>
-                <div *ngFor="let column of group.data" class="col-{{column.colspan?column.colspan:'6'}} pd-5">
+                <div *ngFor="let column of group.data" class="{{renColumnSpan(column.colspan)}} pd-5">
                     <div class="dx-field" *ngIf="column.typE_ID == 4">
                         <div class="dx-field-label">{{column.name}}</div>
                         <div class="dx-field-value">
@@ -177,7 +177,7 @@
                     </dx-drop-down-box>
 
                     <dx-input-datepicker *ngIf="column.typE_ID == 5 || column.typE_ID == 9 || column.typE_ID == 10 || column.typE_ID == 11" [disabled]="column.editoroptions.disabled" [name]="column.name" [placeholder]="column.name" [showClearButton]="true" [useMaskBehavior]="true"
-                        [format]="column.dx_format" type="date" [value]="column.editoroptions.value" [inputAttr]="{ 'aria-label': '{{column.name}}' }" (ValueOutput)="handleValueChangedDate($event,column)" [stylingMode]="stylingMode" [labelMode]="labelMode">
+                        [format]="column.dx_format"  [value]="column.editoroptions.value" [inputAttr]="{ 'aria-label': '{{column.name}}' }" (ValueOutput)="handleValueChangedDate($event,column)" [stylingMode]="stylingMode" [labelMode]="labelMode">
                         <dx-validator *ngIf="column.required">
                             <dxi-validation-rule type="required" message="{{column.name}} {{translate('Không được phép trống','is not required')}}"></dxi-validation-rule>
                         </dx-validator>
@@ -218,7 +218,7 @@
                             </div> -->
                             <div *ngFor="let tabs of group.tabs.tabs;let j=index;" [ngStyle]="{'display':j==tabIndex?'block':'none'}">
                                 <div *ngFor="let grouplv2 of tabs.data;let k=index;" class="row" style=" margin-right: -3px;margin-left: -3px">
-                                    <div *ngFor="let column of grouplv2.data" class="col-{{column.colspan?column.colspan:'6'}} " [ngStyle]="{'display':isDisplay(column.displaY_CONDITIONS)?'block':'none'}">
+                                    <div *ngFor="let column of grouplv2.data" class="{{renColumnSpan(column.colspan)}} " [ngStyle]="{'display':isDisplay(column.displaY_CONDITIONS)?'block':'none'}">
                                         <div class="dx-field" *ngIf="column.typE_ID == 4">
                                             <div class="dx-field-label">{{column.name}}</div>
                                             <div class="dx-field-value">
@@ -279,9 +279,9 @@
                                                 [selection]="true" [height]="450" [tableName]="column.droP_DOWN_TABLE" [type]="'BY-TABLE-NAME'" [dataSource]="column.editoroptions.items" (OnSelectAllRow)="onSelectRowGridDropdownTab($event,i,column,j,k)"></osoft-data-grid>
                                         </dx-drop-down-box>
 
-                                        <dx-input-datepicker *ngIf="(column.typE_ID == 5 || column.typE_ID == 9 || column.typE_ID == 10 || column.typE_ID == 11)" [disabled]="column.editoroptions.disabled" [name]="column.name" [placeholder]="column.name" [showClearButton]="true" [useMaskBehavior]="true"
-                                            [format]="column.dx_format" type="date" [value]="column.editoroptions.value" [name]="column.name" [inputAttr]="{ 'aria-label': '{{column.name}}' }" (ValueOutput)="handleValueChangedDate($event,column)" [stylingMode]="stylingMode"
-                                            [labelMode]="labelMode" [required]="column.required">
+                                        <dx-input-datepicker *ngIf="(column.typE_ID == 5 || column.typE_ID == 9 || column.typE_ID == 10 || column.typE_ID == 11)" [type]="column.typE_ID == 11?'time':'date'" [disabled]="column.editoroptions.disabled" [name]="column.name" [placeholder]="column.name"
+                                            [showClearButton]="true" [useMaskBehavior]="true" [format]="column.dx_format" [value]="column.editoroptions.value" [name]="column.name" [inputAttr]="{ 'aria-label': '{{column.name}}' }" (ValueOutput)="handleValueChangedDate($event,column)"
+                                            [stylingMode]="stylingMode" [labelMode]="labelMode" [required]="column.required">
                                         </dx-input-datepicker>
                                         <dx-text-area *ngIf="column.typE_ID == 3" [disabled]="column.editoroptions.disabled" label="{{column.name}}{{column.required ? '(*)' :''}}" [showClearButton]="true" [maxLength]="4000" [value]="column.editoroptions.value" [autoResizeEnabled]="true" (onValueChanged)="handleValueChangedTextArea($event,column)"
                                             [inputAttr]="{ 'aria-label': '{{column.name}}' }" [stylingMode]="stylingMode" [labelMode]="labelMode">
@@ -296,7 +296,7 @@
                                             </dx-validator>
                                         </dx-number-box>
 
-                                        <osoft-data-grid-edit *ngIf="column.typE_ID == 16" [isShowTitle]="false" [disabled]="column.editoroptions.disabled" [InputMaster]="InputMaster" (HandleValueChangedOutput)="DataGridValueChangedOutput($event,column)" (selectedRowsDataOutput)="onSelectedRowsDataOutput($event,i,column)"
+                                        <osoft-data-grid-edit *ngIf="column.typE_ID == 16" [isShowTitle]="false" [showToolbar]="showToolbar" [disabled]="column.editoroptions.disabled" [InputMaster]="InputMaster" (HandleValueChangedOutput)="DataGridValueChangedOutput($event,column)" (selectedRowsDataOutput)="onSelectedRowsDataOutput($event,i,column)"
                                             (HandleCopydOutput)="DataGridHandleCopydOutput($event,column)" (selectedRowsGridDataOutput)="selectedRowsGridData($event,column)" (HandleAdddOutput)="DataGridHandleAdddOutput($event,column)" (HandleDeletedOutput)="DataGridHandleDeletedOutput($event,column)"
                                             [keyExpr]="column.valueexpr" [title]="column.name" [currentSelectedRowKeys]="column.editoroptions.value" [selection]="true" [height]="450" [tableName]="column.droP_DOWN_TABLE" [column_name]="column.columN_NAME"
                                             [type]="'BY-TABLE-NAME'" [dataSource]="getDataSourceInGrid(column,i,j,k)" [onRefreshGrid]="onRefreshGrid">
@@ -310,7 +310,7 @@
             </div>
             <div *ngIf="group.isTab == false && group.data.length >0" class="row" style=" margin-right: -3px;margin-left: -3px">
                 <div *ngIf="group.name" class="title-group-form-edit-v2 col-12">{{group.name}}</div>
-                <div *ngFor="let column of group.data;let j=index" class="col-{{column.colspan?column.colspan:'6'}} " [ngStyle]="{'display':isDisplay(column.displaY_CONDITIONS)?'block':'none'}">
+                <div *ngFor="let column of group.data;let j=index" class="{{renColumnSpan(column.colspan)}}" [ngStyle]="{'display':isDisplay(column.displaY_CONDITIONS)?'block':'none'}">
                     <div class="dx-field" *ngIf="column.typE_ID == 4">
                         <div class="dx-field-label">{{column.name}}</div>
                         <div class="dx-field-value">
@@ -361,9 +361,9 @@
                             [selection]="true" [height]="450" [tableName]="column.droP_DOWN_TABLE" [type]="'BY-TABLE-NAME'" [dataSource]="column.editoroptions.items" (OnSelectAllRow)="onSelectRowGridDropdown($event,i,column,j)"></osoft-data-grid>
                     </dx-drop-down-box>
 
-                    <dx-input-datepicker *ngIf="(column.typE_ID == 5 || column.typE_ID == 9 || column.typE_ID == 10 || column.typE_ID == 11)" [disabled]="column.editoroptions.disabled" [name]="column.name" [placeholder]="column.name" [showClearButton]="true" [useMaskBehavior]="true"
-                        [format]="column.dx_format" [required]="column.required" type="date" [value]="column.editoroptions.value" [name]="column.name" (ValueOutput)="handleValueChangedDate($event,column)" [stylingMode]="stylingMode" [labelMode]="labelMode">
-
+                    <dx-input-datepicker *ngIf="(column.typE_ID == 5 || column.typE_ID == 9 || column.typE_ID == 10 || column.typE_ID == 11)" [type]="column.typE_ID == 11?'time':'date'" [disabled]="column.editoroptions.disabled" [name]="column.name" [placeholder]="column.name"
+                        [showClearButton]="true" [useMaskBehavior]="true" [format]="column.dx_format" [required]="column.required" [value]="column.editoroptions.value" [name]="column.name" (ValueOutput)="handleValueChangedDate($event,column)" [stylingMode]="stylingMode"
+                        [labelMode]="labelMode">
                     </dx-input-datepicker>
                     <dx-text-area *ngIf="column.typE_ID == 3" [disabled]="column.editoroptions.disabled" label="{{column.name}}{{column.required ? '(*)' :''}}" [showClearButton]="true" [maxLength]="4000" [value]="column.editoroptions.value" [autoResizeEnabled]="true" (onValueChanged)="handleValueChangedTextArea($event,column)"
                         [inputAttr]="{ 'aria-label': '{{column.name}}' }" [stylingMode]="stylingMode" [labelMode]="labelMode">
@@ -378,12 +378,13 @@
                         </dx-validator>
                     </dx-number-box>
 
-                    <osoft-data-grid-edit *ngIf="column.typE_ID == 16" [disabled]="column.editoroptions.disabled" [InputMaster]="InputMaster" (HandleValueChangedOutput)="DataGridValueChangedOutput($event,column)" (selectedRowsDataOutput)="onSelectedRowsDataOutput($event,i,column)"
+                    <osoft-data-grid-edit *ngIf="column.typE_ID == 16" [showToolbar]="showToolbar" [disabled]="column.editoroptions.disabled" [InputMaster]="InputMaster" (HandleValueChangedOutput)="DataGridValueChangedOutput($event,column)" (selectedRowsDataOutput)="onSelectedRowsDataOutput($event,i,column)"
                         (HandleCopydOutput)="DataGridHandleCopydOutput($event,column)" (HandleAdddOutput)="DataGridHandleAdddOutput($event,column)" (selectedRowsGridDataOutput)="selectedRowsGridData($event,column)" (HandleDeletedOutput)="DataGridHandleDeletedOutput($event,column)"
                         [keyExpr]="column.valueexpr" [title]="column.name" [currentSelectedRowKeys]="column.editoroptions.value" [selection]="true" [height]="450" [tableName]="column.droP_DOWN_TABLE" [column_name]="column.columN_NAME" [type]="'BY-TABLE-NAME'"
                         [dataSource]="getDataSourceInGrid(column,i,j,-1)" [onRefreshGrid]="onRefreshGrid"></osoft-data-grid-edit>
                 </div>
             </div>
+            <ng-content></ng-content>
         </div>
 
         <a href="javascript:;" (click)="resetDataEditorOptions()" id="refreshDataFormV2" style="display:none;"></a>

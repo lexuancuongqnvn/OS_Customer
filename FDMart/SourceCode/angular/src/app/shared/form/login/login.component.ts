@@ -286,7 +286,7 @@ export class LoginComponent extends LayoutComponentBase implements OnInit {
       if(response['status'] == 0){
         this.cookieService.remove('userlogin');
         this.cookieService.remove('allowShowTheme');
-        this.router.navigateByUrl('/login');
+        location.reload();
       }else{
         alert(response['Message'] )
       }

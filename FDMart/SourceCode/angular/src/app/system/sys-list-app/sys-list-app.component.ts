@@ -265,11 +265,11 @@ export class SysListAppComponent extends LayoutComponentBase implements OnInit, 
         if(respond['status'] == '0'){
           this.showMessageSuccess(respond['message'])
           this.LoadData();
-          this.onSearch();
         }else
         {
           this.showMessageError(respond['message'])
-        }        
+        }    
+        this.UnBlockUI()    
       },
       (err) => this.UnBlockUI(),
       () => {

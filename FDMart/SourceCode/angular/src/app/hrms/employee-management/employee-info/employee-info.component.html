@@ -1,5 +1,5 @@
 <div class="card-container k-form-edit">
-    <app-toolbar #toolbar [tableName]="tbName" [CurrenFrom]="CurrenFrom"></app-toolbar>
+    <app-toolbar #toolbar [classInsert]="'form-30082023'" [tableName]="tbName" [CurrenFrom]="CurrenFrom"></app-toolbar>
     <div class="example-wrapper form-group">
         <div class="example-wrapper">
             <div class="">
@@ -45,7 +45,7 @@
 <!-- Edit -->
 <sidenav-add-edit #sidenavAddEdit [title]="'Chỉnh sửa thông nhóm người dùng'" *ngIf="isEdit" class="form-sidenav-edit">
     <form method="#" action="#" style="padding: 20px;">
-        <app-toolbar #toolbarEdit [tableName]="tbName" [CurrenFrom]="getCurrenFrom"></app-toolbar>
+        <app-toolbar #toolbarEdit [classInsert]="'form-30082023'" [tableName]="tbName" [CurrenFrom]="getCurrenFrom"></app-toolbar>
         <alert-message #alertMessage></alert-message>
         <div class="row">
             <div class="rounded bg-white mb-12 col-md-12">
@@ -113,7 +113,7 @@
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <label class="labels">Địa chỉ chi tiết</label>
-                                                                <input type="text" [disabled]="disabled" #birthplace_detail="ngModel" class="form-control" placeholder="Địa chỉ nhà, đường nơi sinh" name="birthplace_detail" [(ngModel)]="InputModel.birthplace_detail">
+                                                                <input type="text" [disabled]="disabled" #birthplace_detail="ngModel" class="form-control" placeholder="Địa chỉ nhà, đường" name="birthplace_detail" [(ngModel)]="InputModel.birthplace_detail">
                                                             </div>
                                                             <div class="col-md-12"></div>
                                                             <div class="col-md-3">
@@ -198,7 +198,7 @@
                                                             </div>
                                                             <div class="col-md-3">
                                                                 <label class="labels">Ca làm việc (*)</label>
-                                                                <input-selectpicker-v2 #SelectWorkShiftPicker (ValueOutput)="onSelect($event,'work_shifts')" [value]="InputModel.work_shifts" [multiple]="true" [list]="listWorkShift" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'work_shifts'" [title]="''"></input-selectpicker-v2>
+                                                                <input-selectpicker-v2 #SelectWorkShiftPicker (ValueOutput)="onSelect($event,'work_shifts')" [value]="InputModel.work_shifts" [multiple]="true" [list]="listWorkShift" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'work_shifts_select'" [title]="''"></input-selectpicker-v2>
                                                             </div>
                                                             <div class="col-12"></div>
                                                             <div class="col-md-3">
@@ -391,7 +391,7 @@
                                                                 <input type="text" [disabled]="disabled" #bank_account_number="ngModel" class="form-control" placeholder="Tài khản Bank" name="bank_account_number" [(ngModel)]="InputModel.bank_account_number">
                                                             </div>
                                                             <div class="col-md-3"><label class="labels">Tên ngân hàng</label>
-                                                                <input type="text" [disabled]="disabled" #bank_name="ngModel" class="form-control" name="bank_name" [(ngModel)]="InputModel.bank_name" placeholder="MS Thuế">
+                                                                <input type="text" [disabled]="disabled" #bank_name="ngModel" class="form-control" name="bank_name" [(ngModel)]="InputModel.bank_name" placeholder="Tên ngân hàng">
                                                             </div>
                                                         </div>
                                                     </div>

@@ -72,12 +72,6 @@ a.navbar-brand>h4 {
     display: none;
 }
 
-@media only screen and (max-width: 600px) {
-    .nav-item-apps-on-mobile {
-        display: block !important;
-    }
-}
-
 .h4-title-app,
 .nav-link>i {
     color: #FFFFFF !important;
@@ -171,4 +165,13 @@ a.navbar-brand>h4 {
 
 a.nav-link.a-menu-sub {
     margin-left: 15px !important;
+}
+
+@media only screen and (max-width: 600px) {
+    .nav-item-apps-on-mobile {
+        display: block !important;
+    }
+    .content-2 {
+        padding-top: 95px !important;
+    }
 }

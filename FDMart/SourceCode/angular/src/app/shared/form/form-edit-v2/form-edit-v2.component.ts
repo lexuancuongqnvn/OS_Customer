@@ -32,6 +32,8 @@ export class FormEditV2Component extends LayoutComponentBase implements OnInit, 
   @Input() editPageState: string = EditPageState.edit;
   @Input() tbName: string = '';
   @Input() onRefreshGrid: boolean = false;
+  @Input() isShowTitle: boolean = true;
+  @Input() showToolbar: boolean = true;
 
   @Output() selectedRowsGridDataOutput: EventEmitter<any> = new EventEmitter();
   @Output() HandleValueChangedOutput: EventEmitter<any> = new EventEmitter();
@@ -40,6 +42,7 @@ export class FormEditV2Component extends LayoutComponentBase implements OnInit, 
   @Output() selectedRowsDataOutput: EventEmitter<any> = new EventEmitter();
   @Output() callBackDataMultirowOutput: EventEmitter<any> = new EventEmitter();
   @Output() onRefreshGridOutput: EventEmitter<boolean> = new EventEmitter();
+  @Output() onDatasourceGridOutput: EventEmitter<any> = new EventEmitter();
 
 
 
@@ -421,6 +424,8 @@ export class FormEditV2Component extends LayoutComponentBase implements OnInit, 
       this.onRefreshGridT = this.onRefreshGrid;
       this.onRefreshGridOutput.emit(this.onRefreshGrid)
     }
+    if(col.editoroptions.hasDateTime && col.editoroptions.hasDateTime == true)
+      this.onDatasourceGridOutput.emit({dataField: col.columN_NAME,value:col.editoroptions.items})
     return col.editoroptions.items;
   }
   setDataEditorOptions(col:SYS_GenRowTable_Detail,indexGroup: number, indexTab: number=-1, indexTabCol: number=0): any {
@@ -435,7 +440,7 @@ export class FormEditV2Component extends LayoutComponentBase implements OnInit, 
           break;
         case 'dxDateBox':
           if(this.InputMaster[col.columN_NAME])
-            return moment(this.InputMaster[col.columN_NAME]).utc(true)
+            return moment(this.InputMaster[col.columN_NAME]);//.utc(true)
           else return this.InputMaster[col.columN_NAME]
           break;
         case 'dxSelectBox':
@@ -497,13 +502,6 @@ export class FormEditV2Component extends LayoutComponentBase implements OnInit, 
             }
           }
         }
-        // group.tabs.tabs.forEach(tabs=>{
-        //   tabs.data.forEach(grouplv2=>{
-        //     grouplv2.data.forEach( column=>{
-        //       column.editoroptions.value = this.setDataEditorOptions(column,i)
-        //     })
-        //   })
-        // })
       }else{
         group.data.forEach( column=>{
           column.editoroptions.value = this.setDataEditorOptions(column,i)
@@ -734,17 +732,26 @@ export class FormEditV2Component extends LayoutComponentBase implements OnInit, 
               })
             }) as REFERENCE_ENTITY).toPromise();
             let outputData1 = items2[0].outputData;
+            let hasDateTime = false;
             outputData1.forEach(obj => {
               Object.entries(obj).forEach(([key, value]) => {
                 if (typeof value === 'object') {
                   obj[key] = null;
                 }
-                else if (value) 
-                    if(value.toString().startsWith('ARRAY[') && value.toString().endsWith(']')){
+                else if (value) {
+                  if(value.toString().startsWith('ARRAY[') && value.toString().endsWith(']')){
                       obj[key] = obj[key].toString().replace('ARRAY[','');
                       let index = obj[key].lastIndexOf(']');
                       obj[key] = obj[key].slice(0, index).trim().split(';');
+                    }else if(value.toString().startsWith('DateTime-')){
+                      hasDateTime = true;
+                      obj[key] = obj[key].toString().replace('DateTime-','')
+                      obj[key] = new Date(obj[key])
+                      obj[key] = moment(obj[key]);
+                      if(typeof obj[key]['_i'] === "string")
+                        obj[key] = obj[key].utc(true).subtract(this.hourUTC(),'hours')
                     }
+                }
               });
             })
             dt.editoroptions = {
@@ -753,7 +760,8 @@ export class FormEditV2Component extends LayoutComponentBase implements OnInit, 
               items: outputData1,
               searchEnabled: true,
               showClearButton: true,
-              isDropBoxOpened:false
+              isDropBoxOpened:false,
+              hasDateTime:hasDateTime
             }
             break;
           default:
@@ -1184,6 +1192,47 @@ export class FormEditV2Component extends LayoutComponentBase implements OnInit, 
       return result==false?'none':'block'
     }catch{
       return 'none';
+    }
+  }
+  renColumnSpan(colSpan:number):string{
+    switch(colSpan){
+      case 1:
+        return 'col-4 col-sm-4 col-md-2 col-lg-1 col-xl-1'
+      break;
+      case 2:
+        return 'col-6 col-sm-4 col-md-4 col-lg-2 col-xl-2'
+      break;
+      case 3:
+        return 'col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3'
+      break;
+      case 4:
+        return 'col-6 col-sm-6 col-md-6 col-lg-4 col-xl-4'
+      break;
+      case 5:
+        return 'col-6 col-sm-6 col-md-6 col-lg-5 col-xl-5'
+      break;
+      case 6:
+        return 'col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6'
+      break;
+      case 7:
+        return 'col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7'
+      break;
+      case 8:
+        return 'col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8'
+      break;
+      case 9:
+        return 'col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9'
+      break;
+      case 10:
+        return 'col-12 col-sm-12 col-md-12 col-lg-10 col-xl-10'
+      break;
+      case 11:
+        return 'col-12 col-sm-12 col-md-12 col-lg-11 col-xl-11'
+      break;
+      case 12:
+        return 'col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'
+      break;
+      default : return 'col-3'
     }
   }
   execDefaultValue(){

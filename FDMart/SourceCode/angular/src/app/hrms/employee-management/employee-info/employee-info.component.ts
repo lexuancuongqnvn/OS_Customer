@@ -71,6 +71,9 @@ export class EmployeeInfoComponent extends LayoutComponentBase implements OnInit
   listBranch:HRM_Branch_ENTITY[] = [];
   listPart:Part_ENTITY[] = [];
   listWorkShift:HRM_TimeSheet_Work_Shift_ENTITY[] = [];
+  listCity:any[]=[]
+  listDistrict:any[]=[]
+  listDistrictSub:any[]=[]
   isEdit:boolean = false;
   isgetdata:boolean = false;
   iscomplated:boolean = false;
@@ -491,7 +494,9 @@ export class EmployeeInfoComponent extends LayoutComponentBase implements OnInit
 
     this.SelectSexPicker.setList([{code:'1',name:'Nam'},{code:'2',name:'Nữ'}]);
     
-    this.SelectWorkShiftPicker.setList(this.listWorkShift);
+    setTimeout(() => {
+      this.SelectWorkShiftPicker.setList(this.listWorkShift);
+    }, 500);
   }
   autocompleteCity(id:string='',text:string='',col:string){
     var pr = new HRM_District_City_ENTITY();

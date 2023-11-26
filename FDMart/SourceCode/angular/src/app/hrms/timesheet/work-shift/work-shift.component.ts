@@ -296,14 +296,12 @@ export class WorkShiftComponent extends LayoutComponentBase implements OnInit, I
   }
   allDay:any[] = [];
   public valueDate(col:string,day:string):any{
-    return this.InputModel.hRM_TimeSheet_Work_Shift_Details.find(e=>e.name == day)[col];
+    var d = this.InputModel.hRM_TimeSheet_Work_Shift_Details.find(e=>e.name == day)
+    d = d?d[col]:null
+    return d?d:null;
   }
-  onChangeDateValue(v:boolean,col:string,day:string){
-    this.InputModel.hRM_TimeSheet_Work_Shift_Details.forEach(e=>{
-      if(e.name == day){
-        e[col] = v;
-      }
-    })
+  onChangeDateValue(v:moment.Moment,col:string,day:string){
+    this.InputModel.hRM_TimeSheet_Work_Shift_Details.find(e=>e.name == day)[col] = v;
   } 
   onChangeValue(v:boolean,col:string){
     this.InputModel[col] = v;

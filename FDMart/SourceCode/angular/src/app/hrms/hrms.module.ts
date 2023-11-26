@@ -140,6 +140,14 @@ import { EmployeeSalaryByAttendanceReportComponent } from './employee-management
 import { AttendanceReportV2Component } from './report/attendance-report-v2/attendance-report-v2.component';
 import { FaceWarningComponent } from './check-in-out/face-warning/face-warning.component';
 import { CheckInOutMobileComponent } from './check-in-out/check-in-out-mobile/check-in-out-mobile.component';
+import { WorkShiftV2ListComponent } from './timesheet/work-shift-v2/work-shift-v2-list/work-shift-v2-list.component';
+import { WorkShiftV2EditComponent } from './timesheet/work-shift-v2/work-shift-v2-edit/work-shift-v2-edit.component';
+import { BranchV2EditComponent } from './category/branch-v2/branch-v2-edit/branch-v2-edit.component';
+import { BranchV2ListComponent } from './category/branch-v2/branch-v2-list/branch-v2-list.component';
+import { HolidayV2ListComponent } from './category/holiday-v2/holiday-v2-list/holiday-v2-list.component';
+import { HolidayV2EditComponent } from './category/holiday-v2/holiday-v2-edit/holiday-v2-edit.component';
+import { DepartmentV2ListComponent } from './category/department-v2/department-v2-list/department-v2-list.component';
+import { DepartmentV2EditComponent } from './category/department-v2/department-v2-edit/department-v2-edit.component';
 
 const drawerRoutes = [
   { path: 'app', component: DashboardHomeComponent },
@@ -169,7 +177,12 @@ const drawerRoutes = [
   { path: 'department', component: DepartmentComponent },
   { path: 'type-of-issue', component: TypeOfIssueComponent },
   { path: 'priority-level', component: PriorityLevelComponent },
-  { path: 'timesheet/work-shift', component: WorkShiftComponent },
+
+  { path: 'timesheet/work-shift', component: WorkShiftV2ListComponent, data: {editPageState: EditPageState.view ,tbName:'HRM_TimeSheet_Work_Shift'} },
+  { path: 'timesheet/work-shift-add', component: WorkShiftV2EditComponent, data: {editPageState: EditPageState.add ,tbName:'HRM_TimeSheet_Work_Shift'} },
+  { path: 'timesheet/work-shift-edit', component: WorkShiftV2EditComponent, data: {editPageState: EditPageState.edit ,tbName:'HRM_TimeSheet_Work_Shift'} },
+  { path: 'timesheet/work-shift-view-detail', component: WorkShiftV2EditComponent, data: {editPageState: EditPageState.viewDetail ,tbName:'HRM_TimeSheet_Work_Shift'} },
+
   { path: 'timesheet/employee-work-shift-list',component: EmployeeWorkShiftListComponent,},
   { path: 'timesheet/employee-work-shift-edit',component: EmployeeWorkShiftEditComponent,data: {table: 'HRM_TimeSheet_Employee_Work_Shift',key: '',editPageState: EditPageState.edit,},},
   { path: 'timesheet/employee-work-shift-view-detail',component: EmployeeWorkShiftEditComponent,data: {table: 'HRM_TimeSheet_Employee_Work_Shift',key: '',editPageState: EditPageState.edit,},},
@@ -190,7 +203,22 @@ const drawerRoutes = [
   { path: 'holiday', component: HolidayComponent },
   { path: 'hrm/attendance-report', component: AttendanceReportComponent },
   { path: 'hrm/attendance-report-v2', component: AttendanceReportV2Component },
-  { path: 'branch', component: BranchComponent },
+  
+  //{ path: 'branch', component: BranchComponent },
+  { path: 'hrm/branch', component: BranchV2ListComponent, data: {editPageState: EditPageState.view ,tbName:'HRM_Branch'}  },
+  { path: 'hrm/branch-add', component: BranchV2EditComponent , data: {editPageState: EditPageState.add ,tbName:'HRM_Branch'} },
+  { path: 'hrm/branch-edit', component: BranchV2EditComponent , data: {editPageState: EditPageState.edit ,tbName:'HRM_Branch'} },
+  { path: 'hrm/branch-view-detail', component: BranchV2EditComponent , data: {editPageState: EditPageState.viewDetail ,tbName:'HRM_Branch'} },
+
+  { path: 'hrms/holiday', component: HolidayV2ListComponent, data: {editPageState: EditPageState.view ,tbName:'HRM_Holiday'}  },
+  { path: 'hrms/holiday-add', component: HolidayV2EditComponent , data: {editPageState: EditPageState.add ,tbName:'HRM_Holiday'} },
+  { path: 'hrms/holiday-edit', component: HolidayV2EditComponent , data: {editPageState: EditPageState.edit ,tbName:'HRM_Holiday'} },
+  { path: 'hrms/holiday-view-detail', component: HolidayV2EditComponent , data: {editPageState: EditPageState.viewDetail ,tbName:'HRM_Holiday'} },
+ 
+  { path: 'hrms/department', component: DepartmentV2ListComponent, data: {editPageState: EditPageState.view ,tbName:'Department'}  },
+  { path: 'hrms/department-add', component: DepartmentV2EditComponent , data: {editPageState: EditPageState.add ,tbName:'Department'} },
+  { path: 'hrms/department-edit', component: DepartmentV2EditComponent , data: {editPageState: EditPageState.edit ,tbName:'Department'} },
+  { path: 'hrms/department-view-detail', component: DepartmentV2EditComponent , data: {editPageState: EditPageState.viewDetail ,tbName:'Department'} },
 
   //Kỹ nghệ việt
   {path:'warehouse/warranty',component:WarrantyComponent},
@@ -245,7 +273,15 @@ const drawerRoutes = [
     EmployeeSalaryByAttendanceReportComponent,
     AttendanceReportV2Component,
     FaceWarningComponent,
-    CheckInOutMobileComponent
+    CheckInOutMobileComponent,
+    WorkShiftV2ListComponent,
+    WorkShiftV2EditComponent,
+    BranchV2ListComponent,
+    BranchV2EditComponent,
+    HolidayV2ListComponent,
+    HolidayV2EditComponent,
+    DepartmentV2ListComponent,
+    DepartmentV2EditComponent
   ],
   imports: [
     BrowserModule,

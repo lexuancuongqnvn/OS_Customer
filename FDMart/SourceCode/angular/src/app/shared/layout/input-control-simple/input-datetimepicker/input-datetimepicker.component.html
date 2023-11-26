@@ -3,4 +3,4 @@
 </div> -->
 <input type="text" [disabled]="isViewDetail" id="{{ColumnName}}" class="datepicker" value="{{value | DateTimeFormatPipe}}">
 
-<input style="display:none;" type="text" id="input-{{ColumnName}}" (click)="onChangeValue($event)" value="{{value}}">
+<input style="display:none;" type="text" id="input-{{ColumnName}}" (click)="onChangeValue($event,value)" value="{{value}}">

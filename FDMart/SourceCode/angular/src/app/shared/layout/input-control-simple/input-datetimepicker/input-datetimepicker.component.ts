@@ -22,7 +22,7 @@ export class InputDatetimepickerComponent extends LayoutComponentBase implements
   }
   @Input() format: string = 'DD/MM/YYYY HH:mm';
   @Input() name: string = '';
-  @Input() value: any = '';
+  @Input() value: any = null;
   @Input() ColumnName: string = '';
   @Input() disabled:Boolean = false;
   @Output() ValueOutput: EventEmitter<any> = new EventEmitter();
@@ -36,9 +36,21 @@ export class InputDatetimepickerComponent extends LayoutComponentBase implements
     datetimepicker(this.ColumnName);
   }
 
-  public onChangeValue(e: any) {
-    var val = moment(e.target.value).utc(true);
-    if(val['_i']=='Invalid Date' || val['_i'].toString().toUpperCase() == 'NAN')this.ValueOutput.emit(undefined);
-    else this.ValueOutput.emit(val);
+  public onChangeValue(e: any,v:any) {
+    // var val = moment(e.target.value).utc(true);
+    // if(val['_i']=='Invalid Date' || val['_i'].toString().toUpperCase() == 'NAN')this.ValueOutput.emit(undefined);
+    // else this.ValueOutput.emit(val);
+
+    try{
+      if (!v || new Date(e.target.value).getTime() !== v._d.getTime()) {
+        var val = moment(e.target.value);//.utc(true);
+        if (val['_i'] == 'Invalid Date' || val['_i'].toString().toUpperCase() == 'NAN')
+          this.ValueOutput.emit(undefined);
+        else
+          this.ValueOutput.emit(val);
+      }
+     }catch{
+
+     }
   }
 }

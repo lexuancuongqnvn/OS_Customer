@@ -38,7 +38,7 @@ export class AttendanceReportComponent  extends LayoutComponentBase implements O
   filterInput:HRM_Report_Attendance_ENTITY=new HRM_Report_Attendance_ENTITY();
   listOverTime:HRM_Timesheet_Employee_Overtime_Type_ENTITY[]=[]
   table:string = '';
-  tbName: string = 'HRM_Report_Attendance';
+  tbName: string = 'HRM_Report_Attendance1';
   CurrenFrom:string = EditPageState.view;
   @ViewChild('toolbar') toolbar: ToolbarComponent;
   valueStartDate(e:any,col:string){

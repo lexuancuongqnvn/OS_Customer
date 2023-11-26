@@ -299,7 +299,7 @@ export class DXDataGridViewComponent extends LayoutComponentBase implements OnIn
   cellTemplateDate11(container, options,e){
     try {
       const noBreakSpace = '\u00A0';
-      let format = '';
+      let format = 'HH:mm';
       const text = options.value && moment(options.value).format(format);
       container.textContent = text || noBreakSpace;
       container.title = text;

@@ -16260,6 +16260,149 @@ export class SalesCategoryService extends ApiBase {
 }
 
 @Injectable()
+export class SalesReportService extends ApiBase {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(AppSession) configuration: AppSession, @Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        super(configuration);
+        this.http = http;
+        this.baseUrl = baseUrl !== undefined && baseUrl !== null ? baseUrl : "";
+    }
+
+    /**
+     * @param body (optional) 
+     * @return Success
+     */
+    sales_Report_Of_Accounts_Receivable_Balances_Search(body: Sales_Report_Of_Accounts_Receivable_Balances_ENTITY | undefined): Observable<Sales_Report_Of_Accounts_Receivable_Balances_ENTITY[]> {
+        let url_ = this.baseUrl + "/api/SalesReport/Sales_Report_Of_Accounts_Receivable_Balances_Search";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                "Accept": "text/plain"
+            })
+        };
+
+        return _observableFrom(this.transformOptions(options_)).pipe(_observableMergeMap(transformedOptions_ => {
+            return this.http.request("post", url_, transformedOptions_);
+        })).pipe(_observableMergeMap((response_: any) => {
+            return this.processSales_Report_Of_Accounts_Receivable_Balances_Search(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processSales_Report_Of_Accounts_Receivable_Balances_Search(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<Sales_Report_Of_Accounts_Receivable_Balances_ENTITY[]>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<Sales_Report_Of_Accounts_Receivable_Balances_ENTITY[]>;
+        }));
+    }
+
+    protected processSales_Report_Of_Accounts_Receivable_Balances_Search(response: HttpResponseBase): Observable<Sales_Report_Of_Accounts_Receivable_Balances_ENTITY[]> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200.push(Sales_Report_Of_Accounts_Receivable_Balances_ENTITY.fromJS(item));
+            }
+            else {
+                result200 = <any>null;
+            }
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<Sales_Report_Of_Accounts_Receivable_Balances_ENTITY[]>(null as any);
+    }
+
+    /**
+     * @param body (optional) 
+     * @return Success
+     */
+    sales_Report_Inventory_Materials_Search(body: Sales_Report_Inventory_Materials_ENTITY | undefined): Observable<Sales_Report_Inventory_Materials_ENTITY[]> {
+        let url_ = this.baseUrl + "/api/SalesReport/Sales_Report_Inventory_Materials_Search";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                "Accept": "text/plain"
+            })
+        };
+
+        return _observableFrom(this.transformOptions(options_)).pipe(_observableMergeMap(transformedOptions_ => {
+            return this.http.request("post", url_, transformedOptions_);
+        })).pipe(_observableMergeMap((response_: any) => {
+            return this.processSales_Report_Inventory_Materials_Search(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processSales_Report_Inventory_Materials_Search(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<Sales_Report_Inventory_Materials_ENTITY[]>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<Sales_Report_Inventory_Materials_ENTITY[]>;
+        }));
+    }
+
+    protected processSales_Report_Inventory_Materials_Search(response: HttpResponseBase): Observable<Sales_Report_Inventory_Materials_ENTITY[]> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200.push(Sales_Report_Inventory_Materials_ENTITY.fromJS(item));
+            }
+            else {
+                result200 = <any>null;
+            }
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<Sales_Report_Inventory_Materials_ENTITY[]>(null as any);
+    }
+}
+
+@Injectable()
 export class SalesVATService extends ApiBase {
     private http: HttpClient;
     private baseUrl: string;
@@ -32624,6 +32767,8 @@ export class HRM_TimeSheet_Work_Shift_Detail_ENTITY implements IHRM_TimeSheet_Wo
     hour_end_relax?: number | undefined;
     start_relax?: moment.Moment | undefined;
     end_relax?: moment.Moment | undefined;
+    is_apply?: boolean | undefined;
+    apply_name?: string | undefined;
 
     constructor(data?: IHRM_TimeSheet_Work_Shift_Detail_ENTITY) {
         if (data) {
@@ -32648,6 +32793,8 @@ export class HRM_TimeSheet_Work_Shift_Detail_ENTITY implements IHRM_TimeSheet_Wo
             this.hour_end_relax = _data["hour_end_relax"];
             this.start_relax = _data["start_relax"] ? moment.parseZone(_data["start_relax"].toString()) : <any>undefined;
             this.end_relax = _data["end_relax"] ? moment.parseZone(_data["end_relax"].toString()) : <any>undefined;
+            this.is_apply = _data["is_apply"];
+            this.apply_name = _data["apply_name"];
         }
     }
 
@@ -32672,6 +32819,8 @@ export class HRM_TimeSheet_Work_Shift_Detail_ENTITY implements IHRM_TimeSheet_Wo
         data["hour_end_relax"] = this.hour_end_relax;
         data["start_relax"] = this.start_relax ? this.start_relax.toISOString(true) : <any>undefined;
         data["end_relax"] = this.end_relax ? this.end_relax.toISOString(true) : <any>undefined;
+        data["is_apply"] = this.is_apply;
+        data["apply_name"] = this.apply_name;
         return data;
     }
 
@@ -32696,6 +32845,8 @@ export interface IHRM_TimeSheet_Work_Shift_Detail_ENTITY {
     hour_end_relax?: number | undefined;
     start_relax?: moment.Moment | undefined;
     end_relax?: moment.Moment | undefined;
+    is_apply?: boolean | undefined;
+    apply_name?: string | undefined;
 }
 
 export class HRM_TimeSheet_Work_Shift_ENTITY implements IHRM_TimeSheet_Work_Shift_ENTITY {
@@ -34772,6 +34923,7 @@ export class HRM_Employee_ENTITY implements IHRM_Employee_ENTITY {
     id?: number | undefined;
     status?: number | undefined;
     message?: string | undefined;
+    company_code?: string | undefined;
     ref_code?: string | undefined;
     id_employee?: string | undefined;
     marital_status_code?: string | undefined;
@@ -34904,6 +35056,7 @@ export class HRM_Employee_ENTITY implements IHRM_Employee_ENTITY {
             this.id = _data["id"];
             this.status = _data["status"];
             this.message = _data["message"];
+            this.company_code = _data["company_code"];
             this.ref_code = _data["ref_code"];
             this.id_employee = _data["id_employee"];
             this.marital_status_code = _data["marital_status_code"];
@@ -35084,6 +35237,7 @@ export class HRM_Employee_ENTITY implements IHRM_Employee_ENTITY {
         data["id"] = this.id;
         data["status"] = this.status;
         data["message"] = this.message;
+        data["company_code"] = this.company_code;
         data["ref_code"] = this.ref_code;
         data["id_employee"] = this.id_employee;
         data["marital_status_code"] = this.marital_status_code;
@@ -35264,6 +35418,7 @@ export interface IHRM_Employee_ENTITY {
     id?: number | undefined;
     status?: number | undefined;
     message?: string | undefined;
+    company_code?: string | undefined;
     ref_code?: string | undefined;
     id_employee?: string | undefined;
     marital_status_code?: string | undefined;
@@ -37242,6 +37397,7 @@ export class SYS_Report_Infomation_ENTITY implements ISYS_Report_Infomation_ENTI
     account_code_modified?: string | undefined;
     default_version?: string | undefined;
     employee_code?: string | undefined;
+    employee_name?: string | undefined;
     xml_detail?: string | undefined;
     xml_sign?: string | undefined;
     language_id?: number | undefined;
@@ -37274,6 +37430,7 @@ export class SYS_Report_Infomation_ENTITY implements ISYS_Report_Infomation_ENTI
             this.account_code_modified = _data["account_code_modified"];
             this.default_version = _data["default_version"];
             this.employee_code = _data["employee_code"];
+            this.employee_name = _data["employee_name"];
             this.xml_detail = _data["xml_detail"];
             this.xml_sign = _data["xml_sign"];
             this.language_id = _data["language_id"];
@@ -37314,6 +37471,7 @@ export class SYS_Report_Infomation_ENTITY implements ISYS_Report_Infomation_ENTI
         data["account_code_modified"] = this.account_code_modified;
         data["default_version"] = this.default_version;
         data["employee_code"] = this.employee_code;
+        data["employee_name"] = this.employee_name;
         data["xml_detail"] = this.xml_detail;
         data["xml_sign"] = this.xml_sign;
         data["language_id"] = this.language_id;
@@ -37354,6 +37512,7 @@ export interface ISYS_Report_Infomation_ENTITY {
     account_code_modified?: string | undefined;
     default_version?: string | undefined;
     employee_code?: string | undefined;
+    employee_name?: string | undefined;
     xml_detail?: string | undefined;
     xml_sign?: string | undefined;
     language_id?: number | undefined;
@@ -37656,11 +37815,8 @@ export class FileRecord implements IFileRecord {
     tbName?: string | undefined;
     colName?: string | undefined;
     approve?: boolean | undefined;
-    datE_ADD?: moment.Moment | undefined;
     date_add?: moment.Moment | undefined;
-    datE_EDIT?: moment.Moment | undefined;
     date_edit?: moment.Moment | undefined;
-    accounT_ID?: number | undefined;
     account_id?: number | undefined;
     notes?: string | undefined;
     decentralization?: string | undefined;
@@ -37700,11 +37856,8 @@ export class FileRecord implements IFileRecord {
             this.tbName = _data["tbName"];
             this.colName = _data["colName"];
             this.approve = _data["approve"];
-            this.datE_ADD = _data["datE_ADD"] ? moment.parseZone(_data["datE_ADD"].toString()) : <any>undefined;
             this.date_add = _data["date_add"] ? moment.parseZone(_data["date_add"].toString()) : <any>undefined;
-            this.datE_EDIT = _data["datE_EDIT"] ? moment.parseZone(_data["datE_EDIT"].toString()) : <any>undefined;
             this.date_edit = _data["date_edit"] ? moment.parseZone(_data["date_edit"].toString()) : <any>undefined;
-            this.accounT_ID = _data["accounT_ID"];
             this.account_id = _data["account_id"];
             this.notes = _data["notes"];
             this.decentralization = _data["decentralization"];
@@ -37744,11 +37897,8 @@ export class FileRecord implements IFileRecord {
         data["tbName"] = this.tbName;
         data["colName"] = this.colName;
         data["approve"] = this.approve;
-        data["datE_ADD"] = this.datE_ADD ? this.datE_ADD.toISOString(true) : <any>undefined;
         data["date_add"] = this.date_add ? this.date_add.toISOString(true) : <any>undefined;
-        data["datE_EDIT"] = this.datE_EDIT ? this.datE_EDIT.toISOString(true) : <any>undefined;
         data["date_edit"] = this.date_edit ? this.date_edit.toISOString(true) : <any>undefined;
-        data["accounT_ID"] = this.accounT_ID;
         data["account_id"] = this.account_id;
         data["notes"] = this.notes;
         data["decentralization"] = this.decentralization;
@@ -37788,11 +37938,8 @@ export interface IFileRecord {
     tbName?: string | undefined;
     colName?: string | undefined;
     approve?: boolean | undefined;
-    datE_ADD?: moment.Moment | undefined;
     date_add?: moment.Moment | undefined;
-    datE_EDIT?: moment.Moment | undefined;
     date_edit?: moment.Moment | undefined;
-    accounT_ID?: number | undefined;
     account_id?: number | undefined;
     notes?: string | undefined;
     decentralization?: string | undefined;
@@ -38437,10 +38584,106 @@ export interface ISYS_Column_Info_ENTITY {
     account_code_modified?: string | undefined;
 }
 
+export class HRM_Branch_Detail_ENTITY implements IHRM_Branch_Detail_ENTITY {
+    id?: number | undefined;
+    code?: string | undefined;
+    work_shift_code?: string | undefined;
+    start_time?: moment.Moment | undefined;
+    end_time?: moment.Moment | undefined;
+    total_time?: number | undefined;
+    name?: string | undefined;
+    relax?: number | undefined;
+    hour_start_relax?: number | undefined;
+    hour_end_relax?: number | undefined;
+    start_relax?: moment.Moment | undefined;
+    end_relax?: moment.Moment | undefined;
+    is_apply?: boolean | undefined;
+    apply_name?: string | undefined;
+
+    constructor(data?: IHRM_Branch_Detail_ENTITY) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.code = _data["code"];
+            this.work_shift_code = _data["work_shift_code"];
+            this.start_time = _data["start_time"] ? moment.parseZone(_data["start_time"].toString()) : <any>undefined;
+            this.end_time = _data["end_time"] ? moment.parseZone(_data["end_time"].toString()) : <any>undefined;
+            this.total_time = _data["total_time"];
+            this.name = _data["name"];
+            this.relax = _data["relax"];
+            this.hour_start_relax = _data["hour_start_relax"];
+            this.hour_end_relax = _data["hour_end_relax"];
+            this.start_relax = _data["start_relax"] ? moment.parseZone(_data["start_relax"].toString()) : <any>undefined;
+            this.end_relax = _data["end_relax"] ? moment.parseZone(_data["end_relax"].toString()) : <any>undefined;
+            this.is_apply = _data["is_apply"];
+            this.apply_name = _data["apply_name"];
+        }
+    }
+
+    static fromJS(data: any): HRM_Branch_Detail_ENTITY {
+        data = typeof data === 'object' ? data : {};
+        let result = new HRM_Branch_Detail_ENTITY();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["code"] = this.code;
+        data["work_shift_code"] = this.work_shift_code;
+        data["start_time"] = this.start_time ? this.start_time.toISOString(true) : <any>undefined;
+        data["end_time"] = this.end_time ? this.end_time.toISOString(true) : <any>undefined;
+        data["total_time"] = this.total_time;
+        data["name"] = this.name;
+        data["relax"] = this.relax;
+        data["hour_start_relax"] = this.hour_start_relax;
+        data["hour_end_relax"] = this.hour_end_relax;
+        data["start_relax"] = this.start_relax ? this.start_relax.toISOString(true) : <any>undefined;
+        data["end_relax"] = this.end_relax ? this.end_relax.toISOString(true) : <any>undefined;
+        data["is_apply"] = this.is_apply;
+        data["apply_name"] = this.apply_name;
+        return data;
+    }
+
+    clone(): HRM_Branch_Detail_ENTITY {
+        const json = this.toJSON();
+        let result = new HRM_Branch_Detail_ENTITY();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface IHRM_Branch_Detail_ENTITY {
+    id?: number | undefined;
+    code?: string | undefined;
+    work_shift_code?: string | undefined;
+    start_time?: moment.Moment | undefined;
+    end_time?: moment.Moment | undefined;
+    total_time?: number | undefined;
+    name?: string | undefined;
+    relax?: number | undefined;
+    hour_start_relax?: number | undefined;
+    hour_end_relax?: number | undefined;
+    start_relax?: moment.Moment | undefined;
+    end_relax?: moment.Moment | undefined;
+    is_apply?: boolean | undefined;
+    apply_name?: string | undefined;
+}
+
 export class HRM_Branch_ENTITY implements IHRM_Branch_ENTITY {
     id?: number;
     code?: string | undefined;
     company_code?: string | undefined;
+    company_symbol?: string | undefined;
     name?: string | undefined;
     name1?: string | undefined;
     name2?: string | undefined;
@@ -38472,6 +38715,7 @@ export class HRM_Branch_ENTITY implements IHRM_Branch_ENTITY {
     is_su?: boolean | undefined;
     from_su?: moment.Moment | undefined;
     to_su?: moment.Moment | undefined;
+    hRM_Branch_Details?: HRM_Branch_Detail_ENTITY[] | undefined;
 
     constructor(data?: IHRM_Branch_ENTITY) {
         if (data) {
@@ -38487,6 +38731,7 @@ export class HRM_Branch_ENTITY implements IHRM_Branch_ENTITY {
             this.id = _data["id"];
             this.code = _data["code"];
             this.company_code = _data["company_code"];
+            this.company_symbol = _data["company_symbol"];
             this.name = _data["name"];
             this.name1 = _data["name1"];
             this.name2 = _data["name2"];
@@ -38518,6 +38763,11 @@ export class HRM_Branch_ENTITY implements IHRM_Branch_ENTITY {
             this.is_su = _data["is_su"];
             this.from_su = _data["from_su"] ? moment.parseZone(_data["from_su"].toString()) : <any>undefined;
             this.to_su = _data["to_su"] ? moment.parseZone(_data["to_su"].toString()) : <any>undefined;
+            if (Array.isArray(_data["hRM_Branch_Details"])) {
+                this.hRM_Branch_Details = [] as any;
+                for (let item of _data["hRM_Branch_Details"])
+                    this.hRM_Branch_Details.push(HRM_Branch_Detail_ENTITY.fromJS(item));
+            }
         }
     }
 
@@ -38533,6 +38783,7 @@ export class HRM_Branch_ENTITY implements IHRM_Branch_ENTITY {
         data["id"] = this.id;
         data["code"] = this.code;
         data["company_code"] = this.company_code;
+        data["company_symbol"] = this.company_symbol;
         data["name"] = this.name;
         data["name1"] = this.name1;
         data["name2"] = this.name2;
@@ -38564,6 +38815,11 @@ export class HRM_Branch_ENTITY implements IHRM_Branch_ENTITY {
         data["is_su"] = this.is_su;
         data["from_su"] = this.from_su ? this.from_su.toISOString(true) : <any>undefined;
         data["to_su"] = this.to_su ? this.to_su.toISOString(true) : <any>undefined;
+        if (Array.isArray(this.hRM_Branch_Details)) {
+            data["hRM_Branch_Details"] = [];
+            for (let item of this.hRM_Branch_Details)
+                data["hRM_Branch_Details"].push(item.toJSON());
+        }
         return data;
     }
 
@@ -38579,6 +38835,7 @@ export interface IHRM_Branch_ENTITY {
     id?: number;
     code?: string | undefined;
     company_code?: string | undefined;
+    company_symbol?: string | undefined;
     name?: string | undefined;
     name1?: string | undefined;
     name2?: string | undefined;
@@ -38610,6 +38867,7 @@ export interface IHRM_Branch_ENTITY {
     is_su?: boolean | undefined;
     from_su?: moment.Moment | undefined;
     to_su?: moment.Moment | undefined;
+    hRM_Branch_Details?: HRM_Branch_Detail_ENTITY[] | undefined;
 }
 
 export class HRM_WorkingTime_ENTITY implements IHRM_WorkingTime_ENTITY {
@@ -45951,6 +46209,204 @@ export interface ICAT_Warranty_Certificate_ENTITY {
     decentralization?: string | undefined;
     language_id?: number | undefined;
     company_code?: string | undefined;
+}
+
+export class Sales_Report_Of_Accounts_Receivable_Balances_ENTITY implements ISales_Report_Of_Accounts_Receivable_Balances_ENTITY {
+    code?: string | undefined;
+    customer_code?: string | undefined;
+    debitor_money_fc?: number | undefined;
+    debitor_money?: number | undefined;
+    creditor_money_fc?: number | undefined;
+    creditor_money?: number | undefined;
+    name?: string | undefined;
+    address?: string | undefined;
+    id?: number;
+    language_id?: number | undefined;
+    company_code?: string | undefined;
+    date_add?: moment.Moment | undefined;
+    date_modified?: moment.Moment | undefined;
+    account_code_add?: string | undefined;
+    account_code_modified?: string | undefined;
+
+    constructor(data?: ISales_Report_Of_Accounts_Receivable_Balances_ENTITY) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.code = _data["code"];
+            this.customer_code = _data["customer_code"];
+            this.debitor_money_fc = _data["debitor_money_fc"];
+            this.debitor_money = _data["debitor_money"];
+            this.creditor_money_fc = _data["creditor_money_fc"];
+            this.creditor_money = _data["creditor_money"];
+            this.name = _data["name"];
+            this.address = _data["address"];
+            this.id = _data["id"];
+            this.language_id = _data["language_id"];
+            this.company_code = _data["company_code"];
+            this.date_add = _data["date_add"] ? moment.parseZone(_data["date_add"].toString()) : <any>undefined;
+            this.date_modified = _data["date_modified"] ? moment.parseZone(_data["date_modified"].toString()) : <any>undefined;
+            this.account_code_add = _data["account_code_add"];
+            this.account_code_modified = _data["account_code_modified"];
+        }
+    }
+
+    static fromJS(data: any): Sales_Report_Of_Accounts_Receivable_Balances_ENTITY {
+        data = typeof data === 'object' ? data : {};
+        let result = new Sales_Report_Of_Accounts_Receivable_Balances_ENTITY();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["code"] = this.code;
+        data["customer_code"] = this.customer_code;
+        data["debitor_money_fc"] = this.debitor_money_fc;
+        data["debitor_money"] = this.debitor_money;
+        data["creditor_money_fc"] = this.creditor_money_fc;
+        data["creditor_money"] = this.creditor_money;
+        data["name"] = this.name;
+        data["address"] = this.address;
+        data["id"] = this.id;
+        data["language_id"] = this.language_id;
+        data["company_code"] = this.company_code;
+        data["date_add"] = this.date_add ? this.date_add.toISOString(true) : <any>undefined;
+        data["date_modified"] = this.date_modified ? this.date_modified.toISOString(true) : <any>undefined;
+        data["account_code_add"] = this.account_code_add;
+        data["account_code_modified"] = this.account_code_modified;
+        return data;
+    }
+
+    clone(): Sales_Report_Of_Accounts_Receivable_Balances_ENTITY {
+        const json = this.toJSON();
+        let result = new Sales_Report_Of_Accounts_Receivable_Balances_ENTITY();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface ISales_Report_Of_Accounts_Receivable_Balances_ENTITY {
+    code?: string | undefined;
+    customer_code?: string | undefined;
+    debitor_money_fc?: number | undefined;
+    debitor_money?: number | undefined;
+    creditor_money_fc?: number | undefined;
+    creditor_money?: number | undefined;
+    name?: string | undefined;
+    address?: string | undefined;
+    id?: number;
+    language_id?: number | undefined;
+    company_code?: string | undefined;
+    date_add?: moment.Moment | undefined;
+    date_modified?: moment.Moment | undefined;
+    account_code_add?: string | undefined;
+    account_code_modified?: string | undefined;
+}
+
+export class Sales_Report_Inventory_Materials_ENTITY implements ISales_Report_Inventory_Materials_ENTITY {
+    code?: string | undefined;
+    warehouse_code?: string | undefined;
+    goods_code?: string | undefined;
+    goods_name?: string | undefined;
+    goods_symbol?: string | undefined;
+    unit_name?: string | undefined;
+    ending_inventory_quantity?: number | undefined;
+    beginning_period_defective_quantity?: number | undefined;
+    id?: number;
+    language_id?: number | undefined;
+    company_code?: string | undefined;
+    date_add?: moment.Moment | undefined;
+    date_modified?: moment.Moment | undefined;
+    account_code_add?: string | undefined;
+    account_code_modified?: string | undefined;
+
+    constructor(data?: ISales_Report_Inventory_Materials_ENTITY) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.code = _data["code"];
+            this.warehouse_code = _data["warehouse_code"];
+            this.goods_code = _data["goods_code"];
+            this.goods_name = _data["goods_name"];
+            this.goods_symbol = _data["goods_symbol"];
+            this.unit_name = _data["unit_name"];
+            this.ending_inventory_quantity = _data["ending_inventory_quantity"];
+            this.beginning_period_defective_quantity = _data["beginning_period_defective_quantity"];
+            this.id = _data["id"];
+            this.language_id = _data["language_id"];
+            this.company_code = _data["company_code"];
+            this.date_add = _data["date_add"] ? moment.parseZone(_data["date_add"].toString()) : <any>undefined;
+            this.date_modified = _data["date_modified"] ? moment.parseZone(_data["date_modified"].toString()) : <any>undefined;
+            this.account_code_add = _data["account_code_add"];
+            this.account_code_modified = _data["account_code_modified"];
+        }
+    }
+
+    static fromJS(data: any): Sales_Report_Inventory_Materials_ENTITY {
+        data = typeof data === 'object' ? data : {};
+        let result = new Sales_Report_Inventory_Materials_ENTITY();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["code"] = this.code;
+        data["warehouse_code"] = this.warehouse_code;
+        data["goods_code"] = this.goods_code;
+        data["goods_name"] = this.goods_name;
+        data["goods_symbol"] = this.goods_symbol;
+        data["unit_name"] = this.unit_name;
+        data["ending_inventory_quantity"] = this.ending_inventory_quantity;
+        data["beginning_period_defective_quantity"] = this.beginning_period_defective_quantity;
+        data["id"] = this.id;
+        data["language_id"] = this.language_id;
+        data["company_code"] = this.company_code;
+        data["date_add"] = this.date_add ? this.date_add.toISOString(true) : <any>undefined;
+        data["date_modified"] = this.date_modified ? this.date_modified.toISOString(true) : <any>undefined;
+        data["account_code_add"] = this.account_code_add;
+        data["account_code_modified"] = this.account_code_modified;
+        return data;
+    }
+
+    clone(): Sales_Report_Inventory_Materials_ENTITY {
+        const json = this.toJSON();
+        let result = new Sales_Report_Inventory_Materials_ENTITY();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface ISales_Report_Inventory_Materials_ENTITY {
+    code?: string | undefined;
+    warehouse_code?: string | undefined;
+    goods_code?: string | undefined;
+    goods_name?: string | undefined;
+    goods_symbol?: string | undefined;
+    unit_name?: string | undefined;
+    ending_inventory_quantity?: number | undefined;
+    beginning_period_defective_quantity?: number | undefined;
+    id?: number;
+    language_id?: number | undefined;
+    company_code?: string | undefined;
+    date_add?: moment.Moment | undefined;
+    date_modified?: moment.Moment | undefined;
+    account_code_add?: string | undefined;
+    account_code_modified?: string | undefined;
 }
 
 export class Accounting_VAT_Output_ENTITY implements IAccounting_VAT_Output_ENTITY {
