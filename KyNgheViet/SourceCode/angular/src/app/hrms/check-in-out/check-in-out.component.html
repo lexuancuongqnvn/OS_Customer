@@ -1,0 +1,111 @@
+<div style="text-align:center" *ngIf="deviceInfo.deviceType == 'mobile'">
+    <div class="center-content">
+        <img width="256" style="display: none;" id="face1" src="" class="margin" />
+        <div id="selectList1"></div>
+    </div>
+    <div class="center-content">
+        <img width="256" style="display: none;" id="face2" src="" class="margin" />
+        <div id="selectList1"></div>
+    </div>
+    <div class="croper"></div>
+    <div class="checkin-out-face" *ngIf="!isSettingFace">
+        <h5 style="color: red;" *ngIf="!showbtncheck">Bạn đang cách vị trí chấm công :{{distance}}m</h5>
+        <br /> <small *ngIf="!showbtncheck"> <i>Phạm vi chấm công tối đa {{maxLength}}m</i></small>
+        <small *ngIf="isMission"> <i [innerHTML]="missionaddress"></i></small>
+        <div class="snapshot " *ngIf="webcamImage ">
+            <div *ngIf="showWebcam ">
+                <h5 *ngIf="status_checkin > 0" style="color: rgb(255, 115, 0); ">
+                    {{message}}
+                </h5>
+                <!-- <a href="/check-in-out">Thử lại</a> -->
+            </div>
+            <h5 *ngIf="status_checkin == -1 && !showWebcam" style="color: rgb(255, 0, 0); padding-top: 50px;">
+                {{message}}
+                <a href="/check-in-out">Thử lại</a>
+            </h5>
+            <h5 *ngIf="!showWebcam && status_checkin == 0" style="color: rgb(0, 124, 21); ">
+                {{message}}
+            </h5>
+            <!-- <img *ngIf="!showWebcam " [src]="webcamImage.imageAsDataUrl " /> -->
+        </div>
+
+        <div>
+            <br />
+            <div class="div-checkin">
+                <div id="navi" style="z-index: 100;">
+                    <div *ngIf="showWebcam && showbtncheck" style="display: block; position: absolute;width:100%;z-index: 120;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="255" height="255" viewBox="0 0 255 255" fill="none">
+                            <circle cx="127.5" cy="127.5" r="122.5" stroke="#D9D9D9" stroke-width="9.47514" stroke-miterlimit="3.22136" stroke-linejoin="round" stroke-dasharray="2.41 4.06"/>
+                        </svg>
+                    </div>
+                    <webcam [width]="256" [height]="256" [trigger]="triggerObservable" (imageCapture)="handleImage($event)" *ngIf="showWebcam && showbtncheck" [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable" [videoOptions]="videoOptions" [imageQuality]="1"
+                        (cameraSwitched)="cameraWasSwitched($event)" (initError)="handleInitError($event)"></webcam>
+                </div>
+                <div id="infoi">
+                    <img *ngIf="!showWebcam" [src]="gif_checkin" style="width: 100px;max-hieght·: 100px;" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-1"></div>
+                <div class="col-10">
+                    <div class="form-group" style="text-align: left;">
+                        <label for="status" class="label-title" style="color: rgb(15 108 189);">Chi nhánh</label>
+                        <input-selectpicker-v2 #SelectBranchPicker [value]="employeeModel.branch_code" (ValueOutput)="onSelect($event,'branch_code')" [multiple]="false" [list]="listBranch" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'branch_code'" [Class]="'selectpicker-filter-working'"
+                            [title]="'Trạng thái'"></input-selectpicker-v2>
+                    </div>
+                </div>
+                <div class="col-1"></div>
+            </div>
+            <div class="row">
+                <div class="col-1"></div>
+                <div class="col-10">
+                    <div class="form-group" style="text-align: left;">
+                        <label for="status" class="label-title" style="color: rgb(15 108 189);">Ca làm việc</label>
+                        <input-selectpicker-v2 #SelectWSPicker [value]="employeeModel.work_shift_code" (ValueOutput)="onSelectWS($event,'work_shift_code')" [multiple]="false" [list]="listWorkShift" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'work_shift_code'"
+                            [Class]="'selectpicker-filter-working'" [title]="'Trạng thái'"></input-selectpicker-v2>
+                    </div>
+                </div>
+                <div class="col-1"></div>
+            </div>
+            <button class="btn actionBtn" *ngIf="actionBtn && showbtncheck && btntitle != ''" (click)="triggerSnapshot();">{{btntitle}}</button>
+            <button type="button" class="btn btn-warning actionBtn" *ngIf="status_checkin == 1">{{message_checkin}}</button>
+            <!-- <button type="button" class="btn btn-success actionBtn" *ngIf="status_checkin == 0">{{message_checkin}}</button> -->
+            <div class="row" style="padding-top: 15px;">
+                <a href="javascript:;" style="width: 100%;text-align: center;" *ngIf="!isSettingFace" (click)="onClickSetting(true)">Thiết lập lại khuôn mặt</a>
+            </div>
+
+        </div>
+    </div>
+    <div class="setting-face" *ngIf="isSettingFace">
+        <br/>
+        <div id="navi" style="padding-top: 58px;">
+            <div>
+                <span style=" color: #106DBD; text-align: center; font-family: Inter; font-size: 15.127px; font-style: normal; font-weight: 700; line-height: normal; ">{{translate('THIẾT LẬP KHUÔN MẶT','FACE TRAINING')}}</span>
+            </div>
+            <div *ngIf="!isShowTraining" style="z-index: 100;">
+                <div style=" display: block; position: absolute;width:100%;z-index: 120;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="255" height="255" viewBox="0 0 255 255" fill="none">
+                        <circle cx="127.5" cy="127.5" r="122.5" stroke="#D9D9D9" stroke-width="9.47514" stroke-miterlimit="3.22136" stroke-linejoin="round" stroke-dasharray="2.41 4.06"/>
+                    </svg>
+                </div>
+                <webcam [width]="256" [height]="256" [trigger]="triggerObservable" (imageCapture)="handleImage($event)" [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable" [videoOptions]="videoOptions" [imageQuality]="1" (cameraSwitched)="cameraWasSwitched($event)"
+                    (initError)="handleInitError($event)"></webcam>
+            </div>
+            <button class="btn actionBtn" *ngIf="!isShowTraining" style="width:70%;padding: 5px;" (click)="triggerSnapshot();">TIẾP TỤC</button>
+            <button class="btn actionBtn" *ngIf="isShowTraining" (click)="SaveFaceTraing()" style="width:70%;padding: 5px;">Hoàn tất</button>
+            <div class="div-img-setting" style="width: 260px;margin-left: 17%;">
+                <div>
+                    <img width="128" class="img-training {{currentFace=='left'?'active':''}}" [src]="InputModel.hRM_Employee_Check_In_Out_Image_Trainings.left" (click)="setCurrentFace('left')">
+                    <img width="128" class="img-training {{currentFace=='top'?'active':''}}" [src]="InputModel.hRM_Employee_Check_In_Out_Image_Trainings.top" (click)="setCurrentFace('top')">
+                    <img width="128" class="img-training {{currentFace=='right'?'active':''}}" [src]="InputModel.hRM_Employee_Check_In_Out_Image_Trainings.right" (click)="setCurrentFace('right')">
+                    <img width="128" class="img-training {{currentFace=='bottom'?'active':''}}" [src]="InputModel.hRM_Employee_Check_In_Out_Image_Trainings.bottom" (click)="setCurrentFace('bottom')">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="text-align:center" *ngIf="deviceInfo.deviceType != 'mobile'">
+    <h3>Truy cập điện thoại</h3>
+    <img src="../../../assets/img/warning-online-on-mobile.png">
+</div>

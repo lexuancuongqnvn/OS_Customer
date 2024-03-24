@@ -1,0 +1,18 @@
+<form method="#" action="#" class="form-data form-view-master">
+    <app-toolbar #toolbar [tableName]="tbName" [CurrenFrom]="CurrenFrom" [classInsert]="'form-30082023'"></app-toolbar>
+    <alert-message #alertMessage></alert-message>
+    <osoft-data-grid-report #DataGridGenRowTable [tableName]="tbName" (OnChangeDataFilter)="OnChangeDataFilter($event)" [dataSource]="listData" (selectedRowsDataOutput)="onSelectedRowsData($event)" (OnSelectRow)="selectRow($event)"></osoft-data-grid-report>
+</form>
+<dialog-acction #dialogDelete [content]="translate('Bạn có chắc chắn muốn xóa?','Are you sure you want to delete?')" [title]="translate('Vui lòng xác nhận','Please confirm')" (confirmOutput)="confirmDelete()"></dialog-acction>
+<dx-popup [width]="'80%'" [height]="'80%'" [showCloseButton]="false" [showTitle]="true" (onClick)="onClickPopup($event)" title="" [dragEnabled]="false" container=".dx-viewport" [(visible)]="popupSetupReportVisible">
+    <dxi-toolbar-item widget="dxButton" toolbar="bottom" location="after" toolbar="top" [options]="closeButtonOptions"></dxi-toolbar-item>
+    <div *dxTemplate="let data of 'content'">
+        <s32-m-edit *ngIf="rowSelected.voucher_code == 'HDB' && popupSetupReportVisible == true" [code]="idSelect" [rowSelected]="rowSelected"></s32-m-edit>
+        <s33-m-edit *ngIf="rowSelected.voucher_code == 'HTL' && popupSetupReportVisible == true" [code]="idSelect" [rowSelected]="rowSelected"></s33-m-edit>
+        <i44-m-edit *ngIf="rowSelected.voucher_code == 'PDC' && popupSetupReportVisible == true" [code]="idSelect" [rowSelected]="rowSelected"></i44-m-edit>
+        <i42-m-edit *ngIf="rowSelected.voucher_code == 'PNH' && popupSetupReportVisible == true" [code]="idSelect" [rowSelected]="rowSelected"></i42-m-edit>
+        <p22-m-edit *ngIf="rowSelected.voucher_code == 'PNM' && popupSetupReportVisible == true" [code]="idSelect" [rowSelected]="rowSelected"></p22-m-edit>
+        <i43-m-edit *ngIf="rowSelected.voucher_code == 'PXK' && popupSetupReportVisible == true" [code]="idSelect" [rowSelected]="rowSelected"></i43-m-edit>
+        <p24-m-edit *ngIf="rowSelected.voucher_code == 'PXT' && popupSetupReportVisible == true" [code]="idSelect" [rowSelected]="rowSelected"></p24-m-edit>
+    </div>
+</dx-popup>

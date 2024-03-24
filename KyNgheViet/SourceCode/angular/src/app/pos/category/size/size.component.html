@@ -1,0 +1,46 @@
+<div class="card-container k-form-edit">
+    <app-toolbar #toolbar [tableName]="tbName" [CurrenFrom]="CurrenFrom"></app-toolbar>
+    <div class="example-wrapper form-group">
+        <div class="example-wrapper">
+            <div class="">
+                <div class="form-group">
+                    <div class="row div-filter">
+                        <!-- Begin filter -->
+                        <!-- Tên -->
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="id_name" class="">Tên</label>
+                                <input type="text" #name="ngModel" name="name" [(ngModel)]="filterInput.name" [value]="filterInput.name" class="form-control" id="id_name">
+                            </div>
+                        </div>
+                        <!-- end filter -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-component form-group">
+        <jqgrid-list #gridMenuList (ValueOutput)="selectRow($event);" [colModel]="col_model" [table]="tbName" [title]="'Danh sách nhóm sản phẩm'"></jqgrid-list>
+    </div>
+    <dialog-acction #dialogDelete [content]="'Bạn có chắc chắn muốn xóa?'" [title]="translate('Vui lòng xác nhận','Confirm ')" (confirmOutput)="confirmDelete()"></dialog-acction>
+</div>
+<!-- Edit -->
+<sidenav-add-edit #sidenavAddEdit [title]="'Chỉnh sửa thông tin menu'" *ngIf="isEdit" class="form-sidenav-edit">
+    <form method="#" action="#" style="padding: 20px;">
+        <app-toolbar #toolbarEdit [tableName]="tbName" [CurrenFrom]="getCurrenFrom"></app-toolbar>
+        <div class="row">
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="name" class="bmd-label-floating title-input">Tên</label>
+                    <input type="text" #name="ngModel" name="name" [(ngModel)]="InputModel.name" [value]="InputModel.name" class="form-control" id="name">
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="symbol" class="bmd-label-floating title-input">Mã nhận diện SKU</label>
+                    <input type="text" [disabled]="InputModel.code" #symbol="ngModel" name="symbol" [(ngModel)]="InputModel.symbol" [value]="InputModel.symbol" class="form-control" id="symbol">
+                </div>
+            </div>
+        </div>
+    </form>
+</sidenav-add-edit>

@@ -1,0 +1,172 @@
+<div *ngIf="verifyPassword==false" class="row justify-content-center">
+    <div class="col-12 col-lg-10 col-xl-8 mx-auto">
+        <h2 class="h3 mb-4 page-title">Settings</h2>
+        <div class="my-4">
+            <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link {{class1}}" (click)="onActive(1)" id="Login-tab" data-toggle="tab" href="javascript:;" role="tab" aria-controls="Login" aria-selected="false">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{class2}}" (click)="onActive(2)" id="Language-tab" data-toggle="tab" href="javascript:;" role="tab" aria-controls="Language" aria-selected="false">Language</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{class3}}" (click)="onActive(3)" id="Announce-tab" data-toggle="tab" href="javascript:;" role="tab" aria-controls="Announce" aria-selected="false">Announce</a>
+                </li>
+            </ul>
+            <div *ngIf="active1">
+                <h5 class="mb-0 mt-5">Password</h5>
+                <div class="list-group mb-5 shadow">
+                    <div class="list-group-item">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <strong class="mb-0">Thay đổi mật khẩu /Change password</strong>
+                                <p class="text-muted mb-0">You can change your password here.</p>
+                            </div>
+                            <div class="col-auto">
+                                <div class="custom-control custom-switch">
+                                    <a href="javascript:;" (click)="onChangePasswork()">Change</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="my-4" />
+                <strong class="mb-0">History</strong>
+                <p>Below is the log in history on all devices.</p>
+                <div class="list-group mb-5 shadow">
+                    <div class="list-group-item">
+                        <div class="row align-items-center" *ngFor="let item of listHistory">
+                            <div class="col">
+                                <strong class="mb-0">
+                                <svg *ngIf="item.isonline" style="color: #0fd90f;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-circle-fill" viewBox="0 0 16 16">
+                                    <circle cx="8" cy="8" r="8"/>
+                                </svg>
+                                <svg *ngIf="!item.isonline" style="color: #424242;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-circle-fill" viewBox="0 0 16 16">
+                                    <circle cx="8" cy="8" r="8"/>
+                                </svg>
+                                    {{item.lastonlile}}</strong>
+                                <p class="text-muted mb-0" *ngIf="item.deviceType == 'mobile'"> {{item.device}} - {{item.browser}}</p>
+                                <p class="text-muted mb-0" *ngIf="item.deviceType != 'mobile'"> {{item.deviceType}} - {{item.browser}}</p>
+                            </div>
+                            <div class="col-auto">
+                                <div class="custom-control custom-switch">
+                                    <a href="javascript:;" (click)="logOut(item.token)">Logout</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="active2">
+                <h5 class="mb-0 mt-5">Language Settings</h5>
+                <div class="list-group mb-5 shadow">
+                    <div class="list-group-item">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <strong class="mb-0">Ngôn ngữ phần mềm</strong>
+                                <div class="form-group">
+                                    <label for="exampleFormControlSelect1">Example select</label>
+                                    <select *ngIf="language == '1'" class="form-control" #Language id="exampleFormControlSelect1" style="width: 20%;" (change)="activeSave($event)">
+                                      <option value="1" selected>Vietnamese</option>
+                                      <option value="2">English</option>
+                                    </select>
+                                    <select *ngIf="language == '2'" class="form-control" #Language id="exampleFormControlSelect1" style="width: 20%;" (change)="activeSave($event)">
+                                        <option value="1">Vietnamese</option>
+                                        <option value="2" selected>English</option>
+                                      </select>
+                                    <select *ngIf="(!language || language == '') && language != '2' && language != '1'" class="form-control" #Language id="exampleFormControlSelect1" style="width: 20%;" (change)="activeSave($event)">
+                                    <option value="1">Vietnamese</option>
+                                    <option value="2">English</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-auto" *ngIf="ischangeLanguage">
+                                <div class="custom-control custom-switch">
+                                    <a href="javascript:;" (click)="SaveChangeLanguage()">Save</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="active3">
+                <h5 class="mb-0 mt-5">Announce Settings</h5>
+                <div class="list-group mb-5 shadow">
+                    <div class="list-group-item">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <strong class="mb-0">New message notification</strong>
+                                <p class="text-muted mb-0">The system will notify you when there is a new message.</p>
+                            </div>
+                            <div class="col-auto">
+                                <div class="custom-control custom-switch">
+                                    <input type="checkbox" class="custom-control-input" id="alert1" checked="" />
+                                    <span class="custom-control-label"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-group-item">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <strong class="mb-0">Notify when there is a new issue</strong>
+                                <p class="text-muted mb-0">The system will send a new notification when specified in task.</p>
+                            </div>
+                            <div class="col-auto">
+                                <div class="custom-control custom-switch">
+                                    <input type="checkbox" class="custom-control-input" id="alert2" />
+                                    <span class="custom-control-label"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="my-4" />
+                <strong class="mb-0">System</strong>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" *ngIf="verifyPassword==true">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <form id="RegisterValidation" action="#" method="" novalidate="novalidate">
+            <div class="card ">
+                <div class="card-header card-header-rose card-header-icon">
+                    <div class="card-icon">
+                        <i class="material-icons">settings_backup_restore</i>
+                    </div>
+                    <h4 class="card-title">Thay đổi mật khẩu /Forgot password Form</h4>
+                </div>
+                <div class="card-body ">
+                    <div class="form-group" *ngIf="password_status != 0">
+                        <label for="examplePassword">Mật khẩu cũ /Old password</label>
+                        <input type="password" #password="ngModel" name="password" [(ngModel)]="accountModel.password" class="form-control" id="password">
+                    </div>
+                    <div class="form-group" *ngIf="password_status != 0">
+                        <label for="examplePassword">Mật khẩu mới /New password </label>
+                        <input type="password" #passwordnew="ngModel" name="passwordnew" [(ngModel)]="accountModel.passwordnew" class="form-control" id="passwordnew">
+                    </div>
+                    <div class="form-group" *ngIf="password_status != 0">
+                        <label for="examplePassword1">Xác nhận mật khẩu mới/Confirm new Password </label>
+                        <input type="password" #passwordnew_cf="ngModel" name="passwordnew_cf" [(ngModel)]="accountModel.passwordnew_cf" class="form-control" id="passwordnew_cf">
+                    </div>
+                    <div class="form-group" *ngIf="password_status != 0">
+                        <label for="examplePassword1" style="color: red;">{{password_message}}</label>
+                    </div>
+                    <div class="form-group" *ngIf="password_status == 0">
+                        <h1 for="examplePassword1" style="color: green;">{{password_message}}</h1>
+                    </div>
+                    <!-- <div class="category form-category">* Required fields</div> -->
+                </div>
+                <div class="card-footer text-right">
+                    <div class="form-check mr-auto">
+                    </div>
+                    <button *ngIf="password_status != 0" type="submit" class="btn btn-rose" (click)="onSubmitChangePassword()">Xác nhận /Submit</button>
+                    <button *ngIf="password_status == 0" type="submit" class="btn btn-rose" (click)="onChangePasswork()">Hoàn tất /Finish</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-4"></div>
+</div>

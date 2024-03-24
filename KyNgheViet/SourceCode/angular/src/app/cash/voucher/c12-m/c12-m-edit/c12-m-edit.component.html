@@ -1,0 +1,5 @@
+<dialog-acction #dialogDelete [content]="translate('Bạn có chắc chắn muốn xóa?','Are you sure you want to delete?')" [title]="translate('Vui lòng xác nhận','Confirm ')" (confirmOutput)="onDelete($event)"></dialog-acction>
+<dialog-acction #dialogreSetAccount [content]="translate('Cập nhật tài khoản cho chi tiết phiếu?','Update account for voucher details?')" [title]="translate('Vui lòng xác nhận','Confirm ')" (confirmOutput)="onSetAccount()"></dialog-acction>
+<dialog-acction #dialogreSetCustomer [content]="translate('Cập nhật đối tượng cho chi tiết phiếu?','Update customer for voucher details?')" [title]="translate('Vui lòng xác nhận','Confirm ')" (confirmOutput)="onSetCustomer()"></dialog-acction>
+<form-edit-v2 #FromEditV2 (selectedRowsDataOutput)="onSelectedRowsDataOutput($event)" [tbName]="tbName" (onClickAcctionOutput)="onClickAcctionResponse($event)" [InputMaster]="InputMaster" (HandleValueChangedOutput)="handleValueChanged($event)" (HandleRowsDataGridOutput)="HandleRowsDataGridOutput($event)"
+    (onRefreshGridOutput)="onRefreshGridOutput($event)" [onRefreshGrid]="onRefreshGrid"></form-edit-v2>

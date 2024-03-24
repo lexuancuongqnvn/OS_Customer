@@ -1,0 +1,135 @@
+<div class="card-container k-form-edit">
+    <app-toolbar #toolbar [classInsert]="'form-30082023'" [tableName]="tbName" [CurrenFrom]="CurrenFrom"></app-toolbar>
+    <div class="example-wrapper form-group">
+        <div class="example-wrapper">
+            <div class="card-collapse">
+                <div class="card-header" role="tab" id="headingTwo">
+                    <h5 class="mb-0">
+                        <a class="collapsed" style="color: #00bcd4 !important;" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Click để lọc dữ liệu
+                            <i class="material-icons">keyboard_arrow_down</i>
+                        </a>
+                    </h5>
+                </div>
+                <div id="collapseTwo" style="padding: 5px 10px 5px 0;" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
+                    <div class="card-body">
+                        <div class="">
+                            <div class="form-group filter">
+                                <div class="row div-filter">
+                                    <!-- Begin filter -->
+                                    <div class="col-6 col-sm-5 col-md-4 col-lg-3 col-xl-3">
+                                        <div class="form-group">
+                                            <label for="filter_type" class=" label-title">Lọc đơn</label>
+                                            <input-selectpicker-v2 #SelectFilterTypePicker (ValueOutput)="onSelectType($event,'type')" [value]="'1'" [multiple]="false" [list]="listType" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'filter_type'" [title]="'Lọc đơn'"></input-selectpicker-v2>
+                                        </div>
+                                    </div>
+                                    <!-- Ngày bắt -->
+                                    <!-- Tình trạng duyệt-->
+                                    <div class="col-6 col-sm-5 col-md-4 col-lg-3 col-xl-3">
+                                        <div class="form-group">
+                                            <label for="status_code" class="label-title">Tình trạng</label>
+                                            <input-selectpicker-v2 #SelectStatusApprovePicker (ValueOutput)="onSelectType($event,'approve_status')" [multiple]="false" [list]="listStatus" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'approve_status'" [Class]="'selectpicker-filter-working'"
+                                                [title]="'Tình trạng'"></input-selectpicker-v2>
+                                        </div>
+                                    </div>
+                                    <!-- end filter -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-component form-group">
+        <jqgrid-list [min_width]="850" #gridList (ValueOutput)="selectRow($event)" [colModel]="col_model" [table]="tbName" [title]="'Danh sách đơn '"></jqgrid-list>
+    </div>
+    <dialog-acction #dialogDelete [content]="'Bạn có chắc chắn muốn xóa?'" [title]="translate('Vui lòng xác nhận','Confirm ')" (confirmOutput)="confirmDelete()"></dialog-acction>
+</div>
+<!-- Edit -->
+<sidenav-add-edit #sidenavAddEdit [title]="'Chỉnh sửa thông tin đơn xin nghỉ'" *ngIf="isEdit" class="form-sidenav-edit">
+    <form method="#" action="#" style="padding: 20px;">
+        <app-toolbar #toolbarEdit [classInsert]="'form-30082023'" [tableName]="tbName" [CurrenFrom]="getCurrenFrom"></app-toolbar>
+        <alert-message #alertMessage></alert-message>
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                <div class="row general">
+                    <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-6">
+                        <div class="form-group">
+                            <label for="start_datetime" class=" label-title">Làm thêm từ<span class="input-required">*</span></label><br>
+                            <input-datetimepicker [ColumnName]="'start_datetime'" [value]="InputModel.start_datetime" name="start_datetime" (ValueOutput)="valueStartDate($event,'start_datetime')"></input-datetimepicker>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-6">
+                        <div class="form-group">
+                            <label for="end_datetime" class=" label-title">Làm thêm đến<span class="input-required">*</span></label><br>
+                            <input-datetimepicker [ColumnName]="'end_datetime'" [value]="InputModel.end_datetime" name="end_datetime" (ValueOutput)="valueStartDate($event,'end_datetime')"></input-datetimepicker>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-6">
+                        <div class="form-group">
+                            <label for="start_relax_datetime" class=" label-title">Nghỉ giữa ca từ</label><br>
+                            <input-datetimepicker [ColumnName]="'start_relax_datetime'" [value]="InputModel.start_relax_datetime" name="start_relax_datetime" (ValueOutput)="valueStartDate($event,'start_relax_datetime')"></input-datetimepicker>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-6">
+                        <div class="form-group">
+                            <label for="end_relax_datetime" class=" label-title">Nghỉ giữa ca đến</label><br>
+                            <input-datetimepicker [ColumnName]="'end_relax_datetime'" [value]="InputModel.end_relax_datetime" name="end_relax_datetime" (ValueOutput)="valueStartDate($event,'end_relax_datetime')"></input-datetimepicker>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-6">
+                        <div class="form-group">
+                            <label for="work_land" class=" label-title">Thời điểm làm thêm <span class="input-required">*</span></label>
+                            <input-selectpicker-v2 #SelectLandPicker (ValueOutput)="onSelect($event,'work_land')" [value]="InputModel.work_land" [multiple]="false" [list]="listLand" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'work_land'" [title]="''"></input-selectpicker-v2>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                <div class="row general">
+                    <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-6">
+                        <div class="form-group">
+                            <label for="checker" class=" label-title">Người duyệt<span class="input-required">*</span></label>
+                            <input-selectpicker-img #SelectCheckerPicker (ValueOutput)="onSelect($event,'checker')" [value]="InputModel.checker" [multiple]="false" [list]="listEmployeePermission" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'checker'" [FieldIMG]="'avarta'"
+                                [textSmall]="'department_name'"></input-selectpicker-img>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-6">
+                        <div class="form-group">
+                            <label for="employee_related_code" class=" label-title">Người liên quan</label>
+                            <input-selectpicker-img #Select_employee_related_code_Picker (ValueOutput)="onSelect($event,'follower')" [value]="InputModel.follower" [multiple]="true" [list]="listEmployee" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'follower'" [FieldIMG]="'avarta'"
+                                [textSmall]="'department_name'"></input-selectpicker-img>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                        <label for="reason" class=" label-title">Lí do tăng ca<span class="input-required">*</span></label>
+                        <textarea type="text" #content="ngModel" name="reason" [(ngModel)]="InputModel.reason" [value]="InputModel.reason" class="form-control" id="reason"></textarea>
+                    </div>
+                    <div class="col-12"></div>
+
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                        <label for="notes" class=" label-title">Chi chú</label>
+                        <textarea type="text" #notes="ngModel" name="notes" [(ngModel)]="InputModel.notes" [value]="InputModel.notes" class="form-control" id="notes"></textarea>
+                    </div>
+                    <div class="col-12"></div>
+                    <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+                        <div class="form-group">
+                            <label for="approve_note" class=" label-title">Ghi chú duyệt </label>
+                            <textarea type="text" #approve_note="ngModel" [disabled]="!showApprove" name="approve_note" [(ngModel)]="InputModel.approve_note" [value]="InputModel.approve_note" class="form-control" id="approve_note"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6" *ngIf="this.InputModel.code != '' && this.InputModel.code != null && this.InputModel.code">
+                        <div class="form-group">
+                            <br>
+                            <button type="button" *ngIf="InputModel.approve_status == '690FCF0B-829D-4CDF-B5E7-6B9BA97F8409' && showApprove" (click)="onClickApprove()" class="btn btn-outline-success">Duyệt</button>
+                            <button type="button" *ngIf="InputModel.approve_status == 'EC49059D-C574-4CF6-9757-DCD605E01A18' && showUnApprove" (click)="onClickUnApprove()" class="btn btn-outline-warning">Hủy duyệt</button>
+                            <button type="button" *ngIf="InputModel.approve_status == '690FCF0B-829D-4CDF-B5E7-6B9BA97F8409' && showApprove" (click)="onClickRefusedToApprove()" class="btn btn-outline-danger">Từ chối</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</sidenav-add-edit>

@@ -1,0 +1,37 @@
+<div id="flex-container" class="testimonials">
+    <div id="left-zone">
+        <ul class="list" *ngIf="DataApps.length > 0">
+            <li class="item" *ngFor="let app of DataApps;let i=index" (click)="onClickLi(app,i)">
+                <input type="radio" id="radio_testimonial-{{(i+1)}}" name="basic_carousel" />
+                <label class="label_testimonial-{{(i+1)}}" for="radio_testimonial-{{(i+1)}}" style="background-image: url('{{app.icon}}');background-repeat: no-repeat;
+                background-size: 70px auto;">{{app.name}}<a *ngIf="indexApp == i" class="a-confirm" (click)="onChangeAndSaveApp(app)">ok</a></label>
+
+                <div class="content-test content_testimonial-{{(i+1)}}">
+                    <span class="picto"></span>
+                    <h1 class="h1-app-checked-name" id="title-{{app.key_app}}"></h1>
+                    <div class="row">
+                        <div class="col-12">
+                            <card-carousel [DataMenus]="app.sYS_Menus?app.sYS_Menus:[]"></card-carousel>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <!-- <ul class="list" *ngIf="DataGroups.length == 0">
+            <li class="item" *ngFor="let group of DataGroups;let i=index">
+                <input type="radio" id="radio_testimonial-1" name="basic_carousel" checked="checked" />
+                <label class="label_testimonial-1" for="radio_testimonial-1">Không có dữ liệu/ No data</label>
+                <div class="content-test content_testimonial-1">
+                    <span class="picto"></span>
+                    <h1 class="h1-app-checked-name">Không có dữ liệu/ No data</h1>
+                    <div class="row">
+                        <div class="col-12">
+                            <card-carousel></card-carousel>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul> -->
+    </div>
+    <div id="right-zone"></div>
+</div>

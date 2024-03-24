@@ -1,0 +1,11 @@
+<form method="#" action="#" class="form-data form-view-master">
+    <app-toolbar #toolbar [tableName]="tbName" [CurrenFrom]="CurrenFrom" [classInsert]="'form-30082023'"></app-toolbar>
+    <alert-message #alertMessage></alert-message>
+    <osoft-data-grid-report #DataGridGenRowTable [dataFilter]="filterInput" [tableName]="tbName" (OnChangeDataFilter)="OnChangeDataFilter($event)" [dataSource]="listData" (selectedRowsDataOutput)="onSelectedRowsData($event)" (OnSelectRow)="selectRow($event)"></osoft-data-grid-report>
+</form>
+<dialog-acction-v2 #dialogViewDetail (onClickAcctionOutput)="onClickAcctionBookDetail($event)" [title]="'Sổ chi tiết vật tư'" [showToolbar]="true" [CurrenFrom]="CurrenFrom" [tbName]="tbName" [width]="'90%'" [content]="" [title]="">
+    <form method="#" action="#" class="form-data form-view-master">
+        <osoft-data-grid-report #DataGridnventoryBookDetail [dataFilter]="filterInputBookDetail" [tableName]="'WMS_Report_Inventory_Book_Detail'" (OnChangeDataFilter)="OnChangeDataFilterBookDetail($event)" [dataSource]="listDataBookDetail" (selectedRowsDataOutput)="onSelectedRowsDataBookDetail($event)"
+            (OnSelectRow)="selectRowBookDetail($event)"></osoft-data-grid-report>
+    </form>
+</dialog-acction-v2>

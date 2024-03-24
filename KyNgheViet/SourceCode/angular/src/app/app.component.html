@@ -1,0 +1,13 @@
+<app-login *ngIf="showtheme == false"></app-login>
+<block-ui [template]="blockTemplate">
+    <app-layout *ngIf="showtheme == true"></app-layout>
+</block-ui>
+
+<kendo-dialog title="Exist Login!" *ngIf="_exist" (close)="OK()" #dialogExist>
+    <p style="margin: 30px; text-align: center;">Đã hết phiên đăng nhập.</p>
+    <kendo-dialog-actions>
+        <button kendoButton (click)="OK()" [primary]="true">
+      OK
+    </button>
+    </kendo-dialog-actions>
+</kendo-dialog>

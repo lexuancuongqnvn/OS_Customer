@@ -1,0 +1,16 @@
+<!-- <select *ngIf="multiple" (change)="onChangeValue($event)" class="{{Class}} selectpicker-filter" data-style="select-with-transition branch" multiple title="{{title}}" data-size="7">
+    <option *ngFor="let item of list" value="{{item[FieldValue]}}">{{item[FieldDisplay]}}</option>
+</select>
+<select *ngIf="!multiple" (change)="onChangeValue($event)" class="{{Class}} selectpicker-filter" data-style="select-with-transition branch" title="{{title}}" data-size="7">
+    <option *ngFor="let item of list" value="{{item[FieldValue]}}">{{item[FieldDisplay]}}</option>
+</select> -->
+
+<select *ngIf="!multiple" id="{{ColumnName}}" class="{{ColumnName}}-basic-multiple {{ColumnName}} {{required && 'required'}}" name="{{ColumnName}}">
+    <option value="">---Chọn---</option>
+    <!-- <option *ngFor="let item of list" value="{{item[FieldValue]}}">{{item[FieldDisplay]}}</option> -->
+</select>
+<select *ngIf="multiple" id="{{ColumnName}}" class="{{ColumnName}}-basic-multiple {{ColumnName}} {{required && 'required'}}" name="{{ColumnName}}" multiple>
+    <!-- <option *ngFor="let item of list" value="{{item[FieldValue]}}">{{item[FieldDisplay]}}</option> -->
+</select>
+<input style="display:none;" (click)="onChangeValue($event)" class="input-{{ColumnName}}" value="" />
+<input style="display:none;" (click)="onSearchOption($event)" class="input-textSearchselectpicker-{{ColumnName}}" value="" />

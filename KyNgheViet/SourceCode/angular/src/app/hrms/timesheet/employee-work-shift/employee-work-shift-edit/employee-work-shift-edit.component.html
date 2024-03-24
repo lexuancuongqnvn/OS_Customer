@@ -1,0 +1,253 @@
+<div class="card-container k-form-edit">
+    <app-toolbar #toolbar [tableName]="tbName" [CurrenFrom]="getCurrenFrom"></app-toolbar>
+    <div class="example-wrapper form-group">
+        <div class="">
+            <div class="form-group filter">
+                <div class="row div-filter">
+                    <!-- Begin filter -->
+                    <!-- Tên -->
+                    <div class="col-4 col-sm-3 col-md-3 col-lg-2 col-xl-2">
+                        <div class="form-group">
+                            <label for="name" class="label-title">Tên:</label>
+                            <input type="text" #name="ngModel" name="name" [(ngModel)]="InputModel.name" class="form-control" [value]="InputModel.name" id="name">
+                        </div>
+                    </div>
+                    <!-- Ngày bắt đầu -->
+                    <div class="col-4 col-sm-3 col-md-3 col-lg-2 col-xl-2">
+                        <div class="form-group">
+                            <label for="id_stop_date" class="label-title">Ngày bắt đầu:</label>
+                            <input-datepicker [ColumnName]="'work_date'" [value]="InputModel.work_date" name="work_date" (ValueOutput)="valueStartDate($event,'work_date')"></input-datepicker>
+                        </div>
+                    </div>
+                    <!-- end filter -->
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-12">
+                        <h3 class="h3-branch-name form-group">
+                            <!-- <b>{{InputModel.name}}</b> -->
+                            <!-- <a href="javascript:;" class="material-icons-name-timesheet"><span (click)="onclickShowNameTimeSheet(true)" class="material-icons">edit</span></a> -->
+                        </h3>
+                    </div>
+                    <div class="col-4"></div>
+                    <!-- <div class="col-4" *ngIf="isShowNameTimeSheet || getCurrenFrom == 'Add'">
+                            <input type="text" class="form-control" #nameTimeSheet="ngModel" placeholder="Nhập tên bảng công" name="nameTimeSheet" [(ngModel)]="InputModel.name" [value]="InputModel.name" id="nameTimeSheet">
+                            <a href="javascript:;" *ngIf="getCurrenFrom != 'Add'"><span class="material-icons" (click)="onSaveUpdateMasterInfo()">save</span></a>
+                            <a href="javascript:;" *ngIf="getCurrenFrom != 'Add'"><span class="material-icons" (click)="onclickShowNameTimeSheet(false)">close</span></a>
+                        </div> -->
+                    <div class="col-4"></div>
+                </div>
+                <div class="card card-calendar">
+                    <div class="card-body ">
+                        <div id="fullCalendar"></div>
+                        <div class="hiden" *ngIf="getCurrenFrom != 'Add'" style="display: none;">
+                            <input type="text" (click)="onChangeTimeSheet()" id="setTimeSheet">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Edit -->
+        <sidenav-add-edit #sidenavAddEdit [title]="title" class="form-sidenav-edit">
+            <form method="#" action="#" style="padding: 20px;" class="form-main">
+                <!-- <app-toolbar #toolbarEdit [tableName]="tbName" [CurrenFrom]="getCurrenFrom"></app-toolbar> -->
+                <alert-message #alertMessage></alert-message>
+                <div class="div-calendar">
+                    <div class="div-left-list-employee">
+                        <ul class="list-group employee-list-group">
+                            <li *ngFor="let item of listEmployee;let i = index" (click)="onSelectEmployee(item)" class="list-group-item d-flex justify-content-between align-items-center {{item['class']}}">
+                                <div [innerHTML]="item.avarta_html"></div>
+                                <a href="javascript:;" class="a-emp-name">{{item['name']}}</a>
+                                <span class="badge badge-primary badge-pill">{{item['total_hour_working']?item['total_hour_working']:0}}/{{item.total_time_work?item.total_time_work:0}}h</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="div-right-calendar" *ngIf="allDay[10].day>0">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Ca</th>
+                                    <th scope="col" style="width:10.71%">{{allDay[0].name_vn}} {{allDay[0].day>0?' - Ngày '+allDay[0].day.toString():''}}</th>
+                                    <th scope="col" style="width:10.71%">{{allDay[1].name_vn}} {{allDay[1].day>0?' - Ngày '+allDay[1].day.toString():''}}</th>
+                                    <th scope="col" style="width:10.71%">{{allDay[2].name_vn}} {{allDay[2].day>0?' - Ngày '+allDay[2].day.toString():''}}</th>
+                                    <th scope="col" style="width:10.71%">{{allDay[3].name_vn}} {{allDay[3].day>0?' - Ngày '+allDay[3].day.toString():''}}</th>
+                                    <th scope="col" style="width:10.71%">{{allDay[4].name_vn}} {{allDay[4].day>0?' - Ngày '+allDay[4].day.toString():''}}</th>
+                                    <th scope="col" style="width:10.71%">{{allDay[5].name_vn}} {{allDay[5].day>0?' - Ngày '+allDay[5].day.toString():''}}</th>
+                                    <th scope="col" style="width:10.71%">{{allDay[6].name_vn}} {{allDay[6].day>0?' - Ngày '+allDay[6].day.toString():''}}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of listWorkShift" class="tr-ws {{item.code}}" (click)="onClickTR(item.code)">
+                                    <th scope="row">{{item.name}} ({{item.start_time_f}}-{{item.end_time_f}})</th>
+                                    <td><input class="form-check-input" *ngIf="item.allDay[0].day > 0" type="checkbox" name="checkbox-{{item.class}}" (change)="onChangeCheckbox($event.target.checked,item,item.allDay[0],0)" [ngModelOptions]="{standalone: true}"
+                                            [(ngModel)]="item.allDay[0].value"></td>
+                                    <td><input class="form-check-input" *ngIf="item.allDay[1].day > 0" type="checkbox" name="checkbox-{{item.class}}" (change)="onChangeCheckbox($event.target.checked,item,item.allDay[1],1)" [ngModelOptions]="{standalone: true}"
+                                            [(ngModel)]="item.allDay[1].value"></td>
+                                    <td><input class="form-check-input" *ngIf="item.allDay[2].day > 0" type="checkbox" name="checkbox-{{item.class}}" (change)="onChangeCheckbox($event.target.checked,item,item.allDay[2],2)" [ngModelOptions]="{standalone: true}"
+                                            [(ngModel)]="item.allDay[2].value"></td>
+                                    <td><input class="form-check-input" *ngIf="item.allDay[3].day > 0" type="checkbox" name="checkbox-{{item.class}}" (change)="onChangeCheckbox($event.target.checked,item,item.allDay[3],3)" [ngModelOptions]="{standalone: true}"
+                                            [(ngModel)]="item.allDay[3].value"></td>
+                                    <td><input class="form-check-input" *ngIf="item.allDay[4].day > 0" type="checkbox" name="checkbox-{{item.class}}" (change)="onChangeCheckbox($event.target.checked,item,item.allDay[4],4)" [ngModelOptions]="{standalone: true}"
+                                            [(ngModel)]="item.allDay[4].value"></td>
+                                    <td><input class="form-check-input" *ngIf="item.allDay[5].day > 0" type="checkbox" name="checkbox-{{item.class}}" (change)="onChangeCheckbox($event.target.checked,item,item.allDay[5],5)" [ngModelOptions]="{standalone: true}"
+                                            [(ngModel)]="item.allDay[5].value"></td>
+                                    <td><input class="form-check-input" *ngIf="item.allDay[6].day > 0" type="checkbox" name="checkbox-{{item.class}}" (change)="onChangeCheckbox($event.target.checked,item,item.allDay[6],6)" [ngModelOptions]="{standalone: true}"
+                                            [(ngModel)]="item.allDay[6].value"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Ca</th>
+                                    <th scope="col" style="width:10.71%">{{allDay[7].name_vn}} {{allDay[7].day >0?' - Ngày '+allDay[7].day.toString():''}}</th>
+                                    <th scope="col" style="width:10.71%">{{allDay[8].name_vn}} {{allDay[8].day >0?' - Ngày '+allDay[8].day.toString():''}}</th>
+                                    <th scope="col" style="width:10.71%">{{allDay[9].name_vn}} {{allDay[9].day >0?' - Ngày '+allDay[9].day.toString():''}}</th>
+                                    <th scope="col" style="width:10.71%">{{allDay[10].name_vn}} {{allDay[10].day>0?' - Ngày '+allDay[10].day.toString():''}}</th>
+                                    <th scope="col" style="width:10.71%">{{allDay[11].name_vn}} {{allDay[11].day>0?' - Ngày '+allDay[11].day.toString():''}}</th>
+                                    <th scope="col" style="width:10.71%">{{allDay[12].name_vn}} {{allDay[12].day>0?' - Ngày '+allDay[12].day.toString():''}}</th>
+                                    <th scope="col" style="width:10.71%">{{allDay[13].name_vn}} {{allDay[13].day>0?' - Ngày '+allDay[13].day.toString():''}}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of listWorkShift" class="tr-ws {{item.code}}" (click)="onClickTR(item.code)">
+                                    <th scope="row">{{item.name}} ({{item.start_time_f}}-{{item.end_time_f}})</th>
+                                    <td><input class="form-check-input" type="checkbox" name="checkbox-{{item.class}}" (change)="onChangeCheckbox($event.target.checked,item,item.allDay[7],7)" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.allDay[7].value"></td>
+                                    <td><input class="form-check-input" type="checkbox" name="checkbox-{{item.class}}" (change)="onChangeCheckbox($event.target.checked,item,item.allDay[8],8)" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.allDay[8].value"></td>
+                                    <td><input class="form-check-input" type="checkbox" name="checkbox-{{item.class}}" (change)="onChangeCheckbox($event.target.checked,item,item.allDay[9],9)" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.allDay[9].value"></td>
+                                    <td><input class="form-check-input" type="checkbox" name="checkbox-{{item.class}}" (change)="onChangeCheckbox($event.target.checked,item,item.allDay[10],10)" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.allDay[10].value"></td>
+                                    <td><input class="form-check-input" type="checkbox" name="checkbox-{{item.class}}" (change)="onChangeCheckbox($event.target.checked,item,item.allDay[11],11)" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.allDay[11].value"></td>
+                                    <td><input class="form-check-input" type="checkbox" name="checkbox-{{item.class}}" (change)="onChangeCheckbox($event.target.checked,item,item.allDay[12],12)" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.allDay[12].value"></td>
+                                    <td><input class="form-check-input" type="checkbox" name="checkbox-{{item.class}}" (change)="onChangeCheckbox($event.target.checked,item,item.allDay[13],13)" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.allDay[13].value"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Ca</th>
+                                    <th scope="col" style="width:10.71%">{{allDay[14].name_vn}} {{allDay[14].day>0?' - Ngày '+allDay[14].day.toString():''}}</th>
+                                    <th scope="col" style="width:10.71%">{{allDay[15].name_vn}} {{allDay[15].day>0?' - Ngày '+allDay[15].day.toString():''}}</th>
+                                    <th scope="col" style="width:10.71%">{{allDay[15].name_vn}} {{allDay[16].day>0?' - Ngày '+allDay[16].day.toString():''}}</th>
+                                    <th scope="col" style="width:10.71%">{{allDay[17].name_vn}} {{allDay[17].day>0?' - Ngày '+allDay[17].day.toString():''}}</th>
+                                    <th scope="col" style="width:10.71%">{{allDay[18].name_vn}} {{allDay[18].day>0?' - Ngày '+allDay[18].day.toString():''}}</th>
+                                    <th scope="col" style="width:10.71%">{{allDay[19].name_vn}} {{allDay[19].day>0?' - Ngày '+allDay[19].day.toString():''}}</th>
+                                    <th scope="col" style="width:10.71%">{{allDay[20].name_vn}} {{allDay[20].day>0?' - Ngày '+allDay[20].day.toString():''}}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of listWorkShift" class="tr-ws {{item.code}}" (click)="onClickTR(item.code)">
+                                    <th scope="row">{{item.name}} ({{item.start_time_f}}-{{item.end_time_f}})</th>
+                                    <td><input class="form-check-input" type="checkbox" name="checkbox-{{item.class}}" (change)="onChangeCheckbox($event.target.checked,item,item.allDay[14],14)" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.allDay[14].value"></td>
+                                    <td><input class="form-check-input" type="checkbox" name="checkbox-{{item.class}}" (change)="onChangeCheckbox($event.target.checked,item,item.allDay[15],15)" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.allDay[15].value"></td>
+                                    <td><input class="form-check-input" type="checkbox" name="checkbox-{{item.class}}" (change)="onChangeCheckbox($event.target.checked,item,item.allDay[16],16)" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.allDay[16].value"></td>
+                                    <td><input class="form-check-input" type="checkbox" name="checkbox-{{item.class}}" (change)="onChangeCheckbox($event.target.checked,item,item.allDay[17],17)" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.allDay[17].value"></td>
+                                    <td><input class="form-check-input" type="checkbox" name="checkbox-{{item.class}}" (change)="onChangeCheckbox($event.target.checked,item,item.allDay[18],18)" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.allDay[18].value"></td>
+                                    <td><input class="form-check-input" type="checkbox" name="checkbox-{{item.class}}" (change)="onChangeCheckbox($event.target.checked,item,item.allDay[19],19)" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.allDay[19].value"></td>
+                                    <td><input class="form-check-input" type="checkbox" name="checkbox-{{item.class}}" (change)="onChangeCheckbox($event.target.checked,item,item.allDay[20],20)" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.allDay[20].value"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Ca</th>
+                                    <th scope="col" style="width:10.71%">{{allDay[21].name_vn}} {{allDay[21].day>0?' - Ngày '+allDay[21].day.toString():''}}</th>
+                                    <th scope="col" style="width:10.71%">{{allDay[22].name_vn}} {{allDay[22].day>0?' - Ngày '+allDay[22].day.toString():''}}</th>
+                                    <th scope="col" style="width:10.71%">{{allDay[23].name_vn}} {{allDay[23].day>0?' - Ngày '+allDay[23].day.toString():''}}</th>
+                                    <th scope="col" style="width:10.71%">{{allDay[24].name_vn}} {{allDay[24].day>0?' - Ngày '+allDay[24].day.toString():''}}</th>
+                                    <th scope="col" style="width:10.71%">{{allDay[25].name_vn}} {{allDay[25].day>0?' - Ngày '+allDay[25].day.toString():''}}</th>
+                                    <th scope="col" style="width:10.71%">{{allDay[26].name_vn}} {{allDay[26].day>0?' - Ngày '+allDay[26].day.toString():''}}</th>
+                                    <th scope="col" style="width:10.71%">{{allDay[27].name_vn}} {{allDay[27].day>0?' - Ngày '+allDay[27].day.toString():''}}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of listWorkShift" class="tr-ws {{item.code}}" (click)="onClickTR(item.code)">
+                                    <th scope="row">{{item.name}} ({{item.start_time_f}}-{{item.end_time_f}})</th>
+                                    <td><input class="form-check-input" type="checkbox" name="checkbox-{{item.class}}" (change)="onChangeCheckbox($event.target.checked,item,item.allDay[21],21)" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.allDay[21].value"></td>
+                                    <td><input class="form-check-input" type="checkbox" name="checkbox-{{item.class}}" (change)="onChangeCheckbox($event.target.checked,item,item.allDay[22],22)" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.allDay[22].value"></td>
+                                    <td><input class="form-check-input" type="checkbox" name="checkbox-{{item.class}}" (change)="onChangeCheckbox($event.target.checked,item,item.allDay[23],23)" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.allDay[23].value"></td>
+                                    <td><input class="form-check-input" type="checkbox" name="checkbox-{{item.class}}" (change)="onChangeCheckbox($event.target.checked,item,item.allDay[24],24)" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.allDay[24].value"></td>
+                                    <td><input class="form-check-input" type="checkbox" name="checkbox-{{item.class}}" (change)="onChangeCheckbox($event.target.checked,item,item.allDay[25],25)" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.allDay[25].value"></td>
+                                    <td><input class="form-check-input" type="checkbox" name="checkbox-{{item.class}}" (change)="onChangeCheckbox($event.target.checked,item,item.allDay[26],26)" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.allDay[26].value"></td>
+                                    <td><input class="form-check-input" type="checkbox" name="checkbox-{{item.class}}" (change)="onChangeCheckbox($event.target.checked,item,item.allDay[27],27)" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.allDay[27].value"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Ca</th>
+                                    <th scope="col" style="width:10.71%">{{allDay[28].name_vn}} {{allDay[28].day>0?' - Ngày '+allDay[28].day.toString():''}}</th>
+                                    <th scope="col" style="width:10.71%">{{allDay[29].name_vn}} {{allDay[29].day>0?' - Ngày '+allDay[29].day.toString():''}}</th>
+                                    <th scope="col" style="width:10.71%">{{allDay[30].name_vn}} {{allDay[30].day>0?' - Ngày '+allDay[30].day.toString():''}}</th>
+                                    <th scope="col" style="width:10.71%">{{allDay[31].name_vn}} {{allDay[21].day>0?' - Ngày '+allDay[31].day.toString():''}}</th>
+                                    <th scope="col" style="width:10.71%">{{allDay[32].name_vn}} {{allDay[32].day>0?' - Ngày '+allDay[32].day.toString():''}}</th>
+                                    <th scope="col" style="width:10.71%">{{allDay[33].name_vn}} {{allDay[33].day>0?' - Ngày '+allDay[33].day.toString():''}}</th>
+                                    <th scope="col" style="width:10.71%">{{allDay[34].name_vn}} {{allDay[34].day>0?' - Ngày '+allDay[34].day.toString():''}}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of listWorkShift" class="tr-ws {{item.code}}" (click)="onClickTR(item.code)">
+                                    <th scope="row">{{item.name}} ({{item.start_time_f}}-{{item.end_time_f}})</th>
+                                    <td><input class="form-check-input" *ngIf="item.allDay[28].day > 0" type="checkbox" #checkbox="ngModel" name="checkbox-{{item.class}}" (change)="onChangeCheckbox($event.target.checked,item,item.allDay[28],28)" [ngModelOptions]="{standalone: true}"
+                                            [(ngModel)]="item.allDay[28].value"></td>
+                                    <td><input class="form-check-input" *ngIf="item.allDay[29].day > 0" type="checkbox" #checkbox="ngModel" name="checkbox-{{item.class}}" (change)="onChangeCheckbox($event.target.checked,item,item.allDay[29],29)" [ngModelOptions]="{standalone: true}"
+                                            [(ngModel)]="item.allDay[29].value"></td>
+                                    <td><input class="form-check-input" *ngIf="item.allDay[30].day > 0" type="checkbox" #checkbox="ngModel" name="checkbox-{{item.class}}" (change)="onChangeCheckbox($event.target.checked,item,item.allDay[30],30)" [ngModelOptions]="{standalone: true}"
+                                            [(ngModel)]="item.allDay[30].value"></td>
+                                    <td><input class="form-check-input" *ngIf="item.allDay[31].day > 0" type="checkbox" #checkbox="ngModel" name="checkbox-{{item.class}}" (change)="onChangeCheckbox($event.target.checked,item,item.allDay[31],31)" [ngModelOptions]="{standalone: true}"
+                                            [(ngModel)]="item.allDay[31].value"></td>
+                                    <td><input class="form-check-input" *ngIf="item.allDay[32].day > 0" type="checkbox" #checkbox="ngModel" name="checkbox-{{item.class}}" (change)="onChangeCheckbox($event.target.checked,item,item.allDay[32],32)" [ngModelOptions]="{standalone: true}"
+                                            [(ngModel)]="item.allDay[32].value"></td>
+                                    <td><input class="form-check-input" *ngIf="item.allDay[33].day > 0" type="checkbox" #checkbox="ngModel" name="checkbox-{{item.class}}" (change)="onChangeCheckbox($event.target.checked,item,item.allDay[33],33)" [ngModelOptions]="{standalone: true}"
+                                            [(ngModel)]="item.allDay[33].value"></td>
+                                    <td><input class="form-check-input" *ngIf="item.allDay[34].day > 0" type="checkbox" #checkbox="ngModel" name="checkbox-{{item.class}}" (change)="onChangeCheckbox($event.target.checked,item,item.allDay[34],34)" [ngModelOptions]="{standalone: true}"
+                                            [(ngModel)]="item.allDay[34].value"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </form>
+        </sidenav-add-edit>
+        <!-- <button class="update-timesheet" style="display: none;" (click)="updateTimesheet($event)"></button>
+            <button class="post-comment" style="display: none;" (click)="postComment()"></button>
+            <input class="load-timesheet-detail" style="display: none;" (click)="onClickShowEventDetail($event)" /> -->
+        <input class="refresh-timesheet" style="display: none;" (click)="UpdateView()" />
+        <input class="onclick-edit-timesheet" style="display: none;" (click)="onclickEdit()" />
+        <style>
+            #const-hour {
+                padding-bottom: 0px;
+                padding-top: 15px;
+                margin-top: 3px;
+                max-width: 50px;
+                width: 30px;
+            }
+            
+            .edit-hour-on {
+                height: 25px !important;
+                width: 100px !important;
+                /* border-radius: 18px 18px 18px 0px; */
+                margin: -17% 0px -26px 69% !important;
+                color: black !important;
+                text-align: right;
+                /* z-index: 1000 !important; */
+                display: none;
+            }
+            
+            .hover-edit-hour-on:hover+.edit-hour-on,
+            .edit-hour-on:hover {
+                display: block !important;
+            }
+            
+            .search-employee {
+                width: 100%;
+            }
+        </style>
+    </div>
+    <dialog-acction #dialogSaveChange [content]="'Bạn có chắc chắn muốn xóa?'" [title]="translate('Vui lòng xác nhận','Confirm ')" (confirmOutput)="confirmSaveData()"></dialog-acction>
+</div>

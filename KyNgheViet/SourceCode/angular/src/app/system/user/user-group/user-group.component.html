@@ -1,0 +1,49 @@
+<div class="card-container k-form-edit">
+    <app-toolbar #toolbar [classInsert]="'form-30082023'" [tableName]="tbName" [CurrenFrom]="CurrenFrom"></app-toolbar>
+    <div class="example-wrapper form-group">
+        <div class="example-wrapper">
+            <div class="">
+                <div class="form-group filter">
+                    <div class="row div-filter">
+                        <!-- Begin filter -->
+                        <!-- Tên -->
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="id_name" class="">Tên</label>
+                                <input type="text" #name="ngModel" name="name" [(ngModel)]="filterInput.name" [value]="filterInput.name" class="form-control" id="id_name">
+                            </div>
+                        </div>
+                        <!-- end filter -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-component form-group">
+        <jqgrid-list #gridMenuList (ValueOutput)="selectRow($event);" [colModel]="col_model" [table]="tbName" [title]="'Danh sách nhóm sản phẩm'"></jqgrid-list>
+    </div>
+    <dialog-acction #dialogDelete [content]="'Bạn có chắc chắn muốn xóa?'" [title]="translate('Vui lòng xác nhận','Confirm ')" (confirmOutput)="confirmDelete()"></dialog-acction>
+</div>
+<!-- Edit -->
+<sidenav-add-edit #sidenavAddEdit [title]="'Chỉnh sửa thông nhóm người dùng'" *ngIf="isEdit" class="form-sidenav-edit">
+    <form method="#" action="#" style="padding: 20px;">
+        <app-toolbar #toolbarEdit [classInsert]="'form-30082023'" [tableName]="tbName" [CurrenFrom]="getCurrenFrom"></app-toolbar>
+        <alert-message #alertMessage></alert-message>
+        <div class="row">
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="name" class="bmd-label-floating title-input">Tên nhóm</label>
+                    <input type="text" #name="ngModel" name="name" [(ngModel)]="InputModel.name" [value]="InputModel.name" class="form-control" id="name">
+                </div>
+            </div>
+            <!-- Phòng ban -->
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="department_code" class="">Phòng ban</label><br>
+                    <input-selectpicker-v2 #SelectDepartmentPicker [value]="InputModel.departmenT_CODE" (ValueOutput)="onSelectDepartment($event,'department_code')" [multiple]="false" [list]="listDepartment" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'department_code'"
+                        [title]="'Phòng ban'"></input-selectpicker-v2>
+                </div>
+            </div>
+        </div>
+    </form>
+</sidenav-add-edit>

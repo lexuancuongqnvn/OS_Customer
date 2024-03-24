@@ -1,0 +1,112 @@
+<div class="row content-calendar">
+    <div class="col-md-2">
+        <div class="row">
+            <div class="col-md-2 branch-filter">
+                <input-selectpicker-v2 #SelectBranchPicker (ValueOutput)="onSelectBranch($event)" [list]="listBranch" [multiple]="true" [FieldValue]="'id'" [FieldDisplay]="'name'" [Class]="'selectpicker-filter-branch'" [title]="''"></input-selectpicker-v2>
+            </div>
+            <div class="col-md-5 const-hour-input">
+                <div class="input-group">
+                    <!-- <span class="input-group-text" id="basic-addon3">Chuẩn</span> -->
+                    <input type="number" (input)="onChangeConstHour($event.target.value)" class="form-control" value="{{constHour}}" id="const-hour" aria-describedby="Chuẩn">
+                    <p style="margin: 16px 0 0 0;">/M</p>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="row">
+                    <div class="col-md-8 shift-filter">
+                        <input-selectpicker-v2 #SelectWorkingPicker (ValueOutput)="onSelectWoking($event)" [multiple]="false" [list]="listWorking" [FieldValue]="'id'" [FieldDisplay]="'name'" [Class]="'selectpicker-filter-working'" [title]="'Ca trực'"></input-selectpicker-v2>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-check form-check-inline">
+                            <label class="form-check-label">
+                              <input class="form-check-input check-automatic" type="checkbox" value=""> A
+                              <span class="form-check-sign">
+                                <span class="check"></span>
+                              </span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slider-employee border border-primary">
+            <div class="row search-employee">
+                <div class="input-group mb-3">
+                    <span class="input-group-text material-icons">
+                        search
+                    </span>
+                    <input (input)="onSearchEmployee($event.target.value)" type="text" class="form-control" placeholder="Tìm kiếm" aria-label="Tìm kiếm" aria-describedby="basic-addon1">
+                </div>
+            </div>
+            <div class="row info-employee" *ngFor="let item of listEmployee">
+                <div class="col-md-8">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" (change)="onSelectEmployee(item)" type="radio" name="EmployeeRadios" value="{{item.id}}" fullName="{{item.firstName}} {{item.lastName}}" working="{{Nameworking}}">
+                            <p class="name-eployee">{{item.firstName}} {{item.lastName}}</p>
+                            <small class="branch-name">{{item.branchName}}</small>
+                            <span class="circle">
+                                <span class="check"></span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-4 form-check hover-edit-hour-on">
+                    <label for="floatingSelect form-check-label" class="">
+                        <p class="hour-on">{{item['TimeWorking']}}/{{item['constHour']}} h</p><br/>
+                        <small class="over-time">Tăng ca {{item['OverTime']}}h</small>
+                    </label>
+                </div>
+                <a href="javascript:;" (click)="editHour(item['id'])" class="edit-hour-on"><span class="material-icons" style="margin-right: -16px;">edit</span></a>
+                <div></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-10">
+        <div class="row">
+            <div class="col-10">
+                <h3 class="h3-branch-name"><b>Bảng trực và công việc chi nhánh quận 12</b></h3>
+            </div>
+            <div class="col-2">
+                <button type="button btn-save-datacalendar" (click)="onSave()" class="btn btn-success">Lưu</button>
+            </div>
+        </div>
+        <div class="card card-calendar">
+            <div class="card-body ">
+                <div id="fullCalendar"></div>
+                <div class="hiden" style="display: none;">
+                    <input type="text" (click)="onChangeTimeSheet()" id="setTimeSheet">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    #const-hour {
+        padding-bottom: 0px;
+        padding-top: 15px;
+        margin-top: 3px;
+        max-width: 50px;
+        width: 30px;
+    }
+    
+    .edit-hour-on {
+        height: 25px !important;
+        width: 100px !important;
+        /* border-radius: 18px 18px 18px 0px; */
+        margin: -17% 0px -26px 69% !important;
+        color: black !important;
+        text-align: right;
+        /* z-index: 1000 !important; */
+        display: none;
+    }
+    
+    .hover-edit-hour-on:hover+.edit-hour-on,
+    .edit-hour-on:hover {
+        display: block !important;
+    }
+    
+    .search-employee {
+        width: 100%;
+    }
+</style>

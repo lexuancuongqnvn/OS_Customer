@@ -1,0 +1,12 @@
+<form-edit-v2 #FromEditV2 [isShowTitle]="false" [showToolbar]="false" (onDatasourceGridOutput)="onDatasourceGridOutput($event)" (selectedRowsDataOutput)="onSelectedRowsDataOutput($event)" [tbName]="tbName" (onClickAcctionOutput)="onClickAcctionResponse($event)"
+    [InputMaster]="InputMaster" (HandleValueChangedOutput)="handleValueChanged($event)" (HandleRowsDataGridOutput)="HandleRowsDataGridOutput($event)">
+    <div class="col-12 col-sm-10 col-md-8 col-lg-4 col-xl-4"><label class="labels"></label>
+        <label for="distance" class="">Logo</label><br>
+        <img [src]="BASE_URL+InputMaster.url_logo">
+        <input-file-upload [colName]="'url_logo'" [isDomain]="false" [hidden]="false" [multiple]="false" [tableName]="'HRM_Branch'" (ValueOutput)="valueUpload($event,'url_logo')"></input-file-upload>
+    </div>
+    <div class="col-12 col-sm-10 col-md-8 col-lg-4 col-xl-4" *ngIf="latitude">
+        <iframe width="500" height="500" id="iframe-map" [src]="''" scrolling="no" frameborder="0"></iframe>
+    </div>
+</form-edit-v2>
+<dialog-acction #dialogDelete [content]="translate('Bạn có chắc chắn muốn xóa?','Are you sure you want to delete?')" [title]="translate('Vui lòng xác nhận','Please confirm')" (confirmOutput)="confirmDelete()"></dialog-acction>

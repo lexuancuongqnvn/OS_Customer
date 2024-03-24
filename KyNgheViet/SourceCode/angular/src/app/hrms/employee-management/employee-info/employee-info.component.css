@@ -1,0 +1,13 @@
+fieldset {
+    width: 100%;
+    border: 1px solid #bfbfbf;
+    padding-bottom: 15px;
+}
+
+.card-collapse .card-header {
+    padding: 0px 10px 5px 0 !important;
+}
+
+div#headingTwo {
+    padding: 0px 11px 0px 0px !important;
+}

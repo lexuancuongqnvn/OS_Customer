@@ -1,0 +1,6 @@
+<select *ngIf="!multiple" id="{{ColumnName}}" class="{{ColumnName}}-basic-multiple {{ColumnName}} {{required && 'required'}}" name="{{ColumnName}}">
+    <option value="">---Chọn---</option>
+</select>
+<select *ngIf="multiple" id="{{ColumnName}}" class="{{ColumnName}}-basic-multiple {{ColumnName}} {{required && 'required'}}" name="{{ColumnName}}" multiple>
+</select>
+<input style="display:none;" (click)="onChangeValue($event)" class="input-{{ColumnName}}" value="" />

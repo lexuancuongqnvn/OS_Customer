@@ -1,0 +1,315 @@
+<div>
+    <div class="card-container k-form-edit" style="margin-top: 20px !important;">
+        <app-toolbar #toolbar [tableName]="tbName" [CurrenFrom]="CurrenFrom" [classInsert]="'form-30082023'"></app-toolbar>
+        <alert-message #alertMessage></alert-message>
+        <div class="row div-filter">
+            <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+                <div class="form-group">
+                    <label for="id_name" class="">Tháng</label>
+                    <input-selectpicker-v2 #SelectEmployee_replacePicker [value]="filterInput.month" (ValueOutput)="onSelectFilter($event,'month')" [multiple]="false" [list]="listMonth" [FieldValue]="'id'" [FieldDisplay]="'name'" [ColumnName]="'employee_code_replace'" [title]="''"></input-selectpicker-v2>
+                </div>
+            </div>
+            <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+                <div class="form-group">
+                    <label for="id_name" class="">Năm</label>
+                    <input-datepicker [ColumnName]="'year'" name="year" [value]="filterInput['today']" (ValueOutput)="onSelectFilter($event,'year')" [format]="'YYYY'"></input-datepicker>
+                </div>
+            </div>
+        </div>
+        <osoft-data-grid #DataGridGenRowTable [isShowComponentFilter]="true" [tableName]="tbName" [dataSource]="InputMaster" (selectedRowsDataOutput)="onSelectedRowsData($event)" (OnSelectRow)="selectRow($event)"></osoft-data-grid>
+        <div class="example-wrapper form-group sales-enter">
+            <div class="example-wrapper">
+                <div class="">
+                    <div class="form-group">
+                        <div class="row div-filter">
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                                <div class="card">
+                                    <div class="card-header card-header-icon card-header-info">
+                                        <div class="card-icon">
+                                            <i class="material-icons">timeline</i>
+                                        </div>
+                                        <h4 class="card-title">Biểu đồ số lượng đã bán
+                                        </h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div id="salesBarsChart" class="ct-chart"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                                <div class="card card-chart">
+                                    <div class="card-header card-header-icon card-header-danger">
+                                        <div class="card-icon">
+                                            <i class="material-icons">pie_chart</i>
+                                        </div>
+                                        <h4 class="card-title">Tỉ lệ đạt doanh số</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div id="PieChartSales" class="ct-chart"></div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <i class="fa fa-circle text-warning"></i> Còn lại
+                                                <i class="fa fa-circle text-success"></i> Đã bán
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <app-toolbar #toolbar [tableName]="tbName" [CurrenFrom]="CurrenFrom"></app-toolbar>
+        <div class="example-wrapper form-group">
+            <div class="example-wrapper">
+                <div class="">
+                    <div class="form-group">
+                        <div class="row div-filter">
+                            <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+                                <div class="form-group">
+                                    <label for="id_name" class="">Tháng</label>
+                                    <input-selectpicker-v2 #SelectEmployee_replacePicker [value]="filterInput.month" (ValueOutput)="onSelectFilter($event,'month')" [multiple]="false" [list]="listMonth" [FieldValue]="'id'" [FieldDisplay]="'name'" [ColumnName]="'employee_code_replace'" [title]="''"></input-selectpicker-v2>
+                                </div>
+                            </div>
+                            <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+                                <div class="form-group">
+                                    <label for="id_name" class="">Năm</label>
+                                    <input-datepicker [ColumnName]="'year'" name="year" [value]="filterInput['today']" (ValueOutput)="onSelectFilter($event,'year')" [format]="'YYYY'"></input-datepicker>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-component form-group">
+            <jqgrid-list #gridTargetList (ValueOutput)="selectRow($event);" [colModel]="col_model" [table]="tbName" [title]="'Danh sách đã bán trong tháng'"></jqgrid-list>
+        </div>
+        <dialog-acction #dialogDelete [content]="'Bạn có chắc chắn muốn xóa?'" [title]="translate('Vui lòng xác nhận','Confirm ')" (confirmOutput)="confirmDelete()"></dialog-acction> -->
+    </div>
+    <!-- Edit -->
+    <sidenav-add-edit #sidenavAddEdit [title]="'Cập nhật doanh số bán hàng'" *ngIf="isEdit" class="form-sidenav-edit">
+        <form method="#" action="#" style="padding: 20px;">
+            <app-toolbar #toolbarEdit [tableName]="tbName" [CurrenFrom]="getCurrenFrom"></app-toolbar>
+            <alert-message #alertMessage></alert-message>
+            <div class="example-wrapper form-group">
+                <div class="example-wrapper">
+                    <div class="">
+                        <div class="form-group filter">
+                            <div class="row div-filter">
+                                <!-- Begin filter -->
+                                <div *ngIf="InputModel.code" class="col-12">
+                                    <div class="row">
+                                        <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-3">
+                                            <div class="form-group">
+                                                <label for="name" class="label-title">Thuộc doanh số</label>
+                                                <input type="text" [disabled]="true" [value]="InputModel.name" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-3">
+                                            <div class="form-group">
+                                                <label for="month" class="label-title">Tháng</label>
+                                                <input type="text" [disabled]="true" [value]="InputModel.month" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-3">
+                                            <div class="form-group">
+                                                <label for="year" class="label-title">Năm</label>
+                                                <input type="text" [disabled]="true" [value]="InputModel.year" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-3">
+                                            <div class="form-group">
+                                                <label for="taget_default_f" class="label-title">Chỉ tiêu</label>
+                                                <input type="text" [disabled]="true" [value]="InputModel.taget_default_f" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div *ngIf="!InputModel.code" class="col-12">
+                                    <div class="row">
+                                        <div class="col-6 col-sm-4 col-md-4 col-lg-2 col-xl-2">
+                                            <div class="form-group">
+                                                <label for="month" class="label-title">Tháng</label>
+                                                <input type="number" [disabled]="true" #month="ngModel" name="month" [(ngModel)]="InputModel.month" [value]="InputModel.month" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-6 col-sm-4 col-md-4 col-lg-2 col-xl-2">
+                                            <div class="form-group">
+                                                <label for="year" class="label-title">Năm</label>
+                                                <input type="number" [disabled]="true" #year="ngModel" name="year" [(ngModel)]="InputModel.year" [value]="InputModel.year" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-12"></div>
+                                        <div class="col-6 col-sm-4 col-md-4 col-lg-2 col-xl-2">
+                                            <div class="form-group">
+                                                <label for="name" class="label-title">Tên</label>
+                                                <input type="text" #name="ngModel" name="name" [(ngModel)]="InputModel.name" [value]="InputModel.name" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-6 col-sm-4 col-md-4 col-lg-2 col-xl-2">
+                                            <div class="form-group">
+                                                <label for="taget_default" class="label-title">Chỉ tiêu theo hợp đồng</label>
+                                                <input type="number" #taget_default="ngModel" name="taget_default" [(ngModel)]="InputModel.taget_default" [value]="InputModel.taget_default" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-6 col-sm-4 col-md-4 col-lg-2 col-xl-2">
+                                            <div class="form-group">
+                                                <label for="taget" class="label-title">Đơn vị chỉ tiêu</label>
+                                                <input type="number" #taget="ngModel" name="taget" [(ngModel)]="InputModel.taget" [value]="InputModel.taget" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-6 col-sm-4 col-md-4 col-lg-2 col-xl-2">
+                                            <div class="form-group">
+                                                <label for="taget_unit" class="">Đơn vị tính</label>
+                                                <input-selectpicker-v2 #SelectUnitTargetPicker (ValueOutput)="onSelect($event,'taget_unit')" [(ngModel)]="InputModel.taget_unit" [multiple]="false" [list]="listTypeTarget" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'taget_unit'" [title]="''"></input-selectpicker-v2>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 col-sm-4 col-md-4 col-lg-2 col-xl-2">
+                                            <div class="form-group">
+                                                <label for="salary" class="label-title">Số tiền</label>
+                                                <input-money #salary (ValueOutput)="onSelect($event,'salary')" [colName]="'salary'" [value]="InputModel.salary"></input-money>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end filter -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-component form-group">
+                <div class="card-body">
+                    <div class="row HRM_Employee_Labour_Contract_Appendix_Target_Detail" [style.display]="CurrenFrom == 'Edit'?'block':'none'">
+                        <div class="col-12">
+                            <div class="py-12">
+                                <form class="form-jqgrid-edit" method="#" action="#">
+                                    <jqgrid-edit [minHeight]="500" [rowNum]="20" #gridDetailEdit [colModel]="col_model_Detail" [table]="'HRM_Employee_Labour_Contract_Appendix_Target_Detail'" [title]="'Doanh số bán hàng chi tiết'"></jqgrid-edit>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" *ngIf="CurrenFrom == 'add_machine'">
+                        <div class="col-12 div-title-add-machine">
+                            <label class="title-add-machine">Chi tiết doanh số bán hàng</label>
+                        </div>
+                        <!-- Tên khách hàng -->
+                        <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+                            <div class="form-group">
+                                <label for="customer_name" class="label-title">Tên khách hàng <span class="input-required">*</span></label>
+                                <input type="text" [required]="true" #customer_name="ngModel" name="customer_name" [(ngModel)]="InputTargetDetailModel.customer_name" class="form-control">
+                            </div>
+                        </div>
+                        <!-- Số điện thoại -->
+                        <div class="col-6 col-sm-4 col-md-4 col-lg-2 col-xl-2">
+                            <div class="form-group">
+                                <label for="contact_phone" class="label-title">Số điện thoại</label>
+                                <input type="text" #contact_phone="ngModel" name="contact_phone" [(ngModel)]="InputTargetDetailModel.contact_phone" class="form-control">
+                            </div>
+                        </div>
+                        <!-- Tên người liên hệ -->
+                        <div class="col-6 col-sm-4 col-md-4 col-lg-2 col-xl-2">
+                            <div class="form-group">
+                                <label for="contact_name" class="label-title">Tên người liên hệ</label>
+                                <input type="text" #contact_name="ngModel" name="contact_name" [(ngModel)]="InputTargetDetailModel.contact_name" class="form-control">
+                            </div>
+                        </div>
+                        <!-- Ngày bán (*) -->
+                        <div class="col-6 col-sm-4 col-md-4 col-lg-2 col-xl-2">
+                            <div class="form-group">
+                                <label for="sales_date" class="">Ngày bán <span class="input-required">*</span></label>
+                                <input-datepicker [ColumnName]="'sales_date'" [required]="true" name="sales_date" (ValueOutput)="onChangeTargetDetail($event,'sales_date')"></input-datepicker>
+                            </div>
+                        </div>
+                        <div class="col-12"></div>
+                        <!-- Tên máy -->
+                        <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+                            <div class="form-group">
+                                <label for="machine_name" class="label-title"> Tên máy<span class="input-required">*</span></label>
+                                <input type="text" #machine_name="ngModel" [required]="true" name="machine_name" [(ngModel)]="InputTargetDetailModel.machine_name" class="form-control">
+                            </div>
+                        </div>
+                        <!-- Máy -->
+                        <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                            <div class="form-group">
+                                <label for="machine_code" class="">Máy</label>
+                                <input-selectpicker-v2 #SelectMachinePicker (ValueOutput)="onChangeTargetDetail($event,'machine_code')" [multiple]="false" [list]="[]" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'machine_code'" [title]="''"></input-selectpicker-v2>
+                            </div>
+                        </div>
+                        <!-- Loại máy -->
+                        <div class="col-6 col-sm-4 col-md-4 col-lg-2 col-xl-2">
+                            <div class="form-group">
+                                <label for="machine_type" class="">Loại máy 
+                                    <span class="input-required">*</span>
+                                </label>
+                                <input-selectpicker-v2 #SelectMachineTypePicker [required]="true" (ValueOutput)="onChangeTargetDetail($event,'machine_type')" [multiple]="false" [list]="listMachineType" [FieldValue]="'code'" [FieldDisplay]="'name'" [value]="InputTargetDetailModel.machine_type"
+                                    [ColumnName]="'machine_type'" [title]="''"></input-selectpicker-v2>
+                            </div>
+                        </div>
+                        <div class="col-12"></div>
+                        <!-- Đơn giá -->
+                        <div class="col-6 col-sm-4 col-md-4 col-lg-2 col-xl-2">
+                            <div class="form-group">
+                                <label for="machine_value" class="label-title">Đơn giá
+                                    <span class="input-required">*</span>
+                                </label>
+                                <input-money #machine_value [required]="true" (ValueOutput)="onChangeTargetDetail($event,'machine_value')" [colName]="'machine_value'"></input-money>
+                            </div>
+                        </div>
+                        <!-- Số lượng (*) -->
+                        <div class="col-4 col-sm-3 col-md-3 col-lg-1 col-xl-1">
+                            <div class="form-group">
+                                <label for="sales" class="label-title">Số lượng 
+                                    <span class="input-required">*</span>
+                                </label>
+                                <input type="number" [change]="onChangeTargetDetail($event,'sales')" [required]="true" #sales="ngModel" name="sales" [(ngModel)]="InputTargetDetailModel.sales" class="form-control">
+                            </div>
+                        </div>
+                        <!-- Giá nhập -->
+                        <div class="col-6 col-sm-4 col-md-4 col-lg-2 col-xl-2">
+                            <div class="form-group">
+                                <label for="machine_buy" class="label-title">Giá nhập</label>
+                                <input-money #machine_buy (ValueOutput)="onChangeTargetDetail($event,'machine_buy')" [colName]="'machine_buy'"></input-money>
+                            </div>
+                        </div>
+                        <!-- Giá bán -->
+                        <div class="col-6 col-sm-4 col-md-4 col-lg-2 col-xl-2">
+                            <div class="form-group">
+                                <label for="machine_sale" class="label-title">Giá bán</label>
+                                <input-money #machine_sale [value]="InputTargetDetailModel.machine_sale" (ValueOutput)="onChangeTargetDetail($event,'machine_sale')" [colName]="'machine_sale'"></input-money>
+                            </div>
+                        </div>
+
+                        <!-- Lợi nhuận -->
+                        <div class="col-6 col-sm-4 col-md-4 col-lg-2 col-xl-2">
+                            <div class="form-group">
+                                <label for="profit" class="label-title">Lợi nhuận</label>
+                                <input-money #profit (ValueOutput)="onChangeTargetDetail($event,'profit')" [colName]="'profit'"></input-money>
+                            </div>
+                        </div>
+                        <div class="col-12"></div>
+                        <!-- SL Asia -->
+                        <div class="col-4 col-sm-3 col-md-3 col-lg-1 col-xl-1">
+                            <div class="form-group">
+                                <label for="asia" class="label-title">SL Asia</label>
+                                <input type="number" #asia="ngModel" name="asia" [(ngModel)]="InputTargetDetailModel.asia" class="form-control">
+                            </div>
+                        </div>
+                        <!-- Ghi chú -->
+                        <div class="col-6 col-sm-4 col-md-4 col-lg-2 col-xl-2">
+                            <div class="form-group">
+                                <label for="notes" class="label-title">Ghi chú</label>
+                                <textarea type="text" #notes="ngModel" name="notes" [(ngModel)]="InputTargetDetailModel.notes" class="form-control"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </sidenav-add-edit>
+</div>

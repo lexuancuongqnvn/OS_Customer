@@ -1,0 +1,6 @@
+<select *ngIf="multiple" [disabled]="isViewDetail" (change)="onChangeValue($event)" class="{{Class}} selectpicker-filter" data-style="select-with-transition branch" multiple title="{{title}}" data-size="7">
+    <option *ngFor="let item of list" value="{{item[FieldValue]}}">{{item[FieldDisplay]}}</option>
+</select>
+<select *ngIf="!multiple" [disabled]="isViewDetail" (change)="onChangeValue($event)" class="{{Class}} selectpicker-filter" data-style="select-with-transition branch" title="{{title}}" data-size="7">
+    <option *ngFor="let item of list" value="{{item[FieldValue]}}">{{item[FieldDisplay]}}</option>
+</select>

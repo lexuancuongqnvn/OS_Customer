@@ -1,0 +1,15 @@
+label.label-file {
+    padding: 3px 22px 3px 15px;
+    border-radius: 5px !important;
+    border: 1px solid #ababab;
+    color: black;
+}
+
+.file-input {
+    border: 1px solid #ababab;
+    border-radius: 5px;
+}
+
+ul.list-group.col-12 {
+    border: 1px solid #03a9f44a;
+}

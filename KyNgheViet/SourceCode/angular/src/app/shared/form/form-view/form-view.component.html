@@ -1,0 +1,27 @@
+<div class="card-container k-form-view">
+    <!-- <layout-breadcrumb #breadcrumb></layout-breadcrumb> -->
+    <app-toolbar #toolbar [tableName]="tableName" [CurrenFrom]="CurrenFrom"></app-toolbar>
+    <div class="example-wrapper">
+        <div class="row example-wrapper">
+            <div *ngFor="let item of inputFilter;let i=index;" [ngClass]="{'col-md-3': item.clasS_INSERT == null}" class="{{item.clasS_INSERT}}">
+                <div class="form-group" *ngIf="item.alloW_SEARCH">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <kendo-label [for]="item.columN_NAME" [text]="item.name">: </kendo-label>
+                        </div>
+                        <div class="col-md-12">
+                            <!-- <input-add-edit (ValueOutput)="GetdData($event,i)" [type]="item.typE_ID" [name]="tableName+item.columN_NAME"></input-add-edit> -->
+                            <input-filter [id]="IdEdit" [CurrenFrom]="CurrenFrom" [myFiles]="arrayFiles" [colName]="item.columN_NAME" [tableName]="tableName" [displaY_EDIT]="item.displaY_EDIT" [displaY_EDIT]="item.displaY_EDIT" [displaY_LIST]="item.displaY_LIST" [shoW_REFERENCE]="item.shoW_REFERENCE"
+                                [storeD_PROCEDURES]="item.storeD_PROCEDURES" [reference]="item.reference" (ValueOutput)="GetdData($event,item.columN_NAME,item.typE_ID)" [inputMaster]="inputModel" [value]="null" [type]="item.typE_ID" [isloadingData]="isloadingData"
+                                [name]="tableName+item.columN_NAME" [format]="item.format"></input-filter>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-component">
+        <grid-view #gridView [GenRowTable]="sYS_GenRowTableDetail" [tableName]="tableName"></grid-view>
+    </div>
+</div>
+<dialog-acction #dialogDelete [content]="'Bạn có chắc chắn muốn xóa?'" [title]="translate('Vui lòng xác nhận','Confirm ')" (confirmOutput)="confirmDelete()"></dialog-acction>

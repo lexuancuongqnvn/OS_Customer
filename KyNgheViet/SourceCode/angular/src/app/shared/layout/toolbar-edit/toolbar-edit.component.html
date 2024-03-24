@@ -1,0 +1,7 @@
+<div class="example-wrapper toolbar {{classInsert}}">
+    <kendo-buttongroup look="flat" *ngFor="let item of listAcction">
+        <button kendoButton [disabled]="item['role']" (click)="ClickAcction(item['id'],item['storedName'],item['param'],item['keyService'],item['classForm'])" class="btn-toolbar btn-toolbar-eidt" icon="{{item['icon']}}" look="flat">
+            {{item['name']}}
+        </button>
+    </kendo-buttongroup>
+</div>

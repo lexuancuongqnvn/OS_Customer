@@ -1,0 +1,12 @@
+<div class="body-side-nav">
+    <div id="mySidenav" class="sidenav">
+        <label class="label-form-add-edit">{{title}}</label>
+        <div href="javascript:;" tabindex="0" class="fullscreen" (click)="fullscreen()">
+            <span class="material-icons" tabindex="0" *ngIf="isFullscreen">fullscreen</span>
+            <span class="material-icons" *ngIf="!isFullscreen">fullscreen_exit</span>
+        </div>
+        <div href="javascript:" class="closebtn" (click)="close()">&times;</div>
+        <ng-content></ng-content>
+    </div>
+    <span style="font-size:30px;cursor:pointer" (click)="open()"></span>
+</div>

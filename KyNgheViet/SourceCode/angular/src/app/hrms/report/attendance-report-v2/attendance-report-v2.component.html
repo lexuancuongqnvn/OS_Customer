@@ -1,0 +1,62 @@
+<div class="card-container k-form-edit">
+    <app-toolbar #toolbar [classInsert]="'form-30082023'" [tableName]="tbName" [CurrenFrom]="CurrenFrom"></app-toolbar>
+    <div class="example-wrapper form-group">
+        <div class="example-wrapper">
+            <div class="">
+                <div class="form-group filter">
+                    <div class="row div-filter">
+                        <!-- Begin filter -->
+                        <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
+                            <div class="form-group">
+                                <label for="from_date" class=" label-title">Từ ngày</label><br>
+                                <input-datepicker [ColumnName]="'from_date'" [value]="filterInput.from_date" name="from_date" (ValueOutput)="valueStartDate($event,'from_date')"></input-datepicker>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
+                            <div class="form-group">
+                                <label for="to_date" class=" label-title">Đến ngày</label><br>
+                                <input-datepicker [ColumnName]="'to_date'" [value]="filterInput.to_date" name="to_date" (ValueOutput)="valueStartDate($event,'to_date')"></input-datepicker>
+                            </div>
+                        </div>
+                        <!-- end filter -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-component form-group">
+        <div [innerHTML]="tableMarkup"></div>
+    </div>
+</div>
+<input id="wt-param" value="" (click)="onClickWT($event)" style="display: none !important;" />
+<dialog-acction #dialogChartWT [title]="'Biểu đồ năng suất làm việc theo ngày'" [width]="920">
+    <div>
+        <div id="chart_div" style="width: 900px; height: 500px;"></div>
+    </div>
+</dialog-acction>
+<!-- Edit -->
+<sidenav-add-edit #sidenavAddEdit *ngIf="isEdit" [tbName]="tbName" class="form-sidenav-edit">
+    <form method="#" action="#" style="padding: 20px;" class="form-jqgrid-edit" [id]="'form-'+tbName">
+        <alert-message #alertMessage></alert-message>
+        <div class="row" style="padding: 0 15px 0 15px;">
+            <div class="col-4">
+                <div class="form-check">
+                    <div class="form-group">
+                        <input-checkbox [type]="'toggle'" [title]="'Tất cả '" (ValueOutput)="onChangeValue($event,'all',-1)" [value]="isAll"></input-checkbox>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <button type="button" class="btn btn-primary" (click)="ExportSalary()">Tải xuống</button>
+            </div>
+            <hr>
+            <div class="col-12" *ngFor="let item of listEmployeeExportSalary.list_salary_employees;let i = index">
+                <div class="form-check">
+                    <div class="form-group">
+                        <input-checkbox [type]="'toggle'" [title]="item.name" (ValueOutput)="onChangeValue($event,'is_use',i)" [value]="item.is_use"></input-checkbox>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</sidenav-add-edit>

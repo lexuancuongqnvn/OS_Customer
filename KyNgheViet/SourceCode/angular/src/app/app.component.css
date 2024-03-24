@@ -1,0 +1,96 @@
+.k-drawer-content {
+    padding: 15px;
+}
+
+.k-drawer-wrapper {
+    width: 243px !important;
+}
+
+.k-i-menu {
+    font-size: 25px;
+}
+
+.header {
+    margin-left: 8px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.custom-toolbar {
+    width: 100%;
+    background-color: #f6f6f6;
+    border-bottom: inset;
+    border-bottom-width: 1px;
+    padding: 3px 8px;
+    color: #656565;
+    line-height: 50px;
+}
+
+.k-level-1 {
+    padding-left: 20px;
+}
+
+.example {
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+}
+
+
+/* .kendoka {
+    margin: 0 auto;
+    width: 300px;
+    height: 300px;
+    background-size: cover;
+    background-image: url('https://www.telerik.com/kendo-angular-ui-develop/components/inputs/colorpicker/assets/kendoka.png');
+} */
+
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+
+/* Loader Panel Styles */
+
+.k-loading-panel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+
+.k-loading-panel-mask {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0 !important;
+    left: 0 !important;
+    bottom: 0 !important;
+    right: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: table-cell;
+    background-color: #000000;
+    opacity: 0.8;
+}
+
+.k-loading-panel-wrapper {
+    position: relative;
+    z-index: 2;
+}
+
+.k-loading-panel-text {
+    margin-top: 20px;
+    text-align: center;
+    color: #ffffff;
+}
+
+kendo-breadcrumb {
+    margin-top: 20px;
+}

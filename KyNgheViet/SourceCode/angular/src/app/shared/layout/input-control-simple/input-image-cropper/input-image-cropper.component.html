@@ -1,0 +1,3 @@
+<input type="file" class="form-control file {{colName}}" id="{{colName}}" name="file" (change)="fileChangeEvent($event)" />
+<image-cropper [imageBase64]="imageBase64" [maintainAspectRatio]="true" [aspectRatio]="aspectRatio" format="jpg" (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded($event)" (cropperReady)="cropperReady()" (loadImageFailed)="loadImageFailed()"
+    [cropperMinHeight]="cropperMinHeight" [cropperMaxWidth]="cropperMaxWidth" [cropperMaxHeight]="cropperMaxHeight" [cropperMinWidth]="cropperMinWidth"></image-cropper>

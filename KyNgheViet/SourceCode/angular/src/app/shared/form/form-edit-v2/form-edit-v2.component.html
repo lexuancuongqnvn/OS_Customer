@@ -1,0 +1,396 @@
+<form method="#" action="#" class="form-data form-view-master" (submit)="onFormSubmit($event)">
+    <app-toolbar #toolbarEdit [isBack]="true" [tableName]="InputMaster.sys_TableName" [CurrenFrom]="getCurrenFrom" [classInsert]="'form-30082023'"></app-toolbar>
+    <!-- <alert-message #alertMessage></alert-message> -->
+    <div class="dx-fieldset" style="padding: 0px;margin: 0px;">
+        <dx-validation-summary id="summary"></dx-validation-summary>
+        <dx-button #buttonSubmit width="100%" style="display: none;" id="buttonSubmit" text="Register" type="success" [useSubmitBehavior]="true">
+        </dx-button>
+    </div>
+    <div id="content-wrapper" *ngIf="isRender">
+        <!-- <div class="widgets-container row" *ngIf="panels.length > 0" style=" margin-right: -3px;margin-left: -3px">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body ">
+                        <ul class="nav nav-pills nav-pills-warning" role="tablist">
+                            <li class="nav-item" *ngFor="let panel of panels;let i=index">
+                                <a data-toggle="tab" href="#{{panel.code}}" class="nav-link {{i==0&&'active'}}" role="tablist">
+                                    {{panel.name}}
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="tab-content tab-space">
+                            <div *ngFor="let panel of panels;let i=index" id="{{panel.code}}" class="tab-pane {{i==0&&'active'}}">
+                                <div *ngFor="let group of groups;let i = index">
+                                    <div *ngIf="group.panelCode == panel.code" class="widgets-container row" style=" margin-right: -3px;margin-left: -3px">
+                                        <div *ngFor="let column of group.data" class="{{renColumnSpan(column.colspan)}} pd-5">
+                                            <dx-text-box *ngIf="column.typE_ID == 2" [disabled]="column.editoroptions.disabled" label="{{column.name}}{{column.required ? '(*)' :''}}" (onValueChanged)="handleValueChanged2($event,column)" [value]="column.editoroptions.value" [inputAttr]="{ 'aria-label': '{{column.name}}' }"
+                                                [showClearButton]="true" [stylingMode]="stylingMode" [labelMode]="labelMode">
+                                                <dx-validator *ngIf="column.required">
+                                                    <dxi-validation-rule type="required" message="{{column.name}} {{translate('Không được phép trống','is not required')}}"></dxi-validation-rule>
+                                                </dx-validator>
+                                            </dx-text-box>
+                                            <div class="dx-field" *ngIf="column.typE_ID == 4">
+                                                <div class="dx-field-label">{{column.name}}</div>
+                                                <div class="dx-field-value">
+                                                    <dx-switch [disabled]="column.editoroptions.disabled" label="{{column.name}}{{column.required ? '(*)' :''}}" (onValueChanged)="handleValueChanged2($event,column)" [value]="column.editoroptions.value" [inputAttr]="{ 'aria-label': '{{column.name}}' }">
+                                                        <dx-validator *ngIf="column.required">
+                                                            <dxi-validation-rule type="required" message="{{column.name}} {{translate('Không được phép trống','is not required')}}"></dxi-validation-rule>
+                                                        </dx-validator>
+                                                    </dx-switch>
+                                                </div>
+                                            </div>
+                                            <div class="dx-field" *ngIf="column.typE_ID == 23">
+                                                <div class="dx-field-label">{{column.name}}</div>
+                                                <div class="dx-field-value">
+                                                    <dx-check-box [disabled]="column.editoroptions.disabled" label="{{column.name}}{{column.required ? '(*)' :''}}" (onValueChanged)="handleValueChanged2($event,column)" [value]="column.editoroptions.value" [inputAttr]="{ 'aria-label': '{{column.name}}' }"
+                                                        [showClearButton]="true" [stylingMode]="stylingMode" [labelMode]="labelMode">
+                                                        <dx-validator *ngIf="column.required">
+                                                            <dxi-validation-rule type="required" message="{{column.name}} {{translate('Không được phép trống','is not required')}}"></dxi-validation-rule>
+                                                        </dx-validator>
+                                                    </dx-check-box>
+                                                </div>
+                                            </div>
+
+                                            <dx-tag-box *ngIf="column.typE_ID == 12" [disabled]="column.editoroptions.disabled" label="{{column.name}}{{column.required ? '(*)' :''}}" [showClearButton]="true" [items]="column.editoroptions.items" displayExpr="{{column.displayexpr}}" valueExpr="{{column.valueexpr}}"
+                                                [value]="column.editoroptions.value" [showSelectionControls]="true" applyValueMode="useButtons" [searchEnabled]="true" [grouped]="true" (onValueChanged)="handleValueChanged2($event,column)" [stylingMode]="stylingMode"
+                                                [labelMode]="labelMode">
+                                                <dx-validator *ngIf="column.required">
+                                                    <dxi-validation-rule type="required" message="{{column.name}} {{translate('Không được phép trống','is not required')}}"></dxi-validation-rule>
+                                                </dx-validator>
+                                            </dx-tag-box>
+
+                                            <dx-drop-down-box *ngIf="column.typE_ID == 27" [disabled]="column.editoroptions.disabled" label="{{column.name}}{{column.required ? '(*)' :''}}" [opened]="column.isDropBoxOpened" (onOpened)="onOpenedDropDownOption($event,i,column)" [value]="column.editoroptions.value"
+                                                valueExpr="{{column.valueexpr}}" displayExpr="{{column.displayexpr}}" placeholder="Select a value..." [showClearButton]="true" [dataSource]="column.editoroptions.items" [stylingMode]="stylingMode" [labelMode]="labelMode">
+                                                <dxo-drop-down-options [width]="column.editoroptions.optionWidth"></dxo-drop-down-options>
+                                                <dx-validator *ngIf="column.required">
+                                                    <dxi-validation-rule type="required" message="{{column.name}} {{translate('Không được phép trống','is not required')}}"></dxi-validation-rule>
+                                                </dx-validator>
+                                                <osoft-data-grid id="{{column.columN_NAME}}" (onClickCancel)="onSaveDropDownOption($event,i,column)" (onClickOK)="onSaveDropDownOption($event,i,column)" [keyExpr]="column.valueexpr" [showFilterRow]="true" [currentSelectedRowKeys]="[column.editoroptions.value]"
+                                                    [selection]="false" [height]="450" [tableName]="column.droP_DOWN_TABLE" [type]="'BY-TABLE-NAME'" [dataSource]="column.editoroptions.items" (OnSelectRow)="onSelectRowGridDropdown($event,i,column)" (selectedRowsDataOutput)="selectedRowsDataGridDropdown($event,i,column)"></osoft-data-grid>
+                                            </dx-drop-down-box>
+
+                                            <dx-select-box *ngIf="column.typE_ID == 24" [disabled]="column.editoroptions.disabled" label="{{column.name}}{{column.required ? '(*)' :''}}" searchEnabled="true" [inputAttr]="{ 'aria-label': '{{column.name}}' }" [dataSource]="column.editoroptions.items"
+                                                displayExpr="{{column.displayexpr}}" valueExpr="{{column.valueexpr}}" [value]="column.editoroptions.value" [showClearButton]="true" (onValueChanged)="handleValueChanged2($event,column)" [stylingMode]="stylingMode"
+                                                [labelMode]="labelMode">
+                                                <dx-validator *ngIf="column.required">
+                                                    <dxi-validation-rule type="required" message="{{column.name}} {{translate('Không được phép trống','is not required')}}"></dxi-validation-rule>
+                                                </dx-validator>
+                                            </dx-select-box>
+
+                                            <dx-drop-down-box *ngIf="column.typE_ID == 28" [disabled]="column.editoroptions.disabled" label="{{column.name}}{{column.required ? '(*)' :''}}" [opened]="column.isDropBoxOpened" (onOpened)="onOpenedDropDownOption($event,i,column)" [(value)]="column.editoroptions.value"
+                                                valueExpr="{{column.valueexpr}}" displayExpr="{{column.displayexpr}}" placeholder="Select a value..." [showClearButton]="true" [dataSource]="column.editoroptions.items" [stylingMode]="stylingMode" [labelMode]="labelMode">
+                                                <dxo-drop-down-options [width]="500"></dxo-drop-down-options>
+                                                <dx-validator *ngIf="column.required">
+                                                    <dxi-validation-rule type="required" message="{{column.name}} {{translate('Không được phép trống','is not required')}}"></dxi-validation-rule>
+                                                </dx-validator>
+                                                <osoft-data-grid id="{{column.columN_NAME}}" #dropdownbox (onClickCancel)="onSaveDropDownOption($event,i,column)" (onClickOK)="onSaveDropDownOption($event,i,column)" [keyExpr]="column.valueexpr" [showFilterRow]="true" [currentSelectedRowKeys]="column.editoroptions.value"
+                                                    [selection]="true" [height]="450" [tableName]="column.droP_DOWN_TABLE" [type]="'BY-TABLE-NAME'" [dataSource]="column.editoroptions.items" (OnSelectAllRow)="onSelectRowGridDropdown($event,i,column)"></osoft-data-grid>
+                                            </dx-drop-down-box>
+
+                                            <dx-input-datepicker *ngIf="column.typE_ID == 5 || column.typE_ID == 9 || column.typE_ID == 10 || column.typE_ID == 11" [name]="column.name" [disabled]="column.editoroptions.disabled" label="{{column.name}}{{column.required ? '(*)' :''}}" [placeholder]="column.name"
+                                                [showClearButton]="true" [useMaskBehavior]="true" [format]="column.dx_format"  [value]="column.editoroptions.value" [inputAttr]="{ 'aria-label': '{{column.name}}' }" (ValueOutput)="handleValueChangedDate($event,column)"
+                                                [stylingMode]="stylingMode" [labelMode]="labelMode">
+                                                <dx-validator *ngIf="column.required">
+                                                    <dxi-validation-rule type="required" message="{{column.name}} {{translate('Không được phép trống','is not required')}}"></dxi-validation-rule>
+                                                </dx-validator>
+                                            </dx-input-datepicker>
+                                            <dx-text-area *ngIf="column.typE_ID == 3" [disabled]="column.editoroptions.disabled" label="{{column.name}}{{column.required ? '(*)' :''}}" [showClearButton]="true" [maxLength]="4000" [value]="column.editoroptions.value" [autoResizeEnabled]="true" (onValueChanged)="handleValueChangedTextArea($event,column)"
+                                                [inputAttr]="{ 'aria-label': '{{column.name}}' }" [stylingMode]="stylingMode" [labelMode]="labelMode">
+                                                <dx-validator *ngIf="column.required">
+                                                    <dxi-validation-rule type="required" message="{{column.name}} {{translate('Không được phép trống','is not required')}}"></dxi-validation-rule>
+                                                </dx-validator>
+                                            </dx-text-area>
+                                            <dx-number-box *ngIf="column.typE_ID == 1 || column.typE_ID == 14 || column.typE_ID == 15" [disabled]="column.editoroptions.disabled" label="{{column.name}}{{column.required ? '(*)' :''}}" (onValueChanged)="changeNumberBox($event,column)" format="{{column.dx_format?column.dx_format:'#'}}"
+                                                [value]="InputMaster[column.columN_NAME]" [inputAttr]="{ 'aria-label': '{{column.name}}' }" [showSpinButtons]="true" [showClearButton]="false" [stylingMode]="stylingMode" [labelMode]="labelMode">
+                                                <dx-validator *ngIf="column.required">
+                                                    <dxi-validation-rule type="required" message="{{column.name}} {{translate('Không được phép trống','is not required')}}"></dxi-validation-rule>
+                                                </dx-validator>
+                                            </dx-number-box>
+
+                                            <osoft-data-grid-edit *ngIf="column.typE_ID == 16" [disabled]="column.editoroptions.disabled" [InputMaster]="InputMaster" (HandleValueChangedOutput)="DataGridValueChangedOutput($event,column)" (selectedRowsDataOutput)="onSelectedRowsDataOutput($event,i,column)"
+                                                (HandleCopydOutput)="DataGridHandleCopydOutput($event,column)" (HandleAdddOutput)="DataGridHandleAdddOutput($event,column)" (HandleDeletedOutput)="DataGridHandleDeletedOutput($event,column)" [keyExpr]="column.valueexpr"
+                                                [title]="column.name" [currentSelectedRowKeys]="column.editoroptions.value" [selection]="true" [height]="450" [tableName]="column.droP_DOWN_TABLE" [type]="'BY-TABLE-NAME'" [dataSource]="column.editoroptions.items"
+                                                [column_name]="column.columN_NAME">
+                                            </osoft-data-grid-edit>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <div *ngIf="panels.length == 0">
+            <div class="widgets-container row" *ngFor="let group of groups;let i = index" style=" margin-right: -3px;margin-left: -3px">
+                <div *ngIf="group.name" class="title col-12">{{group.name}}</div>
+                <div *ngFor="let column of group.data" class="{{renColumnSpan(column.colspan)}} pd-5">
+                    <div class="dx-field" *ngIf="column.typE_ID == 4">
+                        <div class="dx-field-label">{{column.name}}</div>
+                        <div class="dx-field-value">
+                            <dx-switch [disabled]="column.editoroptions.disabled" label="{{column.name}}{{column.required ? '(*)' :''}}" (onValueChanged)="handleValueChanged2($event,column)" [value]="column.editoroptions.value" [inputAttr]="{ 'aria-label': '{{column.name}}' }">
+                                <dx-validator *ngIf="column.required">
+                                    <dxi-validation-rule type="required" message="{{column.name}} {{translate('Không được phép trống','is not required')}}"></dxi-validation-rule>
+                                </dx-validator>
+                            </dx-switch>
+                        </div>
+                    </div>
+                    <dx-text-box *ngIf="column.typE_ID == 2" [disabled]="column.editoroptions.disabled" label="{{column.name}}{{column.required ? '(*)' :''}}" (onValueChanged)="handleValueChanged2($event,column)" [value]="column.editoroptions.value" [inputAttr]="{ 'aria-label': '{{column.name}}' }"
+                        [showClearButton]="true" [stylingMode]="stylingMode" [labelMode]="labelMode">
+                        <dx-validator *ngIf="column.required">
+                            <dxi-validation-rule type="required" message="{{column.name}} {{translate('Không được phép trống','is not required')}}"></dxi-validation-rule>
+                        </dx-validator>
+                    </dx-text-box>
+                    <dx-tag-box *ngIf="column.typE_ID == 12" [disabled]="column.editoroptions.disabled" label="{{column.name}}{{column.required ? '(*)' :''}}" [showClearButton]="true" [items]="column.editoroptions.items" displayExpr="{{column.displayexpr}}" valueExpr="{{column.valueexpr}}"
+                        [value]="column.editoroptions.value" [showSelectionControls]="true" applyValueMode="useButtons" [searchEnabled]="true" [grouped]="true" (onValueChanged)="handleValueChanged2($event,column)" [stylingMode]="stylingMode" [labelMode]="labelMode">
+                        <dx-validator *ngIf="column.required">
+                            <dxi-validation-rule type="required" message="{{column.name}} {{translate('Không được phép trống','is not required')}}"></dxi-validation-rule>
+                        </dx-validator>
+                    </dx-tag-box>
+
+                    <dx-drop-down-box *ngIf="column.typE_ID == 27" [disabled]="column.editoroptions.disabled" label="{{column.name}}{{column.required ? '(*)' :''}}" [opened]="column.isDropBoxOpened" (onOpened)="onOpenedDropDownOption($event,i,column)" [(value)]="column.editoroptions.value"
+                        valueExpr="{{column.valueexpr}}" displayExpr="{{column.displayexpr}}" placeholder="Select a value..." [showClearButton]="true" [dataSource]="column.editoroptions.items" [stylingMode]="stylingMode" [labelMode]="labelMode">
+                        <dxo-drop-down-options [width]="column.editoroptions.optionWidth"></dxo-drop-down-options>
+                        <dx-validator *ngIf="column.required">
+                            <dxi-validation-rule type="required" message="{{column.name}} {{translate('Không được phép trống','is not required')}}"></dxi-validation-rule>
+                        </dx-validator>
+                        <osoft-data-grid id="{{column.columN_NAME}}" #dropdownbox (onClickCancel)="onSaveDropDownOption($event,i,column)" (onClickOK)="onSaveDropDownOption($event,i,column)" [keyExpr]="column.valueexpr" [showFilterRow]="true" [currentSelectedRowKeys]="[column.editoroptions.value]"
+                            [selection]="false" [height]="450" [tableName]="column.droP_DOWN_TABLE" [type]="'BY-TABLE-NAME'" [dataSource]="column.editoroptions.items" (OnSelectRow)="onSelectRowGridDropdown($event,i,column)" (selectedRowsDataOutput)="selectedRowsDataGridDropdown($event,i,column)"></osoft-data-grid>
+                    </dx-drop-down-box>
+
+                    <dx-select-box *ngIf="column.typE_ID == 24" [disabled]="column.editoroptions.disabled" label="{{column.name}}{{column.required ? '(*)' :''}}" searchEnabled="true" [inputAttr]="{ 'aria-label': '{{column.name}}' }" [dataSource]="column.editoroptions.items"
+                        displayExpr="{{column.displayexpr}}" valueExpr="{{column.valueexpr}}" [value]="column.editoroptions.value" [showClearButton]="true" (onValueChanged)="handleValueChanged2($event,column)" [stylingMode]="stylingMode" [labelMode]="labelMode">
+                        <dx-validator *ngIf="column.required">
+                            <dxi-validation-rule type="required" message="{{column.name}} {{translate('Không được phép trống','is not required')}}"></dxi-validation-rule>
+                        </dx-validator>
+                    </dx-select-box>
+
+                    <dx-drop-down-box *ngIf="column.typE_ID == 28" [disabled]="column.editoroptions.disabled" label="{{column.name}}{{column.required ? '(*)' :''}}" [opened]="column.isDropBoxOpened" (onOpened)="onOpenedDropDownOption($event,i,column)" [value]="column.editoroptions.value"
+                        valueExpr="{{column.valueexpr}}" displayExpr="{{column.displayexpr}}" placeholder="Select a value..." [showClearButton]="true" [dataSource]="column.editoroptions.items" [stylingMode]="stylingMode" [labelMode]="labelMode">
+                        <dxo-drop-down-options [width]="500"></dxo-drop-down-options>
+                        <dx-validator *ngIf="column.required">
+                            <dxi-validation-rule type="required" message="{{column.name}} {{translate('Không được phép trống','is not required')}}"></dxi-validation-rule>
+                        </dx-validator>
+                        <osoft-data-grid id="{{column.columN_NAME}}" #dropdownbox (onClickCancel)="onSaveDropDownOption($event,i,column)" (onClickOK)="onSaveDropDownOption($event,i,column)" [keyExpr]="column.valueexpr" [showFilterRow]="true" [currentSelectedRowKeys]="column.editoroptions.value"
+                            [selection]="true" [height]="450" [tableName]="column.droP_DOWN_TABLE" [type]="'BY-TABLE-NAME'" [dataSource]="column.editoroptions.items" (OnSelectAllRow)="onSelectRowGridDropdown($event,i,column)"></osoft-data-grid>
+                    </dx-drop-down-box>
+
+                    <dx-input-datepicker *ngIf="column.typE_ID == 5 || column.typE_ID == 9 || column.typE_ID == 10 || column.typE_ID == 11" [disabled]="column.editoroptions.disabled" [name]="column.name" [placeholder]="column.name" [showClearButton]="true" [useMaskBehavior]="true"
+                        [format]="column.dx_format"  [value]="column.editoroptions.value" [inputAttr]="{ 'aria-label': '{{column.name}}' }" (ValueOutput)="handleValueChangedDate($event,column)" [stylingMode]="stylingMode" [labelMode]="labelMode">
+                        <dx-validator *ngIf="column.required">
+                            <dxi-validation-rule type="required" message="{{column.name}} {{translate('Không được phép trống','is not required')}}"></dxi-validation-rule>
+                        </dx-validator>
+                    </dx-input-datepicker>
+                    <dx-text-area *ngIf="column.typE_ID == 3" [disabled]="column.editoroptions.disabled" label="{{column.name}}{{column.required ? '(*)' :''}}" [showClearButton]="true" [maxLength]="4000" [value]="column.editoroptions.value" [autoResizeEnabled]="true" (onValueChanged)="handleValueChangedTextArea($event,column)"
+                        [inputAttr]="{ 'aria-label': '{{column.name}}' }" [stylingMode]="stylingMode" [labelMode]="labelMode">
+                        <dx-validator *ngIf="column.required">
+                            <dxi-validation-rule type="required" message="{{column.name}} {{translate('Không được phép trống','is not required')}}"></dxi-validation-rule>
+                        </dx-validator>
+                    </dx-text-area>
+                    <dx-number-box *ngIf="column.typE_ID == 1 || column.typE_ID == 14 || column.typE_ID == 15" [disabled]="column.editoroptions.disabled" label="{{column.name}}{{column.required ? '(*)' :''}}" (onValueChanged)="changeNumberBox($event,column)" format="{{column.dx_format?column.dx_format:'#'}}"
+                        [value]="InputMaster[column.columN_NAME]" [inputAttr]="{ 'aria-label': '{{column.name}}' }" [showSpinButtons]="true" [showClearButton]="false" [stylingMode]="stylingMode" [labelMode]="labelMode">
+                        <dx-validator *ngIf="column.required">
+                            <dxi-validation-rule type="required" message="{{column.name}} {{translate('Không được phép trống','is not required')}}"></dxi-validation-rule>
+                        </dx-validator>
+                    </dx-number-box>
+
+                    <osoft-data-grid-edit *ngIf="column.typE_ID == 16" [disabled]="column.editoroptions.disabled" [InputMaster]="InputMaster" (HandleValueChangedOutput)="DataGridValueChangedOutput($event,column)" (selectedRowsDataOutput)="onSelectedRowsDataOutput($event,i,column)"
+                        (HandleCopydOutput)="DataGridHandleCopydOutput($event,column)" (HandleAdddOutput)="DataGridHandleAdddOutput($event,column)" (HandleDeletedOutput)="DataGridHandleDeletedOutput($event,column)" [keyExpr]="column.valueexpr" [title]="column.name"
+                        [currentSelectedRowKeys]="column.editoroptions.value" [selection]="true" [height]="450" [tableName]="column.droP_DOWN_TABLE" [column_name]="column.columN_NAME" [type]="'BY-TABLE-NAME'" [dataSource]="column.editoroptions.items">
+                    </osoft-data-grid-edit>
+                </div>
+            </div>
+        </div> -->
+
+        <div class="widgets-container" *ngFor="let group of groups;let i = index">
+            <div *ngIf="group.isTab == true" class="row" style="margin-right: 5px;
+            margin-left: 0px;
+            border: 2px solid #d1d1d1;
+            border-radius: 6px;">
+                <div id="tabs" class="col-12" style="padding: 0;">
+                    <dx-tabs #apiTabs [dataSource]="group.tabs.tabs" [selectedIndex]="0" (onItemClick)="selectTab($event)"></dx-tabs>
+                    <div class="content">
+                        <div class="dx-field">
+                            <!-- <div class="dx-field-label">Selected content:</div>
+                            <div class="dx-field-value-static left-aligned">
+                                {{ tabContent +' '+tabIndex}}
+                            </div> -->
+                            <div *ngFor="let tabs of group.tabs.tabs;let j=index;" [ngStyle]="{'display':j==tabIndex?'block':'none'}">
+                                <div *ngFor="let grouplv2 of tabs.data;let k=index;" class="row" style=" margin-right: -3px;margin-left: -3px">
+                                    <div *ngFor="let column of grouplv2.data" class="{{renColumnSpan(column.colspan)}} " [ngStyle]="{'display':isDisplay(column.displaY_CONDITIONS)?'block':'none'}">
+                                        <div class="dx-field" *ngIf="column.typE_ID == 4">
+                                            <div class="dx-field-label">{{column.name}}</div>
+                                            <div class="dx-field-value">
+                                                <dx-switch [disabled]="column.editoroptions.disabled" label="{{column.name}}{{column.required ? '(*)' :''}}:" (onValueChanged)="handleValueChanged2($event,column)" [value]="column.editoroptions.value" [inputAttr]="{ 'aria-label': '{{column.name}}' }">
+                                                    <dx-validator *ngIf="column.required">
+                                                        <dxi-validation-rule type="required" message="{{column.name}} {{translate('Không được phép trống','is not required')}}"></dxi-validation-rule>
+                                                    </dx-validator>
+                                                </dx-switch>
+                                            </div>
+                                        </div>
+                                        <dx-text-box *ngIf="column.typE_ID == 2" [disabled]="column.editoroptions.disabled" label="{{column.name}}{{column.required ? '(*)' :''}}" (onValueChanged)="handleValueChanged2($event,column)" [value]="column.editoroptions.value" [inputAttr]="{ 'aria-label': '{{column.name}}' }"
+                                            [showClearButton]="true" [stylingMode]="stylingMode" [labelMode]="labelMode">
+                                            <dx-validator *ngIf="column.required">
+                                                <dxi-validation-rule type="required" message="{{column.name}} {{translate('Không được phép trống','is not required')}}"></dxi-validation-rule>
+                                            </dx-validator>
+                                        </dx-text-box>
+                                        <dx-tag-box *ngIf="column.typE_ID == 12" [disabled]="column.editoroptions.disabled" label="{{column.name}}{{column.required ? '(*)' :''}}" [showClearButton]="true" [items]="column.editoroptions.items" displayExpr="{{column.displayexpr}}" valueExpr="{{column.valueexpr}}"
+                                            [value]="column.editoroptions.value" [showSelectionControls]="true" applyValueMode="useButtons" [searchEnabled]="true" [grouped]="true" (onValueChanged)="handleValueChanged2($event,column)" [stylingMode]="stylingMode"
+                                            [labelMode]="labelMode">
+                                            <dx-validator *ngIf="column.required">
+                                                <dxi-validation-rule type="required" message="{{column.name}} {{translate('Không được phép trống','is not required')}}"></dxi-validation-rule>
+                                            </dx-validator>
+                                        </dx-tag-box>
+                                        <dx-drop-down-box *ngIf="column.typE_ID == 27" [disabled]="column.editoroptions.disabled" label="{{column.name}}{{column.required ? '(*)' :''}}" [opened]="column.isDropBoxOpened" (onOpened)="onOpenedDropDownOptionTab($event,i,column,j,k)" [(value)]="column.editoroptions.value"
+                                            valueExpr="{{column.valueexpr}}" displayExpr="{{column.displayexpr}}" placeholder="Select a value..." [showClearButton]="true" [dataSource]="column.editoroptions.items" [stylingMode]="stylingMode" [labelMode]="labelMode">
+                                            <dxo-drop-down-options [width]="column.editoroptions.optionWidth"></dxo-drop-down-options>
+                                            <dx-validator *ngIf="column.required">
+                                                <dxi-validation-rule type="required" message="{{column.name}} {{translate('Không được phép trống','is not required')}}"></dxi-validation-rule>
+                                            </dx-validator>
+                                            <osoft-data-grid (OnClickActionForm)="OnClickActionForm(column,i,j,k)" id="{{column.columN_NAME}}" #dropdownbox (onClickCancel)="onSaveDropDownOptionTab($event,i,column,j,k)" (onClickOK)="onSaveDropDownOptionTag($event,i,column,j,k)" [keyExpr]="column.valueexpr"
+                                                [showFilterRow]="true" [currentSelectedRowKeys]="column.editoroptions.value" [selection]="false" [height]="450" [tableName]="column.droP_DOWN_TABLE" [type]="'BY-TABLE-NAME'" [dataSource]="column.editoroptions.items"
+                                                (OnSelectRow)="onSelectRowGridDropdownTab($event,i,column,j,k)" (selectedRowsDataOutput)="selectedRowsDataGridDropdownTab($event,i,column,j,k)"></osoft-data-grid>
+                                        </dx-drop-down-box>
+                                        <!-- <dx-drop-down-box *ngIf="column.typE_ID == 27" [disabled]="column.editoroptions.disabled" label="{{column.name}}{{column.required ? '(*)' :''}}" [opened]="column.isDropBoxOpened" (onOpened)="onOpenedDropDownOptionTab($event,i,column,j,k)" [(value)]="column.editoroptions.value"
+                                            valueExpr="{{column.valueexpr}}" displayExpr="{{column.displayexpr}}" placeholder="Select a value..." [showClearButton]="true" [dataSource]="column.editoroptions.items" [stylingMode]="stylingMode" [labelMode]="labelMode">
+                                            <dxo-drop-down-options [width]="column.editoroptions.optionWidth"></dxo-drop-down-options>
+                                            <dx-validator *ngIf="column.required">
+                                                <dxi-validation-rule type="required" message="{{column.name}} {{translate('Không được phép trống','is not required')}}"></dxi-validation-rule>
+                                            </dx-validator>
+                                            <osoft-data-grid id="{{column.columN_NAME}}" #dropdownbox (onClickCancel)="onSaveDropDownOptionTab($event,i,column,j,k)" (onClickOK)="onSaveDropDownOptionTab($event,i,column,j,k)" [keyExpr]="column.valueexpr" [showFilterRow]="true" [currentSelectedRowKeys]="[column.editoroptions.value]"
+                                                [selection]="false" [height]="450" [tableName]="column.droP_DOWN_TABLE" [type]="'BY-TABLE-NAME'" [dataSource]="column.editoroptions.items" (OnSelectRow)="onSelectRowGridDropdownTab($event,i,column,j,k)" (selectedRowsDataOutput)="selectedRowsDataGridDropdownTab($event,i,column,j,k)"></osoft-data-grid>
+                                        </dx-drop-down-box> -->
+
+                                        <dx-select-box *ngIf="column.typE_ID == 24" [disabled]="column.editoroptions.disabled" label="{{column.name}}{{column.required ? '(*)' :''}}" searchEnabled="true" [inputAttr]="{ 'aria-label': '{{column.name}}' }" [dataSource]="column.editoroptions.items"
+                                            displayExpr="{{column.displayexpr}}" valueExpr="{{column.valueexpr}}" [value]="column.editoroptions.value" [showClearButton]="true" (onValueChanged)="handleValueChanged2($event,column)" [stylingMode]="stylingMode"
+                                            [labelMode]="labelMode">
+                                            <dx-validator *ngIf="column.required">
+                                                <dxi-validation-rule type="required" message="{{column.name}} {{translate('Không được phép trống','is not required')}}"></dxi-validation-rule>
+                                            </dx-validator>
+                                        </dx-select-box>
+
+                                        <dx-drop-down-box *ngIf="column.typE_ID == 28" [disabled]="column.editoroptions.disabled" label="{{column.name}}{{column.required ? '(*)' :''}}" [opened]="column.isDropBoxOpened" (onOpened)="onOpenedDropDownOptionTab($event,i,column,j,k)" [value]="column.editoroptions.value"
+                                            valueExpr="{{column.valueexpr}}" displayExpr="{{column.displayexpr}}" placeholder="Select a value..." [showClearButton]="true" [dataSource]="column.editoroptions.items" [stylingMode]="stylingMode" [labelMode]="labelMode">
+                                            <dxo-drop-down-options [width]="column.editoroptions.optionWidth" [height]="600"></dxo-drop-down-options>
+                                            <dx-validator *ngIf="column.required">
+                                                <dxi-validation-rule type="required" message="{{column.name}} {{translate('Không được phép trống','is not required')}}"></dxi-validation-rule>
+                                            </dx-validator>
+                                            <osoft-data-grid id="{{column.columN_NAME}}" (OnClickActionForm)="OnClickActionForm(column,i,j,k)" #dropdownbox (onClickCancel)="onSaveDropDownOptionTab($event,i,column,j,k)" (onClickOK)="onSaveDropDownOptionTab($event,i,column,j,k)" [keyExpr]="column.valueexpr"
+                                                [showFilterRow]="true" [currentSelectedRowKeys]="column.editoroptions.value" [selection]="true" [height]="450" [tableName]="column.droP_DOWN_TABLE" [type]="'BY-TABLE-NAME'" [dataSource]="column.editoroptions.items"
+                                                (OnSelectAllRow)="onSelectRowGridDropdownTab($event,i,column,j,k)"></osoft-data-grid>
+                                        </dx-drop-down-box>
+
+                                        <dx-input-datepicker *ngIf="(column.typE_ID == 5 || column.typE_ID == 9 || column.typE_ID == 10 || column.typE_ID == 11)" [type]="column.typE_ID == 11?'time':'date'" [disabled]="column.editoroptions.disabled" [name]="column.name" [placeholder]="column.name"
+                                            [showClearButton]="true" [useMaskBehavior]="true" [format]="column.dx_format" [value]="column.editoroptions.value" [name]="column.name" [inputAttr]="{ 'aria-label': '{{column.name}}' }" (ValueOutput)="handleValueChangedDate($event,column)"
+                                            [stylingMode]="stylingMode" [labelMode]="labelMode" [required]="column.required">
+                                        </dx-input-datepicker>
+                                        <dx-text-area *ngIf="column.typE_ID == 3" [disabled]="column.editoroptions.disabled" label="{{column.name}}{{column.required ? '(*)' :''}}" [showClearButton]="true" [maxLength]="4000" [value]="column.editoroptions.value" [autoResizeEnabled]="true" (onValueChanged)="handleValueChangedTextArea($event,column)"
+                                            [inputAttr]="{ 'aria-label': '{{column.name}}' }" [stylingMode]="stylingMode" [labelMode]="labelMode">
+                                            <dx-validator *ngIf="column.required">
+                                                <dxi-validation-rule type="required" message="{{column.name}} {{translate('Không được phép trống','is not required')}}"></dxi-validation-rule>
+                                            </dx-validator>
+                                        </dx-text-area>
+                                        <dx-number-box alignment="right" *ngIf="(column.typE_ID == 1 || column.typE_ID == 14 || column.typE_ID == 15)" [disabled]="column.editoroptions.disabled" label="{{column.name}}{{column.required ? '(*)' :''}}" (onValueChanged)="changeNumberBox($event,column,i,j,k)"
+                                            format="{{column.dx_format?column.dx_format:'#'}}" [value]="InputMaster[column.columN_NAME]" [textAlign]="'right'" [showSpinButtons]="true" [showClearButton]="false" [stylingMode]="stylingMode" [labelMode]="labelMode">
+                                            <dx-validator *ngIf="column.required">
+                                                <dxi-validation-rule type="required" message="{{column.name}} {{translate('Không được phép trống','is not required')}}"></dxi-validation-rule>
+                                            </dx-validator>
+                                        </dx-number-box>
+
+                                        <osoft-data-grid-edit *ngIf="column.typE_ID == 16" #dataGridEdit1 (OnClickActionForm)="OnClickActionForm2($event,column,i,j,k)" [isShowTitle]="false" [showToolbar]="showToolbar" [disabled]="column.editoroptions.disabled" [InputMaster]="InputMaster" (HandleValueChangedOutput)="DataGridValueChangedOutput($event,column)"
+                                            (selectedRowsDataOutput)="onSelectedRowsDataOutput($event,i,column)" (HandleCopydOutput)="DataGridHandleCopydOutput($event,column)" (selectedRowsGridDataOutput)="selectedRowsGridData($event,column)" (HandleAdddOutput)="DataGridHandleAdddOutput($event,column)"
+                                            (HandleDeletedOutput)="DataGridHandleDeletedOutput($event,column)" [keyExpr]="column.valueexpr" [title]="column.name" [currentSelectedRowKeys]="column.editoroptions.value" [selection]="true" [height]="heightGridEdit"
+                                            [tableName]="column.droP_DOWN_TABLE" [column_name]="column.columN_NAME" [type]="'BY-TABLE-NAME'" [dataSource]="getDataSourceInGrid(column,i,j,k)" [onRefreshGrid]="onRefreshGrid">
+                                        </osoft-data-grid-edit>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="group.isTab == false && group.data.length >0" class="row" style=" margin-right: -3px;margin-left: -3px">
+                <div *ngIf="group.name" class="title-group-form-edit-v2 col-12">{{group.name}}</div>
+                <div *ngFor="let column of group.data;let j=index" class="{{renColumnSpan(column.colspan)}}" [ngStyle]="{'display':isDisplay(column.displaY_CONDITIONS)?'block':'none'}">
+                    <div class="dx-field" *ngIf="column.typE_ID == 4">
+                        <div class="dx-field-label">{{column.name}}</div>
+                        <div class="dx-field-value">
+                            <dx-switch [disabled]="column.editoroptions.disabled" label="{{column.name}}{{column.required ? '(*)' :''}}:" (onValueChanged)="handleValueChanged2($event,column)" [value]="column.editoroptions.value" [inputAttr]="{ 'aria-label': '{{column.name}}' }">
+                                <dx-validator *ngIf="column.required">
+                                    <dxi-validation-rule type="required" message="{{column.name}} {{translate('Không được phép trống','is not required')}}"></dxi-validation-rule>
+                                </dx-validator>
+                            </dx-switch>
+                        </div>
+                    </div>
+                    <dx-text-box *ngIf="column.typE_ID == 2" [disabled]="column.editoroptions.disabled" label="{{column.name}}{{column.required ? '(*)' :''}}" (onValueChanged)="handleValueChanged2($event,column)" [value]="column.editoroptions.value" [inputAttr]="{ 'aria-label': '{{column.name}}' }"
+                        [showClearButton]="true" [stylingMode]="stylingMode" [labelMode]="labelMode">
+                        <dx-validator *ngIf="column.required">
+                            <dxi-validation-rule type="required" message="{{column.name}} {{translate('Không được phép trống','is not required')}}"></dxi-validation-rule>
+                        </dx-validator>
+                    </dx-text-box>
+                    <dx-tag-box *ngIf="column.typE_ID == 12" [disabled]="column.editoroptions.disabled" label="{{column.name}}{{column.required ? '(*)' :''}}" [showClearButton]="true" [items]="column.editoroptions.items" displayExpr="{{column.displayexpr}}" valueExpr="{{column.valueexpr}}"
+                        [value]="column.editoroptions.value" [showSelectionControls]="true" applyValueMode="useButtons" [searchEnabled]="true" [grouped]="true" (onValueChanged)="handleValueChanged2($event,column)" [stylingMode]="stylingMode" [labelMode]="labelMode">
+                        <dx-validator *ngIf="column.required">
+                            <dxi-validation-rule type="required" message="{{column.name}} {{translate('Không được phép trống','is not required')}}"></dxi-validation-rule>
+                        </dx-validator>
+                    </dx-tag-box>
+
+                    <dx-drop-down-box *ngIf="column.typE_ID == 27" [disabled]="column.editoroptions.disabled" label="{{column.name}}{{column.required ? '(*)' :''}}" [opened]="column.isDropBoxOpened" (onOpened)="onOpenedDropDownOption($event,i,column)" [(value)]="column.editoroptions.value"
+                        valueExpr="{{column.valueexpr}}" displayExpr="{{column.displayexpr}}" placeholder="Select a value..." [showClearButton]="true" [dataSource]="column.editoroptions.items" [stylingMode]="stylingMode" [labelMode]="labelMode">
+                        <dxo-drop-down-options [width]="column.editoroptions.optionWidth"></dxo-drop-down-options>
+                        <dx-validator *ngIf="column.required">
+                            <dxi-validation-rule type="required" message="{{column.name}} {{translate('Không được phép trống','is not required')}}"></dxi-validation-rule>
+                        </dx-validator>
+                        <osoft-data-grid (OnClickActionForm)="OnClickActionForm(column,i,j,k)" id="{{column.columN_NAME}}" #dropdownbox (onClickCancel)="onSaveDropDownOption($event,i,column)" (onClickOK)="onSaveDropDownOption($event,i,column)" [keyExpr]="column.valueexpr" [showFilterRow]="true"
+                            [currentSelectedRowKeys]="column.editoroptions.value" [selection]="false" [height]="450" [tableName]="column.droP_DOWN_TABLE" [type]="'BY-TABLE-NAME'" [dataSource]="column.editoroptions.items" (OnSelectRow)="onSelectRowGridDropdown($event,i,column,j)"
+                            (selectedRowsDataOutput)="selectedRowsDataGridDropdown($event,i,column)"></osoft-data-grid>
+                    </dx-drop-down-box>
+
+                    <dx-select-box *ngIf="column.typE_ID == 24" [disabled]="column.editoroptions.disabled" label="{{column.name}}{{column.required ? '(*)' :''}}" searchEnabled="true" [inputAttr]="{ 'aria-label': '{{column.name}}' }" [dataSource]="column.editoroptions.items"
+                        displayExpr="{{column.displayexpr}}" valueExpr="{{column.valueexpr}}" [value]="column.editoroptions.value" [showClearButton]="true" (onValueChanged)="handleValueChanged2($event,column)" [stylingMode]="stylingMode" [labelMode]="labelMode">
+                        <dx-validator *ngIf="column.required">
+                            <dxi-validation-rule type="required" message="{{column.name}} {{translate('Không được phép trống','is not required')}}"></dxi-validation-rule>
+                        </dx-validator>
+                    </dx-select-box>
+
+                    <dx-drop-down-box *ngIf="column.typE_ID == 28" [disabled]="column.editoroptions.disabled" label="{{column.name}}{{column.required ? '(*)' :''}}" [opened]="column.isDropBoxOpened" (onOpened)="onOpenedDropDownOption($event,i,column)" [value]="column.editoroptions.value"
+                        valueExpr="{{column.valueexpr}}" displayExpr="{{column.displayexpr}}" placeholder="Select a value..." [showClearButton]="true" [dataSource]="column.editoroptions.items" [stylingMode]="stylingMode" [labelMode]="labelMode">
+                        <dxo-drop-down-options [width]="column.editoroptions.optionWidth" [height]="600"></dxo-drop-down-options>
+                        <dx-validator *ngIf="column.required">
+                            <dxi-validation-rule type="required" message="{{column.name}} {{translate('Không được phép trống','is not required')}}"></dxi-validation-rule>
+                        </dx-validator>
+                        <osoft-data-grid id="{{column.columN_NAME}}" (OnClickActionForm)="OnClickActionForm(column,i,j,k)" #dropdownbox (onClickCancel)="onSaveDropDownOption($event,i,column)" (onClickOK)="onSaveDropDownOption($event,i,column)" [keyExpr]="column.valueexpr" [showFilterRow]="true"
+                            [currentSelectedRowKeys]="column.editoroptions.value" [selection]="true" [height]="450" [tableName]="column.droP_DOWN_TABLE" [type]="'BY-TABLE-NAME'" [dataSource]="column.editoroptions.items" (OnSelectAllRow)="onSelectRowGridDropdown($event,i,column,j)"></osoft-data-grid>
+                    </dx-drop-down-box>
+
+                    <dx-input-datepicker *ngIf="(column.typE_ID == 5 || column.typE_ID == 9 || column.typE_ID == 10 || column.typE_ID == 11)" [type]="column.typE_ID == 11?'time':'date'" [disabled]="column.editoroptions.disabled" [name]="column.name" [placeholder]="column.name"
+                        [showClearButton]="true" [useMaskBehavior]="true" [format]="column.dx_format" [required]="column.required" [value]="column.editoroptions.value" [name]="column.name" (ValueOutput)="handleValueChangedDate($event,column)" [stylingMode]="stylingMode"
+                        [labelMode]="labelMode">
+                    </dx-input-datepicker>
+                    <dx-text-area *ngIf="column.typE_ID == 3" [disabled]="column.editoroptions.disabled" label="{{column.name}}{{column.required ? '(*)' :''}}" [showClearButton]="true" [maxLength]="4000" [value]="column.editoroptions.value" [autoResizeEnabled]="true" (onValueChanged)="handleValueChangedTextArea($event,column)"
+                        [inputAttr]="{ 'aria-label': '{{column.name}}' }" [stylingMode]="stylingMode" [labelMode]="labelMode">
+                        <dx-validator *ngIf="column.required">
+                            <dxi-validation-rule type="required" message="{{column.name}} {{translate('Không được phép trống','is not required')}}"></dxi-validation-rule>
+                        </dx-validator>
+                    </dx-text-area>
+                    <dx-number-box *ngIf="(column.typE_ID == 1 || column.typE_ID == 14 || column.typE_ID == 15)" [disabled]="column.editoroptions.disabled" label="{{column.name}}{{column.required ? '(*)' :''}}" (onValueChanged)="changeNumberBox($event,column,i,null,null)"
+                        format="{{column.dx_format?column.dx_format:'#'}}" [value]="InputMaster[column.columN_NAME]" [textAlign]="'right'" [showSpinButtons]="true" [showClearButton]="false" [stylingMode]="stylingMode" [labelMode]="labelMode">
+                        <dx-validator *ngIf="column.required">
+                            <dxi-validation-rule type="required" message="{{column.name}} {{translate('Không được phép trống','is not required')}}"></dxi-validation-rule>
+                        </dx-validator>
+                    </dx-number-box>
+
+                    <osoft-data-grid-edit #dataGridEdit *ngIf="column.typE_ID == 16" (OnClickActionForm)="OnClickActionForm2($event,column,i,j,k)" [showToolbar]="showToolbar" [disabled]="column.editoroptions.disabled" [InputMaster]="InputMaster" (HandleValueChangedOutput)="DataGridValueChangedOutput($event,column)"
+                        (selectedRowsDataOutput)="onSelectedRowsDataOutput($event,i,column)" (HandleCopydOutput)="DataGridHandleCopydOutput($event,column)" (HandleAdddOutput)="DataGridHandleAdddOutput($event,column)" (selectedRowsGridDataOutput)="selectedRowsGridData($event,column)"
+                        (HandleDeletedOutput)="DataGridHandleDeletedOutput($event,column)" [keyExpr]="column.valueexpr" [title]="column.name" [currentSelectedRowKeys]="column.editoroptions.value" [selection]="true" [height]="heightGridEdit" [tableName]="column.droP_DOWN_TABLE"
+                        [column_name]="column.columN_NAME" [type]="'BY-TABLE-NAME'" [dataSource]="getDataSourceInGrid(column,i,j,-1)" [onRefreshGrid]="onRefreshGrid"></osoft-data-grid-edit>
+                </div>
+            </div>
+            <ng-content></ng-content>
+        </div>
+        <dialog-form #dialogForm (dataSaveOutput)="dataSavePopupOutput($event)"></dialog-form>
+        <a href="javascript:;" (click)="resetDataEditorOptions()" id="refreshDataFormV2" style="display:none;"></a>
+        <os-dialog-preview-print #dialogPreviewPrint></os-dialog-preview-print>
+    </div>
+</form>

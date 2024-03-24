@@ -1,0 +1,523 @@
+<div class="card-container k-form-edit">
+    <app-toolbar #toolbar [classInsert]="'form-30082023'" [tableName]="tbName" [CurrenFrom]="CurrenFrom"></app-toolbar>
+    <div class="example-wrapper form-group">
+        <div class="example-wrapper">
+            <div class="">
+                <div class="form-group filter">
+                    <div class="row div-filter">
+                        <!-- Begin filter -->
+                        <!-- Tên nhân viên -->
+                        <div class="col-12 col-sm-4 col-md-4 col-lg-3 col-xl-2">
+                            <div class="form-group">
+                                <label for="firstName" class="">Tên nhân viên</label>
+                                <input type="text" #firstName="ngModel" name="firstName" [(ngModel)]="filterInput.firstName" [value]="filterInput.firstName" class="form-control" id="firstName">
+                            </div>
+                        </div>
+                        <!-- Họ và tên đệm nhân viên -->
+                        <div class="col-12 col-sm-4 col-md-4 col-lg-3 col-xl-2">
+                            <div class="form-group">
+                                <label for="lastName" class="">Họ và tên đệm nhân viên</label>
+                                <input type="text" #lastName="ngModel" name="lastName" [(ngModel)]="filterInput.lastName" [value]="filterInput.lastName" class="form-control" id="lastName">
+                            </div>
+                        </div>
+                        <!-- Mã nhân viên -->
+                        <div class="col-12 col-sm-4 col-md-4 col-lg-3 col-xl-2">
+                            <div class="form-group">
+                                <label for="employee_code" class="">Mã nhân viên</label>
+                                <input type="text" #employee_code="ngModel" name="employee_code" [(ngModel)]="filterInput.employee_code" [value]="filterInput.employee_code" class="form-control" id="employee_code">
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-4 col-md-4 col-lg-3 col-xl-2">
+                            <label class="labels">Trạng thái công tác</label>
+                            <input-selectpicker-v2 #SelectActiveicker (ValueOutput)="onSelectFilter($event,'active')" [value]="undefined" [multiple]="false" [list]="listActive" [FieldValue]="'id'" [FieldDisplay]="'name'" [ColumnName]="'f_active'" [title]="''"></input-selectpicker-v2>
+                        </div>
+                        <!-- end filter -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-component form-group">
+        <jqgrid-list #gridMenuList (ValueOutput)="selectRow($event);" [colModel]="col_model" [table]="tbName" [title]="'Danh sách nhân viên'"></jqgrid-list>
+    </div>
+    <dialog-acction #dialogDelete [content]="'Bạn có chắc chắn muốn xóa?'" [title]="translate('Vui lòng xác nhận','Confirm ')" (confirmOutput)="confirmDelete()"></dialog-acction>
+</div>
+<!-- Edit -->
+<sidenav-add-edit #sidenavAddEdit [title]="'Chỉnh sửa thông nhóm người dùng'" *ngIf="isEdit" class="form-sidenav-edit">
+    <form method="#" action="#" style="padding: 20px;">
+        <app-toolbar #toolbarEdit [classInsert]="'form-30082023'" [tableName]="tbName" [CurrenFrom]="getCurrenFrom"></app-toolbar>
+        <alert-message #alertMessage></alert-message>
+        <div class="row">
+            <div class="rounded bg-white mb-12 col-md-12">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Thông tin nhân viên</h4>
+                        </div>
+                        <div class="card-body">
+                            <div id="accordion" role="tablist">
+                                <div class="card-collapse">
+                                    <div class="card-header" role="tab" id="headingOne">
+                                        <h5 class="mb-0">
+                                            <a data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="">
+                                                Thông tin nhân viên
+                                                <i class="material-icons">keyboard_arrow_down</i>
+                                            </a>
+                                        </h5>
+                                    </div>
+                                    <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion" style="">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <!-- <div class="col-md-3 border-right">
+                                                    <input type="file" (change)="fileChangeEvent($event,'avarta_base64')" />
+                                                    <image-cropper [cropper]="cropper" [style.display]="isgetdata ? null : 'none'" [imageBase64]="InputModel.avarta_base64" [maintainAspectRatio]="true" [aspectRatio]="1/1" format="jpg" (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded()" (cropperReady)="cropperReady()"
+                                                        (loadImageFailed)="loadImageFailed()" [cropperMinHeight]="768" [cropperMaxWidth]="768" [cropperMaxHeight]="768" [cropperMinWidth]="768"></image-cropper>
+                                                </div> -->
+                                                <div class="col-md-3 border-right">
+                                                    <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                                                        <img class="rounded-circle mt-5" width="256px" src="{{(InputModel && InputModel.avarta)?InputModel.avarta:'../assets/img/default-avatar.png'}}">
+                                                        <div class="upload-avarta">
+                                                            <button class="btn btn-photo-camera" (click)="onClickAvarta()">
+                                                                <span class="material-icons">
+                                                                photo_camera
+                                                                </span>
+                                                                </button>
+                                                        </div>
+                                                    </div>
+                                                    <input-file-upload [isDomain]="true" [hidden]="true" [multiple]="false" [colName]="'avarta'" [tableName]="'HRM_Employee'" (ValueOutput)="valueUpload($event,'avarta')"></input-file-upload>
+                                                </div>
+                                                <div class="col-md-9 border-right">
+                                                    <div class="p-3 py-9">
+                                                        <div class="row mt-2">
+                                                            <div class="col-md-3">
+                                                                <label class="labels">Mã nhân viên</label>
+                                                                <input type="text" #employee_code="ngModel" [disabled]="true" class="form-control" placeholder="Employee code" name="employee_code" [(ngModel)]="InputModel.employee_code">
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <label class="labels">Tên</label>
+                                                                <input type="text" #firstName="ngModel" [disabled]="disabled" class="form-control" placeholder="Tên" name="firstName" [(ngModel)]="InputModel.firstName">
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <label class="labels">Họ</label>
+                                                                <input type="text" #lastName="ngModel" [disabled]="disabled" class="form-control" placeholder="Họ" name="lastName" [(ngModel)]="InputModel.lastName">
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <label class="labels">Giới tính</label>
+                                                                <input-selectpicker-v2 #SelectSexPicker (ValueOutput)="onSelect($event,'sex_code')" [value]="InputModel.sex_code" [multiple]="false" [list]="[]" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'sex_code'" [title]="''"></input-selectpicker-v2>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mt-3">
+                                                            <div class="col-md-3">
+                                                                <label class="labels">Ngày sinh</label>
+                                                                <input-datepicker [ColumnName]="'birthday'" name="birthday" [value]="InputModel.birthday" (ValueOutput)="onSelect($event,'birthday')"></input-datepicker>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <label class="labels">Địa chỉ chi tiết</label>
+                                                                <input type="text" [disabled]="disabled" #birthplace_detail="ngModel" class="form-control" placeholder="Địa chỉ nhà, đường" name="birthplace_detail" [(ngModel)]="InputModel.birthplace_detail">
+                                                            </div>
+                                                            <div class="col-md-12"></div>
+                                                            <div class="col-md-3">
+                                                                <label class="labels">Tỉnh/Thành phố</label>
+                                                                <input-selectpicker-v2 #SelectBirthplaceCityPicker (ValueOutput)="onSelectBirthplace($event,'birthplace_city_code')" (ValueSearchOutput)="autocompleteCity(InputModel.birthplace_city_code,$event,'birthplace_city_code')" [value]="InputModel.birthplace_city_code"
+                                                                    [multiple]="false" [list]="listCity" [FieldValue]="'city_id'" [FieldDisplay]="'city'" [ColumnName]="'city'" [title]="''"></input-selectpicker-v2>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <label class="labels">Quận/Huyện</label>
+                                                                <input-selectpicker-v2 #SelectBirthplaceDistrictPicker (ValueOutput)="onSelectBirthplace($event,'birthplace_district_code')" (ValueSearchOutput)="autocompleteDistrict(InputModel.birthplace_district_code,$event,'birthplace_district_code')" [value]="InputModel.birthplace_district_code"
+                                                                    [multiple]="false" [list]="listDistrict" [FieldValue]="'district_id'" [FieldDisplay]="'district'" [ColumnName]="'birthplace_district_code'" [title]="''"></input-selectpicker-v2>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <label class="labels">Phường/Xã</label>
+                                                                <input-selectpicker-v2 #SelectBirthplaceSubDistrictPicker (ValueOutput)="onSelectBirthplace($event,'birthplace_sub_district_code')" (ValueSearchOutput)="autocompleteDistrictSub(InputModel.birthplace_sub_district_code,$event,'birthplace_sub_district_code')"
+                                                                    [value]="InputModel.birthplace_sub_district_code" [multiple]="false" [list]="listDistrictSub" [FieldValue]="'sub_district_id'" [FieldDisplay]="'sub_district'" [ColumnName]="'birthplace_sub_district_code'"
+                                                                    [title]="'Phường-Xã/ Birthplace sub district'"></input-selectpicker-v2>
+                                                            </div>
+                                                            <div class="col-md-12"></div>
+                                                            <div class="col-md-3">
+                                                                <label class="labels">Tình trạng hôn nhân</label>
+                                                                <input-selectpicker-v2 #SelectMaritalStatusPicker (ValueOutput)="onSelect($event,'marital_status_code')" [value]="InputModel.marital_status_code" [multiple]="false" [list]="listMaritalStatus" [FieldValue]="'code'" [FieldDisplay]="'name_vn'" [ColumnName]="'marital_status_code'"
+                                                                    [title]="''"></input-selectpicker-v2>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <label class="labels">Dân tộc</label>
+                                                                <input type="text" [disabled]="disabled" #nation="ngModel" class="form-control" placeholder="Dân tộc" name="nation" [(ngModel)]="InputModel.nation">
+                                                            </div>
+                                                            <div class="col-md-3"><label class="labels">Tôn giáo</label>
+                                                                <input type="text" [disabled]="disabled" #religion="ngModel" class="form-control" name="religion" [(ngModel)]="InputModel.religion" placeholder="Tôn giáo">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-collapse">
+                                    <div class="card-header" role="tab" id="headingOne">
+                                        <h5 class="mb-0">
+                                            <a data-toggle="collapse" href="#collapseOne1" aria-expanded="false" aria-controls="collapseOne" class="">
+                                                Thông tin công tác
+                                                <i class="material-icons">keyboard_arrow_down</i>
+                                            </a>
+                                        </h5>
+                                    </div>
+                                    <div id="collapseOne1" class="collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion" style="">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-9">
+                                                    <div class="p-3 py-9">
+                                                        <div class="row mt-3">
+                                                            <div class="col-md-3">
+                                                                <div class="form-group">
+                                                                    <input-checkbox [type]="'toggle'" [title]="'Trạng thái công tác'" (ValueOutput)="onChangeValue($event,'active')" [value]="InputModel.active"></input-checkbox>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12"></div>
+                                                            <div class="col-md-3">
+                                                                <label class="labels">Chi nhánh </label>
+                                                                <input-selectpicker-v2 #SelectBranchPicker (ValueOutput)="onSelect($event,'branch_code')" [value]="InputModel.branch_code" [multiple]="false" [list]="listBranch" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'branch_code'" [title]="'Chi nhánh'"></input-selectpicker-v2>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <label class="labels">Phòng ban </label>
+                                                                <input-selectpicker-v2 #SelectDepartmentPicker (ValueOutput)="onSelect($event,'department_code')" [value]="InputModel.department_code" [multiple]="false" [list]="listDepartment" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'department_code'"
+                                                                    [title]="'Phòng ban'"></input-selectpicker-v2>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <label class="labels">Bộ phận</label>
+                                                                <input-selectpicker-v2 #SelectPartPicker (ValueOutput)="onSelect($event,'part_code')" [value]="InputModel.part_code" [multiple]="false" [list]="listPart" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'part_code'" [title]="'Bộ phận'"></input-selectpicker-v2>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <label class="labels">Chức vụ</label>
+                                                                <input-selectpicker-v2 #SelectPositionPicker (ValueOutput)="onSelect($event,'position_code')" [value]="InputModel.position_code" [multiple]="false" [list]="listEmployeePosition" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'position_code'"
+                                                                    [title]="'Vị trí'"></input-selectpicker-v2>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <label class="labels">Chức danh </label>
+                                                                <input-selectpicker-v2 #SelectDepartmentTitlePicker (ValueOutput)="onSelect($event,'title_code')" [value]="InputModel.title_code" [multiple]="false" [list]="listDepartmentTitle" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'title_code'"
+                                                                    [title]="'Phòng ban'"></input-selectpicker-v2>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <label class="labels">Ca làm việc (*)</label>
+                                                                <input-selectpicker-v2 #SelectWorkShiftPicker (ValueOutput)="onSelect($event,'work_shifts')" [value]="InputModel.work_shifts" [multiple]="true" [list]="listWorkShift" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'work_shifts_select'" [title]="''"></input-selectpicker-v2>
+                                                            </div>
+                                                            <div class="col-12"></div>
+                                                            <div class="col-md-3">
+                                                                <label class="labels">Ngày bắt đầu làm việc</label>
+                                                                <input-datepicker [ColumnName]="'date_join_company'" name="date_join_company" [value]="InputModel.date_join_company" (ValueOutput)="onSelect($event,'date_join_company')"></input-datepicker>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <label class="labels">Ngày Nghỉ việc</label>
+                                                                <input-datepicker [ColumnName]="'date_quit_company'" name="date_quit_company" [value]="InputModel.date_quit_company" (ValueOutput)="onSelect($event,'date_quit_company')"></input-datepicker>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-collapse">
+                                    <div class="card-header" role="tab" id="headingOne">
+                                        <h5 class="mb-0">
+                                            <a data-toggle="collapse" href="#collapseOne11" aria-expanded="false" aria-controls="collapseOne" class="">
+                                    Thông tin liên lạc
+                                    <i class="material-icons">keyboard_arrow_down</i>
+                                  </a>
+                                        </h5>
+                                    </div>
+                                    <div id="collapseOne11" class="collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion" style="">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-9 border-right">
+                                                    <div class="p-3 py-9">
+                                                        <div class="row mt-3">
+                                                            <div class="col-md-3">
+                                                                <label class="labels">Địa chỉ email cá nhân</label>
+                                                                <input type="text" [disabled]="disabled" #email="ngModel" class="form-control" placeholder="enter email" name="email" [(ngModel)]="InputModel.email">
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <label class="labels">Địa chỉ email công ty</label>
+                                                                <input type="text" [disabled]="disabled" #email_company="ngModel" class="form-control" placeholder="enter email company" name="email_company" [(ngModel)]="InputModel.email_company">
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <label class="labels">Số điện thoại</label>
+                                                                <input type="text" [disabled]="disabled" #phone="ngModel" class="form-control" placeholder="enter phone number" name="phone" [(ngModel)]="InputModel.phone">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="p-3 py-5">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-collapse">
+                                    <div class="card-header" role="tab" id="headingTwo">
+                                        <h5 class="mb-0">
+                                            <a class="collapsed" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                Thông tin nhân thân
+                                                <i class="material-icons">keyboard_arrow_down</i>
+                                            </a>
+                                        </h5>
+                                    </div>
+                                    <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion" style="">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-9 border-right">
+                                                    <div class="p-3 py-9">
+                                                        <div class="row mt-3">
+                                                            <div class="col-md-3">
+                                                                <label class="labels">CMND</label>
+                                                                <input type="text" [disabled]="disabled" #id_card="ngModel" class="form-control" placeholder="Nhập cmnd" name="id_card" [(ngModel)]="InputModel.id_card">
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <label class="labels">Ngày cấp</label>
+                                                                <input-datepicker [ColumnName]="'date_create_card'" name="date_create_card" [value]="InputModel.date_create_card" (ValueOutput)="onSelect($event,'date_create_card')"></input-datepicker>
+                                                                <!-- <input type="text" #date_create_card="ngModel" class="form-control" placeholder="Nhập ngày cấp" name="date_create_card" [(ngModel)]="InputModel.date_create_card"> -->
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <label class="labels">Nơi cấp</label>
+                                                                <input type="text" [disabled]="disabled" #from_create_card="ngModel" class="form-control" placeholder="Nhập nơi cấp" name="from_create_card" [(ngModel)]="InputModel.from_create_card">
+                                                            </div>
+                                                            <div class="col-md-12"></div>
+                                                            <div class="col-md-3">
+                                                                <label class="labels">CCCD</label>
+                                                                <input type="text" [disabled]="disabled" #cccd="ngModel" class="form-control" placeholder="Nhập cccd" name="cccd" [(ngModel)]="InputModel.cccd">
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <label class="labels">Ngày cấp</label>
+                                                                <input-datepicker [ColumnName]="'date_create_cccd'" name="date_create_cccd" [value]="InputModel.date_create_cccd" (ValueOutput)="onSelect($event,'date_create_cccd')"></input-datepicker>
+                                                                <!-- <input type="text" #from_create_cccd="ngModel" class="form-control" placeholder="Nhập ngày cấp" name="from_create_cccd" [(ngModel)]="InputModel.from_create_cccd"> -->
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <label class="labels">Nơi cấp</label>
+                                                                <input type="text" [disabled]="disabled" #from_create_cccd="ngModel" class="form-control" placeholder="Nhập nơi cấp" name="from_create_cccd" [(ngModel)]="InputModel.from_create_cccd">
+                                                            </div>
+                                                            <div class="col-md-12"></div>
+                                                            <fieldset>
+                                                                <legend style="width: auto;font-size: 20px; font-weight: 500;">Thông tin thường trú:</legend>
+                                                                <div class="row" style="margin: 0;">
+                                                                    <div class="col-md-3">
+                                                                        <label class="labels">Tỉnh/Thành phố</label>
+                                                                        <input-selectpicker-v2 #SelectAddressCityPicker (ValueOutput)="onSelectAddress($event,'address_city_code')" (ValueSearchOutput)="autocompleteCity(InputModel.address_city_code,$event,'address_city_code')" [value]="InputModel.address_city_code" [multiple]="false"
+                                                                            [list]="listCity" [FieldValue]="'city_id'" [FieldDisplay]="'city'" [ColumnName]="'address_city_code'" [title]="''"></input-selectpicker-v2>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <label class="labels">Quận/Huyện</label>
+                                                                        <input-selectpicker-v2 #SelectAddressDistrictPicker (ValueOutput)="onSelectAddress($event,'address_district_code')" (ValueSearchOutput)="autocompleteDistrict(InputModel.address_district_code,$event,'address_district_code')" [value]="InputModel.address_district_code"
+                                                                            [multiple]="false" [list]="listDistrict" [FieldValue]="'district_id'" [FieldDisplay]="'district'" [ColumnName]="'address_district_code'" [title]="''"></input-selectpicker-v2>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <label class="labels">Phường/Xã</label>
+                                                                        <input-selectpicker-v2 #SelectAddressSubDistrictPicker (ValueOutput)="onSelectAddress($event,'address_sub_district_code')" (ValueSearchOutput)="autocompleteDistrictSub(InputModel.address_sub_district_code,$event,'address_sub_district_code')" [value]="InputModel.address_sub_district_code"
+                                                                            [multiple]="false" [list]="listDistrictSub" [FieldValue]="'sub_district_id'" [FieldDisplay]="'sub_district'" [ColumnName]="'address_sub_district_code'" [title]="'Phường-Xã/ Birthplace sub district'"></input-selectpicker-v2>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <label class="labels">Địa chỉ nhà, đường nơi ở</label>
+                                                                        <input type="text" [disabled]="disabled" #address_detail="ngModel" class="form-control" placeholder="Địa chỉ nhà, đường nơi ở" name="address_detail" [(ngModel)]="InputModel.address_detail">
+                                                                    </div>
+                                                                </div>
+                                                            </fieldset>
+                                                            <div class="col-md-12"></div>
+                                                            <fieldset>
+                                                                <legend style="width: auto;font-size: 20px; font-weight: 500;">Thông tin tạm trú:</legend>
+                                                                <div class="row" style="margin: 0;">
+                                                                    <div class="col-md-3">
+                                                                        <label class="labels">Tỉnh/Thành phố</label>
+                                                                        <input-selectpicker-v2 #SelectAddressCurrentCityPicker (ValueOutput)="onSelectAddressCurrent($event,'address_current_city_code')" (ValueSearchOutput)="autocompleteCity(InputModel.address_current_city_code,$event,'address_current_city_code')" [value]="InputModel.address_current_city_code"
+                                                                            [multiple]="false" [list]="" [FieldValue]="'city_id'" [FieldDisplay]="'city'" [ColumnName]="'address_current_city_code'"></input-selectpicker-v2>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <label class="labels">Quận/Huyện</label>
+                                                                        <input-selectpicker-v2 #SelectAddressCurrentDistrictPicker (ValueOutput)="onSelectAddressCurrent($event,'address_current_district_code')" (ValueSearchOutput)="autocompleteDistrict(InputModel.address_current_district_code,$event,'address_current_district_code')"
+                                                                            [value]="InputModel.address_current_district_code" [multiple]="false" [list]="" [FieldValue]="'district_id'" [FieldDisplay]="'district'" [ColumnName]="'address_current_district_code'"
+                                                                            [title]="''"></input-selectpicker-v2>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <label class="labels">Phường/Xã</label>
+                                                                        <input-selectpicker-v2 #SelectAddressCurrentSubDistrictPicker (ValueOutput)="onSelectAddressCurrent($event,'address_current_sub_district_code')" (ValueSearchOutput)="autocompleteDistrictSub(InputModel.address_current_sub_district_code,$event,'address_current_sub_district_code')"
+                                                                            [value]="InputModel.address_current_sub_district_code" [multiple]="false" [list]="" [FieldValue]="'sub_district_id'" [FieldDisplay]="'sub_district'" [ColumnName]="'address_current_sub_district_code'"
+                                                                            [title]="'Phường-Xã'"></input-selectpicker-v2>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <label class="labels">Địa chỉ nhà, đường nơi ở</label>
+                                                                        <input type="text" [disabled]="disabled" #address_current_detail="ngModel" class="form-control" placeholder="Địa chỉ nhà, đường nơi ở tạm trú" name="address_current_detail" [(ngModel)]="InputModel.address_current_detail">
+                                                                    </div>
+                                                                </div>
+                                                            </fieldset>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-collapse">
+                                    <div class="card-header" role="tab" id="headingThree">
+                                        <h5 class="mb-0">
+                                            <a class="collapsed" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    Thông tin BHXH, Thuế TNCN, Tài khoản Ngân hàng
+                                    <i class="material-icons">keyboard_arrow_down</i>
+                                  </a>
+                                        </h5>
+                                    </div>
+                                    <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion" style="">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-9 border-right">
+                                                    <div class="p-3 py-9">
+                                                        <div class="row mt-3">
+                                                            <div class="col-md-3">
+                                                                <label class="labels">Số BHXH</label>
+                                                                <input type="text" [disabled]="disabled" #social_insurance_number="ngModel" class="form-control" placeholder="Số BHXH" name="social_insurance_number" [(ngModel)]="InputModel.social_insurance_number">
+                                                            </div>
+                                                            <div class="col-md-3"><label class="labels">Tham gia từ</label>
+                                                                <input-datepicker [ColumnName]="'date_insurance_number'" name="date_insurance_number" [value]="InputModel.date_insurance_number" (ValueOutput)="onSelect($event,'date_insurance_number')"></input-datepicker>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <label class="labels">Nơi khám bệnh</label>
+                                                                <input type="text" [disabled]="disabled" #from_insurance_number="ngModel" class="form-control" placeholder="Nơi khám bệnh" name="from_insurance_number" [(ngModel)]="InputModel.from_insurance_number">
+                                                            </div>
+                                                            <div class="col-md-3"><label class="labels">MS Thuế</label>
+                                                                <input type="text" [disabled]="disabled" #tax="ngModel" class="form-control" name="tax" [(ngModel)]="InputModel.tax" placeholder="MS Thuế">
+                                                            </div>
+                                                            <div class="col-md-12"></div>
+                                                            <div class="col-md-3">
+                                                                <label class="labels">Tài khản Bank</label>
+                                                                <input type="text" [disabled]="disabled" #bank_account_number="ngModel" class="form-control" placeholder="Tài khản Bank" name="bank_account_number" [(ngModel)]="InputModel.bank_account_number">
+                                                            </div>
+                                                            <div class="col-md-3"><label class="labels">Tên ngân hàng</label>
+                                                                <input type="text" [disabled]="disabled" #bank_name="ngModel" class="form-control" name="bank_name" [(ngModel)]="InputModel.bank_name" placeholder="Tên ngân hàng">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-collapse">
+                                    <div class="card-header" role="tab" id="headingThree">
+                                        <h5 class="mb-0">
+                                            <a class="collapsed" (click)="resetdataGrid()" data-toggle="collapse" href="#collapseThree2" aria-expanded="false" aria-controls="collapseThree">
+                                    Trình độ học vấn
+                                    <i class="material-icons">keyboard_arrow_down</i>
+                                  </a>
+                                        </h5>
+                                    </div>
+                                    <div id="collapseThree2" class="collapse" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion" style="">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="py-12">
+                                                        <form class="form-jqgrid-edit" method="#" action="#">
+                                                            <jqgrid-edit #gridAcademicLevelEdit [minHeight]="200" [colModel]="col_model_academic_level_edit" [table]="'HRM_Employee_Academic_Level'" [title]="'Trình độ học vấn'"></jqgrid-edit>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="py-12">
+                                                        <form class="form-jqgrid-edit" method="#" action="#">
+                                                            <jqgrid-edit #gridCertificatesEdit [minHeight]="200" [colModel]="col_model_certificates_edit" [table]="'HRM_Employee_Certificate'" [title]="'Chứng chỉ'"></jqgrid-edit>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-collapse">
+                                    <div class="card-header" role="tab" id="headingThree">
+                                        <h5 class="mb-0">
+                                            <a class="collapsed" data-toggle="collapse" href="#collapseThree3" aria-expanded="false" aria-controls="collapseThree">
+                                    Công tác đoàn/Đảng
+                                    <i class="material-icons">keyboard_arrow_down</i>
+                                  </a>
+                                        </h5>
+                                    </div>
+                                    <div id="collapseThree3" class="collapse" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion" style="">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-9 border-right">
+                                                    <div class="p-3 py-9">
+                                                        <div class="row mt-3">
+                                                            <div class="col-md-3">
+                                                                <label class="labels">Ngày gia nhập công đoàn công ty</label>
+                                                                <input-datepicker [ColumnName]="'date_joining_company_union'" name="date_joining_company_union" [value]="InputModel.date_joining_company_union" (ValueOutput)="onSelect($event,'date_joining_company_union')"></input-datepicker>
+                                                            </div>
+                                                            <div class="col-md-3"><label class="labels">Ngày gia nhập Đảng Cộng Sản</label>
+                                                                <input-datepicker [ColumnName]="'date_joining_communist_party'" name="date_joining_communist_party" [value]="InputModel.date_joining_communist_party" (ValueOutput)="onSelect($event,'date_joining_communist_party')"></input-datepicker>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-collapse">
+                                    <div class="card-header" role="tab" id="headingThree">
+                                        <h5 class="mb-0">
+                                            <a class="collapsed" data-toggle="collapse" href="#collapseThree4" aria-expanded="false" aria-controls="collapseThree">
+                                            Đồng phục
+                                    <i class="material-icons">keyboard_arrow_down</i>
+                                  </a>
+                                        </h5>
+                                    </div>
+                                    <div id="collapseThree4" class="collapse" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion" style="">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-9 border-right">
+                                                    <div class="p-3 py-9">
+                                                        <div class="row mt-3">
+                                                            <div class="col-md-3">
+                                                                <label class="labels">Size quần đồng phục</label>
+                                                                <input type="text" [disabled]="disabled" #trousers_size="ngModel" class="form-control" placeholder="Size quần đồng phục" name="trousers_size" [(ngModel)]="InputModel.trousers_size">
+                                                            </div>
+                                                            <div class="col-md-3"><label class="labels">Size áo đồng phục</label>
+                                                                <input type="text" [disabled]="disabled" #uniform_size="ngModel" class="form-control" name="uniform_size" [(ngModel)]="InputModel.uniform_size" placeholder="Size áo đồng phục">
+                                                            </div>
+                                                            <div class="col-md-3"><label class="labels">Size giày</label>
+                                                                <input type="text" [disabled]="disabled" #shoes_size="ngModel" class="form-control" name="shoes_size" [(ngModel)]="InputModel.shoes_size" placeholder="Size giày">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <dialog-acction #dialogAddDepartment [title]="'Confirm'" (confirmOutput)="confirmAddDepartment()">
+                    <div class="col-12 col-md-12" *ngIf="DepartmentModel">
+                        <label class="labels">Tên phòng ban /Department name</label>
+                        <input type="text" [disabled]="disabled" #shoes_size="ngModel" class="form-control" [disabled]="false" placeholder="name" name="depname" [(ngModel)]="DepartmentModel.name">
+                    </div>
+                    <div class="col-12 col-md-12" *ngIf="DepartmentModel">
+                        <label class="labels">Ghi chú /Note</label>
+                        <input type="text" [disabled]="disabled" #shoes_size="ngModel" class="form-control" [disabled]="false" placeholder="depnotes" name="depnotes" [(ngModel)]="DepartmentModel.notes">
+                    </div> <br>
+                </dialog-acction>
+                <dialog-acction #dialogAddPosition [title]="'Confirm'" (confirmOutput)="confirmAddPosition()">
+                    <div class="col-12 col-md-12">
+                        <label class="labels">Phòng ban /Department</label>
+                        <input-selectpicker-v2 #SelectDepartmentPicker3 (ValueOutput)="onSelect($event,'department_code2')" [value]="PositionModel.department_code" [multiple]="false" [list]="listDepartment" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'department_code2'"
+                            [title]="'Phòng ban'"></input-selectpicker-v2>
+                    </div>
+                    <div class="col-12 col-md-12">
+                        <label class="labels">Tên /Name</label>
+                        <input type="text" [disabled]="disabled" #PositionName="ngModel" class="form-control" [disabled]="false" placeholder="Position name" name="PositionName" [(ngModel)]="PositionModel.name">
+                    </div> <br>
+                </dialog-acction>
+            </div>
+        </div>
+    </form>
+</sidenav-add-edit>

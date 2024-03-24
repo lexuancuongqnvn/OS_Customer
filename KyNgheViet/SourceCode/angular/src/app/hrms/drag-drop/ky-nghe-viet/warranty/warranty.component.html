@@ -1,0 +1,795 @@
+<div class="card-container k-form-edit drop-task" style="overflow-x: auto;" cdkScrollable>
+    <div class="warranty-wrapper form-group">
+        <div class="warranty-wrapper">
+            <div class="card-collapse">
+                <div class="card-header" role="tab" id="headingTwo">
+                    <h5 class="mb-0">
+                        <a class="collapsed" style="color: #00bcd4 !important;" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Click để lọc dữ liệu
+                            <i class="material-icons">keyboard_arrow_down</i>
+                        </a>
+                    </h5>
+                </div>
+                <div id="collapseTwo" style="padding: 5px 10px 5px 0;" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
+                    <div class="card-body">
+                        <div class="">
+                            <div class="form-group filter">
+                                <div class="row div-filter">
+                                    <!-- Begin filter -->
+                                    <!-- Chủ đề -->
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+                                        <div class="form-group">
+                                            <label for="topic_code" class="">Bộ phận</label><br>
+                                            <input-selectpicker-v2 #SelectProjectTopicPicker (ValueOutput)="onFilter($event,'topic_code')" [multiple]="false" [list]="[]" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'topic_code'" [title]="'Dự án'"></input-selectpicker-v2>
+                                        </div>
+                                    </div>
+                                    <!-- Ngày kết thúc -->
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+                                        <div class="form-group">
+                                            <label for="id_progress_task" class="label-title">Ngày bắt đầu</label>
+                                            <input-datepicker [ColumnName]="'start_date'" [value]="filterInput.start_date" name="start_date" (ValueOutput)="onFilter($event,'start_date')"></input-datepicker>
+                                        </div>
+                                    </div>
+                                    <!-- Ngày bắt đầu -->
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+                                        <div class="form-group">
+                                            <label for="id_stop_date" class="label-title">Ngày kết thúc</label>
+                                            <input-datepicker [ColumnName]="'stop_date'" [value]="filterInput.stop_date" name="stop_date" (ValueOutput)="onFilter($event,'stop_date')"></input-datepicker>
+                                        </div>
+                                    </div>
+                                    <!-- Tiến độ sửa chữa/ bảo hành-->
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+                                        <div class="form-group">
+                                            <label for="topic_code" class="">Tiến độ sửa chữa/ bảo hành</label><br>
+                                            <input-selectpicker-v2 #SelectIsDonePicker (ValueOutput)="onFilter($event,'is_done')" [multiple]="false" [list]="[]" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'is_done'"></input-selectpicker-v2>
+                                        </div>
+                                    </div>
+                                    <div class="col-12"></div>
+                                    <!-- Model -->
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+                                        <div class="form-group">
+                                            <label for="des_model2" class=" label-title">Model</label><br>
+                                            <input type="text" #des_model2="ngModel" name="des_model2" [(ngModel)]="WarrantyFilter.des_model" class="form-control" id="des_model2">
+                                        </div>
+                                    </div>
+                                    <!-- số Sevice tag -->
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+                                        <div class="form-group">
+                                            <label for="des_sevice_tag2" class=" label-title">số Sevice tag</label><br>
+                                            <input type="text" #des_sevice_tag2="ngModel" name="des_sevice_tag2" [(ngModel)]="WarrantyFilter.des_sevice_tag" class="form-control" id="des_sevice_tag2">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+                                        <div class="form-group">
+                                            <label for="machine_status2" class=" label-title">Tình trạng máy</label><br>
+                                            <input type="text" #machine_status2="ngModel" name="machine_status2" [(ngModel)]="WarrantyFilter.machine_status" class="form-control" id="machine_status2" />
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+                                        <div class="form-group">
+                                            <button class="btn btn-info" (click)="onLoadProject()" style="margin-top: 15px;">
+                                                <span class="btn-label">
+                                                  <i class="material-icons">search</i>
+                                                </span>
+                                                Tìm kiếm
+                                              <div class="ripple-container"></div></button>
+                                        </div>
+                                    </div>
+                                    <!-- end filter -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-component form-group" [ngStyle]="{'width': widthScreen+'px','min-height':'70vh','padding-left':'20px'}">
+        <div cdkDropListGroup>
+            <div class="warranty-container" *ngFor="let task of InputModel.project_Management_Tasks;let i = index">
+                <div style="margin-bottom: 0px;">
+                    <div class="div-topic-name" style="white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;">
+                        <!-- <span *ngIf="task['is_block']" class="material-icons" style="color: rgb(13, 146, 30);">verified_user</span> -->
+                        <!-- <span *ngIf="!task['is_block']" class="material-icons" style="color: red;">remove_moderator</span> -->
+                        <span class="title-task-name" title="{{task.name}}">{{task.name}} </span>
+                    </div>
+                </div>
+                <!-- <a href="javascript:;" *ngIf="task['is_block']" (click)="onAddTask(task)"><span style="display: flex;color: #00ad00;">
+                    <span class="material-icons"> add </span> Thêm mới</span>
+                </a>
+                <a href="javascript:;" *ngIf="!task['is_block']">
+                    <span style="display: flex;color: #5f5f5f;">
+                        <span class="material-icons"> add </span> Thêm mới</span>
+                </a> -->
+                <div class="toolbar-task">
+                    <div class="action-task">
+                        <a href="javascript:;" (click)="onAddTask(task)">
+                            <span style="display: flex;color: #00ad00;" [ngStyle]="{'display': 'flex','color':task['is_block']?'#fff':'#5f5f5f','padding':'3px 0px 0px 7px'}">
+                            <span class="material-icons"> {{task['is_block']?'add':'add'}} </span></span>
+                        </a>
+                    </div>
+                    <div class="action-task">
+                        <span style="display: flex;color: #00ad00;" [ngStyle]="{'display': 'flex','color':task['is_block']?'#fff':'#5f5f5f','padding':'3px 0px 0px 7px'}">
+                        <span class="material-icons"> {{task['is_block']?'key_off':'key'}} </span></span>
+                    </div>
+                    <div class="action-task"></div>
+                    <div class="action-task"></div>
+                    <div class="action-task" style="padding: 3px;">({{task['data']?task['data'].length:0}})</div>
+                </div>
+                <div cdkDropList id="List-{{task.id}}" [cdkDropListData]="task['data']" class="warranty-list" [cdkDropListAutoScrollStep]="35" [cdkDropListAutoScrollDisabled]="false" (cdkDropListDropped)="drop($event)" (cdkDropListSorted)="event($event,'cdkDropListSorted')"
+                    (cdkDropListSorted)="cdkDropListSorted($event)">
+                    <div class="warranty-box" style="padding: 2px ​0px 0px 0p;" *ngFor="let item of task['data']" cdkDrag>
+                        <div class="list-group" style="width:100%">
+                            <div class="list-group-item list-group-item-action flex-column align-items-start" style="padding: 0px;">
+                                <div class="justify-content-between {{item.percent_done == 100?'done':'inprogress'}} {{item.code}}">
+                                    <h5 class="mb-1 h5-name">{{item.name}} </h5>
+                                    <div class="dropdown" style="position: absolute;left: 0px;top: 0px; ">
+                                        <button class="btn btn-secondary" type="button" style="padding: 5px;background: #0f6cbd;box-shadow: none;color: white" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <span class="material-icons">more_vert</span>
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item dropdown-item-task-action" href="Javascript:;" (click)="onClickSerial(item)">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                                                    <path d="M10.2214 3.27762L14.722 7.7782L4.9492 17.551L0.936568 17.994C0.399395 18.0534 -0.0544605 17.5992 0.00530355 17.062L0.451776 13.0466L10.2214 3.27762ZM17.5056 2.60756L15.3924 0.494372C14.7333 -0.164791 13.6642 -0.164791 13.005 0.494372L11.017 2.48241L15.5176 6.98299L17.5056 4.99496C18.1648 4.33544 18.1648 3.26672 17.5056 2.60756Z" fill="#106DBD"/>
+                                                </svg>&nbsp;&nbsp;&nbsp; Chỉnh sửa
+                                            </a>
+                                            <a class="dropdown-item dropdown-item-task-action" href="Javascript:;" (click)="onChangeExecutor(item)">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="15" viewBox="0 0 18 15" fill="none">
+                                                    <path d="M0 3.93834V3.37584C0 2.90985 0.377754 2.53209 0.84375 2.53209H13.5V0.844591C13.5 0.0934078 14.4105 -0.281885 14.9404 0.247955L17.7529 3.06045C18.0824 3.38997 18.0824 3.92421 17.7529 4.25369L14.9404 7.06619C14.4125 7.59396 13.5 7.2239 13.5 6.46959V4.78209H0.84375C0.377754 4.78209 0 4.40434 0 3.93834ZM17.1562 9.28209H4.5V7.59459C4.5 6.84527 3.59079 6.46678 3.05961 6.99796L0.247113 9.81045C-0.0823711 10.14 -0.0823711 10.6742 0.247113 11.0037L3.05961 13.8162C3.58794 14.3445 4.5 13.9732 4.5 13.2196V11.5321H17.1562C17.6222 11.5321 18 11.1543 18 10.6883V10.1258C18 9.65985 17.6222 9.28209 17.1562 9.28209Z" fill="#106DBD"/>
+                                                </svg>&nbsp;&nbsp;&nbsp; Đổi người phụ trách
+                                            </a>
+                                            <a class="dropdown-item dropdown-item-task-action" href="Javascript:;" (click)="onChangeFollower(item)">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="15" viewBox="0 0 18 15" fill="none">
+                                                    <path d="M17.7367 10.2634L15.1968 7.72639C14.8593 7.38887 14.4008 7.20042 13.9227 7.20042H11.6922C11.1944 7.20042 10.7922 7.60263 10.7922 8.10047V10.3281C10.7922 10.8063 10.9806 11.2619 11.3182 11.5994L13.858 14.1365C14.2096 14.488 14.7806 14.488 15.1321 14.1365L17.7339 11.5347C18.0882 11.1832 18.0882 10.615 17.7367 10.2634ZM12.5951 9.67275C12.221 9.67275 11.9201 9.3718 11.9201 8.99771C11.9201 8.62363 12.221 8.32267 12.5951 8.32267C12.9692 8.32267 13.2702 8.62363 13.2702 8.99771C13.2702 9.36899 12.9692 9.67275 12.5951 9.67275ZM6.30037 7.19761C8.28892 7.19761 9.90058 5.58595 9.90058 3.5974C9.90058 1.61166 8.28892 0 6.30037 0C4.31182 0 2.70016 1.61166 2.70016 3.60021C2.70016 5.58595 4.31182 7.19761 6.30037 7.19761ZM9.89495 10.3253V8.26923C9.55181 8.16798 9.1946 8.09485 8.82052 8.09485H8.3508C7.72639 8.38174 7.03166 8.54487 6.30037 8.54487C5.56908 8.54487 4.87716 8.38174 4.24994 8.09485H3.78022C1.69322 8.09766 0 9.79089 0 11.8779V13.048C0 13.7933 0.604723 14.398 1.35008 14.398H11.2507C11.6866 14.398 12.0691 14.1871 12.3167 13.8664L10.6853 12.2351C10.1762 11.726 9.89495 11.0481 9.89495 10.3253Z" fill="#106DBD"/>
+                                                </svg>&nbsp;&nbsp;&nbsp; Thêm người theo dõi
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item-details">
+                                    <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="24" viewBox="0 0 18 24" fill="none">
+                                            <path d="M8.07506 23.5158C1.26422 13.6421 0 12.6287 0 9C0 4.02942 4.02942 0 9 0C13.9706 0 18 4.02942 18 9C18 12.6287 16.7358 13.6421 9.92494 23.5158C9.47798 24.1614 8.52197 24.1614 8.07506 23.5158ZM9 12.75C11.0711 12.75 12.75 11.0711 12.75 9C12.75 6.92892 11.0711 5.25 9 5.25C6.92892 5.25 5.25 6.92892 5.25 9C5.25 11.0711 6.92892 12.75 9 12.75Z" fill="#0F6CBD"/>
+                                            </svg>
+                                        {{item['branch_name']}}</span>
+                                </div>
+                                <div class="item-details">
+                                    <span>
+                                        <svg style="display: block;position: absolute;" xmlns="http://www.w3.org/2000/svg" width="20" height="18" viewBox="0 0 20 18" fill="none">
+                                            <path d="M19.7749 15.2782C20.4158 16.3891 19.6113 17.7778 18.3313 17.7778H1.66855C0.386017 17.7778 -0.414747 16.387 0.224906 15.2782L8.55636 0.832812C9.19758 -0.278611 10.8036 -0.276597 11.4437 0.832812L19.7749 15.2782ZM10 12.2917C9.11789 12.2917 8.40279 13.0068 8.40279 13.8889C8.40279 14.771 9.11789 15.4861 10 15.4861C10.8821 15.4861 11.5972 14.771 11.5972 13.8889C11.5972 13.0068 10.8821 12.2917 10 12.2917ZM8.48358 6.55048L8.74115 11.2727C8.7532 11.4937 8.93591 11.6667 9.15719 11.6667H10.8428C11.0641 11.6667 11.2468 11.4937 11.2589 11.2727L11.5164 6.55048C11.5295 6.3118 11.3394 6.11111 11.1004 6.11111H8.89959C8.66056 6.11111 8.47056 6.3118 8.48358 6.55048Z" fill="#F7931E"/>
+                                            </svg>
+                                        <span style="padding-left: 25px;display: block;top: 0px;" [innerText]="item.task_content?item.task_content:'-'"></span>
+                                    </span>
+                                </div>
+                                <div class="item-details">
+                                    <small class="text-muted small-footer">
+                                        <a href="Javascript:;" class="a-serial" (click)="onClickSerial(item)">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                                                <path d="M0 7.71429H7.71429V0H0V7.71429ZM2.57143 2.57143H5.14286V5.14286H2.57143V2.57143ZM10.2857 0V7.71429H18V0H10.2857ZM15.4286 5.14286H12.8571V2.57143H15.4286V5.14286ZM0 18H7.71429V10.2857H0V18ZM2.57143 12.8571H5.14286V15.4286H2.57143V12.8571ZM16.7143 10.2857H18V15.4286H14.1429V14.1429H12.8571V18H10.2857V10.2857H14.1429V11.5714H16.7143V10.2857ZM16.7143 16.7143H18V18H16.7143V16.7143ZM14.1429 16.7143H15.4286V18H14.1429V16.7143Z" fill="#0F6CBD"/>
+                                                </svg>
+                                            Serial: {{item['des_sevice_tag']}}</a>
+                                    </small>
+                                </div>
+                                <div class="item-details">
+                                    <small class="text-muted small-footer">
+                                        <a href="Javascript:;" class="a-sku" (click)="onClickSKU(item)">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                                                <path d="M0 7.71429H7.71429V0H0V7.71429ZM2.57143 2.57143H5.14286V5.14286H2.57143V2.57143ZM10.2857 0V7.71429H18V0H10.2857ZM15.4286 5.14286H12.8571V2.57143H15.4286V5.14286ZM0 18H7.71429V10.2857H0V18ZM2.57143 12.8571H5.14286V15.4286H2.57143V12.8571ZM16.7143 10.2857H18V15.4286H14.1429V14.1429H12.8571V18H10.2857V10.2857H14.1429V11.5714H16.7143V10.2857ZM16.7143 16.7143H18V18H16.7143V16.7143ZM14.1429 16.7143H15.4286V18H14.1429V16.7143Z" fill="#0F6CBD"/>
+                                                </svg> 
+                                            SKU: {{item['sku']}}</a>
+                                    </small>
+                                </div>
+                                <div class="item-details">
+                                    <span style="display: flex;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                                            <path d="M9 10.125C11.7949 10.125 14.0625 7.85742 14.0625 5.0625C14.0625 2.26758 11.7949 0 9 0C6.20508 0 3.9375 2.26758 3.9375 5.0625C3.9375 7.85742 6.20508 10.125 9 10.125ZM13.5 11.25H11.5629C10.7824 11.6086 9.91406 11.8125 9 11.8125C8.08594 11.8125 7.22109 11.6086 6.43711 11.25H4.5C2.01445 11.25 0 13.2645 0 15.75V16.3125C0 17.2441 0.755859 18 1.6875 18H16.3125C17.2441 18 18 17.2441 18 16.3125V15.75C18 13.2645 15.9855 11.25 13.5 11.25Z" fill="#44BA1B"/>
+                                        </svg>
+                                        <b class="b-executor-name">{{item.executor_name}}</b>
+                                        <img src="{{item.executor_avatar}}" class="avarta-executor"/>
+                                        <!-- <span class="material-icons span-icon-edit-executor" (click)="onChangeExecutor(item)">sync</span> -->
+                                    </span>
+                                </div>
+
+                                <div class="div-text-time">
+                                    <small class="text-muted"><i>{{item.date_add_f}}</i></small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <mat-slider min="1" max="100" step="1" value="1"></mat-slider>
+        </div>
+    </div>
+</div>
+<!-- Edit -->
+<sidenav-add-edit #sideAddEdit *ngIf="isEdit" (OnClose)="OnClose($event)" [title]="'Lịch sử của máy a'" class="form-sidenav-edit">
+    <form method="#" action="#" style="padding: 20px;" class="form-jqgrid-edit">
+        <app-toolbar #toolbarEdit [tableName]="tbName" [classInsert]="'form-30082023'" [CurrenFrom]="getCurrenFrom"></app-toolbar>
+        <alert-message #alertMessage></alert-message>
+        <!-- Begin machine  -->
+        <div *ngIf="!isPermission && !isHistory && !isHistoryUpdate" class="row" style="padding-left: 20px;padding-right: 20px;">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-8 col-xl-8" style="padding-right: 20px;">
+                <div class="row general">
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3">
+                        <div class="row pd-0 mg-0">
+                            <div class="col-12 div-group-content">
+                                CHỨNG TỪ
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                <div class="form-group">
+                                    <label for="doc_number" class=" label-title">Số hiệu (chứng từ)<span *ngIf="listColumn['doc_number_required']" class="input-required">*</span></label><br>
+                                    <input type="text" #doc_number="ngModel" [disabled]="true" name="doc_number" [(ngModel)]="WarrantyModel.doc_number" [value]="WarrantyModel.doc_number" class="form-control {{listColumn['doc_number_required']?'required':''}}" id="doc_number">
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                <div class="form-group">
+                                    <label for="doc_date" class=" label-title">Ngày lập (Chứng từ)<span *ngIf="listColumn['doc_date_required']" class="input-required">*</span></label><br>
+                                    <input-datepicker [disabled]="listColumn['doc_date'] || WarrantyModel.code" [required]="listColumn['doc_date_required']" [ColumnName]="'doc_date'" [value]="WarrantyModel.doc_date" name="doc_date" (ValueOutput)="valueStartDate($event,'doc_date')"></input-datepicker>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-9 col-xl-9">
+                        <div class="row pd-0 mg-0">
+                            <div class="col-12 div-group-content">
+                                THÔNG TIN LIÊN HỆ
+                            </div>
+                            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4">
+                                <div class="form-group">
+                                    <label for="customer_name" class=" label-title">Công ty/ Khách hàng/ Nhân viên<span *ngIf="listColumn['customer_name_required']" class="input-required">*</span></label><br>
+                                    <input type="text" #customer_name="ngModel" [disabled]="disabled || listColumn['customer_name']" name="customer_name" [(ngModel)]="WarrantyModel.customer_name" [value]="WarrantyModel.customer_name" class="form-control {{listColumn['customer_name_required']?'required':''}}"
+                                        id="customer_name">
+                                </div>
+                            </div>
+                            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4">
+                                <div class="form-group">
+                                    <label for="customer_email" class=" label-title">Mail<span *ngIf="listColumn['customer_required']" class="input-required">*</span></label><br>
+                                    <input type="text" #customer_email="ngModel" [disabled]="disabled || listColumn['customer_email']" name="customer_email" [(ngModel)]="WarrantyModel.customer_email" [value]="WarrantyModel.customer_email" class="form-control {{listColumn['customer_email_required']?'required':''}}"
+                                        id="customer_email">
+                                </div>
+                            </div>
+                            <div class="col-12"></div>
+                            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4">
+                                <div class="form-group">
+                                    <label for="customer_phone" class=" label-title">Điện thoại<span *ngIf="listColumn['customer_phone_required']" class="input-required">*</span></label><br>
+                                    <input type="text" #customer_phone="ngModel" [disabled]="disabled || listColumn['customer_phone']" name="customer_phone" [(ngModel)]="WarrantyModel.customer_phone" [value]="WarrantyModel.customer_phone" class="form-control  {{listColumn['customer_phone_required']?'required':''}}"
+                                        id="customer_phone">
+                                </div>
+                            </div>
+                            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4">
+                                <div class="form-group">
+                                    <label for="customer_name_contact_phone" class=" label-title">Tên người liên hệ</label><br>
+                                    <input type="text" #customer_name_contact_phone="ngModel" [disabled]="disabled" name="customer_name_contact_phone" [(ngModel)]="WarrantyModel.customer_name_contact_phone" [value]="WarrantyModel.customer_name_contact_phone" class="form-control" id="customer_name_contact_phone">
+                                </div>
+                            </div>
+                            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4">
+                                <div class="form-group">
+                                    <label for="customer_address" class=" label-title">Địa chỉ<span *ngIf="listColumn['customer_address_required']" class="input-required">*</span></label><br>
+                                    <input type="text" #customer_address="ngModel" [disabled]="disabled || listColumn['customer_address']" name="customer_address" [(ngModel)]="WarrantyModel.customer_address" [value]="WarrantyModel.customer_address" class="form-control {{listColumn['customer_address_required']?'required':''}}"
+                                        id="customer_address">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-12 div-group-content" *ngIf="tbName == 'Warranty_Laptop_Warehouse'">
+                        THÔNG TIN NHẬP KHO
+                    </div>
+                    <div class="col-12" *ngIf="tbName == 'Warranty_Laptop_Warehouse'">
+                        <div class="row pd-0 mg-0">
+                            <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+                                <div class="form-group">
+                                    <label for="voucher_no" class=" label-title">Số chứng từ<span
+                                class="input-required">*</span></label><br>
+                                    <input type="text" #voucher_no="ngModel" [disabled]="disabledVoucher && isShowVoucherNo" name="voucher_no" [(ngModel)]="WarrantyModel.voucher_no" [value]="WarrantyModel.voucher_no" class="form-control " id="voucher_no">
+                                </div>
+                            </div>
+                            <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                                <div class="form-group">
+                                    <label for="warehouse_code" class=" label-title">Kho nhập<span
+                                class="input-required">*</span></label>
+                                    <input-selectpicker-v2 #SelectWarehouseImportPicker [disabled]="disabledVoucher && isShowGoodsName" [value]="WarrantyModel.warehouse_code" (ValueOutput)="onSelectVoucherDialog($event,'warehouse_code')" [multiple]="false" [list]="" [FieldValue]="'code'"
+                                        [FieldDisplay]="'name'" [ColumnName]="'warehouse_code'" [title]="''"></input-selectpicker-v2>
+                                </div>
+                            </div>
+                            <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                                <div class="form-group">
+                                    <label for="goods_name" class=" label-title">Tên sản phẩm<span
+                                class="input-required">*</span></label><br>
+                                    <input type="text" #goods_name="ngModel" [disabled]="disabledVoucher && WarrantyModel.goods_name" name="goods_name" [(ngModel)]="WarrantyModel.goods_name" [value]="WarrantyModel.goods_name" class="form-control " id="goods_name">
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <div class="col-12 div-group-content">
+                        THÔNG TIN MÁY
+                    </div>
+                    <!-- <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+                        <div class="form-group">
+                            <label for="sku" class=" label-title">SKU<span *ngIf="listColumn['sku']" class="input-required">*</span></label><br>
+                            <input type="text" #sku="ngModel" [disabled]="disabled || listColumn['sku']" name="sku" [(ngModel)]="WarrantyModel.sku" [value]="WarrantyModel.sku" class="form-control {{listColumn['sku_required']?'required':''}}" id="sku">
+                        </div>
+                    </div> -->
+                    <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+                        <div class="form-group">
+                            <label for="warehouse_code" class=" label-title">SKU<span
+                        class="input-required">*</span><a *ngIf="WarrantyModel.sku" href="javascript:;" style="font-size: 14px;" (click)="onLoadMachineInfo()">Tải cấu hình máy</a></label>
+                            <input-selectpicker-v2 #SelectSKUPicker [disabled]="disabled || listColumn['sku']" [value]="WarrantyModel.sku" (ValueOutput)="onSelect($event,'sku')" [multiple]="false" [list]="" [FieldValue]="'sku'" [FieldDisplay]="'sku'" [ColumnName]="'sku'" [title]="''"></input-selectpicker-v2>
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+                        <div class="form-group">
+                            <label for="warehouse_code" class=" label-title">Số Sevice tag <span
+                        class="input-required">*</span>
+                        </label>
+                            <input-selectpicker-v2 #SelectSerialPicker [disabled]="disabled || listColumn['des_sevice_tag']" [value]="WarrantyModel.des_sevice_tag" (ValueOutput)="onSelect($event,'des_sevice_tag')" [multiple]="false" [list]="" [FieldValue]="'serial'" [FieldDisplay]="'serial'"
+                                [ColumnName]="'des_sevice_tag'" [title]="''"></input-selectpicker-v2>
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+                        <div class="form-group">
+                            <label for="des_model" class=" label-title">Model<span *ngIf="listColumn['des_model_required']" class="input-required">*</span></label><br>
+                            <input type="text" #des_model="ngModel" [disabled]="disabled || listColumn['des_model']" name="des_model" [(ngModel)]="WarrantyModel.des_model" [value]="WarrantyModel.des_model" class="form-control {{listColumn['des_model_required']?'required':''}}" id="des_model">
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+                        <div class="form-group">
+                            <label for="des_cpu" class=" label-title">CPU<span *ngIf="listColumn['des_cpu_required']" class="input-required">*</span></label><br>
+                            <input type="text" #des_cpu="ngModel" [disabled]="disabled || listColumn['des_cpu']" name="des_cpu" [(ngModel)]="WarrantyModel.des_cpu" [value]="WarrantyModel.des_cpu" class="form-control {{listColumn['des_cpu_required']?'required':''}}" id="des_cpu">
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+                        <div class="form-group">
+                            <label for="des_lcd" class=" label-title">LCD<span *ngIf="listColumn['des_lcd_required']" class="input-required">*</span></label>
+                            <input type="text" #name="ngModel" [disabled]="listColumn['des_lcd']" name="des_lcd" [(ngModel)]="WarrantyModel.des_lcd" [value]="WarrantyModel.des_lcd" class="form-control {{listColumn['des_lcd_required']?'required':''}}" id="des_lcd">
+                        </div>
+                    </div>
+                    <div class="col-12"></div>
+                    <div class="col-6 col-sm-6 col-md-3 col-lg-2 col-xl-2">
+                        <div class="form-group">
+                            <label for="des_ram" class=" label-title">RAM<span *ngIf="listColumn['des_ram_required']" class="input-required">*</span></label>
+                            <input type="number" #name="ngModel" [disabled]="listColumn['des_ram']" name="des_ram" [(ngModel)]="WarrantyModel.des_ram" [value]="WarrantyModel.des_ram" class="form-control {{listColumn['des_ram_required']?'required':''}}" id="des_ram">
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-sm-6 col-md-3 col-lg-2 col-xl-2">
+                        <div class="form-group">
+                            <label for="des_hdd" class=" label-title">HDD<span *ngIf="listColumn['des_hdd_required']" class="input-required">*</span></label>
+                            <div style="display: flex;">
+                                <input style="width: 80%;" type="number" #des_hdd="ngModel" [disabled]="listColumn['des_hdd']" name="des_hdd" [(ngModel)]="WarrantyModel.des_hdd" [value]="WarrantyModel.des_hdd" class="form-control {{listColumn['des_hdd_required']?'required':''}}" id="des_hdd">
+                                <input style="width: 20%;" type="text" #des_hdd_unit="ngModel" [disabled]="listColumn['des_hdd_unit']" name="des_hdd_unit" [(ngModel)]="WarrantyModel.des_hdd_unit" [value]="WarrantyModel.des_hdd_unit" class="form-control {{listColumn['des_hdd_unit_required']?'required':''}}"
+                                    id="des_hdd_unit">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-3 col-lg-2 col-xl-2">
+                        <div class="form-group">
+                            <label for="des_ssd" class=" label-title">SSD<span *ngIf="listColumn['des_ssd_required']" class="input-required">*</span></label>
+                            <div style="display: flex;">
+                                <input style="width: 80%;" type="number" #des_ssd="ngModel" [disabled]="listColumn['des_ssd']" name="des_ssd" [(ngModel)]="WarrantyModel.des_ssd" [value]="WarrantyModel.des_ssd" class="form-control {{listColumn['des_ssd_required']?'required':''}}" id="des_ssd">
+                                <input style="width: 20%;" type="text" #des_ssd_unit="ngModel" [disabled]="listColumn['des_ssd_unit']" name="des_ssd_unit" [(ngModel)]="WarrantyModel.des_ssd_unit" [value]="WarrantyModel.des_ssd_unit" class="form-control {{listColumn['des_ssd_unit_required']?'required':''}}"
+                                    id="des_ssd_unit">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-4 col-lg-2 col-xl-2" style="padding-top: 21px;">
+                        <div class="form-group">
+                            <input-checkbox [type]="'toggle'" [disabled]="listColumn['des_is_battery']" [title]="'Pin'" (ValueOutput)="onChangeValue($event,'des_is_battery')" [value]="WarrantyModel.des_is_battery"></input-checkbox>
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-4 col-lg-2 col-xl-2" style="padding-top: 21px;">
+                        <div class="form-group">
+                            <input-checkbox [type]="'toggle'" [disabled]="listColumn['des_is_charger']" [title]="'Sạc'" (ValueOutput)="onChangeValue($event,'des_is_charger')" [value]="WarrantyModel.des_is_charger"></input-checkbox>
+                        </div>
+                    </div>
+
+                    <div class="col-12"></div>
+                    <!-- <div class="col-6 col-sm-6 col-md-4 col-lg-2 col-xl-2">
+                        <div class="form-group">
+                            <label for="des_sevice_tag" class=" label-title">Số Sevice tag<span *ngIf="listColumn['des_sevice_tag_required']" class="input-required">*</span></label><br>
+                            <input type="text" #des_sevice_tag="ngModel" [disabled]="disabled || listColumn['des_sevice_tag']" name="des_sevice_tag" [(ngModel)]="WarrantyModel.des_sevice_tag" [value]="WarrantyModel.des_sevice_tag" class="form-control {{listColumn['des_sevice_tag_required']?'required':''}}"
+                                id="des_sevice_tag">
+                        </div>
+                    </div> -->
+
+                    <div class="col-6 col-sm-6 col-md-4 col-lg-2 col-xl-2">
+                        <div class="form-group">
+                            <label for="des_cpu" class=" label-title">Khác</label><br>
+                            <input type="text" #des_cpu="ngModel" [disabled]="disabled || listColumn['des_notes']" name="des_notes" [(ngModel)]="WarrantyModel.des_notes" [value]="WarrantyModel.des_notes" class="form-control" id="des_notes">
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-4 col-lg-2 col-xl-2">
+                        <div class="form-group">
+                            <label for="des_password" class=" label-title">Mật khẩu HĐH</label><br>
+                            <input type="text" #des_password="ngModel" [disabled]="disabled || listColumn['des_password']" name="des_password" [(ngModel)]="WarrantyModel.des_password" [value]="WarrantyModel.des_password" class="form-control" id="des_password">
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-4 col-lg-2 col-xl-2">
+                        <div class="form-group">
+                            <label for="des_password_bios" class=" label-title">Mật khẩu Bios</label><br>
+                            <input type="text" #des_password_bios="ngModel" [disabled]="disabled || listColumn['des_password_bios']" name="des_password_bios" [(ngModel)]="WarrantyModel.des_password_bios" [value]="WarrantyModel.des_password_bios" class="form-control" id="des_password_bios">
+                        </div>
+                    </div>
+                    <div class="col-12 div-group-content">
+                        THÔNG TIN KIỂM TRA
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+                        <div class="form-group">
+                            <label for="sell_date" class=" label-title">Ngày bán<span *ngIf="listColumn['sell_date_required']" class="input-required">*</span></label><br>
+                            <input-datepicker [ColumnName]="'sell_date'" [required]="listColumn['sell_date_required']" [disabled]="listColumn['sell_date']" [value]="WarrantyModel.sell_date" name="sell_date" (ValueOutput)="valueStartDate($event,'sell_date')"></input-datepicker>
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+                        <div class="form-group">
+                            <label for="machine_status" class=" label-title">Tình trạng máy<span *ngIf="listColumn['machine_status_required']" class="input-required">*</span></label><br>
+                            <textarea type="text" #machine_status="ngModel" [disabled]="disabled || listColumn['machine_status']" name="machine_status" [(ngModel)]="WarrantyModel.machine_status" [value]="WarrantyModel.machine_status" class="form-control {{listColumn['machine_status_required']?'required':''}}"
+                                id="machine_status"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+                        <div class="form-group">
+                            <label for="warranty_type" class=" label-title">Chế độ<span *ngIf="listColumn['warranty_type_required']" class="input-required">*</span></label>
+                            <input-selectpicker-v2 #SelectWarrantyPicker [disabled]="listColumn['warranty_type']" (ValueOutput)="onSelect($event,'warranty_type')" [value]="WarrantyModel.warranty_type" [multiple]="false" [list]="warranty_type" [FieldValue]="'code'" [FieldDisplay]="'name'"
+                                [ColumnName]="'warranty_type'" [title]="''"></input-selectpicker-v2>
+                        </div>
+                    </div>
+                    <div class="col-12 div-group-content">
+                        THÔNG TIN TRẢ MÁY
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+                        <div class="form-group">
+                            <label for="customer_return_date" class=" label-title">Ngày trả lại<span *ngIf="listColumn['customer_return_date_required']" class="input-required">*</span></label><br>
+                            <input-datepicker [ColumnName]="'customer_return_date'" [required]="listColumn['customer_return_date_required']" [disabled]="listColumn['customer_return_date']" [value]="WarrantyModel.customer_return_date" name="customer_return_date" (ValueOutput)="valueStartDate($event,'customer_return_date')"></input-datepicker>
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+                        <div class="form-group">
+                            <label for="customer_notes" class=" label-title">Ghi chú trả lại<span *ngIf="listColumn['customer_notes_required']" class="input-required">*</span></label><br>
+                            <textarea type="text" #customer_notes="ngModel" [disabled]="disabled || listColumn['customer_notes']" name="customer_notes" [(ngModel)]="WarrantyModel.customer_notes" [value]="WarrantyModel.customer_notes" class="form-control {{listColumn['customer_notes_required']?'required':''}}"
+                                id="customer_notes"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3" style="padding-top: 21px;">
+                        <div class="form-group">
+                            <input-checkbox [type]="'toggle'" [title]="'Hoàn thành'" (ValueOutput)="onChangeValue($event,'is_done')" [value]="WarrantyModel.is_done"></input-checkbox>
+                        </div>
+                    </div>
+                    <div class="col-12 div-group-content">
+                        KẾ TOÁN
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                        <div class="form-group">
+                            <label for="accounting_notes" class=" label-title">Ghi chú (Kế toán)<span *ngIf="listColumn['accounting_notes_required']" class="input-required">*</span></label><br>
+                            <textarea type="text" #accounting_notes="ngModel" [disabled]="disabled || listColumn['accounting_notes']" name="accounting_notes" [(ngModel)]="WarrantyModel.accounting_notes" [value]="WarrantyModel.accounting_notes" class="form-control {{listColumn['accounting_notes_required']?'required':''}}"
+                                id="accounting_notes"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4" style="padding-left: 20px;border-left: 3px solid gray;">
+                <!-- Begin Histoty -->
+                <div class="row">
+                    <h3 class="h3-action">Hoạt động</h3>
+                    <div class="col-12" style="text-align: center;">
+                        <small><i>Số lượng hoạt động được hiển thị theo loại chứng từ</i></small>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" style="max-height: 95vh;overflow-y: scroll;width:100%">
+                        <!-- <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
+                {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
+              </button> -->
+                        <ul class="timeline timeline-simple" style="margin-top: 0;">
+                            <li class="timeline-inverted" *ngFor="let item of listTaskHistory;let i = index">
+                                <div class="timeline-badge info" style="background-color: #57bb9a;">
+                                    {{i+1}}
+                                </div>
+                                <div class="timeline-panel">
+                                    <div class="timeline-heading">
+                                        <span class="badge badge-pill badge-info" style="background-color: #57bb9a;"><b>Bộ phận: {{item.topic_name}}</b></span>
+                                    </div>
+                                    <div class="timeline-body">
+                                        <div>
+                                            <p [innerText]="item.task_content"></p>
+                                            <p style="display: flex;"><b style="display: flex;color: #57bb9a;"><span class="material-icons">directions_run</span>Người phụ trách</b>: <u>{{item.executor_name}}</u></p>
+                                            <p style="display: flex;"><b style="display: flex;color: #57bb9a;"><span class="material-icons">task_alt</span>TG hoàn thành</b>: {{item.account_move_hour_done?item.account_move_hour_done:0}} giờ</p>
+                                            <p style="display: flex;"><b style="display: flex;min-width: 85px;color: #57bb9a;"><span class="material-icons">description</span>Diễn giải</b>: <span class="span-color{{(item.account_move_hour_done && item.account_move_hour_done)>0?'':'-yellow'}}"
+                                                    [innerHTML]="item.account_move_logtime_description"></span></p>
+                                        </div>
+                                    </div>
+                                    <h6>
+                                        <i class="ti-time"></i> <u>{{item.account_move_name}}</u> đã chuyển lúc <b>{{item.date_add_f}}</b>
+                                    </h6>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- End Histoty -->
+            </div>
+        </div>
+        <div *ngIf="isPermission" class="row" style="padding-left: 20px;padding-right: 20px;">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="py-12">
+                            <form class="form-jqgrid-edit" method="#" action="#">
+                                <jqgrid-edit [minHeight]="600" #gridPermissionEdit [colModel]="col_model_permission_edit" [table]="tbName" [title]="'Phân quyền'"></jqgrid-edit>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div *ngIf="isHistory" class="row" style="padding-left: 20px;padding-right: 20px;">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header card-header-rose card-header-icon">
+                                <div class="card-icon">
+                                    <i class="material-icons">assignment</i>
+                                </div>
+                                <h4 class="card-title">Danh sách lịch sử in phiếu biên nhận</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">Tổng lần in ({{listPrintHistorys.length}})</th>
+                                                <th>Thời điểm in</th>
+                                                <th>Người in</th>
+                                                <th>Loại biên nhận</th>
+                                                <th>Chi nhánh</th>
+                                                <th class="text-right">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let item of listPrintHistorys;let i=index">
+                                                <td class="text-center">{{i+1}}</td>
+                                                <td>{{item.datetime_print_f}}</td>
+                                                <td>{{item.account_print_name}}</td>
+                                                <td>{{item.warranty_type_name}}</td>
+                                                <td>{{item.banch_print_name}}</td>
+                                                <td class="td-actions text-right">
+                                                    <a href="{{baseUrl+item.link_file_print}}" target="_blank"><i class="material-icons">print</i></a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div *ngIf="isHistoryUpdate" class="row" style="padding-left: 20px;padding-right: 20px;">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header card-header-rose card-header-icon">
+                                <div class="card-icon">
+                                    <i class="material-icons">assignment</i>
+                                </div>
+                                <h4 class="card-title">Danh sách lịch sử cập nhật thông tin máy</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">Tổng lần sửa ({{listPrintHistoryUpdates.length}})</th>
+                                                <th>Người sửa</th>
+                                                <th>Số hiệu CT</th>
+                                                <th>Ngày tạo CT</th>
+                                                <th>Số điện thoại</th>
+                                                <th>Model</th>
+                                                <th>CPU</th>
+                                                <th>RAM</th>
+                                                <th>HDD</th>
+                                                <th>HDD UNIT</th>
+                                                <th>SSD</th>
+                                                <th>SSD UNIT</th>
+                                                <th>Pin</th>
+                                                <th>Sạc</th>
+                                                <th>Khác</th>
+                                                <th>Số Sevice tag</th>
+                                                <th>Mật khẩu HĐH</th>
+                                                <th>Mật khẩu Bios</th>
+                                                <th>Tình Trạng máy</th>
+                                                <th>Ngày bán</th>
+                                                <th>Chế độ BH/SC</th>
+                                                <th>Ngày trả</th>
+                                                <th>Phần note kế toán</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let item of listPrintHistoryUpdates;let i=index">
+                                                <td class="text-center">{{i+1}}</td>
+                                                <td [innerHTML]="item.log_account_modified_name"></td>
+                                                <td [innerHTML]="item.doc_number"></td>
+                                                <td [innerHTML]="item.doc_date_f"></td>
+                                                <td [innerHTML]="item.customer_phone"></td>
+                                                <td [innerHTML]="item.des_model"></td>
+                                                <td [innerHTML]="item.des_cpu_f"></td>
+                                                <td [innerHTML]="item.des_ram_f"></td>
+                                                <td [innerHTML]="item.des_hdd_f"></td>
+                                                <td [innerHTML]="item.des_hdd_unit_f"></td>
+                                                <td [innerHTML]="item.des_ssd_f"></td>
+                                                <td [innerHTML]="item.des_ssd_unit_f"></td>
+                                                <td [innerHTML]="item.des_is_battery_f"></td>
+                                                <td [innerHTML]="item.des_is_charger_f"></td>
+                                                <td [innerHTML]="item.des_notes"></td>
+                                                <td [innerHTML]="item.des_sevice_tag"></td>
+                                                <td [innerHTML]="item.des_password"></td>
+                                                <td [innerHTML]="item.des_password_bios"></td>
+                                                <td>
+                                                    <div [innerHTML]="item.machine_status"></div>
+                                                </td>
+                                                <td [innerHTML]="item.sell_date_f"></td>
+                                                <td [innerHTML]="item.warranty_type"></td>
+                                                <td [innerHTML]="item.customer_return_date_f"></td>
+                                                <td [innerHTML]="item.accounting_notes"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- End machine  -->
+    </form>
+</sidenav-add-edit>
+<dialog-acction #dialogUpdate [title]="'Logtime'" (confirmOutput)="confirmUpdate()">
+    <div class="row">
+        <div class="col-12">
+            <div class="form-group">
+                <label for="hour_done" class=" label-title">Thời gian hoàn thành công việc (giờ)<span class="input-required">*</span>
+                    <br/><small><i>Tổng thời gian đã làm công việc này của bạn là bao lâu?</i></small>
+                </label>
+                <input type="number" #hour_done="ngModel" name="hour_done" [(ngModel)]="updateTaskModel.hour_done" class="form-control" id="hour_done">
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="form-group">
+                <label for="logtime_description" class=" label-title">Diễn giải công việc đã làm<span class="input-required">*</span>
+                    <br/><small><i>Mô tả chi tiết công việc đã làm trong thời gian ở trên!</i></small>
+                </label>
+                <textarea type="number" #logtime_description="ngModel" name="logtime_description" [(ngModel)]="updateTaskModel.logtime_description" class="form-control" id="logtime_description"></textarea>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="form-group">
+                <label for="executor" class=" label-title">Người phụ trách tiếp theo<span class="input-required">*</span>
+                    <br/><small><i>Chọn người phụ trách tiếp theo và hoàn thành công việc của bạn!</i></small></label><br/>
+                <input-selectpicker-v2 #SelectExecutorPicker (ValueOutput)="onSelectDialog($event,'executor')" [multiple]="false" [list]="listEmployee" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'executor'" [title]="''"></input-selectpicker-v2>
+            </div>
+        </div>
+        <div class="col-12" *ngIf="!isLogtime">
+            <div class="form-group">
+                <label for="voucher_no" class=" label-title">Số chứng từ<span class="input-required">*</span></label>
+                <input type="text" #voucher_no="ngModel" name="voucher_no" [(ngModel)]="WarrantyModel.voucher_no" class="form-control" id="voucher_no">
+            </div>
+        </div>
+        <div class="col-6" *ngIf="!isLogtime">
+            <div class="form-group">
+                <label for="executor" class=" label-title">Điều chuyển từ kho<span class="input-required">*</span>
+                    <br/>
+                    <small *ngIf="listInventoryCheck"><i>Số lượng tồn {{listInventoryCheck.inventory_quantity}} cái</i></small>
+                    <small *ngIf="!listInventoryCheck">
+                        <i *ngIf="WarrantyModel.move_warehouse_from" style="color: red;">Máy không tồn tại trong kho</i>
+                        <i *ngIf="!WarrantyModel.move_warehouse_from">Chọn kho để kiểm tra số lượng tồn</i>
+                    </small>
+                </label>
+                <input-selectpicker-v2 #SelectMoveWarehouseFromPicker (ValueOutput)="onSelect($event,'move_warehouse_from')" [multiple]="false" [list]="" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'move_warehouse_from'" [title]="''"></input-selectpicker-v2>
+            </div>
+        </div>
+        <div class="col-6" *ngIf="!isLogtime">
+            <div class="form-group">
+                <label for="executor" class=" label-title">Điều chuyển đến kho<span class="input-required">*</span>
+                    <br/><small><i>Kho nhập sản phẩm vào</i></small>
+                </label>
+                <input-selectpicker-v2 #SelectMoveWarehouseToPicker (ValueOutput)="onSelect($event,'move_warehouse_to')" [multiple]="false" [list]="" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'move_warehouse_to'" [title]="''"></input-selectpicker-v2>
+            </div>
+        </div>
+    </div>
+</dialog-acction>
+<dialog-acction #dialogChangeExecutor [title]="'Thay đổi người phụ trách'" (confirmOutput)="confirmChangeExecutor()">
+    <div class="row">
+        <div class="col-12">
+            <div class="form-group">
+                <label for="executor" class=" label-title">Người phụ trách tiếp theo<span class="input-required">*</span></label><br/>
+                <input-selectpicker-v2 #SelectExecutorPicker (ValueOutput)="onSelectDialog($event,'executor')" [multiple]="false" [list]="listEmployee" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'executor'" [title]="''"></input-selectpicker-v2>
+            </div>
+        </div>
+    </div>
+</dialog-acction>
+<dialog-acction #dialogChangeFollower [title]="'Thêm nhân viên/phòng ban theo dõi'" (confirmOutput)="confirmChangeFollower()">
+    <div class="row">
+        <div class="card-body ">
+            <ul class="nav nav-pills nav-pills-warning" role="tablist">
+                <li class="nav-item" style="width: 45%;">
+                    <a class="nav-link active show" data-toggle="tab" href="#link1" role="tablist">
+                  Nhân viên
+                </a>
+                </li>
+                <li class="nav-item" style="width: 45%;">
+                    <a class="nav-link" data-toggle="tab" href="#link2" role="tablist">
+                  Phòng ban
+                </a>
+                </li>
+            </ul>
+            <div class="tab-content tab-space">
+                <div class="tab-pane active show" id="link1">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="followers" class=" label-title">Người theo dõi</label>
+                                <br/><small><i>danh sách nhân viên chưa theo dõi!</i></small><br/>
+                                <input-selectpicker-v2 #SelectFollowerPicker (ValueOutput)="onSelectDialog($event,'followers')" [multiple]="true" [list]="listEmployee" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'followers'" [title]="''"></input-selectpicker-v2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="link2">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="department_followers" class=" label-title">Phòng ban theo dõi</label>
+                                <br/><small><i>danh sách phòng ban chưa theo dõi!</i></small><br/>
+                                <input-selectpicker-v2 #SelectDepartmentFollowerPicker (ValueOutput)="onSelectDialog($event,'department_followers')" [multiple]="true" [list]="listDepartment" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'department_followers'" [title]="''"></input-selectpicker-v2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</dialog-acction>
+<dialog-acction #dialogBranch [title]="'Chọn chi nhánh'" (confirmOutput)="confirmBranch()">
+    <div class="row">
+        <div class="col-12">
+            <div class="form-group">
+                <label for="branch_code" class=" label-title">Danh sách chi nhánh<span class="input-required">*</span></label><br/>
+                <input-selectpicker-v2 #SelectBranchPicker (ValueOutput)="onSelect($event,'branch_code')" [multiple]="false" [list]="listBranchs" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'branch_code'" [title]="''"></input-selectpicker-v2>
+            </div>
+        </div>
+    </div>
+</dialog-acction>
+<dialog-acction #dialogInventory [title]="'Danh sách tồn kho theo SKU '">
+    <div class="row">
+        <div class="col-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Mã kho</th>
+                        <th scope="col">Tên kho</th>
+                        <th scope="col">SL Tồn</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of listGoodsInventory">
+                        <td>{{item.warehouse_symbol}}</td>
+                        <td>{{item.warehouse_name}}</td>
+                        <td>{{item.inventory_quantity}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" *ngIf="listGoodsInventory.length ==0">Không có dữ liệu</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</dialog-acction>
+<a target="_blank" rel="noopener" style="display: none;" id="a-print-newtag" href="{{WarrantyModel['link_file']}}"></a>

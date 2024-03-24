@@ -1,0 +1,93 @@
+<div class="card-container k-form-edit">
+    <app-toolbar #toolbar [tableName]="tbName" [CurrenFrom]="CurrenFrom"></app-toolbar>
+    <div class="example-wrapper form-group">
+        <div class="example-wrapper">
+            <div class="">
+                <div class="form-group">
+                    <div class="row div-filter">
+                        <!-- Begin filter -->
+                        <!-- Tên -->
+                        <!-- <div class="col-4">
+                            <div class="form-group">
+                                <label for="id_name" class="">Tên</label>
+                                <input type="text" #name="ngModel" name="name" [(ngModel)]="filterInput.name" [value]="filterInput.name" class="form-control" id="id_name">
+                            </div>
+                        </div> -->
+                        <!-- end filter -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-component form-group">
+        <jqgrid-list #gridMenuList (ValueOutput)="selectRow($event);" [colModel]="col_model" [table]="tbName" [title]="'Danh sách menu'"></jqgrid-list>
+    </div>
+    <dialog-acction #dialogDelete [content]="'Bạn có chắc chắn muốn xóa?'" [title]="translate('Vui lòng xác nhận','Confirm ')" (confirmOutput)="confirmDelete()"></dialog-acction>
+</div>
+<!-- Edit -->
+<sidenav-add-edit #sidenavAddEdit [title]="'Chỉnh sửa thông tin menu'" *ngIf="isEdit" class="form-sidenav-edit">
+    <form method="#" action="#" style="padding: 20px;" class="form-jqgrid-edit">
+        <app-toolbar #toolbarEdit [tableName]="tbName" [CurrenFrom]="getCurrenFrom"></app-toolbar>
+        <div class="row">
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="namE_VN" class="bmd-label-floating title-input">Tên Việt</label>
+                    <input type="text" #namE_VN="ngModel" name="namE_VN" [(ngModel)]="InputModel.namE_VN" [value]="InputModel.namE_VN" class="form-control" id="namE_VN">
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="namE_EN" class="bmd-label-floating title-input">Tên Anh</label>
+                    <input type="text" #namE_EN="ngModel" name="namE_EN" [(ngModel)]="InputModel.namE_EN" [value]="InputModel.namE_EN" class="form-control" id="namE_EN">
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="id_icon" class="bmd-label-floating title-input">Icon</label>
+                    <input #icon="ngModel" name="icon" [(ngModel)]="InputModel.icon" [value]="InputModel.icon" type="text" class="form-control" id="id_icon">
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="id_link" class="bmd-label-floating title-input">Đường dẫn</label>
+                    <input type="text" #link="ngModel" name="link" [(ngModel)]="InputModel.link" [value]="InputModel.link" class="form-control" id="id_link">
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="id_userID" class="bmd-label-floating title-input">Mã người dùng</label>
+                    <input type="text" #userID="ngModel" name="userID" [(ngModel)]="InputModel.userID" [value]="InputModel.userID" class="form-control" id="id_userID">
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="id_lisT_ACCTIONS" class="bmd-label-floating title-input">Danh sách hành động</label>
+                    <input type="text" #lisT_ACCTIONS="ngModel" name="lisT_ACCTIONS" [(ngModel)]="InputModel.lisT_ACCTIONS" [value]="InputModel.lisT_ACCTIONS" class="form-control" id="id_lisT_ACCTIONS">
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="id_decentralization" class="bmd-label-floating title-input">Quyền</label>
+                    <input type="text" #decentralization="ngModel" name="decentralization" [(ngModel)]="InputModel.decentralization" [value]="InputModel.decentralization" class="form-control" id="id_decentralization">
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="id_notes" class="bmd-label-floating title-input">Ghi chú</label>
+                    <input type="text" #notes="ngModel" name="notes" [(ngModel)]="InputModel.notes" [value]="InputModel.notes" class="form-control" id="id_notes">
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-check">
+                    <label class="form-check-label">
+                    <input class="form-check-input" #active="ngModel" name="active" [(ngModel)]="InputModel.active" [value]="InputModel.active" type="checkbox" value=""> Kích hoạt
+                    <span class="form-check-sign">
+                      <span class="check"></span>
+                    </span>
+                  </label>
+                </div>
+            </div>
+            <jqgrid-edit #gridMenuEdit [colModel]="col_model_edit" [table]="tbName_sub" [title]="'Chi tiết menu'"></jqgrid-edit>
+        </div>
+    </form>
+</sidenav-add-edit>

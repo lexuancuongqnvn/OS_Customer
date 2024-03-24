@@ -1,0 +1,241 @@
+@import url('https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css');
+h3.h3-branch-name.form-group {
+    text-align: center;
+}
+
+.div-left-list-employee {
+    width: 20%;
+    display: flex;
+    border: 1px solid #80808040;
+    min-width: 230px;
+}
+
+.div-avatar-employee.img {
+    border-radius: 40% !important;
+    border: 1px solid #03BFCB;
+    padding: 1px;
+}
+
+.employee-list-group {
+    width: 100%;
+}
+
+.div-right-calendar {
+    width: 80%;
+    /* display: flex; */
+}
+
+.div-calendar {
+    display: flex;
+}
+
+li.list-group-item.d-flex.justify-content-between.align-items-center {
+    border-radius: 10px;
+    background: #FFF;
+    margin: 2px;
+    border: 2px solid #D9D9D9;
+}
+
+.badge.badge-primary {
+    background-color: white !important;
+    color: black;
+    font-size: 14px;
+    font-family: Roboto;
+    font-style: normal;
+}
+
+input.form-check-input {
+    position: inherit;
+}
+
+input.form-check-input {
+    position: inherit;
+    margin-left: 48%;
+}
+
+thead {
+    text-align: center;
+}
+
+.work-shift {
+    text-align: center !important;
+}
+
+.div-right-calendar {
+    border-bottom: 1px solid #80808040;
+    border-right: 1px solid #80808040;
+}
+
+a.a-emp-name {
+    color: black;
+    width: 100%;
+    font-weight: 600;
+    padding-left: 10px;
+    font-family: Roboto;
+    font-style: normal;
+}
+
+li.list-group-item.d-flex.justify-content-between:hover,
+li.list-group-item.d-flex.justify-content-between.active {
+    border: 2px solid #0F6CBD;
+}
+
+th[scope="row"] {
+    width: 25%;
+}
+
+input.form-check-input:hover,
+input.form-check-input:focus {
+    box-shadow: 0px 0px 5px 5px #2196f359;
+}
+
+.table-bordered>tbody>tr:hover,
+.table-bordered>tbody>tr.active {
+    background-color: #bfeef4;
+}
+
+#fullCalendar {
+    min-width: 650px;
+}
+
+.div-card-fullCalendar {
+    overflow-x: auto;
+}
+
+.form-search {
+    width: 100%;
+}
+
+input#employee_name_search {
+    margin-top: 5px !important;
+    margin-bottom: 5px;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    padding: 18px;
+}
+
+td.info {
+    padding-left: 35px !important;
+}
+
+td.info.bold,
+td.value.bold {
+    font-weight: 600;
+}
+
+@media only screen and (max-width: 600px) {
+    .div-left-list-employee {
+        display: none;
+    }
+    .div-right-calendar {
+        width: 100%;
+        /* display: flex; */
+    }
+    .container-fluid {
+        padding-right: 0 !important;
+        padding-left: 0 !important;
+    }
+    .div-result-checkin {
+        width: 80vw;
+        overflow-x: scroll;
+    }
+    table.table {
+        min-width: 400px;
+    }
+}
+
+a.a-emp-name {
+    font-size: 13px !important;
+    font-weight: 400;
+    padding-left: 10px;
+    font-weight: 600;
+    padding-left: 10px;
+    font-family: Roboto;
+    font-style: normal;
+}
+
+.card-category-v2 {
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    color: #425166 !important;
+    font-family: Roboto !important;
+    font-style: normal !important;
+    padding-top: 7px;
+}
+
+.card-header.card-header-v2 {
+    text-align: left !important;
+}
+
+.card-title-v2 {
+    font-size: 27px !important;
+    font-weight: 700 !important;
+    color: var(--greys-blue-grey-900, #151D48) !important;
+    font-family: Roboto !important;
+    font-style: normal !important;
+}
+
+.stats-v2 {
+    color: var(--primary-800, #4079ED) !important;
+    font-family: Roboto !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+}
+
+.div-icon-card {
+    background: #3CD856;
+    height: 40px;
+    width: 40px;
+    padding: 8px 3px 4px 10px;
+    border-radius: 50%;
+    display: block;
+    position: absolute;
+    right: 10px;
+    top: 15px;
+}
+
+.div-icon-card-work-day {
+    background: #3CD856;
+}
+
+.div-icon-card-ot {
+    background: #FF947A;
+}
+
+.div-icon-card-totalLate {
+    background: #19AADE;
+}
+
+.div-icon-card-total-day-off {
+    background: #BF83FF;
+}
+
+.work-day {
+    border-radius: 10.69px !important;
+    background: var(--colors-green-100, #DCFCE7);
+}
+
+.ot {
+    border-radius: 10.69px !important;
+    background: var(--colors-green-100, #FFF4DE) !important;
+}
+
+.totalLate {
+    border-radius: 10.69px !important;
+    background: var(--colors-green-100, #DEE9FF) !important;
+}
+
+.total-day-off {
+    border-radius: 10.69px !important;
+    background: var(--colors-green-100, #F3E8FF) !important;
+}
+
+@media only screen and (max-width: 600px) {
+    .div-chart-2-child {
+        margin: 5px !important;
+    }
+    .div-icon-card {
+        padding: 8px 3px 4px 3px;
+    }
+}

@@ -1,0 +1,233 @@
+<div>
+    <div class="messaging">
+        <div class="inbox_msg">
+            <div class="inbox_people">
+                <div class="headind_srch">
+                    <div class="srch_bar">
+                        <div class="stylish-input-group">
+                            <button type="button" class="btn-search-chat" (click)="onSearch()"><span class="material-icons">
+                                search
+                                </span>
+                            </button>
+                            <input type="text" class="search-bar" (keyup.enter)="onSearch()" #chat_email_search name="chat_email_search" [(ngModel)]="email_search" placeholder="Tìm kiếm...">
+                            <a href="javascript:;" class="btn-person-add-alt-1" (click)="AddChat()"><span class="material-icons material-person-add">
+                                person_add_alt_1
+                                </span>
+                            </a>
+                            <a href="javascript:;" class="btn-group-add" (click)="AddChats()"><span class="material-icons material-group-add">
+                                group_add
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="inbox_chat search-friend" *ngIf="isShowResult">
+                    <button class="btn_arrow_back_ios" (click)="isShowResult = false">
+                        <span class="material-icons">
+                        arrow_back_ios
+                        </span>
+                    </button>
+                    <div class="chat_list result_find" *ngFor="let item of listChatSearch" (click)="onClickChat(item.chat_id)">
+                        <div class="chat_people">
+                            <div class="chat_img"> <img class="avt-chat" src="{{item.client_avt}}" alt="sunil"> </div>
+                            <div class="chat_ib">
+                                <h5><b>{{item.chat_name}}</b><span class="chat_date"></span></h5>
+                                <p class="p-message">{{item.chat_review}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="inbox_chat">
+                    <a href="javascript:;" *ngFor="let item of listHistory" (click)="onClickChat(item.chat_id)">
+                        <div class="chat_list chat_list-{{item.chat_id}} {{item['active']}}">
+                            <div class="chat_people">
+                                <div class="chat_img" *ngIf="item.type == 'user'"> <img class="avt-chat" src="{{item.client_avt?item.client_avt:'../assets/img/default-avatar.png'}}" alt="sunil"> </div>
+                                <div class="chat_img" *ngIf="item.type == 'group'"> <img class="avt-chat" src="{{item.group_avt?item.group_avt:'../assets/img/default-avatar.png'}}" alt="sunil"> </div>
+                                <div class="chat_ib" *ngIf="item.new_message > 0">
+                                    <h5><b>{{item.chat_name}} </b>
+                                        <span class="chat_date">{{item.chat_time_f}}</span>
+                                    </h5>
+                                    <div class="div-new-message">
+                                        <p class="p-message">{{item.chat_review}}</p>
+                                        <p class="p-new-message">{{item.new_message}}</p>
+                                    </div>
+                                </div>
+                                <div class="chat_ib" *ngIf="item.new_message == 0 || item.new_message == null">
+                                    <h5><b>{{item.chat_name}}</b>
+                                        <span class="chat_date">{{item.chat_time_f}}</span>
+                                    </h5>
+                                    <p class="p-message">{{item.chat_review}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="header_msg">
+                <div class="dropdown" class="a-more-vert" *ngIf="chatModel.chat_name">
+                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" href="javascript:;" (click)="dialogEdit.open()">Đổi tên chat</a>
+                        <a class="dropdown-item" href="javascript:;" (click)="dialogEditBackground.open()">Đổi ảnh nền</a>
+                        <a class="dropdown-item" href="javascript:;">Tag</a>
+                    </div>
+                </div>
+                <h5>{{chatModel.chat_name}} </h5>
+            </div>
+            <div class="mesgs" style="background: url({{chatModel.background}});">
+                <div class="msg_history">
+                    <div *ngIf="!this.chatModel.chat_id">
+                        <div class="owl-carousel owl-theme">
+                            <div class="item">
+                                <img src='{{host}}/UploadFiles/slide/slide-1.png'>
+                            </div>
+                            <div class="item">
+                                <img src='{{host}}/UploadFiles/slide/slide-2.png'>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="begin-chat"></div>
+                    <div class="begin-chat"></div>
+                    <div class="begin-chat"></div>
+                    <div class="begin-chat"></div>
+                    <div class="begin-chat"></div>
+                    <div class="begin-chat"></div>
+                    <div class="begin-chat"></div>
+                    <div class="begin-chat"></div>
+                    <div class="begin-chat"></div>
+                    <div class="begin-chat"></div>
+                    <div class="begin-chat"></div>
+                    <div class="begin-chat"></div>
+                    <div class="begin-chat"></div>
+                    <div class="begin-chat"></div>
+                    <div class="begin-chat"></div>
+                    <div class="begin-chat"></div>
+                    <div class="begin-chat"></div>
+                    <div class="begin-chat"></div>
+                    <div class="begin-chat"></div>
+                    <div class="begin-chat"></div>
+                    <div class="begin-chat"></div>
+                    <div class="begin-chat"></div>
+                    <div class="begin-chat"></div>
+                    <div class="begin-chat"></div>
+                    <div class="begin-chat"></div>
+                    <div class="begin-chat"></div>
+                    <div class="begin-chat"></div>
+                    <div class="begin-chat"></div>
+                    <div class="begin-chat"></div>
+                    <div class="begin-chat"></div>
+                    <div class="begin-chat"></div>
+                    <div class="begin-chat"></div>
+                    <div *ngFor="let item of list_chat_content;let i=index">
+                        <div class="outgoing_msg" *ngIf="item.user_send == id_user">
+                            <div class="sent_msg">
+                                <p class="p_msg1">
+                                    <strong [innerHTML]="item.message_text"></strong>
+                                    <span class="time_date my-msg"> {{item.time_send | date :'short'}}</span>
+                                </p>
+                                <small *ngIf="i == (list_chat_content.length-1)"><i>{{status_send}}</i></small>
+                            </div>
+                            <div class="incoming_msg_img"> <img class="avt-chat" src="{{my_avt}}" alt="sunil"> </div>
+                        </div>
+                        <div [ngStyle]="{'display': display(item.user_send == id_user && item.arr_file && item.arr_file.length > 0 && item.arr_file[0] != '')}" *ngIf="item.user_send == id_user && item.arr_file && item.arr_file.length > 0">
+                            <div class="outgoing_msg file">
+                                <div *ngFor="let item_file of item.arr_file">
+                                    <div class="item-file">
+                                        <p class="p_msg1 file" *ngIf="item_file != ''">
+                                            <svg *ngIf="item_file.toUpperCase().indexOf('.JPG') < 0 && item_file.toUpperCase().indexOf('.JPEG') < 0 && item_file.toUpperCase().indexOf('.GIF') < 0 && item_file.toUpperCase().indexOf('.PNG') < 0" xmlns="http://www.w3.org/2000/svg" height="36px" viewBox="0 0 24 24"
+                                                width="36px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M15 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V7l-5-5zM6 20V4h8v4h4v12H6zm10-10v5c0 2.21-1.79 4-4 4s-4-1.79-4-4V8.5c0-1.47 1.26-2.64 2.76-2.49 1.3.13 2.24 1.32 2.24 2.63V15h-2V8.5c0-.28-.22-.5-.5-.5s-.5.22-.5.5V15c0 1.1.9 2 2 2s2-.9 2-2v-5h2z"/></svg>
+                                            <svg *ngIf="item_file.toUpperCase().indexOf('.JPG') >= 0 || item_file.toUpperCase().indexOf('.JPEG') >= 0 || item_file.toUpperCase().indexOf('.GIF') >= 0 ||item_file.toUpperCase().indexOf('.PNG') >= 0" xmlns="http://www.w3.org/2000/svg" height="36px"
+                                                viewBox="0 0 24 24" width="36px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>                                            {{item_file.split('/')[item_file.split('/').length -1]}}
+                                            <a href="javascript:;" (click)="download_file(item_file,item_file.split('/')[item_file.split('/').length -1])" *ngIf="item_file != ''">
+                                                <span class="material-icons">file_download</span>
+                                            </a>
+                                        </p>
+                                    </div>
+                                    <img *ngIf="item_file.toUpperCase().indexOf('.JPG') >= 0 || item_file.toUpperCase().indexOf('.JPEG') >= 0 || item_file.toUpperCase().indexOf('.GIF') >= 0 ||item_file.toUpperCase().indexOf('.PNG') >= 0" src="https://api.OSoft.vn{{item_file}}" class="img-item-file">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="incoming_msg client" *ngIf="item.user_send != id_user">
+                            <div class="incoming_msg_img"> <img class="avt-chat" src="{{item.client_avt}}" alt="sunil"> </div>
+                            <div class="received_msg">
+                                <div class="received_withd_msg">
+                                    <p class="p_msg2">
+                                        {{item.message_text}}<br/> <span class="time_date"> {{item.time_send | date :'short'}}</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div [ngStyle]="{'display': (item.user_send != id_user && item.arr_file && item.arr_file.length > 0)?'block':'none'}" *ngIf="item.user_send != id_user && item.arr_file && item.arr_file.length > 0" class="incoming_msg file">
+                            <div class="div-files file" *ngFor="let item_file of item.arr_file">
+                                <p class="p_msg1 file cilent" *ngIf="item_file != ''">
+                                    <svg *ngIf="item_file.toUpperCase().indexOf('.JPG') < 0 && item_file.toUpperCase().indexOf('.JPEG') < 0 && item_file.toUpperCase().indexOf('.GIF') < 0 && item_file.toUpperCase().indexOf('.PNG') < 0" xmlns="http://www.w3.org/2000/svg" height="36px" viewBox="0 0 24 24"
+                                        width="36px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M15 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V7l-5-5zM6 20V4h8v4h4v12H6zm10-10v5c0 2.21-1.79 4-4 4s-4-1.79-4-4V8.5c0-1.47 1.26-2.64 2.76-2.49 1.3.13 2.24 1.32 2.24 2.63V15h-2V8.5c0-.28-.22-.5-.5-.5s-.5.22-.5.5V15c0 1.1.9 2 2 2s2-.9 2-2v-5h2z"/></svg>
+                                    <svg *ngIf="item_file.toUpperCase().indexOf('.JPG') >= 0 || item_file.toUpperCase().indexOf('.JPEG') >= 0 || item_file.toUpperCase().indexOf('.GIF') >= 0 ||item_file.toUpperCase().indexOf('.PNG') >= 0" xmlns="http://www.w3.org/2000/svg" height="36px"
+                                        viewBox="0 0 24 24" width="36px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>                                    {{item_file.split('/')[item_file.split('/').length -1]}}
+                                    <a href="javascript:;" (click)="download_file(item_file,item_file.split('/')[item_file.split('/').length -1])" *ngIf="item_file != ''">
+                                        <span class="material-icons">file_download</span>
+                                    </a>
+                                </p>
+                                <img *ngIf="item_file.toUpperCase().indexOf('.JPG') >= 0 || item_file.toUpperCase().indexOf('.JPEG') >= 0 || item_file.toUpperCase().indexOf('.GIF') >= 0 ||item_file.toUpperCase().indexOf('.PNG') >= 0" src="https://api.OSoft.vn{{item_file}}" class="img-item-file">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer_msg">
+                        <div class="type_msg" *ngIf="this.chatModel.chat_id">
+                            <div class="preview-upload" *ngFor="let item of chat_ContentModel.arr_img">
+                                <label class="item-preview-upload">{{item}}
+                                    <a href="javascript:;" (click)="deleteAttach_file(item,'img')"><span class="material-icons">clear</span></a>
+                                </label>
+                            </div>
+                            <div class="preview-upload" *ngFor="let item of chat_ContentModel.arr_file">
+                                <label class="item-preview-upload">{{item}}
+                                    <a href="javascript:;" (click)="deleteAttach_file(item,'file')"><span class="material-icons">clear</span></a>
+                                </label>
+                            </div>
+                            <div class="input_msg_write">
+                                <button class="attach_file_btn" onclick="document.getElementsByClassName('attach_file')[0].click()" type="button">
+                                    <span class="material-icons">attach_file</span>
+                                </button>
+                                <input-file-upload [baseUrl_direct]="baseUrl_Upload" id="input-file-upload" style="display: none !important;" [colName]="'attach_file'" [title]="''" [hidden]="true" [multiple]="true" [tableName]="chatModel.chat_id" (ValueOutput)="attach_file($event,'attach_file')"></input-file-upload>
+                                <input type="text" (keyup.enter)="onSend()" class="write_msg" #content_msg name="content_msg" [(ngModel)]="content_message" placeholder="Type a message" />
+                                <button class="msg_send_btn" (click)="onSend()" type="button">
+                                    <span class="material-icons">send</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <dialog-acction #dialogEdit [title]="'Thay đổi tên chat'" (confirmOutput)="confirmEditChatName()">
+        <div class="col-12">
+            <div class="form-group">
+                <input type="text" [disabled]="false" #name="ngModel" name="name" [(ngModel)]="chatModel.chat_name" [value]="chatModel.chat_name" class="form-control" id="chat_name">
+            </div>
+        </div>
+    </dialog-acction>
+    <dialog-acction #dialogEditBackground [title]="'Thay đổi ảnh nền'" (confirmOutput)="confirmEditBackground()">
+        <div class="col-12">
+            <div class="form-group">
+                <input-file-upload [isDomain]="true" [colName]="'background'" [hidden]="false" [multiple]="false" [tableName]="'Chat'" (ValueOutput)="valueUpload($event,'background')"></input-file-upload>
+            </div>
+        </div>
+    </dialog-acction>
+    <dialog-acction #dialogAddChat [title]="'Tạo trò chuyện'" (confirmOutput)="confirmAddChat(1)">
+        <div class="col-12">
+            <div class="form-group">
+                <input-selectpicker-v2 #SelectAddChatPicker (ValueOutput)="onSelectUser($event)" [multiple]="false" [list]="listEmployee" [FieldValue]="'email'" [FieldDisplay]="'name'" [ColumnName]="'list_user'" [title]=""></input-selectpicker-v2>
+            </div>
+        </div>
+    </dialog-acction>
+    <dialog-acction #dialogAddChats [title]="'Tạo nhóm trò chuyện'" (confirmOutput)="confirmAddChat(2)">
+        <div class="col-12">
+            <div class="form-group">
+                <input-selectpicker-v2 #SelectAddChatsPicker (ValueOutput)="onSelectUser($event)" [multiple]="true" [list]="listEmployee" [FieldValue]="'email'" [FieldDisplay]="'name'" [ColumnName]="'list_user'" [title]=""></input-selectpicker-v2>
+            </div>
+        </div>
+    </dialog-acction>
+</div>

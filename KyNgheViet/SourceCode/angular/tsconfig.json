@@ -1,0 +1,58 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "forceConsistentCasingInFileNames": true,
+    "strict": false,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "strictPropertyInitialization": false,
+    "allowSyntheticDefaultImports":true,
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "noImplicitAny": false,
+    "target": "es2015",
+    "module": "es2020",
+    "paths": {
+      "@angular/*": [
+        "./node_modules/@angular/*"
+      ],
+      "exceljs": [
+        "node_modules/exceljs/dist/exceljs.min"
+      ],
+      "assets": [
+        "src/assets/face-api/models/tiny_face_detector_model-shard1",
+        "src/assets/face-api/models/face_landmark_68_model-shard1",
+        "src/assets/face-api/models/face_recognition_model-shard1",
+        "src/assets/face-api/models/face_recognition_model-shard2",
+        "src/assets/face-api/models/face_expression_model-shard1",
+      ],
+      "jszip": [
+        "node_modules/jszip/dist/jszip.min.js"
+      ]
+    },
+    "lib": [
+      "es2019",
+      "dom"
+    ],
+    "typeRoots": [
+      "node_modules/@types"
+    ]
+  },
+  "angularCompilerOptions": {
+   "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictNullChecks": false,
+    "strictTemplates": false,
+    "rictNullChecks": false,
+    "strictOutputEventTypes": false,
+    
+  }
+}

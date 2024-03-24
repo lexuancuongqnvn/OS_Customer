@@ -1,0 +1,13 @@
+<div class="form-group">
+    <div class="file-input">
+        <input type="file" class="form-control file {{colName}}" id="{{colName}}" (change)="handleFileInput($event)" name="file" [multiple]="multiple">
+        <div>
+            <div class="col-6">
+                <label for="{{colName}}">
+                <span class="k-icon k-i-attachment-45"></span> 
+                {{title}} 
+            </label>
+            </div>
+        </div>
+    </div>
+</div>

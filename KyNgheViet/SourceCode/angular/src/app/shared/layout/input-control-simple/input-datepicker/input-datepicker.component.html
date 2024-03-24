@@ -1,0 +1,7 @@
+<!-- <kendo-datepicker [format]="format" (valueChange)="onChangeValue($event)" #{{name}}="ngModel" name="{{name}}" [(ngModel)]="value">
+</kendo-datepicker> -->
+
+<input *ngIf="format != 'YYYY'" type="text" [disabled]="isViewDetail" id="{{ColumnName}}" class="datepicker {{required?'required':''}}" value="{{value | DateFormatPipe}}">
+<input *ngIf="format == 'YYYY'" type="text" [disabled]="isViewDetail" id="{{ColumnName}}" class="datepicker {{required?'required':''}}" value="{{value | DateFormatYearPipe}}">
+
+<input style="display:none;" type="text" id="input-{{ColumnName}}" (click)="onChangeValue($event)" value="{{value}}">

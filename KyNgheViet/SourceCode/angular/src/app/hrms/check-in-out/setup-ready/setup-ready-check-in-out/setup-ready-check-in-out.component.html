@@ -1,0 +1,27 @@
+<div class="row">
+    <div class="col-2"><button type="button" class="btn btn-primary" (click)="SetupAll()">Kích hoạt tất cả</button></div>
+    <div class="col-6">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Mã cache</th>
+                    <th scope="col">User name</th>
+                    <th scope="col">Tình trạng sẵn sàng</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of listModel;let i = index">
+                    <th scope="row">{{i}}</th>
+                    <td>{{item.employee_code}}</td>
+                    <td>{{item.username}}</td>
+                    <td *ngIf="item.is_ready_checkin"><button type="button" class="btn btn-success">Sẵn sàng</button></td>
+                    <td *ngIf="!item.is_ready_checkin"><button type="button" (click)="SetupAll(item.employee_code)" class="btn btn-danger">Chưa sẵn sàng</button></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+    <div class="col-4"></div>
+
+</div>

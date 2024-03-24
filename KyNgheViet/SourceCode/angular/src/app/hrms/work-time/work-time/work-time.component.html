@@ -1,0 +1,138 @@
+<div class="card-container k-form-edit">
+    <app-toolbar #toolbar [tableName]="tbName" [CurrenFrom]="CurrenFrom"></app-toolbar>
+    <div class="example-wrapper form-group">
+        <div class="example-wrapper">
+            <div class="card-collapse">
+                <div class="card-header" role="tab" id="headingTwo">
+                    <h5 class="mb-0">
+                        <a class="collapsed" style="color: #00bcd4 !important;" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Click để lọc dữ liệu
+                            <i class="material-icons">keyboard_arrow_down</i>
+                        </a>
+                    </h5>
+                </div>
+                <div id="collapseTwo" style="padding: 5px 10px 5px 0;" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
+                    <div class="card-body">
+                        <div class="">
+                            <div class="form-group filter">
+                                <div class="row div-filter">
+                                    <!-- Begin filter -->
+                                    <!-- Nhân viên -->
+                                    <div class="col-4 col-sm-3 col-md-3 col-lg-2 col-xl-2">
+                                        <div class="form-group">
+                                            <label for="executor" class="label-title">Nhân viên</label>
+                                            <input-selectpicker-v2 #SelectPicker [disabled]="level != 1" [value]="filterInput.account_code" (ValueOutput)="onSelect($event,'account_code')" [multiple]="false" [list]="listEmployee" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'executor'"
+                                                [Class]="'selectpicker-filter-working'" [title]="'Nhân viên'"></input-selectpicker-v2>
+                                        </div>
+                                    </div>
+                                    <!-- Phòng ban -->
+                                    <div class="col-4 col-sm-3 col-md-3 col-lg-2 col-xl-2">
+                                        <div class="form-group">
+                                            <label for="status" class="">Tình trạng</label><br>
+                                            <input-selectpicker-v2 [disabled]="false" #SelectStatusPicker (ValueOutput)="onSelect($event,'status')" [value]="InputModel.status" [multiple]="false" [list]="listStatus" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'status'" [title]="'Tình trạng'"></input-selectpicker-v2>
+                                        </div>
+                                    </div>
+                                    <!-- Ngày bắt đầu -->
+                                    <div class="col-4 col-sm-3 col-md-3 col-lg-2 col-xl-2">
+                                        <div class="form-group">
+                                            <label for="id_stop_date" class="label-title">Ngày bắt đầu (từ ngày)</label>
+                                            <input-datepicker [ColumnName]="'start_date'" name="start_date" (ValueOutput)="valueStartDate($event,'start_date')"></input-datepicker>
+                                        </div>
+                                    </div>
+                                    <!-- Ngày kết thúc -->
+                                    <div class="col-4 col-sm-3 col-md-3 col-lg-2 col-xl-2">
+                                        <div class="form-group">
+                                            <label for="id_progress_task" class=" label-title">Ngày kết thúc (đến ngày)</label>
+                                            <input-datepicker [ColumnName]="'stop_date'" name="stop_date" (ValueOutput)="valueStartDate($event,'stop_date')"></input-datepicker>
+                                        </div>
+                                    </div>
+                                    <!-- end filter -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-component form-group">
+        <jqgrid-list #gridList (ValueOutput)="selectRow($event)" [colModel]="col_model" [table]="tbName" [title]="'Danh sách giờ làm việc'"></jqgrid-list>
+    </div>
+    <!-- <dialog-acction #dialogDelete [content]="'Bạn có chắc chắn muốn xóa?'" [title]="translate('Vui lòng xác nhận','Confirm ')" (confirmOutput)="confirmDelete()"></dialog-acction> -->
+</div>
+<!-- Edit -->
+<sidenav-add-edit #sidenavAddEdit [title]="'Chỉnh sửa thông tin giờ làm việc'" *ngIf="isEdit" class="form-sidenav-edit">
+    <form method="#" action="#" style="padding: 20px;" class="form-jqgrid-edit">
+        <app-toolbar #toolbarEdit [tableName]="tbName" [CurrenFrom]="getCurrenFrom"></app-toolbar>
+        <alert-message #alertMessage></alert-message>
+        <div>
+            <div class="row">
+                <div class="col-4 col-sm-4 col-md-3 col-lg-2 col-xl-2">
+                    <div class="form-group">
+                        <label for="employee_name" class=" label-title">Tên nhân viên</label>
+                        <input type="text" [disabled]="true" #name="ngModel" name="employee_name" [(ngModel)]="InputModel.employee_name" [value]="InputModel.employee_name" class="form-control" id="employee_name">
+                    </div>
+                </div>
+                <div class="col-4 col-sm-4 col-md-3 col-lg-2 col-xl-2">
+                    <div class="form-group">
+                        <label for="id_start_date" class=" label-title">Ngày bắt đầu</label>
+                        <input-datepicker [disabled]="true" [ColumnName]="'start_date2'" name="inputModel['start_date']" [value]="InputModel.start_date" (ValueOutput)="valueStartDate($event,'start_date')"></input-datepicker>
+                    </div>
+                </div>
+            </div>
+            <!-- New -->
+            <div class="col-4 col-sm-4 col-md-6 col-lg-8 col-xl-8" *ngIf="getCurrenFrom == 'ViewDetail' && InputModel.status == 'B10FBC32-7E55-4A50-B831-C5482344D66D'">
+                <div class="row">
+                    <div class="col-4 col-sm-4 col-md-6 col-lg-4 col-xl-4 div-action-wt" *ngIf="InputModel.status == 'B10FBC32-7E55-4A50-B831-C5482344D66D'">
+                        <br>
+                        <button class="btn btn-success btn-actions" (click)="onSubmit()">Submit<div class="ripple-container"></div></button>
+                    </div>
+                    <div class="col-4 col-sm-4 col-md-6 col-lg-8 col-xl-8 div-action-wt">
+                        <ul class="progressbar">
+                            <li class="complete">New</li>
+                            <li>Submit</li>
+                            <li>Approved</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Submmited -->
+            <div class="col-4 col-sm-4 col-md-6 col-lg-8 col-xl-8" *ngIf="getCurrenFrom == 'ViewDetail' && InputModel.status == 'E259AB2E-9DB2-4B8D-88B1-FC96429E4EF4'">
+                <div class="row">
+                    <div class="col-4 col-sm-4 col-md-3 col-lg-2 col-xl-2 div-action-wt" *ngIf="InputModel.status == 'E259AB2E-9DB2-4B8D-88B1-FC96429E4EF4'">
+                        <br>
+                        <button class="btn btn-success btn-actions" (click)="onUnsubmit()">Unsubmit<div class="ripple-container"></div></button>
+                    </div>
+                    <div class="col-4 col-sm-4 col-md-3 col-lg-2 col-xl-2 div-action-wt" *ngIf="showapprove">
+                        <br>
+                        <button class="btn btn-success btn-actions" (click)="onApprove()">Approve<div class="ripple-container"></div></button>
+                    </div>
+                    <div class="col-4 col-sm-4 col-md-6 col-lg-8 col-xl-8 div-action-wt">
+                        <ul class="progressbar">
+                            <li class="complete">New</li>
+                            <li class="active">Submitted</li>
+                            <li>Approve</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Approve -->
+            <div class="col-4 col-sm-4 col-md-6 col-lg-8 col-xl-8" *ngIf="getCurrenFrom == 'ViewDetail' && InputModel.status == '72F83655-F53F-41E5-80CB-A887AC481DC7'">
+                <div class="row">
+                    <div class="col-4 col-sm-4 col-md-6 col-lg-4 col-xl-4 div-action-wt" *ngIf="InputModel.status == '72F83655-F53F-41E5-80CB-A887AC481DC7' && appSession.user.code == InputModel.leader_code">
+                        <br>
+                        <button class="btn btn-success btn-actions" (click)="onUnApprove()">Unapprove<div class="ripple-container"></div></button>
+                    </div>
+                    <div class="col-4 col-sm-4 col-md-6 col-lg-8 col-xl-8 div-action-wt">
+                        <ul class="progressbar">
+                            <li class="complete">New</li>
+                            <li class="complete">Submitted</li>
+                            <li class="active">Approved</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <jqgrid-edit #gridWorkTimeEdit [colModel]="col_model_edit" [table]="tbName_sub" [title]="'Danh sách task'" [footerrow]="true"></jqgrid-edit>
+        </div>
+    </form>
+</sidenav-add-edit>

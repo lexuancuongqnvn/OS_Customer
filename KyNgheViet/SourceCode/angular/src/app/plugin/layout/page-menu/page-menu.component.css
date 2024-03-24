@@ -1,0 +1,218 @@
+@keyframes scaleAnimation {
+    0% {
+        transform: scale(0.7);
+    }
+    50% {
+        transform: scale(1.15);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.div-block-menu {
+    transition: all 5s ease !important;
+    /* Thiết lập transition cho thuộc tính height */
+}
+
+.div-menu {
+    width: -webkit-fill-available;
+    /* background-color: #fff; */
+    box-sizing: border-box;
+}
+
+
+/* title group */
+
+.div-menu .div-block-title {
+    color: #1b1464;
+    font-family: Open Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 17px;
+    padding-bottom: 20px;
+    text-transform: uppercase;
+    /* 106.25% */
+}
+
+.div-menu .div-block-menu-second .div-block-title {
+    padding-bottom: 10px;
+}
+
+
+/* menu in quick task */
+
+.div-menu .div-block-menu {
+    padding: 20px 20px 15px 20px;
+    margin-bottom: 25px;
+    background: #fff;
+    box-shadow: 0px 2px 8px 0px rgba(128, 0, 255, 0.25);
+    border-radius: 15px !important;
+}
+
+.div-menu .div-block-menu-second {
+    padding: 15px 20px 5px 20px;
+    margin-bottom: 0px;
+    background: #fff;
+}
+
+.div-menu .div-block-menu-second:first-child {
+    border-radius: 15px 15px 0 0;
+}
+
+
+/* menu in  non quick task */
+
+
+/* group */
+
+.div-menu .div-group-menu {
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content: first baseline; */
+    gap: 2%;
+}
+
+
+/* Item menu */
+
+.div-menu .div-item {
+    width: 240px;
+    max-width: 240px;
+    margin-bottom: 15px;
+    height: 50px;
+    flex-shrink: 1;
+    border-radius: 5px;
+    box-shadow: 0px -4px 0px 0px rgba(0, 0, 0, 0.25) inset;
+    display: flex;
+    align-items: center;
+    transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.2s;
+    background: #eee1ff;
+    margin-right: 10px;
+}
+
+.div-menu .div-item.quick-task {
+    background: #d8e7ff;
+}
+
+.div-menu .div-item:hover {
+    cursor: pointer;
+    transform: translateY(-1.2px);
+}
+
+.div-menu .div-item:active {
+    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.25) inset;
+    transform: translateY(2px);
+}
+
+.div-item .svg-icon-menu {
+    background-image: url("../../../../assets/img/icons/svg-icon-menu.svg");
+    margin: 12px 0 4px 14px;
+    width: 37px;
+    height: 34px;
+    flex-shrink: 0;
+    display: inline-block;
+}
+
+.div-item .div-title {
+    width: 100%;
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+    margin-right: 5px;
+    height: 100%;
+}
+
+.div-item .div-title .name {
+    color: #000;
+    font-family: "Open Sans";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 17px;
+    overflow: hidden;
+    width: 150px;
+    /* overflow: hidden; */
+    /* 121.429% */
+    user-select: none;
+}
+
+.div-item .quick-task {
+    width: 22px;
+    height: 20px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin: 5px 5px;
+    transition: cubic-bezier(0.215, 0.61, 0.355, 1) 0.2s;
+}
+
+.div-item .quick-task:hover {
+    transform: scale(1.15);
+}
+
+.div-item .quick-task:active {
+    animation: scaleAnimation 1s forwards;
+}
+
+.div-item .quick-task.svg-icon-star {
+    background-image: url("../../../../assets/img/icons/svg-icon-star.svg");
+}
+
+.div-item .quick-task.svg-icon-star:hover {
+    background-image: url("../../../../assets/img/icons/svg-icon-star-yellow.svg");
+    /* box-shadow: rgb(251, 255, 0) 0px 22px 70px 10px !important; */
+}
+
+.div-item .quick-task.svg-icon-star-yellow {
+    background-image: url("../../../../assets/img/icons/svg-icon-star-yellow.svg");
+}
+
+.text-limmited-two-line {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+@media screen and (max-width: 1700px) {
+    /* Item menu */
+    .div-menu .div-group-menu {
+        /* justify-content: space-between; */
+        gap: 1%;
+    }
+    .div-menu .div-item {
+        flex: 1 1 calc(33.33% - 10px);
+        /* Căn cứ vào số lượng mục và khoảng cách */
+        max-width: 33%;
+    }
+}
+
+@media screen and (max-width: 1400px) {
+    .div-menu .div-item {
+        /* Căn cứ vào số lượng mục và khoảng cách */
+        max-width: 33%;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .div-menu .div-item {
+        /* Căn cứ vào số lượng mục và khoảng cách */
+        max-width: 33%;
+    }
+}
+
+@media screen and (max-width: 815px) {
+    /* Item menu */
+    .div-menu .div-item {
+        max-width: 49%;
+    }
+}
+
+@media screen and (max-width: 560px) {
+    /* Item menu */
+    .div-menu .div-item {
+        max-width: none;
+    }
+}

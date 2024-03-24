@@ -1,0 +1,8 @@
+.card-component.form-group {
+    overflow: scroll;
+    max-height: 65vh;
+}
+
+.form-check {
+    border-bottom: 1px solid gray !important;
+}
