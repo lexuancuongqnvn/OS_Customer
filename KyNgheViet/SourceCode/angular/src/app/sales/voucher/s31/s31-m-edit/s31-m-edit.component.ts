@@ -218,6 +218,10 @@ export class S31MEditComponent extends LayoutComponentBase implements OnInit, IU
         this.InputMaster.discount_money = this.InputMaster.discount_money?this.InputMaster.discount_money:0;
         this.InputMaster.tax_money = this.formatDefaultNumber(this.InputMaster.total_money_goods * (this.getTax.tax/100));
         this.InputMaster.total_money = this.formatDefaultNumber(this.InputMaster.total_money_goods + this.InputMaster.tax_money + this.InputMaster.discount_money);
+
+        this.InputMaster.discount_money_fc = 0 ;
+        this.InputMaster.tax_money_fc = 0 ;
+        this.InputMaster.total_money_fc = 0 ;
       }catch{}
     }else{
       try{

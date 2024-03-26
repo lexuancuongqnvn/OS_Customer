@@ -22,7 +22,10 @@ export class C11MListComponent extends LayoutComponentBase implements OnInit, IU
   ) { 
     super(injector);
     this.tbName = this.getRouteData('tbName');
-    //this.filterInput.voucher_date = this.getFullVoucherDate;;
+    const d = this.getStartEndDateInMonth();
+    this.filterInput.voucher_date_start = d.startDate;
+    this.filterInput.voucher_date_end = d.endDate;
+    
     this.filterInput.voucher_code = this.getRouteData('voucher_code');
   }
 

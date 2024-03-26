@@ -175,6 +175,8 @@ export class S34MEditComponent extends LayoutComponentBase implements OnInit, IU
           return accumulator + currentObject.payment;
         }, 0);
       }catch{}
+      this.InputMaster.total_money_fc = 0;
+
     }else{
       try{
         this.InputMaster.total_money_fc = this.InputMaster.s34_D.reduce((accumulator, currentObject) => {

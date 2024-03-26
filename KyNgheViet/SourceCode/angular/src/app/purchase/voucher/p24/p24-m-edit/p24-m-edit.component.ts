@@ -239,6 +239,10 @@ export class P24MEditComponent extends LayoutComponentBase implements OnInit, IU
        
         this.InputMaster.tax_money = this.formatDefaultNumber(this.InputMaster.total_money_goods * (this.getTax.tax/100));
         this.InputMaster.total_money = this.formatDefaultNumber(this.InputMaster.total_money_goods + this.InputMaster.tax_money);
+
+        this.InputMaster.tax_money_fc = 0 
+        this.InputMaster.total_money_fc = 0 
+        this.InputMaster.total_money_goods = 0 
       }catch{}
     }else{
       try{

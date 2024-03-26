@@ -24,6 +24,7 @@ export class CashLedgerReportComponent extends LayoutComponentBase implements On
     const d = this.getStartEndDateInMonth();
     this.filterInput.voucher_date_start = d.startDate;
     this.filterInput.voucher_date_end = d.endDate;
+    this.filterInput.account = '111';
   }
 
   @ViewChild('DataGridGenRowTable') DataGridGenRowTable: DXDataGridViewComponent;

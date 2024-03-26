@@ -239,12 +239,15 @@ export class P22MEditComponent extends LayoutComponentBase implements OnInit, IU
        
         this.InputMaster.tax_money = this.formatDefaultNumber(this.InputMaster.total_money_goods * (this.getTax.tax/100));
         this.InputMaster.total_money = this.formatDefaultNumber(this.InputMaster.total_money_goods + this.InputMaster.tax_money + this.InputMaster.cost);
+        this.InputMaster.tax_money_fc = 0;
+        this.InputMaster.total_money_fc = 0;
       }catch{}
     }else{
       try{
         this.InputMaster.total_money_goods_fc = this.InputMaster.p22_D.reduce((accumulator, currentObject) => {
           return accumulator + currentObject.arise_fc;
         }, 0);
+       
         this.InputMaster.tax_money_fc = this.formatDefaultNumber(this.InputMaster.total_money_goods_fc * (this.getTax.tax/100));
         this.InputMaster.total_money_fc = this.formatDefaultNumber(this.InputMaster.total_money_goods_fc + this.InputMaster.tax_money_fc + this.InputMaster.cost_fc);
       }catch{}

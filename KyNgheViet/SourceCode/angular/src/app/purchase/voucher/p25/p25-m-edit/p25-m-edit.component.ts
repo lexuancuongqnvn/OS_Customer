@@ -225,18 +225,20 @@ export class P25MEditComponent extends LayoutComponentBase implements OnInit, IU
           return accumulator + currentObject.money_goods;
         }, 0);
         this.InputMaster.total_money += this.InputMaster.tax_money;
+        this.InputMaster.total_money_fc  = 0;
+        this.InputMaster.tax_money_fc  = 0;
       }catch{}
     }else{
       try{
-        this.InputMaster.tax_money = this.InputMaster.accounting_vat_inputs.reduce((accumulator, currentObject) => {
-          return accumulator + currentObject.tax;
+        this.InputMaster.tax_money_fc = this.InputMaster.accounting_vat_inputs.reduce((accumulator, currentObject) => {
+          return accumulator + currentObject.tax_fc;
         }, 0);
-        this.InputMaster.total_money = this.InputMaster.p25_D.reduce((accumulator, currentObject) => {
-          return accumulator + currentObject.money_goods;
+        this.InputMaster.total_money_fc = this.InputMaster.p25_D.reduce((accumulator, currentObject) => {
+          return accumulator + currentObject.money_goods ;
         }, 0);
-        this.InputMaster.total_money += this.InputMaster.tax_money;
-        this.InputMaster.total_money_fc = this.InputMaster.total_money/this.InputMaster.exchange_rate;
-        this.InputMaster.tax_money_fc += this.InputMaster.tax_money;
+        this.InputMaster.total_money_fc += this.InputMaster.tax_money_fc;
+        this.InputMaster.total_money = this.InputMaster.total_money_fc * this.InputMaster.exchange_rate;
+        this.InputMaster.tax_money  += this.InputMaster.tax_money_fc * this.InputMaster.exchange_rate;
       }catch{}
     }
   }

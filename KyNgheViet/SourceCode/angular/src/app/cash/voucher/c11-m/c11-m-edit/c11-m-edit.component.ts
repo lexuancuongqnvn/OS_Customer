@@ -4,7 +4,7 @@ import { AppSession } from 'src/app/shared/app-session/app-session';
 import { FormEditV2Component } from 'src/app/shared/form/form-edit-v2/form-edit-v2.component';
 import { DialogAcctionComponent } from 'src/app/shared/layout/dialogs/acction/dialog-acction.component';
 import { LayoutComponentBase } from 'src/app/shared/layout/layoutBase';
-import { C11_D_ENTITY, C11_M_ENTITY, CashVoucherService, ERPCommonService, ERPCommon_ENTITY } from 'src/app/shared/service-proxies/api-shared';
+import { C11_D_ENTITY, C11_M_ENTITY, CAT_Customer_ENTITY, CAT_Profession_ENTITY, CashVoucherService, ERPCommonService, ERPCommon_ENTITY } from 'src/app/shared/service-proxies/api-shared';
 import { EditPageState } from 'src/app/shared/ultilities/enum/edit-page-state';
 import { IUiAction } from 'src/app/shared/ultilities/ui-action';
 
@@ -39,11 +39,15 @@ export class C11MEditComponent extends LayoutComponentBase implements OnInit, IU
   }
   @ViewChild('FromEditV2') fromEditV2: FormEditV2Component;
   @ViewChild('dialogDelete') dialogDelete: DialogAcctionComponent;
+  @ViewChild('dialogreSetAccount') dialogreSetAccount: DialogAcctionComponent;
+  @ViewChild('dialogreSetCustomer') dialogreSetCustomer: DialogAcctionComponent;
   tbName:string = 'cash/receipt_M';
   rowGridSelected:any = null;
   onRefreshGrid:boolean = false;
  
   InputMaster:C11_M_ENTITY=new C11_M_ENTITY();
+  ProfessionSelected:CAT_Profession_ENTITY=new CAT_Profession_ENTITY();
+  CustomerSelected:CAT_Customer_ENTITY=new CAT_Customer_ENTITY();
   editPageState:string = EditPageState.edit;
 
   onAdd(): void {
@@ -135,6 +139,31 @@ export class C11MEditComponent extends LayoutComponentBase implements OnInit, IU
       default:break;
     }
   }
+  onSetAccount(e:any = undefined){
+    if(e){
+      this.InputMaster.debitor_account = this.ProfessionSelected.account1;
+      this.InputMaster.description = this.ProfessionSelected.notes;
+    }
+
+    this.UpdateEditV2();
+    for(var i = 0 ; i < this.InputMaster.c11_d.length ; i ++){
+      this.InputMaster.c11_d[i].creditor_account = this.ProfessionSelected.balance_account1;
+    }
+    this.onRefreshGrid = !this.onRefreshGrid;
+  }
+  onSetCustomer(e:any=undefined){
+    if(e){
+      this.InputMaster.address = this.CustomerSelected.address;
+      this.InputMaster.customer_name = this.CustomerSelected.name;
+    }
+    
+    for(var i = 0 ; i < this.InputMaster.c11_d.length ; i ++){
+      this.InputMaster.c11_d[i].customer_code = this.CustomerSelected.code;
+      this.InputMaster.c11_d[i].customer_name = this.CustomerSelected.name;
+      this.InputMaster.c11_d[i].description =  this.CustomerSelected.address;
+    }
+    this.onRefreshGrid = !this.onRefreshGrid;
+  }
   onClickAcction(id: number, storedName: string, param: string, keyService: string, classForm: string): void {
    
   }
@@ -150,7 +179,11 @@ export class C11MEditComponent extends LayoutComponentBase implements OnInit, IU
   handleValueChanged(event: any) {
 
     this.InputMaster[event.dataField]= event.value;
-
+    if(event.dataField == 'c11_d' && this.InputMaster.c11_d){
+      this.onSetAccount();
+      this.onSetCustomer();
+    }
+   
     this.caculateSumMoney();
     this.UpdateView();
   }
@@ -159,7 +192,10 @@ export class C11MEditComponent extends LayoutComponentBase implements OnInit, IU
       this.InputMaster.arise = this.InputMaster.c11_d.reduce((accumulator, currentObject) => {
         return accumulator + currentObject.arise;
       }, 0);
-      this.InputMaster.arise_fc = this.formatDefaultNumber(this.InputMaster.arise * this.InputMaster.exchange_rate);
+      if(this.InputMaster.exchange_rate !== 1)
+        this.InputMaster.arise_fc = this.formatDefaultNumber(this.InputMaster.arise * this.InputMaster.exchange_rate);
+      else
+        this.InputMaster.arise_fc = 0;
     }catch{}
   }
   onSelectedRowsDataInput(event: any) {
@@ -174,6 +210,14 @@ export class C11MEditComponent extends LayoutComponentBase implements OnInit, IU
     this.rowGridSelected = event;
   }
   HandleRowsDataGridOutput(event: any) {
+    if (event.dataField == 'profession_code') {
+      this.ProfessionSelected =  event.value[0];
+      if(this.InputMaster.c11_d && this.InputMaster.c11_d.length > 0) this.dialogreSetAccount.open();
+    }
+    else if (event.dataField == 'customer_code') {
+      this.CustomerSelected =  event.value[0];
+      if(this.InputMaster.c11_d && this.InputMaster.c11_d.length > 0) this.dialogreSetCustomer.open();
+    }
     if(this.editPageState !== EditPageState.add) return;
     try{ 
       if (event.dataField == 'profession_code')

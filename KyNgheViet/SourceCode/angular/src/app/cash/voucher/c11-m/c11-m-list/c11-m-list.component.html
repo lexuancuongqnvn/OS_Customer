@@ -4,4 +4,4 @@
 
     <osoft-data-grid #DataGridGenRowTable [tableName]="tbName" [dataSource]="listData" (selectedRowsDataOutput)="onSelectedRowsData($event)" (OnSelectRow)="selectRow($event)"></osoft-data-grid>
 </form>
-<dialog-acction #dialogDelete [content]="translate('Bạn có chắc chắn muốn xóa?','Are you sure you want to delete?')" [title]="translate('Vui lòng xác nhận','Confirm ')" (confirmOutput)="onDelete($event)"></dialog-acction>
+<dialog-acction #dialogDelete [dataFilter]="filterInput" [content]="translate('Bạn có chắc chắn muốn xóa?','Are you sure you want to delete?')" [title]="translate('Vui lòng xác nhận','Confirm ')" (confirmOutput)="onDelete($event)"></dialog-acction>

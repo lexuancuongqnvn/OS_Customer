@@ -4,7 +4,7 @@ import { AppSession } from 'src/app/shared/app-session/app-session';
 import { FormEditV2Component } from 'src/app/shared/form/form-edit-v2/form-edit-v2.component';
 import { DialogAcctionComponent } from 'src/app/shared/layout/dialogs/acction/dialog-acction.component';
 import { LayoutComponentBase } from 'src/app/shared/layout/layoutBase';
-import { Accounting_VAT_Input_ENTITY, C16_D_ENTITY, C16_M_ENTITY, CashVoucherService, ERPCommonService, ERPCommon_ENTITY } from 'src/app/shared/service-proxies/api-shared';
+import { Accounting_VAT_Input_ENTITY, C16_D_ENTITY, C16_M_ENTITY, CAT_Customer_ENTITY, CAT_Profession_ENTITY, CashVoucherService, ERPCommonService, ERPCommon_ENTITY } from 'src/app/shared/service-proxies/api-shared';
 import { EditPageState } from 'src/app/shared/ultilities/enum/edit-page-state';
 import { IUiAction } from 'src/app/shared/ultilities/ui-action';
 
@@ -39,11 +39,15 @@ export class C16MEditComponent extends LayoutComponentBase implements OnInit, IU
   }
   @ViewChild('FromEditV2') fromEditV2: FormEditV2Component;
   @ViewChild('dialogDelete') dialogDelete: DialogAcctionComponent;
+  @ViewChild('dialogreSetAccount') dialogreSetAccount: DialogAcctionComponent;
+  @ViewChild('dialogreSetCustomer') dialogreSetCustomer: DialogAcctionComponent;
   tbName:string = 'cash/debit-note_M';
   rowGridSelected:any = null;
   onRefreshGrid:boolean = false;
  
   InputMaster:C16_M_ENTITY=new C16_M_ENTITY();
+  ProfessionSelected:CAT_Profession_ENTITY=new CAT_Profession_ENTITY();
+  CustomerSelected:CAT_Customer_ENTITY=new CAT_Customer_ENTITY();
   editPageState:string = EditPageState.edit;
 
   onAdd(): void {
@@ -150,36 +154,38 @@ export class C16MEditComponent extends LayoutComponentBase implements OnInit, IU
   handleValueChanged(event: any) {
     this.InputMaster[event.dataField]= event.value;
     if(event.dataField == 'c16_d' && this.InputMaster.c16_d){
-      for(var i = 0 ; i < this.InputMaster.c16_d.length ; i ++){
-        let c16D = this.InputMaster.c16_d[i];
-        let vatOutAuto = new Accounting_VAT_Input_ENTITY({
-            voucher_date:this.InputMaster.voucher_date,
-            invoice_date:this.InputMaster.voucher_date,
-            customer_code:this.InputMaster.customer_code,
-            customer_name:this.InputMaster.customer_name,
-            address:this.InputMaster.address,
-            goods_code:c16D.goods_code,
-            notes:this.InputMaster.customer_name,
-            tax_account:this.InputMaster.tax_account,
-            debitor_account:this.InputMaster.creditor_account,
-        })as Accounting_VAT_Input_ENTITY;
-        if(!this.InputMaster.accounting_vat_inputs) this.InputMaster.accounting_vat_inputs = [];
-        if(!this.InputMaster.accounting_vat_inputs[i]){
-          this.InputMaster.accounting_vat_inputs.push(new Accounting_VAT_Input_ENTITY({...vatOutAuto,code:this.newID}) as Accounting_VAT_Input_ENTITY)
-        }else{
-          this.InputMaster.accounting_vat_inputs[i].voucher_date=this.InputMaster.voucher_date;
-          this.InputMaster.accounting_vat_inputs[i].invoice_date=this.InputMaster.voucher_date;
-          this.InputMaster.accounting_vat_inputs[i].customer_code=this.InputMaster.customer_code;
-          this.InputMaster.accounting_vat_inputs[i].customer_name=this.InputMaster.customer_name;
-          this.InputMaster.accounting_vat_inputs[i].address=this.InputMaster.address;
-          this.InputMaster.accounting_vat_inputs[i].goods_code=c16D.goods_code;
-          this.InputMaster.accounting_vat_inputs[i].tax_account=this.InputMaster.tax_account;
-          this.InputMaster.accounting_vat_inputs[i].debitor_account=this.InputMaster.creditor_account;
-          this.InputMaster.accounting_vat_inputs[i].total_money=c16D.arise;
-          this.InputMaster.accounting_vat_inputs[i].total_money_fc=c16D.arise_fc;
-        }
-      }
-      this.onRefreshGrid = !this.onRefreshGrid;
+      this.onSetAccount();
+      this.onSetCustomer();
+      // for(var i = 0 ; i < this.InputMaster.c16_d.length ; i ++){
+      //   let c16D = this.InputMaster.c16_d[i];
+      //   let vatOutAuto = new Accounting_VAT_Input_ENTITY({
+      //       voucher_date:this.InputMaster.voucher_date,
+      //       invoice_date:this.InputMaster.voucher_date,
+      //       customer_code:this.InputMaster.customer_code,
+      //       customer_name:this.InputMaster.customer_name,
+      //       address:this.InputMaster.address,
+      //       goods_code:c16D.goods_code,
+      //       notes:this.InputMaster.customer_name,
+      //       tax_account:this.InputMaster.tax_account,
+      //       debitor_account:this.InputMaster.creditor_account,
+      //   })as Accounting_VAT_Input_ENTITY;
+      //   if(!this.InputMaster.accounting_vat_inputs) this.InputMaster.accounting_vat_inputs = [];
+      //   if(!this.InputMaster.accounting_vat_inputs[i]){
+      //     this.InputMaster.accounting_vat_inputs.push(new Accounting_VAT_Input_ENTITY({...vatOutAuto,code:this.newID}) as Accounting_VAT_Input_ENTITY)
+      //   }else{
+      //     this.InputMaster.accounting_vat_inputs[i].voucher_date=this.InputMaster.voucher_date;
+      //     this.InputMaster.accounting_vat_inputs[i].invoice_date=this.InputMaster.voucher_date;
+      //     this.InputMaster.accounting_vat_inputs[i].customer_code=this.InputMaster.customer_code;
+      //     this.InputMaster.accounting_vat_inputs[i].customer_name=this.InputMaster.customer_name;
+      //     this.InputMaster.accounting_vat_inputs[i].address=this.InputMaster.address;
+      //     this.InputMaster.accounting_vat_inputs[i].goods_code=c16D.goods_code;
+      //     this.InputMaster.accounting_vat_inputs[i].tax_account=this.InputMaster.tax_account;
+      //     this.InputMaster.accounting_vat_inputs[i].debitor_account=this.InputMaster.creditor_account;
+      //     this.InputMaster.accounting_vat_inputs[i].total_money=c16D.arise;
+      //     this.InputMaster.accounting_vat_inputs[i].total_money_fc=c16D.arise_fc;
+      //   }
+      // }
+      // this.onRefreshGrid = !this.onRefreshGrid;
     }
     this.caculateSumMoney();
     this.UpdateView();
@@ -193,10 +199,16 @@ export class C16MEditComponent extends LayoutComponentBase implements OnInit, IU
         return accumulator + currentObject.tax;
       }, 0);
       this.InputMaster.total_arise = this.formatDefaultNumber(this.InputMaster.arise + this.InputMaster.tax_money);
+      if(this.InputMaster.exchange_rate !== 1){
+        this.InputMaster.arise_fc = this.formatDefaultNumber(this.InputMaster.arise * this.InputMaster.exchange_rate);
+        this.InputMaster.tax_money_fc = this.formatDefaultNumber(this.InputMaster.tax_money * this.InputMaster.exchange_rate);
+        this.InputMaster.total_arise_fc = this.formatDefaultNumber(this.InputMaster.total_arise_fc * this.InputMaster.exchange_rate);
+      }else {
+        this.InputMaster.arise_fc = 0;
+      this.InputMaster.tax_money_fc = 0;
+      this.InputMaster.total_arise_fc = 0;
+      }
       
-      this.InputMaster.arise_fc = this.formatDefaultNumber(this.InputMaster.arise * this.InputMaster.exchange_rate);
-      this.InputMaster.tax_money_fc = this.formatDefaultNumber(this.InputMaster.tax_money * this.InputMaster.exchange_rate);
-      this.InputMaster.total_arise_fc = this.formatDefaultNumber(this.InputMaster.total_arise_fc * this.InputMaster.exchange_rate);
     }catch{}
   }
   onSelectedRowsDataInput(event: any) {
@@ -210,12 +222,45 @@ export class C16MEditComponent extends LayoutComponentBase implements OnInit, IU
   onSelectedRowsDataOutput(event: any) {
     this.rowGridSelected = event;
   }
+  onSetAccount(e:any = undefined){
+    if(e){
+      this.InputMaster.creditor_account = this.ProfessionSelected.balance_account1;
+      this.InputMaster.description = this.ProfessionSelected.notes;
+    }
+
+    this.UpdateEditV2();
+    for(var i = 0 ; i < this.InputMaster.c16_d.length ; i ++){
+      this.InputMaster.c16_d[i].debitor_account = this.ProfessionSelected.account1;
+    }
+    this.onRefreshGrid = !this.onRefreshGrid;
+  }
+  onSetCustomer(e:any=undefined){
+    if(e){
+      this.InputMaster.address = this.CustomerSelected.address;
+      this.InputMaster.customer_name = this.CustomerSelected.name;
+    }
+
+    for(var i = 0 ; i < this.InputMaster.c16_d.length ; i ++){
+      this.InputMaster.c16_d[i].customer_code = this.CustomerSelected.code;
+      this.InputMaster.c16_d[i].customer_name = this.CustomerSelected.name;
+      this.InputMaster.c16_d[i].description =  this.CustomerSelected.address;
+    }
+    this.onRefreshGrid = !this.onRefreshGrid;
+  }
   HandleRowsDataGridOutput(event: any) {
+    if (event.dataField == 'profession_code') {
+      this.ProfessionSelected =  event.value[0];
+      if(this.InputMaster.c16_d && this.InputMaster.c16_d.length > 0) this.dialogreSetAccount.open();
+    }
+    else if (event.dataField == 'customer_code') {
+      this.CustomerSelected =  event.value[0];
+      if(this.InputMaster.c16_d && this.InputMaster.c16_d.length > 0) this.dialogreSetCustomer.open();
+    }
     if(this.editPageState !== EditPageState.add) return;
     try{ 
       if (event.dataField == 'profession_code')
       {
-        this.InputMaster.creditor_account = event.value[0].account1;
+        this.InputMaster.creditor_account = event.value[0].balance_account1;
         this.InputMaster.description = event.value[0].notes;
       }
       else if (event.dataField == 'customer_code')
