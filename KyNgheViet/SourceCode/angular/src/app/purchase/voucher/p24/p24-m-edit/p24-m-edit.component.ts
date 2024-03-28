@@ -49,6 +49,7 @@ export class P24MEditComponent extends LayoutComponentBase implements OnInit, IU
   }
   @ViewChild('FromEditV2') fromEditV2: FormEditV2Component;
   @ViewChild('dialogDelete') dialogDelete: DialogAcctionComponent;
+  @ViewChild('dialogConfirmVAT') dialogConfirmVAT: DialogAcctionComponent;
   @Input() rowSelected: any = '';
   tbName:string = 'P24_M';
   rowGridSelected:any = null;
@@ -177,10 +178,47 @@ export class P24MEditComponent extends LayoutComponentBase implements OnInit, IU
     }
   }
   handleValueChanged(event: any) {
+    if(event.dataField == 'is_tax'){
+      if(this.InputMaster.code && this.InputMaster[event.dataField] != event.value){
+        this.InputMaster[event.dataField]= event.value;
+        this.dialogConfirmVAT.open()
+      } 
+      else {
+        this.InputMaster[event.dataField]= event.value;
+        this.updateVATIN();
+      }
+    }
+    this.InputMaster[event.dataField]= event.value;
     if(event.dataField == 'tax_code'){
       this.cat_Tax = this.cat_Taxs.find(t=>t.code == event.value);
     }
+    else if (event.dataField == 'invoice_no')
+    {
+      for(var i = 0 ; i < this.InputMaster.accounting_vat_inputs.length ; i ++){
+        this.InputMaster.accounting_vat_inputs[i].invoice_no = event.value
+      }
+      this.onRefreshGrid = !this.onRefreshGrid;
+    }
+    else if (event.dataField == 'seri_no')
+    {
+      for(var i = 0 ; i < this.InputMaster.accounting_vat_inputs.length ; i ++){
+        this.InputMaster.accounting_vat_inputs[i].series_no = event.value
+      }
+      this.onRefreshGrid = !this.onRefreshGrid;
+    }
+    else if(event.dataField == 'tax_code'){
+      this.cat_Tax = this.cat_Taxs.find(t=>t.code == event.value);
+    }
     else if(event.dataField == 'p24_D' && this.InputMaster.p24_D){
+      this.updateVATIN();
+    }
+    this.InputMaster[event.dataField]= event.value;
+
+    this.caculateSumMoney();
+    this.UpdateView();
+  }
+  updateVATIN(e:any = undefined){
+    if(this.InputMaster.is_tax){
       for(var i = 0 ; i < this.InputMaster.p24_D.length ; i ++){
         let s33D = this.InputMaster.p24_D[i];
         let vatOutAuto = new Accounting_VAT_Input_ENTITY({
@@ -223,12 +261,9 @@ export class P24MEditComponent extends LayoutComponentBase implements OnInit, IU
           this.InputMaster.accounting_vat_inputs[i].tax_fc =s33D.arise_fc * (tax.tax/100);
         }
       }
-      this.onRefreshGrid = !this.onRefreshGrid;
-    }
-    this.InputMaster[event.dataField]= event.value;
-
-    this.caculateSumMoney();
-    this.UpdateView();
+    }else this.InputMaster.accounting_vat_inputs = []
+ 
+    this.onRefreshGrid = !this.onRefreshGrid;
   }
   async caculateSumMoney(){
     if (this.InputMaster.exchange_rate == 1){
@@ -283,7 +318,7 @@ export class P24MEditComponent extends LayoutComponentBase implements OnInit, IU
       else if (event.dataField == 'profession_code')
       {
         this.InputMaster.description = event.value[0].notes;
-        this.InputMaster.debitor_account = event.value[0].balance_account1;
+        this.InputMaster.debitor_account = event.value[0].account1;
       }
       else if (event.dataField == 'code_fc')
         this.InputMaster.exchange_rate = event.value[0].exchange_rate;
@@ -309,11 +344,6 @@ export class P24MEditComponent extends LayoutComponentBase implements OnInit, IU
     }) as P24_M_ENTITY).subscribe((resonse:P24_M_ENTITY[])=>{
       if(resonse[0])
         this.InputMaster = resonse[0];
-      else
-        {
-          // this.showMessageError('Không tìm thấy dữ liệu.')
-          this.goBack();
-        }
     })
   }
   get getTax():CAT_Tax_ENTITY{

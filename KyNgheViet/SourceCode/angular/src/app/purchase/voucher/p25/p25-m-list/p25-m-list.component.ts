@@ -24,6 +24,9 @@ export class P25MListComponent extends LayoutComponentBase implements OnInit, IU
     this.tbName = this.getRouteData('tbName');
     //this.filterInput.voucher_date = this.getFullVoucherDate;;
     this.filterInput.voucher_code = this.getRouteData('voucher_code');
+    const d = this.getStartEndDateInMonth();
+    this.filterInput.voucher_date_start = d.startDate;
+    this.filterInput.voucher_date_end = d.endDate;
   }
 
   @ViewChild('DataGridGenRowTable') DataGridGenRowTable: DXDataGridViewComponent;

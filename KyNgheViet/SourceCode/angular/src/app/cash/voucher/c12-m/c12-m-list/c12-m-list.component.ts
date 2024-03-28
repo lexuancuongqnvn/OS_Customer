@@ -22,7 +22,9 @@ export class C12MListComponent  extends LayoutComponentBase implements OnInit, I
   ) { 
     super(injector);
     this.tbName = this.getRouteData('tbName');
-    //this.filterInput.voucher_date = this.getFullVoucherDate;;
+    const d = this.getStartEndDateInMonth();
+    this.filterInput.voucher_date_start = d.startDate;
+    this.filterInput.voucher_date_end = d.endDate;
     this.filterInput.voucher_code = this.getRouteData('voucher_code');
   }
 

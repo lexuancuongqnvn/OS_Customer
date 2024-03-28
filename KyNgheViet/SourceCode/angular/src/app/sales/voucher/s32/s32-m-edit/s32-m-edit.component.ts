@@ -46,10 +46,10 @@ export class S32MEditComponent extends LayoutComponentBase implements OnInit, IU
       this.appSession.setVoucherCode(this.InputMaster.voucher_code);
       this.InputMaster.code = this.idSelect;
     }
-    
   }
   @ViewChild('FromEditV2') fromEditV2: FormEditV2Component;
   @ViewChild('dialogDelete') dialogDelete: DialogAcctionComponent;
+  @ViewChild('dialogConfirmVAT') dialogConfirmVAT: DialogAcctionComponent;
   @Input() rowSelected: any = '';
   tbName:string = 'S32_M';
   rowGridSelected:any = null;
@@ -197,76 +197,43 @@ export class S32MEditComponent extends LayoutComponentBase implements OnInit, IU
     }
   }
   handleValueChanged(event: any) {
+   
+    if(event.dataField == 'is_tax'){
+      if(this.InputMaster.code && this.InputMaster[event.dataField] != event.value){
+        this.InputMaster[event.dataField]= event.value;
+        this.dialogConfirmVAT.open()
+      } 
+      else {
+        this.InputMaster[event.dataField]= event.value;
+        this.updateVATOUT();
+      }
+    }
+    this.InputMaster[event.dataField]= event.value;
     if(event.dataField == 'tax_code'){
       this.cat_Tax = this.cat_Taxs.find(t=>t.code == event.value);
     }
-    // else if (event.dataField == 'invoice_no')
-    // {
-    //   for(var i = 0 ; i < this.InputMaster.accounting_VAT_Outputs.length ; i ++){
-    //     this.InputMaster.accounting_VAT_Outputs[i].invoice_no = event.value
-    //   }
-    //   this.onRefreshGrid = !this.onRefreshGrid;
-    // }
-    // else if (event.dataField == 'serial_no')
-    // {
-    //   for(var i = 0 ; i < this.InputMaster.accounting_VAT_Outputs.length ; i ++){
-    //     this.InputMaster.accounting_VAT_Outputs[i].series_no = event.value
-    //   }
-      
-    //   this.onRefreshGrid = !this.onRefreshGrid;
-    // }
-    else if(event.dataField == 's32_D' && this.InputMaster.s32_D && !this.InputMaster.code){
-      for(var i = 0 ; i < this.InputMaster.s32_D.length ; i ++){
+    else if (event.dataField == 'invoice_no')
+    {
+      for(var i = 0 ; i < this.InputMaster.accounting_VAT_Outputs.length ; i ++){
+        this.InputMaster.accounting_VAT_Outputs[i].invoice_no = event.value
+      }
+      this.onRefreshGrid = !this.onRefreshGrid;
+    }
+    else if (event.dataField == 'serial_no')
+    {
+      for(var i = 0 ; i < this.InputMaster.accounting_VAT_Outputs.length ; i ++){
+        this.InputMaster.accounting_VAT_Outputs[i].series_no = event.value
+      }
+      this.onRefreshGrid = !this.onRefreshGrid;
+    }
+    else if(event.dataField == 's32_D' && this.InputMaster.s32_D){
+      if(!this.InputMaster.code){
+              for(var i = 0 ; i < this.InputMaster.s32_D.length ; i ++){
         let s33D = this.InputMaster.s32_D[i];
-        let vatOutAuto = new Accounting_VAT_Output_ENTITY({
-            voucher_date:this.InputMaster.voucher_date,
-            invoice_date:this.InputMaster.voucher_date,
-            invoice_no:this.InputMaster.invoice_no,
-            series_no:this.InputMaster.serial_no,
-            customer_code:this.InputMaster.customer_code,
-            customer_name:this.InputMaster.customer_name,
-            address:this.InputMaster.address,
-            goods_code:s33D.goods_code,
-            notes:s33D.goods_name,
-            tax_account:this.InputMaster.tax_account,
-            tax_code:this.InputMaster.tax_code,
-            debitor_account:this.InputMaster.debitor_account,
-        })as Accounting_VAT_Output_ENTITY;
-
-      if(!this.InputMaster.accounting_VAT_Outputs) this.InputMaster.accounting_VAT_Outputs = [];
-      if(!this.InputMaster.cat_goods_configurations) this.InputMaster.cat_goods_configurations = [];
-      //else this.InputMaster.cat_goods_configurations = this.InputMaster.cat_goods_configurations.filter(con=>this.InputMaster.s32_D.some(g=>g.goods_code == con.goods_code && g.serial_no.split(';').includes(con.serial)))
         
-        //Begin tax
-        if(!this.InputMaster.accounting_VAT_Outputs[i]){
-          this.InputMaster.accounting_VAT_Outputs.push(new Accounting_VAT_Output_ENTITY({...vatOutAuto,code:this.newID}) as Accounting_VAT_Output_ENTITY)
-        }else{
-          if(!this.InputMaster.accounting_VAT_Outputs[i].voucher_date)
-            this.InputMaster.accounting_VAT_Outputs[i].voucher_date=this.InputMaster.voucher_date;
-          if(!this.InputMaster.accounting_VAT_Outputs[i].invoice_date)
-            this.InputMaster.accounting_VAT_Outputs[i].invoice_date=this.InputMaster.voucher_date;
-          if(!this.InputMaster.accounting_VAT_Outputs[i].invoice_no)
-            this.InputMaster.accounting_VAT_Outputs[i].invoice_no=this.InputMaster.invoice_no;
-          if(!this.InputMaster.accounting_VAT_Outputs[i].series_no)
-            this.InputMaster.accounting_VAT_Outputs[i].series_no=this.InputMaster.serial_no;
-
-          this.InputMaster.accounting_VAT_Outputs[i].customer_code=this.InputMaster.customer_code;
-          this.InputMaster.accounting_VAT_Outputs[i].customer_name=this.InputMaster.customer_name;
-          this.InputMaster.accounting_VAT_Outputs[i].address=this.InputMaster.address;
-          this.InputMaster.accounting_VAT_Outputs[i].goods_code=s33D.goods_code;
-          this.InputMaster.accounting_VAT_Outputs[i].notes=s33D.goods_name;
-          this.InputMaster.accounting_VAT_Outputs[i].tax_account=this.InputMaster.tax_account;
-          this.InputMaster.accounting_VAT_Outputs[i].tax_code=this.InputMaster.tax_code;
-          this.InputMaster.accounting_VAT_Outputs[i].debitor_account=this.InputMaster.debitor_account;
-          this.InputMaster.accounting_VAT_Outputs[i].total_money=s33D.arise;
-          this.InputMaster.accounting_VAT_Outputs[i].total_money_fc=s33D.arise_fc;
-          if(!this.InputMaster.accounting_VAT_Outputs[i].tax_rate){
-            this.InputMaster.accounting_VAT_Outputs[i].tax_rate= this.InputMaster.tax;
-            this.InputMaster.accounting_VAT_Outputs[i].tax =this.formatDefaultNumber(s33D.arise*(this.InputMaster.tax/100));
-            this.InputMaster.accounting_VAT_Outputs[i].tax_fc = this.formatDefaultNumber(s33D.arise_fc * (this.InputMaster.tax/100));
-          }
-        }
-        //End tax
+        if(!this.InputMaster.cat_goods_configurations) this.InputMaster.cat_goods_configurations = [];
+       
+        this.updateVATOUT();
         //Begin configuration
         try{
           if(s33D.serial_no){
@@ -299,11 +266,68 @@ export class S32MEditComponent extends LayoutComponentBase implements OnInit, IU
         //End configuration
       } 
       this.onRefreshGrid = !this.onRefreshGrid;
+      }
     }
 
-    this.InputMaster[event.dataField]= event.value;
     this.caculateSumMoney();
     this.UpdateView();
+  }
+  updateVATOUT(e:any = undefined){
+    if(this.InputMaster.is_tax){
+      for(var i = 0 ; i < this.InputMaster.s32_D.length ; i ++){
+        let s33D = this.InputMaster.s32_D[i];
+        let vatOutAuto = new Accounting_VAT_Output_ENTITY({
+            voucher_date:this.InputMaster.voucher_date,
+            invoice_date:this.InputMaster.voucher_date,
+            invoice_no:this.InputMaster.invoice_no,
+            series_no:this.InputMaster.serial_no,
+            customer_code:this.InputMaster.customer_code,
+            customer_name:this.InputMaster.customer_name,
+            address:this.InputMaster.address,
+            goods_code:s33D.goods_code,
+            notes:s33D.goods_name,
+            tax_account:this.InputMaster.tax_account,
+            tax_code:this.InputMaster.tax_code,
+            debitor_account:this.InputMaster.debitor_account,
+        })as Accounting_VAT_Output_ENTITY;
+  
+      if(!this.InputMaster.accounting_VAT_Outputs) this.InputMaster.accounting_VAT_Outputs = [];
+      if(!this.InputMaster.accounting_VAT_Outputs[i]){
+        this.InputMaster.accounting_VAT_Outputs.push(new Accounting_VAT_Output_ENTITY({...vatOutAuto,code:this.newID}) as Accounting_VAT_Output_ENTITY)
+      }else{
+        if(!this.InputMaster.accounting_VAT_Outputs[i].voucher_date)
+          this.InputMaster.accounting_VAT_Outputs[i].voucher_date=this.InputMaster.voucher_date;
+        if(!this.InputMaster.accounting_VAT_Outputs[i].invoice_date)
+          this.InputMaster.accounting_VAT_Outputs[i].invoice_date=this.InputMaster.voucher_date;
+        if(!this.InputMaster.accounting_VAT_Outputs[i].invoice_no)
+          this.InputMaster.accounting_VAT_Outputs[i].invoice_no=this.InputMaster.invoice_no;
+        if(!this.InputMaster.accounting_VAT_Outputs[i].series_no)
+          this.InputMaster.accounting_VAT_Outputs[i].series_no=this.InputMaster.serial_no;
+  
+        this.InputMaster.accounting_VAT_Outputs[i].customer_code=this.InputMaster.customer_code;
+        this.InputMaster.accounting_VAT_Outputs[i].customer_name=this.InputMaster.customer_name;
+        this.InputMaster.accounting_VAT_Outputs[i].address=this.InputMaster.address;
+        this.InputMaster.accounting_VAT_Outputs[i].goods_code=s33D.goods_code;
+        this.InputMaster.accounting_VAT_Outputs[i].notes=s33D.goods_name;
+        this.InputMaster.accounting_VAT_Outputs[i].tax_account=this.InputMaster.tax_account;
+        this.InputMaster.accounting_VAT_Outputs[i].tax_code=this.InputMaster.tax_code;
+        this.InputMaster.accounting_VAT_Outputs[i].debitor_account=this.InputMaster.debitor_account;
+        this.InputMaster.accounting_VAT_Outputs[i].total_money=s33D.arise;
+        this.InputMaster.accounting_VAT_Outputs[i].total_money_fc=s33D.arise_fc;
+        if(!this.InputMaster.accounting_VAT_Outputs[i].tax_rate){
+          this.InputMaster.accounting_VAT_Outputs[i].tax_rate= this.InputMaster.tax;
+          this.InputMaster.accounting_VAT_Outputs[i].tax =this.formatDefaultNumber(s33D.arise*(this.InputMaster.tax/100));
+          this.InputMaster.accounting_VAT_Outputs[i].tax_fc = this.formatDefaultNumber(s33D.arise_fc * (this.InputMaster.tax/100));
+        }
+      }
+        //End tax
+       
+      }
+    }else{
+      this.InputMaster.accounting_VAT_Outputs = [];
+    }
+ 
+    this.onRefreshGrid = !this.onRefreshGrid;
   }
   async caculateSumMoney(){
     if (this.InputMaster.exchange_rate == 1){

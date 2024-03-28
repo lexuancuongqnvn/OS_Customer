@@ -83,6 +83,7 @@ export class FormEditV2Component extends LayoutComponentBase implements OnInit, 
 
   groups: any[] = [];
   panels: any[] = [];
+  listTable: any[] = [];
 
   listReference:any[] =[];
 
@@ -388,6 +389,13 @@ export class FormEditV2Component extends LayoutComponentBase implements OnInit, 
 
   }
   getDataSourceInGrid(col:SYS_GenRowTable_Detail,i:number,j:number,k:number):any{
+    if(this.listTable.length == 0 || !this.listTable.find(ltb=>ltb.tbName == col.columN_NAME))
+    {
+      this.listTable.push({
+        tbName:col.columN_NAME,
+        isRefresh:true
+      })
+    }
     if(!this.InputMaster[col.columN_NAME])return col.editoroptions.items;
     if(this.InputMaster[col.columN_NAME].length > col.editoroptions.items.length){
       let arrInserted = this.InputMaster[col.columN_NAME].filter(item1=>!col.editoroptions.items.some(item2 => item2[col.valueexpr] === item1[col.valueexpr]));
@@ -400,7 +408,20 @@ export class FormEditV2Component extends LayoutComponentBase implements OnInit, 
       this.onRefreshGridT = this.onRefreshGrid;
       this.onRefreshGridOutput.emit(this.onRefreshGrid)
         return mappedArray;
-    }else if(this.onRefreshGridT != this.onRefreshGrid){
+    }else if(this.InputMaster[col.columN_NAME].length < col.editoroptions.items.length){
+      const mappedArray: any = col.editoroptions.items.filter(item=> this.InputMaster[col.columN_NAME].filter(n=>n[col.valueexpr] == item[col.valueexpr]).length > 0);
+      if(k!==-1)    
+        this.groups[i].tabs.tabs[j].data[k].data.find(gr => gr.code == col.code).editoroptions.items = mappedArray;
+      else 
+        this.groups[i].data.find(gr => gr.code == col.code).editoroptions.items = mappedArray;
+      this.onRefreshGrid = !this.onRefreshGrid;
+      this.onRefreshGridT = this.onRefreshGrid;
+      this.onRefreshGridOutput.emit(this.onRefreshGrid)
+        return mappedArray;
+    }
+    else if(this.onRefreshGridT != this.onRefreshGrid){
+      if(this.listTable.filter(ltb=>ltb.isRefresh == true).length == this.listTable.length)
+        this.listTable.map(ltb=>ltb.isRefresh = false);
       //TH1:
       let listGroups = this.groups.filter(e=>e.isTab == true);
       listGroups.forEach(tab=>{
@@ -467,8 +488,11 @@ export class FormEditV2Component extends LayoutComponentBase implements OnInit, 
           })
         })
       }catch{}
-      this.onRefreshGridT = this.onRefreshGrid;
-      this.onRefreshGridOutput.emit(this.onRefreshGrid)
+      this.listTable.find(ltb=>ltb.tbName == col.columN_NAME).isRefresh = true;
+      if(this.listTable.filter(ltb=>ltb.isRefresh == true).length == this.listTable.length){
+        this.onRefreshGridT = this.onRefreshGrid;
+        this.onRefreshGridOutput.emit(this.onRefreshGrid)
+      }
     }
     if(col.editoroptions.hasDateTime && col.editoroptions.hasDateTime == true)
       this.onDatasourceGridOutput.emit({dataField: col.columN_NAME,value:col.editoroptions.items})
@@ -1087,7 +1111,6 @@ export class FormEditV2Component extends LayoutComponentBase implements OnInit, 
         }
       }
     }catch{}
-    
   }
   onSubmitClick() {
     // Handle form submission logic

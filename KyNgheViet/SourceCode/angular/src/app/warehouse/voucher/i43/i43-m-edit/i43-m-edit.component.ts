@@ -4,7 +4,7 @@ import { AppSession } from 'src/app/shared/app-session/app-session';
 import { FormEditV2Component } from 'src/app/shared/form/form-edit-v2/form-edit-v2.component';
 import { DialogAcctionComponent } from 'src/app/shared/layout/dialogs/acction/dialog-acction.component';
 import { LayoutComponentBase } from 'src/app/shared/layout/layoutBase';
-import { ERPCommonService, ERPCommon_ENTITY, I43_D_ENTITY, I43_M_ENTITY, WarehouseService, WMSVoucherService, CAT_Goods_Configuration_ENTITY } from 'src/app/shared/service-proxies/api-shared';
+import { ERPCommonService, ERPCommon_ENTITY, I43_D_ENTITY, I43_M_ENTITY, WarehouseService, WMSVoucherService, CAT_Goods_Configuration_ENTITY, CAT_Profession_ENTITY } from 'src/app/shared/service-proxies/api-shared';
 import { EditPageState } from 'src/app/shared/ultilities/enum/edit-page-state';
 import { IUiAction } from 'src/app/shared/ultilities/ui-action';
 
@@ -48,11 +48,14 @@ export class I43MEditComponent extends LayoutComponentBase implements OnInit, IU
   }
   @ViewChild('FromEditV2') fromEditV2: FormEditV2Component;
   @ViewChild('dialogDelete') dialogDelete: DialogAcctionComponent;
+  @ViewChild('dialogreSetAccount') dialogreSetAccount: DialogAcctionComponent;
   @Input() rowSelected: any = '';
   tbName:string = 'I43_M';
   rowGridSelected:any = null;
+  onRefreshGrid:boolean = false;
  
   InputMaster:I43_M_ENTITY=new I43_M_ENTITY();
+  ProfessionSelected:CAT_Profession_ENTITY=new CAT_Profession_ENTITY();
   editPageState:string = EditPageState.edit;
   onAdd(): void {
     throw new Error('Method not implemented.');
@@ -170,8 +173,17 @@ export class I43MEditComponent extends LayoutComponentBase implements OnInit, IU
   handleValueChanged(event: any) {
 
     this.InputMaster[event.dataField]= event.value;
+    if(event.dataField == 'i43_D' && this.InputMaster.i43_D){
+      this.updateAccount();
+    }
     this.caculateSumMoney();
     this.UpdateView();
+  }
+  updateAccount(e:any = undefined){
+    for(var i = 0 ; i < this.InputMaster.i43_D.length ; i ++){
+      this.InputMaster.i43_D[i].debitor_account = this.ProfessionSelected.account1;
+    }
+    this.onRefreshGrid = !this.onRefreshGrid;
   }
   async caculateSumMoney(){
     try{
@@ -183,7 +195,14 @@ export class I43MEditComponent extends LayoutComponentBase implements OnInit, IU
   onSelectedRowsDataOutput(event: any) {
     this.rowGridSelected = event;
   }
+  onRefreshGridOutput(event: any) {
+    this.onRefreshGrid = event;
+  }
   HandleRowsDataGridOutput(event: any) {
+    if (event.dataField == 'profession_code') {
+      this.ProfessionSelected =  event.value[0];
+      if(this.InputMaster.i43_D && this.InputMaster.i43_D.length > 0) this.dialogreSetAccount.open();
+    }
     if(this.editPageState !== EditPageState.add) return;
     try{
       if (event.dataField == 'customer_code')

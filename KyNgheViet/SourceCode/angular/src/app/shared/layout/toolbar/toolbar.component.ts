@@ -84,14 +84,16 @@ export class ToolbarComponent extends LayoutComponentBase implements OnInit {
   ngOnInit(): void {
     var key = 'Action'+this.tableName;
     var cache
-    if(key) {
-      var cache = this.getItemWithExpiry(key);
-      if(cache){
-        this.setCurrenFrom(this.CurrenFrom);
-        this.refreshAcction();
-        this.completeCallback(cache);
-      }
-    }
+    // if(key) {
+    //   var cache = this.getItemWithExpiry(key);
+    //   if(cache){
+    //     setTimeout(() => {
+    //       this.setCurrenFrom(this.CurrenFrom);
+    //       this.completeCallback(cache);
+    //       // this.refreshAcction();
+    //     }, 200);
+    //   }
+    // }
     if(!cache){
       var user = new User();
       user = this.appSession.user;

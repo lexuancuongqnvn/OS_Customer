@@ -39534,6 +39534,8 @@ export class C11_M_ENTITY implements IC11_M_ENTITY {
     code?: string | undefined;
     voucher_code?: string | undefined;
     voucher_date?: moment.Moment | undefined;
+    voucher_date_start?: moment.Moment | undefined;
+    voucher_date_end?: moment.Moment | undefined;
     voucher_no?: string | undefined;
     customer_code?: string | undefined;
     customer_name?: string | undefined;
@@ -39571,6 +39573,8 @@ export class C11_M_ENTITY implements IC11_M_ENTITY {
             this.code = _data["code"];
             this.voucher_code = _data["voucher_code"];
             this.voucher_date = _data["voucher_date"] ? moment.parseZone(_data["voucher_date"].toString()) : <any>undefined;
+            this.voucher_date_start = _data["voucher_date_start"] ? moment.parseZone(_data["voucher_date_start"].toString()) : <any>undefined;
+            this.voucher_date_end = _data["voucher_date_end"] ? moment.parseZone(_data["voucher_date_end"].toString()) : <any>undefined;
             this.voucher_no = _data["voucher_no"];
             this.customer_code = _data["customer_code"];
             this.customer_name = _data["customer_name"];
@@ -39612,6 +39616,8 @@ export class C11_M_ENTITY implements IC11_M_ENTITY {
         data["code"] = this.code;
         data["voucher_code"] = this.voucher_code;
         data["voucher_date"] = this.voucher_date ? this.voucher_date.toISOString(true) : <any>undefined;
+        data["voucher_date_start"] = this.voucher_date_start ? this.voucher_date_start.toISOString(true) : <any>undefined;
+        data["voucher_date_end"] = this.voucher_date_end ? this.voucher_date_end.toISOString(true) : <any>undefined;
         data["voucher_no"] = this.voucher_no;
         data["customer_code"] = this.customer_code;
         data["customer_name"] = this.customer_name;
@@ -39653,6 +39659,8 @@ export interface IC11_M_ENTITY {
     code?: string | undefined;
     voucher_code?: string | undefined;
     voucher_date?: moment.Moment | undefined;
+    voucher_date_start?: moment.Moment | undefined;
+    voucher_date_end?: moment.Moment | undefined;
     voucher_no?: string | undefined;
     customer_code?: string | undefined;
     customer_name?: string | undefined;
@@ -40007,6 +40015,8 @@ export class C12_M_ENTITY implements IC12_M_ENTITY {
     code?: string | undefined;
     voucher_code?: string | undefined;
     voucher_date?: moment.Moment | undefined;
+    voucher_date_start?: moment.Moment | undefined;
+    voucher_date_end?: moment.Moment | undefined;
     voucher_no?: string | undefined;
     customer_code?: string | undefined;
     customer_name?: string | undefined;
@@ -40051,6 +40061,8 @@ export class C12_M_ENTITY implements IC12_M_ENTITY {
             this.code = _data["code"];
             this.voucher_code = _data["voucher_code"];
             this.voucher_date = _data["voucher_date"] ? moment.parseZone(_data["voucher_date"].toString()) : <any>undefined;
+            this.voucher_date_start = _data["voucher_date_start"] ? moment.parseZone(_data["voucher_date_start"].toString()) : <any>undefined;
+            this.voucher_date_end = _data["voucher_date_end"] ? moment.parseZone(_data["voucher_date_end"].toString()) : <any>undefined;
             this.voucher_no = _data["voucher_no"];
             this.customer_code = _data["customer_code"];
             this.customer_name = _data["customer_name"];
@@ -40103,6 +40115,8 @@ export class C12_M_ENTITY implements IC12_M_ENTITY {
         data["code"] = this.code;
         data["voucher_code"] = this.voucher_code;
         data["voucher_date"] = this.voucher_date ? this.voucher_date.toISOString(true) : <any>undefined;
+        data["voucher_date_start"] = this.voucher_date_start ? this.voucher_date_start.toISOString(true) : <any>undefined;
+        data["voucher_date_end"] = this.voucher_date_end ? this.voucher_date_end.toISOString(true) : <any>undefined;
         data["voucher_no"] = this.voucher_no;
         data["customer_code"] = this.customer_code;
         data["customer_name"] = this.customer_name;
@@ -40155,6 +40169,8 @@ export interface IC12_M_ENTITY {
     code?: string | undefined;
     voucher_code?: string | undefined;
     voucher_date?: moment.Moment | undefined;
+    voucher_date_start?: moment.Moment | undefined;
+    voucher_date_end?: moment.Moment | undefined;
     voucher_no?: string | undefined;
     customer_code?: string | undefined;
     customer_name?: string | undefined;
@@ -40321,6 +40337,8 @@ export class C15_M_ENTITY implements IC15_M_ENTITY {
     code?: string | undefined;
     voucher_code?: string | undefined;
     voucher_date?: moment.Moment | undefined;
+    voucher_date_start?: moment.Moment | undefined;
+    voucher_date_end?: moment.Moment | undefined;
     voucher_no?: string | undefined;
     customer_code?: string | undefined;
     customer_name?: string | undefined;
@@ -40358,6 +40376,8 @@ export class C15_M_ENTITY implements IC15_M_ENTITY {
             this.code = _data["code"];
             this.voucher_code = _data["voucher_code"];
             this.voucher_date = _data["voucher_date"] ? moment.parseZone(_data["voucher_date"].toString()) : <any>undefined;
+            this.voucher_date_start = _data["voucher_date_start"] ? moment.parseZone(_data["voucher_date_start"].toString()) : <any>undefined;
+            this.voucher_date_end = _data["voucher_date_end"] ? moment.parseZone(_data["voucher_date_end"].toString()) : <any>undefined;
             this.voucher_no = _data["voucher_no"];
             this.customer_code = _data["customer_code"];
             this.customer_name = _data["customer_name"];
@@ -40399,6 +40419,8 @@ export class C15_M_ENTITY implements IC15_M_ENTITY {
         data["code"] = this.code;
         data["voucher_code"] = this.voucher_code;
         data["voucher_date"] = this.voucher_date ? this.voucher_date.toISOString(true) : <any>undefined;
+        data["voucher_date_start"] = this.voucher_date_start ? this.voucher_date_start.toISOString(true) : <any>undefined;
+        data["voucher_date_end"] = this.voucher_date_end ? this.voucher_date_end.toISOString(true) : <any>undefined;
         data["voucher_no"] = this.voucher_no;
         data["customer_code"] = this.customer_code;
         data["customer_name"] = this.customer_name;
@@ -40440,6 +40462,8 @@ export interface IC15_M_ENTITY {
     code?: string | undefined;
     voucher_code?: string | undefined;
     voucher_date?: moment.Moment | undefined;
+    voucher_date_start?: moment.Moment | undefined;
+    voucher_date_end?: moment.Moment | undefined;
     voucher_no?: string | undefined;
     customer_code?: string | undefined;
     customer_name?: string | undefined;
@@ -40599,6 +40623,8 @@ export class C16_M_ENTITY implements IC16_M_ENTITY {
     code?: string | undefined;
     voucher_code?: string | undefined;
     voucher_date?: moment.Moment | undefined;
+    voucher_date_start?: moment.Moment | undefined;
+    voucher_date_end?: moment.Moment | undefined;
     voucher_no?: string | undefined;
     customer_code?: string | undefined;
     customer_name?: string | undefined;
@@ -40643,6 +40669,8 @@ export class C16_M_ENTITY implements IC16_M_ENTITY {
             this.code = _data["code"];
             this.voucher_code = _data["voucher_code"];
             this.voucher_date = _data["voucher_date"] ? moment.parseZone(_data["voucher_date"].toString()) : <any>undefined;
+            this.voucher_date_start = _data["voucher_date_start"] ? moment.parseZone(_data["voucher_date_start"].toString()) : <any>undefined;
+            this.voucher_date_end = _data["voucher_date_end"] ? moment.parseZone(_data["voucher_date_end"].toString()) : <any>undefined;
             this.voucher_no = _data["voucher_no"];
             this.customer_code = _data["customer_code"];
             this.customer_name = _data["customer_name"];
@@ -40695,6 +40723,8 @@ export class C16_M_ENTITY implements IC16_M_ENTITY {
         data["code"] = this.code;
         data["voucher_code"] = this.voucher_code;
         data["voucher_date"] = this.voucher_date ? this.voucher_date.toISOString(true) : <any>undefined;
+        data["voucher_date_start"] = this.voucher_date_start ? this.voucher_date_start.toISOString(true) : <any>undefined;
+        data["voucher_date_end"] = this.voucher_date_end ? this.voucher_date_end.toISOString(true) : <any>undefined;
         data["voucher_no"] = this.voucher_no;
         data["customer_code"] = this.customer_code;
         data["customer_name"] = this.customer_name;
@@ -40747,6 +40777,8 @@ export interface IC16_M_ENTITY {
     code?: string | undefined;
     voucher_code?: string | undefined;
     voucher_date?: moment.Moment | undefined;
+    voucher_date_start?: moment.Moment | undefined;
+    voucher_date_end?: moment.Moment | undefined;
     voucher_no?: string | undefined;
     customer_code?: string | undefined;
     customer_name?: string | undefined;
@@ -41300,6 +41332,7 @@ export class C51_M_ENTITY implements IC51_M_ENTITY {
     xml_vat_in?: string | undefined;
     goods_serial?: string | undefined;
     goods_symbol?: string | undefined;
+    is_tax?: boolean | undefined;
     accounting_vat_inputs?: Accounting_VAT_Input_ENTITY[] | undefined;
     c51_D?: C51_D_ENTITY[] | undefined;
 
@@ -41344,6 +41377,7 @@ export class C51_M_ENTITY implements IC51_M_ENTITY {
             this.xml_vat_in = _data["xml_vat_in"];
             this.goods_serial = _data["goods_serial"];
             this.goods_symbol = _data["goods_symbol"];
+            this.is_tax = _data["is_tax"];
             if (Array.isArray(_data["accounting_vat_inputs"])) {
                 this.accounting_vat_inputs = [] as any;
                 for (let item of _data["accounting_vat_inputs"])
@@ -41396,6 +41430,7 @@ export class C51_M_ENTITY implements IC51_M_ENTITY {
         data["xml_vat_in"] = this.xml_vat_in;
         data["goods_serial"] = this.goods_serial;
         data["goods_symbol"] = this.goods_symbol;
+        data["is_tax"] = this.is_tax;
         if (Array.isArray(this.accounting_vat_inputs)) {
             data["accounting_vat_inputs"] = [];
             for (let item of this.accounting_vat_inputs)
@@ -41448,6 +41483,7 @@ export interface IC51_M_ENTITY {
     xml_vat_in?: string | undefined;
     goods_serial?: string | undefined;
     goods_symbol?: string | undefined;
+    is_tax?: boolean | undefined;
     accounting_vat_inputs?: Accounting_VAT_Input_ENTITY[] | undefined;
     c51_D?: C51_D_ENTITY[] | undefined;
 }
@@ -59311,6 +59347,8 @@ export class S31_M_ENTITY implements IS31_M_ENTITY {
     voucher_code?: string | undefined;
     voucher_no?: string | undefined;
     voucher_date?: moment.Moment | undefined;
+    voucher_date_start?: moment.Moment | undefined;
+    voucher_date_end?: moment.Moment | undefined;
     invoice_date?: moment.Moment | undefined;
     invoice_no?: string | undefined;
     seri_no?: string | undefined;
@@ -59371,6 +59409,8 @@ export class S31_M_ENTITY implements IS31_M_ENTITY {
             this.voucher_code = _data["voucher_code"];
             this.voucher_no = _data["voucher_no"];
             this.voucher_date = _data["voucher_date"] ? moment.parseZone(_data["voucher_date"].toString()) : <any>undefined;
+            this.voucher_date_start = _data["voucher_date_start"] ? moment.parseZone(_data["voucher_date_start"].toString()) : <any>undefined;
+            this.voucher_date_end = _data["voucher_date_end"] ? moment.parseZone(_data["voucher_date_end"].toString()) : <any>undefined;
             this.invoice_date = _data["invoice_date"] ? moment.parseZone(_data["invoice_date"].toString()) : <any>undefined;
             this.invoice_no = _data["invoice_no"];
             this.seri_no = _data["seri_no"];
@@ -59439,6 +59479,8 @@ export class S31_M_ENTITY implements IS31_M_ENTITY {
         data["voucher_code"] = this.voucher_code;
         data["voucher_no"] = this.voucher_no;
         data["voucher_date"] = this.voucher_date ? this.voucher_date.toISOString(true) : <any>undefined;
+        data["voucher_date_start"] = this.voucher_date_start ? this.voucher_date_start.toISOString(true) : <any>undefined;
+        data["voucher_date_end"] = this.voucher_date_end ? this.voucher_date_end.toISOString(true) : <any>undefined;
         data["invoice_date"] = this.invoice_date ? this.invoice_date.toISOString(true) : <any>undefined;
         data["invoice_no"] = this.invoice_no;
         data["seri_no"] = this.seri_no;
@@ -59507,6 +59549,8 @@ export interface IS31_M_ENTITY {
     voucher_code?: string | undefined;
     voucher_no?: string | undefined;
     voucher_date?: moment.Moment | undefined;
+    voucher_date_start?: moment.Moment | undefined;
+    voucher_date_end?: moment.Moment | undefined;
     invoice_date?: moment.Moment | undefined;
     invoice_no?: string | undefined;
     seri_no?: string | undefined;
@@ -60089,6 +60133,8 @@ export class S32_M_ENTITY implements IS32_M_ENTITY {
     code?: string | undefined;
     voucher_code?: string | undefined;
     voucher_date?: moment.Moment | undefined;
+    voucher_date_start?: moment.Moment | undefined;
+    voucher_date_end?: moment.Moment | undefined;
     voucher_no?: string | undefined;
     invoice_no?: string | undefined;
     serial_no?: string | undefined;
@@ -60163,6 +60209,8 @@ export class S32_M_ENTITY implements IS32_M_ENTITY {
             this.code = _data["code"];
             this.voucher_code = _data["voucher_code"];
             this.voucher_date = _data["voucher_date"] ? moment.parseZone(_data["voucher_date"].toString()) : <any>undefined;
+            this.voucher_date_start = _data["voucher_date_start"] ? moment.parseZone(_data["voucher_date_start"].toString()) : <any>undefined;
+            this.voucher_date_end = _data["voucher_date_end"] ? moment.parseZone(_data["voucher_date_end"].toString()) : <any>undefined;
             this.voucher_no = _data["voucher_no"];
             this.invoice_no = _data["invoice_no"];
             this.serial_no = _data["serial_no"];
@@ -60253,6 +60301,8 @@ export class S32_M_ENTITY implements IS32_M_ENTITY {
         data["code"] = this.code;
         data["voucher_code"] = this.voucher_code;
         data["voucher_date"] = this.voucher_date ? this.voucher_date.toISOString(true) : <any>undefined;
+        data["voucher_date_start"] = this.voucher_date_start ? this.voucher_date_start.toISOString(true) : <any>undefined;
+        data["voucher_date_end"] = this.voucher_date_end ? this.voucher_date_end.toISOString(true) : <any>undefined;
         data["voucher_no"] = this.voucher_no;
         data["invoice_no"] = this.invoice_no;
         data["serial_no"] = this.serial_no;
@@ -60343,6 +60393,8 @@ export interface IS32_M_ENTITY {
     code?: string | undefined;
     voucher_code?: string | undefined;
     voucher_date?: moment.Moment | undefined;
+    voucher_date_start?: moment.Moment | undefined;
+    voucher_date_end?: moment.Moment | undefined;
     voucher_no?: string | undefined;
     invoice_no?: string | undefined;
     serial_no?: string | undefined;
@@ -60616,6 +60668,8 @@ export class S33_M_ENTITY implements IS33_M_ENTITY {
     voucher_code?: string | undefined;
     voucher_year?: number | undefined;
     voucher_date?: moment.Moment | undefined;
+    voucher_date_start?: moment.Moment | undefined;
+    voucher_date_end?: moment.Moment | undefined;
     voucher_no?: string | undefined;
     invoice_no?: string | undefined;
     series_no?: string | undefined;
@@ -60680,6 +60734,8 @@ export class S33_M_ENTITY implements IS33_M_ENTITY {
             this.voucher_code = _data["voucher_code"];
             this.voucher_year = _data["voucher_year"];
             this.voucher_date = _data["voucher_date"] ? moment.parseZone(_data["voucher_date"].toString()) : <any>undefined;
+            this.voucher_date_start = _data["voucher_date_start"] ? moment.parseZone(_data["voucher_date_start"].toString()) : <any>undefined;
+            this.voucher_date_end = _data["voucher_date_end"] ? moment.parseZone(_data["voucher_date_end"].toString()) : <any>undefined;
             this.voucher_no = _data["voucher_no"];
             this.invoice_no = _data["invoice_no"];
             this.series_no = _data["series_no"];
@@ -60752,6 +60808,8 @@ export class S33_M_ENTITY implements IS33_M_ENTITY {
         data["voucher_code"] = this.voucher_code;
         data["voucher_year"] = this.voucher_year;
         data["voucher_date"] = this.voucher_date ? this.voucher_date.toISOString(true) : <any>undefined;
+        data["voucher_date_start"] = this.voucher_date_start ? this.voucher_date_start.toISOString(true) : <any>undefined;
+        data["voucher_date_end"] = this.voucher_date_end ? this.voucher_date_end.toISOString(true) : <any>undefined;
         data["voucher_no"] = this.voucher_no;
         data["invoice_no"] = this.invoice_no;
         data["series_no"] = this.series_no;
@@ -60824,6 +60882,8 @@ export interface IS33_M_ENTITY {
     voucher_code?: string | undefined;
     voucher_year?: number | undefined;
     voucher_date?: moment.Moment | undefined;
+    voucher_date_start?: moment.Moment | undefined;
+    voucher_date_end?: moment.Moment | undefined;
     voucher_no?: string | undefined;
     invoice_no?: string | undefined;
     series_no?: string | undefined;
@@ -61032,6 +61092,8 @@ export class S34_M_ENTITY implements IS34_M_ENTITY {
     id?: number;
     code?: string | undefined;
     voucher_date?: moment.Moment | undefined;
+    voucher_date_start?: moment.Moment | undefined;
+    voucher_date_end?: moment.Moment | undefined;
     voucher_code?: string | undefined;
     voucher_no?: string | undefined;
     voucher_year?: number | undefined;
@@ -61074,6 +61136,8 @@ export class S34_M_ENTITY implements IS34_M_ENTITY {
             this.id = _data["id"];
             this.code = _data["code"];
             this.voucher_date = _data["voucher_date"] ? moment.parseZone(_data["voucher_date"].toString()) : <any>undefined;
+            this.voucher_date_start = _data["voucher_date_start"] ? moment.parseZone(_data["voucher_date_start"].toString()) : <any>undefined;
+            this.voucher_date_end = _data["voucher_date_end"] ? moment.parseZone(_data["voucher_date_end"].toString()) : <any>undefined;
             this.voucher_code = _data["voucher_code"];
             this.voucher_no = _data["voucher_no"];
             this.voucher_year = _data["voucher_year"];
@@ -61120,6 +61184,8 @@ export class S34_M_ENTITY implements IS34_M_ENTITY {
         data["id"] = this.id;
         data["code"] = this.code;
         data["voucher_date"] = this.voucher_date ? this.voucher_date.toISOString(true) : <any>undefined;
+        data["voucher_date_start"] = this.voucher_date_start ? this.voucher_date_start.toISOString(true) : <any>undefined;
+        data["voucher_date_end"] = this.voucher_date_end ? this.voucher_date_end.toISOString(true) : <any>undefined;
         data["voucher_code"] = this.voucher_code;
         data["voucher_no"] = this.voucher_no;
         data["voucher_year"] = this.voucher_year;
@@ -61166,6 +61232,8 @@ export interface IS34_M_ENTITY {
     id?: number;
     code?: string | undefined;
     voucher_date?: moment.Moment | undefined;
+    voucher_date_start?: moment.Moment | undefined;
+    voucher_date_end?: moment.Moment | undefined;
     voucher_code?: string | undefined;
     voucher_no?: string | undefined;
     voucher_year?: number | undefined;
@@ -70303,6 +70371,8 @@ export class I41_M_ENTITY implements II41_M_ENTITY {
     numerical_order?: number | undefined;
     voucher_code?: string | undefined;
     voucher_date?: moment.Moment | undefined;
+    voucher_date_start?: moment.Moment | undefined;
+    voucher_date_end?: moment.Moment | undefined;
     voucher_no?: string | undefined;
     customer_code?: string | undefined;
     customer_name?: string | undefined;
@@ -70345,6 +70415,8 @@ export class I41_M_ENTITY implements II41_M_ENTITY {
             this.numerical_order = _data["numerical_order"];
             this.voucher_code = _data["voucher_code"];
             this.voucher_date = _data["voucher_date"] ? moment.parseZone(_data["voucher_date"].toString()) : <any>undefined;
+            this.voucher_date_start = _data["voucher_date_start"] ? moment.parseZone(_data["voucher_date_start"].toString()) : <any>undefined;
+            this.voucher_date_end = _data["voucher_date_end"] ? moment.parseZone(_data["voucher_date_end"].toString()) : <any>undefined;
             this.voucher_no = _data["voucher_no"];
             this.customer_code = _data["customer_code"];
             this.customer_name = _data["customer_name"];
@@ -70391,6 +70463,8 @@ export class I41_M_ENTITY implements II41_M_ENTITY {
         data["numerical_order"] = this.numerical_order;
         data["voucher_code"] = this.voucher_code;
         data["voucher_date"] = this.voucher_date ? this.voucher_date.toISOString(true) : <any>undefined;
+        data["voucher_date_start"] = this.voucher_date_start ? this.voucher_date_start.toISOString(true) : <any>undefined;
+        data["voucher_date_end"] = this.voucher_date_end ? this.voucher_date_end.toISOString(true) : <any>undefined;
         data["voucher_no"] = this.voucher_no;
         data["customer_code"] = this.customer_code;
         data["customer_name"] = this.customer_name;
@@ -70437,6 +70511,8 @@ export interface II41_M_ENTITY {
     numerical_order?: number | undefined;
     voucher_code?: string | undefined;
     voucher_date?: moment.Moment | undefined;
+    voucher_date_start?: moment.Moment | undefined;
+    voucher_date_end?: moment.Moment | undefined;
     voucher_no?: string | undefined;
     customer_code?: string | undefined;
     customer_name?: string | undefined;
@@ -70648,6 +70724,8 @@ export class I42_M_ENTITY implements II42_M_ENTITY {
     company_code?: string | undefined;
     voucher_code?: string | undefined;
     voucher_date?: moment.Moment | undefined;
+    voucher_date_start?: moment.Moment | undefined;
+    voucher_date_end?: moment.Moment | undefined;
     voucher_no?: string | undefined;
     customer_code?: string | undefined;
     address?: string | undefined;
@@ -70696,6 +70774,8 @@ export class I42_M_ENTITY implements II42_M_ENTITY {
             this.company_code = _data["company_code"];
             this.voucher_code = _data["voucher_code"];
             this.voucher_date = _data["voucher_date"] ? moment.parseZone(_data["voucher_date"].toString()) : <any>undefined;
+            this.voucher_date_start = _data["voucher_date_start"] ? moment.parseZone(_data["voucher_date_start"].toString()) : <any>undefined;
+            this.voucher_date_end = _data["voucher_date_end"] ? moment.parseZone(_data["voucher_date_end"].toString()) : <any>undefined;
             this.voucher_no = _data["voucher_no"];
             this.customer_code = _data["customer_code"];
             this.address = _data["address"];
@@ -70752,6 +70832,8 @@ export class I42_M_ENTITY implements II42_M_ENTITY {
         data["company_code"] = this.company_code;
         data["voucher_code"] = this.voucher_code;
         data["voucher_date"] = this.voucher_date ? this.voucher_date.toISOString(true) : <any>undefined;
+        data["voucher_date_start"] = this.voucher_date_start ? this.voucher_date_start.toISOString(true) : <any>undefined;
+        data["voucher_date_end"] = this.voucher_date_end ? this.voucher_date_end.toISOString(true) : <any>undefined;
         data["voucher_no"] = this.voucher_no;
         data["customer_code"] = this.customer_code;
         data["address"] = this.address;
@@ -70808,6 +70890,8 @@ export interface II42_M_ENTITY {
     company_code?: string | undefined;
     voucher_code?: string | undefined;
     voucher_date?: moment.Moment | undefined;
+    voucher_date_start?: moment.Moment | undefined;
+    voucher_date_end?: moment.Moment | undefined;
     voucher_no?: string | undefined;
     customer_code?: string | undefined;
     address?: string | undefined;
@@ -71019,6 +71103,8 @@ export class I43_M_ENTITY implements II43_M_ENTITY {
     numerical_order?: number | undefined;
     voucher_code?: string | undefined;
     voucher_date?: moment.Moment | undefined;
+    voucher_date_start?: moment.Moment | undefined;
+    voucher_date_end?: moment.Moment | undefined;
     voucher_no?: string | undefined;
     customer_code?: string | undefined;
     address?: string | undefined;
@@ -71065,6 +71151,8 @@ export class I43_M_ENTITY implements II43_M_ENTITY {
             this.numerical_order = _data["numerical_order"];
             this.voucher_code = _data["voucher_code"];
             this.voucher_date = _data["voucher_date"] ? moment.parseZone(_data["voucher_date"].toString()) : <any>undefined;
+            this.voucher_date_start = _data["voucher_date_start"] ? moment.parseZone(_data["voucher_date_start"].toString()) : <any>undefined;
+            this.voucher_date_end = _data["voucher_date_end"] ? moment.parseZone(_data["voucher_date_end"].toString()) : <any>undefined;
             this.voucher_no = _data["voucher_no"];
             this.customer_code = _data["customer_code"];
             this.address = _data["address"];
@@ -71119,6 +71207,8 @@ export class I43_M_ENTITY implements II43_M_ENTITY {
         data["numerical_order"] = this.numerical_order;
         data["voucher_code"] = this.voucher_code;
         data["voucher_date"] = this.voucher_date ? this.voucher_date.toISOString(true) : <any>undefined;
+        data["voucher_date_start"] = this.voucher_date_start ? this.voucher_date_start.toISOString(true) : <any>undefined;
+        data["voucher_date_end"] = this.voucher_date_end ? this.voucher_date_end.toISOString(true) : <any>undefined;
         data["voucher_no"] = this.voucher_no;
         data["customer_code"] = this.customer_code;
         data["address"] = this.address;
@@ -71173,6 +71263,8 @@ export interface II43_M_ENTITY {
     numerical_order?: number | undefined;
     voucher_code?: string | undefined;
     voucher_date?: moment.Moment | undefined;
+    voucher_date_start?: moment.Moment | undefined;
+    voucher_date_end?: moment.Moment | undefined;
     voucher_no?: string | undefined;
     customer_code?: string | undefined;
     address?: string | undefined;
@@ -71377,6 +71469,8 @@ export class I44_M_ENTITY implements II44_M_ENTITY {
     id?: number;
     voucher_code?: string | undefined;
     voucher_date?: moment.Moment | undefined;
+    voucher_date_start?: moment.Moment | undefined;
+    voucher_date_end?: moment.Moment | undefined;
     voucher_no?: string | undefined;
     customer_code?: string | undefined;
     address?: string | undefined;
@@ -71425,6 +71519,8 @@ export class I44_M_ENTITY implements II44_M_ENTITY {
             this.id = _data["id"];
             this.voucher_code = _data["voucher_code"];
             this.voucher_date = _data["voucher_date"] ? moment.parseZone(_data["voucher_date"].toString()) : <any>undefined;
+            this.voucher_date_start = _data["voucher_date_start"] ? moment.parseZone(_data["voucher_date_start"].toString()) : <any>undefined;
+            this.voucher_date_end = _data["voucher_date_end"] ? moment.parseZone(_data["voucher_date_end"].toString()) : <any>undefined;
             this.voucher_no = _data["voucher_no"];
             this.customer_code = _data["customer_code"];
             this.address = _data["address"];
@@ -71477,6 +71573,8 @@ export class I44_M_ENTITY implements II44_M_ENTITY {
         data["id"] = this.id;
         data["voucher_code"] = this.voucher_code;
         data["voucher_date"] = this.voucher_date ? this.voucher_date.toISOString(true) : <any>undefined;
+        data["voucher_date_start"] = this.voucher_date_start ? this.voucher_date_start.toISOString(true) : <any>undefined;
+        data["voucher_date_end"] = this.voucher_date_end ? this.voucher_date_end.toISOString(true) : <any>undefined;
         data["voucher_no"] = this.voucher_no;
         data["customer_code"] = this.customer_code;
         data["address"] = this.address;
@@ -71529,6 +71627,8 @@ export interface II44_M_ENTITY {
     id?: number;
     voucher_code?: string | undefined;
     voucher_date?: moment.Moment | undefined;
+    voucher_date_start?: moment.Moment | undefined;
+    voucher_date_end?: moment.Moment | undefined;
     voucher_no?: string | undefined;
     customer_code?: string | undefined;
     address?: string | undefined;
@@ -71747,6 +71847,8 @@ export class I45_M_ENTITY implements II45_M_ENTITY {
     numerical_order?: number | undefined;
     voucher_code?: string | undefined;
     voucher_date?: moment.Moment | undefined;
+    voucher_date_start?: moment.Moment | undefined;
+    voucher_date_end?: moment.Moment | undefined;
     voucher_no?: string | undefined;
     customer_code?: string | undefined;
     customer_name?: string | undefined;
@@ -71789,6 +71891,8 @@ export class I45_M_ENTITY implements II45_M_ENTITY {
             this.numerical_order = _data["numerical_order"];
             this.voucher_code = _data["voucher_code"];
             this.voucher_date = _data["voucher_date"] ? moment.parseZone(_data["voucher_date"].toString()) : <any>undefined;
+            this.voucher_date_start = _data["voucher_date_start"] ? moment.parseZone(_data["voucher_date_start"].toString()) : <any>undefined;
+            this.voucher_date_end = _data["voucher_date_end"] ? moment.parseZone(_data["voucher_date_end"].toString()) : <any>undefined;
             this.voucher_no = _data["voucher_no"];
             this.customer_code = _data["customer_code"];
             this.customer_name = _data["customer_name"];
@@ -71835,6 +71939,8 @@ export class I45_M_ENTITY implements II45_M_ENTITY {
         data["numerical_order"] = this.numerical_order;
         data["voucher_code"] = this.voucher_code;
         data["voucher_date"] = this.voucher_date ? this.voucher_date.toISOString(true) : <any>undefined;
+        data["voucher_date_start"] = this.voucher_date_start ? this.voucher_date_start.toISOString(true) : <any>undefined;
+        data["voucher_date_end"] = this.voucher_date_end ? this.voucher_date_end.toISOString(true) : <any>undefined;
         data["voucher_no"] = this.voucher_no;
         data["customer_code"] = this.customer_code;
         data["customer_name"] = this.customer_name;
@@ -71881,6 +71987,8 @@ export interface II45_M_ENTITY {
     numerical_order?: number | undefined;
     voucher_code?: string | undefined;
     voucher_date?: moment.Moment | undefined;
+    voucher_date_start?: moment.Moment | undefined;
+    voucher_date_end?: moment.Moment | undefined;
     voucher_no?: string | undefined;
     customer_code?: string | undefined;
     customer_name?: string | undefined;
@@ -71913,6 +72021,8 @@ export class I45_Damaged_Tools_Equipment_ENTITY implements II45_Damaged_Tools_Eq
     company_code?: string | undefined;
     code?: string | undefined;
     voucher_date?: moment.Moment | undefined;
+    voucher_date_start?: moment.Moment | undefined;
+    voucher_date_end?: moment.Moment | undefined;
     voucher_no?: string | undefined;
     voucher_code?: string | undefined;
     voucher_year?: number | undefined;
@@ -71941,6 +72051,8 @@ export class I45_Damaged_Tools_Equipment_ENTITY implements II45_Damaged_Tools_Eq
             this.company_code = _data["company_code"];
             this.code = _data["code"];
             this.voucher_date = _data["voucher_date"] ? moment.parseZone(_data["voucher_date"].toString()) : <any>undefined;
+            this.voucher_date_start = _data["voucher_date_start"] ? moment.parseZone(_data["voucher_date_start"].toString()) : <any>undefined;
+            this.voucher_date_end = _data["voucher_date_end"] ? moment.parseZone(_data["voucher_date_end"].toString()) : <any>undefined;
             this.voucher_no = _data["voucher_no"];
             this.voucher_code = _data["voucher_code"];
             this.voucher_year = _data["voucher_year"];
@@ -71969,6 +72081,8 @@ export class I45_Damaged_Tools_Equipment_ENTITY implements II45_Damaged_Tools_Eq
         data["company_code"] = this.company_code;
         data["code"] = this.code;
         data["voucher_date"] = this.voucher_date ? this.voucher_date.toISOString(true) : <any>undefined;
+        data["voucher_date_start"] = this.voucher_date_start ? this.voucher_date_start.toISOString(true) : <any>undefined;
+        data["voucher_date_end"] = this.voucher_date_end ? this.voucher_date_end.toISOString(true) : <any>undefined;
         data["voucher_no"] = this.voucher_no;
         data["voucher_code"] = this.voucher_code;
         data["voucher_year"] = this.voucher_year;
@@ -71997,6 +72111,8 @@ export interface II45_Damaged_Tools_Equipment_ENTITY {
     company_code?: string | undefined;
     code?: string | undefined;
     voucher_date?: moment.Moment | undefined;
+    voucher_date_start?: moment.Moment | undefined;
+    voucher_date_end?: moment.Moment | undefined;
     voucher_no?: string | undefined;
     voucher_code?: string | undefined;
     voucher_year?: number | undefined;

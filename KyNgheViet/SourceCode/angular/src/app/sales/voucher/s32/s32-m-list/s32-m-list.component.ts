@@ -22,6 +22,9 @@ export class S32MListComponent extends LayoutComponentBase implements OnInit, IU
     private appSession: AppSession,
   ) { 
     super(injector);
+    const d = this.getStartEndDateInMonth();
+    this.filterInput.voucher_date_start = d.startDate;
+    this.filterInput.voucher_date_end = d.endDate;
     if(this.getRouteData('voucher_code') == this.getVoucherCodeByName('S32')){
       this.tbName = this.getRouteData('tbName');
       this.filterInput.voucher_code = this.getRouteData('voucher_code');

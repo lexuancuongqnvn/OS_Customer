@@ -28,6 +28,9 @@ export class P22MListComponent extends LayoutComponentBase implements OnInit, IU
     }else{
       this.filterInput.voucher_code = this.getVoucherCodeByName('P22');
     }
+    const d = this.getStartEndDateInMonth();
+    this.filterInput.voucher_date_start = d.startDate;
+    this.filterInput.voucher_date_end = d.endDate;
   }
 
   @ViewChild('DataGridGenRowTable') DataGridGenRowTable: DXDataGridViewComponent;

@@ -143,26 +143,30 @@ export class C11MEditComponent extends LayoutComponentBase implements OnInit, IU
     if(e){
       this.InputMaster.debitor_account = this.ProfessionSelected.account1;
       this.InputMaster.description = this.ProfessionSelected.notes;
+      this.UpdateEditV2();
     }
 
-    this.UpdateEditV2();
-    for(var i = 0 ; i < this.InputMaster.c11_d.length ; i ++){
-      this.InputMaster.c11_d[i].creditor_account = this.ProfessionSelected.balance_account1;
+    if(this.ProfessionSelected && this.ProfessionSelected.code){
+      for(var i = 0 ; i < this.InputMaster.c11_d.length ; i ++){
+        this.InputMaster.c11_d[i].creditor_account = this.ProfessionSelected.balance_account1;
+      }
+      this.onRefreshGrid = !this.onRefreshGrid;
     }
-    this.onRefreshGrid = !this.onRefreshGrid;
   }
   onSetCustomer(e:any=undefined){
     if(e){
       this.InputMaster.address = this.CustomerSelected.address;
       this.InputMaster.customer_name = this.CustomerSelected.name;
+      this.UpdateEditV2();
     }
-    
-    for(var i = 0 ; i < this.InputMaster.c11_d.length ; i ++){
-      this.InputMaster.c11_d[i].customer_code = this.CustomerSelected.code;
-      this.InputMaster.c11_d[i].customer_name = this.CustomerSelected.name;
-      this.InputMaster.c11_d[i].description =  this.CustomerSelected.address;
+    if(this.CustomerSelected && this.CustomerSelected.code){
+      for(var i = 0 ; i < this.InputMaster.c11_d.length ; i ++){
+        this.InputMaster.c11_d[i].customer_code = this.CustomerSelected.code;
+        this.InputMaster.c11_d[i].customer_name = this.CustomerSelected.name;
+        this.InputMaster.c11_d[i].description =  this.InputMaster.description;
+      }
+      this.onRefreshGrid = !this.onRefreshGrid;
     }
-    this.onRefreshGrid = !this.onRefreshGrid;
   }
   onClickAcction(id: number, storedName: string, param: string, keyService: string, classForm: string): void {
    

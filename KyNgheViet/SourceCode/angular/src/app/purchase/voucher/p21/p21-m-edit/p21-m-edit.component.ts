@@ -4,7 +4,7 @@ import { AppSession } from 'src/app/shared/app-session/app-session';
 import { FormEditV2Component } from 'src/app/shared/form/form-edit-v2/form-edit-v2.component';
 import { DialogAcctionComponent } from 'src/app/shared/layout/dialogs/acction/dialog-acction.component';
 import { LayoutComponentBase } from 'src/app/shared/layout/layoutBase';
-import { Accounting_VAT_Input_ENTITY, CAT_Tax_ENTITY, ERPCommonService, ERPCommon_ENTITY, P21_D_ENTITY, P21_M_ENTITY, PurchaseVoucherService, SalesVATService } from 'src/app/shared/service-proxies/api-shared';
+import { Accounting_VAT_Input_ENTITY, CAT_Profession_ENTITY, CAT_Tax_ENTITY, ERPCommonService, ERPCommon_ENTITY, P21_D_ENTITY, P21_M_ENTITY, PurchaseVoucherService, SalesVATService } from 'src/app/shared/service-proxies/api-shared';
 import { EditPageState } from 'src/app/shared/ultilities/enum/edit-page-state';
 import { IUiAction } from 'src/app/shared/ultilities/ui-action';
 
@@ -40,11 +40,15 @@ export class P21MEditComponent extends LayoutComponentBase implements OnInit, IU
   }
   @ViewChild('FromEditV2') fromEditV2: FormEditV2Component;
   @ViewChild('dialogDelete') dialogDelete: DialogAcctionComponent;
+  @ViewChild('dialogConfirmVAT') dialogConfirmVAT: DialogAcctionComponent;
+  @ViewChild('dialogreSetAccount') dialogreSetAccount: DialogAcctionComponent;
+
   tbName:string = 'P21_M';
   rowGridSelected:any = null;
   onRefreshGrid:boolean = false;
  
   InputMaster:P21_M_ENTITY=new P21_M_ENTITY();
+  ProfessionSelected:CAT_Profession_ENTITY=new CAT_Profession_ENTITY();
   editPageState:string = EditPageState.edit;
   cat_Taxs:CAT_Tax_ENTITY[] = [];
   cat_Tax:CAT_Tax_ENTITY = new CAT_Tax_ENTITY();
@@ -159,7 +163,30 @@ export class P21MEditComponent extends LayoutComponentBase implements OnInit, IU
     this.initCombobox();
   }
   handleValueChanged(event: any) {
-    if(event.dataField == 'tax_code'){
+    if(event.dataField == 'is_tax'){
+      if(this.InputMaster.code && this.InputMaster[event.dataField] != event.value){
+        this.InputMaster[event.dataField]= event.value;
+        this.dialogConfirmVAT.open()
+      } 
+      else {
+        this.InputMaster[event.dataField]= event.value;
+        this.onGenVATInput();
+      }
+    }
+    else if (event.dataField == 'invoice_no')
+    {
+      for(var i = 0 ; i < this.InputMaster.accounting_vat_inputs.length ; i ++){
+        this.InputMaster.accounting_vat_inputs[i].invoice_no = event.value
+      }
+      this.onRefreshGrid = !this.onRefreshGrid;
+    }
+    else if (event.dataField == 'seri_no')
+    {
+      for(var i = 0 ; i < this.InputMaster.accounting_vat_inputs.length ; i ++){
+        this.InputMaster.accounting_vat_inputs[i].series_no = event.value
+      }
+      this.onRefreshGrid = !this.onRefreshGrid;
+    }else if(event.dataField == 'tax_code'){
       this.cat_Tax = this.cat_Taxs.find(t=>t.code == event.value);
     }
     else if(event.dataField == 'p21_D' && this.InputMaster.p21_D){
@@ -171,49 +198,59 @@ export class P21MEditComponent extends LayoutComponentBase implements OnInit, IU
     this.caculateSumMoney();
     this.UpdateView();
   }
-  onGenVATInput(){
+  onUpdateAccount(e:any = undefined){
     for(var i = 0 ; i < this.InputMaster.p21_D.length ; i ++){
-      let p21D = this.InputMaster.p21_D[i];
-      let vatOutAuto = new Accounting_VAT_Input_ENTITY({
-          voucher_date:moment(this.InputMaster.voucher_date).utc(true),
-          invoice_date:moment(this.InputMaster.voucher_date).utc(true),
-          invoice_no:this.InputMaster.invoice_no,
-          series_no:this.InputMaster.seri_no,
-          customer_code:this.InputMaster.customer_code,
-          customer_name:this.InputMaster.customer_name,
-          address:this.InputMaster.address,
-          tax_account:this.InputMaster.tax_account,
-          tax_code:this.InputMaster.tax_code,
-          debitor_account:this.InputMaster.creditor_account,
-      })as Accounting_VAT_Input_ENTITY;
-      if(!this.InputMaster.accounting_vat_inputs) this.InputMaster.accounting_vat_inputs = [];
-      if(!this.InputMaster.accounting_vat_inputs[i]){
-        this.InputMaster.accounting_vat_inputs.push(new Accounting_VAT_Input_ENTITY({...vatOutAuto,code:this.newID}) as Accounting_VAT_Input_ENTITY)
-      }else{
-        let tax = this.cat_Taxs.find(t=>t.code == this.InputMaster.tax_code);
-        this.InputMaster.accounting_vat_inputs[i].voucher_date=moment(this.InputMaster.voucher_date).utc(true);
-        this.InputMaster.accounting_vat_inputs[i].invoice_date=moment(this.InputMaster.voucher_date).utc(true);
-        this.InputMaster.accounting_vat_inputs[i].invoice_no=this.InputMaster.invoice_no;
-        this.InputMaster.accounting_vat_inputs[i].series_no=this.InputMaster.seri_no;
-        this.InputMaster.accounting_vat_inputs[i].customer_code=this.InputMaster.customer_code;
-        this.InputMaster.accounting_vat_inputs[i].customer_name=this.InputMaster.customer_name;
-        this.InputMaster.accounting_vat_inputs[i].address=this.InputMaster.address;
-        this.InputMaster.accounting_vat_inputs[i].description=this.InputMaster.description;
-        //this.InputMaster.accounting_vat_inputs[i].goods_code=p21D.goods_code;
-        this.InputMaster.accounting_vat_inputs[i].quantity=1;
-        //this.InputMaster.accounting_vat_inputs[i].price=p21D.money_goods;
-        this.InputMaster.accounting_vat_inputs[i].tax_account=this.InputMaster.tax_account;
-        this.InputMaster.accounting_vat_inputs[i].tax_code=this.InputMaster.tax_code;
-        this.InputMaster.accounting_vat_inputs[i].debitor_account=this.InputMaster.creditor_account;
-        this.InputMaster.accounting_vat_inputs[i].total_money=p21D.arise;
-        this.InputMaster.accounting_vat_inputs[i].total_money_fc=p21D.arise_fc;
-        this.InputMaster.accounting_vat_inputs[i].tax_rate=tax.tax;
-        this.InputMaster.accounting_vat_inputs[i].tax =p21D.arise*(tax.tax/100);
-        this.InputMaster.accounting_vat_inputs[i].tax_fc =p21D.arise_fc * (tax.tax/100);
-      }
+      this.InputMaster.p21_D[i].debitor_account = this.ProfessionSelected.account1
     }
     this.onRefreshGrid = !this.onRefreshGrid;
   }
+  onGenVATInput(e:any = undefined){
+    if(this.InputMaster.is_tax){
+      for(var i = 0 ; i < this.InputMaster.p21_D.length ; i ++){
+        let p21D = this.InputMaster.p21_D[i];
+        let vatOutAuto = new Accounting_VAT_Input_ENTITY({
+            voucher_date:moment(this.InputMaster.voucher_date).utc(true),
+            invoice_date:moment(this.InputMaster.voucher_date).utc(true),
+            invoice_no:this.InputMaster.invoice_no,
+            series_no:this.InputMaster.seri_no,
+            customer_code:this.InputMaster.customer_code,
+            customer_name:this.InputMaster.customer_name,
+            address:this.InputMaster.address,
+            tax_account:this.InputMaster.tax_account,
+            tax_code:this.InputMaster.tax_code,
+            debitor_account:this.InputMaster.creditor_account,
+        })as Accounting_VAT_Input_ENTITY;
+        if(!this.InputMaster.accounting_vat_inputs) this.InputMaster.accounting_vat_inputs = [];
+        if(!this.InputMaster.accounting_vat_inputs[i]){
+          this.InputMaster.accounting_vat_inputs.push(new Accounting_VAT_Input_ENTITY({...vatOutAuto,code:this.newID}) as Accounting_VAT_Input_ENTITY)
+        }else{
+          let tax = this.cat_Taxs.find(t=>t.code == this.InputMaster.tax_code);
+          this.InputMaster.accounting_vat_inputs[i].voucher_date=moment(this.InputMaster.voucher_date).utc(true);
+          this.InputMaster.accounting_vat_inputs[i].invoice_date=moment(this.InputMaster.voucher_date).utc(true);
+          this.InputMaster.accounting_vat_inputs[i].invoice_no=this.InputMaster.invoice_no;
+          this.InputMaster.accounting_vat_inputs[i].series_no=this.InputMaster.seri_no;
+          this.InputMaster.accounting_vat_inputs[i].customer_code=this.InputMaster.customer_code;
+          this.InputMaster.accounting_vat_inputs[i].customer_name=this.InputMaster.customer_name;
+          this.InputMaster.accounting_vat_inputs[i].address=this.InputMaster.address;
+          this.InputMaster.accounting_vat_inputs[i].description=this.InputMaster.description;
+          //this.InputMaster.accounting_vat_inputs[i].goods_code=p21D.goods_code;
+          this.InputMaster.accounting_vat_inputs[i].quantity=1;
+          //this.InputMaster.accounting_vat_inputs[i].price=p21D.money_goods;
+          this.InputMaster.accounting_vat_inputs[i].tax_account=this.InputMaster.tax_account;
+          this.InputMaster.accounting_vat_inputs[i].tax_code=this.InputMaster.tax_code;
+          this.InputMaster.accounting_vat_inputs[i].debitor_account=this.InputMaster.creditor_account;
+          this.InputMaster.accounting_vat_inputs[i].total_money=p21D.arise;
+          this.InputMaster.accounting_vat_inputs[i].total_money_fc=p21D.arise_fc;
+          this.InputMaster.accounting_vat_inputs[i].tax_rate=tax.tax;
+          this.InputMaster.accounting_vat_inputs[i].tax =p21D.arise*(tax.tax/100);
+          this.InputMaster.accounting_vat_inputs[i].tax_fc =p21D.arise_fc * (tax.tax/100);
+        }
+      }
+    }else  this.InputMaster.accounting_vat_inputs = [];
+   
+    this.onRefreshGrid = !this.onRefreshGrid;
+  }
+
   async caculateSumMoney(){
     if (this.InputMaster.exchange_rate == 1){
       try{
@@ -259,6 +296,10 @@ export class P21MEditComponent extends LayoutComponentBase implements OnInit, IU
     this.rowGridSelected = event;
   }
   async HandleRowsDataGridOutput(event: any) {
+    if (event.dataField == 'profession_code') {
+      this.ProfessionSelected =  event.value[0];
+      if(this.InputMaster.p21_D && this.InputMaster.p21_D.length > 0) this.dialogreSetAccount.open();
+    }
     if(this.editPageState !== EditPageState.add) return;
     try{ if (event.dataField == 'customer_code')
       {

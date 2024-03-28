@@ -1,2 +1,4 @@
 <dialog-acction #dialogDelete [content]="'Bạn có chắc chắn muốn xóa? \n /Are you sure you want to delete?'" [title]="'Vui lòng xác nhận \n / Confirm'" (confirmOutput)="onDelete($event)"></dialog-acction>
-<form-edit-v2 (selectedRowsDataOutput)="onSelectedRowsDataOutput($event)" [tbName]="tbName" (onClickAcctionOutput)="onClickAcctionResponse($event)" [InputMaster]="InputMaster" (HandleValueChangedOutput)="handleValueChanged($event)" (HandleRowsDataGridOutput)="HandleRowsDataGridOutput($event)"></form-edit-v2>
+<dialog-acction #dialogreSetAccount [content]="translate('Cập nhật tài khoản cho chi tiết phiếu?','Update account for voucher details?')" [title]="translate('Vui lòng xác nhận','Confirm ')" (confirmOutput)="updateAccount('OK')"></dialog-acction>
+<form-edit-v2 (selectedRowsDataOutput)="onSelectedRowsDataOutput($event)" [tbName]="tbName" (onClickAcctionOutput)="onClickAcctionResponse($event)" [InputMaster]="InputMaster" (HandleValueChangedOutput)="handleValueChanged($event)" (HandleRowsDataGridOutput)="HandleRowsDataGridOutput($event)"
+    (onRefreshGridOutput)="onRefreshGridOutput($event)" [onRefreshGrid]="onRefreshGrid"></form-edit-v2>

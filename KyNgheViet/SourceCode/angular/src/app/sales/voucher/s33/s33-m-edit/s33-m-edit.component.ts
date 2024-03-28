@@ -48,6 +48,7 @@ export class S33MEditComponent extends LayoutComponentBase implements OnInit, IU
   }
   @ViewChild('FromEditV2') fromEditV2: FormEditV2Component;
   @ViewChild('dialogDelete') dialogDelete: DialogAcctionComponent;
+  @ViewChild('dialogConfirmVAT') dialogConfirmVAT: DialogAcctionComponent;
   @Input() rowSelected: any = '';
   tbName:string = 'S33_M';
   rowGridSelected:any = null;
@@ -172,9 +173,45 @@ export class S33MEditComponent extends LayoutComponentBase implements OnInit, IU
     }
   }
   handleValueChanged(event: any) {
+    if(event.dataField == 'is_tax'){
+      if(this.InputMaster.code && this.InputMaster[event.dataField] != event.value){
+        this.InputMaster[event.dataField]= event.value;
+        this.dialogConfirmVAT.open()
+      } 
+      else {
+        this.InputMaster[event.dataField]= event.value;
+        this.updateVATOUT();
+      }
+    }
+    this.InputMaster[event.dataField]= event.value;
     if(event.dataField == 'tax_code'){
       this.cat_Tax = this.cat_Taxs.find(t=>t.code == event.value);
+    }
+    else if (event.dataField == 'invoice_no')
+    {
+      for(var i = 0 ; i < this.InputMaster.accounting_VAT_Outputs.length ; i ++){
+        this.InputMaster.accounting_VAT_Outputs[i].invoice_no = event.value
+      }
+      this.onRefreshGrid = !this.onRefreshGrid;
+    }
+    else if (event.dataField == 'series_no')
+    {
+      for(var i = 0 ; i < this.InputMaster.accounting_VAT_Outputs.length ; i ++){
+        this.InputMaster.accounting_VAT_Outputs[i].series_no = event.value
+      }
+      this.onRefreshGrid = !this.onRefreshGrid;
+    }else if(event.dataField == 'tax_code'){
+      this.cat_Tax = this.cat_Taxs.find(t=>t.code == event.value);
     }else if(event.dataField == 's33_D' && this.InputMaster.s33_D){
+      this.updateVATOUT();
+    }
+
+    this.InputMaster[event.dataField]= event.value;
+    this.caculateSumMoney();
+    this.UpdateView();
+  }
+  updateVATOUT(e:any = undefined){
+    if(this.InputMaster.is_tax){
       for(var i = 0 ; i < this.InputMaster.s33_D.length ; i ++){
         let s33D = this.InputMaster.s33_D[i];
         let vatOutAuto = new Accounting_VAT_Output_ENTITY({
@@ -195,32 +232,31 @@ export class S33MEditComponent extends LayoutComponentBase implements OnInit, IU
         if(!this.InputMaster.accounting_VAT_Outputs[i]){
           this.InputMaster.accounting_VAT_Outputs.push(new Accounting_VAT_Output_ENTITY({...vatOutAuto,code:this.newID}) as Accounting_VAT_Output_ENTITY)
         }else{
-          // let tax = this.cat_Taxs.find(t=>t.code == this.InputMaster.tax_code);
-          // this.InputMaster.accounting_VAT_Outputs[i].voucher_date=this.InputMaster.voucher_date;
-          // this.InputMaster.accounting_VAT_Outputs[i].invoice_date=this.InputMaster.voucher_date;
-          // this.InputMaster.accounting_VAT_Outputs[i].invoice_no=this.InputMaster.invoice_no;
-          // this.InputMaster.accounting_VAT_Outputs[i].series_no=this.InputMaster.series_no;
-          // this.InputMaster.accounting_VAT_Outputs[i].customer_code=this.InputMaster.customer_code;
-          // this.InputMaster.accounting_VAT_Outputs[i].customer_name=this.InputMaster.customer_name;
-          // this.InputMaster.accounting_VAT_Outputs[i].address=this.InputMaster.address;
-          // this.InputMaster.accounting_VAT_Outputs[i].goods_code=s33D.goods_code;
-          // this.InputMaster.accounting_VAT_Outputs[i].notes=s33D.goods_name;
-          // this.InputMaster.accounting_VAT_Outputs[i].tax_account=this.InputMaster.tax_account;
-          // this.InputMaster.accounting_VAT_Outputs[i].tax_code=this.InputMaster.tax_code;
-          // this.InputMaster.accounting_VAT_Outputs[i].debitor_account=this.InputMaster.creditor_account;
-          // this.InputMaster.accounting_VAT_Outputs[i].total_money=-s33D.arise;
-          // this.InputMaster.accounting_VAT_Outputs[i].total_money_fc=-s33D.arise_fc;
-          // this.InputMaster.accounting_VAT_Outputs[i].tax_rate=tax.tax;
-          // this.InputMaster.accounting_VAT_Outputs[i].tax =-s33D.arise*(tax.tax/100);
-          // this.InputMaster.accounting_VAT_Outputs[i].tax_fc =-s33D.arise_fc * (tax.tax/100);
+          let tax = this.cat_Taxs.find(t=>t.code == this.InputMaster.tax_code);
+          this.InputMaster.accounting_VAT_Outputs[i].voucher_date=this.InputMaster.voucher_date;
+          this.InputMaster.accounting_VAT_Outputs[i].invoice_date=this.InputMaster.voucher_date;
+          this.InputMaster.accounting_VAT_Outputs[i].invoice_no=this.InputMaster.invoice_no;
+          this.InputMaster.accounting_VAT_Outputs[i].series_no=this.InputMaster.series_no;
+          this.InputMaster.accounting_VAT_Outputs[i].customer_code=this.InputMaster.customer_code;
+          this.InputMaster.accounting_VAT_Outputs[i].customer_name=this.InputMaster.customer_name;
+          this.InputMaster.accounting_VAT_Outputs[i].address=this.InputMaster.address;
+          this.InputMaster.accounting_VAT_Outputs[i].goods_code=s33D.goods_code;
+          this.InputMaster.accounting_VAT_Outputs[i].notes=s33D.goods_name;
+          this.InputMaster.accounting_VAT_Outputs[i].tax_account=this.InputMaster.tax_account;
+          this.InputMaster.accounting_VAT_Outputs[i].tax_code=this.InputMaster.tax_code;
+          this.InputMaster.accounting_VAT_Outputs[i].debitor_account=this.InputMaster.creditor_account;
+          this.InputMaster.accounting_VAT_Outputs[i].total_money=-s33D.arise;
+          this.InputMaster.accounting_VAT_Outputs[i].total_money_fc=-s33D.arise_fc;
+          this.InputMaster.accounting_VAT_Outputs[i].tax_rate=tax.tax;
+          this.InputMaster.accounting_VAT_Outputs[i].tax =-s33D.arise*(tax.tax/100);
+          this.InputMaster.accounting_VAT_Outputs[i].tax_fc =-s33D.arise_fc * (tax.tax/100);
         }
       }
       this.onRefreshGrid = !this.onRefreshGrid;
+    }else {
+      this.InputMaster.accounting_VAT_Outputs = [];
+      this.onRefreshGrid = !this.onRefreshGrid;
     }
-
-    this.InputMaster[event.dataField]= event.value;
-    this.caculateSumMoney();
-    this.UpdateView();
   }
   onRefreshGridOutput(event: any) {
     this.onRefreshGrid = event;

@@ -4,7 +4,7 @@ import { AppSession } from 'src/app/shared/app-session/app-session';
 import { FormEditV2Component } from 'src/app/shared/form/form-edit-v2/form-edit-v2.component';
 import { DialogAcctionComponent } from 'src/app/shared/layout/dialogs/acction/dialog-acction.component';
 import { LayoutComponentBase } from 'src/app/shared/layout/layoutBase';
-import { Accounting_VAT_Input_ENTITY, C51_D_ENTITY, C51_M_ENTITY, CAT_Tax_ENTITY, ConsolidationVoucherService, ERPCommonService, ERPCommon_ENTITY, SalesVATService } from 'src/app/shared/service-proxies/api-shared';
+import { Accounting_VAT_Input_ENTITY, C51_D_ENTITY, C51_M_ENTITY, CAT_Profession_ENTITY, CAT_Tax_ENTITY, ConsolidationVoucherService, ERPCommonService, ERPCommon_ENTITY, SalesVATService } from 'src/app/shared/service-proxies/api-shared';
 import { EditPageState } from 'src/app/shared/ultilities/enum/edit-page-state';
 import { IUiAction } from 'src/app/shared/ultilities/ui-action';
 
@@ -40,6 +40,9 @@ export class AccountingVoucherEditComponent extends LayoutComponentBase implemen
   }
   @ViewChild('FromEditV2') fromEditV2: FormEditV2Component;
   @ViewChild('dialogDelete') dialogDelete: DialogAcctionComponent;
+  @ViewChild('dialogConfirmAccount') dialogConfirmAccount: DialogAcctionComponent;
+  @ViewChild('dialogConfirmVAT') dialogConfirmVAT: DialogAcctionComponent;
+
   tbName:string = 'C51_M';
   rowGridSelected:any = null;
   onRefreshGrid:boolean = false;
@@ -48,6 +51,7 @@ export class AccountingVoucherEditComponent extends LayoutComponentBase implemen
   editPageState:string = EditPageState.edit;
   cat_Taxs:CAT_Tax_ENTITY[] = [];
   cat_Tax:CAT_Tax_ENTITY = new CAT_Tax_ENTITY();
+  ProfessionSelected:CAT_Profession_ENTITY=new CAT_Profession_ENTITY();
   onAdd(): void {
     throw new Error('Method not implemented.');
   }
@@ -158,11 +162,36 @@ export class AccountingVoucherEditComponent extends LayoutComponentBase implemen
   ngOnInit(): void {
     this.initCombobox();
   }
+  updateAccount(e:any = undefined){
+    for(var i = 0 ; i < this.InputMaster.c51_D.length ; i ++){
+      this.InputMaster.c51_D[i].debitor_account = this.ProfessionSelected.account1;
+      this.InputMaster.c51_D[i].creditor_account = this.ProfessionSelected.balance_account1;
+    }
+    this.onRefreshGrid = !this.onRefreshGrid;
+  }
   handleValueChanged(event: any) {
-    if(event.dataField == 'tax_code'){
+    if(event.dataField == 'is_tax'){
+      if(this.InputMaster.code && this.InputMaster[event.dataField] != event.value){
+        this.InputMaster[event.dataField]= event.value;
+        this.dialogConfirmVAT.open()
+      } 
+      else {
+        this.InputMaster[event.dataField]= event.value;
+        this.onUpdatVAT();
+      }
+    } else if(event.dataField == 'tax_code'){
       this.cat_Tax = this.cat_Taxs.find(t=>t.code == event.value);
     }
     else if(event.dataField == 'c51_D' && this.InputMaster.c51_D){
+      this.onUpdatVAT()
+    }
+    this.InputMaster[event.dataField]= event.value;
+
+    this.caculateSumMoney();
+    this.UpdateView();
+  }
+  onUpdatVAT(e:any = undefined){
+    if(this.InputMaster.is_tax){
       for(var i = 0 ; i < this.InputMaster.c51_D.length ; i ++){
         let s33D = this.InputMaster.c51_D[i];
         let vatOutAuto = new Accounting_VAT_Input_ENTITY({
@@ -204,12 +233,8 @@ export class AccountingVoucherEditComponent extends LayoutComponentBase implemen
           // this.InputMaster.accounting_vat_inputs[i].tax_fc =s33D.arise_fc * (tax.tax/100);
         }
       }
-      this.onRefreshGrid = !this.onRefreshGrid;
-    }
-    this.InputMaster[event.dataField]= event.value;
-
-    this.caculateSumMoney();
-    this.UpdateView();
+    } else  this.InputMaster.accounting_vat_inputs = [];
+    this.onRefreshGrid = !this.onRefreshGrid;
   }
   async caculateSumMoney(){
     try{
@@ -228,7 +253,7 @@ export class AccountingVoucherEditComponent extends LayoutComponentBase implemen
     this.rowGridSelected = event;
   }
   HandleRowsDataGridInput(event: any) {
-   
+  
     
     this.UpdateView();
   }
@@ -236,6 +261,16 @@ export class AccountingVoucherEditComponent extends LayoutComponentBase implemen
     this.rowGridSelected = event;
   }
   HandleRowsDataGridOutput(event: any) {
+    if(event.dataField == 'profession_code'){
+      this.ProfessionSelected = event.value[0];
+      if(this.InputMaster.code && this.InputMaster.profession_code != event.value){
+        this.dialogConfirmAccount.open()
+      } 
+      else {
+        this.onUpdatVAT();
+      }
+    }
+
     if(this.editPageState !== EditPageState.add) return;
     try{ if (event.dataField == 'customer_code')
       {

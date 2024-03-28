@@ -25,6 +25,9 @@ export class I45MListComponent extends LayoutComponentBase implements OnInit, IU
     //this.filterInput.voucher_date = this.getFullVoucherDate;
     this.filterInput.voucher_code = this.getRouteData('voucher_code');
     this.appSession.setVoucherCode(this.filterInput.voucher_code);
+    const d = this.getStartEndDateInMonth();
+    this.filterInput.voucher_date_start = d.startDate;
+    this.filterInput.voucher_date_end = d.endDate;
   }
 
   @ViewChild('DataGridGenRowTable') DataGridGenRowTable: DXDataGridViewComponent;

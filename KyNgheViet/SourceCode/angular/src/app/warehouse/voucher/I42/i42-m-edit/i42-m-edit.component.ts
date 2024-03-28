@@ -3,7 +3,7 @@ import moment from 'moment';
 import { AppSession } from 'src/app/shared/app-session/app-session';
 import { DialogAcctionComponent } from 'src/app/shared/layout/dialogs/acction/dialog-acction.component';
 import { LayoutComponentBase } from 'src/app/shared/layout/layoutBase';
-import { ERPCommonService, ERPCommon_ENTITY, I42_D_ENTITY, I42_M_ENTITY, WarehouseService, WMSVoucherService, CAT_Goods_Configuration_ENTITY } from 'src/app/shared/service-proxies/api-shared';
+import { ERPCommonService, ERPCommon_ENTITY, I42_D_ENTITY, I42_M_ENTITY, WarehouseService, WMSVoucherService, CAT_Goods_Configuration_ENTITY, CAT_Profession_ENTITY } from 'src/app/shared/service-proxies/api-shared';
 import { EditPageState } from 'src/app/shared/ultilities/enum/edit-page-state';
 import { IUiAction } from 'src/app/shared/ultilities/ui-action';
 
@@ -48,9 +48,12 @@ export class I42MEditComponent extends LayoutComponentBase implements OnInit, IU
   }
   tbName:string = 'I42_M';
   rowGridSelected:any = null;
+  onRefreshGrid:boolean = false;
   @ViewChild('dialogDelete') dialogDelete: DialogAcctionComponent;
+  @ViewChild('dialogreSetAccount') dialogreSetAccount: DialogAcctionComponent;
   @Input() rowSelected: any = '';
   InputMaster:I42_M_ENTITY=new I42_M_ENTITY();
+  ProfessionSelected:CAT_Profession_ENTITY=new CAT_Profession_ENTITY();
   editPageState:string = EditPageState.edit;
   onAdd(): void {
     throw new Error('Method not implemented.');
@@ -167,8 +170,17 @@ export class I42MEditComponent extends LayoutComponentBase implements OnInit, IU
   }
   handleValueChanged(event: any) {
     this.InputMaster[event.dataField]= event.value;
+    if(event.dataField == 'i42_D' && this.InputMaster.i42_D){
+      this.updateAccount();
+    }
     this.caculateSumMoney();
     this.UpdateView();
+  }
+  updateAccount(e:any = undefined){
+    for(var i = 0 ; i < this.InputMaster.i42_D.length ; i ++){
+      this.InputMaster.i42_D[i].creditor_account = this.ProfessionSelected.balance_account1;
+    }
+    this.onRefreshGrid = !this.onRefreshGrid;
   }
   async caculateSumMoney(){
     try{
@@ -180,7 +192,14 @@ export class I42MEditComponent extends LayoutComponentBase implements OnInit, IU
   onSelectedRowsDataOutput(event: any) {
     this.rowGridSelected = event;
   }
+  onRefreshGridOutput(event: any) {
+    this.onRefreshGrid = event;
+  }
   HandleRowsDataGridOutput(event: any) {
+    if (event.dataField == 'profession_code') {
+      this.ProfessionSelected =  event.value[0];
+      if(this.InputMaster.i42_D && this.InputMaster.i42_D.length > 0) this.dialogreSetAccount.open();
+    }
     if(this.editPageState !== EditPageState.add) return;
     try{
       if (event.dataField == 'customer_code')

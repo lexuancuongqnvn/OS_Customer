@@ -4,7 +4,7 @@ import { AppSession } from 'src/app/shared/app-session/app-session';
 import { FormEditV2Component } from 'src/app/shared/form/form-edit-v2/form-edit-v2.component';
 import { DialogAcctionComponent } from 'src/app/shared/layout/dialogs/acction/dialog-acction.component';
 import { LayoutComponentBase } from 'src/app/shared/layout/layoutBase';
-import { ERPCommonService, ERPCommon_ENTITY, I44_D_ENTITY, I44_M_ENTITY, WarehouseService, WMSVoucherService } from 'src/app/shared/service-proxies/api-shared';
+import { ERPCommonService, ERPCommon_ENTITY, I44_D_ENTITY, I44_M_ENTITY, WarehouseService, WMSVoucherService, CAT_Profession_ENTITY } from 'src/app/shared/service-proxies/api-shared';
 import { EditPageState } from 'src/app/shared/ultilities/enum/edit-page-state';
 import { IUiAction } from 'src/app/shared/ultilities/ui-action';
 
@@ -48,11 +48,14 @@ export class I44MEditComponent  extends LayoutComponentBase implements OnInit, I
   }
   @ViewChild('FromEditV2') fromEditV2: FormEditV2Component;
   @ViewChild('dialogDelete') dialogDelete: DialogAcctionComponent;
+  @ViewChild('dialogreSetAccount') dialogreSetAccount: DialogAcctionComponent;
   @Input() rowSelected: any = '';
   tbName:string = 'I44_M';
   rowGridSelected:any = null;
+  onRefreshGrid:boolean = false;
  
   InputMaster:I44_M_ENTITY=new I44_M_ENTITY();
+  ProfessionSelected:CAT_Profession_ENTITY=new CAT_Profession_ENTITY();
   editPageState:string = EditPageState.edit;
   onAdd(): void {
     throw new Error('Method not implemented.');
@@ -160,6 +163,9 @@ export class I44MEditComponent  extends LayoutComponentBase implements OnInit, I
   }
   handleValueChanged(event: any) {
     this.InputMaster[event.dataField]= event.value;
+    if(event.dataField == 'i44_D' && this.InputMaster.i44_D){
+      this.updateAccount();
+    }
     this.caculateSumMoney();
     this.UpdateView();
   }
@@ -173,8 +179,17 @@ export class I44MEditComponent  extends LayoutComponentBase implements OnInit, I
   onSelectedRowsDataOutput(event: any) {
     this.rowGridSelected = event;
   }
+  updateAccount(e:any = undefined){
+    for(var i = 0 ; i < this.InputMaster.i44_D.length ; i ++){
+      this.InputMaster.i44_D[i].debitor_account = this.ProfessionSelected.account1;
+    }
+    this.onRefreshGrid = !this.onRefreshGrid;
+  }
   HandleRowsDataGridOutput(event: any) {
-    if(this.editPageState !== EditPageState.add) return;
+    if (event.dataField == 'profession_code') {
+      this.ProfessionSelected =  event.value[0];
+      if(this.InputMaster.i44_D && this.InputMaster.i44_D.length > 0) this.dialogreSetAccount.open();
+    }
     if(this.editPageState !== EditPageState.add) return;
     try{
       if (event.dataField == 'customer_code')
@@ -198,6 +213,9 @@ export class I44MEditComponent  extends LayoutComponentBase implements OnInit, I
       if(res.status != 0) this.showMessageError(res.message);
       else this.InputMaster.voucher_no = res.result;
     })
+  }
+  onRefreshGridOutput(event: any) {
+    this.onRefreshGrid = event;
   }
   onLoadData(){
     this.wMSVoucherService.i44_M_Search(new I44_M_ENTITY({

@@ -4,7 +4,7 @@ import { AppSession } from 'src/app/shared/app-session/app-session';
 import { FormEditV2Component } from 'src/app/shared/form/form-edit-v2/form-edit-v2.component';
 import { DialogAcctionComponent } from 'src/app/shared/layout/dialogs/acction/dialog-acction.component';
 import { LayoutComponentBase } from 'src/app/shared/layout/layoutBase';
-import { ERPCommonService, ERPCommon_ENTITY, I41_D_ENTITY, I41_M_ENTITY, WarehouseService, WMSVoucherService } from 'src/app/shared/service-proxies/api-shared';
+import { ERPCommonService, ERPCommon_ENTITY, I41_D_ENTITY, I41_M_ENTITY, WarehouseService, WMSVoucherService, CAT_Profession_ENTITY } from 'src/app/shared/service-proxies/api-shared';
 import { EditPageState } from 'src/app/shared/ultilities/enum/edit-page-state';
 import { IUiAction } from 'src/app/shared/ultilities/ui-action';
 
@@ -40,10 +40,12 @@ export class I41MEditComponent extends LayoutComponentBase implements OnInit, IU
   }
   @ViewChild('FromEditV2') fromEditV2: FormEditV2Component;
   @ViewChild('dialogDelete') dialogDelete: DialogAcctionComponent;
+  @ViewChild('dialogreSetAccount') dialogreSetAccount: DialogAcctionComponent;
   tbName:string = 'I41_M';
   rowGridSelected:any = null;
- 
+  onRefreshGrid:boolean = false;
   InputMaster:I41_M_ENTITY=new I41_M_ENTITY();
+  ProfessionSelected:CAT_Profession_ENTITY=new CAT_Profession_ENTITY();
   editPageState:string = EditPageState.edit;
   onAdd(): void {
     throw new Error('Method not implemented.');
@@ -144,6 +146,9 @@ export class I41MEditComponent extends LayoutComponentBase implements OnInit, IU
   }
   handleValueChanged(event: any) {
     this.InputMaster[event.dataField]= event.value;
+    if(event.dataField == 'i41_D' && this.InputMaster.i41_D){
+      this.updateAccount();
+    }
     this.caculateSumMoney();
     this.UpdateView();
   }
@@ -158,6 +163,10 @@ export class I41MEditComponent extends LayoutComponentBase implements OnInit, IU
     this.rowGridSelected = event;
   }
   HandleRowsDataGridOutput(event: any) {
+    if (event.dataField == 'profession_code') {
+      this.ProfessionSelected =  event.value[0];
+      if(this.InputMaster.i41_D && this.InputMaster.i41_D.length > 0) this.dialogreSetAccount.open();
+    }
     if(this.editPageState !== EditPageState.add) return;
     try{
       if (event.dataField == 'customer_code')
@@ -171,6 +180,15 @@ export class I41MEditComponent extends LayoutComponentBase implements OnInit, IU
         this.InputMaster['exchange_rate'] = event.value[0].exchange_rate;
     }catch{}
     this.UpdateEditV2();
+  }
+  updateAccount(e:any = undefined){
+    for(var i = 0 ; i < this.InputMaster.i41_D.length ; i ++){
+      this.InputMaster.i41_D[i].creditor_account = this.ProfessionSelected.balance_account1;
+    }
+    this.onRefreshGrid = !this.onRefreshGrid;
+  }
+  onRefreshGridOutput(event: any) {
+    this.onRefreshGrid = event;
   }
   onGetVoucherNo(){
     this.eRPCommonService.eRP_Common_Generate_Voucher_No(new ERPCommon_ENTITY({
