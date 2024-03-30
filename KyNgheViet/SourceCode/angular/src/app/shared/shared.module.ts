@@ -107,7 +107,8 @@ import { DxBulletModule, DxButtonModule, DxContextMenuModule, DxDataGridModule, 
     DxSliderModule,
     DxPopupModule,
     DxGanttModule,
-    DxDropDownButtonModule, } from 'devextreme-angular';
+    DxDropDownButtonModule,
+    DxTreeListModule, } from 'devextreme-angular';
 import { DXDataGridViewComponent } from './dx-data-grid/dx-data-grid-view/dx-data-grid-view.component';
 import { DxDataGridEditComponent } from './dx-data-grid/dx-data-grid-edit/dx-data-grid-edit/dx-data-grid-edit.component';
 import { Service1 } from './dx-data-grid/dx-data-grid-edit/dx-data-grid-edit/dx-data-grid-edit.service';
@@ -122,6 +123,7 @@ import { DialogFormComponent } from './layout/dialogs/form/dialog-from.component
 import { FormEditV2ForPopupComponent } from './form/form-edit-v2-for-popup/form-edit-v2-for-popup.component';
 import { DialogPreviewPrintComponent } from './layout/dialogs/dialog-preview-print/dialog-preview-print.component';
 import { DxDataGridViewReportFilterComponent } from './dx-data-grid/dx-data-grid-view-report-filter/dx-data-grid-view-report-filter.component';
+import { TreeListReportComponent } from './dx-tree-list/tree-list-report/tree-list-report.component';
 
 const drawerRoutes = [
     { path: 'login', component: LoginComponent },
@@ -207,7 +209,8 @@ const drawerRoutes = [
         CardCarouselComponent,
         FormEditV2ForPopupComponent,
         DialogPreviewPrintComponent,
-        DxDataGridViewReportFilterComponent
+        DxDataGridViewReportFilterComponent,
+        TreeListReportComponent
     ],
     imports: [
         BrowserModule,
@@ -265,6 +268,7 @@ const drawerRoutes = [
         DxPopupModule,
         DxGanttModule,
         DxDropDownButtonModule,
+        DxTreeListModule
     ],
     exports: [
         FormViewComponent,
@@ -316,7 +320,8 @@ const drawerRoutes = [
         CardCarouselComponent,
         FormEditV2ForPopupComponent,
         DialogPreviewPrintComponent,
-        DxDataGridViewReportFilterComponent
+        DxDataGridViewReportFilterComponent,
+        TreeListReportComponent
     ],
     providers: [
         {

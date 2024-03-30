@@ -301,6 +301,7 @@ export class P22MEditComponent extends LayoutComponentBase implements OnInit, IU
     this.rowGridSelected = event;
   }
   HandleRowsDataGridOutput(event: any) {
+  
     if(this.editPageState !== EditPageState.add) return;
     try{ if (event.dataField == 'customer_code')
       {

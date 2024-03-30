@@ -1,37 +1,38 @@
 import { Component, Injector, OnInit, ViewChild } from '@angular/core';
 import { AppSession } from 'src/app/shared/app-session/app-session';
 import { DXDataGridViewComponent } from 'src/app/shared/dx-data-grid/dx-data-grid-view/dx-data-grid-view.component';
+import { TreeListReportComponent } from 'src/app/shared/dx-tree-list/tree-list-report/tree-list-report.component';
 import { LayoutComponentBase } from 'src/app/shared/layout/layoutBase';
 import { ToolbarComponent } from 'src/app/shared/layout/toolbar/toolbar.component';
-import { CASH_Bank_Deposit_Ledger_ENTITY, CashReportService } from 'src/app/shared/service-proxies/api-shared';
+import { CON_Statement_Of_Cash_Flows_Report_ENTITY, CashReportService, ConsolidationReportService } from 'src/app/shared/service-proxies/api-shared';
 import { EditPageState } from 'src/app/shared/ultilities/enum/edit-page-state';
 import { IUiAction } from 'src/app/shared/ultilities/ui-action';
 
 @Component({
-  selector: 'app-bank-deposit-ledger',
-  templateUrl: './bank-deposit-ledger.component.html',
-  styleUrls: ['./bank-deposit-ledger.component.css']
+  selector: 'app-statement-of-cash-flows',
+  templateUrl: './statement-of-cash-flows.component.html',
+  styleUrls: ['./statement-of-cash-flows.component.css']
 })
-export class BankDepositLedgerComponent extends LayoutComponentBase implements OnInit, IUiAction<any> {
+export class StatementOfCashFlowsComponent extends LayoutComponentBase implements OnInit, IUiAction<any> {
 
   constructor(
     injector: Injector,
-    private cashReportService: CashReportService,
+    private consolidationReportService: ConsolidationReportService,
     private appSession: AppSession,
   ) { 
     super(injector);
     this.tbName = this.getRouteData('tbName');
     const d = this.getStartEndDateInMonth();
-    this.filterInput.voucher_date_start = d.startDate;
-    this.filterInput.voucher_date_end = d.endDate;
-    this.filterInput.account ='112';
+    // this.filterInput.voucher_date_start = d.startDate;
+    // this.filterInput.voucher_date_end = d.endDate;
+    
   }
 
-  @ViewChild('DataGridGenRowTable') DataGridGenRowTable: DXDataGridViewComponent;
+  @ViewChild('DataGridGenRowTable') DataGridGenRowTable: TreeListReportComponent;
   @ViewChild('toolbar') toolbar: ToolbarComponent;
-  filterInput:CASH_Bank_Deposit_Ledger_ENTITY=new CASH_Bank_Deposit_Ledger_ENTITY();
-  rowSelected:CASH_Bank_Deposit_Ledger_ENTITY=new CASH_Bank_Deposit_Ledger_ENTITY();
-  listData:CASH_Bank_Deposit_Ledger_ENTITY[]=[];
+  filterInput:CON_Statement_Of_Cash_Flows_Report_ENTITY=new CON_Statement_Of_Cash_Flows_Report_ENTITY();
+  rowSelected:CON_Statement_Of_Cash_Flows_Report_ENTITY=new CON_Statement_Of_Cash_Flows_Report_ENTITY();
+  listData:CON_Statement_Of_Cash_Flows_Report_ENTITY[]=[];
   tbName:string = '';
   CurrenFrom:string = EditPageState.view;
 
@@ -62,11 +63,11 @@ export class BankDepositLedgerComponent extends LayoutComponentBase implements O
   onClickAcction(id: number, storedName: string, param: string, keyService: string, classForm: string): void {
     switch(classForm){
       case EditPageState.add:{
-        this.navigatePassParam('warehouse/opening-balance-input-output-inventory-add',[['code',this.idSelect]],new CASH_Bank_Deposit_Ledger_ENTITY({}),this.tbName)
+        this.navigatePassParam('warehouse/opening-balance-input-output-inventory-add',[['code',this.idSelect]],new CON_Statement_Of_Cash_Flows_Report_ENTITY({}),this.tbName)
         break;
       }
       case EditPageState.edit:{
-        this.navigatePassParam('warehouse/opening-balance-input-output-inventory-edit',[['code',this.idSelect]],new CASH_Bank_Deposit_Ledger_ENTITY({}),this.tbName)
+        this.navigatePassParam('warehouse/opening-balance-input-output-inventory-edit',[['code',this.idSelect]],new CON_Statement_Of_Cash_Flows_Report_ENTITY({}),this.tbName)
         break;
       }
       case EditPageState.save:{
@@ -115,9 +116,9 @@ export class BankDepositLedgerComponent extends LayoutComponentBase implements O
       }, 50);
   }
   onLoadData(){
-    this.cashReportService.cASH_Bank_Deposit_Ledger_Search({
+    this.consolidationReportService.cON_Statement_Of_Cash_Flows_Report_Search({
       ...this.filterInput
-    } as CASH_Bank_Deposit_Ledger_ENTITY).subscribe((res:CASH_Bank_Deposit_Ledger_ENTITY[])=>{
+    } as CON_Statement_Of_Cash_Flows_Report_ENTITY).subscribe((res:CON_Statement_Of_Cash_Flows_Report_ENTITY[])=>{
       this.listData = res;
       this.DataGridGenRowTable.setDataSource(res);
       this.UpdateView();

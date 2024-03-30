@@ -20,8 +20,7 @@ import { FileSelectModule } from '@progress/kendo-angular-upload';
 import { CookieModule, CookieService } from 'ngx-cookie';
 import { NavigationModule } from '@progress/kendo-angular-navigation';
 import { DialogModule, WindowModule } from '@progress/kendo-angular-dialog';
-import { AcctionService, API_BASE_URL, ERPCommonService, OBWMSService, ToolService, WarehouseService, WMSCategoryService, WMSReportService, WMSVoucherService,CashCategoryService, ConsolidationVoucherService, ConsolidationCategoryService } from 'src/app/shared/service-proxies/api-shared';
-import { HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { AcctionService, API_BASE_URL, ERPCommonService, OBWMSService, ToolService, WarehouseService, WMSCategoryService, WMSReportService, WMSVoucherService,CashCategoryService, ConsolidationVoucherService, ConsolidationCategoryService, ConsolidationReportService } from 'src/app/shared/service-proxies/api-shared';
 import { DxDataGridModule } from 'devextreme-angular';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { ShareModule } from 'src/app/shared/shared.module';
@@ -36,7 +35,7 @@ import { ProfessionListComponent } from './category/profession/profession-list/p
 import { ProfessionEditComponent } from './category/profession/profession-edit/profession-edit.component';
 import { CarryForwardListComponent } from './category/carry-forward/carry-forward-list/carry-forward-list.component';
 import { CarryForwardEditComponent } from './category/carry-forward/carry-forward-edit/carry-forward-edit.component';
-
+import { StatementOfCashFlowsComponent } from './report/statement-of-cash-flows/statement-of-cash-flows.component';
 
 const drawerRoutes = [
     { path: 'accounting-voucher', component: AccountingVoucherListComponent, data: {editPageState: EditPageState.view ,tbName:'C51_M',voucher_code:'PKT'} },
@@ -58,6 +57,8 @@ const drawerRoutes = [
     { path: 'con/carry-forward-add', component: CarryForwardEditComponent, data: {editPageState: EditPageState.add ,tbName:'CAT_Carry_Forward' } },
     { path: 'con/carry-forward-edit', component: CarryForwardEditComponent, data: {editPageState: EditPageState.edit ,tbName:'CAT_Carry_Forward' } },
     { path: 'con/carry-forward-view-detail', component: CarryForwardEditComponent, data: {editPageState: EditPageState.viewDetail ,tbName:'CAT_Carry_Forward' } },
+    
+    { path: 'con/statement-of-cash-flows', component: StatementOfCashFlowsComponent, data: {editPageState: EditPageState.viewDetail ,tbName:'CON_Statement_Of_Cash_Flows_Report' } },
 
 ]
 @NgModule({
@@ -69,7 +70,8 @@ const drawerRoutes = [
         ProfessionListComponent,
         ProfessionEditComponent,
         CarryForwardListComponent,
-        CarryForwardEditComponent
+        CarryForwardEditComponent,
+        StatementOfCashFlowsComponent
     ],
     imports: [
         BrowserModule,
@@ -122,7 +124,8 @@ const drawerRoutes = [
         WMSReportService,
         CashCategoryService,
         ConsolidationVoucherService,
-        ConsolidationCategoryService
+        ConsolidationCategoryService,
+        ConsolidationReportService
     ],
     bootstrap: [AppComponent]
 })
