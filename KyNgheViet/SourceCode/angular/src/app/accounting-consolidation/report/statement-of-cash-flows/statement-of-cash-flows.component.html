@@ -3,3 +3,24 @@
     <alert-message #alertMessage></alert-message>
     <osoft-tree-list-report #DataGridGenRowTable [tableName]="tbName" [dataFilter]="filterInput" (OnChangeDataFilter)="OnChangeDataFilter($event)" [dataSource]="listData" (selectedRowsDataOutput)="onSelectedRowsData($event)" (OnSelectRow)="selectRow($event)"></osoft-tree-list-report>
 </form>
+<dialog-acction #dialogConsolidationByAAccount [width]="w" [content]="" 
+[title]="translate('Tổng hợp chữ T 1 tài khoản','Consolidation L by a account ')" 
+(confirmOutput)="onDelete($event)">
+<div>
+    <dx-button
+      class="search"
+      icon="search"
+      text="Tìm kiếm"
+      (onClick)="onLoadDataConsolidationByAAccount()"
+    >
+    </dx-button>
+    <dx-button
+    class="doc"
+    icon="doc"
+    text="Xem chi tiết"
+    (onClick)="onViewDetail($event)"
+  >
+  </dx-button>
+  </div>
+    <consolidation-by-a-account #FormConsolidationByAAccount></consolidation-by-a-account>
+</dialog-acction>

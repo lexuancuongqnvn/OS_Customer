@@ -21,7 +21,7 @@ import { CookieModule, CookieService } from 'ngx-cookie';
 import { NavigationModule } from '@progress/kendo-angular-navigation';
 import { DialogModule, WindowModule } from '@progress/kendo-angular-dialog';
 import { AcctionService, API_BASE_URL, ERPCommonService, OBWMSService, ToolService, WarehouseService, WMSCategoryService, WMSReportService, WMSVoucherService,CashCategoryService, ConsolidationVoucherService, ConsolidationCategoryService, ConsolidationReportService } from 'src/app/shared/service-proxies/api-shared';
-import { DxDataGridModule } from 'devextreme-angular';
+import { DxButtonModule, DxDataGridModule } from 'devextreme-angular';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { ShareModule } from 'src/app/shared/shared.module';
 import { AppConsts } from 'src/app/app-consts.component';
@@ -36,6 +36,8 @@ import { ProfessionEditComponent } from './category/profession/profession-edit/p
 import { CarryForwardListComponent } from './category/carry-forward/carry-forward-list/carry-forward-list.component';
 import { CarryForwardEditComponent } from './category/carry-forward/carry-forward-edit/carry-forward-edit.component';
 import { StatementOfCashFlowsComponent } from './report/statement-of-cash-flows/statement-of-cash-flows.component';
+import { ConsolidationByAAccountComponent } from './report/consolidation-by-a-account/consolidation-by-a-account.component';
+import { ConsolidationAccountDetailComponent } from './report/consolidation-account-detail/consolidation-account-detail.component';
 
 const drawerRoutes = [
     { path: 'accounting-voucher', component: AccountingVoucherListComponent, data: {editPageState: EditPageState.view ,tbName:'C51_M',voucher_code:'PKT'} },
@@ -59,6 +61,8 @@ const drawerRoutes = [
     { path: 'con/carry-forward-view-detail', component: CarryForwardEditComponent, data: {editPageState: EditPageState.viewDetail ,tbName:'CAT_Carry_Forward' } },
     
     { path: 'con/statement-of-cash-flows', component: StatementOfCashFlowsComponent, data: {editPageState: EditPageState.viewDetail ,tbName:'CON_Statement_Of_Cash_Flows_Report' } },
+    { path: 'con/consolidation-by-a-account', component: ConsolidationByAAccountComponent, data: {editPageState: EditPageState.viewDetail ,tbName:'CON_Account_Consolidation_By_A_Account' } },
+    { path: 'con/consolidation-account-detail', component: ConsolidationAccountDetailComponent, data: {editPageState: EditPageState.viewDetail ,tbName:'CON_Account_Book_Detail' } },
 
 ]
 @NgModule({
@@ -71,7 +75,9 @@ const drawerRoutes = [
         ProfessionEditComponent,
         CarryForwardListComponent,
         CarryForwardEditComponent,
-        StatementOfCashFlowsComponent
+        StatementOfCashFlowsComponent,
+        ConsolidationByAAccountComponent,
+        ConsolidationAccountDetailComponent
     ],
     imports: [
         BrowserModule,
@@ -102,8 +108,11 @@ const drawerRoutes = [
         DialogModule,
         ShareModule,
         DxDataGridModule,
+        DxButtonModule
     ],
     exports: [
+        ConsolidationByAAccountComponent,
+        ConsolidationAccountDetailComponent
     ],
     providers: [
         {

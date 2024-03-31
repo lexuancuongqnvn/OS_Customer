@@ -4766,6 +4766,136 @@ export class ConsolidationReportService extends ApiBase {
         }
         return _observableOf<CON_Statement_Of_Cash_Flows_Report_ENTITY[]>(null as any);
     }
+
+    /**
+     * @param body (optional) 
+     * @return Success
+     */
+    cON_Account_Consolidation_By_A_Account_Search(body: CON_Account_Consolidation_By_A_Account_ENTITY | undefined): Observable<CON_Account_Consolidation_By_A_Account_ENTITY[]> {
+        let url_ = this.baseUrl + "/api/ConsolidationReport/CON_Account_Consolidation_By_A_Account_Search";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                "Accept": "text/plain"
+            })
+        };
+
+        return _observableFrom(this.transformOptions(options_)).pipe(_observableMergeMap(transformedOptions_ => {
+            return this.http.request("post", url_, transformedOptions_);
+        })).pipe(_observableMergeMap((response_: any) => {
+            return this.processCON_Account_Consolidation_By_A_Account_Search(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processCON_Account_Consolidation_By_A_Account_Search(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<CON_Account_Consolidation_By_A_Account_ENTITY[]>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<CON_Account_Consolidation_By_A_Account_ENTITY[]>;
+        }));
+    }
+
+    protected processCON_Account_Consolidation_By_A_Account_Search(response: HttpResponseBase): Observable<CON_Account_Consolidation_By_A_Account_ENTITY[]> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200.push(CON_Account_Consolidation_By_A_Account_ENTITY.fromJS(item));
+            }
+            else {
+                result200 = <any>null;
+            }
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<CON_Account_Consolidation_By_A_Account_ENTITY[]>(null as any);
+    }
+
+    /**
+     * @param body (optional) 
+     * @return Success
+     */
+    cON_Account_Book_Detail_Search(body: CON_Account_Book_Detail_ENTITY | undefined): Observable<CON_Account_Book_Detail_ENTITY[]> {
+        let url_ = this.baseUrl + "/api/ConsolidationReport/CON_Account_Book_Detail_Search";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                "Accept": "text/plain"
+            })
+        };
+
+        return _observableFrom(this.transformOptions(options_)).pipe(_observableMergeMap(transformedOptions_ => {
+            return this.http.request("post", url_, transformedOptions_);
+        })).pipe(_observableMergeMap((response_: any) => {
+            return this.processCON_Account_Book_Detail_Search(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processCON_Account_Book_Detail_Search(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<CON_Account_Book_Detail_ENTITY[]>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<CON_Account_Book_Detail_ENTITY[]>;
+        }));
+    }
+
+    protected processCON_Account_Book_Detail_Search(response: HttpResponseBase): Observable<CON_Account_Book_Detail_ENTITY[]> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200.push(CON_Account_Book_Detail_ENTITY.fromJS(item));
+            }
+            else {
+                result200 = <any>null;
+            }
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<CON_Account_Book_Detail_ENTITY[]>(null as any);
+    }
 }
 
 @Injectable()
@@ -41256,6 +41386,9 @@ export class CON_Statement_Of_Cash_Flows_Report_ENTITY implements ICON_Statement
     company_code?: string | undefined;
     date_add?: moment.Moment | undefined;
     date_modified?: moment.Moment | undefined;
+    voucher_date?: moment.Moment | undefined;
+    voucher_date_start?: moment.Moment | undefined;
+    voucher_date_end?: moment.Moment | undefined;
     account_code_add?: string | undefined;
     account_code_modified?: string | undefined;
 
@@ -41289,6 +41422,9 @@ export class CON_Statement_Of_Cash_Flows_Report_ENTITY implements ICON_Statement
             this.company_code = _data["company_code"];
             this.date_add = _data["date_add"] ? moment.parseZone(_data["date_add"].toString()) : <any>undefined;
             this.date_modified = _data["date_modified"] ? moment.parseZone(_data["date_modified"].toString()) : <any>undefined;
+            this.voucher_date = _data["voucher_date"] ? moment.parseZone(_data["voucher_date"].toString()) : <any>undefined;
+            this.voucher_date_start = _data["voucher_date_start"] ? moment.parseZone(_data["voucher_date_start"].toString()) : <any>undefined;
+            this.voucher_date_end = _data["voucher_date_end"] ? moment.parseZone(_data["voucher_date_end"].toString()) : <any>undefined;
             this.account_code_add = _data["account_code_add"];
             this.account_code_modified = _data["account_code_modified"];
         }
@@ -41322,6 +41458,9 @@ export class CON_Statement_Of_Cash_Flows_Report_ENTITY implements ICON_Statement
         data["company_code"] = this.company_code;
         data["date_add"] = this.date_add ? this.date_add.toISOString(true) : <any>undefined;
         data["date_modified"] = this.date_modified ? this.date_modified.toISOString(true) : <any>undefined;
+        data["voucher_date"] = this.voucher_date ? this.voucher_date.toISOString(true) : <any>undefined;
+        data["voucher_date_start"] = this.voucher_date_start ? this.voucher_date_start.toISOString(true) : <any>undefined;
+        data["voucher_date_end"] = this.voucher_date_end ? this.voucher_date_end.toISOString(true) : <any>undefined;
         data["account_code_add"] = this.account_code_add;
         data["account_code_modified"] = this.account_code_modified;
         return data;
@@ -41350,6 +41489,251 @@ export interface ICON_Statement_Of_Cash_Flows_Report_ENTITY {
     id?: number;
     language_id?: number | undefined;
     voucher_code?: string | undefined;
+    voucher_year?: number | undefined;
+    code?: string | undefined;
+    company_code?: string | undefined;
+    date_add?: moment.Moment | undefined;
+    date_modified?: moment.Moment | undefined;
+    voucher_date?: moment.Moment | undefined;
+    voucher_date_start?: moment.Moment | undefined;
+    voucher_date_end?: moment.Moment | undefined;
+    account_code_add?: string | undefined;
+    account_code_modified?: string | undefined;
+}
+
+export class CON_Account_Consolidation_By_A_Account_ENTITY implements ICON_Account_Consolidation_By_A_Account_ENTITY {
+    debitor_account?: string | undefined;
+    account_name?: string | undefined;
+    arise_debit?: number | undefined;
+    arise_credit?: number | undefined;
+    id?: number;
+    language_id?: number | undefined;
+    voucher_code?: string | undefined;
+    voucher_year?: number | undefined;
+    code?: string | undefined;
+    company_code?: string | undefined;
+    date_add?: moment.Moment | undefined;
+    date_modified?: moment.Moment | undefined;
+    voucher_date?: moment.Moment | undefined;
+    voucher_date_start?: moment.Moment | undefined;
+    voucher_date_end?: moment.Moment | undefined;
+    account?: string | undefined;
+    account_code_add?: string | undefined;
+    account_code_modified?: string | undefined;
+
+    constructor(data?: ICON_Account_Consolidation_By_A_Account_ENTITY) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.debitor_account = _data["debitor_account"];
+            this.account_name = _data["account_name"];
+            this.arise_debit = _data["arise_debit"];
+            this.arise_credit = _data["arise_credit"];
+            this.id = _data["id"];
+            this.language_id = _data["language_id"];
+            this.voucher_code = _data["voucher_code"];
+            this.voucher_year = _data["voucher_year"];
+            this.code = _data["code"];
+            this.company_code = _data["company_code"];
+            this.date_add = _data["date_add"] ? moment.parseZone(_data["date_add"].toString()) : <any>undefined;
+            this.date_modified = _data["date_modified"] ? moment.parseZone(_data["date_modified"].toString()) : <any>undefined;
+            this.voucher_date = _data["voucher_date"] ? moment.parseZone(_data["voucher_date"].toString()) : <any>undefined;
+            this.voucher_date_start = _data["voucher_date_start"] ? moment.parseZone(_data["voucher_date_start"].toString()) : <any>undefined;
+            this.voucher_date_end = _data["voucher_date_end"] ? moment.parseZone(_data["voucher_date_end"].toString()) : <any>undefined;
+            this.account = _data["account"];
+            this.account_code_add = _data["account_code_add"];
+            this.account_code_modified = _data["account_code_modified"];
+        }
+    }
+
+    static fromJS(data: any): CON_Account_Consolidation_By_A_Account_ENTITY {
+        data = typeof data === 'object' ? data : {};
+        let result = new CON_Account_Consolidation_By_A_Account_ENTITY();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["debitor_account"] = this.debitor_account;
+        data["account_name"] = this.account_name;
+        data["arise_debit"] = this.arise_debit;
+        data["arise_credit"] = this.arise_credit;
+        data["id"] = this.id;
+        data["language_id"] = this.language_id;
+        data["voucher_code"] = this.voucher_code;
+        data["voucher_year"] = this.voucher_year;
+        data["code"] = this.code;
+        data["company_code"] = this.company_code;
+        data["date_add"] = this.date_add ? this.date_add.toISOString(true) : <any>undefined;
+        data["date_modified"] = this.date_modified ? this.date_modified.toISOString(true) : <any>undefined;
+        data["voucher_date"] = this.voucher_date ? this.voucher_date.toISOString(true) : <any>undefined;
+        data["voucher_date_start"] = this.voucher_date_start ? this.voucher_date_start.toISOString(true) : <any>undefined;
+        data["voucher_date_end"] = this.voucher_date_end ? this.voucher_date_end.toISOString(true) : <any>undefined;
+        data["account"] = this.account;
+        data["account_code_add"] = this.account_code_add;
+        data["account_code_modified"] = this.account_code_modified;
+        return data;
+    }
+
+    clone(): CON_Account_Consolidation_By_A_Account_ENTITY {
+        const json = this.toJSON();
+        let result = new CON_Account_Consolidation_By_A_Account_ENTITY();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface ICON_Account_Consolidation_By_A_Account_ENTITY {
+    debitor_account?: string | undefined;
+    account_name?: string | undefined;
+    arise_debit?: number | undefined;
+    arise_credit?: number | undefined;
+    id?: number;
+    language_id?: number | undefined;
+    voucher_code?: string | undefined;
+    voucher_year?: number | undefined;
+    code?: string | undefined;
+    company_code?: string | undefined;
+    date_add?: moment.Moment | undefined;
+    date_modified?: moment.Moment | undefined;
+    voucher_date?: moment.Moment | undefined;
+    voucher_date_start?: moment.Moment | undefined;
+    voucher_date_end?: moment.Moment | undefined;
+    account?: string | undefined;
+    account_code_add?: string | undefined;
+    account_code_modified?: string | undefined;
+}
+
+export class CON_Account_Book_Detail_ENTITY implements ICON_Account_Book_Detail_ENTITY {
+    voucher_date?: moment.Moment | undefined;
+    voucher_date_start?: moment.Moment | undefined;
+    voucher_date_end?: moment.Moment | undefined;
+    voucher_master_code?: string | undefined;
+    voucher_code?: string | undefined;
+    voucher_no?: string | undefined;
+    notes?: string | undefined;
+    account?: string | undefined;
+    debitor_account?: string | undefined;
+    arise_debit?: number | undefined;
+    arise_credit?: number | undefined;
+    customer_code?: string | undefined;
+    customer_name?: string | undefined;
+    stt?: number;
+    id?: number;
+    language_id?: number | undefined;
+    voucher_year?: number | undefined;
+    code?: string | undefined;
+    company_code?: string | undefined;
+    date_add?: moment.Moment | undefined;
+    date_modified?: moment.Moment | undefined;
+    account_code_add?: string | undefined;
+    account_code_modified?: string | undefined;
+
+    constructor(data?: ICON_Account_Book_Detail_ENTITY) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.voucher_date = _data["voucher_date"] ? moment.parseZone(_data["voucher_date"].toString()) : <any>undefined;
+            this.voucher_date_start = _data["voucher_date_start"] ? moment.parseZone(_data["voucher_date_start"].toString()) : <any>undefined;
+            this.voucher_date_end = _data["voucher_date_end"] ? moment.parseZone(_data["voucher_date_end"].toString()) : <any>undefined;
+            this.voucher_master_code = _data["voucher_master_code"];
+            this.voucher_code = _data["voucher_code"];
+            this.voucher_no = _data["voucher_no"];
+            this.notes = _data["notes"];
+            this.account = _data["account"];
+            this.debitor_account = _data["debitor_account"];
+            this.arise_debit = _data["arise_debit"];
+            this.arise_credit = _data["arise_credit"];
+            this.customer_code = _data["customer_code"];
+            this.customer_name = _data["customer_name"];
+            this.stt = _data["stt"];
+            this.id = _data["id"];
+            this.language_id = _data["language_id"];
+            this.voucher_year = _data["voucher_year"];
+            this.code = _data["code"];
+            this.company_code = _data["company_code"];
+            this.date_add = _data["date_add"] ? moment.parseZone(_data["date_add"].toString()) : <any>undefined;
+            this.date_modified = _data["date_modified"] ? moment.parseZone(_data["date_modified"].toString()) : <any>undefined;
+            this.account_code_add = _data["account_code_add"];
+            this.account_code_modified = _data["account_code_modified"];
+        }
+    }
+
+    static fromJS(data: any): CON_Account_Book_Detail_ENTITY {
+        data = typeof data === 'object' ? data : {};
+        let result = new CON_Account_Book_Detail_ENTITY();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["voucher_date"] = this.voucher_date ? this.voucher_date.toISOString(true) : <any>undefined;
+        data["voucher_date_start"] = this.voucher_date_start ? this.voucher_date_start.toISOString(true) : <any>undefined;
+        data["voucher_date_end"] = this.voucher_date_end ? this.voucher_date_end.toISOString(true) : <any>undefined;
+        data["voucher_master_code"] = this.voucher_master_code;
+        data["voucher_code"] = this.voucher_code;
+        data["voucher_no"] = this.voucher_no;
+        data["notes"] = this.notes;
+        data["account"] = this.account;
+        data["debitor_account"] = this.debitor_account;
+        data["arise_debit"] = this.arise_debit;
+        data["arise_credit"] = this.arise_credit;
+        data["customer_code"] = this.customer_code;
+        data["customer_name"] = this.customer_name;
+        data["stt"] = this.stt;
+        data["id"] = this.id;
+        data["language_id"] = this.language_id;
+        data["voucher_year"] = this.voucher_year;
+        data["code"] = this.code;
+        data["company_code"] = this.company_code;
+        data["date_add"] = this.date_add ? this.date_add.toISOString(true) : <any>undefined;
+        data["date_modified"] = this.date_modified ? this.date_modified.toISOString(true) : <any>undefined;
+        data["account_code_add"] = this.account_code_add;
+        data["account_code_modified"] = this.account_code_modified;
+        return data;
+    }
+
+    clone(): CON_Account_Book_Detail_ENTITY {
+        const json = this.toJSON();
+        let result = new CON_Account_Book_Detail_ENTITY();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface ICON_Account_Book_Detail_ENTITY {
+    voucher_date?: moment.Moment | undefined;
+    voucher_date_start?: moment.Moment | undefined;
+    voucher_date_end?: moment.Moment | undefined;
+    voucher_master_code?: string | undefined;
+    voucher_code?: string | undefined;
+    voucher_no?: string | undefined;
+    notes?: string | undefined;
+    account?: string | undefined;
+    debitor_account?: string | undefined;
+    arise_debit?: number | undefined;
+    arise_credit?: number | undefined;
+    customer_code?: string | undefined;
+    customer_name?: string | undefined;
+    stt?: number;
+    id?: number;
+    language_id?: number | undefined;
     voucher_year?: number | undefined;
     code?: string | undefined;
     company_code?: string | undefined;

@@ -1,12 +1,15 @@
 import { Component, Injector, OnInit, ViewChild } from '@angular/core';
+import { AppConsts } from 'src/app/app-consts.component';
 import { AppSession } from 'src/app/shared/app-session/app-session';
 import { DXDataGridViewComponent } from 'src/app/shared/dx-data-grid/dx-data-grid-view/dx-data-grid-view.component';
 import { TreeListReportComponent } from 'src/app/shared/dx-tree-list/tree-list-report/tree-list-report.component';
+import { DialogAcctionComponent } from 'src/app/shared/layout/dialogs/acction/dialog-acction.component';
 import { LayoutComponentBase } from 'src/app/shared/layout/layoutBase';
 import { ToolbarComponent } from 'src/app/shared/layout/toolbar/toolbar.component';
 import { CON_Statement_Of_Cash_Flows_Report_ENTITY, CashReportService, ConsolidationReportService } from 'src/app/shared/service-proxies/api-shared';
 import { EditPageState } from 'src/app/shared/ultilities/enum/edit-page-state';
 import { IUiAction } from 'src/app/shared/ultilities/ui-action';
+import { ConsolidationByAAccountComponent } from '../consolidation-by-a-account/consolidation-by-a-account.component';
 
 @Component({
   selector: 'app-statement-of-cash-flows',
@@ -23,18 +26,21 @@ export class StatementOfCashFlowsComponent extends LayoutComponentBase implement
     super(injector);
     this.tbName = this.getRouteData('tbName');
     const d = this.getStartEndDateInMonth();
-    // this.filterInput.voucher_date_start = d.startDate;
-    // this.filterInput.voucher_date_end = d.endDate;
-    
+    this.filterInput.voucher_date_start = d.startDate;
+    this.filterInput.voucher_date_end = d.endDate;
   }
 
   @ViewChild('DataGridGenRowTable') DataGridGenRowTable: TreeListReportComponent;
   @ViewChild('toolbar') toolbar: ToolbarComponent;
+  @ViewChild('dialogConsolidationByAAccount') dialogConsolidationByAAccount: DialogAcctionComponent;
+  @ViewChild('FormConsolidationByAAccount') FormConsolidationByAAccount: ConsolidationByAAccountComponent;
+
   filterInput:CON_Statement_Of_Cash_Flows_Report_ENTITY=new CON_Statement_Of_Cash_Flows_Report_ENTITY();
   rowSelected:CON_Statement_Of_Cash_Flows_Report_ENTITY=new CON_Statement_Of_Cash_Flows_Report_ENTITY();
   listData:CON_Statement_Of_Cash_Flows_Report_ENTITY[]=[];
   tbName:string = '';
   CurrenFrom:string = EditPageState.view;
+  w:number = screen.width * 0.95;
 
   onAdd(): void {
     throw new Error('Method not implemented.');
@@ -49,7 +55,7 @@ export class StatementOfCashFlowsComponent extends LayoutComponentBase implement
     throw new Error('Method not implemented.');
   }
   onViewDetail(item: any): void {
-    throw new Error('Method not implemented.');
+    this.FormConsolidationByAAccount.onViewDetail(item)
   }
   onSave(): void {
     throw new Error('Method not implemented.');
@@ -79,7 +85,14 @@ export class StatementOfCashFlowsComponent extends LayoutComponentBase implement
         break;
       }
       case EditPageState.viewDetail:{
-        this.onLoadData();
+        this.filterInput.account = this.rowSelected.account;
+        this.dialogConsolidationByAAccount.open();
+       setTimeout(() => {
+        this.FormConsolidationByAAccount.filterInput.voucher_date_start = this.filterInput.voucher_date_start;
+        this.FormConsolidationByAAccount.filterInput.voucher_date_end = this.filterInput.voucher_date_end;
+        this.FormConsolidationByAAccount.filterInput.account = this.filterInput.account;
+        this.FormConsolidationByAAccount.onLoadData();
+       }, 200);
         break;
       }
       case 'update_target':{
@@ -96,6 +109,8 @@ export class StatementOfCashFlowsComponent extends LayoutComponentBase implement
     }
       default:break;
     }
+  }onLoadDataConsolidationByAAccount(){
+    this.FormConsolidationByAAccount.onLoadData();
   }
   getDataByID(storedName: string, param: string, keyService: string): void {
     throw new Error('Method not implemented.');

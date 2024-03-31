@@ -912,7 +912,29 @@ export class LayoutComponentBase {
     removeNonAlphanumeric(input: string): string {
         return input.replace(/[^a-zA-Z0-9]/g, '');
     }
-    
+    openWindownForm(url:string){
+        const w = screen.width * 0.9;
+        const h = screen.height * 0.8;
+        const left = screen.width / 2 - w / 2;
+        const top = screen.height / 2 - h / 2;
+        const randomnumber = Math.floor(Math.random() * 100 + 1);
+        // tslint:disable-next-line:max-line-length
+        window.open(
+            url,
+            '_blank',
+            'PopUp' +
+            randomnumber +
+            ',scrollbars=1,menubar=0,resizable=1,width = ' +
+            w +
+            ', height = ' +
+            h +
+            ', top = ' +
+            top +
+            ', left = ' +
+            left +
+            ', modal=yes'
+        );
+    }
 }
 
 export interface BreadCrumbItemCustom {
