@@ -180,10 +180,14 @@ export class I44MEditComponent  extends LayoutComponentBase implements OnInit, I
     this.rowGridSelected = event;
   }
   updateAccount(e:any = undefined){
-    for(var i = 0 ; i < this.InputMaster.i44_D.length ; i ++){
-      this.InputMaster.i44_D[i].debitor_account = this.ProfessionSelected.account1;
+    if(!this.ProfessionSelected || !this.ProfessionSelected.code) return;
+    if(this.ProfessionSelected && this.ProfessionSelected.code){
+      for(var i = 0 ; i < this.InputMaster.i44_D.length ; i ++){
+        this.InputMaster.i44_D[i].debitor_account = this.ProfessionSelected.account1;
+      }
+      this.ProfessionSelected = null
+      this.onRefreshGrid = !this.onRefreshGrid;
     }
-    this.onRefreshGrid = !this.onRefreshGrid;
   }
   HandleRowsDataGridOutput(event: any) {
     if (event.dataField == 'profession_code') {

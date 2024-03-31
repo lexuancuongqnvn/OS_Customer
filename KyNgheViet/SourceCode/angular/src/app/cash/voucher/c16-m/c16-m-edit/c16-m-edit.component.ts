@@ -223,6 +223,7 @@ export class C16MEditComponent extends LayoutComponentBase implements OnInit, IU
     this.rowGridSelected = event;
   }
   onSetAccount(e:any = undefined){
+    if(!this.ProfessionSelected || !this.ProfessionSelected.code) return;
     if(e){
       this.InputMaster.creditor_account = this.ProfessionSelected.balance_account1;
       this.InputMaster.description = this.ProfessionSelected.notes;
@@ -233,6 +234,7 @@ export class C16MEditComponent extends LayoutComponentBase implements OnInit, IU
       for(var i = 0 ; i < this.InputMaster.c16_d.length ; i ++){
         this.InputMaster.c16_d[i].debitor_account = this.ProfessionSelected.account1;
       }
+      this.ProfessionSelected = null
       this.onRefreshGrid = !this.onRefreshGrid;
     }
   }
@@ -248,6 +250,7 @@ export class C16MEditComponent extends LayoutComponentBase implements OnInit, IU
         this.InputMaster.c16_d[i].customer_name = this.CustomerSelected.name;
         this.InputMaster.c16_d[i].description =  this.InputMaster.description;
       }
+      this.CustomerSelected = null
       this.onRefreshGrid = !this.onRefreshGrid;
     }
   }

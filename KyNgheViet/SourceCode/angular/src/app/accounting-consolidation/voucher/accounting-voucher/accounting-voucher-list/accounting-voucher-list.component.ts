@@ -72,7 +72,7 @@ export class AccountingVoucherListComponent extends LayoutComponentBase implemen
   onClickAcction(id: number, storedName: string, param: string, keyService: string, classForm: string): void {
     switch(classForm){
       case EditPageState.add:{
-        this.navigatePassParam('accounting-voucher-add',[['code',this.idSelect]],new C51_M_ENTITY({}),this.tbName)
+        this.navigatePassParam('accounting-voucher-add',[['code','']],new C51_M_ENTITY({}),this.tbName)
         break;
       }
       case EditPageState.edit:{

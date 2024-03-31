@@ -111,18 +111,9 @@
         </div>
     </dx-accordion>
 </div>
-<dx-tree-list *ngIf="genRowTableDetail.length > 0" 
-    [autoExpandAll]="true" keyExpr="{{keyExpr}}" parentIdExpr="master_account" 
-    [columnResizingMode]="'widget'" [minHeight]="200" 
-    height="100%" [hoverStateEnabled]="true" 
-    [(selectedRowKeys)]="currentSelectedRowKeys" 
-    id="{{tbName}}" [dataSource]="getDataSource"
-    [showBorders]="true" [showRowLines]="true" 
-    [allowColumnReordering]="true" 
-    [allowColumnResizing]="true" [columnAutoWidth]="true" 
-    (onSelectionChanged)="onSelectRow($event)" 
-    (onExporting)="onExporting($event)" [height]="height" 
-    [rowAlternationEnabled]="true">
+<dx-tree-list *ngIf="genRowTableDetail.length > 0" [autoExpandAll]="true" keyExpr="{{keyExpr}}" parentIdExpr="master_account" [columnResizingMode]="'widget'" [minHeight]="200" height="100%" [hoverStateEnabled]="true" [(selectedRowKeys)]="currentSelectedRowKeys"
+    id="{{tbName}}" [dataSource]="getDataSource" [showBorders]="true" [showRowLines]="true" [allowColumnReordering]="true" [allowColumnResizing]="true" [columnAutoWidth]="true" (onSelectionChanged)="onSelectRow($event)" (onExporting)="onExporting($event)"
+    [height]="height" [rowAlternationEnabled]="true">
     <dxo-column-fixing [enabled]="true"></dxo-column-fixing>
     <!-- <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping> -->
     <dxo-selection [width]="30" *ngIf="selection == true" [selectAllMode]="allMode" [showCheckBoxesMode]="checkBoxesMode" mode="multiple"></dxo-selection>
@@ -130,7 +121,7 @@
 
     <dxo-scrolling mode="standard"></dxo-scrolling>
 
-    <dxo-paging [enabled]="true" [pageSize]="20"> </dxo-paging>
+    <dxo-paging [enabled]="true" [pageSize]="pageSize"> </dxo-paging>
     <dxo-pager [visible]="true" [allowedPageSizes]="[20, 50, 100, 200,500,1000,10000]" [displayMode]="displayMode" [showPageSizeSelector]="true" [showInfo]="true" [showNavigationButtons]="true">
     </dxo-pager>
 

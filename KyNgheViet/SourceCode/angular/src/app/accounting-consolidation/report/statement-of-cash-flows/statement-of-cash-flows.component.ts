@@ -38,7 +38,7 @@ export class StatementOfCashFlowsComponent extends LayoutComponentBase implement
   filterInput:CON_Statement_Of_Cash_Flows_Report_ENTITY=new CON_Statement_Of_Cash_Flows_Report_ENTITY();
   rowSelected:CON_Statement_Of_Cash_Flows_Report_ENTITY=new CON_Statement_Of_Cash_Flows_Report_ENTITY();
   listData:CON_Statement_Of_Cash_Flows_Report_ENTITY[]=[];
-  tbName:string = '';
+  tbName:string = 'CON_Statement_Of_Cash_Flows_Report';
   CurrenFrom:string = EditPageState.view;
   w:number = screen.width * 0.95;
 
@@ -55,7 +55,7 @@ export class StatementOfCashFlowsComponent extends LayoutComponentBase implement
     throw new Error('Method not implemented.');
   }
   onViewDetail(item: any): void {
-    this.FormConsolidationByAAccount.onViewDetail(item)
+    this.FormConsolidationByAAccount.onViewDetail(1)
   }
   onSave(): void {
     throw new Error('Method not implemented.');

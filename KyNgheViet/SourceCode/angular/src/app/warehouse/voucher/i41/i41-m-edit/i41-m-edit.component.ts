@@ -182,9 +182,11 @@ export class I41MEditComponent extends LayoutComponentBase implements OnInit, IU
     this.UpdateEditV2();
   }
   updateAccount(e:any = undefined){
+    if(!this.ProfessionSelected || !this.ProfessionSelected.code) return;
     for(var i = 0 ; i < this.InputMaster.i41_D.length ; i ++){
       this.InputMaster.i41_D[i].creditor_account = this.ProfessionSelected.balance_account1;
     }
+    this.ProfessionSelected = null
     this.onRefreshGrid = !this.onRefreshGrid;
   }
   onRefreshGridOutput(event: any) {

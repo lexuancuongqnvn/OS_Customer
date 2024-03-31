@@ -199,9 +199,11 @@ export class P21MEditComponent extends LayoutComponentBase implements OnInit, IU
     this.UpdateView();
   }
   onUpdateAccount(e:any = undefined){
+    if(!this.ProfessionSelected || !this.ProfessionSelected.code) return;
     for(var i = 0 ; i < this.InputMaster.p21_D.length ; i ++){
       this.InputMaster.p21_D[i].debitor_account = this.ProfessionSelected.account1
     }
+    this.ProfessionSelected = null;
     this.onRefreshGrid = !this.onRefreshGrid;
   }
   onGenVATInput(e:any = undefined){

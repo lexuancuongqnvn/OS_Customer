@@ -124,6 +124,7 @@ export class DXDataGridViewReportComponent extends LayoutComponentBase implement
   @Input() keyExpr:string='code';
   @Input() tbName:string='';
   @Input() dataFilter:object={};
+  @Input() pageSize:number= 20;
   @Output() OnSelectRow: EventEmitter<any> = new EventEmitter();
   @Output() selectedRowsDataOutput: EventEmitter<any> = new EventEmitter();
   @Output() onClickOK: EventEmitter<any> = new EventEmitter();

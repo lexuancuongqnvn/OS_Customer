@@ -283,6 +283,10 @@ div#headingTwo {
     z-index: 1000 !important;
 }
 
+.k-widget.k-window.k-dialog {
+    max-height: 95vh !important;
+}
+
 @media only screen and (max-width: 600px) {
     .container-fluid {
         padding-right: 0 !important;

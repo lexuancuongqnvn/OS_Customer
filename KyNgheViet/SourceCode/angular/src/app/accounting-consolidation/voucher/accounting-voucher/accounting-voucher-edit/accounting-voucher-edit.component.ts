@@ -4,7 +4,7 @@ import { AppSession } from 'src/app/shared/app-session/app-session';
 import { FormEditV2Component } from 'src/app/shared/form/form-edit-v2/form-edit-v2.component';
 import { DialogAcctionComponent } from 'src/app/shared/layout/dialogs/acction/dialog-acction.component';
 import { LayoutComponentBase } from 'src/app/shared/layout/layoutBase';
-import { Accounting_VAT_Input_ENTITY, C51_D_ENTITY, C51_M_ENTITY, CAT_Profession_ENTITY, CAT_Tax_ENTITY, ConsolidationVoucherService, ERPCommonService, ERPCommon_ENTITY, SalesVATService } from 'src/app/shared/service-proxies/api-shared';
+import { Accounting_VAT_Input_ENTITY, C51_D_ENTITY, C51_M_ENTITY, CAT_Customer_ENTITY, CAT_Profession_ENTITY, CAT_Tax_ENTITY, ConsolidationVoucherService, ERPCommonService, ERPCommon_ENTITY, SalesVATService } from 'src/app/shared/service-proxies/api-shared';
 import { EditPageState } from 'src/app/shared/ultilities/enum/edit-page-state';
 import { IUiAction } from 'src/app/shared/ultilities/ui-action';
 
@@ -42,6 +42,7 @@ export class AccountingVoucherEditComponent extends LayoutComponentBase implemen
   @ViewChild('dialogDelete') dialogDelete: DialogAcctionComponent;
   @ViewChild('dialogConfirmAccount') dialogConfirmAccount: DialogAcctionComponent;
   @ViewChild('dialogConfirmVAT') dialogConfirmVAT: DialogAcctionComponent;
+  @ViewChild('dialogreSetCustomer') dialogreSetCustomer: DialogAcctionComponent;
 
   tbName:string = 'C51_M';
   rowGridSelected:any = null;
@@ -52,6 +53,8 @@ export class AccountingVoucherEditComponent extends LayoutComponentBase implemen
   cat_Taxs:CAT_Tax_ENTITY[] = [];
   cat_Tax:CAT_Tax_ENTITY = new CAT_Tax_ENTITY();
   ProfessionSelected:CAT_Profession_ENTITY=new CAT_Profession_ENTITY();
+  CustomerSelected:CAT_Customer_ENTITY=new CAT_Customer_ENTITY();
+
   onAdd(): void {
     throw new Error('Method not implemented.');
   }
@@ -82,7 +85,7 @@ export class AccountingVoucherEditComponent extends LayoutComponentBase implemen
   onClickAcctionResponse(e:any): void {
     switch(e.classForm){
       case EditPageState.add:{
-      
+        this.navigatePassParam('accounting-voucher-add',[['code','']],new C51_M_ENTITY({}),this.tbName)
         break;
       }
       case EditPageState.edit:{
@@ -162,11 +165,28 @@ export class AccountingVoucherEditComponent extends LayoutComponentBase implemen
   ngOnInit(): void {
     this.initCombobox();
   }
+  onSetCustomer(e:any=undefined){
+    if(e){
+      this.InputMaster.customer_name = this.CustomerSelected.name;
+      this.UpdateEditV2();
+    }
+    if(this.CustomerSelected && this.CustomerSelected.code){
+      for(var i = 0 ; i < this.InputMaster.c51_D.length ; i ++){
+        this.InputMaster.c51_D[i].customer_code = this.CustomerSelected.code;
+        this.InputMaster.c51_D[i].customer_name = this.CustomerSelected.name;
+        this.InputMaster.c51_D[i].description =  this.InputMaster.description;
+      }
+      this.CustomerSelected = null;
+      this.onRefreshGrid = !this.onRefreshGrid;
+    }
+  }
   updateAccount(e:any = undefined){
+    if(!this.ProfessionSelected || !this.ProfessionSelected.code) return;
     for(var i = 0 ; i < this.InputMaster.c51_D.length ; i ++){
       this.InputMaster.c51_D[i].debitor_account = this.ProfessionSelected.account1;
       this.InputMaster.c51_D[i].creditor_account = this.ProfessionSelected.balance_account1;
     }
+    this.ProfessionSelected = null;
     this.onRefreshGrid = !this.onRefreshGrid;
   }
   handleValueChanged(event: any) {
@@ -184,6 +204,8 @@ export class AccountingVoucherEditComponent extends LayoutComponentBase implemen
     }
     else if(event.dataField == 'c51_D' && this.InputMaster.c51_D){
       this.onUpdatVAT()
+      this.updateAccount()
+      this.onSetCustomer();
     }
     this.InputMaster[event.dataField]= event.value;
 
@@ -261,16 +283,14 @@ export class AccountingVoucherEditComponent extends LayoutComponentBase implemen
     this.rowGridSelected = event;
   }
   HandleRowsDataGridOutput(event: any) {
-    if(event.dataField == 'profession_code'){
-      this.ProfessionSelected = event.value[0];
-      if(this.InputMaster.code && this.InputMaster.profession_code != event.value){
-        this.dialogConfirmAccount.open()
-      } 
-      else {
-        this.onUpdatVAT();
-      }
+    if (event.dataField == 'profession_code') {
+      this.ProfessionSelected =  event.value[0];
+      if(this.InputMaster.c51_D && this.InputMaster.c51_D.length > 0) this.dialogConfirmAccount.open();
     }
-
+    else if (event.dataField == 'customer_code') {
+      this.CustomerSelected =  event.value[0];
+      if(this.InputMaster.c51_D && this.InputMaster.c51_D.length > 0) this.dialogreSetCustomer.open();
+    }
     if(this.editPageState !== EditPageState.add) return;
     try{ if (event.dataField == 'customer_code')
       {

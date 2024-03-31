@@ -37,6 +37,7 @@ export class ConsolidationAccountDetailComponent extends LayoutComponentBase imp
   @Input() voucher_date_end: moment.Moment = this.getStartEndDateInMonth().endDate;
   @Input() account: string = '';
   @Input() debitor_account: string = '';
+  @Input() isShowToolbar:boolean = true;
 
   filterInput:CON_Account_Book_Detail_ENTITY=new CON_Account_Book_Detail_ENTITY();
   rowSelected:CON_Account_Book_Detail_ENTITY=new CON_Account_Book_Detail_ENTITY();

@@ -41,6 +41,7 @@ export class ConsolidationByAAccountComponent extends LayoutComponentBase implem
   @Input() voucher_date_start: moment.Moment = this.getStartEndDateInMonth().startDate;
   @Input() voucher_date_end: moment.Moment = this.getStartEndDateInMonth().endDate;
   @Input() account: string = '';
+  @Input() isShowToolbar:boolean = true;
   w:number = screen.width * 0.95;
 
   filterInput:CON_Account_Consolidation_By_A_Account_ENTITY=new CON_Account_Consolidation_By_A_Account_ENTITY();
@@ -48,6 +49,7 @@ export class ConsolidationByAAccountComponent extends LayoutComponentBase implem
   listData:CON_Account_Consolidation_By_A_Account_ENTITY[]=[];
   tbName:string = 'CON_Account_Consolidation_By_A_Account';
   CurrenFrom:string = EditPageState.view;
+  
 
   onAdd(): void {
     throw new Error('Method not implemented.');
@@ -61,17 +63,21 @@ export class ConsolidationByAAccountComponent extends LayoutComponentBase implem
   onApprove(item: any): void {
     throw new Error('Method not implemented.');
   }
-  onViewDetail(item: any): void {
-    this.filterInput.account = this.rowSelected.account;
-        this.filterInput.debitor_account = this.rowSelected.debitor_account;
-        this.dialogConsolidationAccountDetail.open();
-       setTimeout(() => {
-        this.FormConsolidationAccountDetail.filterInput.voucher_date_start = this.filterInput.voucher_date_start;
-        this.FormConsolidationAccountDetail.filterInput.voucher_date_end = this.filterInput.voucher_date_end;
-        this.FormConsolidationAccountDetail.filterInput.account = this.filterInput.account;
-        this.FormConsolidationAccountDetail.filterInput.debitor_account = this.filterInput.debitor_account;
-        this.FormConsolidationAccountDetail.onLoadData();
-       }, 200);
+  onViewDetail(item: number): void {
+    if(item == 1){
+      this.filterInput.debitor_account = this.rowSelected.debitor_account;
+      this.dialogConsolidationAccountDetail.open();
+     setTimeout(() => {
+      this.FormConsolidationAccountDetail.filterInput.voucher_date_start = this.filterInput.voucher_date_start;
+      this.FormConsolidationAccountDetail.filterInput.voucher_date_end = this.filterInput.voucher_date_end;
+      this.FormConsolidationAccountDetail.filterInput.account = this.filterInput.account;
+      this.FormConsolidationAccountDetail.filterInput.debitor_account = this.filterInput.debitor_account;
+      this.FormConsolidationAccountDetail.onLoadData();
+     }, 200);
+    }else{
+      alert('Đang cập nhật')
+    }
+
   }
   onSave(): void {
     throw new Error('Method not implemented.');

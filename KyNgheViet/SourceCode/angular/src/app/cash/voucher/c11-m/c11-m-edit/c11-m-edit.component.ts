@@ -150,6 +150,7 @@ export class C11MEditComponent extends LayoutComponentBase implements OnInit, IU
       for(var i = 0 ; i < this.InputMaster.c11_d.length ; i ++){
         this.InputMaster.c11_d[i].creditor_account = this.ProfessionSelected.balance_account1;
       }
+      this.ProfessionSelected = null;
       this.onRefreshGrid = !this.onRefreshGrid;
     }
   }
@@ -165,6 +166,7 @@ export class C11MEditComponent extends LayoutComponentBase implements OnInit, IU
         this.InputMaster.c11_d[i].customer_name = this.CustomerSelected.name;
         this.InputMaster.c11_d[i].description =  this.InputMaster.description;
       }
+      this.CustomerSelected = null;
       this.onRefreshGrid = !this.onRefreshGrid;
     }
   }

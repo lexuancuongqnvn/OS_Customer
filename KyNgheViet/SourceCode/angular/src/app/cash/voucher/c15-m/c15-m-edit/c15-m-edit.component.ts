@@ -153,6 +153,7 @@ export class C15MEditComponent  extends LayoutComponentBase implements OnInit, I
     this.initCombobox();
   }
   onSetAccount(e:any=undefined){
+    if(!this.ProfessionSelected || !this.ProfessionSelected.code) return;
     if(e){
       this.InputMaster.debitor_account = this.ProfessionSelected.account1;
       this.InputMaster.description = this.ProfessionSelected.notes;
@@ -163,6 +164,7 @@ export class C15MEditComponent  extends LayoutComponentBase implements OnInit, I
       for(var i = 0 ; i < this.InputMaster.c15_d.length ; i ++){
         this.InputMaster.c15_d[i].creditor_account = this.ProfessionSelected.balance_account1;
       }
+      this.ProfessionSelected = null
       this.onRefreshGrid = !this.onRefreshGrid;
     }
   }
@@ -178,6 +180,7 @@ export class C15MEditComponent  extends LayoutComponentBase implements OnInit, I
         this.InputMaster.c15_d[i].customer_name = this.CustomerSelected.name;
         this.InputMaster.c15_d[i].description =  this.InputMaster.description;
       }
+      this.CustomerSelected = null
       this.onRefreshGrid = !this.onRefreshGrid;
     }
   }

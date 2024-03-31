@@ -1,5 +1,5 @@
 <form method="#" action="#" class="form-data form-view-master">
-    <!-- <app-toolbar #toolbar [tableName]="tbName" [CurrenFrom]="CurrenFrom" [classInsert]="'form-30082023'"></app-toolbar> -->
+    <app-toolbar *ngIf="isShowToolbar" #toolbar [tableName]="tbName" [CurrenFrom]="CurrenFrom" [classInsert]="'form-30082023'"></app-toolbar>
     <alert-message #alertMessage></alert-message>
-    <osoft-data-grid-report #DataGridGenRowTable [tableName]="tbName" [dataFilter]="filterInput" (OnChangeDataFilter)="OnChangeDataFilter($event)" [dataSource]="listData" (selectedRowsDataOutput)="onSelectedRowsData($event)" (OnSelectRow)="selectRow($event)"></osoft-data-grid-report>
+    <osoft-data-grid-report #DataGridGenRowTable [pageSize]="20" [tableName]="tbName" [dataFilter]="filterInput" (OnChangeDataFilter)="OnChangeDataFilter($event)" [dataSource]="listData" (selectedRowsDataOutput)="onSelectedRowsData($event)" (OnSelectRow)="selectRow($event)"></osoft-data-grid-report>
 </form>

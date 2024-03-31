@@ -111,9 +111,10 @@
         </div>
     </dx-accordion>
 </div>
-<dx-data-grid *ngIf="genRowTableDetail.length > 0 && isRender" [remoteOperations]="true" id="{{tableName}}" [columnResizingMode]="'widget'" [columnResizingMode]="'widget'" [minHeight]="200" height="100%" [hoverStateEnabled]="true" [selectedRowKeys]="currentSelectedRowKey"
-    id="{{tbName}}" [dataSource]="getDataSource" keyExpr="{{keyExpr}}" [showBorders]="true" [showRowLines]="true" [allowColumnReordering]="true" [allowColumnResizing]="true" [columnAutoWidth]="false" [focusedRowEnabled]="true" [autoNavigateToFocusedRow]="true"
-    (onFocusedRowChanging)="onFocusedRowChanging($event)" (onFocusedRowChanged)="onFocusedRowChanged($event,keyExpr)" (onSelectionChanged)="onSelectRow($event)" (onExporting)="onExporting($event)" [rowAlternationEnabled]="true">
+<!-- [remoteOperations]="true" -->
+<dx-data-grid *ngIf="genRowTableDetail.length > 0 && isRender" id="{{tableName}}" [columnResizingMode]="'widget'" [columnResizingMode]="'widget'" [minHeight]="200" height="100%" [hoverStateEnabled]="true" [selectedRowKeys]="currentSelectedRowKey" id="{{tbName}}"
+    [dataSource]="getDataSource" keyExpr="{{keyExpr}}" [showBorders]="true" [showRowLines]="true" [allowColumnReordering]="true" [allowColumnResizing]="true" [columnAutoWidth]="false" [focusedRowEnabled]="true" [autoNavigateToFocusedRow]="true" (onFocusedRowChanging)="onFocusedRowChanging($event)"
+    (onFocusedRowChanged)="onFocusedRowChanged($event,keyExpr)" (onSelectionChanged)="onSelectRow($event)" (onExporting)="onExporting($event)" [rowAlternationEnabled]="true">
     <dxo-column-fixing [enabled]="true"></dxo-column-fixing>
     <!-- <dxi-column dataField="no" caption="no" [width]="50" [fixed]="true" [allowFiltering]="false" headerCellTemplate="titleHeaderTemplate">
     </dxi-column> -->
