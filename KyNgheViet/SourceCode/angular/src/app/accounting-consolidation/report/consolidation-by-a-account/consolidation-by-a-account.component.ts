@@ -144,7 +144,7 @@ export class ConsolidationByAAccountComponent extends LayoutComponentBase implem
     this.filterInput.voucher_date_end = this.voucher_date_end;
     this.filterInput.account = this.account;
     this.tbName = 'CON_Account_Consolidation_By_A_Account';
-    //this.setAcction();
+    if(this.isShowToolbar)this.setAcction();
   }
   setAcction(){
     if(this.toolbar){

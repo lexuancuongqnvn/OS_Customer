@@ -4,7 +4,7 @@ import { AppSession } from 'src/app/shared/app-session/app-session';
 import { FormEditV2Component } from 'src/app/shared/form/form-edit-v2/form-edit-v2.component';
 import { DialogAcctionComponent } from 'src/app/shared/layout/dialogs/acction/dialog-acction.component';
 import { LayoutComponentBase } from 'src/app/shared/layout/layoutBase';
-import { Accounting_VAT_Output_ENTITY, CAT_Tax_ENTITY, ERPCommonService, ERPCommon_ENTITY, S33_D_ENTITY, S33_M_ENTITY, SalesVATService, SalesVoucherService } from 'src/app/shared/service-proxies/api-shared';
+import { Accounting_VAT_Output_ENTITY, CAT_Customer_ENTITY, CAT_Profession_ENTITY, CAT_Tax_ENTITY, ERPCommonService, ERPCommon_ENTITY, S33_D_ENTITY, S33_M_ENTITY, SalesVATService, SalesVoucherService } from 'src/app/shared/service-proxies/api-shared';
 import { EditPageState } from 'src/app/shared/ultilities/enum/edit-page-state';
 import { IUiAction } from 'src/app/shared/ultilities/ui-action';
 
@@ -49,9 +49,12 @@ export class S33MEditComponent extends LayoutComponentBase implements OnInit, IU
   @ViewChild('FromEditV2') fromEditV2: FormEditV2Component;
   @ViewChild('dialogDelete') dialogDelete: DialogAcctionComponent;
   @ViewChild('dialogConfirmVAT') dialogConfirmVAT: DialogAcctionComponent;
+  @ViewChild('dialogConfirmAccount') dialogConfirmAccount: DialogAcctionComponent;
   @Input() rowSelected: any = '';
   tbName:string = 'S33_M';
   rowGridSelected:any = null;
+  ProfessionSelected:CAT_Profession_ENTITY=new CAT_Profession_ENTITY();
+  CustomerSelected:CAT_Customer_ENTITY=new CAT_Customer_ENTITY();
  
   InputMaster:S33_M_ENTITY=new S33_M_ENTITY();
   editPageState:string = EditPageState.edit;
@@ -172,6 +175,14 @@ export class S33MEditComponent extends LayoutComponentBase implements OnInit, IU
       this.onLoadData();
     }
   }
+  updateAccount(e:any = undefined){
+    if(!this.ProfessionSelected || !this.ProfessionSelected.code) return;
+    for(var i = 0 ; i < this.InputMaster.s33_D.length ; i ++){
+      this.InputMaster.s33_D[i].sales_returns_account = this.ProfessionSelected.account1;
+    }
+    this.ProfessionSelected = null;
+    this.onRefreshGrid = !this.onRefreshGrid;
+  }
   handleValueChanged(event: any) {
     if(event.dataField == 'is_tax'){
       if(this.InputMaster.code && this.InputMaster[event.dataField] != event.value){
@@ -204,6 +215,7 @@ export class S33MEditComponent extends LayoutComponentBase implements OnInit, IU
       this.cat_Tax = this.cat_Taxs.find(t=>t.code == event.value);
     }else if(event.dataField == 's33_D' && this.InputMaster.s33_D){
       this.updateVATOUT();
+      this.updateAccount();
     }
 
     this.InputMaster[event.dataField]= event.value;
@@ -296,6 +308,10 @@ export class S33MEditComponent extends LayoutComponentBase implements OnInit, IU
     this.rowGridSelected = event;
   }
   HandleRowsDataGridOutput(event: any) {
+    if (event.dataField == 'profession_code') {
+      this.ProfessionSelected =  event.value[0];
+      if(this.InputMaster.s33_D && this.InputMaster.s33_D.length > 0) this.dialogConfirmAccount.open();
+    }
     if(this.editPageState !== EditPageState.add) return;
     try{
       if (event.dataField == 'profession_code')

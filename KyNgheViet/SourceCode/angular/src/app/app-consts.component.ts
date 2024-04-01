@@ -6,8 +6,8 @@ export class AppConsts {
 
   static limit_length_uploadfile = 100;//Mb 
   //static baseUrl = "https://a22d-171-239-155-255.ngrok-free.app"; 
-  static baseUrl = "https://localhost:44394";  
+  //static baseUrl = "https://localhost:44394";  
   //static baseUrl = "https://api.erp.osoft.vn"; 
-  //static baseUrl = "https://api.knv.osoft.vn"; 
+  static baseUrl = "https://api.knv.osoft.vn"; 
 }
   

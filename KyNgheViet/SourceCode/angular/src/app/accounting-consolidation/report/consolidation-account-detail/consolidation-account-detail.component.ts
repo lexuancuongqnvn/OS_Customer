@@ -116,7 +116,8 @@ export class ConsolidationAccountDetailComponent extends LayoutComponentBase imp
     this.filterInput.voucher_date_end = this.voucher_date_end;
     this.filterInput.account = this.account;
     this.tbName = 'CON_Account_Book_Detail';
-    //this.setAcction();
+    
+    if(this.isShowToolbar)this.setAcction();
   }
   setAcction(){
     if(this.toolbar){
