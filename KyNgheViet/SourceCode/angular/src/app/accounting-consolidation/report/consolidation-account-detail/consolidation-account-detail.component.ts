@@ -132,6 +132,10 @@ export class ConsolidationAccountDetailComponent extends LayoutComponentBase imp
     // this.filterInput.voucher_date_start = this.voucher_date_start;
     // this.filterInput.voucher_date_end = this.voucher_date_end;
     // this.filterInput.account = this.account;
+    if(!this.filterInput.account){
+      this.showMessageWarning(this.translate('Vui lòng chọn tài khoản.','Choose account, please.'))
+      return
+    }
     this.consolidationReportService.cON_Account_Book_Detail_Search({
       ...this.filterInput
     } as CON_Account_Book_Detail_ENTITY).subscribe((res:CON_Account_Book_Detail_ENTITY[])=>{

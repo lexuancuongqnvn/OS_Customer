@@ -316,7 +316,7 @@ export class S33MEditComponent extends LayoutComponentBase implements OnInit, IU
     try{
       if (event.dataField == 'profession_code')
       {
-        this.InputMaster.creditor_account = event.value[0].account1;
+        this.InputMaster.creditor_account = event.value[0].balance_account1;
         this.InputMaster.description = event.value[0].notes;
       }
       else if (event.dataField == 'seller_code')
