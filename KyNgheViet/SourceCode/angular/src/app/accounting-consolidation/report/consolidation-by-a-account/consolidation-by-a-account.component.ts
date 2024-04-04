@@ -9,6 +9,7 @@ import { CON_Account_Consolidation_By_A_Account_ENTITY, CashReportService, Conso
 import { EditPageState } from 'src/app/shared/ultilities/enum/edit-page-state';
 import { IUiAction } from 'src/app/shared/ultilities/ui-action';
 import { ConsolidationAccountDetailComponent } from '../consolidation-account-detail/consolidation-account-detail.component';
+import { DXDataGridViewReportComponent } from 'src/app/shared/dx-data-grid/dx-data-grid-view-report/dx-data-grid-view-report.component';
 
 
 @Component({
@@ -33,7 +34,7 @@ export class ConsolidationByAAccountComponent extends LayoutComponentBase implem
     }
   }
 
-  @ViewChild('DataGridGenRowTable') DataGridGenRowTable: DXDataGridViewComponent;
+  @ViewChild('DataGridGenRowTable') DataGridGenRowTable: DXDataGridViewReportComponent;
   @ViewChild('toolbar') toolbar: ToolbarComponent;
   @ViewChild('dialogConsolidationAccountDetail') dialogConsolidationAccountDetail: DialogAcctionComponent;
   @ViewChild('FormConsolidationAccountDetail') FormConsolidationAccountDetail: ConsolidationAccountDetailComponent;

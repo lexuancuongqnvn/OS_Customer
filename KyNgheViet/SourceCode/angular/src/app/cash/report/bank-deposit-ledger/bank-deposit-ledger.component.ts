@@ -1,5 +1,6 @@
 import { Component, Injector, OnInit, ViewChild } from '@angular/core';
 import { AppSession } from 'src/app/shared/app-session/app-session';
+import { DXDataGridViewReportComponent } from 'src/app/shared/dx-data-grid/dx-data-grid-view-report/dx-data-grid-view-report.component';
 import { DXDataGridViewComponent } from 'src/app/shared/dx-data-grid/dx-data-grid-view/dx-data-grid-view.component';
 import { LayoutComponentBase } from 'src/app/shared/layout/layoutBase';
 import { ToolbarComponent } from 'src/app/shared/layout/toolbar/toolbar.component';
@@ -27,7 +28,7 @@ export class BankDepositLedgerComponent extends LayoutComponentBase implements O
     this.filterInput.account ='112';
   }
 
-  @ViewChild('DataGridGenRowTable') DataGridGenRowTable: DXDataGridViewComponent;
+  @ViewChild('DataGridGenRowTable') DataGridGenRowTable: DXDataGridViewReportComponent;
   @ViewChild('toolbar') toolbar: ToolbarComponent;
   filterInput:CASH_Bank_Deposit_Ledger_ENTITY=new CASH_Bank_Deposit_Ledger_ENTITY();
   rowSelected:CASH_Bank_Deposit_Ledger_ENTITY=new CASH_Bank_Deposit_Ledger_ENTITY();

@@ -1,5 +1,6 @@
 import { Component, Injector, OnInit, ViewChild } from '@angular/core';
 import { AppSession } from 'src/app/shared/app-session/app-session';
+import { DXDataGridViewReportComponent } from 'src/app/shared/dx-data-grid/dx-data-grid-view-report/dx-data-grid-view-report.component';
 import { DXDataGridViewComponent } from 'src/app/shared/dx-data-grid/dx-data-grid-view/dx-data-grid-view.component';
 import { LayoutComponentBase } from 'src/app/shared/layout/layoutBase';
 import { ToolbarComponent } from 'src/app/shared/layout/toolbar/toolbar.component';
@@ -24,7 +25,7 @@ export class AccountsReceivableSubsidiaryLedgerListComponent extends LayoutCompo
     let today = this.getQuarterDates(new Date());
   }
       
-  @ViewChild('DataGridGenRowTable') DataGridGenRowTable: DXDataGridViewComponent;
+  @ViewChild('DataGridGenRowTable') DataGridGenRowTable: DXDataGridViewReportComponent;
   @ViewChild('toolbar') toolbar: ToolbarComponent;
   filterInput:Sales_Report_Of_Accounts_Receivable_Balances_ENTITY=new Sales_Report_Of_Accounts_Receivable_Balances_ENTITY();
   rowSelected:Sales_Report_Of_Accounts_Receivable_Balances_ENTITY=new Sales_Report_Of_Accounts_Receivable_Balances_ENTITY();

@@ -1,6 +1,6 @@
 import { Component, Injector, OnInit, ViewChild } from '@angular/core';
 import { AppSession } from 'src/app/shared/app-session/app-session';
-import { DXDataGridViewComponent } from 'src/app/shared/dx-data-grid/dx-data-grid-view/dx-data-grid-view.component';
+import { DXDataGridViewReportComponent } from 'src/app/shared/dx-data-grid/dx-data-grid-view-report/dx-data-grid-view-report.component';
 import { LayoutComponentBase } from 'src/app/shared/layout/layoutBase';
 import { ToolbarComponent } from 'src/app/shared/layout/toolbar/toolbar.component';
 import { CASH_Disbursement_Journal_ENTITY, CashReportService } from 'src/app/shared/service-proxies/api-shared';
@@ -26,7 +26,7 @@ export class CashDisbursementJournalComponent  extends LayoutComponentBase imple
     this.filterInput.voucher_date_end = d.endDate;
   }
 
-  @ViewChild('DataGridGenRowTable') DataGridGenRowTable: DXDataGridViewComponent;
+  @ViewChild('DataGridGenRowTable') DataGridGenRowTable: DXDataGridViewReportComponent;
   @ViewChild('toolbar') toolbar: ToolbarComponent;
   filterInput:CASH_Disbursement_Journal_ENTITY=new CASH_Disbursement_Journal_ENTITY();
   rowSelected:CASH_Disbursement_Journal_ENTITY=new CASH_Disbursement_Journal_ENTITY();

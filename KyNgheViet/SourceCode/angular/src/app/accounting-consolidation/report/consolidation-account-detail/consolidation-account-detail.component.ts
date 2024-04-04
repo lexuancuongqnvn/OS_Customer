@@ -1,6 +1,7 @@
 import { Component, Injector, Input, OnInit, ViewChild } from '@angular/core';
 import moment from 'moment';
 import { AppSession } from 'src/app/shared/app-session/app-session';
+import { DXDataGridViewReportComponent } from 'src/app/shared/dx-data-grid/dx-data-grid-view-report/dx-data-grid-view-report.component';
 import { DXDataGridViewComponent } from 'src/app/shared/dx-data-grid/dx-data-grid-view/dx-data-grid-view.component';
 import { DialogAcctionComponent } from 'src/app/shared/layout/dialogs/acction/dialog-acction.component';
 import { LayoutComponentBase } from 'src/app/shared/layout/layoutBase';
@@ -31,7 +32,7 @@ export class ConsolidationAccountDetailComponent extends LayoutComponentBase imp
     }
   }
 
-  @ViewChild('DataGridGenRowTable') DataGridGenRowTable: DXDataGridViewComponent;
+  @ViewChild('DataGridGenRowTable') DataGridGenRowTable: DXDataGridViewReportComponent;
   @ViewChild('toolbar') toolbar: ToolbarComponent;
   @Input() voucher_date_start: moment.Moment = this.getStartEndDateInMonth().startDate;
   @Input() voucher_date_end: moment.Moment = this.getStartEndDateInMonth().endDate;

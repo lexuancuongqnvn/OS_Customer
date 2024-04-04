@@ -1,5 +1,6 @@
 import { Component, Injector, OnInit, ViewChild } from '@angular/core';
 import { AppSession } from 'src/app/shared/app-session/app-session';
+import { DXDataGridViewReportComponent } from 'src/app/shared/dx-data-grid/dx-data-grid-view-report/dx-data-grid-view-report.component';
 import { DXDataGridViewComponent } from 'src/app/shared/dx-data-grid/dx-data-grid-view/dx-data-grid-view.component';
 import { LayoutComponentBase } from 'src/app/shared/layout/layoutBase';
 import { ToolbarComponent } from 'src/app/shared/layout/toolbar/toolbar.component';
@@ -28,7 +29,7 @@ export class SalesDayBookListComponent extends LayoutComponentBase implements On
     this.filterInput.voucher_code_s32 = this.getRouteData('voucher_code_s32');
   }
   
-  @ViewChild('DataGridGenRowTable') DataGridGenRowTable: DXDataGridViewComponent;
+  @ViewChild('DataGridGenRowTable') DataGridGenRowTable: DXDataGridViewReportComponent;
   @ViewChild('toolbar') toolbar: ToolbarComponent;
   filterInput:SALES_Report_Sales_Daybook_ENTITY=new SALES_Report_Sales_Daybook_ENTITY();
   rowSelected:SALES_Report_Sales_Daybook_ENTITY=new SALES_Report_Sales_Daybook_ENTITY();
