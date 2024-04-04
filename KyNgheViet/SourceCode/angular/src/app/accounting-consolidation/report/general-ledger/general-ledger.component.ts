@@ -1,22 +1,21 @@
-import { Component, Injector, OnInit, ViewChild } from '@angular/core';
-import { AppConsts } from 'src/app/app-consts.component';
+import { Component, Injector, Input, OnInit, ViewChild } from '@angular/core';
+import moment from 'moment';
 import { AppSession } from 'src/app/shared/app-session/app-session';
+import { DXDataGridViewReportComponent } from 'src/app/shared/dx-data-grid/dx-data-grid-view-report/dx-data-grid-view-report.component';
 import { DXDataGridViewComponent } from 'src/app/shared/dx-data-grid/dx-data-grid-view/dx-data-grid-view.component';
-import { TreeListReportComponent } from 'src/app/shared/dx-tree-list/tree-list-report/tree-list-report.component';
 import { DialogAcctionComponent } from 'src/app/shared/layout/dialogs/acction/dialog-acction.component';
 import { LayoutComponentBase } from 'src/app/shared/layout/layoutBase';
 import { ToolbarComponent } from 'src/app/shared/layout/toolbar/toolbar.component';
-import { CON_Statement_Of_Cash_Flows_Report_ENTITY, CashReportService, ConsolidationReportService } from 'src/app/shared/service-proxies/api-shared';
+import { CON_General_Ledger_ENTITY, CashReportService, ConsolidationReportService } from 'src/app/shared/service-proxies/api-shared';
 import { EditPageState } from 'src/app/shared/ultilities/enum/edit-page-state';
 import { IUiAction } from 'src/app/shared/ultilities/ui-action';
-import { ConsolidationByAAccountComponent } from '../consolidation-by-a-account/consolidation-by-a-account.component';
 
 @Component({
-  selector: 'app-statement-of-cash-flows',
-  templateUrl: './statement-of-cash-flows.component.html',
-  styleUrls: ['./statement-of-cash-flows.component.css']
+  selector: 'app-general-ledger',
+  templateUrl: './general-ledger.component.html',
+  styleUrls: ['./general-ledger.component.css']
 })
-export class StatementOfCashFlowsComponent extends LayoutComponentBase implements OnInit, IUiAction<any> {
+export class GeneralLedgerComponent extends LayoutComponentBase implements OnInit, IUiAction<any> {
 
   constructor(
     injector: Injector,
@@ -30,20 +29,20 @@ export class StatementOfCashFlowsComponent extends LayoutComponentBase implement
     this.filterInput.voucher_date_end = d.endDate;
   }
 
-  @ViewChild('DataGridGenRowTable') DataGridGenRowTable: TreeListReportComponent;
+  @ViewChild('DataGridGenRowTable') DataGridGenRowTable: DXDataGridViewReportComponent;
   @ViewChild('toolbar') toolbar: ToolbarComponent;
-  @ViewChild('dialogConsolidationByAAccount') dialogConsolidationByAAccount: DialogAcctionComponent;
-  @ViewChild('FormConsolidationByAAccount') FormConsolidationByAAccount: ConsolidationByAAccountComponent;
+  @Input() voucher_date_start: moment.Moment = this.getStartEndDateInMonth().startDate;
+  @Input() voucher_date_end: moment.Moment = this.getStartEndDateInMonth().endDate;
+  @Input() account: string = '';
+  @Input() debitor_account: string = '';
+  @Input() isShowToolbar:boolean = true;
 
-  filterInput:CON_Statement_Of_Cash_Flows_Report_ENTITY=new CON_Statement_Of_Cash_Flows_Report_ENTITY();
-  rowSelected:CON_Statement_Of_Cash_Flows_Report_ENTITY=new CON_Statement_Of_Cash_Flows_Report_ENTITY();
-  listData:CON_Statement_Of_Cash_Flows_Report_ENTITY[]=[];
-  tbName:string = 'CON_Statement_Of_Cash_Flows_Report';
+  filterInput:CON_General_Ledger_ENTITY=new CON_General_Ledger_ENTITY();
+  rowSelected:CON_General_Ledger_ENTITY=new CON_General_Ledger_ENTITY();
+  listData:CON_General_Ledger_ENTITY[]=[];
+  tbName:string = 'CON_General_Ledger';
   CurrenFrom:string = EditPageState.view;
-  w:number = screen.width * 0.95;
-  get isEnableViewDeail():Boolean{
-    return (!this.rowSelected || !this.rowSelected.account)?true:false
-  }
+
   onAdd(): void {
     throw new Error('Method not implemented.');
   }
@@ -57,7 +56,7 @@ export class StatementOfCashFlowsComponent extends LayoutComponentBase implement
     throw new Error('Method not implemented.');
   }
   onViewDetail(item: any): void {
-    this.FormConsolidationByAAccount.onViewDetail(1)
+    throw new Error('Method not implemented.');
   }
   onSave(): void {
     throw new Error('Method not implemented.');
@@ -71,11 +70,11 @@ export class StatementOfCashFlowsComponent extends LayoutComponentBase implement
   onClickAcction(id: number, storedName: string, param: string, keyService: string, classForm: string): void {
     switch(classForm){
       case EditPageState.add:{
-        this.navigatePassParam('warehouse/opening-balance-input-output-inventory-add',[['code',this.idSelect]],new CON_Statement_Of_Cash_Flows_Report_ENTITY({}),this.tbName)
+        this.navigatePassParam('warehouse/opening-balance-input-output-inventory-add',[['code',this.idSelect]],new CON_General_Ledger_ENTITY({}),this.tbName)
         break;
       }
       case EditPageState.edit:{
-        this.navigatePassParam('warehouse/opening-balance-input-output-inventory-edit',[['code',this.idSelect]],new CON_Statement_Of_Cash_Flows_Report_ENTITY({}),this.tbName)
+        this.navigatePassParam('warehouse/opening-balance-input-output-inventory-edit',[['code',this.idSelect]],new CON_General_Ledger_ENTITY({}),this.tbName)
         break;
       }
       case EditPageState.save:{
@@ -87,14 +86,7 @@ export class StatementOfCashFlowsComponent extends LayoutComponentBase implement
         break;
       }
       case EditPageState.viewDetail:{
-        this.filterInput.account = this.rowSelected.account;
-        this.dialogConsolidationByAAccount.open();
-       setTimeout(() => {
-        this.FormConsolidationByAAccount.filterInput.voucher_date_start = this.filterInput.voucher_date_start;
-        this.FormConsolidationByAAccount.filterInput.voucher_date_end = this.filterInput.voucher_date_end;
-        this.FormConsolidationByAAccount.filterInput.account = this.filterInput.account;
-        this.FormConsolidationByAAccount.onLoadData();
-       }, 200);
+        this.openWindownForm('con/consolidation-by-a-account');
         break;
       }
       case 'update_target':{
@@ -111,8 +103,6 @@ export class StatementOfCashFlowsComponent extends LayoutComponentBase implement
     }
       default:break;
     }
-  }onLoadDataConsolidationByAAccount(){
-    this.FormConsolidationByAAccount.onLoadData();
   }
   getDataByID(storedName: string, param: string, keyService: string): void {
     throw new Error('Method not implemented.');
@@ -121,7 +111,6 @@ export class StatementOfCashFlowsComponent extends LayoutComponentBase implement
 
   ngOnInit(): void {
     this.setAcction();
-    this.onLoadData();
   }
   setAcction(){
     if(this.toolbar){
@@ -133,9 +122,10 @@ export class StatementOfCashFlowsComponent extends LayoutComponentBase implement
       }, 50);
   }
   onLoadData(){
-    this.consolidationReportService.cON_Statement_Of_Cash_Flows_Report_Search({
+    this.consolidationReportService.cON_General_Ledger_Search({
       ...this.filterInput
-    } as CON_Statement_Of_Cash_Flows_Report_ENTITY).subscribe((res:CON_Statement_Of_Cash_Flows_Report_ENTITY[])=>{
+    } as CON_General_Ledger_ENTITY).subscribe((res:CON_General_Ledger_ENTITY[])=>{
+      this.DataGridGenRowTable.onLoadGenRowTableDetailNoCache();
       this.listData = res;
       this.DataGridGenRowTable.setDataSource(res);
       this.UpdateView();
@@ -147,5 +137,4 @@ export class StatementOfCashFlowsComponent extends LayoutComponentBase implement
   OnChangeDataFilter(obj:any){
     this.filterInput[obj.colName] = obj.value;
   }
-
 }

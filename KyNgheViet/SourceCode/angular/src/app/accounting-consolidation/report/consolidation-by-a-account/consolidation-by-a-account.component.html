@@ -7,7 +7,7 @@
     <div>
         <dx-button class="search" icon="search" text="Tìm kiếm" (onClick)="onLoadDataConsolidationAccountDetail()">
         </dx-button>
-        <dx-button class="doc" icon="doc" text="Xem chi tiết" (onClick)="onViewDetail(2)">
+        <dx-button [disabled]="isEnableViewDeail" class="doc" icon="doc" text="Xem chi tiết" (onClick)="onViewDetail(2)">
         </dx-button>
     </div>
     <consolidation-account-detail #FormConsolidationAccountDetail [isShowToolbar]="false"></consolidation-account-detail>

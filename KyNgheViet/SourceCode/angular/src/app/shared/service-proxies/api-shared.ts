@@ -4896,6 +4896,71 @@ export class ConsolidationReportService extends ApiBase {
         }
         return _observableOf<CON_Account_Book_Detail_ENTITY[]>(null as any);
     }
+
+    /**
+     * @param body (optional) 
+     * @return Success
+     */
+    cON_General_Ledger_Search(body: CON_General_Ledger_ENTITY | undefined): Observable<CON_General_Ledger_ENTITY[]> {
+        let url_ = this.baseUrl + "/api/ConsolidationReport/CON_General_Ledger_Search";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                "Accept": "text/plain"
+            })
+        };
+
+        return _observableFrom(this.transformOptions(options_)).pipe(_observableMergeMap(transformedOptions_ => {
+            return this.http.request("post", url_, transformedOptions_);
+        })).pipe(_observableMergeMap((response_: any) => {
+            return this.processCON_General_Ledger_Search(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processCON_General_Ledger_Search(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<CON_General_Ledger_ENTITY[]>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<CON_General_Ledger_ENTITY[]>;
+        }));
+    }
+
+    protected processCON_General_Ledger_Search(response: HttpResponseBase): Observable<CON_General_Ledger_ENTITY[]> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200.push(CON_General_Ledger_ENTITY.fromJS(item));
+            }
+            else {
+                result200 = <any>null;
+            }
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<CON_General_Ledger_ENTITY[]>(null as any);
+    }
 }
 
 @Injectable()
@@ -41734,6 +41799,365 @@ export interface ICON_Account_Book_Detail_ENTITY {
     stt?: number;
     id?: number;
     language_id?: number | undefined;
+    voucher_year?: number | undefined;
+    code?: string | undefined;
+    company_code?: string | undefined;
+    date_add?: moment.Moment | undefined;
+    date_modified?: moment.Moment | undefined;
+    account_code_add?: string | undefined;
+    account_code_modified?: string | undefined;
+}
+
+export class CON_General_Ledger_ENTITY implements ICON_General_Ledger_ENTITY {
+    id?: number;
+    voucher_no?: string | undefined;
+    voucher_date?: moment.Moment | undefined;
+    voucher_date_start?: moment.Moment | undefined;
+    voucher_date_end?: moment.Moment | undefined;
+    notes?: string | undefined;
+    account?: string | undefined;
+    debitor_account_debit?: string | undefined;
+    debitor_account_credit?: string | undefined;
+    debit1?: number | undefined;
+    debit2?: number | undefined;
+    debit3?: number | undefined;
+    debit4?: number | undefined;
+    debit5?: number | undefined;
+    debit6?: number | undefined;
+    debit7?: number | undefined;
+    debit8?: number | undefined;
+    debit9?: number | undefined;
+    debit10?: number | undefined;
+    debit11?: number | undefined;
+    debit12?: number | undefined;
+    debit13?: number | undefined;
+    debit14?: number | undefined;
+    debit15?: number | undefined;
+    debit16?: number | undefined;
+    debit17?: number | undefined;
+    debit18?: number | undefined;
+    debit19?: number | undefined;
+    debit20?: number | undefined;
+    debit21?: number | undefined;
+    debit22?: number | undefined;
+    debit23?: number | undefined;
+    debit24?: number | undefined;
+    debit25?: number | undefined;
+    debit26?: number | undefined;
+    debit27?: number | undefined;
+    debit28?: number | undefined;
+    debit29?: number | undefined;
+    debit30?: number | undefined;
+    credit1?: number | undefined;
+    credit2?: number | undefined;
+    credit3?: number | undefined;
+    credit4?: number | undefined;
+    credit5?: number | undefined;
+    credit6?: number | undefined;
+    credit7?: number | undefined;
+    credit8?: number | undefined;
+    credit9?: number | undefined;
+    credit10?: number | undefined;
+    credit11?: number | undefined;
+    credit12?: number | undefined;
+    credit13?: number | undefined;
+    credit14?: number | undefined;
+    credit15?: number | undefined;
+    credit16?: number | undefined;
+    credit17?: number | undefined;
+    credit18?: number | undefined;
+    credit19?: number | undefined;
+    credit20?: number | undefined;
+    credit21?: number | undefined;
+    credit22?: number | undefined;
+    credit23?: number | undefined;
+    credit24?: number | undefined;
+    credit25?: number | undefined;
+    credit26?: number | undefined;
+    credit27?: number | undefined;
+    credit28?: number | undefined;
+    credit29?: number | undefined;
+    credit30?: number | undefined;
+    arise?: number | undefined;
+    sum_arise?: number | undefined;
+    language_id?: number | undefined;
+    voucher_code?: string | undefined;
+    voucher_year?: number | undefined;
+    code?: string | undefined;
+    company_code?: string | undefined;
+    date_add?: moment.Moment | undefined;
+    date_modified?: moment.Moment | undefined;
+    account_code_add?: string | undefined;
+    account_code_modified?: string | undefined;
+
+    constructor(data?: ICON_General_Ledger_ENTITY) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.voucher_no = _data["voucher_no"];
+            this.voucher_date = _data["voucher_date"] ? moment.parseZone(_data["voucher_date"].toString()) : <any>undefined;
+            this.voucher_date_start = _data["voucher_date_start"] ? moment.parseZone(_data["voucher_date_start"].toString()) : <any>undefined;
+            this.voucher_date_end = _data["voucher_date_end"] ? moment.parseZone(_data["voucher_date_end"].toString()) : <any>undefined;
+            this.notes = _data["notes"];
+            this.account = _data["account"];
+            this.debitor_account_debit = _data["debitor_account_debit"];
+            this.debitor_account_credit = _data["debitor_account_credit"];
+            this.debit1 = _data["debit1"];
+            this.debit2 = _data["debit2"];
+            this.debit3 = _data["debit3"];
+            this.debit4 = _data["debit4"];
+            this.debit5 = _data["debit5"];
+            this.debit6 = _data["debit6"];
+            this.debit7 = _data["debit7"];
+            this.debit8 = _data["debit8"];
+            this.debit9 = _data["debit9"];
+            this.debit10 = _data["debit10"];
+            this.debit11 = _data["debit11"];
+            this.debit12 = _data["debit12"];
+            this.debit13 = _data["debit13"];
+            this.debit14 = _data["debit14"];
+            this.debit15 = _data["debit15"];
+            this.debit16 = _data["debit16"];
+            this.debit17 = _data["debit17"];
+            this.debit18 = _data["debit18"];
+            this.debit19 = _data["debit19"];
+            this.debit20 = _data["debit20"];
+            this.debit21 = _data["debit21"];
+            this.debit22 = _data["debit22"];
+            this.debit23 = _data["debit23"];
+            this.debit24 = _data["debit24"];
+            this.debit25 = _data["debit25"];
+            this.debit26 = _data["debit26"];
+            this.debit27 = _data["debit27"];
+            this.debit28 = _data["debit28"];
+            this.debit29 = _data["debit29"];
+            this.debit30 = _data["debit30"];
+            this.credit1 = _data["credit1"];
+            this.credit2 = _data["credit2"];
+            this.credit3 = _data["credit3"];
+            this.credit4 = _data["credit4"];
+            this.credit5 = _data["credit5"];
+            this.credit6 = _data["credit6"];
+            this.credit7 = _data["credit7"];
+            this.credit8 = _data["credit8"];
+            this.credit9 = _data["credit9"];
+            this.credit10 = _data["credit10"];
+            this.credit11 = _data["credit11"];
+            this.credit12 = _data["credit12"];
+            this.credit13 = _data["credit13"];
+            this.credit14 = _data["credit14"];
+            this.credit15 = _data["credit15"];
+            this.credit16 = _data["credit16"];
+            this.credit17 = _data["credit17"];
+            this.credit18 = _data["credit18"];
+            this.credit19 = _data["credit19"];
+            this.credit20 = _data["credit20"];
+            this.credit21 = _data["credit21"];
+            this.credit22 = _data["credit22"];
+            this.credit23 = _data["credit23"];
+            this.credit24 = _data["credit24"];
+            this.credit25 = _data["credit25"];
+            this.credit26 = _data["credit26"];
+            this.credit27 = _data["credit27"];
+            this.credit28 = _data["credit28"];
+            this.credit29 = _data["credit29"];
+            this.credit30 = _data["credit30"];
+            this.arise = _data["arise"];
+            this.sum_arise = _data["sum_arise"];
+            this.language_id = _data["language_id"];
+            this.voucher_code = _data["voucher_code"];
+            this.voucher_year = _data["voucher_year"];
+            this.code = _data["code"];
+            this.company_code = _data["company_code"];
+            this.date_add = _data["date_add"] ? moment.parseZone(_data["date_add"].toString()) : <any>undefined;
+            this.date_modified = _data["date_modified"] ? moment.parseZone(_data["date_modified"].toString()) : <any>undefined;
+            this.account_code_add = _data["account_code_add"];
+            this.account_code_modified = _data["account_code_modified"];
+        }
+    }
+
+    static fromJS(data: any): CON_General_Ledger_ENTITY {
+        data = typeof data === 'object' ? data : {};
+        let result = new CON_General_Ledger_ENTITY();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["voucher_no"] = this.voucher_no;
+        data["voucher_date"] = this.voucher_date ? this.voucher_date.toISOString(true) : <any>undefined;
+        data["voucher_date_start"] = this.voucher_date_start ? this.voucher_date_start.toISOString(true) : <any>undefined;
+        data["voucher_date_end"] = this.voucher_date_end ? this.voucher_date_end.toISOString(true) : <any>undefined;
+        data["notes"] = this.notes;
+        data["account"] = this.account;
+        data["debitor_account_debit"] = this.debitor_account_debit;
+        data["debitor_account_credit"] = this.debitor_account_credit;
+        data["debit1"] = this.debit1;
+        data["debit2"] = this.debit2;
+        data["debit3"] = this.debit3;
+        data["debit4"] = this.debit4;
+        data["debit5"] = this.debit5;
+        data["debit6"] = this.debit6;
+        data["debit7"] = this.debit7;
+        data["debit8"] = this.debit8;
+        data["debit9"] = this.debit9;
+        data["debit10"] = this.debit10;
+        data["debit11"] = this.debit11;
+        data["debit12"] = this.debit12;
+        data["debit13"] = this.debit13;
+        data["debit14"] = this.debit14;
+        data["debit15"] = this.debit15;
+        data["debit16"] = this.debit16;
+        data["debit17"] = this.debit17;
+        data["debit18"] = this.debit18;
+        data["debit19"] = this.debit19;
+        data["debit20"] = this.debit20;
+        data["debit21"] = this.debit21;
+        data["debit22"] = this.debit22;
+        data["debit23"] = this.debit23;
+        data["debit24"] = this.debit24;
+        data["debit25"] = this.debit25;
+        data["debit26"] = this.debit26;
+        data["debit27"] = this.debit27;
+        data["debit28"] = this.debit28;
+        data["debit29"] = this.debit29;
+        data["debit30"] = this.debit30;
+        data["credit1"] = this.credit1;
+        data["credit2"] = this.credit2;
+        data["credit3"] = this.credit3;
+        data["credit4"] = this.credit4;
+        data["credit5"] = this.credit5;
+        data["credit6"] = this.credit6;
+        data["credit7"] = this.credit7;
+        data["credit8"] = this.credit8;
+        data["credit9"] = this.credit9;
+        data["credit10"] = this.credit10;
+        data["credit11"] = this.credit11;
+        data["credit12"] = this.credit12;
+        data["credit13"] = this.credit13;
+        data["credit14"] = this.credit14;
+        data["credit15"] = this.credit15;
+        data["credit16"] = this.credit16;
+        data["credit17"] = this.credit17;
+        data["credit18"] = this.credit18;
+        data["credit19"] = this.credit19;
+        data["credit20"] = this.credit20;
+        data["credit21"] = this.credit21;
+        data["credit22"] = this.credit22;
+        data["credit23"] = this.credit23;
+        data["credit24"] = this.credit24;
+        data["credit25"] = this.credit25;
+        data["credit26"] = this.credit26;
+        data["credit27"] = this.credit27;
+        data["credit28"] = this.credit28;
+        data["credit29"] = this.credit29;
+        data["credit30"] = this.credit30;
+        data["arise"] = this.arise;
+        data["sum_arise"] = this.sum_arise;
+        data["language_id"] = this.language_id;
+        data["voucher_code"] = this.voucher_code;
+        data["voucher_year"] = this.voucher_year;
+        data["code"] = this.code;
+        data["company_code"] = this.company_code;
+        data["date_add"] = this.date_add ? this.date_add.toISOString(true) : <any>undefined;
+        data["date_modified"] = this.date_modified ? this.date_modified.toISOString(true) : <any>undefined;
+        data["account_code_add"] = this.account_code_add;
+        data["account_code_modified"] = this.account_code_modified;
+        return data;
+    }
+
+    clone(): CON_General_Ledger_ENTITY {
+        const json = this.toJSON();
+        let result = new CON_General_Ledger_ENTITY();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface ICON_General_Ledger_ENTITY {
+    id?: number;
+    voucher_no?: string | undefined;
+    voucher_date?: moment.Moment | undefined;
+    voucher_date_start?: moment.Moment | undefined;
+    voucher_date_end?: moment.Moment | undefined;
+    notes?: string | undefined;
+    account?: string | undefined;
+    debitor_account_debit?: string | undefined;
+    debitor_account_credit?: string | undefined;
+    debit1?: number | undefined;
+    debit2?: number | undefined;
+    debit3?: number | undefined;
+    debit4?: number | undefined;
+    debit5?: number | undefined;
+    debit6?: number | undefined;
+    debit7?: number | undefined;
+    debit8?: number | undefined;
+    debit9?: number | undefined;
+    debit10?: number | undefined;
+    debit11?: number | undefined;
+    debit12?: number | undefined;
+    debit13?: number | undefined;
+    debit14?: number | undefined;
+    debit15?: number | undefined;
+    debit16?: number | undefined;
+    debit17?: number | undefined;
+    debit18?: number | undefined;
+    debit19?: number | undefined;
+    debit20?: number | undefined;
+    debit21?: number | undefined;
+    debit22?: number | undefined;
+    debit23?: number | undefined;
+    debit24?: number | undefined;
+    debit25?: number | undefined;
+    debit26?: number | undefined;
+    debit27?: number | undefined;
+    debit28?: number | undefined;
+    debit29?: number | undefined;
+    debit30?: number | undefined;
+    credit1?: number | undefined;
+    credit2?: number | undefined;
+    credit3?: number | undefined;
+    credit4?: number | undefined;
+    credit5?: number | undefined;
+    credit6?: number | undefined;
+    credit7?: number | undefined;
+    credit8?: number | undefined;
+    credit9?: number | undefined;
+    credit10?: number | undefined;
+    credit11?: number | undefined;
+    credit12?: number | undefined;
+    credit13?: number | undefined;
+    credit14?: number | undefined;
+    credit15?: number | undefined;
+    credit16?: number | undefined;
+    credit17?: number | undefined;
+    credit18?: number | undefined;
+    credit19?: number | undefined;
+    credit20?: number | undefined;
+    credit21?: number | undefined;
+    credit22?: number | undefined;
+    credit23?: number | undefined;
+    credit24?: number | undefined;
+    credit25?: number | undefined;
+    credit26?: number | undefined;
+    credit27?: number | undefined;
+    credit28?: number | undefined;
+    credit29?: number | undefined;
+    credit30?: number | undefined;
+    arise?: number | undefined;
+    sum_arise?: number | undefined;
+    language_id?: number | undefined;
+    voucher_code?: string | undefined;
     voucher_year?: number | undefined;
     code?: string | undefined;
     company_code?: string | undefined;

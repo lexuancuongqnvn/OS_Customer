@@ -1009,5 +1009,39 @@ export class DXDataGridViewReportComponent extends LayoutComponentBase implement
       })
     }
   }
+  onLoadGenRowTableDetailNoCache(){
+    this.BlockUI();
+    this.genRowTableService.sYS_GenRowTable_Search({
+      ...new SYS_GenRowTable(),
+      userID:this.appSession.user.id,
+      type:this.type,
+      tablE_NAME:this.tableName,
+      form:this.editPageState,
+      syS_GenRowTable_Detail:[
+        new SYS_GenRowTable_Detail({
+          displaY_LIST:true,
+          alloW_SEARCH:true
+        }as SYS_GenRowTable_Detail)
+      ]
+    } as SYS_GenRowTable).subscribe((data:SYS_GenRowTable[])=>{
+      this.genRowTable = data[0];
+      this.tbName = this.genRowTable.code;
+      this.genRowTableDetail = this.genRowTable.syS_GenRowTable_Detail.filter(e=>!e.iS_GROUP && e.displaY_LIST == true);
+      this.genRowTableDetailGroup = this.genRowTable.syS_GenRowTable_Detail.filter(e=>e.iS_GROUP && e.displaY_LIST == true);
+      this.genRowTableDetailSummary = this.genRowTable.syS_GenRowTable_Detail.filter(e=>!this.isNullOrEmpty(e.summaryType_GROUP) && e.displaY_LIST == true);
+      this.genRowTableDetailTotal = this.genRowTable.syS_GenRowTable_Detail.filter(e=>e.showInGroupFooter_GROUP && e.displaY_LIST == true);
+
+      this.setEditorOptions(this.genRowTable.syS_GenRowTable_Detail.filter(e=>e.alloW_SEARCH == true));
+      this.UpdateView();
+      this.UnBlockUI();
+    },
+    (err) => {
+        if (err.status == 401) {
+          this.cookieService.remove('userlogin');
+          this.cookieService.remove('allowShowTheme');
+          this.router.navigateByUrl('/login');
+        }
+    })
+  }
 }
 

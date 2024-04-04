@@ -50,6 +50,9 @@ export class ConsolidationByAAccountComponent extends LayoutComponentBase implem
   tbName:string = 'CON_Account_Consolidation_By_A_Account';
   CurrenFrom:string = EditPageState.view;
   
+  get isEnableViewDeail():Boolean{
+    return (!this.rowSelected || (this.rowSelected.account && this.rowSelected.debitor_account))?true:false
+  }
 
   onAdd(): void {
     throw new Error('Method not implemented.');

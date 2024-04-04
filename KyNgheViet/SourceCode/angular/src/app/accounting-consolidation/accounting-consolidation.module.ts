@@ -38,6 +38,7 @@ import { CarryForwardEditComponent } from './category/carry-forward/carry-forwar
 import { StatementOfCashFlowsComponent } from './report/statement-of-cash-flows/statement-of-cash-flows.component';
 import { ConsolidationByAAccountComponent } from './report/consolidation-by-a-account/consolidation-by-a-account.component';
 import { ConsolidationAccountDetailComponent } from './report/consolidation-account-detail/consolidation-account-detail.component';
+import { GeneralLedgerComponent } from './report/general-ledger/general-ledger.component';
 
 const drawerRoutes = [
     { path: 'accounting-voucher', component: AccountingVoucherListComponent, data: {editPageState: EditPageState.view ,tbName:'C51_M',voucher_code:'PKT'} },
@@ -63,6 +64,7 @@ const drawerRoutes = [
     { path: 'con/statement-of-cash-flows', component: StatementOfCashFlowsComponent, data: {editPageState: EditPageState.viewDetail ,tbName:'CON_Statement_Of_Cash_Flows_Report' } },
     { path: 'con/consolidation-by-a-account', component: ConsolidationByAAccountComponent, data: {editPageState: EditPageState.viewDetail ,tbName:'CON_Account_Consolidation_By_A_Account' } },
     { path: 'con/consolidation-account-detail', component: ConsolidationAccountDetailComponent, data: {editPageState: EditPageState.viewDetail ,tbName:'CON_Account_Book_Detail' } },
+    { path: 'con/general-ledger-book', component: GeneralLedgerComponent, data: {editPageState: EditPageState.viewDetail ,tbName:'CON_General_Ledger' } },
 
 ]
 @NgModule({
@@ -77,7 +79,8 @@ const drawerRoutes = [
         CarryForwardEditComponent,
         StatementOfCashFlowsComponent,
         ConsolidationByAAccountComponent,
-        ConsolidationAccountDetailComponent
+        ConsolidationAccountDetailComponent,
+        GeneralLedgerComponent
     ],
     imports: [
         BrowserModule,

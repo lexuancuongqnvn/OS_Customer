@@ -124,6 +124,7 @@ import { FormEditV2ForPopupComponent } from './form/form-edit-v2-for-popup/form-
 import { DialogPreviewPrintComponent } from './layout/dialogs/dialog-preview-print/dialog-preview-print.component';
 import { DxDataGridViewReportFilterComponent } from './dx-data-grid/dx-data-grid-view-report-filter/dx-data-grid-view-report-filter.component';
 import { TreeListReportComponent } from './dx-tree-list/tree-list-report/tree-list-report.component';
+import { DialogWindownAcctionComponent } from './layout/dialogs/acction/dialog-windown-acction.component';
 
 const drawerRoutes = [
     { path: 'login', component: LoginComponent },
@@ -169,6 +170,7 @@ const drawerRoutes = [
         MycurrencyPipe,
         DialogAcctionComponent,
         DialogAcctionV2Component,
+        DialogWindownAcctionComponent,
         DialogFormComponent,
         ForgotPasswordComponent,
         VerifyPasswordComponent,
@@ -268,7 +270,7 @@ const drawerRoutes = [
         DxPopupModule,
         DxGanttModule,
         DxDropDownButtonModule,
-        DxTreeListModule
+        DxTreeListModule,
     ],
     exports: [
         FormViewComponent,
@@ -321,7 +323,8 @@ const drawerRoutes = [
         FormEditV2ForPopupComponent,
         DialogPreviewPrintComponent,
         DxDataGridViewReportFilterComponent,
-        TreeListReportComponent
+        TreeListReportComponent,
+        DialogWindownAcctionComponent
     ],
     providers: [
         {
