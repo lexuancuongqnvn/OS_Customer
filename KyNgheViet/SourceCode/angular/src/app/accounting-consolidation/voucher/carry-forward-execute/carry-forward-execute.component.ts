@@ -24,8 +24,6 @@ export class CarryForwardExecuteComponent  extends LayoutComponentBase implement
     super(injector);
     this.tbName = this.getRouteData('tbName');
     this.filterInput.voucher_code = this.getRouteData('voucher_code');
-    this.filterInput.month_start = moment().month();
-    this.filterInput.month_end = moment().month();
   }
 
   @ViewChild('DataGridGenRowTable') DataGridGenRowTable: DXDataGridViewComponent;
@@ -114,6 +112,14 @@ export class CarryForwardExecuteComponent  extends LayoutComponentBase implement
       }, 50);
   }
   onLoadData(){
+    if(!this.filterInput.month_start){
+      this.showMessageError('Vui lòng chọn tháng bắt đầu');
+      return;
+    }
+    if(!this.filterInput.month_end){
+      this.showMessageError('Vui lòng chọn tháng kết thúc');
+      return;
+    }
     this.BlockUI()
     this.consolidationVoucherService.carry_Forward_Execute({
       ...this.filterInput
@@ -126,6 +132,10 @@ export class CarryForwardExecuteComponent  extends LayoutComponentBase implement
   }
   onSelectedRowsData(obj:any){
     this.rowSelected = obj[0];
+  }
+  OnChangeDataFilter(obj:any){
+    if(obj.colName == 'month_start' || obj.colName == 'month_end')
+      this.filterInput[obj.colName] = Number(obj.value);
   }
 
 }
