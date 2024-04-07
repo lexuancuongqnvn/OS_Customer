@@ -42,6 +42,7 @@ import { GeneralLedgerComponent } from './report/general-ledger/general-ledger.c
 import { GeneralLedgerBookComponent } from './report/general-ledger-book/general-ledger-book.component';
 import { JournalVoucherComponent } from './report/journal-voucher/journal-voucher.component';
 import { GeneralLedgerJournalComponent } from './report/general-ledger-journal/general-ledger-journal.component';
+import { CarryForwardExecuteComponent } from './voucher/carry-forward-execute/carry-forward-execute.component';
 
 const drawerRoutes = [
     { path: 'accounting-voucher', component: AccountingVoucherListComponent, data: {editPageState: EditPageState.view ,tbName:'C51_M',voucher_code:'PKT'} },
@@ -72,6 +73,7 @@ const drawerRoutes = [
     { path: 'con/general-ledger-book', component: GeneralLedgerBookComponent, data: {editPageState: EditPageState.viewDetail ,tbName:'CON_General_Accounting_Ledger' } },
     { path: 'con/general-ledger-journal', component: GeneralLedgerJournalComponent, data: {editPageState: EditPageState.viewDetail ,tbName:'CON_General_Accounting_Ledger_Book' } },
     { path: 'con/journal-voucher', component: JournalVoucherComponent, data: {editPageState: EditPageState.viewDetail ,tbName:'CON_Voucher_Ledger_Book' } },
+    { path: 'con/carry-forward-execute', component: JournalVoucherComponent, data: {editPageState: EditPageState.viewDetail ,tbName:'Carry_Forward_Execute' } },
 
 ]
 @NgModule({
@@ -90,7 +92,8 @@ const drawerRoutes = [
         GeneralLedgerComponent,
         GeneralLedgerBookComponent,
         GeneralLedgerJournalComponent,
-        JournalVoucherComponent
+        JournalVoucherComponent,
+        CarryForwardExecuteComponent
     ],
     imports: [
         BrowserModule,

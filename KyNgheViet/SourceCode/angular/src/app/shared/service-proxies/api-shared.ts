@@ -5500,6 +5500,71 @@ export class ConsolidationVoucherService extends ApiBase {
         }
         return _observableOf<{ [key: string]: any; }>(null as any);
     }
+
+    /**
+     * @param body (optional) 
+     * @return Success
+     */
+    carry_Forward_Execute(body: Carry_Forward_Execute_ENTITY | undefined): Observable<Carry_Forward_Execute_ENTITY[]> {
+        let url_ = this.baseUrl + "/api/ConsolidationVoucher/Carry_Forward_Execute";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                "Accept": "text/plain"
+            })
+        };
+
+        return _observableFrom(this.transformOptions(options_)).pipe(_observableMergeMap(transformedOptions_ => {
+            return this.http.request("post", url_, transformedOptions_);
+        })).pipe(_observableMergeMap((response_: any) => {
+            return this.processCarry_Forward_Execute(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processCarry_Forward_Execute(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<Carry_Forward_Execute_ENTITY[]>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<Carry_Forward_Execute_ENTITY[]>;
+        }));
+    }
+
+    protected processCarry_Forward_Execute(response: HttpResponseBase): Observable<Carry_Forward_Execute_ENTITY[]> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200.push(Carry_Forward_Execute_ENTITY.fromJS(item));
+            }
+            else {
+                result200 = <any>null;
+            }
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<Carry_Forward_Execute_ENTITY[]>(null as any);
+    }
 }
 
 @Injectable()
@@ -43051,6 +43116,145 @@ export interface IC51_M_ENTITY {
     is_tax?: boolean | undefined;
     accounting_vat_inputs?: Accounting_VAT_Input_ENTITY[] | undefined;
     c51_D?: C51_D_ENTITY[] | undefined;
+}
+
+export class Carry_Forward_Execute_ENTITY implements ICarry_Forward_Execute_ENTITY {
+    num_row?: number | undefined;
+    id?: number;
+    month_start?: number | undefined;
+    month_end?: number | undefined;
+    code?: string | undefined;
+    voucher_code?: string | undefined;
+    source_account?: string | undefined;
+    arrive_account?: string | undefined;
+    department_code?: boolean | undefined;
+    case_code?: boolean | undefined;
+    fee_code?: boolean | undefined;
+    description?: string | undefined;
+    carry_forward_order?: number | undefined;
+    goods_code?: boolean | undefined;
+    contruction_code?: boolean | undefined;
+    carry_forward_type?: number | undefined;
+    classify?: string | undefined;
+    company_code?: string | undefined;
+    date_add?: moment.Moment | undefined;
+    date_modified?: moment.Moment | undefined;
+    account_code_add?: string | undefined;
+    account_code_modified?: string | undefined;
+    arise?: number | undefined;
+    language_id?: number | undefined;
+    voucher_year?: number | undefined;
+
+    constructor(data?: ICarry_Forward_Execute_ENTITY) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.num_row = _data["num_row"];
+            this.id = _data["id"];
+            this.month_start = _data["month_start"];
+            this.month_end = _data["month_end"];
+            this.code = _data["code"];
+            this.voucher_code = _data["voucher_code"];
+            this.source_account = _data["source_account"];
+            this.arrive_account = _data["arrive_account"];
+            this.department_code = _data["department_code"];
+            this.case_code = _data["case_code"];
+            this.fee_code = _data["fee_code"];
+            this.description = _data["description"];
+            this.carry_forward_order = _data["carry_forward_order"];
+            this.goods_code = _data["goods_code"];
+            this.contruction_code = _data["contruction_code"];
+            this.carry_forward_type = _data["carry_forward_type"];
+            this.classify = _data["classify"];
+            this.company_code = _data["company_code"];
+            this.date_add = _data["date_add"] ? moment.parseZone(_data["date_add"].toString()) : <any>undefined;
+            this.date_modified = _data["date_modified"] ? moment.parseZone(_data["date_modified"].toString()) : <any>undefined;
+            this.account_code_add = _data["account_code_add"];
+            this.account_code_modified = _data["account_code_modified"];
+            this.arise = _data["arise"];
+            this.language_id = _data["language_id"];
+            this.voucher_year = _data["voucher_year"];
+        }
+    }
+
+    static fromJS(data: any): Carry_Forward_Execute_ENTITY {
+        data = typeof data === 'object' ? data : {};
+        let result = new Carry_Forward_Execute_ENTITY();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["num_row"] = this.num_row;
+        data["id"] = this.id;
+        data["month_start"] = this.month_start;
+        data["month_end"] = this.month_end;
+        data["code"] = this.code;
+        data["voucher_code"] = this.voucher_code;
+        data["source_account"] = this.source_account;
+        data["arrive_account"] = this.arrive_account;
+        data["department_code"] = this.department_code;
+        data["case_code"] = this.case_code;
+        data["fee_code"] = this.fee_code;
+        data["description"] = this.description;
+        data["carry_forward_order"] = this.carry_forward_order;
+        data["goods_code"] = this.goods_code;
+        data["contruction_code"] = this.contruction_code;
+        data["carry_forward_type"] = this.carry_forward_type;
+        data["classify"] = this.classify;
+        data["company_code"] = this.company_code;
+        data["date_add"] = this.date_add ? this.date_add.toISOString(true) : <any>undefined;
+        data["date_modified"] = this.date_modified ? this.date_modified.toISOString(true) : <any>undefined;
+        data["account_code_add"] = this.account_code_add;
+        data["account_code_modified"] = this.account_code_modified;
+        data["arise"] = this.arise;
+        data["language_id"] = this.language_id;
+        data["voucher_year"] = this.voucher_year;
+        return data;
+    }
+
+    clone(): Carry_Forward_Execute_ENTITY {
+        const json = this.toJSON();
+        let result = new Carry_Forward_Execute_ENTITY();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface ICarry_Forward_Execute_ENTITY {
+    num_row?: number | undefined;
+    id?: number;
+    month_start?: number | undefined;
+    month_end?: number | undefined;
+    code?: string | undefined;
+    voucher_code?: string | undefined;
+    source_account?: string | undefined;
+    arrive_account?: string | undefined;
+    department_code?: boolean | undefined;
+    case_code?: boolean | undefined;
+    fee_code?: boolean | undefined;
+    description?: string | undefined;
+    carry_forward_order?: number | undefined;
+    goods_code?: boolean | undefined;
+    contruction_code?: boolean | undefined;
+    carry_forward_type?: number | undefined;
+    classify?: string | undefined;
+    company_code?: string | undefined;
+    date_add?: moment.Moment | undefined;
+    date_modified?: moment.Moment | undefined;
+    account_code_add?: string | undefined;
+    account_code_modified?: string | undefined;
+    arise?: number | undefined;
+    language_id?: number | undefined;
+    voucher_year?: number | undefined;
 }
 
 export class Department_Position_ENTITY implements IDepartment_Position_ENTITY {
