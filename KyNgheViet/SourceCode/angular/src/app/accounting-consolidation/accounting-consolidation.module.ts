@@ -39,6 +39,9 @@ import { StatementOfCashFlowsComponent } from './report/statement-of-cash-flows/
 import { ConsolidationByAAccountComponent } from './report/consolidation-by-a-account/consolidation-by-a-account.component';
 import { ConsolidationAccountDetailComponent } from './report/consolidation-account-detail/consolidation-account-detail.component';
 import { GeneralLedgerComponent } from './report/general-ledger/general-ledger.component';
+import { GeneralLedgerBookComponent } from './report/general-ledger-book/general-ledger-book.component';
+import { JournalVoucherComponent } from './report/journal-voucher/journal-voucher.component';
+import { GeneralLedgerJournalComponent } from './report/general-ledger-journal/general-ledger-journal.component';
 
 const drawerRoutes = [
     { path: 'accounting-voucher', component: AccountingVoucherListComponent, data: {editPageState: EditPageState.view ,tbName:'C51_M',voucher_code:'PKT'} },
@@ -64,7 +67,11 @@ const drawerRoutes = [
     { path: 'con/statement-of-cash-flows', component: StatementOfCashFlowsComponent, data: {editPageState: EditPageState.viewDetail ,tbName:'CON_Statement_Of_Cash_Flows_Report' } },
     { path: 'con/consolidation-by-a-account', component: ConsolidationByAAccountComponent, data: {editPageState: EditPageState.viewDetail ,tbName:'CON_Account_Consolidation_By_A_Account' } },
     { path: 'con/consolidation-account-detail', component: ConsolidationAccountDetailComponent, data: {editPageState: EditPageState.viewDetail ,tbName:'CON_Account_Book_Detail' } },
-    { path: 'con/general-ledger-book', component: GeneralLedgerComponent, data: {editPageState: EditPageState.viewDetail ,tbName:'CON_General_Ledger' } },
+    { path: 'con/general-ledger', component: GeneralLedgerComponent, data: {editPageState: EditPageState.viewDetail ,tbName:'CON_General_Ledger' } },
+    
+    { path: 'con/general-ledger-book', component: GeneralLedgerBookComponent, data: {editPageState: EditPageState.viewDetail ,tbName:'CON_General_Accounting_Ledger' } },
+    { path: 'con/general-ledger-journal', component: GeneralLedgerJournalComponent, data: {editPageState: EditPageState.viewDetail ,tbName:'CON_General_Accounting_Ledger_Book' } },
+    { path: 'con/journal-voucher', component: JournalVoucherComponent, data: {editPageState: EditPageState.viewDetail ,tbName:'CON_Voucher_Ledger_Book' } },
 
 ]
 @NgModule({
@@ -80,7 +87,10 @@ const drawerRoutes = [
         StatementOfCashFlowsComponent,
         ConsolidationByAAccountComponent,
         ConsolidationAccountDetailComponent,
-        GeneralLedgerComponent
+        GeneralLedgerComponent,
+        GeneralLedgerBookComponent,
+        GeneralLedgerJournalComponent,
+        JournalVoucherComponent
     ],
     imports: [
         BrowserModule,
