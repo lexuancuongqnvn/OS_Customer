@@ -125,6 +125,7 @@ import { DialogPreviewPrintComponent } from './layout/dialogs/dialog-preview-pri
 import { DxDataGridViewReportFilterComponent } from './dx-data-grid/dx-data-grid-view-report-filter/dx-data-grid-view-report-filter.component';
 import { TreeListReportComponent } from './dx-tree-list/tree-list-report/tree-list-report.component';
 import { DialogWindownAcctionComponent } from './layout/dialogs/acction/dialog-windown-acction.component';
+import { PopupIframeVoucherComponent } from './form/popup-iframe-voucher/popup-iframe-voucher.component';
 
 const drawerRoutes = [
     { path: 'login', component: LoginComponent },
@@ -212,7 +213,8 @@ const drawerRoutes = [
         FormEditV2ForPopupComponent,
         DialogPreviewPrintComponent,
         DxDataGridViewReportFilterComponent,
-        TreeListReportComponent
+        TreeListReportComponent,
+        PopupIframeVoucherComponent
     ],
     imports: [
         BrowserModule,
@@ -324,7 +326,8 @@ const drawerRoutes = [
         DialogPreviewPrintComponent,
         DxDataGridViewReportFilterComponent,
         TreeListReportComponent,
-        DialogWindownAcctionComponent
+        DialogWindownAcctionComponent,
+        PopupIframeVoucherComponent
     ],
     providers: [
         {

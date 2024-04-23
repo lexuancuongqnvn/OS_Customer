@@ -22,7 +22,7 @@
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>
-        {{titleApp}}
+        {{title}}
     </title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
     <!-- Extra details for Live View on GitHub Pages -->
@@ -32,19 +32,19 @@
     <meta name="keywords" content=" html dashboard, html css dashboard, web dashboard, bootstrap 4 dashboard, bootstrap 4, css3 dashboard, bootstrap 4 admin, material dashboard bootstrap 4 dashboard, frontend, responsive bootstrap 4 dashboard, material design, material dashboard bootstrap 4 dashboard">
     <meta name="description" content="Material Dashboard PRO is a Premium Material Bootstrap 4 Admin with a fresh, new design inspired by Google's Material Design.">
     <!-- Schema.org markup for Google+ -->
-    <meta itemprop="name" content="{{titleApp}}">
+    <meta itemprop="name" content="{{title}}">
     <meta itemprop="description" content="Material Dashboard PRO is a Premium Material Bootstrap 4 Admin with a fresh, new design inspired by Google's Material Design.">
     <meta itemprop="image" content="../../../s3.amazonaws.com/OSoft_bucket/products/51/original/opt_mdp_thumbnail.jpg">
     <!-- Twitter Card data -->
     <meta name="twitter:card" content="product">
     <meta name="twitter:site" content="@OSoft">
-    <meta name="twitter:title" content="{{titleApp}}">
+    <meta name="twitter:title" content="{{title}}">
     <meta name="twitter:description" content="Material Dashboard PRO is a Premium Material Bootstrap 4 Admin with a fresh, new design inspired by Google's Material Design.">
     <meta name="twitter:creator" content="@OSoft">
     <meta name="twitter:image" content="../../../s3.amazonaws.com/OSoft_bucket/products/51/original/opt_mdp_thumbnail.jpg">
     <!-- Open Graph data -->
     <meta property="fb:app_id" content="655968634437471">
-    <meta property="og:title" content="{{titleApp}}" />
+    <meta property="og:title" content="{{title}}" />
     <meta property="og:type" content="article" />
     <meta property="og:url" content="dashboard.html" />
     <meta property="og:image" content="../../../s3.amazonaws.com/OSoft_bucket/products/51/original/opt_mdp_thumbnail.jpg" />
@@ -72,7 +72,7 @@
                 <div *ngFor="let item of listNotification" class="div-notification {{item.isRead?'notification-new':''}}">
                     <a class="a-notification" href="javascript:;" (click)="onClickReadNotification(item)">
                         <div class="notification-photo">
-                            <img class="notification-img" style="width: 50px; max-height: 50px;" src="{{item.account_avarta}}" />
+                            <img class="notification-img" style="width: 50px; height: 50px;" src="{{item.account_avarta}}" />
                             <span [innerHTML]="item.message"></span>
                         </div>
                         <small>{{item.string_time}}</small>
@@ -296,7 +296,7 @@
                                 </div>
                                 <a class="navbar-brand" href="#pablo" style="padding:.225rem 0;">
                                     <a href="/" class="h4-title-app" style="font-size: 15px !important;text-transform: uppercase;">{{branName}} | {{appName?appName:''}}</a>
-                                    <!-- <h4 class="h4-title-app">{{titleApp}}</h4> -->
+                                    <!-- <h4 class="h4-title-app">{{title}}</h4> -->
                                 </a>
                             </div>
                             <button class="navbar-toggler btn-navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
@@ -424,7 +424,6 @@
                                         </div>
                                     </div> -->
                                 </div>
-
                                 <router-outlet>
                                 </router-outlet>
                             </div>

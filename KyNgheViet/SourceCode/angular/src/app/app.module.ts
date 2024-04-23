@@ -82,6 +82,7 @@ import { DoughnutComponent } from './plugin/layout/charts/doughnut/doughnut.comp
 import { SplineAreaComponent } from './plugin/layout/charts/spline-area/spline-area.component';
 import { DashboardWorkflowV2Component } from './plugin/dashboard/dashboard-hrm/dashboard-workflow-v2/dashboard-workflow-v2.component';
 import { PageMenuComponent } from './plugin/layout/page-menu/page-menu.component';
+import { LayoutContentOnlyComponent } from './plugin/layout/layout-content-only/layout-content-only.component';
 
 
 export const commonDeclarationDeclarations = [
@@ -118,7 +119,8 @@ const routes: Routes = [
     DoughnutComponent,
     SplineAreaComponent,
     DashboardWorkflowV2Component,
-    PageMenuComponent
+    PageMenuComponent,
+    LayoutContentOnlyComponent
   ],
   imports: [
     BrowserModule,
@@ -183,6 +185,7 @@ const routes: Routes = [
     StandardBarComponent,
     SplineAreaComponent,
     WarehouseModule,
+    LayoutContentOnlyComponent
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'en-US'},

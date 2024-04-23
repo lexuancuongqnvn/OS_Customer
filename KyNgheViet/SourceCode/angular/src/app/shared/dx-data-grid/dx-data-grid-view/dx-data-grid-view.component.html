@@ -191,8 +191,8 @@
         <dxi-item *ngIf="showFilterRow == false" name="saveButton"></dxi-item>
         <dxi-item *ngIf="showFilterRow == false" name="exportButton"></dxi-item>
         <dxi-item *ngIf="showFilterRow == false" name="groupPanel"></dxi-item>
-        <dxi-item location="after">
-            <dx-button *ngIf="isShowBtnAdd && (getCurrenFrom == 'Edit' || getCurrenFrom == 'Add')" style="margin-right: 5px;" (onClick)="AddRecords($event)" [disabled]="false" icon="add" text="Add" [title]="'Add a Record'">
+        <dxi-item *ngIf="getIsShowBtnAdd == true" location="after">
+            <dx-button style="margin-right: 5px;" (onClick)="AddRecords($event)" [disabled]="false" icon="add" text="Add" [title]="'Add a Record'">
             </dx-button>
             <!-- <dx-button style="margin-right: 5px;" (onClick)="deleteRecords($event)" [disabled]="false" icon="trash" text="Delete" [title]="'Delete Selected Records'">
             </dx-button> -->

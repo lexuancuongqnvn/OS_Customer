@@ -10,6 +10,7 @@ import { CON_Statement_Of_Cash_Flows_Report_ENTITY, CashReportService, Consolida
 import { EditPageState } from 'src/app/shared/ultilities/enum/edit-page-state';
 import { IUiAction } from 'src/app/shared/ultilities/ui-action';
 import { ConsolidationByAAccountComponent } from '../consolidation-by-a-account/consolidation-by-a-account.component';
+import { DialogPreviewPrintComponent } from 'src/app/shared/layout/dialogs/dialog-preview-print/dialog-preview-print.component';
 
 @Component({
   selector: 'app-statement-of-cash-flows',
@@ -34,6 +35,7 @@ export class StatementOfCashFlowsComponent extends LayoutComponentBase implement
   @ViewChild('toolbar') toolbar: ToolbarComponent;
   @ViewChild('dialogConsolidationByAAccount') dialogConsolidationByAAccount: DialogAcctionComponent;
   @ViewChild('FormConsolidationByAAccount') FormConsolidationByAAccount: ConsolidationByAAccountComponent;
+  @ViewChild('dialogPreviewPrint') dialogPreviewPrint: DialogPreviewPrintComponent;
 
   filterInput:CON_Statement_Of_Cash_Flows_Report_ENTITY=new CON_Statement_Of_Cash_Flows_Report_ENTITY();
   rowSelected:CON_Statement_Of_Cash_Flows_Report_ENTITY=new CON_Statement_Of_Cash_Flows_Report_ENTITY();
@@ -97,8 +99,8 @@ export class StatementOfCashFlowsComponent extends LayoutComponentBase implement
        }, 200);
         break;
       }
-      case 'update_target':{
-        
+      case 'Print_Report':{
+        this.dialogPreviewPrint.onPrint(this.tbName,this.filterInput)
         break;
       }
       case 'close_book':{

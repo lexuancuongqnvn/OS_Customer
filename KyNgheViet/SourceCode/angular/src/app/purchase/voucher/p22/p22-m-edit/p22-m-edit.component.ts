@@ -209,7 +209,7 @@ export class P22MEditComponent extends LayoutComponentBase implements OnInit, IU
     else if(event.dataField == 'p22_D' && this.InputMaster.p22_D){
       this.updateVATIN();
     }
-    this.InputMaster[event.dataField]= event.value;
+    //this.InputMaster[event.dataField]= event.value;
 
     this.caculateSumMoney();
     this.UpdateView();
@@ -258,9 +258,15 @@ export class P22MEditComponent extends LayoutComponentBase implements OnInit, IU
           this.InputMaster.accounting_vat_inputs[i].tax_fc =s33D.arise_fc * (tax.tax/100);
         }
       }
-    }else this.InputMaster.accounting_vat_inputs = []
+      this.onRefreshGrid = !this.onRefreshGrid;
+    }else {
+      if(this.InputMaster.accounting_vat_inputs.length>0){
+        this.InputMaster.accounting_vat_inputs = []
+        this.onRefreshGrid = !this.onRefreshGrid;
+      }
+    } 
    
-    this.onRefreshGrid = !this.onRefreshGrid;
+   
   }
   async caculateSumMoney(){
     if (this.InputMaster.exchange_rate == 1){

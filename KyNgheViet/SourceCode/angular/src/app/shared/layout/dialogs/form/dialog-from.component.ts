@@ -165,6 +165,7 @@ export class DialogFormComponent {
         this.j = j;
         this.k = k;
         this.InputMaster = {};
+        if(column.droP_DOWN_TABLE == 'CAT_Customer') this.InputMaster['code']='C'+this.generateRandomCustomerCode()
         if(!this.tables.includes(this.tbName))
         this.tables.push(this.tbName)
         this.opened = true;
@@ -179,6 +180,7 @@ export class DialogFormComponent {
         this.j = j;
         this.k = k;
         this.InputMaster = {};
+        if(column.droP_DOWN_TABLE == 'CAT_Customer') this.InputMaster['code']='C'+this.generateRandomCustomerCode()
         if(!this.tables.includes(this.tbName))
             this.tables.push(this.tbName)
         this.opened = true;
@@ -190,4 +192,11 @@ export class DialogFormComponent {
     handleValueChanged(event: any) {
         this.InputMaster[event.dataField]= event.value;
     }
+    generateRandomCustomerCode(): string {
+        let result = '';
+        for (let i = 0; i < 6; i++) {
+          result += Math.floor(Math.random() * 10); // Generate a random digit (0-9)
+        }
+        return result;
+      }
 }

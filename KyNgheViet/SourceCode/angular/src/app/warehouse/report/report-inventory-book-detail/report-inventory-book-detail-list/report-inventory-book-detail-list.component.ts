@@ -2,7 +2,9 @@ import { Component, Injector, OnInit, ViewChild } from '@angular/core';
 import { on } from 'events';
 import { AppSession } from 'src/app/shared/app-session/app-session';
 import { DXDataGridViewComponent } from 'src/app/shared/dx-data-grid/dx-data-grid-view/dx-data-grid-view.component';
+import { PopupIframeVoucherComponent } from 'src/app/shared/form/popup-iframe-voucher/popup-iframe-voucher.component';
 import { DialogAcctionComponent } from 'src/app/shared/layout/dialogs/acction/dialog-acction.component';
+import { DialogPreviewPrintComponent } from 'src/app/shared/layout/dialogs/dialog-preview-print/dialog-preview-print.component';
 import { LayoutComponentBase } from 'src/app/shared/layout/layoutBase';
 import { ToolbarComponent } from 'src/app/shared/layout/toolbar/toolbar.component';
 import { User } from 'src/app/shared/models/system/account';
@@ -34,17 +36,20 @@ export class ReportInventoryBookDetailListComponent extends LayoutComponentBase 
       type: 'normal',
       onClick: () => {
         that.tbName = 'WMS_Report_Inventory_Book_Detail'
-        that.setCurrenFrom(EditPageState.view)
         that.popupSetupReportVisible = false;
-        that.toolbar.refreshAcction()
         that.toolbar.setAcctionForm(that.listActions)
-        this.rowSelected = new WMS_Report_Inventory_Book_Detail_ENTITY()
+        that.setCurrenFrom(EditPageState.view)
+        that.toolbar.refreshAcction()
+        // this.rowSelected = new WMS_Report_Inventory_Book_Detail_ENTITY()
       },
     };
   }
   @ViewChild('dialogDelete') dialogDelete: DialogAcctionComponent;
   @ViewChild('DataGridGenRowTable') DataGridGenRowTable: DXDataGridViewComponent;
   @ViewChild('toolbar') toolbar: ToolbarComponent;
+  @ViewChild('dialogPreviewPrint') dialogPreviewPrint: DialogPreviewPrintComponent;
+  @ViewChild('IframeVoucher') iframeVoucher: PopupIframeVoucherComponent;
+
   filterInput:WMS_Report_Inventory_Book_Detail_ENTITY=new WMS_Report_Inventory_Book_Detail_ENTITY();
   rowSelected:WMS_Report_Inventory_Book_Detail_ENTITY=new WMS_Report_Inventory_Book_Detail_ENTITY();
   listData:WMS_Report_Inventory_Book_Detail_ENTITY[]=[];
@@ -109,7 +114,15 @@ export class ReportInventoryBookDetailListComponent extends LayoutComponentBase 
       }
     case 'view_detail_voucher':{
       if(!this.rowSelected.voucher_code) this.showMessageError(this.translate('Vui lòng chọn a số chứng từ','Choose a voucher, Please'))
-      this.popupSetupReportVisible = true;
+      this.setCurrenFrom(EditPageState.edit)
+      
+      setTimeout(() => {
+        this.popupSetupReportVisible = true;
+      }, 100);
+      break;
+    }
+    case EditPageState.PrintReport:{
+      this.dialogPreviewPrint.onPrint(this.tbName,this.filterInput)
       break;
     }
       default:break;

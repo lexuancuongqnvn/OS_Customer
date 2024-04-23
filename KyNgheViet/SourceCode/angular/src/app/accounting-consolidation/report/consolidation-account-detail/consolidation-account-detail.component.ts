@@ -4,6 +4,7 @@ import { AppSession } from 'src/app/shared/app-session/app-session';
 import { DXDataGridViewReportComponent } from 'src/app/shared/dx-data-grid/dx-data-grid-view-report/dx-data-grid-view-report.component';
 import { DXDataGridViewComponent } from 'src/app/shared/dx-data-grid/dx-data-grid-view/dx-data-grid-view.component';
 import { DialogAcctionComponent } from 'src/app/shared/layout/dialogs/acction/dialog-acction.component';
+import { DialogPreviewPrintComponent } from 'src/app/shared/layout/dialogs/dialog-preview-print/dialog-preview-print.component';
 import { LayoutComponentBase } from 'src/app/shared/layout/layoutBase';
 import { ToolbarComponent } from 'src/app/shared/layout/toolbar/toolbar.component';
 import { CON_Account_Book_Detail_ENTITY, CashReportService, ConsolidationReportService } from 'src/app/shared/service-proxies/api-shared';
@@ -34,6 +35,8 @@ export class ConsolidationAccountDetailComponent extends LayoutComponentBase imp
 
   @ViewChild('DataGridGenRowTable') DataGridGenRowTable: DXDataGridViewReportComponent;
   @ViewChild('toolbar') toolbar: ToolbarComponent;
+  @ViewChild('dialogPreviewPrint') dialogPreviewPrint: DialogPreviewPrintComponent;
+
   @Input() voucher_date_start: moment.Moment = this.getStartEndDateInMonth().startDate;
   @Input() voucher_date_end: moment.Moment = this.getStartEndDateInMonth().endDate;
   @Input() account: string = '';
@@ -92,18 +95,10 @@ export class ConsolidationAccountDetailComponent extends LayoutComponentBase imp
         this.openWindownForm('con/consolidation-by-a-account');
         break;
       }
-      case 'update_target':{
-        
+      case EditPageState.PrintReport:{
+        this.dialogPreviewPrint.onPrint(this.tbName,this.filterInput)
         break;
       }
-      case 'close_book':{
-        
-      break;
-    }
-    case 'open_book':{
-     
-      break;
-    }
       default:break;
     }
   }

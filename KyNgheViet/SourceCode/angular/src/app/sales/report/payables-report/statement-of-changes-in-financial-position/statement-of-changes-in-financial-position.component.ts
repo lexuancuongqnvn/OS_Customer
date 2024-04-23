@@ -2,11 +2,14 @@ import { Component, Injector, OnInit, ViewChild } from '@angular/core';
 import { AppSession } from 'src/app/shared/app-session/app-session';
 import { DXDataGridViewReportComponent } from 'src/app/shared/dx-data-grid/dx-data-grid-view-report/dx-data-grid-view-report.component';
 import { DXDataGridViewComponent } from 'src/app/shared/dx-data-grid/dx-data-grid-view/dx-data-grid-view.component';
+import { DialogPreviewPrintComponent } from 'src/app/shared/layout/dialogs/dialog-preview-print/dialog-preview-print.component';
 import { LayoutComponentBase } from 'src/app/shared/layout/layoutBase';
 import { ToolbarComponent } from 'src/app/shared/layout/toolbar/toolbar.component';
-import { SALE_Statement_Of_Changes_In_Financial_Position_ENTITY, CashReportService, SalesReportService } from 'src/app/shared/service-proxies/api-shared';
+import { SALE_Statement_Of_Changes_In_Financial_Position_ENTITY, CashReportService, SalesReportService, SALE_Accounts_Receivable_Ledger_ENTITY } from 'src/app/shared/service-proxies/api-shared';
 import { EditPageState } from 'src/app/shared/ultilities/enum/edit-page-state';
 import { IUiAction } from 'src/app/shared/ultilities/ui-action';
+import { AccountsReceivableLedgerComponent } from '../accounts-receivable-ledger/accounts-receivable-ledger.component';
+import { DialogAcctionComponent } from 'src/app/shared/layout/dialogs/acction/dialog-acction.component';
 
 @Component({
   selector: 'app-statement-of-changes-in-financial-position',
@@ -31,13 +34,21 @@ export class StatementOfChangesInFinancialPositionComponent  extends LayoutCompo
   }
 
   @ViewChild('DataGridGenRowTable') DataGridGenRowTable: DXDataGridViewReportComponent;
+  @ViewChild('FormAccountsReceivableLedger') FormAccountsReceivableLedger: AccountsReceivableLedgerComponent;
   @ViewChild('toolbar') toolbar: ToolbarComponent;
+  @ViewChild('dialogPreviewPrint') dialogPreviewPrint: DialogPreviewPrintComponent;
+  @ViewChild('dialogViewDetail') dialogViewDetail: DialogAcctionComponent;
+
   filterInput:SALE_Statement_Of_Changes_In_Financial_Position_ENTITY=new SALE_Statement_Of_Changes_In_Financial_Position_ENTITY();
   rowSelected:SALE_Statement_Of_Changes_In_Financial_Position_ENTITY=new SALE_Statement_Of_Changes_In_Financial_Position_ENTITY();
+  rowDetailSelected:SALE_Accounts_Receivable_Ledger_ENTITY=new SALE_Accounts_Receivable_Ledger_ENTITY();
   listData:SALE_Statement_Of_Changes_In_Financial_Position_ENTITY[]=[];
   tbName:string = '';
   CurrenFrom:string = EditPageState.view;
-
+  w:number = screen.width * 0.95;
+  get isEnableViewDeail():Boolean{
+    return (!this.rowDetailSelected || !this.rowDetailSelected.code)?true:false
+  }
   onAdd(): void {
     throw new Error('Method not implemented.');
   }
@@ -51,16 +62,19 @@ export class StatementOfChangesInFinancialPositionComponent  extends LayoutCompo
     throw new Error('Method not implemented.');
   }
   onViewDetail(item: any): void {
-    throw new Error('Method not implemented.');
+    alert('Đang cập nhật')
   }
   onSave(): void {
     throw new Error('Method not implemented.');
   }
   onSearch(): void {
-    throw new Error('Method not implemented.');
+    this.FormAccountsReceivableLedger.onLoadData()
   }
   onResetSearch(): void {
     throw new Error('Method not implemented.');
+  }
+  OnSelectRow(e:any): void {
+   this.rowDetailSelected = e;
   }
   onClickAcction(id: number, storedName: string, param: string, keyService: string, classForm: string): void {
     switch(classForm){
@@ -81,21 +95,19 @@ export class StatementOfChangesInFinancialPositionComponent  extends LayoutCompo
         break;
       }
       case EditPageState.viewDetail:{
-        this.onLoadData();
+        this.dialogViewDetail.open();
+        setTimeout(() => {
+          this.FormAccountsReceivableLedger.tbName = 'SALE_Accounts_Receivable_Ledger_Search';
+          this.FormAccountsReceivableLedger.filterInput = this.filterInput;
+          this.FormAccountsReceivableLedger.filterInput.customer_code = this.rowSelected.customer_code;
+          this.FormAccountsReceivableLedger.onLoadData()
+        }, 200);
         break;
       }
-      case 'update_target':{
-        
+      case EditPageState.PrintReport:{
+        this.dialogPreviewPrint.onPrint(this.tbName,this.filterInput)
         break;
       }
-      case 'close_book':{
-        
-      break;
-    }
-    case 'open_book':{
-     
-      break;
-    }
       default:break;
     }
   }

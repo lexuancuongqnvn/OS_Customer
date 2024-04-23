@@ -15,7 +15,14 @@
         <div class="dx-field">
             <div class="row">
                 <div class="col-4" style="text-align: center;">
-                    <a href="javascript:;" [disabled]="!selectedRowsData" (click)="onReportPreview()"><i class="dx-icon dx-icon-print"></i>{{translate('In','Print')}}</a>
+                    <dx-button icon="print" text="{{translate('Xem trước','Preview')}}" [disabled]="selectedRowsData" (click)="onReportPreview()"></dx-button>
+                    <!-- <a href="javascript:;" [disabled]="!selectedRowsData" (click)="onReportPreview()"><i class="dx-icon dx-icon-print"></i>{{translate('In','Print')}}</a> -->
+                </div>
+                <div class="col-4" style="text-align: center;">
+                    <dx-button icon="download" text="{{translate('DPF','PDF')}}" [disabled]="selectedRowsData" (click)="onReportExport('PDF')"></dx-button>
+                </div>
+                <div class="col-4" style="text-align: center;">
+                    <dx-button icon="download" text="{{translate('Excel','Excel')}}" [disabled]="selectedRowsData" (click)="onReportExport('Excel')"></dx-button>
                 </div>
             </div>
         </div>

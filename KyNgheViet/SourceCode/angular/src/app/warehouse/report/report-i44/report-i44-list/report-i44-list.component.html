@@ -3,3 +3,4 @@
     <alert-message #alertMessage></alert-message>
     <osoft-data-grid-report #DataGridGenRowTable [tableName]="tbName" [dataFilter]="filterInput" (OnChangeDataFilter)="OnChangeDataFilter($event)" [dataSource]="listData" (selectedRowsDataOutput)="onSelectedRowsData($event)" (OnSelectRow)="selectRow($event)"></osoft-data-grid-report>
 </form>
+<os-dialog-preview-print #dialogPreviewPrint></os-dialog-preview-print>

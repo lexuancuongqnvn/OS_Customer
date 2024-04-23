@@ -30,11 +30,12 @@ div#Announce {
 
 a.notification-new,
 .div-notification.notification-new {
-    border-right: 5px solid #00bcd4;
+    border-right: 5px solid #0033d4;
 }
 
 .div-notification {
     margin: 5px;
+    border-bottom: 1px solid #ade5ff;
 }
 
 .nav-item:focus {

@@ -73,7 +73,7 @@ const drawerRoutes = [
     { path: 'con/general-ledger-book', component: GeneralLedgerBookComponent, data: {editPageState: EditPageState.viewDetail ,tbName:'CON_General_Accounting_Ledger' } },
     { path: 'con/general-ledger-journal', component: GeneralLedgerJournalComponent, data: {editPageState: EditPageState.viewDetail ,tbName:'CON_General_Accounting_Ledger_Book' } },
     { path: 'con/journal-voucher', component: JournalVoucherComponent, data: {editPageState: EditPageState.viewDetail ,tbName:'CON_Voucher_Ledger_Book' } },
-    { path: 'con/carry-forward-execute', component: JournalVoucherComponent, data: {editPageState: EditPageState.viewDetail ,tbName:'Carry_Forward_Execute' } },
+    { path: 'con/carry-forward-execute', component: CarryForwardExecuteComponent, data: {editPageState: EditPageState.viewDetail ,tbName:'Carry_Forward_Execute' } },
 
 ]
 @NgModule({

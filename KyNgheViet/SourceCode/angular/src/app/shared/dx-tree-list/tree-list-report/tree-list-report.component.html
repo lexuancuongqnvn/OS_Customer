@@ -139,8 +139,8 @@
             <div [innerHTML]="data.value"></div>
         </div>
     </div>
-    <dxo-filter-row [visible]="showFilterRow" [applyFilter]="currentFilter"></dxo-filter-row>
-    <dxo-header-filter [visible]="showHeaderFilter"></dxo-header-filter>
+    <!-- <dxo-filter-row [visible]="showFilterRow" [applyFilter]="currentFilter"></dxo-filter-row>
+    <dxo-header-filter [visible]="showHeaderFilter"></dxo-header-filter> -->
 
     <!-- <dxo-column-chooser [enabled]="true" [text]="'column-chooser'"></dxo-column-chooser> -->
     <dxo-column-chooser #columnChooser [enabled]="true" [mode]="'select'">
@@ -189,14 +189,6 @@
                 </dx-button>
             </div>
         </dxi-item>
-        <dxi-item *ngIf="showFilterRow == false" name="columnChooserButton"></dxi-item>
-        <dxi-item *ngIf="showFilterRow == false" name="searchPanel"></dxi-item>
-        <dxi-item *ngIf="showFilterRow == false" name="addRowButton"></dxi-item>
-        <dxi-item *ngIf="showFilterRow == false" name="applyFilterButton"></dxi-item>
-        <dxi-item *ngIf="showFilterRow == false" name="revertButton"></dxi-item>
-        <dxi-item *ngIf="showFilterRow == false" name="saveButton"></dxi-item>
-        <dxi-item *ngIf="showFilterRow == false" name="exportButton"></dxi-item>
-        <dxi-item *ngIf="showFilterRow == false" name="groupPanel"></dxi-item>
     </dxo-toolbar>
     <!-- <dxo-export [enabled]="true" [formats]="['xlsx']" [allowExportSelectedData]="true"></dxo-export> -->
     <!-- <dxo-export [enabled]="true" [formats]="['pdf']" [allowExportSelectedData]="true"></dxo-export> -->

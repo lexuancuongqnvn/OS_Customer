@@ -5565,6 +5565,73 @@ export class ConsolidationVoucherService extends ApiBase {
         }
         return _observableOf<Carry_Forward_Execute_ENTITY[]>(null as any);
     }
+
+    /**
+     * @param body (optional) 
+     * @return Success
+     */
+    carry_Forward_Delete_Executed(body: Carry_Forward_Execute_ENTITY | undefined): Observable<{ [key: string]: any; }> {
+        let url_ = this.baseUrl + "/api/ConsolidationVoucher/Carry_Forward_Delete_Executed";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                "Accept": "text/plain"
+            })
+        };
+
+        return _observableFrom(this.transformOptions(options_)).pipe(_observableMergeMap(transformedOptions_ => {
+            return this.http.request("post", url_, transformedOptions_);
+        })).pipe(_observableMergeMap((response_: any) => {
+            return this.processCarry_Forward_Delete_Executed(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processCarry_Forward_Delete_Executed(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<{ [key: string]: any; }>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<{ [key: string]: any; }>;
+        }));
+    }
+
+    protected processCarry_Forward_Delete_Executed(response: HttpResponseBase): Observable<{ [key: string]: any; }> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (resultData200) {
+                result200 = {} as any;
+                for (let key in resultData200) {
+                    if (resultData200.hasOwnProperty(key))
+                        (<any>result200)[key] = resultData200[key] !== undefined ? resultData200[key] : <any>null;
+                }
+            }
+            else {
+                result200 = <any>null;
+            }
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<{ [key: string]: any; }>(null as any);
+    }
 }
 
 @Injectable()
@@ -33141,6 +33208,71 @@ export class WMSReportService extends ApiBase {
      * @param body (optional) 
      * @return Success
      */
+    wMS_Report_Inventory_Have_Serial(body: WMS_Report_Inventory_ENTITY | undefined): Observable<WMS_Report_Inventory_ENTITY[]> {
+        let url_ = this.baseUrl + "/api/WMSReport/WMS_Report_Inventory_Have_Serial";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                "Accept": "text/plain"
+            })
+        };
+
+        return _observableFrom(this.transformOptions(options_)).pipe(_observableMergeMap(transformedOptions_ => {
+            return this.http.request("post", url_, transformedOptions_);
+        })).pipe(_observableMergeMap((response_: any) => {
+            return this.processWMS_Report_Inventory_Have_Serial(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processWMS_Report_Inventory_Have_Serial(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<WMS_Report_Inventory_ENTITY[]>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<WMS_Report_Inventory_ENTITY[]>;
+        }));
+    }
+
+    protected processWMS_Report_Inventory_Have_Serial(response: HttpResponseBase): Observable<WMS_Report_Inventory_ENTITY[]> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200.push(WMS_Report_Inventory_ENTITY.fromJS(item));
+            }
+            else {
+                result200 = <any>null;
+            }
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<WMS_Report_Inventory_ENTITY[]>(null as any);
+    }
+
+    /**
+     * @param body (optional) 
+     * @return Success
+     */
     wMS_Prepaid_Expense_Allocation(body: WMS_Prepaid_Expense_Allocation_ENTITY | undefined): Observable<WMS_Prepaid_Expense_Allocation_ENTITY[]> {
         let url_ = this.baseUrl + "/api/WMSReport/WMS_Prepaid_Expense_Allocation";
         url_ = url_.replace(/[?&]$/, "");
@@ -34411,6 +34543,71 @@ export class WMSReportService extends ApiBase {
     }
 
     protected processWMS_Report_Inventory_Realtime_Search(response: HttpResponseBase): Observable<WMS_Report_Inventory_ENTITY[]> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200.push(WMS_Report_Inventory_ENTITY.fromJS(item));
+            }
+            else {
+                result200 = <any>null;
+            }
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<WMS_Report_Inventory_ENTITY[]>(null as any);
+    }
+
+    /**
+     * @param body (optional) 
+     * @return Success
+     */
+    wMS_Report_Inventory_Realtime_Have_Serial_Search(body: WMS_Report_Inventory_ENTITY | undefined): Observable<WMS_Report_Inventory_ENTITY[]> {
+        let url_ = this.baseUrl + "/api/WMSReport/WMS_Report_Inventory_Realtime_Have_Serial_Search";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                "Accept": "text/plain"
+            })
+        };
+
+        return _observableFrom(this.transformOptions(options_)).pipe(_observableMergeMap(transformedOptions_ => {
+            return this.http.request("post", url_, transformedOptions_);
+        })).pipe(_observableMergeMap((response_: any) => {
+            return this.processWMS_Report_Inventory_Realtime_Have_Serial_Search(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processWMS_Report_Inventory_Realtime_Have_Serial_Search(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<WMS_Report_Inventory_ENTITY[]>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<WMS_Report_Inventory_ENTITY[]>;
+        }));
+    }
+
+    protected processWMS_Report_Inventory_Realtime_Have_Serial_Search(response: HttpResponseBase): Observable<WMS_Report_Inventory_ENTITY[]> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -48635,6 +48832,12 @@ export class SYS_Report_Infomation_ENTITY implements ISYS_Report_Infomation_ENTI
     report_type?: string | undefined;
     report_icon?: string | undefined;
     type?: string | undefined;
+    is_reference?: boolean | undefined;
+    is_logo?: boolean | undefined;
+    is_branch?: boolean | undefined;
+    column_logo?: string | undefined;
+    reference?: string | undefined;
+    branch_code_default?: string | undefined;
     sYS_List_Companys?: SYS_List_Company_ENTITY[] | undefined;
     hRM_Branchs?: HRM_Branch_ENTITY[] | undefined;
     sYS_Report_Infomation_Details?: SYS_Report_Infomation_Detail_ENTITY[] | undefined;
@@ -48671,6 +48874,12 @@ export class SYS_Report_Infomation_ENTITY implements ISYS_Report_Infomation_ENTI
             this.report_type = _data["report_type"];
             this.report_icon = _data["report_icon"];
             this.type = _data["type"];
+            this.is_reference = _data["is_reference"];
+            this.is_logo = _data["is_logo"];
+            this.is_branch = _data["is_branch"];
+            this.column_logo = _data["column_logo"];
+            this.reference = _data["reference"];
+            this.branch_code_default = _data["branch_code_default"];
             if (Array.isArray(_data["sYS_List_Companys"])) {
                 this.sYS_List_Companys = [] as any;
                 for (let item of _data["sYS_List_Companys"])
@@ -48719,6 +48928,12 @@ export class SYS_Report_Infomation_ENTITY implements ISYS_Report_Infomation_ENTI
         data["report_type"] = this.report_type;
         data["report_icon"] = this.report_icon;
         data["type"] = this.type;
+        data["is_reference"] = this.is_reference;
+        data["is_logo"] = this.is_logo;
+        data["is_branch"] = this.is_branch;
+        data["column_logo"] = this.column_logo;
+        data["reference"] = this.reference;
+        data["branch_code_default"] = this.branch_code_default;
         if (Array.isArray(this.sYS_List_Companys)) {
             data["sYS_List_Companys"] = [];
             for (let item of this.sYS_List_Companys)
@@ -48767,6 +48982,12 @@ export interface ISYS_Report_Infomation_ENTITY {
     report_type?: string | undefined;
     report_icon?: string | undefined;
     type?: string | undefined;
+    is_reference?: boolean | undefined;
+    is_logo?: boolean | undefined;
+    is_branch?: boolean | undefined;
+    column_logo?: string | undefined;
+    reference?: string | undefined;
+    branch_code_default?: string | undefined;
     sYS_List_Companys?: SYS_List_Company_ENTITY[] | undefined;
     hRM_Branchs?: HRM_Branch_ENTITY[] | undefined;
     sYS_Report_Infomation_Details?: SYS_Report_Infomation_Detail_ENTITY[] | undefined;
@@ -58391,6 +58612,7 @@ export class SALES_Report_S33_ENTITY implements ISALES_Report_S33_ENTITY {
     name?: string | undefined;
     debitor_account?: string | undefined;
     goods_code?: string | undefined;
+    goods_symbol?: string | undefined;
     goods_name?: string | undefined;
     unit_code?: string | undefined;
     warehouse_code?: string | undefined;
@@ -58486,6 +58708,7 @@ export class SALES_Report_S33_ENTITY implements ISALES_Report_S33_ENTITY {
             this.name = _data["name"];
             this.debitor_account = _data["debitor_account"];
             this.goods_code = _data["goods_code"];
+            this.goods_symbol = _data["goods_symbol"];
             this.goods_name = _data["goods_name"];
             this.unit_code = _data["unit_code"];
             this.warehouse_code = _data["warehouse_code"];
@@ -58581,6 +58804,7 @@ export class SALES_Report_S33_ENTITY implements ISALES_Report_S33_ENTITY {
         data["name"] = this.name;
         data["debitor_account"] = this.debitor_account;
         data["goods_code"] = this.goods_code;
+        data["goods_symbol"] = this.goods_symbol;
         data["goods_name"] = this.goods_name;
         data["unit_code"] = this.unit_code;
         data["warehouse_code"] = this.warehouse_code;
@@ -58676,6 +58900,7 @@ export interface ISALES_Report_S33_ENTITY {
     name?: string | undefined;
     debitor_account?: string | undefined;
     goods_code?: string | undefined;
+    goods_symbol?: string | undefined;
     goods_name?: string | undefined;
     unit_code?: string | undefined;
     warehouse_code?: string | undefined;
@@ -68862,6 +69087,7 @@ export class WMS_Report_Inventory_ENTITY implements IWMS_Report_Inventory_ENTITY
     warehouse_code?: string | undefined;
     warehouse_name?: string | undefined;
     goods_symbol?: string | undefined;
+    goods_serial?: string | undefined;
     goods_code?: string | undefined;
     goods_name?: string | undefined;
     goods_unit_name?: string | undefined;
@@ -68924,6 +69150,7 @@ export class WMS_Report_Inventory_ENTITY implements IWMS_Report_Inventory_ENTITY
             this.warehouse_code = _data["warehouse_code"];
             this.warehouse_name = _data["warehouse_name"];
             this.goods_symbol = _data["goods_symbol"];
+            this.goods_serial = _data["goods_serial"];
             this.goods_code = _data["goods_code"];
             this.goods_name = _data["goods_name"];
             this.goods_unit_name = _data["goods_unit_name"];
@@ -68986,6 +69213,7 @@ export class WMS_Report_Inventory_ENTITY implements IWMS_Report_Inventory_ENTITY
         data["warehouse_code"] = this.warehouse_code;
         data["warehouse_name"] = this.warehouse_name;
         data["goods_symbol"] = this.goods_symbol;
+        data["goods_serial"] = this.goods_serial;
         data["goods_code"] = this.goods_code;
         data["goods_name"] = this.goods_name;
         data["goods_unit_name"] = this.goods_unit_name;
@@ -69048,6 +69276,7 @@ export interface IWMS_Report_Inventory_ENTITY {
     warehouse_code?: string | undefined;
     warehouse_name?: string | undefined;
     goods_symbol?: string | undefined;
+    goods_serial?: string | undefined;
     goods_code?: string | undefined;
     goods_name?: string | undefined;
     goods_unit_name?: string | undefined;
@@ -69568,6 +69797,7 @@ export class WMS_Report_I44_ENTITY implements IWMS_Report_I44_ENTITY {
     warehouse_out_symbol?: string | undefined;
     warehouse_in_symbol?: string | undefined;
     quantity?: number | undefined;
+    goods_serial?: string | undefined;
     goods_symbol?: string | undefined;
     goods_name?: string | undefined;
     goods_code?: string | undefined;
@@ -69635,6 +69865,7 @@ export class WMS_Report_I44_ENTITY implements IWMS_Report_I44_ENTITY {
             this.warehouse_out_symbol = _data["warehouse_out_symbol"];
             this.warehouse_in_symbol = _data["warehouse_in_symbol"];
             this.quantity = _data["quantity"];
+            this.goods_serial = _data["goods_serial"];
             this.goods_symbol = _data["goods_symbol"];
             this.goods_name = _data["goods_name"];
             this.goods_code = _data["goods_code"];
@@ -69702,6 +69933,7 @@ export class WMS_Report_I44_ENTITY implements IWMS_Report_I44_ENTITY {
         data["warehouse_out_symbol"] = this.warehouse_out_symbol;
         data["warehouse_in_symbol"] = this.warehouse_in_symbol;
         data["quantity"] = this.quantity;
+        data["goods_serial"] = this.goods_serial;
         data["goods_symbol"] = this.goods_symbol;
         data["goods_name"] = this.goods_name;
         data["goods_code"] = this.goods_code;
@@ -69769,6 +70001,7 @@ export interface IWMS_Report_I44_ENTITY {
     warehouse_out_symbol?: string | undefined;
     warehouse_in_symbol?: string | undefined;
     quantity?: number | undefined;
+    goods_serial?: string | undefined;
     goods_symbol?: string | undefined;
     goods_name?: string | undefined;
     goods_code?: string | undefined;
@@ -70829,6 +71062,7 @@ export class WMS_Report_Inventory_Material_Ledger_ENTITY implements IWMS_Report_
     notes?: string | undefined;
     price?: number | undefined;
     goods_code?: string | undefined;
+    goods_serial?: string | undefined;
     warehouse_code?: string | undefined;
     quantity?: number | undefined;
     price_import?: number | undefined;
@@ -70869,6 +71103,7 @@ export class WMS_Report_Inventory_Material_Ledger_ENTITY implements IWMS_Report_
             this.notes = _data["notes"];
             this.price = _data["price"];
             this.goods_code = _data["goods_code"];
+            this.goods_serial = _data["goods_serial"];
             this.warehouse_code = _data["warehouse_code"];
             this.quantity = _data["quantity"];
             this.price_import = _data["price_import"];
@@ -70909,6 +71144,7 @@ export class WMS_Report_Inventory_Material_Ledger_ENTITY implements IWMS_Report_
         data["notes"] = this.notes;
         data["price"] = this.price;
         data["goods_code"] = this.goods_code;
+        data["goods_serial"] = this.goods_serial;
         data["warehouse_code"] = this.warehouse_code;
         data["quantity"] = this.quantity;
         data["price_import"] = this.price_import;
@@ -70949,6 +71185,7 @@ export interface IWMS_Report_Inventory_Material_Ledger_ENTITY {
     notes?: string | undefined;
     price?: number | undefined;
     goods_code?: string | undefined;
+    goods_serial?: string | undefined;
     warehouse_code?: string | undefined;
     quantity?: number | undefined;
     price_import?: number | undefined;
@@ -70969,6 +71206,7 @@ export interface IWMS_Report_Inventory_Material_Ledger_ENTITY {
 export class WMS_Report_Inventory_Book_Detail_ENTITY implements IWMS_Report_Inventory_Book_Detail_ENTITY {
     goods_name?: string | undefined;
     goods_symbol?: string | undefined;
+    goods_serial?: string | undefined;
     voucher_date?: moment.Moment | undefined;
     voucher_date_start?: moment.Moment | undefined;
     voucher_date_end?: moment.Moment | undefined;
@@ -71010,6 +71248,7 @@ export class WMS_Report_Inventory_Book_Detail_ENTITY implements IWMS_Report_Inve
         if (_data) {
             this.goods_name = _data["goods_name"];
             this.goods_symbol = _data["goods_symbol"];
+            this.goods_serial = _data["goods_serial"];
             this.voucher_date = _data["voucher_date"] ? moment.parseZone(_data["voucher_date"].toString()) : <any>undefined;
             this.voucher_date_start = _data["voucher_date_start"] ? moment.parseZone(_data["voucher_date_start"].toString()) : <any>undefined;
             this.voucher_date_end = _data["voucher_date_end"] ? moment.parseZone(_data["voucher_date_end"].toString()) : <any>undefined;
@@ -71051,6 +71290,7 @@ export class WMS_Report_Inventory_Book_Detail_ENTITY implements IWMS_Report_Inve
         data = typeof data === 'object' ? data : {};
         data["goods_name"] = this.goods_name;
         data["goods_symbol"] = this.goods_symbol;
+        data["goods_serial"] = this.goods_serial;
         data["voucher_date"] = this.voucher_date ? this.voucher_date.toISOString(true) : <any>undefined;
         data["voucher_date_start"] = this.voucher_date_start ? this.voucher_date_start.toISOString(true) : <any>undefined;
         data["voucher_date_end"] = this.voucher_date_end ? this.voucher_date_end.toISOString(true) : <any>undefined;
@@ -71092,6 +71332,7 @@ export class WMS_Report_Inventory_Book_Detail_ENTITY implements IWMS_Report_Inve
 export interface IWMS_Report_Inventory_Book_Detail_ENTITY {
     goods_name?: string | undefined;
     goods_symbol?: string | undefined;
+    goods_serial?: string | undefined;
     voucher_date?: moment.Moment | undefined;
     voucher_date_start?: moment.Moment | undefined;
     voucher_date_end?: moment.Moment | undefined;
@@ -71255,6 +71496,7 @@ export class WMS_Report_Inventory_Import_Export_ENTITY implements IWMS_Report_In
     goods_code?: string | undefined;
     warehouse_symbol?: string | undefined;
     goods_symbol?: string | undefined;
+    goods_serial?: string | undefined;
     goods_name?: string | undefined;
     unit_name?: string | undefined;
     ob_inventory_quantity?: number | undefined;
@@ -71300,6 +71542,7 @@ export class WMS_Report_Inventory_Import_Export_ENTITY implements IWMS_Report_In
             this.goods_code = _data["goods_code"];
             this.warehouse_symbol = _data["warehouse_symbol"];
             this.goods_symbol = _data["goods_symbol"];
+            this.goods_serial = _data["goods_serial"];
             this.goods_name = _data["goods_name"];
             this.unit_name = _data["unit_name"];
             this.ob_inventory_quantity = _data["ob_inventory_quantity"];
@@ -71345,6 +71588,7 @@ export class WMS_Report_Inventory_Import_Export_ENTITY implements IWMS_Report_In
         data["goods_code"] = this.goods_code;
         data["warehouse_symbol"] = this.warehouse_symbol;
         data["goods_symbol"] = this.goods_symbol;
+        data["goods_serial"] = this.goods_serial;
         data["goods_name"] = this.goods_name;
         data["unit_name"] = this.unit_name;
         data["ob_inventory_quantity"] = this.ob_inventory_quantity;
@@ -71390,6 +71634,7 @@ export interface IWMS_Report_Inventory_Import_Export_ENTITY {
     goods_code?: string | undefined;
     warehouse_symbol?: string | undefined;
     goods_symbol?: string | undefined;
+    goods_serial?: string | undefined;
     goods_name?: string | undefined;
     unit_name?: string | undefined;
     ob_inventory_quantity?: number | undefined;
@@ -71429,6 +71674,7 @@ export class WMS_Report_Inventory_Incoming_Summary_ENTITY implements IWMS_Report
     language_id?: number | undefined;
     goods_symbol?: string | undefined;
     goods_name?: string | undefined;
+    goods_serial?: string | undefined;
     unit_name?: string | undefined;
     quantity?: number | undefined;
     arise_credit?: number | undefined;
@@ -71467,6 +71713,7 @@ export class WMS_Report_Inventory_Incoming_Summary_ENTITY implements IWMS_Report
             this.language_id = _data["language_id"];
             this.goods_symbol = _data["goods_symbol"];
             this.goods_name = _data["goods_name"];
+            this.goods_serial = _data["goods_serial"];
             this.unit_name = _data["unit_name"];
             this.quantity = _data["quantity"];
             this.arise_credit = _data["arise_credit"];
@@ -71505,6 +71752,7 @@ export class WMS_Report_Inventory_Incoming_Summary_ENTITY implements IWMS_Report
         data["language_id"] = this.language_id;
         data["goods_symbol"] = this.goods_symbol;
         data["goods_name"] = this.goods_name;
+        data["goods_serial"] = this.goods_serial;
         data["unit_name"] = this.unit_name;
         data["quantity"] = this.quantity;
         data["arise_credit"] = this.arise_credit;
@@ -71543,6 +71791,7 @@ export interface IWMS_Report_Inventory_Incoming_Summary_ENTITY {
     language_id?: number | undefined;
     goods_symbol?: string | undefined;
     goods_name?: string | undefined;
+    goods_serial?: string | undefined;
     unit_name?: string | undefined;
     quantity?: number | undefined;
     arise_credit?: number | undefined;
@@ -71572,6 +71821,7 @@ export class WMS_Report_Inventory_Issued_Summary_ENTITY implements IWMS_Report_I
     language_id?: number | undefined;
     goods_symbol?: string | undefined;
     goods_name?: string | undefined;
+    goods_serial?: string | undefined;
     unit_name?: string | undefined;
     quantity?: number | undefined;
     arise_credit?: number | undefined;
@@ -71610,6 +71860,7 @@ export class WMS_Report_Inventory_Issued_Summary_ENTITY implements IWMS_Report_I
             this.language_id = _data["language_id"];
             this.goods_symbol = _data["goods_symbol"];
             this.goods_name = _data["goods_name"];
+            this.goods_serial = _data["goods_serial"];
             this.unit_name = _data["unit_name"];
             this.quantity = _data["quantity"];
             this.arise_credit = _data["arise_credit"];
@@ -71648,6 +71899,7 @@ export class WMS_Report_Inventory_Issued_Summary_ENTITY implements IWMS_Report_I
         data["language_id"] = this.language_id;
         data["goods_symbol"] = this.goods_symbol;
         data["goods_name"] = this.goods_name;
+        data["goods_serial"] = this.goods_serial;
         data["unit_name"] = this.unit_name;
         data["quantity"] = this.quantity;
         data["arise_credit"] = this.arise_credit;
@@ -71686,6 +71938,7 @@ export interface IWMS_Report_Inventory_Issued_Summary_ENTITY {
     language_id?: number | undefined;
     goods_symbol?: string | undefined;
     goods_name?: string | undefined;
+    goods_serial?: string | undefined;
     unit_name?: string | undefined;
     quantity?: number | undefined;
     arise_credit?: number | undefined;

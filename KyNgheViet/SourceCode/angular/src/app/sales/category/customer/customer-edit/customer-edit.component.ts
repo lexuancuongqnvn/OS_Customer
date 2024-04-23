@@ -22,6 +22,7 @@ export class CustomerEditComponent extends LayoutComponentBase implements OnInit
     this.tbName = this.getRouteData('tbName');
     this.InputMaster['sys_TableName'] = this.tbName;
     if(this.editPageState == EditPageState.add){
+      this.InputMaster.code = 'C'+this.generateRandomCustomerCode();
     }else if(this.editPageState == EditPageState.edit || this.editPageState == EditPageState.viewDetail){
       this.InputMaster.code = this.getRouteParamObj('code');
       this.onLoadData();
@@ -66,6 +67,7 @@ export class CustomerEditComponent extends LayoutComponentBase implements OnInit
   }
   ngOnInit(): void {
   }
+  
   onClickAcctionResponse(e:any): void {
     switch(e.classForm){
       case EditPageState.add:{
@@ -80,10 +82,15 @@ export class CustomerEditComponent extends LayoutComponentBase implements OnInit
         if(!this.InputMaster.id || this.InputMaster.id == 0){
           this.salesCategoryService.cAT_Customer_Insert(new CAT_Customer_ENTITY(
             {...this.InputMaster}) as CAT_Customer_ENTITY).subscribe(res=>{
-            this.showMessage(res.message,res.status);
-            //this.InputMaster.code = res.ref_code;
-            if(res.status == 0)
-            this.navigatePassParam('sales/customer-view-detail',[['code',res.ref_code]],new CAT_Customer_ENTITY(),this.tbName);
+              if(res.status == 2){
+                this.InputMaster.code = 'C'+this.generateRandomCustomerCode();
+                this.onClickAcctionResponse(e);
+              }else{
+                this.showMessage(res.message,res.status);
+                //this.InputMaster.code = res.ref_code;
+                if(res.status == 0)
+                this.navigatePassParam('sales/customer-view-detail',[['code',res.ref_code]],new CAT_Customer_ENTITY(),this.tbName);
+              }
           })
         }else{
           this.salesCategoryService.cAT_Customer_Update(new CAT_Customer_ENTITY(

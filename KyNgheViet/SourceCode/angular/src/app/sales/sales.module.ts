@@ -44,6 +44,7 @@ import { StatementOfChangesInFinancialPositionComponent } from './report/payable
 import { YearEndBalanceSheetCompilationComponent } from './report/payables-report/year-end-balance-sheet-compilation/year-end-balance-sheet-compilation.component';
 import { S35MEditComponent } from './voucher/s35/s35-m-edit/s35-m-edit.component';
 import { S35MListComponent } from './voucher/s35/s35-m-list/s35-m-list.component';
+import { DxButtonModule } from "devextreme-angular";
 
 const drawerRoutes = [
     { path: 'sales/service-invoice', component: S31MListComponent, data: {editPageState: EditPageState.view ,tbName:'S31_M',voucher_code:'HDV'} },
@@ -166,13 +167,15 @@ const drawerRoutes = [
         FormsModule,
         RouterModule.forRoot(drawerRoutes),
         CookieModule.forRoot(),
-        ShareModule
+        ShareModule,
+        DxButtonModule
     ],
     exports: [
         S32MListComponent,
         S32MEditComponent,
         S33MListComponent,
-        S33MEditComponent
+        S33MEditComponent,
+        AccountsReceivableLedgerComponent
     ],
     providers: [
         {

@@ -1,6 +1,7 @@
 import { Component, Injector, OnInit, ViewChild } from '@angular/core';
 import { AppSession } from 'src/app/shared/app-session/app-session';
 import { DXDataGridViewComponent } from 'src/app/shared/dx-data-grid/dx-data-grid-view/dx-data-grid-view.component';
+import { DialogPreviewPrintComponent } from 'src/app/shared/layout/dialogs/dialog-preview-print/dialog-preview-print.component';
 import { LayoutComponentBase } from 'src/app/shared/layout/layoutBase';
 import { ToolbarComponent } from 'src/app/shared/layout/toolbar/toolbar.component';
 import { WMSReportService, WMS_Report_I44_ENTITY } from 'src/app/shared/service-proxies/api-shared';
@@ -29,6 +30,8 @@ export class ReportI44ListComponent extends LayoutComponentBase implements OnIni
 
   @ViewChild('DataGridGenRowTable') DataGridGenRowTable: DXDataGridViewComponent;
   @ViewChild('toolbar') toolbar: ToolbarComponent;
+  @ViewChild('dialogPreviewPrint') dialogPreviewPrint: DialogPreviewPrintComponent;
+
   filterInput:WMS_Report_I44_ENTITY=new WMS_Report_I44_ENTITY();
   rowSelected:WMS_Report_I44_ENTITY=new WMS_Report_I44_ENTITY();
   listData:WMS_Report_I44_ENTITY[]=[];
@@ -81,18 +84,10 @@ export class ReportI44ListComponent extends LayoutComponentBase implements OnIni
         this.onLoadData();
         break;
       }
-      case 'update_target':{
-        
+      case EditPageState.PrintReport:{
+        this.dialogPreviewPrint.onPrint(this.tbName,this.filterInput)
         break;
       }
-      case 'close_book':{
-        
-      break;
-    }
-    case 'open_book':{
-     
-      break;
-    }
       default:break;
     }
   }

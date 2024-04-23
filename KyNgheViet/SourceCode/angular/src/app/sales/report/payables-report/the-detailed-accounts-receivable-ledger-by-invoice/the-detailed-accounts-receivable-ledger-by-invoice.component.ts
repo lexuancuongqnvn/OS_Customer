@@ -2,6 +2,7 @@ import { Component, Injector, OnInit, ViewChild } from '@angular/core';
 import { AppSession } from 'src/app/shared/app-session/app-session';
 import { DXDataGridViewReportComponent } from 'src/app/shared/dx-data-grid/dx-data-grid-view-report/dx-data-grid-view-report.component';
 import { DXDataGridViewComponent } from 'src/app/shared/dx-data-grid/dx-data-grid-view/dx-data-grid-view.component';
+import { DialogPreviewPrintComponent } from 'src/app/shared/layout/dialogs/dialog-preview-print/dialog-preview-print.component';
 import { LayoutComponentBase } from 'src/app/shared/layout/layoutBase';
 import { ToolbarComponent } from 'src/app/shared/layout/toolbar/toolbar.component';
 import { SALE_The_detailed_Accounts_Receivable_Ledger_By_Invoice_ENTITY, CashReportService, SalesReportService } from 'src/app/shared/service-proxies/api-shared';
@@ -32,6 +33,8 @@ export class TheDetailedAccountsReceivableLedgerByInvoiceComponent  extends Layo
 
   @ViewChild('DataGridGenRowTable') DataGridGenRowTable: DXDataGridViewReportComponent;
   @ViewChild('toolbar') toolbar: ToolbarComponent;
+  @ViewChild('dialogPreviewPrint') dialogPreviewPrint: DialogPreviewPrintComponent;
+
   filterInput:SALE_The_detailed_Accounts_Receivable_Ledger_By_Invoice_ENTITY=new SALE_The_detailed_Accounts_Receivable_Ledger_By_Invoice_ENTITY();
   rowSelected:SALE_The_detailed_Accounts_Receivable_Ledger_By_Invoice_ENTITY=new SALE_The_detailed_Accounts_Receivable_Ledger_By_Invoice_ENTITY();
   listData:SALE_The_detailed_Accounts_Receivable_Ledger_By_Invoice_ENTITY[]=[];
@@ -84,18 +87,10 @@ export class TheDetailedAccountsReceivableLedgerByInvoiceComponent  extends Layo
         this.onLoadData();
         break;
       }
-      case 'update_target':{
-        
+      case EditPageState.PrintReport:{
+        this.dialogPreviewPrint.onPrint(this.tbName,this.filterInput)
         break;
       }
-      case 'close_book':{
-        
-      break;
-    }
-    case 'open_book':{
-     
-      break;
-    }
       default:break;
     }
   }

@@ -11,6 +11,7 @@ import $ from "jquery";
 import { MessengerService } from './signalR/messenger/messenger.service';
 import config from "devextreme/core/config";
 import { BlockTemplateCmp } from './app-block-template.component';
+import { ActivatedRoute } from '@angular/router';
 
 const exist: boolean = false;
 @Component({
@@ -26,6 +27,7 @@ export class AppComponent extends LayoutComponentBase implements AfterContentChe
   dataMenu: any[];
   itemIndex: number = 0;
   showtheme: boolean = false;
+  showContentOnly: boolean = false;
   forgotPassword: boolean = false;
   _exist: boolean = false;
   public loadingPanelVisible = true;
@@ -36,9 +38,7 @@ export class AppComponent extends LayoutComponentBase implements AfterContentChe
   blockTemplate: BlockTemplateCmp = BlockTemplateCmp;
   constructor(
     private globals: Globals,
-    injector: Injector,
-    // private appSession: AppSession,
-    private messengerService:MessengerService,
+    injector: Injector
   ) {
 
     super(injector);
@@ -62,7 +62,9 @@ export class AppComponent extends LayoutComponentBase implements AfterContentChe
     config({
       defaultCurrency: 'VND'
     });
-    //if(location.protocol == 'http:') location.href ='https://'+location.host;
+    var arrParam = location.pathname.split(';').slice(1);
+    if(arrParam.find(p=>p === 'co=1'))this.showContentOnly = true
+    debugger
   }
   ngAfterContentChecked(): void {
 

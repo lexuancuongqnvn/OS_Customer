@@ -5,5 +5,6 @@ export enum EditPageState {
     viewDetail = "ViewDetail",
     delete = "Delete",
     save = "Save",
-    search = "Search"
+    search = "Search",
+    PrintReport = "print_report"
 }

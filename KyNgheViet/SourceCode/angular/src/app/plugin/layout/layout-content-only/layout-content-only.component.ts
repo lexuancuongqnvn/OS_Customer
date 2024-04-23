@@ -6,8 +6,6 @@ import ArrayStore from 'devextreme/data/array_store';
 import DataSource from 'devextreme/data/data_source';
 import $ from "jquery";
 import moment from 'moment';
-import { CookieService } from 'ngx-cookie';
-import { AppConsts } from 'src/app/app-consts.component';
 import { AppSession } from 'src/app/shared/app-session/app-session';
 import { LoginComponent } from 'src/app/shared/form/login/login.component';
 import { DialogAcctionComponent } from 'src/app/shared/layout/dialogs/acction/dialog-acction.component';
@@ -19,16 +17,13 @@ import { MessengerService } from 'src/app/signalR/messenger/messenger.service';
 declare var outAnnounce;
 declare var ShowNotification;
 declare var showSwalApp;
-@Component({ 
-  selector: 'app-layout',
-  templateUrl: './layout.component.html',
-  styleUrls: ['./layout.component.css'
-    , '../assets/css/font-awesome.min.css'
-    , '../assets/css/material-dashboard.minf066.css'
-    , '../assets/demo/demo.css'
-  ]
+@Component({
+  selector: 'layout-content-only',
+  templateUrl: './layout-content-only.component.html',
+  styleUrls: ['./layout-content-only.component.css']
 })
-export class LayoutComponent extends LayoutComponentBase implements OnInit, IUiAction<any> {
+
+export class LayoutContentOnlyComponent  extends LayoutComponentBase implements OnInit, IUiAction<any> {
   constructor(
     injector: Injector,
     private appSession: AppSession,
@@ -207,10 +202,7 @@ export class LayoutComponent extends LayoutComponentBase implements OnInit, IUiA
     }); 
     this.appName =localStorage.getItem('cookieappName');
     this.getMessage();
-    let url = location.pathname.split(';');
-    if(url.length>1){
-      this.goToList();
-    }
+    
   }
   onSearchMenu(e:any){
     if(e.value){

@@ -203,7 +203,7 @@
             </div>
         </div> -->
 
-        <div class="widgets-container" *ngFor="let group of groups;let i = index">
+        <div class="widgets-container" *ngFor="let group of groups;let i = index; trackBy: trackByFn">
             <div *ngIf="group.isTab == true" class="row" style="margin-right: 5px;
             margin-left: 0px;
             border: 2px solid #d1d1d1;
@@ -216,9 +216,9 @@
                             <div class="dx-field-value-static left-aligned">
                                 {{ tabContent +' '+tabIndex}}
                             </div> -->
-                            <div *ngFor="let tabs of group.tabs.tabs;let j=index;" [ngStyle]="{'display':j==tabIndex?'block':'none'}">
-                                <div *ngFor="let grouplv2 of tabs.data;let k=index;" class="row" style=" margin-right: -3px;margin-left: -3px">
-                                    <div *ngFor="let column of grouplv2.data" class="{{renColumnSpan(column.colspan)}} " [ngStyle]="{'display':isDisplay(column.displaY_CONDITIONS)?'block':'none'}">
+                            <div *ngFor="let tabs of group.tabs.tabs;let j=index; trackBy: trackByFn" [ngStyle]="{'display':j==tabIndex?'block':'none'}">
+                                <div *ngFor="let grouplv2 of tabs.data;let k=index; trackBy: trackByFn" class="row" style=" margin-right: -3px;margin-left: -3px">
+                                    <div *ngFor="let column of grouplv2.data;let h=index; trackBy: trackByFn" class="{{renColumnSpan(column.colspan)}} " [ngStyle]="{'display':isDisplay(column.displaY_CONDITIONS)?'block':'none'}">
                                         <div class="dx-field" *ngIf="column.typE_ID == 4">
                                             <div class="dx-field-label">{{column.name}}</div>
                                             <div class="dx-field-value">
@@ -312,7 +312,7 @@
             </div>
             <div *ngIf="group.isTab == false && group.data.length >0" class="row" style=" margin-right: -3px;margin-left: -3px">
                 <div *ngIf="group.name" class="title-group-form-edit-v2 col-12">{{group.name}}</div>
-                <div *ngFor="let column of group.data;let j=index" class="{{renColumnSpan(column.colspan)}}" [ngStyle]="{'display':isDisplay(column.displaY_CONDITIONS)?'block':'none'}">
+                <div *ngFor="let column of group.data;let j=index; trackBy: trackByFn" class="{{renColumnSpan(column.colspan)}}" [ngStyle]="{'display':isDisplay(column.displaY_CONDITIONS)?'block':'none'}">
                     <div class="dx-field" *ngIf="column.typE_ID == 4">
                         <div class="dx-field-label">{{column.name}}</div>
                         <div class="dx-field-value">
@@ -342,8 +342,8 @@
                         <dx-validator *ngIf="column.required">
                             <dxi-validation-rule type="required" message="{{column.name}} {{translate('Không được phép trống','is not required')}}"></dxi-validation-rule>
                         </dx-validator>
-                        <osoft-data-grid (OnClickActionForm)="OnClickActionForm(column,i,j,k)" id="{{column.columN_NAME}}" #dropdownbox (onClickCancel)="onSaveDropDownOption($event,i,column)" (onClickOK)="onSaveDropDownOption($event,i,column)" [keyExpr]="column.valueexpr" [showFilterRow]="true"
-                            [currentSelectedRowKeys]="column.editoroptions.value" [selection]="false" [height]="450" [tableName]="column.droP_DOWN_TABLE" [type]="'BY-TABLE-NAME'" [dataSource]="column.editoroptions.items" (OnSelectRow)="onSelectRowGridDropdown($event,i,column,j)"
+                        <osoft-data-grid id="{{column.columN_NAME}}" #dropdownbox [keyExpr]="column.valueexpr" [showFilterRow]="true" [currentSelectedRowKeys]="column.editoroptions.value" [selection]="false" [height]="450" [tableName]="column.droP_DOWN_TABLE" [type]="'BY-TABLE-NAME'"
+                            [dataSource]="column.editoroptions.items" (OnClickActionForm)="OnClickActionForm(column,i,j,k)" (onClickCancel)="onSaveDropDownOption($event,i,column)" (onClickOK)="onSaveDropDownOption($event,i,column)" (OnSelectRow)="onSelectRowGridDropdown($event,i,column,j)"
                             (selectedRowsDataOutput)="selectedRowsDataGridDropdown($event,i,column)"></osoft-data-grid>
                     </dx-drop-down-box>
 

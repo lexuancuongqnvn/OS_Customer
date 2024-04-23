@@ -1,6 +1,7 @@
 <app-login *ngIf="showtheme == false"></app-login>
 <block-ui [template]="blockTemplate">
-    <app-layout *ngIf="showtheme == true"></app-layout>
+    <app-layout *ngIf="showtheme == true && showContentOnly == false"></app-layout>
+    <layout-content-only *ngIf="showtheme == true && showContentOnly == true"></layout-content-only>
 </block-ui>
 
 <kendo-dialog title="Exist Login!" *ngIf="_exist" (close)="OK()" #dialogExist>

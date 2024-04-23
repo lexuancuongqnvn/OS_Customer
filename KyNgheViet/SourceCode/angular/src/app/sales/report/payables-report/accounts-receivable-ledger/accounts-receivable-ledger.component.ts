@@ -1,7 +1,8 @@
-import { Component, Injector, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Injector, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { AppSession } from 'src/app/shared/app-session/app-session';
 import { DXDataGridViewReportComponent } from 'src/app/shared/dx-data-grid/dx-data-grid-view-report/dx-data-grid-view-report.component';
 import { DXDataGridViewComponent } from 'src/app/shared/dx-data-grid/dx-data-grid-view/dx-data-grid-view.component';
+import { DialogPreviewPrintComponent } from 'src/app/shared/layout/dialogs/dialog-preview-print/dialog-preview-print.component';
 import { LayoutComponentBase } from 'src/app/shared/layout/layoutBase';
 import { ToolbarComponent } from 'src/app/shared/layout/toolbar/toolbar.component';
 import { SALE_Accounts_Receivable_Ledger_ENTITY, CashReportService, SalesReportService } from 'src/app/shared/service-proxies/api-shared';
@@ -9,7 +10,7 @@ import { EditPageState } from 'src/app/shared/ultilities/enum/edit-page-state';
 import { IUiAction } from 'src/app/shared/ultilities/ui-action';
 
 @Component({
-  selector: 'app-accounts-receivable-ledger',
+  selector: 'accounts-receivable-ledger',
   templateUrl: './accounts-receivable-ledger.component.html',
   styleUrls: ['./accounts-receivable-ledger.component.css']
 })
@@ -21,20 +22,29 @@ export class AccountsReceivableLedgerComponent  extends LayoutComponentBase impl
     private appSession: AppSession,
   ) { 
     super(injector);
-    this.tbName = this.getRouteData('tbName');
-    this.filterInput.voucher_code = this.getRouteData('voucher_code');
-    const d = this.getStartEndDateInMonth();
-    this.filterInput.voucher_date_start = d.startDate;
-    this.filterInput.voucher_date_end = d.endDate;
-   
+    if(this.isShowToolbar){
+      this.tbName = this.getRouteData('tbName');
+      this.filterInput.voucher_code = this.getRouteData('voucher_code');
+      const d = this.getStartEndDateInMonth();
+      this.filterInput.voucher_date_start = d.startDate;
+      this.filterInput.voucher_date_end = d.endDate;
+    }
   }
 
   @ViewChild('DataGridGenRowTable') DataGridGenRowTable: DXDataGridViewReportComponent;
   @ViewChild('toolbar') toolbar: ToolbarComponent;
+  @ViewChild('dialogPreviewPrint') dialogPreviewPrint: DialogPreviewPrintComponent;
+  @Input() voucher_date_start: moment.Moment = this.getStartEndDateInMonth().startDate;
+  @Input() voucher_date_end: moment.Moment = this.getStartEndDateInMonth().endDate;
+  @Input() account: string = '';
+  @Input() debitor_account: string = '';
+  @Input() isShowToolbar:boolean = true;
+  @Output() OnSelectRow: EventEmitter<SALE_Accounts_Receivable_Ledger_ENTITY> = new EventEmitter();
+  
   filterInput:SALE_Accounts_Receivable_Ledger_ENTITY=new SALE_Accounts_Receivable_Ledger_ENTITY();
   rowSelected:SALE_Accounts_Receivable_Ledger_ENTITY=new SALE_Accounts_Receivable_Ledger_ENTITY();
   listData:SALE_Accounts_Receivable_Ledger_ENTITY[]=[];
-  tbName:string = '';
+  tbName:string = 'SALE_Accounts_Receivable_Ledger_Search';
   CurrenFrom:string = EditPageState.view;
 
   onAdd(): void {
@@ -83,18 +93,10 @@ export class AccountsReceivableLedgerComponent  extends LayoutComponentBase impl
         this.onLoadData();
         break;
       }
-      case 'update_target':{
-        
+      case EditPageState.PrintReport:{
+        this.dialogPreviewPrint.onPrint(this.tbName,this.filterInput)
         break;
       }
-      case 'close_book':{
-        
-      break;
-    }
-    case 'open_book':{
-     
-      break;
-    }
       default:break;
     }
   }
@@ -136,6 +138,7 @@ export class AccountsReceivableLedgerComponent  extends LayoutComponentBase impl
   }
   onSelectedRowsData(obj:any){
     this.rowSelected = obj[0];
+    this.OnSelectRow.emit(this.rowSelected);
   }
   OnChangeDataFilter(obj:any){
     this.filterInput[obj.colName] = obj.value;

@@ -51,9 +51,11 @@ export class S32MEditComponent extends LayoutComponentBase implements OnInit, IU
   @ViewChild('dialogDelete') dialogDelete: DialogAcctionComponent;
   @ViewChild('dialogConfirmVAT') dialogConfirmVAT: DialogAcctionComponent;
   @Input() rowSelected: any = '';
+  @Input() isPopup:boolean = false;
   tbName:string = 'S32_M';
   rowGridSelected:any = null;
   onRefreshGrid:boolean = false;
+  
 
   InputMaster:S32_M_ENTITY=new S32_M_ENTITY();
   editPageState:string = EditPageState.edit;

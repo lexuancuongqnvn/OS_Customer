@@ -2,6 +2,7 @@ import { Component, Injector, OnInit, ViewChild } from '@angular/core';
 import { AppSession } from 'src/app/shared/app-session/app-session';
 import { DXDataGridViewReportComponent } from 'src/app/shared/dx-data-grid/dx-data-grid-view-report/dx-data-grid-view-report.component';
 import { DXDataGridViewComponent } from 'src/app/shared/dx-data-grid/dx-data-grid-view/dx-data-grid-view.component';
+import { DialogPreviewPrintComponent } from 'src/app/shared/layout/dialogs/dialog-preview-print/dialog-preview-print.component';
 import { LayoutComponentBase } from 'src/app/shared/layout/layoutBase';
 import { ToolbarComponent } from 'src/app/shared/layout/toolbar/toolbar.component';
 import { WMSReportService, SALES_Report_S32_ENTITY, SalesReportService } from 'src/app/shared/service-proxies/api-shared';
@@ -30,6 +31,8 @@ export class ReportOnSalesInvoicesListComponent extends LayoutComponentBase impl
   
   @ViewChild('DataGridGenRowTable') DataGridGenRowTable: DXDataGridViewReportComponent;
   @ViewChild('toolbar') toolbar: ToolbarComponent;
+  @ViewChild('dialogPreviewPrint') dialogPreviewPrint: DialogPreviewPrintComponent;
+
   filterInput:SALES_Report_S32_ENTITY=new SALES_Report_S32_ENTITY();
   rowSelected:SALES_Report_S32_ENTITY=new SALES_Report_S32_ENTITY();
   listData:SALES_Report_S32_ENTITY[]=[];
@@ -85,18 +88,10 @@ export class ReportOnSalesInvoicesListComponent extends LayoutComponentBase impl
         this.onLoadData();
         break;
       }
-      case 'update_target':{
-        
+      case EditPageState.PrintReport:{
+        this.dialogPreviewPrint.onPrint(this.tbName,this.filterInput)
         break;
       }
-      case 'close_book':{
-        
-      break;
-    }
-    case 'open_book':{
-     
-      break;
-    }
       default:break;
     }
   }

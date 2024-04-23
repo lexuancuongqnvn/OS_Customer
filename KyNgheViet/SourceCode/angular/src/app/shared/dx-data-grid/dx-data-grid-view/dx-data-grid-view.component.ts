@@ -205,7 +205,9 @@ export class DXDataGridViewComponent extends LayoutComponentBase implements OnIn
   saveSignReport(e){
     debugger
   }
-
+  get getIsShowBtnAdd():boolean{
+    return this.isShowBtnAdd && (this.getCurrenFrom == 'Edit' || this.getCurrenFrom == 'Add');
+  }
   async onReportPreview(e){
     if(!this.selectedRowsData || this.selectedRowsData.length == 0){
       this.showMessageError(this.translate('Chưa có dòng nào được chọn','No lines are selected'));
@@ -253,7 +255,7 @@ export class DXDataGridViewComponent extends LayoutComponentBase implements OnIn
       console.error('Error fetching page:', error);
     }
   }
-  get currentSelectedRowKey():any[]{
+  currentSelectedRowKey():any[]{
     if (typeof this.currentSelectedRowKeys === 'string') {
       return this.currentSelectedRowKeys.toString().split(';')
     } else return this.currentSelectedRowKeys
@@ -647,8 +649,8 @@ export class DXDataGridViewComponent extends LayoutComponentBase implements OnIn
     switch(e.itemData.id){
       case 1:
         const now = new Date();
-        this.filterDateFrom = this.convertMomentToMomentUTC(now,0,0,0,1);
-        this.filterDateFrom = this.convertMomentToMomentUTC(this.filterDateFrom,23,59,59,0);
+        this.filterDateFrom = this.convertMomentToMomentUTC(now);
+        this.filterDateFrom = this.convertMomentToMomentUTC(this.filterDateFrom);
       break;
       case 2:
         const currentDate = new Date();
@@ -661,8 +663,8 @@ export class DXDataGridViewComponent extends LayoutComponentBase implements OnIn
         // Calculate the end date of the week (Saturday)
         currentDate.setDate(currentDate.getDate() + 5);
         const endDate = new Date(currentDate);
-        this.filterDateFrom = this.convertDateToMomentUTC(startDate,0,0,0,1);
-        this.filterDateTo= this.convertDateToMomentUTC(endDate,23,59,59,0);
+        this.filterDateFrom = this.convertDateToMomentUTC(startDate);
+        this.filterDateTo= this.convertDateToMomentUTC(endDate);
       break;
       case 3:
     
@@ -673,8 +675,8 @@ export class DXDataGridViewComponent extends LayoutComponentBase implements OnIn
       case 4:
         const currentDateQ = new Date(); // You can pass any date as input
         const quarterDates = this.getQuarterDates(currentDateQ);
-        this.filterDateFrom = this.convertDateToMomentUTC(quarterDates.startDate,0,0,0,1);
-        this.filterDateTo= this.convertDateToMomentUTC(quarterDates.endDate,23,59,59,0);
+        this.filterDateFrom = this.convertDateToMomentUTC(quarterDates.startDate);
+        this.filterDateTo= this.convertDateToMomentUTC(quarterDates.endDate);
       break;
       case 5:
         this.filterDateFrom = moment().set('months',0).set('hours',0).set('minutes',0).set('seconds',1).utc(true).subtract(this.hourUTC(),'hours').set('dates',1)
@@ -688,8 +690,8 @@ export class DXDataGridViewComponent extends LayoutComponentBase implements OnIn
         const year1 = (new Date()).getFullYear();
         const s = new Date(year1,0,1);
         const e = new Date(year1,11,31);
-        this.filterDateFrom = this.convertDateToMomentUTC(s,0,0,0,1);
-        this.filterDateTo= this.convertDateToMomentUTC(e,23,59,59,0);
+        this.filterDateFrom = this.convertDateToMomentUTC(s);
+        this.filterDateTo= this.convertDateToMomentUTC(e);
       break;
     }
     this.dataFilter[rows.columN_NAME+'_start'] = this.filterDateFrom;
@@ -1002,6 +1004,7 @@ export class DXDataGridViewComponent extends LayoutComponentBase implements OnIn
   get getDataSource():any{
     return this.isFilter?this.dataSourceFilter:this.dataSource;
   }
+ 
   onChangeReportMaster(e:any,col:string){
     this.rowReportSelected[col] = e.value;
   }
@@ -1144,11 +1147,11 @@ export class DXDataGridViewComponent extends LayoutComponentBase implements OnIn
   }
   async loadActionAdd() {
     this.genRowTable[this.tableName] = false;
-    var data = await this.acctionService.acction_Search_byTableName(this.appSession.user.id, this.tableName).toPromise();
-
-    this.isShowBtnAdd = data.filter(e=>e.classForm == 'Add').length > 0?true:false
-    this.genRowTable[this.tableName] = this.isShowBtnAdd;
-    this.UpdateView();
+    this.acctionService.acction_Search_byTableName(this.appSession.user.id, this.tableName).subscribe(data=>{
+      this.isShowBtnAdd = data.filter(e=>e.classForm == 'Add').length > 0?true:false
+      this.genRowTable[this.tableName] = this.isShowBtnAdd;
+      this.UpdateView();
+    });
   }
 }
 

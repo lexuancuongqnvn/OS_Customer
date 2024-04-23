@@ -42,7 +42,31 @@ export class CarryForwardExecuteComponent  extends LayoutComponentBase implement
     throw new Error('Method not implemented.');
   }
   onDelete(item: any): void {
-
+    if(!this.filterInput.month_start){
+      this.showMessageError('Vui lòng chọn tháng bắt đầu');
+      return;
+    }
+    if(!this.filterInput.month_end){
+      this.showMessageError('Vui lòng chọn tháng kết thúc');
+      return;
+    }
+    if(this.filterInput.month_start > this.filterInput.month_end){
+      this.showMessageError('Tháng bắt đầu không lớn hơn tháng kết thúc');
+      return;
+    }
+    this.BlockUI()
+    this.consolidationVoucherService.carry_Forward_Delete_Executed({
+      ...this.filterInput
+    } as Carry_Forward_Execute_ENTITY).subscribe((res:any)=>{
+      if(res['status'] == 0){
+         this.showMessageSuccess(res['message'])
+         this.listData = [];
+         this.DataGridGenRowTable.setDataSource(this.listData);
+         this.UpdateView();
+         this.UnBlockUI()
+      }
+      else this.showMessageError(res['message'])
+    })
   }
   onApprove(item: any): void {
     throw new Error('Method not implemented.');
@@ -62,17 +86,18 @@ export class CarryForwardExecuteComponent  extends LayoutComponentBase implement
   onClickAcction(id: number, storedName: string, param: string, keyService: string, classForm: string): void {
     switch(classForm){
       case EditPageState.add:{
+        this.onLoadData();
         break;
       }
       case EditPageState.edit:{
         break;
       }
       case EditPageState.save:{
-        this.onLoadData();
+  
         break;
       }
       case EditPageState.search:{
-        this.onLoadData();
+        
         break;
       }
       case EditPageState.viewDetail:{
@@ -100,7 +125,6 @@ export class CarryForwardExecuteComponent  extends LayoutComponentBase implement
 
   ngOnInit(): void {
     this.setAcction();
-    this.onLoadData();
   }
   setAcction(){
     if(this.toolbar){
@@ -118,6 +142,10 @@ export class CarryForwardExecuteComponent  extends LayoutComponentBase implement
     }
     if(!this.filterInput.month_end){
       this.showMessageError('Vui lòng chọn tháng kết thúc');
+      return;
+    }
+    if(this.filterInput.month_start > this.filterInput.month_end){
+      this.showMessageError('Tháng bắt đầu không lớn hơn tháng kết thúc');
       return;
     }
     this.BlockUI()

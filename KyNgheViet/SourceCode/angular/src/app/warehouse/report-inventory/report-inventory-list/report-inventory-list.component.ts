@@ -1,6 +1,7 @@
 import { Component, Injector, OnInit, ViewChild } from '@angular/core';
 import { AppSession } from 'src/app/shared/app-session/app-session';
 import { DXDataGridViewComponent } from 'src/app/shared/dx-data-grid/dx-data-grid-view/dx-data-grid-view.component';
+import { DialogPreviewPrintComponent } from 'src/app/shared/layout/dialogs/dialog-preview-print/dialog-preview-print.component';
 import { LayoutComponentBase } from 'src/app/shared/layout/layoutBase';
 import { ToolbarComponent } from 'src/app/shared/layout/toolbar/toolbar.component';
 import { WMSReportService, WMS_Report_Inventory_ENTITY } from 'src/app/shared/service-proxies/api-shared';
@@ -28,6 +29,8 @@ export class ReportInventoryListComponent extends LayoutComponentBase implements
   
   @ViewChild('DataGridGenRowTable') DataGridGenRowTable: DXDataGridViewComponent;
   @ViewChild('toolbar') toolbar: ToolbarComponent;
+  @ViewChild('dialogPreviewPrint') dialogPreviewPrint: DialogPreviewPrintComponent;
+
   filterInput:WMS_Report_Inventory_ENTITY=new WMS_Report_Inventory_ENTITY();
   rowSelected:WMS_Report_Inventory_ENTITY=new WMS_Report_Inventory_ENTITY();
   listData:WMS_Report_Inventory_ENTITY[]=[];
@@ -83,18 +86,10 @@ export class ReportInventoryListComponent extends LayoutComponentBase implements
         this.onLoadData();
         break;
       }
-      case 'update_target':{
-        
+      case EditPageState.PrintReport:{
+        this.dialogPreviewPrint.onPrint(this.tbName,this.filterInput)
         break;
       }
-      case 'close_book':{
-        
-      break;
-    }
-    case 'open_book':{
-     
-      break;
-    }
       default:break;
     }
   }
@@ -114,7 +109,7 @@ export class ReportInventoryListComponent extends LayoutComponentBase implements
   }
   onLoadData(){
     this.BlockUI();
-    this.wMSReportService.wMS_Report_Inventory({
+    this.wMSReportService.wMS_Report_Inventory_Have_Serial({
       ...this.filterInput
     } as WMS_Report_Inventory_ENTITY).subscribe((res:WMS_Report_Inventory_ENTITY[])=>{
       this.listData = res;

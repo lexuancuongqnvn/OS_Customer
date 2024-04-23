@@ -10,6 +10,7 @@ import { EditPageState } from 'src/app/shared/ultilities/enum/edit-page-state';
 import { IUiAction } from 'src/app/shared/ultilities/ui-action';
 import { ConsolidationAccountDetailComponent } from '../consolidation-account-detail/consolidation-account-detail.component';
 import { DXDataGridViewReportComponent } from 'src/app/shared/dx-data-grid/dx-data-grid-view-report/dx-data-grid-view-report.component';
+import { DialogPreviewPrintComponent } from 'src/app/shared/layout/dialogs/dialog-preview-print/dialog-preview-print.component';
 
 
 @Component({
@@ -38,6 +39,7 @@ export class ConsolidationByAAccountComponent extends LayoutComponentBase implem
   @ViewChild('toolbar') toolbar: ToolbarComponent;
   @ViewChild('dialogConsolidationAccountDetail') dialogConsolidationAccountDetail: DialogAcctionComponent;
   @ViewChild('FormConsolidationAccountDetail') FormConsolidationAccountDetail: ConsolidationAccountDetailComponent;
+  @ViewChild('dialogPreviewPrint') dialogPreviewPrint: DialogPreviewPrintComponent;
 
   @Input() voucher_date_start: moment.Moment = this.getStartEndDateInMonth().startDate;
   @Input() voucher_date_end: moment.Moment = this.getStartEndDateInMonth().endDate;
@@ -123,18 +125,10 @@ export class ConsolidationByAAccountComponent extends LayoutComponentBase implem
        }, 200);
         break;
       }
-      case 'update_target':{
-        
+      case EditPageState.PrintReport:{
+        this.dialogPreviewPrint.onPrint(this.tbName,this.filterInput)
         break;
       }
-      case 'close_book':{
-        
-      break;
-    }
-    case 'open_book':{
-     
-      break;
-    }
       default:break;
     }
   }

@@ -1,8 +1,10 @@
 import { Component, Injector, OnInit, ViewChild } from '@angular/core';
 import { AppSession } from 'src/app/shared/app-session/app-session';
+import { DXDataGridViewReportComponent } from 'src/app/shared/dx-data-grid/dx-data-grid-view-report/dx-data-grid-view-report.component';
 import { DXDataGridViewComponent } from 'src/app/shared/dx-data-grid/dx-data-grid-view/dx-data-grid-view.component';
 import { DialogAcctionComponent } from 'src/app/shared/layout/dialogs/acction/dialog-acction.component';
 import { DialogAcctionV2Component } from 'src/app/shared/layout/dialogs/acction/dialog-acction.component-v2';
+import { DialogPreviewPrintComponent } from 'src/app/shared/layout/dialogs/dialog-preview-print/dialog-preview-print.component';
 import { LayoutComponentBase } from 'src/app/shared/layout/layoutBase';
 import { ToolbarComponent } from 'src/app/shared/layout/toolbar/toolbar.component';
 import { WMSReportService, WMS_Report_Inventory_Book_Detail_ENTITY, WMS_Report_Inventory_Import_Export_ENTITY,  } from 'src/app/shared/service-proxies/api-shared';
@@ -29,10 +31,12 @@ export class ReportInventoryImportExportListComponent extends LayoutComponentBas
     this.filterInput.voucher_date_end = this.convertDateToMomentUTC(d.endDate);
   }
   
-  @ViewChild('DataGridGenRowTable') DataGridGenRowTable: DXDataGridViewComponent;
-  @ViewChild('DataGridnventoryBookDetail') DataGridnventoryBookDetail: DXDataGridViewComponent;
+  @ViewChild('DataGridGenRowTable') DataGridGenRowTable: DXDataGridViewReportComponent;
+  @ViewChild('DataGridnventoryBookDetail') DataGridnventoryBookDetail: DXDataGridViewReportComponent;
   @ViewChild('dialogViewDetail') dialogViewDetail: DialogAcctionV2Component;
   @ViewChild('toolbar') toolbar: ToolbarComponent;
+  @ViewChild('dialogPreviewPrint') dialogPreviewPrint: DialogPreviewPrintComponent;
+
   filterInput:WMS_Report_Inventory_Import_Export_ENTITY=new WMS_Report_Inventory_Import_Export_ENTITY();
   filterInputBookDetail:WMS_Report_Inventory_Book_Detail_ENTITY=new WMS_Report_Inventory_Book_Detail_ENTITY();
   rowSelected:WMS_Report_Inventory_Import_Export_ENTITY=new WMS_Report_Inventory_Import_Export_ENTITY();
@@ -103,18 +107,10 @@ export class ReportInventoryImportExportListComponent extends LayoutComponentBas
 
         break;
       }
-      case 'search_detail':{
-        
+      case EditPageState.PrintReport:{
+        this.dialogPreviewPrint.onPrint(this.tbName,this.filterInput)
         break;
       }
-      case 'close_book':{
-        
-      break;
-    }
-    case 'open_book':{
-     
-      break;
-    }
       default:break;
     }
   }

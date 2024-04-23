@@ -197,6 +197,7 @@ export class FormEditV2Component extends LayoutComponentBase implements OnInit, 
     this.groups  = [];
     this.panels  = [];
   }
+
   onAdd(): void {
     throw new Error('Method not implemented.');
   }
@@ -265,10 +266,10 @@ export class FormEditV2Component extends LayoutComponentBase implements OnInit, 
       }
       else {
         this.InputMaster[column.columN_NAME] = v;
-        //this.groups[indexGroup].data.find(gr => gr.code == column.code).editoroptions.value = v;
+        //this.groups[indexGroup].data.find(gr => gr.code == column.code).editoroptions.value = event;
       }
     }
-    
+    this.HandleValueChangedOutput.emit({ dataField: column.columN_NAME, value: v });
     this.mapRequired(column.columN_NAME,v);
     if(column.typE_ID == 27) {
       this.groups[indexGroup].data[j].editoroptions.isDropBoxOpened = false;
@@ -276,7 +277,6 @@ export class FormEditV2Component extends LayoutComponentBase implements OnInit, 
         dropdown.instance.close();
       });
     }
-    this.HandleValueChangedOutput.emit({ dataField: column.columN_NAME, value: v });
 
     this.execDefaultValue();
     this.resetDataEditorOptions();
@@ -1542,4 +1542,8 @@ export class FormEditV2Component extends LayoutComponentBase implements OnInit, 
     }
    }catch{}
   }
+  trackByFn(index: number, item: any) {
+    return `${index}`; // Hoặc có thể trả về một giá trị duy nhất đại diện cho item
+  }
+
 }

@@ -5,9 +5,9 @@ export class AppConsts {
   //node --max-old-space-size=8128 node_modules/@angular/cli/bin/ng build --prod
 
   static limit_length_uploadfile = 100;//Mb 
-  //static baseUrl = "https://a22d-171-239-155-255.ngrok-free.app"; 
-  //static baseUrl = "https://localhost:44394";  
+  //static baseUrl = "http://154.12.246.171:8081"; 
+  static baseUrl = "https://localhost:44390";  
   //static baseUrl = "https://api.erp.osoft.vn"; 
-  static baseUrl = "https://api.knv.osoft.vn"; 
+  // static baseUrl = "https://api.knv.osoft.vn"; 
 }
   

@@ -135,8 +135,8 @@ export class LayoutComponentBase {
     getStartEndDateInMonth(inputDate: moment.Moment = this.getFullVoucherDate): { startDate: moment.Moment; endDate: moment.Moment; }{
         const currentYear = inputDate.year();
         const currentMonth = inputDate.month() + 1; 
-        let startDate = moment().set('year',currentYear).set('month',currentMonth - 1).set('date',1).set('hour',0).set('minute',0).set('second',1).utc(true);
-        let endDate = moment().set('year',currentYear).set('month',currentMonth).set('date',1).set('hour',23).set('minute',23).set('second',0).utc(true);
+        let startDate = moment().startOf('day').set('year',currentYear).set('month',currentMonth - 1).set('date',1).utc(true);
+        let endDate = moment().startOf('day').set('year',currentYear).set('month',currentMonth).set('date',1).utc(true);
         endDate = endDate.subtract(1, 'day')
         return { startDate, endDate };
     }
@@ -258,14 +258,19 @@ export class LayoutComponentBase {
     
     public convertDateToMomentUTC(v:any,hour:number = 0,minute:number = 0,seconds:number = 0,milliseconds:number = 0):moment.Moment{
         try{
-            let now = moment(v);
+            
+            let now = moment(v).startOf('day');
             // now.set('year', v.getFullYear());
             // now.set('month', v.getMonth());
             // now.set('date', v.getDate());
-            now.set('hour', hour);
-            now.set('minute', minute);
-            now.set('seconds', seconds);
-            now.set('milliseconds', milliseconds);
+            if(hour !== 0)
+                now.set('hour', hour);
+            if(minute !== 0)
+                now.set('minute', minute);
+            if(seconds !== 0)
+                now.set('seconds', seconds);
+            if(milliseconds !== 0)
+                now.set('milliseconds', milliseconds);
             if(!now.isUTC()){
                 now = now.utc(true)
               }
@@ -935,6 +940,13 @@ export class LayoutComponentBase {
             ', modal=yes'
         );
     }
+    generateRandomCustomerCode(): string {
+        let result = '';
+        for (let i = 0; i < 6; i++) {
+          result += Math.floor(Math.random() * 10); // Generate a random digit (0-9)
+        }
+        return result;
+      }
 }
 
 export interface BreadCrumbItemCustom {
