@@ -64,7 +64,6 @@ export class AppComponent extends LayoutComponentBase implements AfterContentChe
     });
     var arrParam = location.pathname.split(';').slice(1);
     if(arrParam.find(p=>p === 'co=1'))this.showContentOnly = true
-    debugger
   }
   ngAfterContentChecked(): void {
 

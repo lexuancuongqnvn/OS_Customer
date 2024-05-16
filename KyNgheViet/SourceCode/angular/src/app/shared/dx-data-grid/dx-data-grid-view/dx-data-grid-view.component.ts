@@ -255,7 +255,7 @@ export class DXDataGridViewComponent extends LayoutComponentBase implements OnIn
       console.error('Error fetching page:', error);
     }
   }
-  currentSelectedRowKey():any[]{
+  get currentSelectedRowKey():any[]{
     if (typeof this.currentSelectedRowKeys === 'string') {
       return this.currentSelectedRowKeys.toString().split(';')
     } else return this.currentSelectedRowKeys
@@ -316,6 +316,9 @@ export class DXDataGridViewComponent extends LayoutComponentBase implements OnIn
 
     //     break;
     // }
+    if(!e.value._isAMomentObject) {
+      e.value = this.convertDateToMomentUTC(e.value,0,0,0,0);
+    }
     this.dataFilter[colName]=e.value;
     this.OnChangeDataFilter.emit({colName:rows.columN_NAME,data:this.dataFilter,value:e.value})
   }

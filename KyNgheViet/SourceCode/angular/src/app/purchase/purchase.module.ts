@@ -35,6 +35,15 @@ import { P35MListComponent } from './voucher/p35/p35-m-list/p35-m-list.component
 import { P35MEditComponent } from './voucher/p35/p35-m-edit/p35-m-edit.component';
 import { AccountsPayableLedgerComponent } from './report/payables-report/accounts-payable-ledger/accounts-payable-ledger.component';
 import { AccountsPayableReportByInvoiceComponent } from './report/payables-report/accounts-payable-report-by-invoice/accounts-payable-report-by-invoice.component';
+import { AggregateCostCouponPrintComponent } from './report/pur/aggregate-cost-coupon-print/aggregate-cost-coupon-print.component';
+import { AggregatePrintImportSlipsAtCostComponent } from './report/pur/aggregate-print-import-slips-at-cost/aggregate-print-import-slips-at-cost.component';
+import { ExpenseReportComponent } from './report/pur/expense-report/expense-report.component';
+import { OrderReportComponent } from './report/pur/order-report/order-report.component';
+import { ServicePurchasePnvoiceReportComponent } from './report/pur/service-purchase-pnvoice-report/service-purchase-pnvoice-report.component';
+import { InventoryReturnReportComponent } from './report/pur/inventory-return-report/inventory-return-report.component';
+import { ImportInvoiceReportComponent } from './report/pur/import-invoice-report/import-invoice-report.component';
+import { JournalComponent } from './report/pur/journal/journal.component';
+import { CombinedPurchasesImportedInventoryComponent } from './report/pur/combined-purchases-imported-inventory/combined-purchases-imported-inventory.component';
 
 const drawerRoutes = [
     { path: 'purchase/service-purchase-invoice', component: P21MListComponent, data: {editPageState: EditPageState.view ,tbName:'P21_M',voucher_code:'MDV'} },
@@ -94,6 +103,16 @@ const drawerRoutes = [
     
     { path: 'payables-report/accounts-payable-ledger', component: AccountsPayableLedgerComponent, data: {editPageState: EditPageState.viewDetail ,tbName:'PUR_Accounts_Payable_Ledger_Search',account_code:'1'} },
     { path: 'payables-report/accounts-payable-report-by-invoice', component: AccountsPayableReportByInvoiceComponent, data: {editPageState: EditPageState.viewDetail ,tbName:'PUR_Accounts_Payable_Report_by_Invoice_Search',account_code:'1'} },
+    
+    { path: 'purchase/aggregate-cost-coupon-print', component: AggregateCostCouponPrintComponent, data: {editPageState: EditPageState.viewDetail ,tbName:'PURCHASE_Aggregate_Cost_Coupon_Print_Search',account_code:'1'} },
+    { path: 'purchase/aggregate-print-import-slips-at-cost', component: AggregatePrintImportSlipsAtCostComponent, data: {editPageState: EditPageState.viewDetail ,tbName:'PURCHASE_Aggregate_Print_Import_Slips_At_Cost_Search',account_code:'1'} },
+    { path: 'purchase/expense-report', component: ExpenseReportComponent, data: {editPageState: EditPageState.viewDetail ,tbName:'Purchase_Expense_Report_Search',account_code:'1'} },
+    { path: 'purchase/order-report', component: OrderReportComponent, data: {editPageState: EditPageState.viewDetail ,tbName:'Purchase_Order_Report_Search',account_code:'1'} },
+    { path: 'purchase/service-purchase-pnvoice-report', component: ServicePurchasePnvoiceReportComponent, data: {editPageState: EditPageState.viewDetail ,tbName:'PURCHASE_Service_Purchase_Invoice_Report_Search',account_code:'1'} },
+    { path: 'purchase/inventory-return-report', component: InventoryReturnReportComponent, data: {editPageState: EditPageState.viewDetail ,tbName:'Purchase_Inventory_Return_Report_Search',account_code:'1'} },
+    { path: 'purchase/import-invoice-report', component: ImportInvoiceReportComponent, data: {editPageState: EditPageState.viewDetail ,tbName:'Purchase_Import_Invoice_Report_Search',account_code:'1'} },
+    { path: 'purchase/journal', component: JournalComponent, data: {editPageState: EditPageState.viewDetail ,tbName:'Purchase_Journal_Search',account_code:'1'} },
+    { path: 'purchase/combined-purchases-imported-inventory', component: CombinedPurchasesImportedInventoryComponent, data: {editPageState: EditPageState.viewDetail ,tbName:'Purchase_Combined_Purchases_Imported_Inventory_Search',account_code:'1'} },
 
     // { path: 'purchase/purchase-invoice-with-inventory-receipt', component: P22MListComponent,Outlet:'P22Voucher', data: {editPageState: EditPageState.view ,tbName:'P22_M',voucher_code:'PNM'} },
     // { path: 'purchase/purchase-invoice-with-inventory-receipt-add', component: P22MEditComponent,Outlet:'P22Voucher', data: {editPageState: EditPageState.add ,tbName:'P22_M',voucher_code:'PNM'} },
@@ -123,7 +142,16 @@ const drawerRoutes = [
         P35MListComponent,
         P35MEditComponent,
         AccountsPayableLedgerComponent,
-        AccountsPayableReportByInvoiceComponent
+        AccountsPayableReportByInvoiceComponent,
+        AggregateCostCouponPrintComponent,
+        AggregatePrintImportSlipsAtCostComponent,
+        ExpenseReportComponent,
+        OrderReportComponent,
+        ServicePurchasePnvoiceReportComponent,
+        InventoryReturnReportComponent,
+        ImportInvoiceReportComponent,
+        JournalComponent,
+        CombinedPurchasesImportedInventoryComponent
     ],
     imports: [
         BrowserModule,

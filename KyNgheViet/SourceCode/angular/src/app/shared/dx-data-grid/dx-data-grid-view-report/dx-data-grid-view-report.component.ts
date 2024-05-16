@@ -244,6 +244,9 @@ export class DXDataGridViewReportComponent extends LayoutComponentBase implement
 
     //     break;
     // }
+    if(!e.value._isAMomentObject) {
+      e.value = this.convertDateToMomentUTC(e.value,0,0,0,0);
+    }
     if(this.dataFilter[colName] != e.value){
       this.dataFilter[colName]=e.value;
       this.OnChangeDataFilter.emit({colName:colName,data:this.dataFilter,event:e,value:e.value})

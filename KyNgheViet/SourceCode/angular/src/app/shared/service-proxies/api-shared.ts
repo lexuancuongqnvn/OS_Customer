@@ -17538,6 +17538,591 @@ export class PurchaseReportService extends ApiBase {
         }
         return _observableOf<PUR_Accounts_Payable_Report_By_Invoice_ENTITY[]>(null as any);
     }
+
+    /**
+     * @param body (optional) 
+     * @return Success
+     */
+    pUR_Aggregate_Cost_Coupon_Print_Search(body: PUR_Aggregate_Cost_Coupon_Print_ENTITY | undefined): Observable<PUR_Aggregate_Cost_Coupon_Print_ENTITY[]> {
+        let url_ = this.baseUrl + "/api/PurchaseReport/PUR_Aggregate_Cost_Coupon_Print_Search";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                "Accept": "text/plain"
+            })
+        };
+
+        return _observableFrom(this.transformOptions(options_)).pipe(_observableMergeMap(transformedOptions_ => {
+            return this.http.request("post", url_, transformedOptions_);
+        })).pipe(_observableMergeMap((response_: any) => {
+            return this.processPUR_Aggregate_Cost_Coupon_Print_Search(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processPUR_Aggregate_Cost_Coupon_Print_Search(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<PUR_Aggregate_Cost_Coupon_Print_ENTITY[]>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<PUR_Aggregate_Cost_Coupon_Print_ENTITY[]>;
+        }));
+    }
+
+    protected processPUR_Aggregate_Cost_Coupon_Print_Search(response: HttpResponseBase): Observable<PUR_Aggregate_Cost_Coupon_Print_ENTITY[]> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200.push(PUR_Aggregate_Cost_Coupon_Print_ENTITY.fromJS(item));
+            }
+            else {
+                result200 = <any>null;
+            }
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<PUR_Aggregate_Cost_Coupon_Print_ENTITY[]>(null as any);
+    }
+
+    /**
+     * @param body (optional) 
+     * @return Success
+     */
+    pUR_Aggregate_Print_Import_Slips_At_Cost_Search(body: PUR_Aggregate_Print_Import_Slips_At_Cost_ENTITY | undefined): Observable<PUR_Aggregate_Print_Import_Slips_At_Cost_ENTITY[]> {
+        let url_ = this.baseUrl + "/api/PurchaseReport/PUR_Aggregate_Print_Import_Slips_At_Cost_Search";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                "Accept": "text/plain"
+            })
+        };
+
+        return _observableFrom(this.transformOptions(options_)).pipe(_observableMergeMap(transformedOptions_ => {
+            return this.http.request("post", url_, transformedOptions_);
+        })).pipe(_observableMergeMap((response_: any) => {
+            return this.processPUR_Aggregate_Print_Import_Slips_At_Cost_Search(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processPUR_Aggregate_Print_Import_Slips_At_Cost_Search(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<PUR_Aggregate_Print_Import_Slips_At_Cost_ENTITY[]>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<PUR_Aggregate_Print_Import_Slips_At_Cost_ENTITY[]>;
+        }));
+    }
+
+    protected processPUR_Aggregate_Print_Import_Slips_At_Cost_Search(response: HttpResponseBase): Observable<PUR_Aggregate_Print_Import_Slips_At_Cost_ENTITY[]> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200.push(PUR_Aggregate_Print_Import_Slips_At_Cost_ENTITY.fromJS(item));
+            }
+            else {
+                result200 = <any>null;
+            }
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<PUR_Aggregate_Print_Import_Slips_At_Cost_ENTITY[]>(null as any);
+    }
+
+    /**
+     * @param body (optional) 
+     * @return Success
+     */
+    pUR_Combined_Purchases_Imported_Inventory_Search(body: PUR_Combined_Purchases_Imported_Inventory_ENTITY | undefined): Observable<PUR_Combined_Purchases_Imported_Inventory_ENTITY[]> {
+        let url_ = this.baseUrl + "/api/PurchaseReport/PUR_Combined_Purchases_Imported_Inventory_Search";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                "Accept": "text/plain"
+            })
+        };
+
+        return _observableFrom(this.transformOptions(options_)).pipe(_observableMergeMap(transformedOptions_ => {
+            return this.http.request("post", url_, transformedOptions_);
+        })).pipe(_observableMergeMap((response_: any) => {
+            return this.processPUR_Combined_Purchases_Imported_Inventory_Search(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processPUR_Combined_Purchases_Imported_Inventory_Search(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<PUR_Combined_Purchases_Imported_Inventory_ENTITY[]>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<PUR_Combined_Purchases_Imported_Inventory_ENTITY[]>;
+        }));
+    }
+
+    protected processPUR_Combined_Purchases_Imported_Inventory_Search(response: HttpResponseBase): Observable<PUR_Combined_Purchases_Imported_Inventory_ENTITY[]> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200.push(PUR_Combined_Purchases_Imported_Inventory_ENTITY.fromJS(item));
+            }
+            else {
+                result200 = <any>null;
+            }
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<PUR_Combined_Purchases_Imported_Inventory_ENTITY[]>(null as any);
+    }
+
+    /**
+     * @param body (optional) 
+     * @return Success
+     */
+    pUR_Expense_Report_Search(body: PUR_Expense_Report_ENTITY | undefined): Observable<PUR_Expense_Report_ENTITY[]> {
+        let url_ = this.baseUrl + "/api/PurchaseReport/PUR_Expense_Report_Search";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                "Accept": "text/plain"
+            })
+        };
+
+        return _observableFrom(this.transformOptions(options_)).pipe(_observableMergeMap(transformedOptions_ => {
+            return this.http.request("post", url_, transformedOptions_);
+        })).pipe(_observableMergeMap((response_: any) => {
+            return this.processPUR_Expense_Report_Search(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processPUR_Expense_Report_Search(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<PUR_Expense_Report_ENTITY[]>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<PUR_Expense_Report_ENTITY[]>;
+        }));
+    }
+
+    protected processPUR_Expense_Report_Search(response: HttpResponseBase): Observable<PUR_Expense_Report_ENTITY[]> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200.push(PUR_Expense_Report_ENTITY.fromJS(item));
+            }
+            else {
+                result200 = <any>null;
+            }
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<PUR_Expense_Report_ENTITY[]>(null as any);
+    }
+
+    /**
+     * @param body (optional) 
+     * @return Success
+     */
+    pUR_Import_Invoice_Report_Search(body: PUR_Import_Invoice_Report_ENTITY | undefined): Observable<PUR_Import_Invoice_Report_ENTITY[]> {
+        let url_ = this.baseUrl + "/api/PurchaseReport/PUR_Import_Invoice_Report_Search";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                "Accept": "text/plain"
+            })
+        };
+
+        return _observableFrom(this.transformOptions(options_)).pipe(_observableMergeMap(transformedOptions_ => {
+            return this.http.request("post", url_, transformedOptions_);
+        })).pipe(_observableMergeMap((response_: any) => {
+            return this.processPUR_Import_Invoice_Report_Search(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processPUR_Import_Invoice_Report_Search(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<PUR_Import_Invoice_Report_ENTITY[]>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<PUR_Import_Invoice_Report_ENTITY[]>;
+        }));
+    }
+
+    protected processPUR_Import_Invoice_Report_Search(response: HttpResponseBase): Observable<PUR_Import_Invoice_Report_ENTITY[]> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200.push(PUR_Import_Invoice_Report_ENTITY.fromJS(item));
+            }
+            else {
+                result200 = <any>null;
+            }
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<PUR_Import_Invoice_Report_ENTITY[]>(null as any);
+    }
+
+    /**
+     * @param body (optional) 
+     * @return Success
+     */
+    pUR_Inventory_Return_Report_Search(body: PUR_Inventory_Return_Report_ENTITY | undefined): Observable<PUR_Inventory_Return_Report_ENTITY[]> {
+        let url_ = this.baseUrl + "/api/PurchaseReport/PUR_Inventory_Return_Report_Search";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                "Accept": "text/plain"
+            })
+        };
+
+        return _observableFrom(this.transformOptions(options_)).pipe(_observableMergeMap(transformedOptions_ => {
+            return this.http.request("post", url_, transformedOptions_);
+        })).pipe(_observableMergeMap((response_: any) => {
+            return this.processPUR_Inventory_Return_Report_Search(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processPUR_Inventory_Return_Report_Search(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<PUR_Inventory_Return_Report_ENTITY[]>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<PUR_Inventory_Return_Report_ENTITY[]>;
+        }));
+    }
+
+    protected processPUR_Inventory_Return_Report_Search(response: HttpResponseBase): Observable<PUR_Inventory_Return_Report_ENTITY[]> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200.push(PUR_Inventory_Return_Report_ENTITY.fromJS(item));
+            }
+            else {
+                result200 = <any>null;
+            }
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<PUR_Inventory_Return_Report_ENTITY[]>(null as any);
+    }
+
+    /**
+     * @param body (optional) 
+     * @return Success
+     */
+    pUR_Journal_Search(body: PUR_Journal_ENTITY | undefined): Observable<PUR_Journal_ENTITY[]> {
+        let url_ = this.baseUrl + "/api/PurchaseReport/PUR_Journal_Search";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                "Accept": "text/plain"
+            })
+        };
+
+        return _observableFrom(this.transformOptions(options_)).pipe(_observableMergeMap(transformedOptions_ => {
+            return this.http.request("post", url_, transformedOptions_);
+        })).pipe(_observableMergeMap((response_: any) => {
+            return this.processPUR_Journal_Search(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processPUR_Journal_Search(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<PUR_Journal_ENTITY[]>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<PUR_Journal_ENTITY[]>;
+        }));
+    }
+
+    protected processPUR_Journal_Search(response: HttpResponseBase): Observable<PUR_Journal_ENTITY[]> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200.push(PUR_Journal_ENTITY.fromJS(item));
+            }
+            else {
+                result200 = <any>null;
+            }
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<PUR_Journal_ENTITY[]>(null as any);
+    }
+
+    /**
+     * @param body (optional) 
+     * @return Success
+     */
+    pUR_Order_Report_Search(body: PUR_Order_Report_ENTITY | undefined): Observable<PUR_Order_Report_ENTITY[]> {
+        let url_ = this.baseUrl + "/api/PurchaseReport/PUR_Order_Report_Search";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                "Accept": "text/plain"
+            })
+        };
+
+        return _observableFrom(this.transformOptions(options_)).pipe(_observableMergeMap(transformedOptions_ => {
+            return this.http.request("post", url_, transformedOptions_);
+        })).pipe(_observableMergeMap((response_: any) => {
+            return this.processPUR_Order_Report_Search(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processPUR_Order_Report_Search(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<PUR_Order_Report_ENTITY[]>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<PUR_Order_Report_ENTITY[]>;
+        }));
+    }
+
+    protected processPUR_Order_Report_Search(response: HttpResponseBase): Observable<PUR_Order_Report_ENTITY[]> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200.push(PUR_Order_Report_ENTITY.fromJS(item));
+            }
+            else {
+                result200 = <any>null;
+            }
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<PUR_Order_Report_ENTITY[]>(null as any);
+    }
+
+    /**
+     * @param body (optional) 
+     * @return Success
+     */
+    pUR_Service_Purchase_Invoice_Report_Search(body: PUR_Service_Purchase_Invoice_Report_ENTITY | undefined): Observable<PUR_Service_Purchase_Invoice_Report_ENTITY[]> {
+        let url_ = this.baseUrl + "/api/PurchaseReport/PUR_Service_Purchase_Invoice_Report_Search";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                "Accept": "text/plain"
+            })
+        };
+
+        return _observableFrom(this.transformOptions(options_)).pipe(_observableMergeMap(transformedOptions_ => {
+            return this.http.request("post", url_, transformedOptions_);
+        })).pipe(_observableMergeMap((response_: any) => {
+            return this.processPUR_Service_Purchase_Invoice_Report_Search(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processPUR_Service_Purchase_Invoice_Report_Search(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<PUR_Service_Purchase_Invoice_Report_ENTITY[]>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<PUR_Service_Purchase_Invoice_Report_ENTITY[]>;
+        }));
+    }
+
+    protected processPUR_Service_Purchase_Invoice_Report_Search(response: HttpResponseBase): Observable<PUR_Service_Purchase_Invoice_Report_ENTITY[]> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200.push(PUR_Service_Purchase_Invoice_Report_ENTITY.fromJS(item));
+            }
+            else {
+                result200 = <any>null;
+            }
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<PUR_Service_Purchase_Invoice_Report_ENTITY[]>(null as any);
+    }
 }
 
 @Injectable()
@@ -34283,6 +34868,71 @@ export class WMSReportService extends ApiBase {
     }
 
     protected processWMS_Calculate_The_Average_Costing_Search(response: HttpResponseBase): Observable<WMS_Average_Cost_Sheet_ENTITY[]> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200.push(WMS_Average_Cost_Sheet_ENTITY.fromJS(item));
+            }
+            else {
+                result200 = <any>null;
+            }
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<WMS_Average_Cost_Sheet_ENTITY[]>(null as any);
+    }
+
+    /**
+     * @param body (optional) 
+     * @return Success
+     */
+    wMS_Calculate_The_Average_Costing_V2_Search(body: WMS_Average_Cost_Sheet_ENTITY | undefined): Observable<WMS_Average_Cost_Sheet_ENTITY[]> {
+        let url_ = this.baseUrl + "/api/WMSReport/WMS_Calculate_The_Average_Costing_V2_Search";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                "Accept": "text/plain"
+            })
+        };
+
+        return _observableFrom(this.transformOptions(options_)).pipe(_observableMergeMap(transformedOptions_ => {
+            return this.http.request("post", url_, transformedOptions_);
+        })).pipe(_observableMergeMap((response_: any) => {
+            return this.processWMS_Calculate_The_Average_Costing_V2_Search(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processWMS_Calculate_The_Average_Costing_V2_Search(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<WMS_Average_Cost_Sheet_ENTITY[]>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<WMS_Average_Cost_Sheet_ENTITY[]>;
+        }));
+    }
+
+    protected processWMS_Calculate_The_Average_Costing_V2_Search(response: HttpResponseBase): Observable<WMS_Average_Cost_Sheet_ENTITY[]> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -54889,6 +55539,2201 @@ export interface IPUR_Accounts_Payable_Report_By_Invoice_ENTITY {
     account?: string | undefined;
     account_code_add?: string | undefined;
     account_code_modified?: string | undefined;
+}
+
+export class PUR_Aggregate_Cost_Coupon_Print_ENTITY implements IPUR_Aggregate_Cost_Coupon_Print_ENTITY {
+    id?: number;
+    code?: string | undefined;
+    master_code?: string | undefined;
+    goods_code?: string | undefined;
+    unit_code?: string | undefined;
+    unit_name?: string | undefined;
+    warehouse_code?: string | undefined;
+    warehouse_name?: string | undefined;
+    debitor_account?: string | undefined;
+    quantity?: string | undefined;
+    price?: number | undefined;
+    arise_fc?: number | undefined;
+    arise?: number | undefined;
+    cost_fc?: number | undefined;
+    cost?: number | undefined;
+    fee_code?: string | undefined;
+    case_code?: string | undefined;
+    department_code?: string | undefined;
+    cost_arise_fc?: number | undefined;
+    cost_arise?: number | undefined;
+    goods_name?: string | undefined;
+    construction_id?: string | undefined;
+    group_code?: string | undefined;
+    standard_code?: string | undefined;
+    brand?: string | undefined;
+    series_no?: string | undefined;
+    expiration_date?: string | undefined;
+    warranty_term?: number | undefined;
+    inventory?: number | undefined;
+    lot?: number | undefined;
+    conversion_factor?: number | undefined;
+    conversion_quantity?: number | undefined;
+    conversion_price?: number | undefined;
+    warranty_date?: moment.Moment | undefined;
+    date_add?: moment.Moment | undefined;
+    date_modified?: moment.Moment | undefined;
+    account_code_add?: string | undefined;
+    account_code_modified?: string | undefined;
+    company_code?: string | undefined;
+    price_fc?: number | undefined;
+    is_tax?: boolean | undefined;
+    notes?: string | undefined;
+    tax_money?: number | undefined;
+    invoice_date?: moment.Moment | undefined;
+    invoice_no?: string | undefined;
+    invoice_series_no?: string | undefined;
+    creditor_account?: string | undefined;
+    name?: string | undefined;
+    address?: string | undefined;
+    voucher_detail_code?: string | undefined;
+    voucher_no?: string | undefined;
+    voucher_date?: moment.Moment | undefined;
+    voucher_date_start?: moment.Moment | undefined;
+    voucher_date_end?: moment.Moment | undefined;
+    price_have_cost?: number | undefined;
+    deliver?: string | undefined;
+    amount?: number | undefined;
+    tax_money_have_cost?: number | undefined;
+    voucher_22_m_code?: string | undefined;
+    language_id?: number | undefined;
+    voucher_code?: string | undefined;
+    goods_symbol?: string | undefined;
+    group_goods_name?: string | undefined;
+    voucher_year?: number | undefined;
+
+    constructor(data?: IPUR_Aggregate_Cost_Coupon_Print_ENTITY) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.code = _data["code"];
+            this.master_code = _data["master_code"];
+            this.goods_code = _data["goods_code"];
+            this.unit_code = _data["unit_code"];
+            this.unit_name = _data["unit_name"];
+            this.warehouse_code = _data["warehouse_code"];
+            this.warehouse_name = _data["warehouse_name"];
+            this.debitor_account = _data["debitor_account"];
+            this.quantity = _data["quantity"];
+            this.price = _data["price"];
+            this.arise_fc = _data["arise_fc"];
+            this.arise = _data["arise"];
+            this.cost_fc = _data["cost_fc"];
+            this.cost = _data["cost"];
+            this.fee_code = _data["fee_code"];
+            this.case_code = _data["case_code"];
+            this.department_code = _data["department_code"];
+            this.cost_arise_fc = _data["cost_arise_fc"];
+            this.cost_arise = _data["cost_arise"];
+            this.goods_name = _data["goods_name"];
+            this.construction_id = _data["construction_id"];
+            this.group_code = _data["group_code"];
+            this.standard_code = _data["standard_code"];
+            this.brand = _data["brand"];
+            this.series_no = _data["series_no"];
+            this.expiration_date = _data["expiration_date"];
+            this.warranty_term = _data["warranty_term"];
+            this.inventory = _data["inventory"];
+            this.lot = _data["lot"];
+            this.conversion_factor = _data["conversion_factor"];
+            this.conversion_quantity = _data["conversion_quantity"];
+            this.conversion_price = _data["conversion_price"];
+            this.warranty_date = _data["warranty_date"] ? moment.parseZone(_data["warranty_date"].toString()) : <any>undefined;
+            this.date_add = _data["date_add"] ? moment.parseZone(_data["date_add"].toString()) : <any>undefined;
+            this.date_modified = _data["date_modified"] ? moment.parseZone(_data["date_modified"].toString()) : <any>undefined;
+            this.account_code_add = _data["account_code_add"];
+            this.account_code_modified = _data["account_code_modified"];
+            this.company_code = _data["company_code"];
+            this.price_fc = _data["price_fc"];
+            this.is_tax = _data["is_tax"];
+            this.notes = _data["notes"];
+            this.tax_money = _data["tax_money"];
+            this.invoice_date = _data["invoice_date"] ? moment.parseZone(_data["invoice_date"].toString()) : <any>undefined;
+            this.invoice_no = _data["invoice_no"];
+            this.invoice_series_no = _data["invoice_series_no"];
+            this.creditor_account = _data["creditor_account"];
+            this.name = _data["name"];
+            this.address = _data["address"];
+            this.voucher_detail_code = _data["voucher_detail_code"];
+            this.voucher_no = _data["voucher_no"];
+            this.voucher_date = _data["voucher_date"] ? moment.parseZone(_data["voucher_date"].toString()) : <any>undefined;
+            this.voucher_date_start = _data["voucher_date_start"] ? moment.parseZone(_data["voucher_date_start"].toString()) : <any>undefined;
+            this.voucher_date_end = _data["voucher_date_end"] ? moment.parseZone(_data["voucher_date_end"].toString()) : <any>undefined;
+            this.price_have_cost = _data["price_have_cost"];
+            this.deliver = _data["deliver"];
+            this.amount = _data["amount"];
+            this.tax_money_have_cost = _data["tax_money_have_cost"];
+            this.voucher_22_m_code = _data["voucher_22_m_code"];
+            this.language_id = _data["language_id"];
+            this.voucher_code = _data["voucher_code"];
+            this.goods_symbol = _data["goods_symbol"];
+            this.group_goods_name = _data["group_goods_name"];
+            this.voucher_year = _data["voucher_year"];
+        }
+    }
+
+    static fromJS(data: any): PUR_Aggregate_Cost_Coupon_Print_ENTITY {
+        data = typeof data === 'object' ? data : {};
+        let result = new PUR_Aggregate_Cost_Coupon_Print_ENTITY();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["code"] = this.code;
+        data["master_code"] = this.master_code;
+        data["goods_code"] = this.goods_code;
+        data["unit_code"] = this.unit_code;
+        data["unit_name"] = this.unit_name;
+        data["warehouse_code"] = this.warehouse_code;
+        data["warehouse_name"] = this.warehouse_name;
+        data["debitor_account"] = this.debitor_account;
+        data["quantity"] = this.quantity;
+        data["price"] = this.price;
+        data["arise_fc"] = this.arise_fc;
+        data["arise"] = this.arise;
+        data["cost_fc"] = this.cost_fc;
+        data["cost"] = this.cost;
+        data["fee_code"] = this.fee_code;
+        data["case_code"] = this.case_code;
+        data["department_code"] = this.department_code;
+        data["cost_arise_fc"] = this.cost_arise_fc;
+        data["cost_arise"] = this.cost_arise;
+        data["goods_name"] = this.goods_name;
+        data["construction_id"] = this.construction_id;
+        data["group_code"] = this.group_code;
+        data["standard_code"] = this.standard_code;
+        data["brand"] = this.brand;
+        data["series_no"] = this.series_no;
+        data["expiration_date"] = this.expiration_date;
+        data["warranty_term"] = this.warranty_term;
+        data["inventory"] = this.inventory;
+        data["lot"] = this.lot;
+        data["conversion_factor"] = this.conversion_factor;
+        data["conversion_quantity"] = this.conversion_quantity;
+        data["conversion_price"] = this.conversion_price;
+        data["warranty_date"] = this.warranty_date ? this.warranty_date.toISOString(true) : <any>undefined;
+        data["date_add"] = this.date_add ? this.date_add.toISOString(true) : <any>undefined;
+        data["date_modified"] = this.date_modified ? this.date_modified.toISOString(true) : <any>undefined;
+        data["account_code_add"] = this.account_code_add;
+        data["account_code_modified"] = this.account_code_modified;
+        data["company_code"] = this.company_code;
+        data["price_fc"] = this.price_fc;
+        data["is_tax"] = this.is_tax;
+        data["notes"] = this.notes;
+        data["tax_money"] = this.tax_money;
+        data["invoice_date"] = this.invoice_date ? this.invoice_date.toISOString(true) : <any>undefined;
+        data["invoice_no"] = this.invoice_no;
+        data["invoice_series_no"] = this.invoice_series_no;
+        data["creditor_account"] = this.creditor_account;
+        data["name"] = this.name;
+        data["address"] = this.address;
+        data["voucher_detail_code"] = this.voucher_detail_code;
+        data["voucher_no"] = this.voucher_no;
+        data["voucher_date"] = this.voucher_date ? this.voucher_date.toISOString(true) : <any>undefined;
+        data["voucher_date_start"] = this.voucher_date_start ? this.voucher_date_start.toISOString(true) : <any>undefined;
+        data["voucher_date_end"] = this.voucher_date_end ? this.voucher_date_end.toISOString(true) : <any>undefined;
+        data["price_have_cost"] = this.price_have_cost;
+        data["deliver"] = this.deliver;
+        data["amount"] = this.amount;
+        data["tax_money_have_cost"] = this.tax_money_have_cost;
+        data["voucher_22_m_code"] = this.voucher_22_m_code;
+        data["language_id"] = this.language_id;
+        data["voucher_code"] = this.voucher_code;
+        data["goods_symbol"] = this.goods_symbol;
+        data["group_goods_name"] = this.group_goods_name;
+        data["voucher_year"] = this.voucher_year;
+        return data;
+    }
+
+    clone(): PUR_Aggregate_Cost_Coupon_Print_ENTITY {
+        const json = this.toJSON();
+        let result = new PUR_Aggregate_Cost_Coupon_Print_ENTITY();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface IPUR_Aggregate_Cost_Coupon_Print_ENTITY {
+    id?: number;
+    code?: string | undefined;
+    master_code?: string | undefined;
+    goods_code?: string | undefined;
+    unit_code?: string | undefined;
+    unit_name?: string | undefined;
+    warehouse_code?: string | undefined;
+    warehouse_name?: string | undefined;
+    debitor_account?: string | undefined;
+    quantity?: string | undefined;
+    price?: number | undefined;
+    arise_fc?: number | undefined;
+    arise?: number | undefined;
+    cost_fc?: number | undefined;
+    cost?: number | undefined;
+    fee_code?: string | undefined;
+    case_code?: string | undefined;
+    department_code?: string | undefined;
+    cost_arise_fc?: number | undefined;
+    cost_arise?: number | undefined;
+    goods_name?: string | undefined;
+    construction_id?: string | undefined;
+    group_code?: string | undefined;
+    standard_code?: string | undefined;
+    brand?: string | undefined;
+    series_no?: string | undefined;
+    expiration_date?: string | undefined;
+    warranty_term?: number | undefined;
+    inventory?: number | undefined;
+    lot?: number | undefined;
+    conversion_factor?: number | undefined;
+    conversion_quantity?: number | undefined;
+    conversion_price?: number | undefined;
+    warranty_date?: moment.Moment | undefined;
+    date_add?: moment.Moment | undefined;
+    date_modified?: moment.Moment | undefined;
+    account_code_add?: string | undefined;
+    account_code_modified?: string | undefined;
+    company_code?: string | undefined;
+    price_fc?: number | undefined;
+    is_tax?: boolean | undefined;
+    notes?: string | undefined;
+    tax_money?: number | undefined;
+    invoice_date?: moment.Moment | undefined;
+    invoice_no?: string | undefined;
+    invoice_series_no?: string | undefined;
+    creditor_account?: string | undefined;
+    name?: string | undefined;
+    address?: string | undefined;
+    voucher_detail_code?: string | undefined;
+    voucher_no?: string | undefined;
+    voucher_date?: moment.Moment | undefined;
+    voucher_date_start?: moment.Moment | undefined;
+    voucher_date_end?: moment.Moment | undefined;
+    price_have_cost?: number | undefined;
+    deliver?: string | undefined;
+    amount?: number | undefined;
+    tax_money_have_cost?: number | undefined;
+    voucher_22_m_code?: string | undefined;
+    language_id?: number | undefined;
+    voucher_code?: string | undefined;
+    goods_symbol?: string | undefined;
+    group_goods_name?: string | undefined;
+    voucher_year?: number | undefined;
+}
+
+export class PUR_Aggregate_Print_Import_Slips_At_Cost_ENTITY implements IPUR_Aggregate_Print_Import_Slips_At_Cost_ENTITY {
+    id?: number;
+    code?: string | undefined;
+    master_code?: string | undefined;
+    goods_code?: string | undefined;
+    goods_name?: string | undefined;
+    unit_code?: string | undefined;
+    warehouse_code?: string | undefined;
+    debitor_account?: string | undefined;
+    quantity?: number | undefined;
+    price_fc?: number | undefined;
+    price?: number | undefined;
+    arise_fc?: number | undefined;
+    arise?: number | undefined;
+    cost_fc?: number | undefined;
+    cost?: number | undefined;
+    fee_code?: string | undefined;
+    department_code?: string | undefined;
+    case_code?: string | undefined;
+    tax_import?: number | undefined;
+    tax_import_fc?: number | undefined;
+    construction_id?: string | undefined;
+    tax_import_code?: string | undefined;
+    vat_import?: number | undefined;
+    group_code?: string | undefined;
+    standard_code?: string | undefined;
+    brand?: string | undefined;
+    series_no?: string | undefined;
+    lot?: number | undefined;
+    expiration_date?: moment.Moment | undefined;
+    warranty_term?: string | undefined;
+    inventory?: number | undefined;
+    conversion_factor?: number | undefined;
+    conversion_quantity?: number | undefined;
+    conversion_price?: number | undefined;
+    date_add?: moment.Moment | undefined;
+    date_modified?: moment.Moment | undefined;
+    account_code_add?: string | undefined;
+    account_code_modified?: string | undefined;
+    company_code?: string | undefined;
+    is_tax?: boolean | undefined;
+    tax_money?: number | undefined;
+    invoice_date?: moment.Moment | undefined;
+    invoice_no?: string | undefined;
+    invoice_series_no?: string | undefined;
+    creditor_account?: string | undefined;
+    name?: string | undefined;
+    address?: string | undefined;
+    voucher_detail_code?: string | undefined;
+    voucher_no?: string | undefined;
+    voucher_date?: moment.Moment | undefined;
+    voucher_date_start?: moment.Moment | undefined;
+    voucher_date_end?: moment.Moment | undefined;
+    price_have_cost?: string | undefined;
+    deliver?: string | undefined;
+    amount?: number | undefined;
+    tax_money_have_cost?: number | undefined;
+    voucher_22_m_code?: string | undefined;
+    language_id?: number | undefined;
+    voucher_code?: string | undefined;
+    voucher_year?: number | undefined;
+
+    constructor(data?: IPUR_Aggregate_Print_Import_Slips_At_Cost_ENTITY) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.code = _data["code"];
+            this.master_code = _data["master_code"];
+            this.goods_code = _data["goods_code"];
+            this.goods_name = _data["goods_name"];
+            this.unit_code = _data["unit_code"];
+            this.warehouse_code = _data["warehouse_code"];
+            this.debitor_account = _data["debitor_account"];
+            this.quantity = _data["quantity"];
+            this.price_fc = _data["price_fc"];
+            this.price = _data["price"];
+            this.arise_fc = _data["arise_fc"];
+            this.arise = _data["arise"];
+            this.cost_fc = _data["cost_fc"];
+            this.cost = _data["cost"];
+            this.fee_code = _data["fee_code"];
+            this.department_code = _data["department_code"];
+            this.case_code = _data["case_code"];
+            this.tax_import = _data["tax_import"];
+            this.tax_import_fc = _data["tax_import_fc"];
+            this.construction_id = _data["construction_id"];
+            this.tax_import_code = _data["tax_import_code"];
+            this.vat_import = _data["vat_import"];
+            this.group_code = _data["group_code"];
+            this.standard_code = _data["standard_code"];
+            this.brand = _data["brand"];
+            this.series_no = _data["series_no"];
+            this.lot = _data["lot"];
+            this.expiration_date = _data["expiration_date"] ? moment.parseZone(_data["expiration_date"].toString()) : <any>undefined;
+            this.warranty_term = _data["warranty_term"];
+            this.inventory = _data["inventory"];
+            this.conversion_factor = _data["conversion_factor"];
+            this.conversion_quantity = _data["conversion_quantity"];
+            this.conversion_price = _data["conversion_price"];
+            this.date_add = _data["date_add"] ? moment.parseZone(_data["date_add"].toString()) : <any>undefined;
+            this.date_modified = _data["date_modified"] ? moment.parseZone(_data["date_modified"].toString()) : <any>undefined;
+            this.account_code_add = _data["account_code_add"];
+            this.account_code_modified = _data["account_code_modified"];
+            this.company_code = _data["company_code"];
+            this.is_tax = _data["is_tax"];
+            this.tax_money = _data["tax_money"];
+            this.invoice_date = _data["invoice_date"] ? moment.parseZone(_data["invoice_date"].toString()) : <any>undefined;
+            this.invoice_no = _data["invoice_no"];
+            this.invoice_series_no = _data["invoice_series_no"];
+            this.creditor_account = _data["creditor_account"];
+            this.name = _data["name"];
+            this.address = _data["address"];
+            this.voucher_detail_code = _data["voucher_detail_code"];
+            this.voucher_no = _data["voucher_no"];
+            this.voucher_date = _data["voucher_date"] ? moment.parseZone(_data["voucher_date"].toString()) : <any>undefined;
+            this.voucher_date_start = _data["voucher_date_start"] ? moment.parseZone(_data["voucher_date_start"].toString()) : <any>undefined;
+            this.voucher_date_end = _data["voucher_date_end"] ? moment.parseZone(_data["voucher_date_end"].toString()) : <any>undefined;
+            this.price_have_cost = _data["price_have_cost"];
+            this.deliver = _data["deliver"];
+            this.amount = _data["amount"];
+            this.tax_money_have_cost = _data["tax_money_have_cost"];
+            this.voucher_22_m_code = _data["voucher_22_m_code"];
+            this.language_id = _data["language_id"];
+            this.voucher_code = _data["voucher_code"];
+            this.voucher_year = _data["voucher_year"];
+        }
+    }
+
+    static fromJS(data: any): PUR_Aggregate_Print_Import_Slips_At_Cost_ENTITY {
+        data = typeof data === 'object' ? data : {};
+        let result = new PUR_Aggregate_Print_Import_Slips_At_Cost_ENTITY();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["code"] = this.code;
+        data["master_code"] = this.master_code;
+        data["goods_code"] = this.goods_code;
+        data["goods_name"] = this.goods_name;
+        data["unit_code"] = this.unit_code;
+        data["warehouse_code"] = this.warehouse_code;
+        data["debitor_account"] = this.debitor_account;
+        data["quantity"] = this.quantity;
+        data["price_fc"] = this.price_fc;
+        data["price"] = this.price;
+        data["arise_fc"] = this.arise_fc;
+        data["arise"] = this.arise;
+        data["cost_fc"] = this.cost_fc;
+        data["cost"] = this.cost;
+        data["fee_code"] = this.fee_code;
+        data["department_code"] = this.department_code;
+        data["case_code"] = this.case_code;
+        data["tax_import"] = this.tax_import;
+        data["tax_import_fc"] = this.tax_import_fc;
+        data["construction_id"] = this.construction_id;
+        data["tax_import_code"] = this.tax_import_code;
+        data["vat_import"] = this.vat_import;
+        data["group_code"] = this.group_code;
+        data["standard_code"] = this.standard_code;
+        data["brand"] = this.brand;
+        data["series_no"] = this.series_no;
+        data["lot"] = this.lot;
+        data["expiration_date"] = this.expiration_date ? this.expiration_date.toISOString(true) : <any>undefined;
+        data["warranty_term"] = this.warranty_term;
+        data["inventory"] = this.inventory;
+        data["conversion_factor"] = this.conversion_factor;
+        data["conversion_quantity"] = this.conversion_quantity;
+        data["conversion_price"] = this.conversion_price;
+        data["date_add"] = this.date_add ? this.date_add.toISOString(true) : <any>undefined;
+        data["date_modified"] = this.date_modified ? this.date_modified.toISOString(true) : <any>undefined;
+        data["account_code_add"] = this.account_code_add;
+        data["account_code_modified"] = this.account_code_modified;
+        data["company_code"] = this.company_code;
+        data["is_tax"] = this.is_tax;
+        data["tax_money"] = this.tax_money;
+        data["invoice_date"] = this.invoice_date ? this.invoice_date.toISOString(true) : <any>undefined;
+        data["invoice_no"] = this.invoice_no;
+        data["invoice_series_no"] = this.invoice_series_no;
+        data["creditor_account"] = this.creditor_account;
+        data["name"] = this.name;
+        data["address"] = this.address;
+        data["voucher_detail_code"] = this.voucher_detail_code;
+        data["voucher_no"] = this.voucher_no;
+        data["voucher_date"] = this.voucher_date ? this.voucher_date.toISOString(true) : <any>undefined;
+        data["voucher_date_start"] = this.voucher_date_start ? this.voucher_date_start.toISOString(true) : <any>undefined;
+        data["voucher_date_end"] = this.voucher_date_end ? this.voucher_date_end.toISOString(true) : <any>undefined;
+        data["price_have_cost"] = this.price_have_cost;
+        data["deliver"] = this.deliver;
+        data["amount"] = this.amount;
+        data["tax_money_have_cost"] = this.tax_money_have_cost;
+        data["voucher_22_m_code"] = this.voucher_22_m_code;
+        data["language_id"] = this.language_id;
+        data["voucher_code"] = this.voucher_code;
+        data["voucher_year"] = this.voucher_year;
+        return data;
+    }
+
+    clone(): PUR_Aggregate_Print_Import_Slips_At_Cost_ENTITY {
+        const json = this.toJSON();
+        let result = new PUR_Aggregate_Print_Import_Slips_At_Cost_ENTITY();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface IPUR_Aggregate_Print_Import_Slips_At_Cost_ENTITY {
+    id?: number;
+    code?: string | undefined;
+    master_code?: string | undefined;
+    goods_code?: string | undefined;
+    goods_name?: string | undefined;
+    unit_code?: string | undefined;
+    warehouse_code?: string | undefined;
+    debitor_account?: string | undefined;
+    quantity?: number | undefined;
+    price_fc?: number | undefined;
+    price?: number | undefined;
+    arise_fc?: number | undefined;
+    arise?: number | undefined;
+    cost_fc?: number | undefined;
+    cost?: number | undefined;
+    fee_code?: string | undefined;
+    department_code?: string | undefined;
+    case_code?: string | undefined;
+    tax_import?: number | undefined;
+    tax_import_fc?: number | undefined;
+    construction_id?: string | undefined;
+    tax_import_code?: string | undefined;
+    vat_import?: number | undefined;
+    group_code?: string | undefined;
+    standard_code?: string | undefined;
+    brand?: string | undefined;
+    series_no?: string | undefined;
+    lot?: number | undefined;
+    expiration_date?: moment.Moment | undefined;
+    warranty_term?: string | undefined;
+    inventory?: number | undefined;
+    conversion_factor?: number | undefined;
+    conversion_quantity?: number | undefined;
+    conversion_price?: number | undefined;
+    date_add?: moment.Moment | undefined;
+    date_modified?: moment.Moment | undefined;
+    account_code_add?: string | undefined;
+    account_code_modified?: string | undefined;
+    company_code?: string | undefined;
+    is_tax?: boolean | undefined;
+    tax_money?: number | undefined;
+    invoice_date?: moment.Moment | undefined;
+    invoice_no?: string | undefined;
+    invoice_series_no?: string | undefined;
+    creditor_account?: string | undefined;
+    name?: string | undefined;
+    address?: string | undefined;
+    voucher_detail_code?: string | undefined;
+    voucher_no?: string | undefined;
+    voucher_date?: moment.Moment | undefined;
+    voucher_date_start?: moment.Moment | undefined;
+    voucher_date_end?: moment.Moment | undefined;
+    price_have_cost?: string | undefined;
+    deliver?: string | undefined;
+    amount?: number | undefined;
+    tax_money_have_cost?: number | undefined;
+    voucher_22_m_code?: string | undefined;
+    language_id?: number | undefined;
+    voucher_code?: string | undefined;
+    voucher_year?: number | undefined;
+}
+
+export class PUR_Combined_Purchases_Imported_Inventory_ENTITY implements IPUR_Combined_Purchases_Imported_Inventory_ENTITY {
+    warehouse_code?: string | undefined;
+    warehouse_name?: string | undefined;
+    goods_code?: string | undefined;
+    goods_name?: string | undefined;
+    goods_symbol?: string | undefined;
+    goods_unit_name?: string | undefined;
+    quantity?: number | undefined;
+    goods_money?: string | undefined;
+    goods_money_fc?: string | undefined;
+    cost?: number | undefined;
+    cost_fc?: number | undefined;
+    arise_debit?: number | undefined;
+    arise_debit_fc?: number | undefined;
+    goods_group_code?: string | undefined;
+    group_goods_name?: string | undefined;
+    unit_name?: string | undefined;
+    id?: number;
+    language_id?: number | undefined;
+    voucher_code?: string | undefined;
+    voucher_year?: number | undefined;
+    code?: string | undefined;
+    company_code?: string | undefined;
+    date_add?: moment.Moment | undefined;
+    date_modified?: moment.Moment | undefined;
+    account_code_add?: string | undefined;
+    voucher_date?: moment.Moment | undefined;
+    voucher_date_start?: moment.Moment | undefined;
+    voucher_date_end?: moment.Moment | undefined;
+    account_code_modified?: string | undefined;
+
+    constructor(data?: IPUR_Combined_Purchases_Imported_Inventory_ENTITY) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.warehouse_code = _data["warehouse_code"];
+            this.warehouse_name = _data["warehouse_name"];
+            this.goods_code = _data["goods_code"];
+            this.goods_name = _data["goods_name"];
+            this.goods_symbol = _data["goods_symbol"];
+            this.goods_unit_name = _data["goods_unit_name"];
+            this.quantity = _data["quantity"];
+            this.goods_money = _data["goods_money"];
+            this.goods_money_fc = _data["goods_money_fc"];
+            this.cost = _data["cost"];
+            this.cost_fc = _data["cost_fc"];
+            this.arise_debit = _data["arise_debit"];
+            this.arise_debit_fc = _data["arise_debit_fc"];
+            this.goods_group_code = _data["goods_group_code"];
+            this.group_goods_name = _data["group_goods_name"];
+            this.unit_name = _data["unit_name"];
+            this.id = _data["id"];
+            this.language_id = _data["language_id"];
+            this.voucher_code = _data["voucher_code"];
+            this.voucher_year = _data["voucher_year"];
+            this.code = _data["code"];
+            this.company_code = _data["company_code"];
+            this.date_add = _data["date_add"] ? moment.parseZone(_data["date_add"].toString()) : <any>undefined;
+            this.date_modified = _data["date_modified"] ? moment.parseZone(_data["date_modified"].toString()) : <any>undefined;
+            this.account_code_add = _data["account_code_add"];
+            this.voucher_date = _data["voucher_date"] ? moment.parseZone(_data["voucher_date"].toString()) : <any>undefined;
+            this.voucher_date_start = _data["voucher_date_start"] ? moment.parseZone(_data["voucher_date_start"].toString()) : <any>undefined;
+            this.voucher_date_end = _data["voucher_date_end"] ? moment.parseZone(_data["voucher_date_end"].toString()) : <any>undefined;
+            this.account_code_modified = _data["account_code_modified"];
+        }
+    }
+
+    static fromJS(data: any): PUR_Combined_Purchases_Imported_Inventory_ENTITY {
+        data = typeof data === 'object' ? data : {};
+        let result = new PUR_Combined_Purchases_Imported_Inventory_ENTITY();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["warehouse_code"] = this.warehouse_code;
+        data["warehouse_name"] = this.warehouse_name;
+        data["goods_code"] = this.goods_code;
+        data["goods_name"] = this.goods_name;
+        data["goods_symbol"] = this.goods_symbol;
+        data["goods_unit_name"] = this.goods_unit_name;
+        data["quantity"] = this.quantity;
+        data["goods_money"] = this.goods_money;
+        data["goods_money_fc"] = this.goods_money_fc;
+        data["cost"] = this.cost;
+        data["cost_fc"] = this.cost_fc;
+        data["arise_debit"] = this.arise_debit;
+        data["arise_debit_fc"] = this.arise_debit_fc;
+        data["goods_group_code"] = this.goods_group_code;
+        data["group_goods_name"] = this.group_goods_name;
+        data["unit_name"] = this.unit_name;
+        data["id"] = this.id;
+        data["language_id"] = this.language_id;
+        data["voucher_code"] = this.voucher_code;
+        data["voucher_year"] = this.voucher_year;
+        data["code"] = this.code;
+        data["company_code"] = this.company_code;
+        data["date_add"] = this.date_add ? this.date_add.toISOString(true) : <any>undefined;
+        data["date_modified"] = this.date_modified ? this.date_modified.toISOString(true) : <any>undefined;
+        data["account_code_add"] = this.account_code_add;
+        data["voucher_date"] = this.voucher_date ? this.voucher_date.toISOString(true) : <any>undefined;
+        data["voucher_date_start"] = this.voucher_date_start ? this.voucher_date_start.toISOString(true) : <any>undefined;
+        data["voucher_date_end"] = this.voucher_date_end ? this.voucher_date_end.toISOString(true) : <any>undefined;
+        data["account_code_modified"] = this.account_code_modified;
+        return data;
+    }
+
+    clone(): PUR_Combined_Purchases_Imported_Inventory_ENTITY {
+        const json = this.toJSON();
+        let result = new PUR_Combined_Purchases_Imported_Inventory_ENTITY();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface IPUR_Combined_Purchases_Imported_Inventory_ENTITY {
+    warehouse_code?: string | undefined;
+    warehouse_name?: string | undefined;
+    goods_code?: string | undefined;
+    goods_name?: string | undefined;
+    goods_symbol?: string | undefined;
+    goods_unit_name?: string | undefined;
+    quantity?: number | undefined;
+    goods_money?: string | undefined;
+    goods_money_fc?: string | undefined;
+    cost?: number | undefined;
+    cost_fc?: number | undefined;
+    arise_debit?: number | undefined;
+    arise_debit_fc?: number | undefined;
+    goods_group_code?: string | undefined;
+    group_goods_name?: string | undefined;
+    unit_name?: string | undefined;
+    id?: number;
+    language_id?: number | undefined;
+    voucher_code?: string | undefined;
+    voucher_year?: number | undefined;
+    code?: string | undefined;
+    company_code?: string | undefined;
+    date_add?: moment.Moment | undefined;
+    date_modified?: moment.Moment | undefined;
+    account_code_add?: string | undefined;
+    voucher_date?: moment.Moment | undefined;
+    voucher_date_start?: moment.Moment | undefined;
+    voucher_date_end?: moment.Moment | undefined;
+    account_code_modified?: string | undefined;
+}
+
+export class PUR_Expense_Report_ENTITY implements IPUR_Expense_Report_ENTITY {
+    voucher_code?: string | undefined;
+    voucher_no?: string | undefined;
+    voucher_date?: moment.Moment | undefined;
+    voucher_date_start?: moment.Moment | undefined;
+    voucher_date_end?: moment.Moment | undefined;
+    invoice_no?: string | undefined;
+    series_no?: string | undefined;
+    customer_code?: string | undefined;
+    name?: string | undefined;
+    description?: string | undefined;
+    total_money_goods?: number | undefined;
+    tax_money?: number | undefined;
+    total_money?: number | undefined;
+    tax_code?: string | undefined;
+    creditor_account?: string | undefined;
+    id?: number;
+    language_id?: number | undefined;
+    voucher_year?: number | undefined;
+    code?: string | undefined;
+    company_code?: string | undefined;
+    date_add?: moment.Moment | undefined;
+    date_modified?: moment.Moment | undefined;
+    account_code_add?: string | undefined;
+    account_code_modified?: string | undefined;
+
+    constructor(data?: IPUR_Expense_Report_ENTITY) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.voucher_code = _data["voucher_code"];
+            this.voucher_no = _data["voucher_no"];
+            this.voucher_date = _data["voucher_date"] ? moment.parseZone(_data["voucher_date"].toString()) : <any>undefined;
+            this.voucher_date_start = _data["voucher_date_start"] ? moment.parseZone(_data["voucher_date_start"].toString()) : <any>undefined;
+            this.voucher_date_end = _data["voucher_date_end"] ? moment.parseZone(_data["voucher_date_end"].toString()) : <any>undefined;
+            this.invoice_no = _data["invoice_no"];
+            this.series_no = _data["series_no"];
+            this.customer_code = _data["customer_code"];
+            this.name = _data["name"];
+            this.description = _data["description"];
+            this.total_money_goods = _data["total_money_goods"];
+            this.tax_money = _data["tax_money"];
+            this.total_money = _data["total_money"];
+            this.tax_code = _data["tax_code"];
+            this.creditor_account = _data["creditor_account"];
+            this.id = _data["id"];
+            this.language_id = _data["language_id"];
+            this.voucher_year = _data["voucher_year"];
+            this.code = _data["code"];
+            this.company_code = _data["company_code"];
+            this.date_add = _data["date_add"] ? moment.parseZone(_data["date_add"].toString()) : <any>undefined;
+            this.date_modified = _data["date_modified"] ? moment.parseZone(_data["date_modified"].toString()) : <any>undefined;
+            this.account_code_add = _data["account_code_add"];
+            this.account_code_modified = _data["account_code_modified"];
+        }
+    }
+
+    static fromJS(data: any): PUR_Expense_Report_ENTITY {
+        data = typeof data === 'object' ? data : {};
+        let result = new PUR_Expense_Report_ENTITY();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["voucher_code"] = this.voucher_code;
+        data["voucher_no"] = this.voucher_no;
+        data["voucher_date"] = this.voucher_date ? this.voucher_date.toISOString(true) : <any>undefined;
+        data["voucher_date_start"] = this.voucher_date_start ? this.voucher_date_start.toISOString(true) : <any>undefined;
+        data["voucher_date_end"] = this.voucher_date_end ? this.voucher_date_end.toISOString(true) : <any>undefined;
+        data["invoice_no"] = this.invoice_no;
+        data["series_no"] = this.series_no;
+        data["customer_code"] = this.customer_code;
+        data["name"] = this.name;
+        data["description"] = this.description;
+        data["total_money_goods"] = this.total_money_goods;
+        data["tax_money"] = this.tax_money;
+        data["total_money"] = this.total_money;
+        data["tax_code"] = this.tax_code;
+        data["creditor_account"] = this.creditor_account;
+        data["id"] = this.id;
+        data["language_id"] = this.language_id;
+        data["voucher_year"] = this.voucher_year;
+        data["code"] = this.code;
+        data["company_code"] = this.company_code;
+        data["date_add"] = this.date_add ? this.date_add.toISOString(true) : <any>undefined;
+        data["date_modified"] = this.date_modified ? this.date_modified.toISOString(true) : <any>undefined;
+        data["account_code_add"] = this.account_code_add;
+        data["account_code_modified"] = this.account_code_modified;
+        return data;
+    }
+
+    clone(): PUR_Expense_Report_ENTITY {
+        const json = this.toJSON();
+        let result = new PUR_Expense_Report_ENTITY();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface IPUR_Expense_Report_ENTITY {
+    voucher_code?: string | undefined;
+    voucher_no?: string | undefined;
+    voucher_date?: moment.Moment | undefined;
+    voucher_date_start?: moment.Moment | undefined;
+    voucher_date_end?: moment.Moment | undefined;
+    invoice_no?: string | undefined;
+    series_no?: string | undefined;
+    customer_code?: string | undefined;
+    name?: string | undefined;
+    description?: string | undefined;
+    total_money_goods?: number | undefined;
+    tax_money?: number | undefined;
+    total_money?: number | undefined;
+    tax_code?: string | undefined;
+    creditor_account?: string | undefined;
+    id?: number;
+    language_id?: number | undefined;
+    voucher_year?: number | undefined;
+    code?: string | undefined;
+    company_code?: string | undefined;
+    date_add?: moment.Moment | undefined;
+    date_modified?: moment.Moment | undefined;
+    account_code_add?: string | undefined;
+    account_code_modified?: string | undefined;
+}
+
+export class PUR_Import_Invoice_Report_ENTITY implements IPUR_Import_Invoice_Report_ENTITY {
+    id?: number;
+    code?: string | undefined;
+    voucher_code?: string | undefined;
+    voucher_date?: moment.Moment | undefined;
+    voucher_date_start?: moment.Moment | undefined;
+    voucher_date_end?: moment.Moment | undefined;
+    voucher_no?: string | undefined;
+    invoice_date?: moment.Moment | undefined;
+    invoice_no?: string | undefined;
+    series_no?: string | undefined;
+    customer_code?: string | undefined;
+    customer_name?: string | undefined;
+    address?: string | undefined;
+    grandparent?: string | undefined;
+    profession_code?: string | undefined;
+    description?: string | undefined;
+    code_fc?: string | undefined;
+    exchange_rate?: string | undefined;
+    creditor_account?: string | undefined;
+    tax_code?: string | undefined;
+    total_money_goods_fc?: string | undefined;
+    total_money_goods?: string | undefined;
+    tax_account?: string | undefined;
+    tax_money_fc?: string | undefined;
+    tax_money?: string | undefined;
+    tax_import_account?: string | undefined;
+    tax_import_money_fc?: string | undefined;
+    tax_import_money?: string | undefined;
+    cost_fc?: number | undefined;
+    cost?: number | undefined;
+    total_money_fc?: number | undefined;
+    total_money?: number | undefined;
+    payment_deadline?: number | undefined;
+    paid_fc?: number | undefined;
+    paid?: number | undefined;
+    tax_account1?: string | undefined;
+    tax_import_code?: string | undefined;
+    sales_order_no?: string | undefined;
+    invoice_code?: string | undefined;
+    customer_invoice_name?: string | undefined;
+    date_add?: moment.Moment | undefined;
+    date_modified?: moment.Moment | undefined;
+    account_code_add?: string | undefined;
+    account_code_modified?: string | undefined;
+    company_code?: string | undefined;
+    is_tax?: boolean | undefined;
+    dt_id?: number | undefined;
+    dt_code?: string | undefined;
+    master_code?: string | undefined;
+    goods_code?: string | undefined;
+    goods_name?: string | undefined;
+    unit_code?: string | undefined;
+    warehouse_code?: string | undefined;
+    debitor_account?: string | undefined;
+    quantity?: string | undefined;
+    price_fc?: string | undefined;
+    price?: string | undefined;
+    arise_fc?: string | undefined;
+    arise?: string | undefined;
+    dt_cost_fc?: string | undefined;
+    dt_cost?: string | undefined;
+    fee_code?: string | undefined;
+    department_code?: string | undefined;
+    case_code?: string | undefined;
+    tax_import?: string | undefined;
+    tax_import_fc?: string | undefined;
+    construction_id?: string | undefined;
+    dt_tax_import_code?: string | undefined;
+    vat_import?: string | undefined;
+    group_code?: string | undefined;
+    standard_code?: string | undefined;
+    brand?: string | undefined;
+    dt_series_no?: string | undefined;
+    lot?: string | undefined;
+    expiration_date?: moment.Moment | undefined;
+    warranty_term?: string | undefined;
+    inventory?: string | undefined;
+    conversion_factor?: string | undefined;
+    conversion_quantity?: string | undefined;
+    conversion_price?: string | undefined;
+    tax_fc?: string | undefined;
+    tax?: string | undefined;
+    dt_customer_code?: string | undefined;
+    dt_goods_name?: string | undefined;
+    goods_group_code?: string | undefined;
+
+    constructor(data?: IPUR_Import_Invoice_Report_ENTITY) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.code = _data["code"];
+            this.voucher_code = _data["voucher_code"];
+            this.voucher_date = _data["voucher_date"] ? moment.parseZone(_data["voucher_date"].toString()) : <any>undefined;
+            this.voucher_date_start = _data["voucher_date_start"] ? moment.parseZone(_data["voucher_date_start"].toString()) : <any>undefined;
+            this.voucher_date_end = _data["voucher_date_end"] ? moment.parseZone(_data["voucher_date_end"].toString()) : <any>undefined;
+            this.voucher_no = _data["voucher_no"];
+            this.invoice_date = _data["invoice_date"] ? moment.parseZone(_data["invoice_date"].toString()) : <any>undefined;
+            this.invoice_no = _data["invoice_no"];
+            this.series_no = _data["series_no"];
+            this.customer_code = _data["customer_code"];
+            this.customer_name = _data["customer_name"];
+            this.address = _data["address"];
+            this.grandparent = _data["grandparent"];
+            this.profession_code = _data["profession_code"];
+            this.description = _data["description"];
+            this.code_fc = _data["code_fc"];
+            this.exchange_rate = _data["exchange_rate"];
+            this.creditor_account = _data["creditor_account"];
+            this.tax_code = _data["tax_code"];
+            this.total_money_goods_fc = _data["total_money_goods_fc"];
+            this.total_money_goods = _data["total_money_goods"];
+            this.tax_account = _data["tax_account"];
+            this.tax_money_fc = _data["tax_money_fc"];
+            this.tax_money = _data["tax_money"];
+            this.tax_import_account = _data["tax_import_account"];
+            this.tax_import_money_fc = _data["tax_import_money_fc"];
+            this.tax_import_money = _data["tax_import_money"];
+            this.cost_fc = _data["cost_fc"];
+            this.cost = _data["cost"];
+            this.total_money_fc = _data["total_money_fc"];
+            this.total_money = _data["total_money"];
+            this.payment_deadline = _data["payment_deadline"];
+            this.paid_fc = _data["paid_fc"];
+            this.paid = _data["paid"];
+            this.tax_account1 = _data["tax_account1"];
+            this.tax_import_code = _data["tax_import_code"];
+            this.sales_order_no = _data["sales_order_no"];
+            this.invoice_code = _data["invoice_code"];
+            this.customer_invoice_name = _data["customer_invoice_name"];
+            this.date_add = _data["date_add"] ? moment.parseZone(_data["date_add"].toString()) : <any>undefined;
+            this.date_modified = _data["date_modified"] ? moment.parseZone(_data["date_modified"].toString()) : <any>undefined;
+            this.account_code_add = _data["account_code_add"];
+            this.account_code_modified = _data["account_code_modified"];
+            this.company_code = _data["company_code"];
+            this.is_tax = _data["is_tax"];
+            this.dt_id = _data["dt_id"];
+            this.dt_code = _data["dt_code"];
+            this.master_code = _data["master_code"];
+            this.goods_code = _data["goods_code"];
+            this.goods_name = _data["goods_name"];
+            this.unit_code = _data["unit_code"];
+            this.warehouse_code = _data["warehouse_code"];
+            this.debitor_account = _data["debitor_account"];
+            this.quantity = _data["quantity"];
+            this.price_fc = _data["price_fc"];
+            this.price = _data["price"];
+            this.arise_fc = _data["arise_fc"];
+            this.arise = _data["arise"];
+            this.dt_cost_fc = _data["dt_cost_fc"];
+            this.dt_cost = _data["dt_cost"];
+            this.fee_code = _data["fee_code"];
+            this.department_code = _data["department_code"];
+            this.case_code = _data["case_code"];
+            this.tax_import = _data["tax_import"];
+            this.tax_import_fc = _data["tax_import_fc"];
+            this.construction_id = _data["construction_id"];
+            this.dt_tax_import_code = _data["dt_tax_import_code"];
+            this.vat_import = _data["vat_import"];
+            this.group_code = _data["group_code"];
+            this.standard_code = _data["standard_code"];
+            this.brand = _data["brand"];
+            this.dt_series_no = _data["dt_series_no"];
+            this.lot = _data["lot"];
+            this.expiration_date = _data["expiration_date"] ? moment.parseZone(_data["expiration_date"].toString()) : <any>undefined;
+            this.warranty_term = _data["warranty_term"];
+            this.inventory = _data["inventory"];
+            this.conversion_factor = _data["conversion_factor"];
+            this.conversion_quantity = _data["conversion_quantity"];
+            this.conversion_price = _data["conversion_price"];
+            this.tax_fc = _data["tax_fc"];
+            this.tax = _data["tax"];
+            this.dt_customer_code = _data["dt_customer_code"];
+            this.dt_goods_name = _data["dt_goods_name"];
+            this.goods_group_code = _data["goods_group_code"];
+        }
+    }
+
+    static fromJS(data: any): PUR_Import_Invoice_Report_ENTITY {
+        data = typeof data === 'object' ? data : {};
+        let result = new PUR_Import_Invoice_Report_ENTITY();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["code"] = this.code;
+        data["voucher_code"] = this.voucher_code;
+        data["voucher_date"] = this.voucher_date ? this.voucher_date.toISOString(true) : <any>undefined;
+        data["voucher_date_start"] = this.voucher_date_start ? this.voucher_date_start.toISOString(true) : <any>undefined;
+        data["voucher_date_end"] = this.voucher_date_end ? this.voucher_date_end.toISOString(true) : <any>undefined;
+        data["voucher_no"] = this.voucher_no;
+        data["invoice_date"] = this.invoice_date ? this.invoice_date.toISOString(true) : <any>undefined;
+        data["invoice_no"] = this.invoice_no;
+        data["series_no"] = this.series_no;
+        data["customer_code"] = this.customer_code;
+        data["customer_name"] = this.customer_name;
+        data["address"] = this.address;
+        data["grandparent"] = this.grandparent;
+        data["profession_code"] = this.profession_code;
+        data["description"] = this.description;
+        data["code_fc"] = this.code_fc;
+        data["exchange_rate"] = this.exchange_rate;
+        data["creditor_account"] = this.creditor_account;
+        data["tax_code"] = this.tax_code;
+        data["total_money_goods_fc"] = this.total_money_goods_fc;
+        data["total_money_goods"] = this.total_money_goods;
+        data["tax_account"] = this.tax_account;
+        data["tax_money_fc"] = this.tax_money_fc;
+        data["tax_money"] = this.tax_money;
+        data["tax_import_account"] = this.tax_import_account;
+        data["tax_import_money_fc"] = this.tax_import_money_fc;
+        data["tax_import_money"] = this.tax_import_money;
+        data["cost_fc"] = this.cost_fc;
+        data["cost"] = this.cost;
+        data["total_money_fc"] = this.total_money_fc;
+        data["total_money"] = this.total_money;
+        data["payment_deadline"] = this.payment_deadline;
+        data["paid_fc"] = this.paid_fc;
+        data["paid"] = this.paid;
+        data["tax_account1"] = this.tax_account1;
+        data["tax_import_code"] = this.tax_import_code;
+        data["sales_order_no"] = this.sales_order_no;
+        data["invoice_code"] = this.invoice_code;
+        data["customer_invoice_name"] = this.customer_invoice_name;
+        data["date_add"] = this.date_add ? this.date_add.toISOString(true) : <any>undefined;
+        data["date_modified"] = this.date_modified ? this.date_modified.toISOString(true) : <any>undefined;
+        data["account_code_add"] = this.account_code_add;
+        data["account_code_modified"] = this.account_code_modified;
+        data["company_code"] = this.company_code;
+        data["is_tax"] = this.is_tax;
+        data["dt_id"] = this.dt_id;
+        data["dt_code"] = this.dt_code;
+        data["master_code"] = this.master_code;
+        data["goods_code"] = this.goods_code;
+        data["goods_name"] = this.goods_name;
+        data["unit_code"] = this.unit_code;
+        data["warehouse_code"] = this.warehouse_code;
+        data["debitor_account"] = this.debitor_account;
+        data["quantity"] = this.quantity;
+        data["price_fc"] = this.price_fc;
+        data["price"] = this.price;
+        data["arise_fc"] = this.arise_fc;
+        data["arise"] = this.arise;
+        data["dt_cost_fc"] = this.dt_cost_fc;
+        data["dt_cost"] = this.dt_cost;
+        data["fee_code"] = this.fee_code;
+        data["department_code"] = this.department_code;
+        data["case_code"] = this.case_code;
+        data["tax_import"] = this.tax_import;
+        data["tax_import_fc"] = this.tax_import_fc;
+        data["construction_id"] = this.construction_id;
+        data["dt_tax_import_code"] = this.dt_tax_import_code;
+        data["vat_import"] = this.vat_import;
+        data["group_code"] = this.group_code;
+        data["standard_code"] = this.standard_code;
+        data["brand"] = this.brand;
+        data["dt_series_no"] = this.dt_series_no;
+        data["lot"] = this.lot;
+        data["expiration_date"] = this.expiration_date ? this.expiration_date.toISOString(true) : <any>undefined;
+        data["warranty_term"] = this.warranty_term;
+        data["inventory"] = this.inventory;
+        data["conversion_factor"] = this.conversion_factor;
+        data["conversion_quantity"] = this.conversion_quantity;
+        data["conversion_price"] = this.conversion_price;
+        data["tax_fc"] = this.tax_fc;
+        data["tax"] = this.tax;
+        data["dt_customer_code"] = this.dt_customer_code;
+        data["dt_goods_name"] = this.dt_goods_name;
+        data["goods_group_code"] = this.goods_group_code;
+        return data;
+    }
+
+    clone(): PUR_Import_Invoice_Report_ENTITY {
+        const json = this.toJSON();
+        let result = new PUR_Import_Invoice_Report_ENTITY();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface IPUR_Import_Invoice_Report_ENTITY {
+    id?: number;
+    code?: string | undefined;
+    voucher_code?: string | undefined;
+    voucher_date?: moment.Moment | undefined;
+    voucher_date_start?: moment.Moment | undefined;
+    voucher_date_end?: moment.Moment | undefined;
+    voucher_no?: string | undefined;
+    invoice_date?: moment.Moment | undefined;
+    invoice_no?: string | undefined;
+    series_no?: string | undefined;
+    customer_code?: string | undefined;
+    customer_name?: string | undefined;
+    address?: string | undefined;
+    grandparent?: string | undefined;
+    profession_code?: string | undefined;
+    description?: string | undefined;
+    code_fc?: string | undefined;
+    exchange_rate?: string | undefined;
+    creditor_account?: string | undefined;
+    tax_code?: string | undefined;
+    total_money_goods_fc?: string | undefined;
+    total_money_goods?: string | undefined;
+    tax_account?: string | undefined;
+    tax_money_fc?: string | undefined;
+    tax_money?: string | undefined;
+    tax_import_account?: string | undefined;
+    tax_import_money_fc?: string | undefined;
+    tax_import_money?: string | undefined;
+    cost_fc?: number | undefined;
+    cost?: number | undefined;
+    total_money_fc?: number | undefined;
+    total_money?: number | undefined;
+    payment_deadline?: number | undefined;
+    paid_fc?: number | undefined;
+    paid?: number | undefined;
+    tax_account1?: string | undefined;
+    tax_import_code?: string | undefined;
+    sales_order_no?: string | undefined;
+    invoice_code?: string | undefined;
+    customer_invoice_name?: string | undefined;
+    date_add?: moment.Moment | undefined;
+    date_modified?: moment.Moment | undefined;
+    account_code_add?: string | undefined;
+    account_code_modified?: string | undefined;
+    company_code?: string | undefined;
+    is_tax?: boolean | undefined;
+    dt_id?: number | undefined;
+    dt_code?: string | undefined;
+    master_code?: string | undefined;
+    goods_code?: string | undefined;
+    goods_name?: string | undefined;
+    unit_code?: string | undefined;
+    warehouse_code?: string | undefined;
+    debitor_account?: string | undefined;
+    quantity?: string | undefined;
+    price_fc?: string | undefined;
+    price?: string | undefined;
+    arise_fc?: string | undefined;
+    arise?: string | undefined;
+    dt_cost_fc?: string | undefined;
+    dt_cost?: string | undefined;
+    fee_code?: string | undefined;
+    department_code?: string | undefined;
+    case_code?: string | undefined;
+    tax_import?: string | undefined;
+    tax_import_fc?: string | undefined;
+    construction_id?: string | undefined;
+    dt_tax_import_code?: string | undefined;
+    vat_import?: string | undefined;
+    group_code?: string | undefined;
+    standard_code?: string | undefined;
+    brand?: string | undefined;
+    dt_series_no?: string | undefined;
+    lot?: string | undefined;
+    expiration_date?: moment.Moment | undefined;
+    warranty_term?: string | undefined;
+    inventory?: string | undefined;
+    conversion_factor?: string | undefined;
+    conversion_quantity?: string | undefined;
+    conversion_price?: string | undefined;
+    tax_fc?: string | undefined;
+    tax?: string | undefined;
+    dt_customer_code?: string | undefined;
+    dt_goods_name?: string | undefined;
+    goods_group_code?: string | undefined;
+}
+
+export class PUR_Inventory_Return_Report_ENTITY implements IPUR_Inventory_Return_Report_ENTITY {
+    company_code?: string | undefined;
+    id?: number;
+    code?: string | undefined;
+    voucher_date?: moment.Moment | undefined;
+    voucher_date_start?: moment.Moment | undefined;
+    voucher_date_end?: moment.Moment | undefined;
+    voucher_code?: string | undefined;
+    voucher_no?: string | undefined;
+    invoice_date?: moment.Moment | undefined;
+    invoice_no?: string | undefined;
+    seri_no?: string | undefined;
+    customer_code?: string | undefined;
+    customer_name?: string | undefined;
+    address?: string | undefined;
+    grandparent?: string | undefined;
+    profession_code?: string | undefined;
+    description?: string | undefined;
+    code_fc?: string | undefined;
+    exchange_rate?: number | undefined;
+    debitor_account?: string | undefined;
+    tax_code?: string | undefined;
+    tax_account?: string | undefined;
+    total_money_goods_fc?: number | undefined;
+    total_money_goods?: number | undefined;
+    tax_money_fc?: number | undefined;
+    tax_money?: number | undefined;
+    total_money_fc?: number | undefined;
+    total_money?: number | undefined;
+    payment_deadline?: number | undefined;
+    paid_fc?: number | undefined;
+    paid?: number | undefined;
+    is_average_price?: boolean | undefined;
+    order_number?: string | undefined;
+    invoice_code?: string | undefined;
+    customer_invoice_name?: string | undefined;
+    date_add?: moment.Moment | undefined;
+    date_modified?: moment.Moment | undefined;
+    account_code_add?: string | undefined;
+    account_code_modified?: string | undefined;
+    is_tax?: boolean | undefined;
+    dt_id?: number | undefined;
+    dt_code?: string | undefined;
+    master_code?: string | undefined;
+    goods_code?: string | undefined;
+    goods_symbol?: string | undefined;
+    goods_name?: string | undefined;
+    unit_code?: string | undefined;
+    warehouse_code?: string | undefined;
+    warehouse_name?: string | undefined;
+    profession_notes?: string | undefined;
+    creditor_account?: string | undefined;
+    group_goods_name?: string | undefined;
+    quantity?: number | undefined;
+    price_fc?: number | undefined;
+    price?: number | undefined;
+    arise_fc?: number | undefined;
+    arise?: number | undefined;
+    fee_code?: string | undefined;
+    case_code?: string | undefined;
+    construction_id?: string | undefined;
+    department_code?: string | undefined;
+    group_code?: string | undefined;
+    standard?: string | undefined;
+    brand?: string | undefined;
+    serial_no?: string | undefined;
+    lot?: number | undefined;
+    expiration_date?: string | undefined;
+    warranty_term?: string | undefined;
+    inventory?: number | undefined;
+    conversion_factor?: number | undefined;
+    conversion_quantity?: number | undefined;
+    conversion_price?: number | undefined;
+    warranty_date?: moment.Moment | undefined;
+    notes?: string | undefined;
+    tax_fc?: number | undefined;
+    tax?: number | undefined;
+    name?: string | undefined;
+    language_id?: number | undefined;
+    voucher_year?: number | undefined;
+
+    constructor(data?: IPUR_Inventory_Return_Report_ENTITY) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.company_code = _data["company_code"];
+            this.id = _data["id"];
+            this.code = _data["code"];
+            this.voucher_date = _data["voucher_date"] ? moment.parseZone(_data["voucher_date"].toString()) : <any>undefined;
+            this.voucher_date_start = _data["voucher_date_start"] ? moment.parseZone(_data["voucher_date_start"].toString()) : <any>undefined;
+            this.voucher_date_end = _data["voucher_date_end"] ? moment.parseZone(_data["voucher_date_end"].toString()) : <any>undefined;
+            this.voucher_code = _data["voucher_code"];
+            this.voucher_no = _data["voucher_no"];
+            this.invoice_date = _data["invoice_date"] ? moment.parseZone(_data["invoice_date"].toString()) : <any>undefined;
+            this.invoice_no = _data["invoice_no"];
+            this.seri_no = _data["seri_no"];
+            this.customer_code = _data["customer_code"];
+            this.customer_name = _data["customer_name"];
+            this.address = _data["address"];
+            this.grandparent = _data["grandparent"];
+            this.profession_code = _data["profession_code"];
+            this.description = _data["description"];
+            this.code_fc = _data["code_fc"];
+            this.exchange_rate = _data["exchange_rate"];
+            this.debitor_account = _data["debitor_account"];
+            this.tax_code = _data["tax_code"];
+            this.tax_account = _data["tax_account"];
+            this.total_money_goods_fc = _data["total_money_goods_fc"];
+            this.total_money_goods = _data["total_money_goods"];
+            this.tax_money_fc = _data["tax_money_fc"];
+            this.tax_money = _data["tax_money"];
+            this.total_money_fc = _data["total_money_fc"];
+            this.total_money = _data["total_money"];
+            this.payment_deadline = _data["payment_deadline"];
+            this.paid_fc = _data["paid_fc"];
+            this.paid = _data["paid"];
+            this.is_average_price = _data["is_average_price"];
+            this.order_number = _data["order_number"];
+            this.invoice_code = _data["invoice_code"];
+            this.customer_invoice_name = _data["customer_invoice_name"];
+            this.date_add = _data["date_add"] ? moment.parseZone(_data["date_add"].toString()) : <any>undefined;
+            this.date_modified = _data["date_modified"] ? moment.parseZone(_data["date_modified"].toString()) : <any>undefined;
+            this.account_code_add = _data["account_code_add"];
+            this.account_code_modified = _data["account_code_modified"];
+            this.is_tax = _data["is_tax"];
+            this.dt_id = _data["dt_id"];
+            this.dt_code = _data["dt_code"];
+            this.master_code = _data["master_code"];
+            this.goods_code = _data["goods_code"];
+            this.goods_symbol = _data["goods_symbol"];
+            this.goods_name = _data["goods_name"];
+            this.unit_code = _data["unit_code"];
+            this.warehouse_code = _data["warehouse_code"];
+            this.warehouse_name = _data["warehouse_name"];
+            this.profession_notes = _data["profession_notes"];
+            this.creditor_account = _data["creditor_account"];
+            this.group_goods_name = _data["group_goods_name"];
+            this.quantity = _data["quantity"];
+            this.price_fc = _data["price_fc"];
+            this.price = _data["price"];
+            this.arise_fc = _data["arise_fc"];
+            this.arise = _data["arise"];
+            this.fee_code = _data["fee_code"];
+            this.case_code = _data["case_code"];
+            this.construction_id = _data["construction_id"];
+            this.department_code = _data["department_code"];
+            this.group_code = _data["group_code"];
+            this.standard = _data["standard"];
+            this.brand = _data["brand"];
+            this.serial_no = _data["serial_no"];
+            this.lot = _data["lot"];
+            this.expiration_date = _data["expiration_date"];
+            this.warranty_term = _data["warranty_term"];
+            this.inventory = _data["inventory"];
+            this.conversion_factor = _data["conversion_factor"];
+            this.conversion_quantity = _data["conversion_quantity"];
+            this.conversion_price = _data["conversion_price"];
+            this.warranty_date = _data["warranty_date"] ? moment.parseZone(_data["warranty_date"].toString()) : <any>undefined;
+            this.notes = _data["notes"];
+            this.tax_fc = _data["tax_fc"];
+            this.tax = _data["tax"];
+            this.name = _data["name"];
+            this.language_id = _data["language_id"];
+            this.voucher_year = _data["voucher_year"];
+        }
+    }
+
+    static fromJS(data: any): PUR_Inventory_Return_Report_ENTITY {
+        data = typeof data === 'object' ? data : {};
+        let result = new PUR_Inventory_Return_Report_ENTITY();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["company_code"] = this.company_code;
+        data["id"] = this.id;
+        data["code"] = this.code;
+        data["voucher_date"] = this.voucher_date ? this.voucher_date.toISOString(true) : <any>undefined;
+        data["voucher_date_start"] = this.voucher_date_start ? this.voucher_date_start.toISOString(true) : <any>undefined;
+        data["voucher_date_end"] = this.voucher_date_end ? this.voucher_date_end.toISOString(true) : <any>undefined;
+        data["voucher_code"] = this.voucher_code;
+        data["voucher_no"] = this.voucher_no;
+        data["invoice_date"] = this.invoice_date ? this.invoice_date.toISOString(true) : <any>undefined;
+        data["invoice_no"] = this.invoice_no;
+        data["seri_no"] = this.seri_no;
+        data["customer_code"] = this.customer_code;
+        data["customer_name"] = this.customer_name;
+        data["address"] = this.address;
+        data["grandparent"] = this.grandparent;
+        data["profession_code"] = this.profession_code;
+        data["description"] = this.description;
+        data["code_fc"] = this.code_fc;
+        data["exchange_rate"] = this.exchange_rate;
+        data["debitor_account"] = this.debitor_account;
+        data["tax_code"] = this.tax_code;
+        data["tax_account"] = this.tax_account;
+        data["total_money_goods_fc"] = this.total_money_goods_fc;
+        data["total_money_goods"] = this.total_money_goods;
+        data["tax_money_fc"] = this.tax_money_fc;
+        data["tax_money"] = this.tax_money;
+        data["total_money_fc"] = this.total_money_fc;
+        data["total_money"] = this.total_money;
+        data["payment_deadline"] = this.payment_deadline;
+        data["paid_fc"] = this.paid_fc;
+        data["paid"] = this.paid;
+        data["is_average_price"] = this.is_average_price;
+        data["order_number"] = this.order_number;
+        data["invoice_code"] = this.invoice_code;
+        data["customer_invoice_name"] = this.customer_invoice_name;
+        data["date_add"] = this.date_add ? this.date_add.toISOString(true) : <any>undefined;
+        data["date_modified"] = this.date_modified ? this.date_modified.toISOString(true) : <any>undefined;
+        data["account_code_add"] = this.account_code_add;
+        data["account_code_modified"] = this.account_code_modified;
+        data["is_tax"] = this.is_tax;
+        data["dt_id"] = this.dt_id;
+        data["dt_code"] = this.dt_code;
+        data["master_code"] = this.master_code;
+        data["goods_code"] = this.goods_code;
+        data["goods_symbol"] = this.goods_symbol;
+        data["goods_name"] = this.goods_name;
+        data["unit_code"] = this.unit_code;
+        data["warehouse_code"] = this.warehouse_code;
+        data["warehouse_name"] = this.warehouse_name;
+        data["profession_notes"] = this.profession_notes;
+        data["creditor_account"] = this.creditor_account;
+        data["group_goods_name"] = this.group_goods_name;
+        data["quantity"] = this.quantity;
+        data["price_fc"] = this.price_fc;
+        data["price"] = this.price;
+        data["arise_fc"] = this.arise_fc;
+        data["arise"] = this.arise;
+        data["fee_code"] = this.fee_code;
+        data["case_code"] = this.case_code;
+        data["construction_id"] = this.construction_id;
+        data["department_code"] = this.department_code;
+        data["group_code"] = this.group_code;
+        data["standard"] = this.standard;
+        data["brand"] = this.brand;
+        data["serial_no"] = this.serial_no;
+        data["lot"] = this.lot;
+        data["expiration_date"] = this.expiration_date;
+        data["warranty_term"] = this.warranty_term;
+        data["inventory"] = this.inventory;
+        data["conversion_factor"] = this.conversion_factor;
+        data["conversion_quantity"] = this.conversion_quantity;
+        data["conversion_price"] = this.conversion_price;
+        data["warranty_date"] = this.warranty_date ? this.warranty_date.toISOString(true) : <any>undefined;
+        data["notes"] = this.notes;
+        data["tax_fc"] = this.tax_fc;
+        data["tax"] = this.tax;
+        data["name"] = this.name;
+        data["language_id"] = this.language_id;
+        data["voucher_year"] = this.voucher_year;
+        return data;
+    }
+
+    clone(): PUR_Inventory_Return_Report_ENTITY {
+        const json = this.toJSON();
+        let result = new PUR_Inventory_Return_Report_ENTITY();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface IPUR_Inventory_Return_Report_ENTITY {
+    company_code?: string | undefined;
+    id?: number;
+    code?: string | undefined;
+    voucher_date?: moment.Moment | undefined;
+    voucher_date_start?: moment.Moment | undefined;
+    voucher_date_end?: moment.Moment | undefined;
+    voucher_code?: string | undefined;
+    voucher_no?: string | undefined;
+    invoice_date?: moment.Moment | undefined;
+    invoice_no?: string | undefined;
+    seri_no?: string | undefined;
+    customer_code?: string | undefined;
+    customer_name?: string | undefined;
+    address?: string | undefined;
+    grandparent?: string | undefined;
+    profession_code?: string | undefined;
+    description?: string | undefined;
+    code_fc?: string | undefined;
+    exchange_rate?: number | undefined;
+    debitor_account?: string | undefined;
+    tax_code?: string | undefined;
+    tax_account?: string | undefined;
+    total_money_goods_fc?: number | undefined;
+    total_money_goods?: number | undefined;
+    tax_money_fc?: number | undefined;
+    tax_money?: number | undefined;
+    total_money_fc?: number | undefined;
+    total_money?: number | undefined;
+    payment_deadline?: number | undefined;
+    paid_fc?: number | undefined;
+    paid?: number | undefined;
+    is_average_price?: boolean | undefined;
+    order_number?: string | undefined;
+    invoice_code?: string | undefined;
+    customer_invoice_name?: string | undefined;
+    date_add?: moment.Moment | undefined;
+    date_modified?: moment.Moment | undefined;
+    account_code_add?: string | undefined;
+    account_code_modified?: string | undefined;
+    is_tax?: boolean | undefined;
+    dt_id?: number | undefined;
+    dt_code?: string | undefined;
+    master_code?: string | undefined;
+    goods_code?: string | undefined;
+    goods_symbol?: string | undefined;
+    goods_name?: string | undefined;
+    unit_code?: string | undefined;
+    warehouse_code?: string | undefined;
+    warehouse_name?: string | undefined;
+    profession_notes?: string | undefined;
+    creditor_account?: string | undefined;
+    group_goods_name?: string | undefined;
+    quantity?: number | undefined;
+    price_fc?: number | undefined;
+    price?: number | undefined;
+    arise_fc?: number | undefined;
+    arise?: number | undefined;
+    fee_code?: string | undefined;
+    case_code?: string | undefined;
+    construction_id?: string | undefined;
+    department_code?: string | undefined;
+    group_code?: string | undefined;
+    standard?: string | undefined;
+    brand?: string | undefined;
+    serial_no?: string | undefined;
+    lot?: number | undefined;
+    expiration_date?: string | undefined;
+    warranty_term?: string | undefined;
+    inventory?: number | undefined;
+    conversion_factor?: number | undefined;
+    conversion_quantity?: number | undefined;
+    conversion_price?: number | undefined;
+    warranty_date?: moment.Moment | undefined;
+    notes?: string | undefined;
+    tax_fc?: number | undefined;
+    tax?: number | undefined;
+    name?: string | undefined;
+    language_id?: number | undefined;
+    voucher_year?: number | undefined;
+}
+
+export class PUR_Journal_ENTITY implements IPUR_Journal_ENTITY {
+    voucher_date?: moment.Moment | undefined;
+    voucher_date_start?: moment.Moment | undefined;
+    voucher_date_end?: moment.Moment | undefined;
+    voucher_no?: string | undefined;
+    invoice_no?: string | undefined;
+    customer_code?: string | undefined;
+    customer_name?: string | undefined;
+    grandparent?: string | undefined;
+    notes?: string | undefined;
+    debitor_account?: string | undefined;
+    creditor_account?: string | undefined;
+    arise_credit?: number | undefined;
+    id?: number;
+    language_id?: number | undefined;
+    voucher_code?: string | undefined;
+    voucher_year?: number | undefined;
+    code?: string | undefined;
+    company_code?: string | undefined;
+    date_add?: moment.Moment | undefined;
+    date_modified?: moment.Moment | undefined;
+    account_code_add?: string | undefined;
+    account_code_modified?: string | undefined;
+
+    constructor(data?: IPUR_Journal_ENTITY) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.voucher_date = _data["voucher_date"] ? moment.parseZone(_data["voucher_date"].toString()) : <any>undefined;
+            this.voucher_date_start = _data["voucher_date_start"] ? moment.parseZone(_data["voucher_date_start"].toString()) : <any>undefined;
+            this.voucher_date_end = _data["voucher_date_end"] ? moment.parseZone(_data["voucher_date_end"].toString()) : <any>undefined;
+            this.voucher_no = _data["voucher_no"];
+            this.invoice_no = _data["invoice_no"];
+            this.customer_code = _data["customer_code"];
+            this.customer_name = _data["customer_name"];
+            this.grandparent = _data["grandparent"];
+            this.notes = _data["notes"];
+            this.debitor_account = _data["debitor_account"];
+            this.creditor_account = _data["creditor_account"];
+            this.arise_credit = _data["arise_credit"];
+            this.id = _data["id"];
+            this.language_id = _data["language_id"];
+            this.voucher_code = _data["voucher_code"];
+            this.voucher_year = _data["voucher_year"];
+            this.code = _data["code"];
+            this.company_code = _data["company_code"];
+            this.date_add = _data["date_add"] ? moment.parseZone(_data["date_add"].toString()) : <any>undefined;
+            this.date_modified = _data["date_modified"] ? moment.parseZone(_data["date_modified"].toString()) : <any>undefined;
+            this.account_code_add = _data["account_code_add"];
+            this.account_code_modified = _data["account_code_modified"];
+        }
+    }
+
+    static fromJS(data: any): PUR_Journal_ENTITY {
+        data = typeof data === 'object' ? data : {};
+        let result = new PUR_Journal_ENTITY();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["voucher_date"] = this.voucher_date ? this.voucher_date.toISOString(true) : <any>undefined;
+        data["voucher_date_start"] = this.voucher_date_start ? this.voucher_date_start.toISOString(true) : <any>undefined;
+        data["voucher_date_end"] = this.voucher_date_end ? this.voucher_date_end.toISOString(true) : <any>undefined;
+        data["voucher_no"] = this.voucher_no;
+        data["invoice_no"] = this.invoice_no;
+        data["customer_code"] = this.customer_code;
+        data["customer_name"] = this.customer_name;
+        data["grandparent"] = this.grandparent;
+        data["notes"] = this.notes;
+        data["debitor_account"] = this.debitor_account;
+        data["creditor_account"] = this.creditor_account;
+        data["arise_credit"] = this.arise_credit;
+        data["id"] = this.id;
+        data["language_id"] = this.language_id;
+        data["voucher_code"] = this.voucher_code;
+        data["voucher_year"] = this.voucher_year;
+        data["code"] = this.code;
+        data["company_code"] = this.company_code;
+        data["date_add"] = this.date_add ? this.date_add.toISOString(true) : <any>undefined;
+        data["date_modified"] = this.date_modified ? this.date_modified.toISOString(true) : <any>undefined;
+        data["account_code_add"] = this.account_code_add;
+        data["account_code_modified"] = this.account_code_modified;
+        return data;
+    }
+
+    clone(): PUR_Journal_ENTITY {
+        const json = this.toJSON();
+        let result = new PUR_Journal_ENTITY();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface IPUR_Journal_ENTITY {
+    voucher_date?: moment.Moment | undefined;
+    voucher_date_start?: moment.Moment | undefined;
+    voucher_date_end?: moment.Moment | undefined;
+    voucher_no?: string | undefined;
+    invoice_no?: string | undefined;
+    customer_code?: string | undefined;
+    customer_name?: string | undefined;
+    grandparent?: string | undefined;
+    notes?: string | undefined;
+    debitor_account?: string | undefined;
+    creditor_account?: string | undefined;
+    arise_credit?: number | undefined;
+    id?: number;
+    language_id?: number | undefined;
+    voucher_code?: string | undefined;
+    voucher_year?: number | undefined;
+    code?: string | undefined;
+    company_code?: string | undefined;
+    date_add?: moment.Moment | undefined;
+    date_modified?: moment.Moment | undefined;
+    account_code_add?: string | undefined;
+    account_code_modified?: string | undefined;
+}
+
+export class PUR_Order_Report_ENTITY implements IPUR_Order_Report_ENTITY {
+    voucher_date?: moment.Moment | undefined;
+    voucher_date_start?: moment.Moment | undefined;
+    voucher_date_end?: moment.Moment | undefined;
+    voucher_no?: string | undefined;
+    invoice_no?: string | undefined;
+    customer_code?: string | undefined;
+    customer_name?: string | undefined;
+    description?: string | undefined;
+    code_fc?: string | undefined;
+    code_symbol?: string | undefined;
+    exchange_rate?: number | undefined;
+    creditor_account?: string | undefined;
+    goods_code?: string | undefined;
+    goods_name?: string | undefined;
+    goods_symbol?: string | undefined;
+    unit_code?: string | undefined;
+    unit_name?: string | undefined;
+    warehouse_code?: string | undefined;
+    warehouse_name?: string | undefined;
+    debitor_account?: string | undefined;
+    quantity?: number | undefined;
+    price_fc?: number | undefined;
+    price?: number | undefined;
+    arise_fc?: number | undefined;
+    arise?: number | undefined;
+    tax_fc?: number | undefined;
+    tax?: number | undefined;
+    cost_fc?: number | undefined;
+    cost?: number | undefined;
+    cost_arise_fc?: number | undefined;
+    cost_arise?: number | undefined;
+    id?: number;
+    language_id?: number | undefined;
+    voucher_code?: string | undefined;
+    voucher_year?: number | undefined;
+    code?: string | undefined;
+    company_code?: string | undefined;
+    date_add?: moment.Moment | undefined;
+    date_modified?: moment.Moment | undefined;
+    account_code_add?: string | undefined;
+    account_code_modified?: string | undefined;
+
+    constructor(data?: IPUR_Order_Report_ENTITY) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.voucher_date = _data["voucher_date"] ? moment.parseZone(_data["voucher_date"].toString()) : <any>undefined;
+            this.voucher_date_start = _data["voucher_date_start"] ? moment.parseZone(_data["voucher_date_start"].toString()) : <any>undefined;
+            this.voucher_date_end = _data["voucher_date_end"] ? moment.parseZone(_data["voucher_date_end"].toString()) : <any>undefined;
+            this.voucher_no = _data["voucher_no"];
+            this.invoice_no = _data["invoice_no"];
+            this.customer_code = _data["customer_code"];
+            this.customer_name = _data["customer_name"];
+            this.description = _data["description"];
+            this.code_fc = _data["code_fc"];
+            this.code_symbol = _data["code_symbol"];
+            this.exchange_rate = _data["exchange_rate"];
+            this.creditor_account = _data["creditor_account"];
+            this.goods_code = _data["goods_code"];
+            this.goods_name = _data["goods_name"];
+            this.goods_symbol = _data["goods_symbol"];
+            this.unit_code = _data["unit_code"];
+            this.unit_name = _data["unit_name"];
+            this.warehouse_code = _data["warehouse_code"];
+            this.warehouse_name = _data["warehouse_name"];
+            this.debitor_account = _data["debitor_account"];
+            this.quantity = _data["quantity"];
+            this.price_fc = _data["price_fc"];
+            this.price = _data["price"];
+            this.arise_fc = _data["arise_fc"];
+            this.arise = _data["arise"];
+            this.tax_fc = _data["tax_fc"];
+            this.tax = _data["tax"];
+            this.cost_fc = _data["cost_fc"];
+            this.cost = _data["cost"];
+            this.cost_arise_fc = _data["cost_arise_fc"];
+            this.cost_arise = _data["cost_arise"];
+            this.id = _data["id"];
+            this.language_id = _data["language_id"];
+            this.voucher_code = _data["voucher_code"];
+            this.voucher_year = _data["voucher_year"];
+            this.code = _data["code"];
+            this.company_code = _data["company_code"];
+            this.date_add = _data["date_add"] ? moment.parseZone(_data["date_add"].toString()) : <any>undefined;
+            this.date_modified = _data["date_modified"] ? moment.parseZone(_data["date_modified"].toString()) : <any>undefined;
+            this.account_code_add = _data["account_code_add"];
+            this.account_code_modified = _data["account_code_modified"];
+        }
+    }
+
+    static fromJS(data: any): PUR_Order_Report_ENTITY {
+        data = typeof data === 'object' ? data : {};
+        let result = new PUR_Order_Report_ENTITY();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["voucher_date"] = this.voucher_date ? this.voucher_date.toISOString(true) : <any>undefined;
+        data["voucher_date_start"] = this.voucher_date_start ? this.voucher_date_start.toISOString(true) : <any>undefined;
+        data["voucher_date_end"] = this.voucher_date_end ? this.voucher_date_end.toISOString(true) : <any>undefined;
+        data["voucher_no"] = this.voucher_no;
+        data["invoice_no"] = this.invoice_no;
+        data["customer_code"] = this.customer_code;
+        data["customer_name"] = this.customer_name;
+        data["description"] = this.description;
+        data["code_fc"] = this.code_fc;
+        data["code_symbol"] = this.code_symbol;
+        data["exchange_rate"] = this.exchange_rate;
+        data["creditor_account"] = this.creditor_account;
+        data["goods_code"] = this.goods_code;
+        data["goods_name"] = this.goods_name;
+        data["goods_symbol"] = this.goods_symbol;
+        data["unit_code"] = this.unit_code;
+        data["unit_name"] = this.unit_name;
+        data["warehouse_code"] = this.warehouse_code;
+        data["warehouse_name"] = this.warehouse_name;
+        data["debitor_account"] = this.debitor_account;
+        data["quantity"] = this.quantity;
+        data["price_fc"] = this.price_fc;
+        data["price"] = this.price;
+        data["arise_fc"] = this.arise_fc;
+        data["arise"] = this.arise;
+        data["tax_fc"] = this.tax_fc;
+        data["tax"] = this.tax;
+        data["cost_fc"] = this.cost_fc;
+        data["cost"] = this.cost;
+        data["cost_arise_fc"] = this.cost_arise_fc;
+        data["cost_arise"] = this.cost_arise;
+        data["id"] = this.id;
+        data["language_id"] = this.language_id;
+        data["voucher_code"] = this.voucher_code;
+        data["voucher_year"] = this.voucher_year;
+        data["code"] = this.code;
+        data["company_code"] = this.company_code;
+        data["date_add"] = this.date_add ? this.date_add.toISOString(true) : <any>undefined;
+        data["date_modified"] = this.date_modified ? this.date_modified.toISOString(true) : <any>undefined;
+        data["account_code_add"] = this.account_code_add;
+        data["account_code_modified"] = this.account_code_modified;
+        return data;
+    }
+
+    clone(): PUR_Order_Report_ENTITY {
+        const json = this.toJSON();
+        let result = new PUR_Order_Report_ENTITY();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface IPUR_Order_Report_ENTITY {
+    voucher_date?: moment.Moment | undefined;
+    voucher_date_start?: moment.Moment | undefined;
+    voucher_date_end?: moment.Moment | undefined;
+    voucher_no?: string | undefined;
+    invoice_no?: string | undefined;
+    customer_code?: string | undefined;
+    customer_name?: string | undefined;
+    description?: string | undefined;
+    code_fc?: string | undefined;
+    code_symbol?: string | undefined;
+    exchange_rate?: number | undefined;
+    creditor_account?: string | undefined;
+    goods_code?: string | undefined;
+    goods_name?: string | undefined;
+    goods_symbol?: string | undefined;
+    unit_code?: string | undefined;
+    unit_name?: string | undefined;
+    warehouse_code?: string | undefined;
+    warehouse_name?: string | undefined;
+    debitor_account?: string | undefined;
+    quantity?: number | undefined;
+    price_fc?: number | undefined;
+    price?: number | undefined;
+    arise_fc?: number | undefined;
+    arise?: number | undefined;
+    tax_fc?: number | undefined;
+    tax?: number | undefined;
+    cost_fc?: number | undefined;
+    cost?: number | undefined;
+    cost_arise_fc?: number | undefined;
+    cost_arise?: number | undefined;
+    id?: number;
+    language_id?: number | undefined;
+    voucher_code?: string | undefined;
+    voucher_year?: number | undefined;
+    code?: string | undefined;
+    company_code?: string | undefined;
+    date_add?: moment.Moment | undefined;
+    date_modified?: moment.Moment | undefined;
+    account_code_add?: string | undefined;
+    account_code_modified?: string | undefined;
+}
+
+export class PUR_Service_Purchase_Invoice_Report_ENTITY implements IPUR_Service_Purchase_Invoice_Report_ENTITY {
+    id?: number;
+    code?: string | undefined;
+    voucher_code?: string | undefined;
+    voucher_no?: string | undefined;
+    voucher_date?: moment.Moment | undefined;
+    voucher_date_start?: moment.Moment | undefined;
+    voucher_date_end?: moment.Moment | undefined;
+    invoice_date?: moment.Moment | undefined;
+    invoice_no?: string | undefined;
+    seri_no?: string | undefined;
+    customer_code?: string | undefined;
+    customer_name?: string | undefined;
+    address?: string | undefined;
+    grandparent?: string | undefined;
+    profession_code?: string | undefined;
+    description?: string | undefined;
+    code_fc?: string | undefined;
+    exchange_rate?: number | undefined;
+    creditor_account?: string | undefined;
+    tax_code?: string | undefined;
+    tax_account?: string | undefined;
+    money_goods_fc?: number | undefined;
+    money_goods?: number | undefined;
+    tax_money_fc?: number | undefined;
+    tax_money?: number | undefined;
+    total_money_fc?: number | undefined;
+    total_money?: number | undefined;
+    payment_deadline?: number | undefined;
+    paid_fc?: number | undefined;
+    paid?: number | undefined;
+    invoice_code?: string | undefined;
+    customer_invoice_name?: string | undefined;
+    company_code?: string | undefined;
+    date_add?: moment.Moment | undefined;
+    date_modified?: moment.Moment | undefined;
+    account_code_add?: string | undefined;
+    account_code_modified?: string | undefined;
+    is_tax?: string | undefined;
+    dt_id?: string | undefined;
+    dt_code?: string | undefined;
+    master_code?: string | undefined;
+    dt_description?: string | undefined;
+    dt_customer_code?: string | undefined;
+    dt_customer_name?: string | undefined;
+    arise_fc?: string | undefined;
+    arise?: string | undefined;
+    debitor_account?: string | undefined;
+    fee_code?: string | undefined;
+    case_code?: string | undefined;
+    department_code?: string | undefined;
+    construction_id?: string | undefined;
+    tax_fc?: number | undefined;
+    tax?: number | undefined;
+    total_arise?: number | undefined;
+    total_arise_fc?: number | undefined;
+    language_id?: number | undefined;
+    voucher_year?: number | undefined;
+
+    constructor(data?: IPUR_Service_Purchase_Invoice_Report_ENTITY) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.code = _data["code"];
+            this.voucher_code = _data["voucher_code"];
+            this.voucher_no = _data["voucher_no"];
+            this.voucher_date = _data["voucher_date"] ? moment.parseZone(_data["voucher_date"].toString()) : <any>undefined;
+            this.voucher_date_start = _data["voucher_date_start"] ? moment.parseZone(_data["voucher_date_start"].toString()) : <any>undefined;
+            this.voucher_date_end = _data["voucher_date_end"] ? moment.parseZone(_data["voucher_date_end"].toString()) : <any>undefined;
+            this.invoice_date = _data["invoice_date"] ? moment.parseZone(_data["invoice_date"].toString()) : <any>undefined;
+            this.invoice_no = _data["invoice_no"];
+            this.seri_no = _data["seri_no"];
+            this.customer_code = _data["customer_code"];
+            this.customer_name = _data["customer_name"];
+            this.address = _data["address"];
+            this.grandparent = _data["grandparent"];
+            this.profession_code = _data["profession_code"];
+            this.description = _data["description"];
+            this.code_fc = _data["code_fc"];
+            this.exchange_rate = _data["exchange_rate"];
+            this.creditor_account = _data["creditor_account"];
+            this.tax_code = _data["tax_code"];
+            this.tax_account = _data["tax_account"];
+            this.money_goods_fc = _data["money_goods_fc"];
+            this.money_goods = _data["money_goods"];
+            this.tax_money_fc = _data["tax_money_fc"];
+            this.tax_money = _data["tax_money"];
+            this.total_money_fc = _data["total_money_fc"];
+            this.total_money = _data["total_money"];
+            this.payment_deadline = _data["payment_deadline"];
+            this.paid_fc = _data["paid_fc"];
+            this.paid = _data["paid"];
+            this.invoice_code = _data["invoice_code"];
+            this.customer_invoice_name = _data["customer_invoice_name"];
+            this.company_code = _data["company_code"];
+            this.date_add = _data["date_add"] ? moment.parseZone(_data["date_add"].toString()) : <any>undefined;
+            this.date_modified = _data["date_modified"] ? moment.parseZone(_data["date_modified"].toString()) : <any>undefined;
+            this.account_code_add = _data["account_code_add"];
+            this.account_code_modified = _data["account_code_modified"];
+            this.is_tax = _data["is_tax"];
+            this.dt_id = _data["dt_id"];
+            this.dt_code = _data["dt_code"];
+            this.master_code = _data["master_code"];
+            this.dt_description = _data["dt_description"];
+            this.dt_customer_code = _data["dt_customer_code"];
+            this.dt_customer_name = _data["dt_customer_name"];
+            this.arise_fc = _data["arise_fc"];
+            this.arise = _data["arise"];
+            this.debitor_account = _data["debitor_account"];
+            this.fee_code = _data["fee_code"];
+            this.case_code = _data["case_code"];
+            this.department_code = _data["department_code"];
+            this.construction_id = _data["construction_id"];
+            this.tax_fc = _data["tax_fc"];
+            this.tax = _data["tax"];
+            this.total_arise = _data["total_arise"];
+            this.total_arise_fc = _data["total_arise_fc"];
+            this.language_id = _data["language_id"];
+            this.voucher_year = _data["voucher_year"];
+        }
+    }
+
+    static fromJS(data: any): PUR_Service_Purchase_Invoice_Report_ENTITY {
+        data = typeof data === 'object' ? data : {};
+        let result = new PUR_Service_Purchase_Invoice_Report_ENTITY();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["code"] = this.code;
+        data["voucher_code"] = this.voucher_code;
+        data["voucher_no"] = this.voucher_no;
+        data["voucher_date"] = this.voucher_date ? this.voucher_date.toISOString(true) : <any>undefined;
+        data["voucher_date_start"] = this.voucher_date_start ? this.voucher_date_start.toISOString(true) : <any>undefined;
+        data["voucher_date_end"] = this.voucher_date_end ? this.voucher_date_end.toISOString(true) : <any>undefined;
+        data["invoice_date"] = this.invoice_date ? this.invoice_date.toISOString(true) : <any>undefined;
+        data["invoice_no"] = this.invoice_no;
+        data["seri_no"] = this.seri_no;
+        data["customer_code"] = this.customer_code;
+        data["customer_name"] = this.customer_name;
+        data["address"] = this.address;
+        data["grandparent"] = this.grandparent;
+        data["profession_code"] = this.profession_code;
+        data["description"] = this.description;
+        data["code_fc"] = this.code_fc;
+        data["exchange_rate"] = this.exchange_rate;
+        data["creditor_account"] = this.creditor_account;
+        data["tax_code"] = this.tax_code;
+        data["tax_account"] = this.tax_account;
+        data["money_goods_fc"] = this.money_goods_fc;
+        data["money_goods"] = this.money_goods;
+        data["tax_money_fc"] = this.tax_money_fc;
+        data["tax_money"] = this.tax_money;
+        data["total_money_fc"] = this.total_money_fc;
+        data["total_money"] = this.total_money;
+        data["payment_deadline"] = this.payment_deadline;
+        data["paid_fc"] = this.paid_fc;
+        data["paid"] = this.paid;
+        data["invoice_code"] = this.invoice_code;
+        data["customer_invoice_name"] = this.customer_invoice_name;
+        data["company_code"] = this.company_code;
+        data["date_add"] = this.date_add ? this.date_add.toISOString(true) : <any>undefined;
+        data["date_modified"] = this.date_modified ? this.date_modified.toISOString(true) : <any>undefined;
+        data["account_code_add"] = this.account_code_add;
+        data["account_code_modified"] = this.account_code_modified;
+        data["is_tax"] = this.is_tax;
+        data["dt_id"] = this.dt_id;
+        data["dt_code"] = this.dt_code;
+        data["master_code"] = this.master_code;
+        data["dt_description"] = this.dt_description;
+        data["dt_customer_code"] = this.dt_customer_code;
+        data["dt_customer_name"] = this.dt_customer_name;
+        data["arise_fc"] = this.arise_fc;
+        data["arise"] = this.arise;
+        data["debitor_account"] = this.debitor_account;
+        data["fee_code"] = this.fee_code;
+        data["case_code"] = this.case_code;
+        data["department_code"] = this.department_code;
+        data["construction_id"] = this.construction_id;
+        data["tax_fc"] = this.tax_fc;
+        data["tax"] = this.tax;
+        data["total_arise"] = this.total_arise;
+        data["total_arise_fc"] = this.total_arise_fc;
+        data["language_id"] = this.language_id;
+        data["voucher_year"] = this.voucher_year;
+        return data;
+    }
+
+    clone(): PUR_Service_Purchase_Invoice_Report_ENTITY {
+        const json = this.toJSON();
+        let result = new PUR_Service_Purchase_Invoice_Report_ENTITY();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface IPUR_Service_Purchase_Invoice_Report_ENTITY {
+    id?: number;
+    code?: string | undefined;
+    voucher_code?: string | undefined;
+    voucher_no?: string | undefined;
+    voucher_date?: moment.Moment | undefined;
+    voucher_date_start?: moment.Moment | undefined;
+    voucher_date_end?: moment.Moment | undefined;
+    invoice_date?: moment.Moment | undefined;
+    invoice_no?: string | undefined;
+    seri_no?: string | undefined;
+    customer_code?: string | undefined;
+    customer_name?: string | undefined;
+    address?: string | undefined;
+    grandparent?: string | undefined;
+    profession_code?: string | undefined;
+    description?: string | undefined;
+    code_fc?: string | undefined;
+    exchange_rate?: number | undefined;
+    creditor_account?: string | undefined;
+    tax_code?: string | undefined;
+    tax_account?: string | undefined;
+    money_goods_fc?: number | undefined;
+    money_goods?: number | undefined;
+    tax_money_fc?: number | undefined;
+    tax_money?: number | undefined;
+    total_money_fc?: number | undefined;
+    total_money?: number | undefined;
+    payment_deadline?: number | undefined;
+    paid_fc?: number | undefined;
+    paid?: number | undefined;
+    invoice_code?: string | undefined;
+    customer_invoice_name?: string | undefined;
+    company_code?: string | undefined;
+    date_add?: moment.Moment | undefined;
+    date_modified?: moment.Moment | undefined;
+    account_code_add?: string | undefined;
+    account_code_modified?: string | undefined;
+    is_tax?: string | undefined;
+    dt_id?: string | undefined;
+    dt_code?: string | undefined;
+    master_code?: string | undefined;
+    dt_description?: string | undefined;
+    dt_customer_code?: string | undefined;
+    dt_customer_name?: string | undefined;
+    arise_fc?: string | undefined;
+    arise?: string | undefined;
+    debitor_account?: string | undefined;
+    fee_code?: string | undefined;
+    case_code?: string | undefined;
+    department_code?: string | undefined;
+    construction_id?: string | undefined;
+    tax_fc?: number | undefined;
+    tax?: number | undefined;
+    total_arise?: number | undefined;
+    total_arise_fc?: number | undefined;
+    language_id?: number | undefined;
+    voucher_year?: number | undefined;
 }
 
 export class P21_D_ENTITY implements IP21_D_ENTITY {

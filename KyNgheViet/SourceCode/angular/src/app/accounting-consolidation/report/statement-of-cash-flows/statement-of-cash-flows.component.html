@@ -1,7 +1,7 @@
 <form method="#" action="#" class="form-data form-view-master">
     <app-toolbar #toolbar [tableName]="tbName" [CurrenFrom]="CurrenFrom" [classInsert]="'form-30082023'"></app-toolbar>
     <alert-message #alertMessage></alert-message>
-    <osoft-tree-list-report #DataGridGenRowTable [pageSize]="20" [tableName]="tbName" [dataFilter]="filterInput" (OnChangeDataFilter)="OnChangeDataFilter($event)" [dataSource]="listData" (selectedRowsDataOutput)="onSelectedRowsData($event)" (OnSelectRow)="selectRow($event)"></osoft-tree-list-report>
+    <osoft-tree-list-report #DataGridGenRowTable [pageSize]="2000" [tableName]="tbName" [dataFilter]="filterInput" (OnChangeDataFilter)="OnChangeDataFilter($event)" [dataSource]="listData" (selectedRowsDataOutput)="onSelectedRowsData($event)" (OnSelectRow)="selectRow($event)"></osoft-tree-list-report>
 </form>
 <dialog-acction #dialogConsolidationByAAccount [width]="w" [content]="" [title]="translate('Tổng hợp chữ T 1 tài khoản','Consolidation L by a account ')" (confirmOutput)="onDelete($event)">
     <div>

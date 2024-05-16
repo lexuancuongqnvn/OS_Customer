@@ -83,7 +83,7 @@ export class CostingOfInventoryComponent extends LayoutComponentBase implements 
         break;
       }
       case EditPageState.viewDetail:{
-        this.onCostingData();
+        this.onCostingDatav2();
         break;
       }
       case 'update_target':{
@@ -121,6 +121,23 @@ export class CostingOfInventoryComponent extends LayoutComponentBase implements 
     this.BlockUI();
 
     this.wMSReportService.wMS_Calculate_The_Average_Costing_Search({
+      ...this.filterInput,
+      inventory_valuation_method:this.filterInput.inventory_valuation_method?Number(this.filterInput.inventory_valuation_method):this.filterInput.inventory_valuation_method,
+      from_month:this.filterInput.from_month?Number(this.filterInput.from_month):this.filterInput.from_month,
+      to_month:this.filterInput.to_month?Number(this.filterInput.to_month):this.filterInput.to_month,
+      is_costing:true
+    } as WMS_Average_Cost_Sheet_ENTITY).subscribe((res:WMS_Average_Cost_Sheet_ENTITY[])=>{
+      this.onLoadData()
+    })
+  }
+  onCostingDatav2(){
+    if(this.filterInput.from_month > this.filterInput.to_month){
+      this.showMessageError(this.translate('Tháng bắt đầu không lớn hơn tháng kết thúc','The start month cannot be greater than the end month.'))
+      return;
+    }
+    this.BlockUI();
+
+    this.wMSReportService.wMS_Calculate_The_Average_Costing_V2_Search({
       ...this.filterInput,
       inventory_valuation_method:this.filterInput.inventory_valuation_method?Number(this.filterInput.inventory_valuation_method):this.filterInput.inventory_valuation_method,
       from_month:this.filterInput.from_month?Number(this.filterInput.from_month):this.filterInput.from_month,

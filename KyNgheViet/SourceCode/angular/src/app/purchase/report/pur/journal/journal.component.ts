@@ -1,42 +1,42 @@
 import { Component, Injector, OnInit, ViewChild } from '@angular/core';
 import { AppSession } from 'src/app/shared/app-session/app-session';
-import { DXDataGridViewComponent } from 'src/app/shared/dx-data-grid/dx-data-grid-view/dx-data-grid-view.component';
-import { DialogAcctionComponent } from 'src/app/shared/layout/dialogs/acction/dialog-acction.component';
+import { DXDataGridViewReportComponent } from 'src/app/shared/dx-data-grid/dx-data-grid-view-report/dx-data-grid-view-report.component';
+import { DialogPreviewPrintComponent } from 'src/app/shared/layout/dialogs/dialog-preview-print/dialog-preview-print.component';
 import { LayoutComponentBase } from 'src/app/shared/layout/layoutBase';
 import { ToolbarComponent } from 'src/app/shared/layout/toolbar/toolbar.component';
-import { I43_M_ENTITY, WarehouseService, WMSVoucherService } from 'src/app/shared/service-proxies/api-shared';
+import { PUR_Aggregate_Cost_Coupon_Print_ENTITY, PUR_Import_Invoice_Report_ENTITY, PUR_Journal_ENTITY, PurchaseReportService } from 'src/app/shared/service-proxies/api-shared';
 import { EditPageState } from 'src/app/shared/ultilities/enum/edit-page-state';
 import { IUiAction } from 'src/app/shared/ultilities/ui-action';
 
 @Component({
-  selector: 'app-i43-m-list',
-  templateUrl: './i43-m-list.component.html',
-  styleUrls: ['./i43-m-list.component.css']
+  selector: 'app-journal',
+  templateUrl: './journal.component.html',
+  styleUrls: ['./journal.component.css']
 })
-export class I43MListComponent extends LayoutComponentBase implements OnInit, IUiAction<any> {
+export class JournalComponent extends LayoutComponentBase implements OnInit, IUiAction<any> {
 
   constructor(
     injector: Injector,
-    private wMSVoucherService: WMSVoucherService,
+    private purchaseReportService: PurchaseReportService,
     private appSession: AppSession,
   ) { 
     super(injector);
     this.tbName = this.getRouteData('tbName');
-    ////this.filterInput.voucher_date = this.getFullVoucherDate;
     this.filterInput.voucher_code = this.getRouteData('voucher_code');
-    this.appSession.setVoucherCode(this.filterInput.voucher_code);
     const d = this.getStartEndDateInMonth();
     this.filterInput.voucher_date_start = d.startDate;
     this.filterInput.voucher_date_end = d.endDate;
+   
   }
 
-  @ViewChild('DataGridGenRowTable') DataGridGenRowTable: DXDataGridViewComponent;
+  @ViewChild('DataGridGenRowTable') DataGridGenRowTable: DXDataGridViewReportComponent;
   @ViewChild('toolbar') toolbar: ToolbarComponent;
-  @ViewChild('dialogDelete') dialogDelete: DialogAcctionComponent;
-  filterInput:I43_M_ENTITY=new I43_M_ENTITY();
-  rowSelected:I43_M_ENTITY=new I43_M_ENTITY();
-  listGenRowTable:I43_M_ENTITY[]=[];
-  tbName:string = 'I43_M';
+  @ViewChild('dialogPreviewPrint') dialogPreviewPrint: DialogPreviewPrintComponent;
+
+  filterInput:PUR_Journal_ENTITY=new PUR_Journal_ENTITY();
+  rowSelected:PUR_Journal_ENTITY=new PUR_Journal_ENTITY();
+  listData:PUR_Journal_ENTITY[]=[];
+  tbName:string = '';
   CurrenFrom:string = EditPageState.view;
 
   onAdd(): void {
@@ -46,16 +46,7 @@ export class I43MListComponent extends LayoutComponentBase implements OnInit, IU
     throw new Error('Method not implemented.');
   }
   onDelete(item: any): void {
-    this.wMSVoucherService.i43_M_Delete(new I43_M_ENTITY({
-      ...this.rowSelected,
-      code:this.idSelect,
-      voucher_code:this.appSession.getVoucherCode,
-      company_code:this.appSession.user.company_code
-    }) as I43_M_ENTITY).subscribe(res=>{
-      this.showMessage(res.message,res.status);
-      if(res.status == 0) 
-      this.onLoadData()
-    })
+    throw new Error('Method not implemented.');
   }
   onApprove(item: any): void {
     throw new Error('Method not implemented.');
@@ -75,11 +66,11 @@ export class I43MListComponent extends LayoutComponentBase implements OnInit, IU
   onClickAcction(id: number, storedName: string, param: string, keyService: string, classForm: string): void {
     switch(classForm){
       case EditPageState.add:{
-        this.navigatePassParam('warehouse/goods-delivery-note-add',[['code',this.idSelect]],new I43_M_ENTITY({}),this.tbName)
+        this.navigatePassParam('warehouse/opening-balance-input-output-inventory-add',[['code',this.idSelect]],new PUR_Journal_ENTITY({}),this.tbName)
         break;
       }
       case EditPageState.edit:{
-        this.navigatePassParam('warehouse/goods-delivery-note-edit',[['code',this.idSelect],['voucher_date',this.rowSelected.voucher_date.format('YYYY-MM-DD')]],new I43_M_ENTITY({}),this.tbName)
+        this.navigatePassParam('warehouse/opening-balance-input-output-inventory-edit',[['code',this.idSelect]],new PUR_Journal_ENTITY({}),this.tbName)
         break;
       }
       case EditPageState.save:{
@@ -91,22 +82,13 @@ export class I43MListComponent extends LayoutComponentBase implements OnInit, IU
         break;
       }
       case EditPageState.viewDetail:{
-        this.navigatePassParam('warehouse/goods-delivery-note-view-detail',[['code',this.idSelect],['voucher_date',this.rowSelected.voucher_date.format('YYYY-MM-DD')]],new I43_M_ENTITY({}),this.tbName)
-
+        this.onLoadData();
         break;
       }
-      case EditPageState.delete:{
-        this.dialogDelete.open();
+      case EditPageState.PrintReport:{
+        this.dialogPreviewPrint.onPrint(this.tbName,this.filterInput)
         break;
       }
-      case 'close_book':{
-        
-      break;
-    }
-    case 'open_book':{
-     
-      break;
-    }
       default:break;
     }
   }
@@ -117,7 +99,6 @@ export class I43MListComponent extends LayoutComponentBase implements OnInit, IU
 
   ngOnInit(): void {
     this.setAcction();
-    this.onLoadData();
   }
   setAcction(){
     if(this.toolbar){
@@ -129,15 +110,24 @@ export class I43MListComponent extends LayoutComponentBase implements OnInit, IU
       }, 50);
   }
   onLoadData(){
-    this.wMSVoucherService.i43_M_Search({
+    if(!this.filterInput.voucher_date_start || !this.filterInput.voucher_date_end){
+      this.showMessageWarning(this.translate('Vui lòng chọn thời gian lọc.','Filter date not empty'))
+      return
+    }
+    this.BlockUI();
+    this.purchaseReportService.pUR_Journal_Search({
       ...this.filterInput
-    } as I43_M_ENTITY).subscribe((res:I43_M_ENTITY[])=>{
-      this.listGenRowTable = res;
+    } as PUR_Journal_ENTITY).subscribe((res:PUR_Journal_ENTITY[])=>{
+      this.listData = res;
       this.DataGridGenRowTable.setDataSource(res);
       this.UpdateView();
+      this.UnBlockUI();
     })
   }
   onSelectedRowsData(obj:any){
     this.rowSelected = obj[0];
+  }
+  OnChangeDataFilter(obj:any){
+    this.filterInput[obj.colName] = obj.value;
   }
 }
