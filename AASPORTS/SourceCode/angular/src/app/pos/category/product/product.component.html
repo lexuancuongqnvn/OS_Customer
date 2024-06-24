@@ -1,0 +1,258 @@
+<div class="card-container k-form-edit">
+    <app-toolbar #toolbar [tableName]="tbName" [CurrenFrom]="CurrenFrom"></app-toolbar>
+    <div class="example-wrapper form-group">
+        <div class="example-wrapper">
+            <div class="">
+                <div class="form-group">
+                    <div class="row div-filter">
+                        <!-- Begin filter -->
+                        <!-- Tên -->
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="id_name" class="">Tên</label>
+                                <input type="text" #name="ngModel" name="name" [(ngModel)]="filterInput.name" [value]="filterInput.name" class="form-control" id="id_name">
+                            </div>
+                        </div>
+                        <!-- end filter -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-component form-group">
+        <jqgrid-list #gridMenuList (ValueOutput)="selectRow($event);" [colModel]="col_model" [table]="tbName" [title]="'Danh sách nhóm sản phẩm'"></jqgrid-list>
+    </div>
+    <dialog-acction #dialogDelete [content]="'Bạn có chắc chắn muốn xóa?'" [title]="translate('Vui lòng xác nhận','Confirm ')" (confirmOutput)="confirmDelete()"></dialog-acction>
+    <dialog-acction #dialogAddGroup [title]="'Thêm nhóm mới'" (confirmOutput)="confirmAddGroup()">
+        <!-- Tên nhóm  -->
+        <div class="row">
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="name" class="bmd-label-floating title-input">Tên nhóm</label>
+                    <input type="text" #name="ngModel" name="name" [(ngModel)]="GroupModel.name" [value]="GroupModel.name" class="form-control" id="name">
+                </div>
+            </div>
+            <!-- Thuộc nhóm  -->
+            <div class="col-8">
+                <div class="form-group">
+                    <label for="code_master" class="">Thuộc nhóm</label><br>
+                    <input-selectpicker-v2 #SelectAddGroupPicker (ValueOutput)="onSelect($event,'group_code')" [value]="GroupModel.code_master" [multiple]="false" [list]="listGroup" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'code_master'"></input-selectpicker-v2>
+                </div>
+            </div>
+        </div>
+    </dialog-acction>
+
+    <dialog-acction #dialogAddUnit [title]="'Thêm đơn vị tính'" (confirmOutput)="confirmAddUnit()">
+        <!-- Tên   -->
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                    <label for="name" class="bmd-label-floating title-input">Tên đơn vị</label>
+                    <input type="text" #name="ngModel" name="name" [(ngModel)]="UnitModel.name" [value]="UnitModel.name" class="form-control" id="name">
+                </div>
+            </div>
+        </div>
+    </dialog-acction>
+
+    <dialog-acction #dialogAddColor [title]="'Thêm màu'" (confirmOutput)="confirmAddColor()">
+        <!-- Tên   -->
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                    <label for="name" class="bmd-label-floating title-input">Tên màu</label>
+                    <input type="text" #name="ngModel" name="name" [(ngModel)]="ColorModel.name" [value]="ColorModel.name" class="form-control" id="name">
+                </div>
+            </div>
+        </div>
+    </dialog-acction>
+
+    <dialog-acction #dialogAddSize [title]="'Thêm màu'" (confirmOutput)="confirmAddSize()">
+        <!-- Tên   -->
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                    <label for="name" class="bmd-label-floating title-input">Tên size</label>
+                    <input type="text" #name="ngModel" name="name" [(ngModel)]="SizeModel.name" [value]="SizeModel.name" class="form-control" id="name">
+                </div>
+            </div>
+        </div>
+    </dialog-acction>
+</div>
+<!-- Edit -->
+<sidenav-add-edit #sidenavAddEdit [title]="'Chỉnh sửa thông tin menu'" *ngIf="isEdit" class="form-sidenav-edit">
+    <form method="#" action="#" style="padding: 20px;">
+        <app-toolbar #toolbarEdit [tableName]="tbName" [CurrenFrom]="getCurrenFrom"></app-toolbar>
+        <div class="row">
+            <!-- Ảnh đại diện -->
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="avartar" class="bmd-label-floating title-input">Ảnh đại diện</label><br>
+                    <img *ngIf="!InputModel.avartar" src="data:image/jpeg;base64,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"
+                        width="auto" height="200">
+                    <img *ngIf="InputModel.avartar" src="{{InputModel.avartar}}" width="auto" height="200">
+                    <input-file-upload [colName]="'avartar'" [hidden]="false" [multiple]="false" [tableName]="tbName" (ValueOutput)="onChangeValueFile($event,'avartar')"></input-file-upload>
+                </div>
+            </div>
+            <!-- Ảnh giới thiệu  -->
+            <div class="col-8">
+                <div class="form-group">
+                    <label for="images" class="bmd-label-floating title-input">Ảnh giới thiệu</label><br>
+                    <img *ngIf="!InputModel.images" src="data:image/jpeg;base64,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"
+                        width="auto" height="50">
+                    <img *ngIf="!InputModel.images" src="data:image/jpeg;base64,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"
+                        width="auto" height="50">
+                    <img *ngIf="!InputModel.images" src="data:image/jpeg;base64,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"
+                        width="auto" height="50">
+                    <img *ngIf="!InputModel.images" src="data:image/jpeg;base64,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"
+                        width="auto" height="50">
+                    <img *ngFor="let item of listimages" src="{{item}}" width="auto" height="50">
+                    <input-file-upload [colName]="'images'" [hidden]="false" [multiple]="true" [tableName]="tbName" (ValueOutput)="onChangeValueFile($event,'images')"></input-file-upload>
+                </div>
+            </div>
+            <!-- Tên  -->
+            <div class="col-8">
+                <div class="form-group">
+                    <label for="name" class="bmd-label-floating title-input">Tên</label>
+                    <input type="text" #name="ngModel" name="name" [(ngModel)]="InputModel.name" [value]="InputModel.name" class="form-control" id="name">
+                </div>
+            </div>
+            <div class="col-12"></div>
+            <!-- Thuộc nhóm  -->
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="code_master" class="">Thuộc nhóm <a href="javascript:;" (click)="AddGroup()">Thêm (+)</a></label><br>
+                    <input-selectpicker-v2 #SelectGroupPicker (ValueOutput)="onSelect($event,'group_code')" [value]="InputModel.group_code" [multiple]="false" [list]="listGroup" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'group_code'"></input-selectpicker-v2>
+                </div>
+            </div>
+            <!-- Mã SKU  -->
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="sku_code" class="bmd-label-floating title-input">Mã SKU</label>
+                    <input #sku_code="ngModel" name="sku_code" [(ngModel)]="InputModel.sku_code" [value]="InputModel.sku_code" type="text" class="form-control" id="sku_code">
+                </div>
+            </div>
+            <!-- Barcode -->
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="barcode" class="bmd-label-floating title-input">Barcode</label>
+                    <input #barcode="ngModel" name="barcode" [(ngModel)]="InputModel.barcode" [value]="InputModel.barcode" type="text" class="form-control" id="barcode">
+                </div>
+            </div>
+            <!-- Đơn vị  -->
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="unit_code" class="">Đơn vị tính <a href="javascript:;" (click)="AddUnit()">Thêm (+)</a></label><br>
+                    <input-selectpicker-v2 #SelectUnitPicker (ValueOutput)="onSelect($event,'unit_code')" [value]="InputModel.unit_code" [multiple]="false" [list]="listUnit" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'unit_code'"></input-selectpicker-v2>
+                </div>
+            </div>
+            <!-- Giá Mua -->
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="purchase_price" class="">Giá mua</label><br>
+                    <input-money #purchase_price (ValueOutput)="onChangeValueMoney($event,'purchase_price')" [colName]="'purchase_price'" [value]="InputModel.purchase_price"></input-money>
+                </div>
+            </div>
+            <!-- Giá bán  -->
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="price" class="">Giá bán</label><br>
+                    <input-money #price (ValueOutput)="onChangeValueMoney($event,'price')" [colName]="'value'" [value]="InputModel.price"></input-money>
+                </div>
+            </div>
+            <div class="col-12"></div>
+            <!-- Định mức tồn kho (min) -->
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="inventory_level_min" class="bmd-label-floating title-input">Định mức tồn kho (min)</label>
+                    <input #inventory_level_min="ngModel" name="inventory_level_min" [(ngModel)]="InputModel.inventory_level_min" [value]="InputModel.inventory_level_min" type="number" class="form-control" id="inventory_level_min">
+                </div>
+            </div>
+            <!-- Định mức tồn kho (max) -->
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="inventory_level_max" class="bmd-label-floating title-input">Định mức tồn kho (max)</label>
+                    <input #inventory_level_max="ngModel" name="inventory_level_max" [(ngModel)]="InputModel.inventory_level_max" [value]="InputModel.inventory_level_max" type="number" class="form-control" id="inventory_level_max">
+                </div>
+            </div>
+            <div class="col-12"></div>
+            <!-- Trạng thái kinh doanh -->
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="business_status_code" class="">Trạng thái kinh doanh</label><br>
+                    <input-selectpicker-v2 #SelectBusinessStatusPicker (ValueOutput)="onSelect($event,'business_status_code')" [value]="InputModel.business_status_code" [multiple]="false" [list]="listBusinessStatus" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'business_status_code'"></input-selectpicker-v2>
+                </div>
+            </div>
+            <div class="col-12"></div>
+            <!-- Màu  -->
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="color_code" class="">Màu <a href="javascript:;" (click)="AddColor()">Thêm (+)</a></label><br>
+                    <input-selectpicker-v2 #SelectColortPicker (ValueOutput)="onSelect($event,'color_code')" [value]="InputModel.color_code" [multiple]="true" [list]="listColor" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'color_code'"></input-selectpicker-v2>
+                </div>
+            </div>
+
+            <!-- Size -->
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="size_code" class="">Size <a href="javascript:;" (click)="AddSize()">Thêm (+)</a></label><br>
+                    <input-selectpicker-v2 #SelectSizeCodePicker (ValueOutput)="onSelect($event,'size_code')" [value]="InputModel.size_code" [multiple]="true" [list]="listSize" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'size_code'"></input-selectpicker-v2>
+                </div>
+            </div>
+            <div class="col-2"></div>
+            <!-- Trọng lượng -->
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="weight" class="bmd-label-floating title-input">Trọng lượng (gam)</label>
+                    <input #weight="ngModel" name="weight" [(ngModel)]="InputModel.weight" [value]="InputModel.weight" type="number" class="form-control" id="weight">
+                </div>
+            </div>
+            <div class="col-12"></div>
+            <!-- Kích thước (Dài) -->
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="size_length" class="bmd-label-floating title-input">Kích thước (Dài) cm</label>
+                    <input #size_length="ngModel" name="size_length" [(ngModel)]="InputModel.size_length" [value]="InputModel.size_length" type="number" class="form-control" id="size_length">
+                </div>
+            </div>
+            <!-- Kích thước (Rộng) -->
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="size_width" class="bmd-label-floating title-input">Kích thước (Rộng) cm</label>
+                    <input #size_width="ngModel" name="size_width" [(ngModel)]="InputModel.size_width" [value]="InputModel.size_width" type="number" class="form-control" id="size_width">
+                </div>
+            </div>
+            <!-- Kích thước (Cao) -->
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="size_hieght" class="bmd-label-floating title-input">Kích thước (Cao) cm</label>
+                    <input #size_hieght="ngModel" name="size_hieght" [(ngModel)]="InputModel.size_hieght" [value]="InputModel.size_hieght" type="number" class="form-control" id="size_hieght">
+                </div>
+            </div>
+
+            <!-- Vị trí trong kho -->
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="warehouse_location" class="bmd-label-floating title-input">Vị trí trong kho</label>
+                    <input #warehouse_location="ngModel" name="warehouse_location" [(ngModel)]="InputModel.warehouse_location" [value]="InputModel.warehouse_location" type="text" class="form-control" id="warehouse_location">
+                </div>
+            </div>
+            <!-- Vị trí trưng bày -->
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="display_location" class="bmd-label-floating title-input">Vị trí trưng bày</label>
+                    <input #display_location="ngModel" name="display_location" [(ngModel)]="InputModel.display_location" [value]="InputModel.display_location" type="text" class="form-control" id="display_location">
+                </div>
+            </div>
+            <!-- Mô tả -->
+            <!-- <div class="col-12">
+                <div class="form-group">
+                    <label for="notes" class="bmd-label-floating title-input">Mô tả</label>
+                    <textarea style="height: 400px;" #notes="ngModel" name="notes" [(ngModel)]="InputModel.notes" [value]="InputModel.notes" type="text" class="form-control" id="notes"></textarea>
+                </div>
+            </div> -->
+            <div class="col-12">
+                <angular-editor #notes="ngModel" name="notes" [(ngModel)]="InputModel.notes" [config]="config"></angular-editor>
+            </div>
+        </div>
+    </form>
+</sidenav-add-edit>

@@ -1,0 +1,27 @@
+<form method="#" action="#" class="form-data form-view-master">
+    <app-toolbar #toolbar [tableName]="tbName" [CurrenFrom]="CurrenFrom" [classInsert]="'form-30082023'"></app-toolbar>
+    <alert-message #alertMessage></alert-message>
+    <osoft-data-grid-report #DataGridGenRowTable [tableName]="tbName" (OnChangeDataFilter)="OnChangeDataFilter($event)" [dataSource]="listData" (selectedRowsDataOutput)="onSelectedRowsData($event)" (OnSelectRow)="selectRow($event)"></osoft-data-grid-report>
+    <!-- <div class="form-example">
+        <label for="voucher_date_start">Tháng bắt đầu: </label>
+        <input type="text" name="voucher_date_start" id="voucher_date_start" required />
+      </div>
+      <div class="form-example">
+        <label for="voucher_date_end">Tháng kết thúc: </label>
+        <input type="text" name="voucher_date_end" id="voucher_date_end" required />
+      </div>
+      <div class="form-example">
+        <button type="button" onclick="window.location.href = 'http://localhost:4200/warehouse/prepaid-expense-allocation-edit'">Tạo bút toán</button>
+        <button type="button">Xóa bút toán</button>
+      </div> -->
+
+</form>
+<dialog-acction #dialogDelete [content]="" [title]="'Vui lòng nhập thời gian xóa bút toán'" (confirmOutput)="onDelete($event)">
+    <div class="col-12">
+        <div class="form-group">
+            <dx-input-datepicker [name]="'Tháng bắt đầu/ Start month'" [placeholder]="'Tháng bắt đầu/ Start month'" [format]="'MM'" type="date" [value]="" [name]="'Tháng bắt đầu/ Start month'" (ValueOutput)="handleValueChangedDate($event,'start_month')" [required]="true">
+            </dx-input-datepicker>
+        </div>
+    </div>
+</dialog-acction>
+<dialog-acction #dialogCreateAllocation [content]="''" [title]="'Vui lòng nhập thời gian tạo bút toán'" (confirmOutput)="onAdd()"></dialog-acction>

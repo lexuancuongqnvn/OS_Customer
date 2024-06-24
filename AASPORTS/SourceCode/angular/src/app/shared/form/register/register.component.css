@@ -1,0 +1,51 @@
+.k-avatar {
+    margin-left: 80px;
+    font-size: 30px;
+}
+
+.example {
+    display: flex;
+    justify-content: center;
+}
+
+.k-form {
+    width: 240px;
+}
+
+a.forgot-login {
+    font-size: small;
+    margin: 18px 0px 0px 33px;
+}
+
+.example.theme-login {
+    height: 100vh;
+    width: 100vw;
+    background-color: #cccccc;
+}
+
+.k-form-buttons {
+    width: 500px !important;
+}
+
+.message-sucess {
+    color: green !important;
+}
+
+.message-error {
+    color: red !important;
+}
+
+.signup-success {
+    color: green;
+    text-align: center;
+}
+
+.example.theme-login {
+    height: 100vh;
+    width: 100vw;
+    background-image: url("src/assets/img/background-login.jpg");
+    background-color: #cccccc;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

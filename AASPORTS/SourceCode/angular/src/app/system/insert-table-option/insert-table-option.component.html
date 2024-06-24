@@ -1,0 +1,5 @@
+<form method="#" action="#" class="form-data form-view-master">
+    <app-toolbar #toolbar [tableName]="tbName" [CurrenFrom]="CurrenFrom"></app-toolbar>
+    <alert-message #alertMessage></alert-message>
+    <osoft-data-grid #DataGridGenRowTable [isShowComponentFilter]="true" [tableName]="tbName" [dataSource]="listGenRowTable" (OnSelectRow)="selectRow($event)"></osoft-data-grid>
+</form>

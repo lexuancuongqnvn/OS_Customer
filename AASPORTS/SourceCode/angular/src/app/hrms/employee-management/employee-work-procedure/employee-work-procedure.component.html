@@ -1,0 +1,94 @@
+<div class="card-container k-form-edit">
+    <app-toolbar #toolbar [classInsert]="'form-30082023'" [tableName]="tbName" [CurrenFrom]="CurrenFrom"></app-toolbar>
+    <div class="example-wrapper form-group">
+        <div class="example-wrapper">
+            <div class="">
+                <div class="form-group filter">
+                    <div class="row div-filter">
+                        <!-- Begin filter -->
+
+                        <!-- end filter -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-component form-group">
+        <jqgrid-list #gridList (ValueOutput)="selectRow($event)" [colModel]="col_model" [table]="tbName" [title]="'Danh sách nhân viên'"></jqgrid-list>
+    </div>
+    <dialog-acction #dialogDelete [content]="'Bạn có chắc chắn muốn xóa?'" [title]="translate('Vui lòng xác nhận','Confirm ')" (confirmOutput)="confirmDelete()"></dialog-acction>
+</div>
+<!-- Edit -->
+<sidenav-add-edit #sidenavAddEdit *ngIf="isEdit" [tbName]="tbName" class="form-sidenav-edit">
+    <form method="#" action="#" style="padding: 20px;" class="form-jqgrid-edit" [id]="'form-'+tbName">
+        <app-toolbar #toolbarEdit [classInsert]="'form-30082023'" [tableName]="tbName" [CurrenFrom]="getCurrenFrom"></app-toolbar>
+        <alert-message #alertMessage></alert-message>
+        <div class="row" style="padding: 0 15px 0 15px;">
+            <div class="col-2">
+                <div class="form-group">
+                    <label for="employee_code" class="label-title">Mã nhân viên</label>
+                    <input [disabled]="true" type="text" #employee_code="ngModel" name="employee_code" [(ngModel)]="InputModel.employee_code" [value]="InputModel.employee_code" class="form-control">
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="form-group">
+                    <label for="employee_name" class="label-title">Tên nhân viên</label>
+                    <input [disabled]="true" type="text" #employee_name="ngModel" name="employee_name" [(ngModel)]="InputModel.employee_name" [value]="InputModel.employee_name" class="form-control">
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="form-group">
+                    <label for="department_name" class="label-title">Phòng ban</label>
+                    <input [disabled]="true" type="text" #department_name="ngModel" name="department_name" [(ngModel)]="InputModel.department_name" [value]="InputModel.department_name" class="form-control">
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="form-group">
+                    <label for="branch_name" class="label-title">Chi nhánh</label>
+                    <input [disabled]="true" type="text" #branch_name="ngModel" name="branch_name" [(ngModel)]="InputModel.branch_name" [value]="InputModel.branch_name" class="form-control">
+                </div>
+            </div>
+            <div class="col-12"></div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="py-12">
+                            <form class="form-jqgrid-edit" method="#" action="#">
+                                <jqgrid-edit [minHeight]="350" #gridBonusEdit [colModel]="col_model_bonus_edit" [table]="'HRM_Employee_Bonus'" [title]="'1.0 Quá trình khen thưởng'"></jqgrid-edit>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="py-12">
+                            <form class="form-jqgrid-edit" method="#" action="#">
+                                <jqgrid-edit [minHeight]="350" #gridDisciplineEdit [colModel]="col_model_discipline_edit" [table]="'HRM_Employee_Discipline'" [title]="'2.0 Quá trình phạt'"></jqgrid-edit>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="py-12">
+                            <form class="form-jqgrid-edit" method="#" action="#">
+                                <jqgrid-edit [minHeight]="350" #gridTrainingEdit [colModel]="col_model_training_edit" [table]="'HRM_Employee_Training'" [title]="'3.0 Quá trình đào tạo'"></jqgrid-edit>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="py-12">
+                            <form class="form-jqgrid-edit" method="#" action="#">
+                                <jqgrid-edit [minHeight]="350" #gridEvaluateEdit [colModel]="col_model_evaluate_edit" [table]="'HRM_Employee_Evaluate'" [title]="'4.0 Quá trình đánh giá'"></jqgrid-edit>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="py-12">
+                            <form class="form-jqgrid-edit" method="#" action="#">
+                                <jqgrid-edit [minHeight]="350" #gridOccupationalAccidentEdit [colModel]="col_model_occupational_accident_edit" [table]="'HRM_Employee_Occupational_Accident'" [title]="'5.0 Quá trình tai nạn lao động'"></jqgrid-edit>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </form>
+</sidenav-add-edit>

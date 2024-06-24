@@ -1,0 +1,103 @@
+<div class="rounded bg-white mb-5">
+    <div class="row">
+        <div class="col-md-3 border-right">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                <img class="rounded-circle mt-5" width="150px" src="{{inputModel.avarta}}">
+                <div class="upload-avarta">
+                    <button class="btn btn-photo-camera" (click)="onClickAvarta()">
+                        <span class="material-icons">
+                        photo_camera
+                        </span>
+                        </button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5 border-right">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="text-right">Profile Settings</h4>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-6">
+                        <label class="labels">Tên /First Name</label>
+                        <input type="text" class="form-control" [disabled]="true" placeholder="first name" name="firsT_NAME" [(ngModel)]="inputModel.firsT_NAME"></div>
+                    <div class="col-md-6">
+                        <label class="labels">Họ /Last Name</label>
+                        <input type="text" class="form-control" [disabled]="true" placeholder="last name" name="lasT_NAME" [(ngModel)]="inputModel.lasT_NAME">
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <label class="labels">Số điện thoại /Mobile Number</label>
+                        <input type="text" class="form-control" [disabled]="true" placeholder="enter phone number" name="mobilE_NUMBER" [(ngModel)]="inputModel.mobilE_NUMBER">
+                    </div>
+                    <div class="col-md-12">
+                        <label class="labels">Địa chỉ thường trú /Address</label>
+                        <input type="text" class="form-control" [disabled]="true" placeholder="enter address line 1" name="address" [(ngModel)]="inputModel.address">
+                    </div>
+                    <div class="col-md-12">
+                        <label class="labels">Nơi ở hiện tại /Address current</label>
+                        <input type="text" class="form-control" [disabled]="true" placeholder="enter address current" name="addresS_CURRENT" [(ngModel)]="inputModel.addresS_CURRENT">
+                    </div>
+                    <div class="col-md-12">
+                        <label class="labels">CMND hoặc CCCD /ID card</label>
+                        <input type="text" class="form-control" [disabled]="true" placeholder="enter ID card" name="iD_CARD" [(ngModel)]="inputModel.iD_CARD">
+                    </div>
+                    <div class="col-md-12">
+                        <label class="labels">Ngày sinh /Birthday</label>
+                        <input-datepicker [ColumnName]="'birthday'" [disabled]="true" name="birthday" [value]="inputModel.birthday" (ValueOutput)="valueDate($event,'birthday')"></input-datepicker>
+                        <!-- <input-datepicker [format]="'dd/MM/yyyy'" name="inputModel['birthday']" [value]="ValueBirthday" (ValueOutput)="valueBirthday($event,'birthday')"></input-datepicker> -->
+                    </div>
+                    <div class="col-md-12">
+                        <label class="labels">Phòng ban /Department</label>
+                        <!-- <input-selectpicker-v2 #SelectDepartmentPicker (ValueOutput)="onSelect($event,'departmenT_CODE')" [value]="inputModel.departmenT_CODE" [multiple]="false" [list]="listDepartment" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'department_code'"
+                            [title]="'Phòng ban'"></input-selectpicker-v2> -->
+                        <input type="text" class="form-control" [disabled]="true" name="departmenT_NAME" [(ngModel)]="inputModel.departmenT_NAME">
+                    </div>
+                    <div class="col-md-12">
+                        <label class="labels">Vị trí /Position</label>
+                        <!-- <input-selectpicker-v2 #SelectPositionPicker (ValueOutput)="onSelect($event,'position')" [value]="inputModel.position" [multiple]="false" [list]="listEmployeePosition" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'position'" [title]="'Phòng ban'"></input-selectpicker-v2> -->
+                        <input type="text" class="form-control" [disabled]="true" name="positioN_NAME" [(ngModel)]="inputModel.positioN_NAME">
+                    </div>
+                    <div class="col-md-12">
+                        <label class="labels">Địa chỉ email /Email ID</label>
+                        <input type="text" [disabled]="true" class="form-control" placeholder="enter email id" name="useR_NAME" [(ngModel)]="inputModel.useR_NAME">
+                    </div>
+                    <div class="col-md-12">
+                        <label class="labels">Học vấn /Education</label>
+                        <input type="text" class="form-control" placeholder="education" name="education" [(ngModel)]="inputModel.education">
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <label class="labels">Quốc gia /Country</label>
+                        <input type="text" class="form-control" placeholder="country" name="country" [(ngModel)]="inputModel.country">
+                    </div>
+                    <div class="col-md-6"><label class="labels">Thành phố /City</label>
+                        <input type="text" class="form-control" name="CITY" [(ngModel)]="inputModel.city" placeholder="City">
+                    </div>
+                </div>
+                <!-- <div class="mt-5 text-center"><button class="btn btn-primary profile-button" (click)="onSave()" type="button">Cập nhật thông tin /Save Profile</button></div> -->
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="p-3 py-5">
+                <!-- <div class="d-flex justify-content-between align-items-center experience"><span>Edit Experience</span><span class="border px-3 p-1 add-experience"><i class="fa fa-plus"></i>&nbsp;Experience</span></div><br> -->
+                <div class="col-md-12">
+                    <label class="labels">Thuộc nhóm quyền /In group permission</label>
+                    <input type="text" class="form-control" [disabled]="true" placeholder="in group" name="accounT_GROUP_NAME" [(ngModel)]="inputModel.accounT_GROUP_NAME">
+                </div> <br>
+                <div class="col-md-12">
+                    <label class="labels">Kinh nghiệm /Experience</label>
+                    <input type="text" class="form-control" [disabled]="true" placeholder="experience" name="experience" [(ngModel)]="inputModel.experience">
+                </div> <br>
+                <div class="col-md-12"><label class="labels">Mô tả kinh nghiệm /Additional Details</label>
+                    <textarea class="form-control" [disabled]="true" id="exampleFormControlTextarea1" rows="3" name="additionaL_DETAILS" [(ngModel)]="inputModel.additionaL_DETAILS"></textarea>
+                </div>
+                <div class="col-md-12"><label class="labels"></label>
+                    <input-file-upload [isDomain]="true" [colName]="'avarta'" [hidden]="true" [multiple]="false" [tableName]="'SYS_Account_Infomation'" (ValueOutput)="valueUpload($event,'avarta')"></input-file-upload>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

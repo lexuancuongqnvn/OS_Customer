@@ -1,0 +1,15 @@
+<form method="#" action="#" class="form-data form-view-master">
+    <app-toolbar *ngIf="isShowToolbar" #toolbar [tableName]="tbName" [CurrenFrom]="CurrenFrom" [classInsert]="'form-30082023'"></app-toolbar>
+    <alert-message #alertMessage></alert-message>
+    <osoft-data-grid-report #DataGridGenRowTable [pageSize]="20" [tableName]="tbName" [dataFilter]="filterInput" (OnChangeDataFilter)="OnChangeDataFilter($event)" [dataSource]="listData" (selectedRowsDataOutput)="onSelectedRowsData($event)" (OnSelectRow)="selectRow($event)"></osoft-data-grid-report>
+</form>
+<dialog-acction #dialogConsolidationAccountDetail [width]="w" [content]="" [title]="translate('Sổ chi tiết tài khoản','Consolidation account detail')" (confirmOutput)="onDelete($event)">
+    <div>
+        <dx-button class="search" icon="search" text="Tìm kiếm" (onClick)="onLoadDataConsolidationAccountDetail()">
+        </dx-button>
+        <dx-button [disabled]="isEnableViewDeail" class="doc" icon="doc" text="Xem chi tiết" (onClick)="onViewDetail(2)">
+        </dx-button>
+    </div>
+    <consolidation-account-detail #FormConsolidationAccountDetail [isShowToolbar]="false"></consolidation-account-detail>
+</dialog-acction>
+<os-dialog-preview-print #dialogPreviewPrint></os-dialog-preview-print>

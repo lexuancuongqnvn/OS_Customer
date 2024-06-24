@@ -1,0 +1,6 @@
+<dx-date-box type="{{type}}" [disabled]="disabled" [stylingMode]="stylingMode" [labelMode]="labelMode" label="{{name}}{{required ? '(*)' :''}}" placeholder="{{placeholder}}" [showClearButton]="true" [useMaskBehavior]="true" displayFormat="{{format}}"
+    [value]="date" (onValueChanged)="onValueChanged($event,value)">
+    <dx-validator *ngIf="required">
+        <dxi-validation-rule type="required" message="{{name}} {{translate('Không được phép trống','is not required')}}"></dxi-validation-rule>
+    </dx-validator>
+</dx-date-box>

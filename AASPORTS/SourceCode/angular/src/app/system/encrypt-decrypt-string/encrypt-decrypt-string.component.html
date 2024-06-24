@@ -1,0 +1,14 @@
+<div class="row">
+    <div class="col-6">
+        <label for="Estory">Text 1:</label>
+        <textarea id="Estory" #text="ngModel" name="text" [(ngModel)]="InputModel.text" [value]="InputModel.text" rows="5" cols="33"></textarea>
+    </div>
+    <div class="col-6">
+        <label for="Dstory">Text 2:</label>
+        <textarea id="Dstory" #textResult="ngModel" name="textResult" [(ngModel)]="InputModel.textResult" [value]="InputModel.textResult" name="story" rows="5" cols="33"></textarea>
+    </div>
+</div>
+<div class="row">
+    <button class="btn btn-primary" (click)="onClickEncrypt()">Encrypt</button>
+    <button class="btn btn-primary" (click)="onClickDecrypt()">Decrypt</button>
+</div>

@@ -1,0 +1,133 @@
+::ng-deep #helpedInfo {
+    color: #42a5f5;
+}
+
+ ::ng-deep #tooltip-content {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+ ::ng-deep #template-content {
+    display: inline-flex;
+}
+
+::ng-deep .title {
+    grid-area: title;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+::ng-deep #name {
+    grid-area: name;
+}
+
+::ng-deep #address {
+    grid-area: address;
+}
+
+::ng-deep #birth-date {
+    grid-area: birthDate;
+}
+
+::ng-deep #state {
+    grid-area: state;
+}
+
+::ng-deep #phone {
+    grid-area: phone;
+}
+
+::ng-deep #hire-date {
+    grid-area: hireDate;
+}
+
+::ng-deep #notes {
+    grid-area: notes;
+}
+
+::ng-deep #vacation-dates {
+    grid-area: range;
+}
+
+::ng-deep #validate {
+    float: right;
+    margin-top: 20px;
+    margin-right: 20px;
+    width: 100px;
+}
+
+::ng-deep .options {
+    grid-area: options;
+    padding: 20px;
+    margin-bottom: 40px;
+    background-color: rgba(191, 191, 191, 0.15);
+}
+
+::ng-deep .caption {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+::ng-deep .editors-modes {
+    display: flex;
+}
+
+::ng-deep .option {
+    padding-right: 20px;
+    margin-top: 20px;
+}
+
+.pd-0 {
+    padding: 0px;
+}
+
+.pd-4 {
+    padding: 4px;
+}
+
+.pd-5 {
+    padding: 5px;
+}
+
+.pd-6 {
+    padding: 6px;
+}
+
+.pd-7 {
+    padding: 7px;
+}
+
+::ng-deep .tabpanel-item {
+    height: 200px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+ ::ng-deep .tabpanel-item p {
+    font-size: 16px;
+    margin: 0;
+}
+
+ ::ng-deep .item-box {
+    font-size: 16px;
+    margin: 15px 0 45px 10px;
+}
+
+ ::ng-deep .caption {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+ ::ng-deep .option {
+    margin-top: 10px;
+}
+
+.title-group-form-edit-v2 {
+    font-size: 19px;
+    font-weight: 500;
+    border-bottom: 1px solid #009688;
+}

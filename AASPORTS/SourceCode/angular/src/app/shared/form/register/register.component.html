@@ -1,0 +1,179 @@
+<div class="wrapper wrapper-full-page">
+    <div class="page-header register-page header-filter" filter-color="black" style="background-image: url('../../assets/img/register.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 ml-auto mr-auto">
+                    <div class="card card-signup">
+                        <h2 class="card-title text-center">Đăng ký</h2>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-5 ml-auto">
+                                    <div class="info info-horizontal">
+                                        <div class="icon icon-rose">
+                                            <i class="material-icons">timeline</i>
+                                        </div>
+                                        <div class="description">
+                                            <h4 class="info-title">Hệ thống quản lý bán hàng</h4>
+                                            <p class="description">
+                                                Phần mềm tự động hóa và tối ưu hiệu quả quản lý các quy trình bán hàng. Giải pháp quản lý bán hàng phù hợp cho mọi cửa hàng, chuỗi bán lẻ, siêu thị mini,...
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="info info-horizontal">
+                                        <div class="icon icon-primary">
+                                            <i class="material-icons">code</i>
+                                        </div>
+                                        <div class="description">
+                                            <h4 class="info-title">Hệ thống quản lý nhân sự</h4>
+                                            <p class="description">
+                                                Nền tảng HRM tổng hợp mọi chức năng hỗ trợ thực hiện các công tác quản lý nhân sự như: tuyển dụng, quản lý thông tin nhân viên, quản lý công, tính lương,... với chi phí phù hợp.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="info info-horizontal">
+                                        <div class="icon icon-info">
+                                            <i class="material-icons">group</i>
+                                        </div>
+                                        <div class="description">
+                                            <h4 class="info-title">Chăm sóc khách hàng</h4>
+                                            <p class="description">
+                                                Giải pháp phần mềm quản trị quan hệ khách hàng (CRM) linh hoạt và chuyên nghiệp hàng đầu. Tiết kiệm đến 80% thời gian và chi phí cho khâu quản lý và chăm sóc khách hàng.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-5 mr-auto">
+                                    <div class="social text-center">
+                                        <button class="btn btn-just-icon btn-round btn-twitter">
+                                            <i class="fa fa-twitter"></i>
+                                        </button>
+                                        <button class="btn btn-just-icon btn-round btn-dribbble">
+                                            <i class="fa fa-dribbble"></i>
+                                        </button>
+                                        <button class="btn btn-just-icon btn-round btn-facebook">
+                                            <i class="fa fa-facebook"> </i>
+                                        </button>
+                                    </div>
+                                    <form *ngIf="!success && !isShowConfirmCode" class="form" method="" action="#">
+                                        <div class="form-group has-default">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                <i class="material-icons">face</i>
+                                                </span>
+                                                </div>
+                                                <input type="text" #lastName="ngModel" name="lastName" [(ngModel)]="user.lastName" class="form-control" placeholder="Họ (Le)...">
+                                            </div>
+                                        </div>
+                                        <div class="form-group has-default">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                <i class="material-icons">face</i>
+                                                </span>
+                                                </div>
+                                                <input type="text" #firstName="ngModel" name="firstName" [(ngModel)]="user.firstName" class="form-control" placeholder="Đệm và tên (Xuan A)...">
+                                            </div>
+                                        </div>
+                                        <div class="form-group has-default">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                    <i class="material-icons">mail</i>
+                                                    </span>
+                                                </div>
+                                                <input type="text" #username="ngModel" name="username" [(ngModel)]="user.username" class="form-control" placeholder="Email...">
+                                            </div>
+                                        </div>
+                                        <div class="form-group has-default">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                <i class="material-icons">lock_outline</i>
+                                                </span>
+                                                </div>
+                                                <input type="password" #password="ngModel" name="password" [(ngModel)]="user.password" placeholder="Mật khẩu..." class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-group has-default">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                <i class="material-icons">lock_outline</i>
+                                                </span>
+                                                </div>
+                                                <input type="password" #confirm_password="ngModel" name="confirm_password" [(ngModel)]="user.confirm_password" placeholder="Xác nhận mật khẩu..." class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                            <input class="form-check-input" type="checkbox" value="" checked="">
+                                            <span class="form-check-sign">
+                                                <span class="check"></span>
+                                            </span>
+                                            Ghi nhớ tài khoản.
+                                            <a href="#something">Thông tin bảo mật</a>.
+                                            </label>
+                                        </div>
+                                        <div class="text-center">
+                                            <a href="javascript:;" (click)="submit()" class="btn btn-primary btn-round mt-4">Đăng ký</a>
+                                        </div>
+                                    </form>
+                                    <form *ngIf="success && !isShowConfirmCode" class="form" method="" action="#">
+                                        <div class="form-group has-default">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                <i class="material-icons">success</i>
+                                                </span>
+                                                </div>
+                                                <h4 class="signup-success">Đăng ký thành công</h4><br>
+                                                <h4>Vui lòng xác nhận được gửi đến mail {{user.username}}</h4>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <form *ngIf="!success && isShowConfirmCode" class="form" method="" action="#">
+                                        <div class="form-group has-default">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                </span>
+                                                </div>
+                                                <input type="text" #code="ngModel" name="code" [(ngModel)]="user.code" class="form-control" placeholder="Mã xác nhận...">
+                                            </div>
+                                        </div>
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                            <span class="form-check-sign">
+                                                <span class="check"></span>
+                                            </span>
+                                            Mã xác nhận đã được gửi đến mail đăng ký.
+                                            <a href="#something">Gửi lại mã.</a>.
+                                            </label>
+                                        </div>
+                                        <div class="text-center">
+                                            <a href="javascript:;" (click)="submitConfirmCode()" class="btn btn-primary btn-round mt-4">Xác nhận</a>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="footer">
+            <div class="container">
+                <nav class="float-left">
+                    <ul>
+                        <li>
+                            <a href="#">
+                          Creative OSOFT
+                        </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </footer>
+    </div>
+</div>

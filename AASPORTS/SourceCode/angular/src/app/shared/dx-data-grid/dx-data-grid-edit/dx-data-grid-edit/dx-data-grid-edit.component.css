@@ -1,0 +1,20 @@
+.status-icon {
+    height: 16px;
+    width: 16px;
+    display: inline-block;
+    margin-right: 8px;
+}
+
+.middle {
+    vertical-align: middle;
+}
+
+.data-grid-edit {
+    min-height: 400px !important;
+    max-height: 850px !important;
+}
+
+
+/* .data-grid-edit {
+    height: 440px !important;
+} */

@@ -1,0 +1,33 @@
+.example-config {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.list-title {
+  align-self: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.clear-files {
+  top: 0 !important;
+}
+
+.upload-files {
+  background-color: #bfc8c8;
+  transition: box-shadow .3s;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  background: #fff;
+  box-shadow: 0 0 11px rgba(33, 33, 33, .2);
+}
+
+span.value-file {
+  top: 8px;
+  position: absolute;
+}
+
+kendo-combobox.k-widget.k-combobox {
+  width: 100% !important;
+}

@@ -1,0 +1,8 @@
+<dx-popup [width]="'60vw'" [height]="'80vh'" id="dialog-form-extends" [showTitle]="true" title="{{title}}" [resizeEnabled]="true" [(visible)]="opened" position="center" [dragEnabled]="true" container=".dx-viewport">
+    <dxi-toolbar-item widget="dxButton" toolbar="bottom" location="before" [options]="saveButtonOptions">
+    </dxi-toolbar-item>
+    <dxi-toolbar-item widget="dxButton" toolbar="bottom" location="after" [options]="closeButtonOptions"> </dxi-toolbar-item>
+    <div *ngFor="let item of tables">
+        <app-form-edit-v2-for-popup *ngIf="tbName == item" #formEdit (onClickAcctionOutput)="onClickAcctionResponse($event)" [tbName]="tbName" [InputMaster]="InputMaster" (HandleValueChangedOutput)="handleValueChanged($event)" [editPageState]="editPageState"></app-form-edit-v2-for-popup>
+    </div>
+</dx-popup>

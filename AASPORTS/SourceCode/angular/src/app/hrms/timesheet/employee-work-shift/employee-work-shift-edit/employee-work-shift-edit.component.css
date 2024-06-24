@@ -1,0 +1,79 @@
+@import url('https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css');
+h3.h3-branch-name.form-group {
+    text-align: center;
+}
+
+.div-left-list-employee {
+    width: 20%;
+    display: flex;
+    border: 1px solid #80808040;
+}
+
+.employee-list-group {
+    width: 100%;
+}
+
+.div-right-calendar {
+    width: 80%;
+    /* display: flex; */
+}
+
+.div-calendar {
+    display: flex;
+}
+
+li.list-group-item.d-flex.justify-content-between.align-items-center {
+    border-bottom: 1px solid #80808040;
+}
+
+.badge.badge-primary {
+    background-color: white !important;
+    color: black;
+    font-size: 14px;
+}
+
+input.form-check-input {
+    position: inherit;
+}
+
+input.form-check-input {
+    position: inherit;
+    margin-left: 48%;
+}
+
+thead {
+    text-align: center;
+}
+
+.work-shift {
+    text-align: center !important;
+}
+
+.div-right-calendar {
+    border-bottom: 1px solid #80808040;
+    border-right: 1px solid #80808040;
+}
+
+a.a-emp-name {
+    color: black;
+    width: 100%;
+}
+
+li.list-group-item.d-flex.justify-content-between:hover,
+li.list-group-item.d-flex.justify-content-between.active {
+    background: #00bcd440;
+}
+
+th[scope="row"] {
+    width: 25%;
+}
+
+input.form-check-input:hover,
+input.form-check-input:focus {
+    box-shadow: 0px 0px 5px 5px #2196f359;
+}
+
+.table-bordered>tbody>tr:hover,
+.table-bordered>tbody>tr.active {
+    background-color: #bfeef4;
+}

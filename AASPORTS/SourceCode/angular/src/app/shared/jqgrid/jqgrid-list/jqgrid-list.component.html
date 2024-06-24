@@ -1,0 +1,20 @@
+<div class="" *ngIf="isLoading">
+    <div class="col-12" style="background-color: #164478;">
+        <label class="label-name-jqgrid">{{title}}</label>
+        <div class="div-action-grid">
+            <a href="javascript:;" *ngIf="export" (click)="exportExcel()" class="label-name-jqgrid-right">
+                <span class="material-icons">file_download</span>Export
+            </a>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="div-jqgrid div-jqgrid-list" (resized)="onResized($event)">
+            <table id="{{id_jqgrid}}"></table>
+            <div id="{{id_pager}}"></div>
+        </div>
+    </div>
+</div>
+<input *ngIf="isLoading" class="id-selected-{{table}}" (click)="onSelectRows($event)" style="display: none;">
+<div style="display: none !important;">
+    <table id="table-export-{{table}}"></table>
+</div>

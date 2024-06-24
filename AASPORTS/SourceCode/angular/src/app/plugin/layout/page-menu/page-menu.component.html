@@ -1,0 +1,56 @@
+<div class="div-menu">
+    <!-- CODE -->
+    <div class="div-block-menu" *ngIf="getSubMenuBookmark.length > 0">
+        <div class="div-block-title" data-bs-toggle="tooltip" data-bs-placement="bottom" [attr.title]="translate('Tác vụ nhanh', 'Quick task')">
+            {{ translate("Menu tắt", "Shortcut menu") }}
+        </div>
+        <div class="div-group-menu">
+            <!-- begin item menu -->
+            <div class="div-item quick-task" data-bs-toggle="tooltip" data-bs-placement="bottom" [attr.title]="item?.name" *ngFor="let item of getSubMenuBookmark" (click)="onSelectItem(item)">
+                <div class="svg-icon-menu"></div>
+                <div class="div-title">
+                    <div class="name text-limmited-two-line" (click)="onClickMenuQuiTask(item.link,1,item.name,item.iS_ROUTER_LINK,item)">
+                        {{ item?.name }}
+                    </div>
+                    <div class="quick-task svg-icon-star-yellow" (click)="onUnQuickTask($event, item)"></div>
+                </div>
+            </div>
+            <!-- end item menu -->
+        </div>
+    </div>
+    <!-- item selecond -->
+    <div class="div-block-menu-second" *ngFor="let menu of listMenu">
+        <div class="div-block-title" data-bs-toggle="tooltip" data-bs-placement="bottom" [attr.title]="menu?.name">
+            {{ menu?.name }}
+        </div>
+        <div class="div-group-menu">
+            <div class="div-item quick-task" data-bs-toggle="tooltip" data-bs-placement="bottom" *ngFor="let sub_menu of menu?.syS_Menu_Sub" [attr.title]="sub_menu?.name" (click)="onSelectItem(sub_menu)">
+                <div class="svg-icon-menu"></div>
+                <div class="div-title">
+                    <div class="name text-limmited-two-line" (click)="onClickMenu(sub_menu.link,menu.id,1,sub_menu.name,sub_menu.iS_ROUTER_LINK,menu,sub_menu)">
+                        {{ sub_menu?.name }}
+                    </div>
+                    <div [className]="
+                sub_menu?.iS_PIN
+                  ? 'quick-task svg-icon-star-yellow'
+                  : 'quick-task svg-icon-star'
+              " (click)="onQuickTask($event,sub_menu)"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mẫu fix -->
+    <!-- <div class="div-block-menu-second">
+          <div class="div-block-title" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Tác vụ nhanh">Tác vụ nhanh</div>
+          <div class="div-group-menu">
+              <div class="div-item quick-task" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Dự án">
+                  <div class="svg-icon-menu"></div>
+                  <div class="div-title">
+                      <div class="name text-limmited-two-line">Dự án</div>
+                      <div class="quick-task svg-icon-star"></div>
+                  </div>
+              </div>
+          </div>
+      </div> -->
+</div>

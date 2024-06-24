@@ -1,0 +1,56 @@
+.bg-img {
+    width: 150px;
+    height: 150px;
+    background-size: 150px 150px;
+    z-index: 20;
+}
+
+.bg-img-big {
+    width: 350px;
+    height: 350px;
+    background-size: auto 350px;
+    z-index: 20;
+    display: none;
+}
+
+.bg-img-big.show {
+    display: block;
+}
+
+.btn.action {
+    z-index: 10;
+    padding: 5px;
+}
+
+.btn.action.ok {
+    bottom: 0;
+    right: 10px;
+    position: absolute;
+}
+
+.btn.action.reject {
+    bottom: 0;
+    left: 0px;
+    position: absolute;
+}
+
+.btn-action-group {
+    height: 100%;
+    width: 100%;
+    background-color: #ffffff40;
+    display: none;
+}
+
+.bg-img:hover .btn-action-group {
+    display: block;
+}
+
+.a-view-detail {
+    background-color: white;
+    padding: 10px;
+}
+
+.img-on-content-popup {
+    height: 100%;
+    width: 100%;
+}

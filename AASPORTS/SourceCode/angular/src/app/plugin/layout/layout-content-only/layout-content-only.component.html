@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from demos.creative-tim.com/material-dashboard-pro/examples/dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 16 May 2019 07:46:19 GMT -->
+<!-- Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<!-- /Added by HTTrack -->
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+
+</head>
+
+<body class="layout-soft">
+    <dx-drawer [openedStateMode]="selectedOpenMode" [className]="'drawer-list-app'" [position]="selectedPosition" [revealMode]="selectedRevealMode" template="template" [opened]="false" [closeOnOutsideClick]="false">
+        <div id="content">
+            <div class="wrapper ">
+                <div class="main-panel-1" style="overflow: hidden;">
+                    <div class="content content-1">
+                        <div class="content content-2">
+                            <div class="container-fluid router-outlet-content">
+                                <div class="card-collapse" style="background-color: #f8f9fa;margin-top: -10px;">
+                                </div>
+                                <router-outlet>
+                                </router-outlet>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="overlay"></div>
+            </div>
+        </div>
+    </dx-drawer>
+</body>
+<!-- Mirrored from demos.creative-tim.com/material-dashboard-pro/examples/dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 16 May 2019 07:46:38 GMT -->
+
+</html>

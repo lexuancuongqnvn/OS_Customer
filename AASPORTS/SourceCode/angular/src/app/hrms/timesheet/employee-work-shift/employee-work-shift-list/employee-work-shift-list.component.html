@@ -1,0 +1,41 @@
+<div class="card-container k-form-edit">
+    <app-toolbar #toolbar [tableName]="tbName" [CurrenFrom]="CurrenFrom"></app-toolbar>
+    <div class="example-wrapper form-group">
+        <div class="example-wrapper">
+            <div class="card-collapse">
+                <div class="card-header" role="tab" id="headingTwo">
+                    <h5 class="mb-0">
+                        <a class="collapsed" style="color: #00bcd4 !important;" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Click để lọc dữ liệu
+                            <i class="material-icons">keyboard_arrow_down</i>
+                        </a>
+                    </h5>
+                </div>
+                <div id="collapseTwo" style="padding: 5px 10px 5px 0;" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
+                    <div class="card-body">
+                        <div class="">
+                            <div class="form-group filter">
+                                <div class="row div-filter">
+                                    <!-- Begin filter -->
+                                    <!-- Tên -->
+                                    <div class="col-4 col-sm-3 col-md-3 col-lg-2 col-xl-2">
+                                        <div class="form-group">
+                                            <label for="name" class="label-title">Tên :</label>
+                                            <input type="text" #name="ngModel" name="name" [(ngModel)]="filterInput.name" class="form-control" [value]="filterInput.name" id="name">
+                                        </div>
+                                    </div>
+                                    <!-- end filter -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="card-component form-group">
+        <jqgrid-list #gridList (ValueOutput)="selectRow($event)" [colModel]="col_model" [table]="tbName" [title]="'Danh sách lịch trực của nhân viên'"></jqgrid-list>
+    </div>
+    <dialog-acction #dialogDelete [content]="'Bạn có chắc chắn muốn xóa?'" [title]="translate('Vui lòng xác nhận','Confirm ')" (confirmOutput)="confirmDelete()"></dialog-acction>
+</div>

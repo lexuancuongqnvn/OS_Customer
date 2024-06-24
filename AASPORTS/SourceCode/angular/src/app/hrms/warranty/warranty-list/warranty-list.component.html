@@ -1,0 +1,241 @@
+<div class="card-container k-form-edit">
+    <app-toolbar #toolbar [tableName]="tbName" [CurrenFrom]="CurrenFrom"></app-toolbar>
+    <div class="example-wrapper form-group">
+        <div class="example-wrapper">
+            <div class="card-collapse">
+                <div class="card-header" role="tab" id="headingTwo">
+                    <h5 class="mb-0">
+                        <a class="collapsed" style="color: #00bcd4 !important;" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Click để lọc dữ liệu
+                            <i class="material-icons">keyboard_arrow_down</i>
+                        </a>
+                    </h5>
+                </div>
+                <div id="collapseTwo" style="padding: 5px 10px 5px 0;" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
+                    <div class="card-body">
+                        <div class="">
+                            <div class="form-group filter">
+                                <div class="row div-filter">
+                                    <!-- Begin filter -->
+                                    <!-- Model -->
+                                    <div class="col-4 col-sm-3 col-md-3 col-lg-2 col-xl-2">
+                                        <div class="form-group">
+                                            <label for="des_model2" class=" label-title">Model</label><br>
+                                            <input type="text" #des_model2="ngModel" name="des_model2" [(ngModel)]="filterInput.des_model" class="form-control" id="des_model2">
+                                        </div>
+                                    </div>
+                                    <!-- số Sevice tag -->
+                                    <div class="col-4 col-sm-3 col-md-3 col-lg-2 col-xl-2">
+                                        <div class="form-group">
+                                            <label for="des_sevice_tag2" class=" label-title">số Sevice tag</label><br>
+                                            <input type="text" #des_sevice_tag2="ngModel" name="des_sevice_tag2" [(ngModel)]="filterInput.des_sevice_tag" class="form-control" id="des_sevice_tag2">
+                                        </div>
+                                    </div>
+                                    <div class="col-4 col-sm-3 col-md-3 col-lg-2 col-xl-2">
+                                        <div class="form-group">
+                                            <label for="machine_status2" class=" label-title">Tình trạng máy</label><br>
+                                            <input type="text" #machine_status2="ngModel" name="machine_status2" [(ngModel)]="filterInput.machine_status" class="form-control" id="machine_status2" />
+                                        </div>
+                                    </div>
+                                    <!-- Ngày tạo phiếu từ -->
+                                    <div class="col-4 col-sm-3 col-md-3 col-lg-2 col-xl-2">
+                                        <div class="form-group">
+                                            <label for="doc_date_from" class="label-title">Ngày tạo phiếu từ</label>
+                                            <input-datepicker [ColumnName]="'doc_date_from'" name="doc_date_from" (ValueOutput)="valueStartDate($event,'doc_date_from')"></input-datepicker>
+                                        </div>
+                                    </div>
+                                    <!-- Ngày tạo phiếu đến -->
+                                    <div class="col-4 col-sm-3 col-md-3 col-lg-2 col-xl-2">
+                                        <div class="form-group">
+                                            <label for="doc_date_to" class=" label-title">Ngày tạo phiếu đến</label>
+                                            <input-datepicker [ColumnName]="'doc_date_to'" name="doc_date_to" (ValueOutput)="valueStartDate($event,'doc_date_to')"></input-datepicker>
+                                        </div>
+                                    </div>
+                                    <!-- end filter -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="card-component form-group">
+        <jqgrid-list #gridList [min_width]="850" (ValueOutput)="selectRow($event)" [colModel]="col_model" [table]="tbName" [title]="'Danh sách máy'"></jqgrid-list>
+    </div>
+    <dialog-acction #dialogDelete [content]="'Bạn có chắc chắn muốn xóa?'" [title]="translate('Vui lòng xác nhận','Confirm ')" (confirmOutput)="confirmDelete()"></dialog-acction>
+    <dialog-acction #dialogChooseTemplate [title]="'Chọn mẫu báo cáo'" (confirmOutput)="confirmChooseTemplate()">
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                    <label for="template_report" class=" label-title">Mẫu báo báo theo:</label>
+                    <input-selectpicker-v2 #SelectTemplateReportPicker (ValueOutput)="onSelectType($event,'template_report')" [value]="filterInput.template_report" [multiple]="false" [list]="list_template_report" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'template_report'"
+                        [title]="''"></input-selectpicker-v2>
+                </div>
+            </div>
+        </div>
+    </dialog-acction>
+</div>
+<!-- Edit -->
+<sidenav-add-edit #sidenavAddEdit [title]="'Chỉnh sửa thông tin máy bảo hành'" *ngIf="isEdit" class="form-sidenav-edit">
+    <form method="#" action="#" style="padding: 20px;">
+        <app-toolbar #toolbarEdit [tableName]="tbName" [CurrenFrom]="getCurrenFrom"></app-toolbar>
+        <alert-message #alertMessage></alert-message>
+        <div class="row general">
+            <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                <div class="form-group">
+                    <label for="doc_number" class=" label-title">Số hiệu (chứng từ)<span class="input-required">*</span></label><br>
+                    <input type="text" #doc_number="ngModel" [disabled]="disabled" name="doc_number" [(ngModel)]="InputModel.doc_number" [value]="InputModel.doc_number" class="form-control" id="doc_number">
+                </div>
+            </div>
+            <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                <div class="form-group">
+                    <label for="doc_date" class=" label-title">Ngày lập (Chứng từ)<span class="input-required">*</span></label><br>
+                    <input-datepicker [ColumnName]="'doc_date'" [value]="InputModel.doc_date" name="doc_date" (ValueOutput)="valueStartDate($event,'doc_date')"></input-datepicker>
+                </div>
+            </div>
+            <div class="col-12">
+                <hr>
+            </div>
+            <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                <div class="form-group">
+                    <label for="customer_name" class=" label-title">Công ty/ Khách hàng/ Nhân viên<span class="input-required">*</span></label><br>
+                    <input type="text" #customer_name="ngModel" [disabled]="disabled" name="customer_name" [(ngModel)]="InputModel.customer_name" [value]="InputModel.customer_name" class="form-control" id="customer_name">
+                </div>
+            </div>
+            <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                <div class="form-group">
+                    <label for="customer_email" class=" label-title">Mail</label><br>
+                    <input type="text" #customer_email="ngModel" [disabled]="disabled" name="customer_email" [(ngModel)]="InputModel.customer_email" [value]="InputModel.customer_email" class="form-control" id="customer_email">
+                </div>
+            </div>
+            <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                <div class="form-group">
+                    <label for="customer_phone" class=" label-title">Điện thoại</label><br>
+                    <input type="text" #customer_phone="ngModel" [disabled]="disabled" name="customer_phone" [(ngModel)]="InputModel.customer_phone" [value]="InputModel.customer_phone" class="form-control" id="customer_phone">
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
+                <div class="form-group">
+                    <label for="customer_address" class=" label-title">Địa chỉ<span class="input-required">*</span></label><br>
+                    <input type="text" #customer_address="ngModel" [disabled]="disabled" name="customer_address" [(ngModel)]="InputModel.customer_address" [value]="InputModel.customer_address" class="form-control" id="customer_address">
+                </div>
+            </div>
+            <div class="col-12">
+                <hr>
+            </div>
+            <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                <div class="form-group">
+                    <label for="des_model" class=" label-title">Model<span class="input-required">*</span></label><br>
+                    <input type="text" #des_model="ngModel" [disabled]="disabled" name="des_model" [(ngModel)]="InputModel.des_model" [value]="InputModel.des_model" class="form-control" id="des_model">
+                </div>
+            </div>
+            <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                <div class="form-group">
+                    <label for="des_cpu" class=" label-title">CPU<span class="input-required">*</span></label><br>
+                    <input type="text" #des_cpu="ngModel" [disabled]="disabled" name="des_cpu" [(ngModel)]="InputModel.des_cpu" [value]="InputModel.des_cpu" class="form-control" id="des_cpu">
+                </div>
+            </div>
+            <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                <div class="form-group">
+                    <label for="des_ram" class=" label-title">RAM<span class="input-required">*</span></label>
+                    <input type="number" #name="ngModel" [disabled]="disabled" name="des_ram" [(ngModel)]="InputModel.des_ram" [value]="InputModel.des_ram" class="form-control" id="des_ram">
+                </div>
+            </div>
+            <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                <div class="form-group">
+                    <label for="des_hdd" class=" label-title">HDD</label>
+                    <input type="number" #name="ngModel" [disabled]="disabled" name="des_hdd" [(ngModel)]="InputModel.des_hdd" [value]="InputModel.des_hdd" class="form-control" id="des_hdd">
+                </div>
+            </div>
+            <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                <div class="form-group">
+                    <label for="des_ssd" class=" label-title">SSD</label>
+                    <input type="number" #name="ngModel" [disabled]="disabled" name="des_ssd" [(ngModel)]="InputModel.des_ssd" [value]="InputModel.des_ssd" class="form-control" id="des_ssd">
+                </div>
+            </div>
+            <div class="col-12"></div>
+            <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                <div class="form-group">
+                    <input-checkbox [type]="'toggle'" [title]="'Pin'" (ValueOutput)="onChangeValue($event,'des_is_battery')" [value]="InputModel.des_is_battery"></input-checkbox>
+                </div>
+            </div>
+            <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                <div class="form-group">
+                    <input-checkbox [type]="'toggle'" [title]="'Sạc'" (ValueOutput)="onChangeValue($event,'des_is_charger')" [value]="InputModel.des_is_charger"></input-checkbox>
+                </div>
+            </div>
+            <div class="col-12"></div>
+            <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                <div class="form-group">
+                    <label for="des_cpu" class=" label-title">Khác</label><br>
+                    <input type="text" #des_cpu="ngModel" [disabled]="disabled" name="des_notes" [(ngModel)]="InputModel.des_notes" [value]="InputModel.des_notes" class="form-control" id="des_notes">
+                </div>
+            </div>
+            <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                <div class="form-group">
+                    <label for="des_sevice_tag" class=" label-title">số Sevice tag<span class="input-required">*</span></label><br>
+                    <input type="text" #des_sevice_tag="ngModel" [disabled]="disabled" name="des_sevice_tag" [(ngModel)]="InputModel.des_sevice_tag" [value]="InputModel.des_sevice_tag" class="form-control" id="des_sevice_tag">
+                </div>
+            </div>
+            <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                <div class="form-group">
+                    <label for="des_password" class=" label-title">Mật khẩu HĐH</label><br>
+                    <input type="text" #des_password="ngModel" [disabled]="disabled" name="des_password" [(ngModel)]="InputModel.des_password" [value]="InputModel.des_password" class="form-control" id="des_password">
+                </div>
+            </div>
+            <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                <div class="form-group">
+                    <label for="des_password_bios" class=" label-title">Mật khẩu Bios</label><br>
+                    <input type="text" #des_password_bios="ngModel" [disabled]="disabled" name="des_password_bios" [(ngModel)]="InputModel.des_password_bios" [value]="InputModel.des_password_bios" class="form-control" id="des_password_bios">
+                </div>
+            </div>
+            <div class="col-12">
+                <hr>
+            </div>
+            <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                <div class="form-group">
+                    <label for="machine_status" class=" label-title">Tình trạng máy<span class="input-required">*</span></label><br>
+                    <textarea type="text" #machine_status="ngModel" [disabled]="disabled" name="machine_status" [(ngModel)]="InputModel.machine_status" [value]="InputModel.machine_status" class="form-control" id="machine_status"></textarea>
+                </div>
+            </div>
+            <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                <div class="form-group">
+                    <label for="sell_date" class=" label-title">Ngày bán</label><br>
+                    <input-datepicker [ColumnName]="'sell_date'" [value]="InputModel.sell_date" name="sell_date" (ValueOutput)="valueStartDate($event,'sell_date')"></input-datepicker>
+                </div>
+            </div>
+            <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                <div class="form-group">
+                    <label for="warranty_type" class=" label-title">Chế độ</label>
+                    <input-selectpicker-v2 #SelectWarrantyPicker (ValueOutput)="onSelect($event,'warranty_type')" [value]="InputModel.warranty_type" [multiple]="false" [list]="warranty_type" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'warranty_type'" [title]="''"></input-selectpicker-v2>
+                </div>
+            </div>
+            <div class="col-12">
+                <hr>
+            </div>
+            <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                <div class="form-group">
+                    <label for="customer_return_date" class=" label-title">Ngày trả lại<span class="input-required">*</span></label><br>
+                    <input-datepicker [ColumnName]="'customer_return_date'" [value]="InputModel.customer_return_date" name="customer_return_date" (ValueOutput)="valueStartDate($event,'customer_return_date')"></input-datepicker>
+                </div>
+            </div>
+            <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                <div class="form-group">
+                    <label for="customer_notes" class=" label-title">Ghi chú trả lại<span class="input-required">*</span></label><br>
+                    <textarea type="text" #customer_notes="ngModel" [disabled]="disabled" name="customer_notes" [(ngModel)]="InputModel.customer_notes" [value]="InputModel.customer_notes" class="form-control" id="customer_notes"></textarea>
+                </div>
+            </div>
+            <div class="col-12">
+                <hr>
+            </div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <div class="form-group">
+                    <label for="accounting_notes" class=" label-title">Ghi chú (Kế toán)</label><br>
+                    <textarea type="text" #accounting_notes="ngModel" [disabled]="disabled" name="accounting_notes" [(ngModel)]="InputModel.accounting_notes" [value]="InputModel.accounting_notes" class="form-control" id="accounting_notes"></textarea>
+                </div>
+            </div>
+        </div>
+    </form>
+</sidenav-add-edit>

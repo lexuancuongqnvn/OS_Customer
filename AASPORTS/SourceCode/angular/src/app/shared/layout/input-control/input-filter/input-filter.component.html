@@ -1,0 +1,142 @@
+    <!-- Number -->
+    <kendo-numerictextbox *ngIf="type == 1 || type == 19 || type == 21" 
+        (valueChange)="onChangeValue($event, id)" 
+        [min]="0" 
+        [max]="1000000"
+        name="{{name}}"
+        [autoCorrect]="false">
+    </kendo-numerictextbox>
+    <!-- Date -->
+    <kendo-datepicker *ngIf="type == 5" 
+        [format]="format" 
+        (valueChange)="onChangeValue($event, id)" 
+        name="{{name}}"
+        ></kendo-datepicker>
+    <!-- Datetime -->
+    <kendo-datetimepicker *ngIf="type == 9" 
+      [format]="format" 
+      (valueChange)="onChangeValue($event, id)" 
+      name="{{name}}"
+      (afterValueChanged)="onAfterValueChange($event)"
+    >
+      </kendo-datetimepicker>
+    <!-- 10	dateranges -->
+    <kendo-daterange *ngIf="type == 10">
+      <label>
+        <kendo-dateinput
+          kendoDateRangeStartInput
+          (valueChange)="onAfterValueRange_S($event, id)"
+        ></kendo-dateinput>
+      </label>
+      <label>
+        <span class="label">-</span>
+        <kendo-dateinput
+          kendoDateRangeEndInput
+          [(value)]="range['end']"
+          (valueChange)="onAfterValueRange_E($event, id)"
+        ></kendo-dateinput>
+      </label>
+    </kendo-daterange>
+    <!-- Time -->
+    <kendo-timepicker *ngIf="type == 11" 
+        [format]="format" 
+        (valueChange)="onChangeValue($event, id)"
+        name="{{name}}"
+    ></kendo-timepicker>
+    <!-- 12	Multivalue -->
+    <kendo-multiselect *ngIf="type == 12"
+        [checkboxes]="true"
+        [autoClose]="false"
+        [textField]="'Name'"
+        [valueField]="'id'"
+        [placeholder]="'--Select--'"
+        [data]="listItemsMultivalue"
+        (valueChange)="onChangeValueMultivalue($event, id)"
+        name="{{name}}"
+    ></kendo-multiselect>
+    <!-- ColorPicker -->
+    <kendo-colorpicker *ngIf="type == 13"
+        format="hex"
+        [paletteSettings]="settings"
+        (valueChange)="onChangeValue($event, id)"
+        name="{{name}}"
+        ></kendo-colorpicker>
+    <!-- Float -->
+    <kendo-numerictextbox *ngIf="type == 14 || type == 15"
+        format="n2"
+        (valueChange)="onChangeValue($event, id)"
+        name="{{name}}"
+    ></kendo-numerictextbox>
+    <!-- MaskedTextBox -->
+    <kendo-maskedtextbox  *ngIf="type == 100"
+        mask="9-000"
+        (valueChange)="onChangeValue($event, id)"
+        name="{{name}}"
+    ></kendo-maskedtextbox>
+    <!-- Money -->
+    <kendo-textbox *ngIf="type == 22"
+        [clearButton]="true" 
+        (valueChange)="onChangeValue($event, id)"
+        name="{{name}}"
+        ></kendo-textbox>
+    <!-- Switch -->
+    <kendo-switch *ngIf="type == 4 || type==20" 
+        (valueChange)="onChangeValue($event, id)" 
+        [(ngModel)]="checked"
+        name="{{name}}"
+    ></kendo-switch>
+    <!-- File -->
+    <!-- <div class="example-config row upload-files" *ngIf="type==6 || type==7">
+        <div class="col-6" style="margin-left: -12px;">
+            <file-picker [CurrenFrom]="CurrenFrom" [multiple]="false" [accounT_ID]="idUser" [id]="id" [pageTitle]="'Uplpad files'" (ValueFilesOutput)="onChangeValueFile($event)"  [myFiles]="myFiles" [colName]="colName" [tableName]="tableName"></file-picker>
+        </div>
+        <div class="col-6">
+            <span class="value-file">{{myFiles.length}} files</span>
+        </div>
+    </div> -->
+    <!-- Files -->
+    <!-- <div class="example-config row upload-files" *ngIf="type==8">
+        <div class="col-6" style="margin-left: -12px;">
+            <file-picker [CurrenFrom]="CurrenFrom" [multiple]="true" [accounT_ID]="idUser" [id]="id" [pageTitle]="'Uplpad files'" (ValueFilesOutput)="onChangeValueFile($event)"  [myFiles]="myFiles" [colName]="colName" [tableName]="tableName"></file-picker>
+        </div>
+        <div class="col-6">
+            <span class="value-file">{{myFiles.length}} files</span>
+        </div>
+    </div> -->
+    <!-- TextBox -->
+    <kendo-textbox *ngIf="type == 2"
+        [clearButton]="true" 
+        (valueChange)="onChangeValue($event, id)"
+        name="{{name}}"
+        ></kendo-textbox>
+    <!-- TextArea -->
+    <kendo-textarea *ngIf="type == 3 || type == 17 "
+        (valueChange)="onChangeValue($event, id)" 
+        name="{{name}}"
+    ></kendo-textarea>
+    <!-- CheckBox (checked: {{ checked }}) -->
+    <input *ngIf="type == 23" 
+        (click)="onChangeValue($event.currentTarget.checked, id)" 
+        type="checkbox" kendoCheckBox 
+        name="{{name}}"
+    />
+    <!-- combobox -->
+    <kendo-combobox *ngIf="type == 24" 
+        [data]="listItemsCombobox"
+        [textField]="'Name'"
+        [valueField]="'id'"
+        [placeholder]="'--Select--'"
+        [allowCustom]="true"
+        (valueChange)="onChangeValueCombobox($event, id)"
+        name="{{name}}"
+        >
+    </kendo-combobox>
+    <!-- autocomplete -->
+    <kendo-autocomplete *ngIf="type == 25" 
+        [data]="listItems"
+        [valueField]="'id'"
+        [allowCustom]="true"
+        (valueChange)="onChangeValue($event, id)"
+        name="{{name}}"
+      >
+      </kendo-autocomplete>

@@ -1,0 +1,51 @@
+<div class="card-container k-form-edit">
+    <app-toolbar #toolbar [tableName]="tbName" [CurrenFrom]="CurrenFrom"></app-toolbar>
+    <div class="example-wrapper form-group">
+        <div class="example-wrapper">
+            <div class="">
+                <div class="form-group filter">
+                    <div class="row div-filter">
+                        <!-- Begin filter -->
+                        <!-- end filter -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-component form-group">
+        <jqgrid-list #gridList (ValueOutput)="selectRow($event)" [colModel]="col_model" [table]="tbName" [title]="'Danh sách mức độ ưu tiên'"></jqgrid-list>
+    </div>
+    <dialog-acction #dialogDelete [content]="'Bạn có chắc chắn muốn xóa?'" [title]="translate('Vui lòng xác nhận','Confirm ')" (confirmOutput)="confirmDelete()"></dialog-acction>
+    <dialog-acction #dialogEdit [title]="'Chỉnh sửa'" (confirmOutput)="confirmEdit()">
+        <div class="col-12">
+            <div class="form-group">
+                <label for="name" class="">Tên</label><br>
+                <input type="text" [disabled]="false" #name="ngModel" name="name" [(ngModel)]="InputModel.name" [value]="InputModel.name" class="form-control" id="name">
+            </div>
+        </div>
+        <!-- Phòng ban -->
+        <div class="col-12">
+            <div class="form-group">
+                <label for="department_code" class="">Phòng ban</label><br>
+                <input-selectpicker-v2 [disabled]="false" #SelectDepartmentPicker (ValueOutput)="onSelect($event,'department_code')" [value]="InputModel.department_code" [multiple]="false" [list]="listDepartment" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'department_code'"
+                    [title]="'Phòng ban'"></input-selectpicker-v2>
+            </div>
+        </div>
+    </dialog-acction>
+    <dialog-acction #dialogAdd [title]="'Thêm mới'" (confirmOutput)="confirmAdd()">
+        <div class="col-12">
+            <div class="form-group">
+                <label for="name2" class="">Tên</label><br>
+                <input type="text" [disabled]="false" #name2="ngModel" name="name" [(ngModel)]="InputModel.name" [value]="InputModel.name" class="form-control" id="name2">
+            </div>
+        </div>
+        <!-- Phòng ban -->
+        <div class="col-12">
+            <div class="form-group">
+                <label for="department_code2" class="">Phòng ban</label><br>
+                <input-selectpicker-v2 [disabled]="false" #SelectDepartmentPicker2 (ValueOutput)="onSelect($event,'department_code')" [value]="InputModel.department_code" [multiple]="false" [list]="listDepartment" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'department_code2'"
+                    [title]="'Phòng ban'"></input-selectpicker-v2>
+            </div>
+        </div>
+    </dialog-acction>
+</div>

@@ -1,0 +1,2 @@
+<form-edit-v2 #FromEditV2 (selectedRowsDataOutput)="onSelectedRowsDataOutput($event)" [tbName]="tbName" (onClickAcctionOutput)="onClickAcctionResponse($event)" [InputMaster]="InputMaster" (HandleValueChangedOutput)="handleValueChanged($event)" (HandleRowsDataGridOutput)="HandleRowsDataGridOutput($event)"></form-edit-v2>
+<dialog-acction #dialogDelete [content]="translate('Bạn có chắc chắn muốn xóa?','Are you sure you want to delete?')" [title]="translate('Vui lòng xác nhận','Please confirm')" (confirmOutput)="confirmDelete()"></dialog-acction>

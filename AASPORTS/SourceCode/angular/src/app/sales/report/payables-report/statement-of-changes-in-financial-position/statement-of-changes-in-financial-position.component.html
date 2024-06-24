@@ -1,0 +1,15 @@
+<form method="#" action="#" class="form-data form-view-master">
+    <app-toolbar #toolbar [tableName]="tbName" [CurrenFrom]="CurrenFrom" [classInsert]="'form-30082023'"></app-toolbar>
+    <alert-message #alertMessage></alert-message>
+    <osoft-data-grid-report #DataGridGenRowTable [tableName]="tbName" [dataFilter]="filterInput" (OnChangeDataFilter)="OnChangeDataFilter($event)" [dataSource]="listData" (selectedRowsDataOutput)="onSelectedRowsData($event)" (OnSelectRow)="selectRow($event)"></osoft-data-grid-report>
+</form>
+<dialog-acction #dialogViewDetail [width]="w" [content]="" [title]="translate('Sổ chi tiết công nợ khách hàng','Payables customer details ')" (confirmOutput)="onDelete($event)">
+    <div>
+        <dx-button class="search" icon="search" text="Tìm kiếm" (onClick)="onSearch()">
+        </dx-button>
+        <dx-button [disabled]="isEnableViewDeail" class="doc" icon="doc" text="Xem chi tiết" (onClick)="onViewDetail($event)">
+        </dx-button>
+    </div>
+    <accounts-receivable-ledger #FormAccountsReceivableLedger (OnSelectRow)="OnSelectRow($event)" [isShowToolbar]="false"></accounts-receivable-ledger>
+</dialog-acction>
+<os-dialog-preview-print #dialogPreviewPrint></os-dialog-preview-print>

@@ -1,0 +1,164 @@
+<div class="card-container k-form-edit">
+    <app-toolbar #toolbar [classInsert]="'form-30082023'" [tableName]="tbName" [CurrenFrom]="CurrenFrom"></app-toolbar>
+    <div class="example-wrapper form-group">
+        <div class="example-wrapper">
+            <div class="card-collapse">
+                <div class="card-header" role="tab" id="headingTwo">
+                    <h5 class="mb-0">
+                        <a class="collapsed" style="color: #00bcd4 !important;" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Click để lọc dữ liệu
+                            <i class="material-icons">keyboard_arrow_down</i>
+                        </a>
+                    </h5>
+                </div>
+                <div id="collapseTwo" style="padding: 5px 10px 5px 0;" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
+                    <div class="card-body">
+                        <div class="">
+                            <div class="form-group filter">
+                                <div class="row div-filter">
+                                    <!-- Begin filter -->
+                                    <div class="col-6 col-sm-5 col-md-4 col-lg-3 col-xl-3">
+                                        <div class="form-group">
+                                            <label for="filter_type" class=" label-title">Lọc đơn</label>
+                                            <input-selectpicker-v2 #SelectFilterTypePicker (ValueOutput)="onSelectType($event)" [value]="'1'" [multiple]="false" [list]="listType" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'filter_type'" [title]="'Lọc đơn'"></input-selectpicker-v2>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-sm-5 col-md-4 col-lg-3 col-xl-3">
+                                        <div class="form-group">
+                                            <label for="filter_type" class=" label-title">Trạng thái đơn</label>
+                                            <input-selectpicker-v2 #SelectFilterStatusApprovePicker (ValueOutput)="onSelectStatus($event)" [multiple]="false" [list]="listStatusApprove" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'approve_status'" [title]="'Lọc đơn'"></input-selectpicker-v2>
+                                        </div>
+                                    </div>
+                                    <!-- end filter -->
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-component form-group">
+        <jqgrid-list [min_width]="850" #gridList (ValueOutput)="selectRow($event)" [colModel]="col_model" [table]="tbName" [title]="'Danh sách đơn'"></jqgrid-list>
+    </div>
+    <dialog-acction #dialogDelete [content]="'Bạn có chắc chắn muốn xóa?'" [title]="translate('Vui lòng xác nhận','Confirm ')" (confirmOutput)="confirmDelete()"></dialog-acction>
+</div>
+<!-- Edit -->
+<sidenav-add-edit #sidenavAddEdit *ngIf="isEdit" class="form-sidenav-edit">
+    <form method="#" action="#" style="padding: 20px;">
+        <app-toolbar #toolbarEdit [classInsert]="'form-30082023'" [tableName]="tbName" [CurrenFrom]="getCurrenFrom"></app-toolbar>
+        <alert-message #alertMessage></alert-message>
+        <div class="row" style="padding: 0 20px 20px 20px;display: flex;" *ngIf="!isShowRegulation">
+            <!-- <div class="col-6 col-sm-5 col-md-4 col-lg-3 col-xl-3">
+                <div class="form-group">
+                    <label for="request_date" class=" label-title">Ngày yêu cầu</label><br>
+                    <input-datetimepicker [disabled]="disabled" [ColumnName]="'request_date'" name="request_date" [value]="InputModel.request_date" (ValueOutput)="valueStartDate($event,'request_date')"></input-datetimepicker>
+                </div>
+            </div> -->
+            <div class="col-6 col-sm-5 col-md-4 col-lg-3 col-xl-3">
+                <div class="form-group">
+                    <label for="start_datetime" class=" label-title">Từ ngày <span class="input-required">*</span></label><br>
+                    <input-datetimepicker [disabled]="disabled" [ColumnName]="'start_datetime'" name="start_datetime" [value]="InputModel.start_datetime" (ValueOutput)="valueStartDate($event,'start_datetime')"></input-datetimepicker>
+                </div>
+            </div>
+            <div class="col-6 col-sm-5 col-md-4 col-lg-3 col-xl-3">
+                <div class="form-group">
+                    <label for="end_datetime" class=" label-title">Đến ngày <span class="input-required">*</span></label><br>
+                    <input-datetimepicker [disabled]="disabled" [ColumnName]="'end_datetime'" name="end_datetime" [value]="InputModel.end_datetime" (ValueOutput)="valueStartDate($event,'end_datetime')"></input-datetimepicker>
+                </div>
+            </div>
+            <div class="col-12"></div>
+            <!-- <div class="col-6 col-sm-5 col-md-4 col-lg-3 col-xl-3">
+                <div class="form-group">
+                    <label for="for_day_in_week" class=" label-title">Áp dụng ngày trong tuần <span class="input-required">*</span></label>
+                    <input-selectpicker-v2 #SelectAplayDayInWeekPicker (ValueOutput)="onSelect($event,'for_day_in_week')" [value]="InputModel.for_day_in_week" [multiple]="true" [list]="listDayInWeek" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'for_day_in_week'"
+                        [title]="'Áp dụng ngày trong tuần'"></input-selectpicker-v2>
+                </div>
+            </div>
+            <div class="col-6 col-sm-5 col-md-4 col-lg-3 col-xl-3">
+                <div class="form-group">
+                    <label for="for_work_shift" class=" label-title">Áp dụng cho ca trực <span class="input-required">*</span></label>
+                    <input-selectpicker-v2 #SelectAplayWSInWeekPicker (ValueOutput)="onSelect($event,'for_work_shift')" [value]="InputModel.for_work_shift" [multiple]="true" [list]="listWorkShift" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'for_work_shift'"
+                        [title]="'Áp dụng cho ca trực'"></input-selectpicker-v2>
+                </div>
+            </div> -->
+            <div class="col-6 col-sm-5 col-md-4 col-lg-3 col-xl-3" *ngIf="this.InputModel.code != '' && this.InputModel.code != null && this.InputModel.code">
+                <div class="form-group">
+                    <label for="for_work_shift" class=" label-title">Tình trạng duyệt:</label><br>
+                    <b>{{InputModel.approve_status_name}}</b>
+                </div>
+            </div>
+            <div class="col-12"></div>
+            <div class="col-6 col-sm-5 col-md-4 col-lg-3 col-xl-3">
+                <div class="form-group">
+                    <label for="type_request" class=" label-title">Đăng ký đi muộn/về sớm:</label>
+                    <input-selectpicker-v2 #SelectTypeRequestPicker (ValueOutput)="onSelect($event,'type_request')" [value]="InputModel.type_request" [multiple]="false" [list]="listTypeRequest" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'type_request'" [title]="'Đăng ký đi muộn/ về sớm'"></input-selectpicker-v2>
+                </div>
+            </div>
+            <div class="col-6 col-sm-5 col-md-4 col-lg-3 col-xl-3">
+                <div class="form-group">
+                    <label for="time_request" class=" label-title">Thời gian (phút)</label>
+                    <input type="number" [disabled]="true" #time_request="ngModel" name="time_request" [(ngModel)]="InputModel.time_request" [value]="InputModel.time_request" class="form-control input-format-number" id="time_request">
+                </div>
+            </div>
+            <div class="col-12"></div>
+            <div class="col-6 col-sm-5 col-md-4 col-lg-3 col-xl-3">
+                <div class="form-group">
+                    <label for="id_stop_date" class=" label-title">Người duyệt<span class="input-required">*</span></label>
+                    <input-selectpicker-img #SelectCheckerPicker (ValueOutput)="onSelect($event,'checker')" [value]="InputModel.checker" [multiple]="false" [list]="listEmployeePermission" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'checker'" [FieldIMG]="'avarta'"
+                        [textSmall]="'department_name'"></input-selectpicker-img>
+                </div>
+            </div>
+            <div class="col-6 col-sm-5 col-md-4 col-lg-3 col-xl-3">
+                <div class="form-group">
+                    <label for="id_stop_date" class=" label-title">Người theo dõi</label>
+                    <input-selectpicker-img #SelecFollowertPicker (ValueOutput)="onSelect($event,'follower')" [value]="InputModel.follower" [multiple]="true" [list]="listEmployee" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'follower'" [FieldIMG]="'avarta'"
+                        [textSmall]="'department_name'"></input-selectpicker-img>
+                </div>
+            </div>
+            <div class="col-12"></div>
+            <div class="col-6 col-sm-5 col-md-4 col-lg-3 col-xl-3">
+                <div class="form-group">
+                    <label for="reason" class=" label-title">Lý do <span class="input-required">*</span></label>
+                    <textarea type="text" [disabled]="disabled" #reason="ngModel" name="reason" [(ngModel)]="InputModel.reason" [value]="InputModel.reason" class="form-control" id="reason"></textarea>
+                </div>
+            </div>
+            <div class="col-12"></div>
+            <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+                <div class="form-group">
+                    <label for="approve_note" class=" label-title">Ghi chú duyệt </label>
+                    <textarea type="text" #approve_note="ngModel" [disabled]="!showApprove" name="approve_note" [(ngModel)]="InputModel.approve_note" [value]="InputModel.approve_note" class="form-control" id="approve_note"></textarea>
+                </div>
+            </div>
+            <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6" *ngIf="this.InputModel.code != '' && this.InputModel.code != null && this.InputModel.code">
+                <div class="form-group">
+                    <br>
+                    <button type="button" *ngIf="InputModel.approve_status == '93C97776-CB85-4683-9F57-F948330BD72B' && showApprove" (click)="onClickApprove()" class="btn btn-outline-success">Duyệt</button>
+                    <button type="button" *ngIf="InputModel.approve_status == '16D1477B-621F-4F3C-A76C-4416A64C6A95' && showUnApprove" (click)="onClickUnApprove()" class="btn btn-outline-warning">Hủy duyệt</button>
+                    <button type="button" *ngIf="InputModel.approve_status == '93C97776-CB85-4683-9F57-F948330BD72B' && showApprove" (click)="onClickRefusedToApprove()" class="btn btn-outline-danger">Từ chối</button>
+                </div>
+            </div>
+        </div>
+        <div class="card-body" *ngIf="isShowRegulation">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="py-12">
+                        <form class="form-jqgrid-edit" method="#" action="#">
+                            <jqgrid-edit #gridTimeSheetEmployeeSoonLateRegulationEdit [minHeight]="400" [colModel]="col_model_edit" [table]="'HRM_TimeSheet_Employee_Soon_Late_Regulation'" [title]="'Quy định đi muộn/ về sớm công ty'"></jqgrid-edit>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <dialog-acction #dialogMoving [content]="" (confirmOutput)="confirmMoving()" [title]="'Chọn người nhận'">
+        <div class="col-12">
+            <div class="form-group">
+                <label for="move_to_account" class=" label-title">Người nhận đơn</label>
+                <input-selectpicker-v2 #SelectMovingPicker (ValueOutput)="onSelect($event,'move_to_account')" [value]="InputModel.move_to_account" [multiple]="false" [list]="listEmployee" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'move_to_account'"
+                    [title]="'Người nhận đơn'"></input-selectpicker-v2>
+            </div>
+        </div>
+    </dialog-acction>
+</sidenav-add-edit>

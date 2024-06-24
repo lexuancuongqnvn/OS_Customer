@@ -1,0 +1,29 @@
+<div style="text-align:center">
+    <div class="center-content">
+        <img width="256" style="display: none;" id="face1" src="" class="margin" />
+        <div id="selectList1"></div>
+    </div>
+    <div class="center-content">
+        <img width="256" style="display: none;" id="face2" src="" class="margin" />
+        <div id="selectList1"></div>
+    </div>
+    <div class="croper"></div>
+    <div class="checkin-out-face">
+        <div>
+            <br />
+            <div class="div-checkin">
+                <label style="
+                position: absolute;
+                margin-top: 125px;
+                width: 100%;
+                text-align: center;
+            ">ĐANG CHUẨN BỊ CAMERA</label>
+                <!-- <webcam id="webcam-id" [width]="256" [height]="256" [trigger]="triggerObservable" (imageCapture)="handleImage($event)" [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable" [videoOptions]="videoOptions" [imageQuality]="1" (cameraSwitched)="cameraWasSwitched($event)"
+                    (initError)="handleInitError($event)"></webcam> -->
+            </div>
+            <button style="display:block" id="btn-camera" (click)="onVerify()">onVerify</button>
+            <button style="display:none" id="btn-start-camera" (click)="postStartCamera()">play camera</button>
+        </div>
+    </div>
+    <br />
+</div>

@@ -1,0 +1,11 @@
+.example-wrapper.toolbar {
+    background-color: #164478;
+}
+
+.btn-toolbar {
+    color: white;
+}
+
+kendo-combobox.k-widget.k-combobox.k-combobox-clearable {
+    width: 100% !important;
+}

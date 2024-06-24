@@ -1,0 +1,326 @@
+<div class="card-container k-form-edit">
+    <!-- <app-toolbar #toolbar [tableName]="tbName" [CurrenFrom]="getCurrenFrom"></app-toolbar> -->
+    <div class="example-wrapper form-group">
+        <div class="">
+            <div class="form-group filter">
+                <div class="row div-filter">
+                    <!-- Begin filter -->
+
+                    <!-- end filter -->
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="div-calendar" style="margin-top: 34px;">
+                <div class="div-left-list-employee" *ngIf="(listEmployee.length > 1 && employeeModel.is_show_list_employee) || username == 'ROOT'">
+                    <ul class="list-group employee-list-group">
+                        <li class="list-group-item d-flex justify-content-between align-items-center" style=" border: none;padding: 0; ">
+                            <div class="form-search">
+                                <input type="text" (keyup)="onkeypressSearch($event)" placeholder="Tìm kiếm" class="form-control" id="employee_name_search">
+                            </div>
+                        </li>
+                        <li *ngFor="let item of listEmployeeT;let i = index" (click)="onSelectEmployee(item)" class="list-group-item d-flex justify-content-between align-items-center {{item['class']}}">
+                            <div [innerHTML]="item.avarta_html"></div>
+                            <a href="javascript:;" class="a-emp-name"> {{item['name']}}</a>
+                            <span class="badge badge-primary badge-pill">{{item['work_day']}}</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="{{employeeModel.is_show_list_employee || username == 'ROOT' ?'div-right-calendar':'col-12'}}">
+                    <div class="card card-calendar">
+                        <div class="row div-chart-2">
+                            <div class="div-chart-2-child col-lg-3 col-md-6 col-sm-6">
+                                <div class="card card-stats work-day">
+                                    <div class="div-icon-card div-icon-card-work-day">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="19" height="21" viewBox="0 0 19 21" fill="none">
+                                            <path d="M18.4554 6.64293H1.41964C1.15338 6.64293 0.9375 6.42705 0.9375 6.16078V4.71436C0.9375 3.64922 1.80094 2.78578 2.86607 2.78578H4.79464V0.696498C4.79464 0.430235 5.01052 0.214355 5.27679 0.214355H6.88393C7.15019 0.214355 7.36607 0.430235 7.36607 0.696498V2.78578H12.5089V0.696498C12.5089 0.430235 12.7248 0.214355 12.9911 0.214355H14.5982C14.8645 0.214355 15.0804 0.430235 15.0804 0.696498V2.78578H17.0089C18.0741 2.78578 18.9375 3.64922 18.9375 4.71436V6.16078C18.9375 6.42705 18.7216 6.64293 18.4554 6.64293ZM1.41964 7.92864H18.4554C18.7216 7.92864 18.9375 8.14452 18.9375 8.41078V18.8572C18.9375 19.9223 18.0741 20.7858 17.0089 20.7858H2.86607C1.80094 20.7858 0.9375 19.9223 0.9375 18.8572V8.41078C0.9375 8.14452 1.15338 7.92864 1.41964 7.92864ZM14.811 11.7837L13.6792 10.6427C13.4917 10.4536 13.1864 10.4524 12.9974 10.6399L8.73696 14.8661L6.88955 13.0037C6.70204 12.8147 6.39672 12.8134 6.20768 13.001L5.06673 14.1328C4.87769 14.3203 4.87645 14.6256 5.064 14.8146L8.38279 18.1603C8.5703 18.3493 8.87558 18.3506 9.06462 18.163L14.8083 12.4655C14.9973 12.278 14.9986 11.9727 14.811 11.7837Z" fill="white"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="card-header card-header-v2 card-header-warning card-header-icon">
+                                        <p class="card-category card-category-v2">Tổng công hưởng lương </p>
+                                        <h3 class="card-title card-title-v2">{{employeeModel.work_day?employeeModel.work_day:0}}</h3>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="stats stats-v2">
+                                            <i class="material-icons">task</i> Cập nhật sau khi chấm công
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="div-chart-2-child col-lg-3 col-md-6 col-sm-6">
+                                <div class="card card-stats ot">
+                                    <div class="div-icon-card div-icon-card-ot">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="21" height="16" viewBox="0 0 21 16" fill="none">
+                                            <path d="M16 6.99995C13.5128 6.99995 11.5 9.01275 11.5 11.4999C11.5 13.9871 13.5128 15.9999 16 15.9999C18.4872 15.9999 20.5 13.9871 20.5 11.4999C20.5 9.01275 18.4872 6.99995 16 6.99995ZM18 11.6965C18 11.8634 17.8634 11.9999 17.6966 11.9999H15.8038C15.6369 11.9999 15.5003 11.8634 15.5003 11.6965V9.30369C15.5003 9.13681 15.6369 9.00025 15.8038 9.00025H16.1966C16.3634 9.00025 16.5 9.13681 16.5 9.30369V10.9999H17.6966C17.8634 10.9999 18 11.1365 18 11.3034V11.6965ZM16 5.99996C16.1688 5.99996 16.335 6.01027 16.5 6.02527V4.49997C16.5 3.69997 15.8 2.99998 15 2.99998H12.5V1.49999C12.5 0.699995 11.8 0 11 0H6C5.2 0 4.5 0.699995 4.5 1.49999V2.99998H2C1.2 2.99998 0.5 3.69997 0.5 4.49997V6.99995H12.8475C13.7412 6.37214 14.8272 5.99996 16 5.99996ZM10.5 2.99998H6.5V1.99999H10.5V2.99998ZM10.7131 9.99993H7C6.72375 9.99993 6.5 9.77618 6.5 9.49994V7.99995H0.5V12.4999C0.5 13.2999 1.2 13.9999 2 13.9999H11.1072C10.7219 13.2487 10.5 12.4005 10.5 11.4999C10.5 10.9793 10.5775 10.4774 10.7131 9.99993Z" fill="white"/>
+                                          </svg>
+                                    </div>
+                                    <div class="card-header card-header-v2 card-header-rose card-header-icon">
+                                        <p class="card-category card-category-v2">Tổng giờ tăng ca</p>
+                                        <h3 class="card-title card-title-v2">{{totalOvertime}}</h3>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="stats stats-v2">
+                                            <i class="material-icons">av_timer</i> Cập nhật theo đơn từ
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="div-chart-2-child col-lg-3 col-md-6 col-sm-6">
+                                <div class="card card-stats totalLate">
+                                    <div class="div-icon-card div-icon-card-totalLate">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                            <path d="M10 0C4.47581 0 0 4.47581 0 10C0 15.5242 4.47581 20 10 20C15.5242 20 20 15.5242 20 10C20 4.47581 15.5242 0 10 0ZM12.3024 14.1169L8.74597 11.5323C8.62097 11.4395 8.54839 11.2944 8.54839 11.1411V4.35484C8.54839 4.08871 8.76613 3.87097 9.03226 3.87097H10.9677C11.2339 3.87097 11.4516 4.08871 11.4516 4.35484V9.90726L14.0121 11.7702C14.2298 11.9274 14.2742 12.2298 14.1169 12.4476L12.9798 14.0121C12.8226 14.2258 12.5202 14.2742 12.3024 14.1169Z" fill="white"/>
+                                          </svg>
+                                    </div>
+                                    <div class="card-header card-header-v2 card-header-success card-header-icon">
+                                        <p class="card-category card-category-v2">Tổng số lần đi muộn - về sớm</p>
+                                        <h3 class="card-title card-title-v2"> {{totalLate}} - {{totalSoon}}</h3>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="stats stats-v2">
+                                            <i class="material-icons">av_timer</i> Cập nhật sau khi chấm công
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="div-chart-2-child col-lg-3 col-md-6 col-sm-6">
+                                <div class="card card-stats total-day-off">
+                                    <div class="div-icon-card div-icon-card-total-day-off">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="25" viewBox="0 0 20 25" fill="none">
+                                            <path d="M19.4643 8.15354H0.535714C0.241071 8.15354 0 7.90905 0 7.61022V5.98023C0 4.78039 0.959821 3.80693 2.14286 3.80693H4.28571V1.45251C4.28571 1.15368 4.52679 0.90918 4.82143 0.90918H6.60714C6.90179 0.90918 7.14286 1.15368 7.14286 1.45251V3.80693H12.8571V1.45251C12.8571 1.15368 13.0982 0.90918 13.3929 0.90918H15.1786C15.4732 0.90918 15.7143 1.15368 15.7143 1.45251V3.80693H17.8571C19.0402 3.80693 20 4.78039 20 5.98023V7.61022C20 7.90905 19.7589 8.15354 19.4643 8.15354ZM0.535714 9.60242H19.4643C19.7589 9.60242 20 9.84691 20 10.1457V21.9178C20 23.1177 19.0402 24.0911 17.8571 24.0911H2.14286C0.959821 24.0911 0 23.1177 0 21.9178V10.1457C0 9.84691 0.241071 9.60242 0.535714 9.60242ZM12.0223 16.8468L14.1696 14.6689C14.3795 14.4561 14.3795 14.112 14.1696 13.8992L12.9063 12.6179C12.6964 12.4051 12.3571 12.4051 12.1473 12.6179L10 14.7957L7.85268 12.6179C7.64286 12.4051 7.30357 12.4051 7.09375 12.6179L5.83036 13.8992C5.62054 14.112 5.62054 14.4561 5.83036 14.6689L7.97768 16.8468L5.83036 19.0246C5.62054 19.2374 5.62054 19.5815 5.83036 19.7943L7.09375 21.0757C7.30357 21.2885 7.64286 21.2885 7.85268 21.0757L10 18.8978L12.1473 21.0757C12.3571 21.2885 12.6964 21.2885 12.9063 21.0757L14.1696 19.7943C14.3795 19.5815 14.3795 19.2374 14.1696 19.0246L12.0223 16.8468Z" fill="white"/>
+                                          </svg>
+                                    </div>
+                                    <div class="card-header card-header-v2 card-header-info card-header-icon">
+                                        <p class="card-category card-category-v2">Tổng số ngày nghỉ</p>
+                                        <h3 class="card-title card-title-v2">{{totalDayOff}}</h3>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="stats stats-v2">
+                                            <i class="material-icons">av_timer</i> Cập nhật theo đơn từ
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body div-card-fullCalendar">
+                            <div id="fullCalendar"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="display: none;" class="change-date" (click)="onResetSearch()"></div>
+        <div style="display: none;" class="update-target" (click)="onUpdateTarget()"></div>
+        <style>
+            #const-hour {
+                padding-bottom: 0px;
+                padding-top: 15px;
+                margin-top: 3px;
+                max-width: 50px;
+                width: 30px;
+            }
+            
+            .edit-hour-on {
+                height: 25px !important;
+                width: 100px !important;
+                /* border-radius: 18px 18px 18px 0px; */
+                margin: -17% 0px -26px 69% !important;
+                color: black !important;
+                text-align: right;
+                /* z-index: 1000 !important; */
+                display: none;
+            }
+            
+            .hover-edit-hour-on:hover+.edit-hour-on,
+            .edit-hour-on:hover {
+                display: block !important;
+            }
+            
+            .search-employee {
+                width: 100%;
+            }
+        </style>
+    </div>
+</div>
+<!-- Edit -->
+<sidenav-add-edit #sidenavAddEdit [title]="'Lịch sử chấm công'" *ngIf="isEdit" class="form-sidenav-edit">
+    <form method="#" action="#" style="padding: 20px;" class="form-jqgrid-edit">
+        <alert-message #alertMessage></alert-message>
+        <div class="row div-result-checkin">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Ảnh</th>
+                        <th scope="col">Thời gian</th>
+                        <th scope="col">Tình trạng</th>
+                        <th scope="col">Bản đồ</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of listHistory">
+                        <th scope="row">
+                            <img style="max-width: 256px;width: 100%;" [src]="item.link_image">
+                        </th>
+                        <td>{{item.check_in}}</td>
+                        <td>
+                            <span *ngIf="item.status_checkin == 0" style="color: green;">Thành công</span>
+                            <span *ngIf="item.status_checkin != 0" style="color: red;">Thất bại</span>
+                        </td>
+                        <td>
+                            <a href="javascript:;" (click)="OpenMap(item.id)"><i>Xem trên bản đồ</i></a>
+                        </td>
+                        <td>
+                            <div *ngIf="item['open']">
+                                <iframe width="400" height="100%" id="iframe-map-{{item['id']}}" [src]="item['link']" scrolling="no" frameborder="0"></iframe>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </form>
+</sidenav-add-edit>
+<sidenav-add-edit #sidenavUpdateTarget [title]="" *ngIf="isTarget" class="form-sidenav-edit">
+    <form method="#" action="#" style="padding: 20px;" class="form-jqgrid-edit">
+        <app-toolbar #toolbarEdit [tableName]="'KNV_Update_Target'" [CurrenFrom]="getCurrenFrom"></app-toolbar>
+        <alert-message #alertMessage></alert-message>
+        <div class="row div-result-checkin">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col" style="font-weight: 700;">#</th>
+                        <th scope="col" style="font-weight: 700;">Lương/ phụ cấp theo doanh số</th>
+                        <th scope="col" style="font-weight: 700;">Chỉ tiêu</th>
+                        <th scope="col" style="font-weight: 700;">Doanh số thực tế</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of listLabourContractAppendix;let i = index;">
+                        <th style="text-align: center;">{{i+1}}</th>
+                        <td style="text-align: center;">{{item.name}}</td>
+                        <td style="text-align: center;">{{item.taget}}{{item.taget_unit=='PERCENT'?' %':' SL'}}</td>
+                        <td style="text-align: center;">
+                            <div class="row">
+                                <div class="col-10">
+                                    <div class="form-group">
+                                        <input type="number" #name="ngModel" name="day_number{{i+1}}" [(ngModel)]="item.sales" [value]="item.sales" class="form-control" id="day_number{{i+1}}">
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </form>
+</sidenav-add-edit>
+<div id="history_checkin" (click)="LoadHistory()"></div>
+<dialog-acction #dialogHistory [width]="500" [title]="'Kết quả chấm công - '+modelResult.date_name_vn_in_week">
+    <div class="row">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td colspan="2">
+                        <div class="card">
+                            <div class="card-body">
+                                <div id="accordion" role="tablist">
+                                    <div class="card-collapse">
+                                        <div class="card-header" role="tab" id="headingOne">
+                                            <h5 class="mb-0">
+                                                <a data-toggle="collapse" (click)="appenMap('iframe-map-in',modelResult.latitude_in,modelResult.longitude_in)" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="collapsed">
+                                        Vào ca
+                                        <i class="material-icons">keyboard_arrow_down</i>
+                                      </a>
+                                            </h5>
+                                        </div>
+                                        <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion" style="">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <span>Ca làm việc </span> <br />
+                                                            <label class="label-title">{{modelResult.work_shift_name_in}}</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <span>Thời gian chấm công</span> <br />
+                                                            <label class="label-title">{{modelResult.check_in_time_f}}</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <span>Địa điểm chấm công</span> <br />
+                                                            <label class="label-title">{{modelResult.branch_name_in}}</label> <br />
+                                                            <span>{{modelResult.branch_address_in}}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12" *ngIf="modelResult.latitude_in">
+                                                        <iframe width="100%" height="100%" id="iframe-map-in" [src]="''" scrolling="no" frameborder="0"></iframe>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-collapse">
+                                        <div class="card-header" role="tab" id="headingThree">
+                                            <h5 class="mb-0">
+                                                <a class="collapsed" (click)="appenMap('iframe-map-out',modelResult.latitude_out,modelResult.longitude_out)" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                    Ra ca
+                                        <i class="material-icons">keyboard_arrow_down</i>
+                                      </a>
+                                            </h5>
+                                        </div>
+                                        <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <span>Ca làm việc</span> <br />
+                                                            <label class="label-title">{{modelResult.work_shift_name_out}}</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <span>Thời gian chấm công</span> <br />
+                                                            <label class="label-title">{{modelResult.check_out_time_f}}</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <span>Địa điểm chấm công</span> <br />
+                                                            <label class="label-title">{{modelResult.branch_name_out}}</label> <br />
+                                                            <span>{{modelResult.branch_address_out}}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12" *ngIf="modelResult.latitude_out">
+                                                        <iframe width="100%" height="100%" id="iframe-map-out" [src]="''" scrolling="no" frameborder="0"></iframe>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="info">Đi muộn</td>
+                    <td class="value">{{modelResult.late}} phút</td>
+                </tr>
+                <tr>
+                    <td class="info">Về sớm</td>
+                    <td class="value">{{modelResult.soon}} phút</td>
+                </tr>
+                <tr>
+                    <td class="info bold">Tổng công</td>
+                    <td class="value bold">{{modelResult['work_day_totals']}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</dialog-acction>

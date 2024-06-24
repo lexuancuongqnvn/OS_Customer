@@ -1,0 +1,70 @@
+<div class="card-container k-form-edit">
+    <app-toolbar #toolbar [tableName]="tbName" [CurrenFrom]="CurrenFrom"></app-toolbar>
+    <div class="example-wrapper form-group">
+        <div class="example-wrapper">
+            <div class="">
+                <div class="form-group filter">
+                    <div class="row div-filter">
+                        <!-- Begin filter -->
+
+                        <!-- end filter -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-component form-group">
+        <jqgrid-list #gridList (ValueOutput)="selectRow($event)" [colModel]="col_model" [table]="tbName" [title]="'Danh sách app'"></jqgrid-list>
+    </div>
+    <dialog-acction #dialogDelete [content]="'Bạn có chắc chắn muốn xóa?'" [title]="translate('Vui lòng xác nhận','Confirm ')" (confirmOutput)="confirmDelete()"></dialog-acction>
+</div>
+<!-- Edit -->
+<sidenav-add-edit #sidenavAddEdit [title]="''" *ngIf="isEdit" class="form-sidenav-edit">
+    <form method="#" action="#" style="padding: 20px;">
+        <app-toolbar #toolbarEdit [tableName]="tbName" [CurrenFrom]="getCurrenFrom"></app-toolbar>
+        <alert-message #alertMessage></alert-message>
+        <div class="row">
+            <div class="col-3 col-sm-3 col-md-3 col-lg-2 col-xl-2">
+                <div class="form-group">
+                    <label for="id_name" class=" label-title">Tên app</label>
+                    <input type="text" #name="ngModel" name="name" [(ngModel)]="InputModel.name" [value]="InputModel.name" class="form-control" id="id_name">
+                </div>
+            </div>
+            <div class="col-3 col-sm-3 col-md-3 col-lg-2 col-xl-2">
+                <div class="form-group">
+                    <label for="key_app" class=" label-title">Mã app</label>
+                    <input type="text" #key_app="ngModel" name="key_app" [(ngModel)]="InputModel.key_app" [value]="InputModel.key_app" class="form-control" id="key_app">
+                </div>
+            </div>
+            <div class="col-3 col-sm-3 col-md-3 col-lg-2 col-xl-2">
+                <div class="form-group">
+                    <label for="icon" class=" label-title">Icon</label>
+                    <input type="text" #icon="ngModel" name="icon" [(ngModel)]="InputModel.icon" [value]="InputModel.icon" class="form-control" id="icon">
+                </div>
+            </div>
+            <div class="col-3 col-sm-3 col-md-3 col-lg-2 col-xl-2">
+                <div class="form-group">
+                    <label for="default_link" class=" label-title">Default link</label>
+                    <input type="text" #default_link="ngModel" name="default_link" [(ngModel)]="InputModel.default_link" [value]="InputModel.default_link" class="form-control" id="default_link">
+                </div>
+            </div>
+            <div class="col-3 col-sm-3 col-md-3 col-lg-2 col-xl-2">
+                <div class="form-group">
+                    <label for="id_stop_date" class=" label-title">Nhóm quyền</label>
+                    <input-selectpicker-v2 #SelectPicker (ValueOutput)="onSelect($event,'list_account_group')" [value]="InputModel.list_account_group" [multiple]="true" [list]="listAccountGroup" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'list_account_group'"
+                        [title]="'Nhóm người dùng'"></input-selectpicker-v2>
+                </div>
+            </div>
+            <div class="col-3 col-sm-3 col-md-3 col-lg-2 col-xl-2">
+                <div class="form-group">
+                    <label for="id_stop_date" class=" label-title">Người dùng </label>
+                    <input-selectpicker-v2 #SelectUserPicker (ValueOutput)="onSelect($event,'list_account')" [value]="InputModel.list_account" [multiple]="true" [list]="listAccount" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'list_account'" [title]="'người dùng'"></input-selectpicker-v2>
+                </div>
+            </div>
+            <div class="col-12">
+                <label for="id_description" class="label-title">Mô tả</label>
+                <angular-editor [disabled]="false" #description="ngModel" name="description" [(ngModel)]="InputModel.description" [config]="config"></angular-editor>
+            </div>
+        </div>
+    </form>
+</sidenav-add-edit>

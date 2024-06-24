@@ -1,0 +1,63 @@
+ 
+<kendo-grid
+    [data]="geenGridView(tbName)" 
+    id="{{tbName}}" 
+    #{{tbName}} 
+    kendoGridSelectBy="indexRow"
+    (add)="addHandler()"
+    [groupable]="false" 
+    [reorderable]="true" 
+    [resizable]="true" 
+    [pageSize]="state.take"
+    [skip]="state.skip"
+    [sort]="state.sort"
+    [sortable]="true"
+    [pageable]="true"
+    [height]="480"
+    (dataStateChange)="dataStateChange($event,tbName)"
+    [columnMenu]="{ filter: true }"
+>
+<ng-template kendoGridToolbarTemplate>
+    <kendo-grid-spacer></kendo-grid-spacer>
+    <button type="button" kendoGridExcelCommand icon="file-excel"></button>
+    <button type="button" kendoGridPDFCommand icon="file-pdf"></button>
+</ng-template>
+    <kendo-grid-checkbox-column 
+    [width]="45" 
+    [headerClass]="{ 'text-center': true }" 
+    [class]="{ 'text-center': true }"
+    class="{{tbName}}"
+    [resizable]="false" 
+    [columnMenu]="false" 
+    [showSelectAll]="true">
+    </kendo-grid-checkbox-column>
+    <kendo-grid-column [title]="'STT'" [width]="45" field="indexRow"  [resizable]="false" [columnMenu]="false">
+        <ng-template kendoGridCellTemplate let-dataItem>
+            <span>{{ dataItem['indexRow'] }}</span>
+        </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column *ngFor="let item of GenRowTable;let i = index" [hidden]="item.columN_NAME == 'id' || item.typE_ID == 16 || item.columN_NAME == 'code' || item.displaY_STATUS != 1" field="{{item.columN_NAME}}" [title]="item.name" [width]="item.width" class="{{item.clasS_INSERT}}">
+        <ng-template kendoGridCellTemplate let-dataItem>
+            <input-view
+                (ValueFilesOutput)="getValueFile($event,item.columN_NAME,item.tablE_NAME,dataItem['code'])" 
+                [id]="dataItem['id']" 
+                [codeEdit]="dataItem['code']"
+                [CurrenFrom]="CurrenFrom"
+                [myFiles]="arrayFiles" 
+                [colName]="item.columN_NAME" 
+                [tableName]="tbName" 
+                [displaY_EDIT]="item.displaY_EDIT"
+                [displaY_EDIT]="item.displaY_EDIT" 
+                [displaY_LIST]="item.displaY_LIST" 
+                [shoW_REFERENCE]="item.shoW_REFERENCE" 
+                [storeD_PROCEDURES]="item.storeD_PROCEDURES" 
+                [reference]="item.reference" 
+                (ValueOutput)="GetdData($event,tbName,item.columN_NAME,item.typE_ID)" 
+                [value]="dataItem[item.columN_NAME]" 
+                [type]="item.typE_ID" 
+                [isloadingData]="isloadingData" 
+                [name]="tableName+item.columN_NAME" 
+                [format]="item.format"></input-view>
+        </ng-template>
+    </kendo-grid-column>
+</kendo-grid>

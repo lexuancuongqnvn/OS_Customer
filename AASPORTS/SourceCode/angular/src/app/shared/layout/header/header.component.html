@@ -1,0 +1,25 @@
+<div class="header header-bg">
+    <div class="nav-container">
+        <div class="menu-button">
+            <span class="k-icon hamburger-icon" (click)="onButtonClick()"></span>
+        </div>
+
+        <div class="title">
+            <h1> PHẦN MỀM QUẢN LÝ</h1>
+        </div>
+
+        <div class="settings">
+            <!-- <span> {{ this.customMsgService.translate('language') }} </span> -->
+            <!-- <kendo-dropdownlist [data]="locales" textField="locale" valueField="localeId" [value]="selectedLanguage"
+                (valueChange)="changeLanguage($event)" [popupSettings]="popupSettings"
+                [ngClass]="{'material-bg':selectedTheme.text==='Material'}" class="ddl-locale">
+            </kendo-dropdownlist> -->
+            <kendo-dropdownbutton [data]="settings" [icon]="icon">
+                User Settings
+            </kendo-dropdownbutton>
+        </div>
+        <kendo-avatar imageSrc="https://i.pinimg.com/originals/e8/9d/7c/e89d7cc0ba3cf5d8e6b1e036cc049791.png"
+            shape="circle">
+        </kendo-avatar>
+    </div>
+</div>

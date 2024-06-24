@@ -1,0 +1,4 @@
+.card-component.form-group {
+    overflow: scroll;
+    max-height: 65vh;
+}

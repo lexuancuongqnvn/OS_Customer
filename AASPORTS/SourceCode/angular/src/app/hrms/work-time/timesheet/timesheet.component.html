@@ -1,0 +1,38 @@
+<div class="card-container k-form-edit">
+    <app-toolbar #toolbar [tableName]="tbName" [CurrenFrom]="CurrenFrom"></app-toolbar>
+    <div class="example-wrapper form-group">
+        <div class="example-wrapper">
+            <div class="">
+                <div class="form-group filter">
+                    <div class="row div-filter">
+                        <!-- Begin filter -->
+                        <!-- Ngày bắt đầu -->
+                        <div class="col-4 col-sm-3 col-md-3 col-lg-2 col-xl-2">
+                            <div class="form-group">
+                                <label for="id_stop_date" class="label-title">Ngày bắt đầu (từ ngày)</label>
+                                <input-datepicker [ColumnName]="'start_date'" name="start_date" (ValueOutput)="valueStartDate($event,'start_date')"></input-datepicker>
+                            </div>
+                        </div>
+                        <!-- Ngày kết thúc -->
+                        <div class="col-4 col-sm-3 col-md-3 col-lg-2 col-xl-2">
+                            <div class="form-group">
+                                <label for="end_date" class=" label-title">Ngày kết thúc (đến ngày)</label>
+                                <input-datepicker [ColumnName]="'end_date'" name="end_date" (ValueOutput)="valueStartDate($event,'end_date')"></input-datepicker>
+                            </div>
+                        </div>
+                        <!-- Phòng ban -->
+                        <div class="col-8">
+                            <div class="form-group">
+                                <label for="department_code" class="">Phòng ban</label><br>
+                                <input-selectpicker-v2 #SelectDepartmentPicker (ValueOutput)="onSelect($event,'department')" [multiple]="true" [list]="listDepartment" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'department_code'" [title]="'Phòng ban'"></input-selectpicker-v2>
+                            </div>
+                        </div>
+                        <!-- end filter -->
+                    </div>
+                    <div class="row table-result" [innerHTML]="InputModel.html">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

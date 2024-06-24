@@ -1,0 +1,143 @@
+<div class="card-container k-form-edit">
+    <app-toolbar #toolbar [classInsert]="'form-30082023'" [tableName]="tbName" [CurrenFrom]="CurrenFrom"></app-toolbar>
+    <div class="example-wrapper form-group">
+        <div class="example-wrapper">
+            <div class="">
+                <div class="form-group filter">
+                    <div class="row div-filter">
+                        <!-- Begin filter -->
+                        <!-- Tên nhân viên -->
+                        <div class="col-12 col-sm-4 col-md-4 col-lg-3 col-xl-2">
+                            <div class="form-group">
+                                <label for="employee_name" class="">Tên nhân viên</label>
+                                <input type="text" #employee_name="ngModel" name="employee_name" [(ngModel)]="filterInput.employee_name" [value]="filterInput.employee_name" class="form-control" id="employee_name">
+                            </div>
+                        </div>
+                        <!-- Mã nhân viên -->
+                        <div class="col-12 col-sm-4 col-md-4 col-lg-3 col-xl-2">
+                            <div class="form-group">
+                                <label for="employee_id" class="">Mã nhân viên</label>
+                                <input type="text" #employee_id="ngModel" name="employee_id" [(ngModel)]="filterInput.employee_id" [value]="filterInput.employee_id" class="form-control" id="employee_id">
+                            </div>
+                        </div>
+                        <!-- end filter -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-component form-group">
+        <jqgrid-list #gridList (ValueOutput)="selectRow($event)" [colModel]="col_model" [table]="tbName" [title]="'Danh sách hợp đồng'"></jqgrid-list>
+    </div>
+    <dialog-acction #dialogDelete [content]="'Bạn có chắc chắn muốn xóa?'" [title]="translate('Vui lòng xác nhận','Confirm ')" (confirmOutput)="confirmDelete()"></dialog-acction>
+</div>
+<!-- Edit -->
+<sidenav-add-edit #sidenavAddEdit *ngIf="isEdit" [tbName]="tbName" class="form-sidenav-edit">
+    <form method="#" action="#" style="padding: 20px;" class="form-jqgrid-edit" [id]="'form-'+tbName">
+        <app-toolbar #toolbarEdit [classInsert]="'form-30082023'" [tableName]="tbName" [CurrenFrom]="getCurrenFrom"></app-toolbar>
+        <alert-message #alertMessage></alert-message>
+        <div class="row" style="padding: 0 15px 0 15px;">
+            <div class="col-2">
+                <div class="form-group">
+                    <label for="contract_code" class="label-title">Số hợp đồng (*)</label>
+                    <input type="text" #contract_code="ngModel" name="contract_code" [(ngModel)]="InputModel.contract_code" [value]="InputModel.contract_code" class="form-control">
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="form-group">
+                    <label for="employee_code" class="label-title">Nhân viên</label>
+                    <input-selectpicker-v2 #SelectEmployeePicker (ValueOutput)="onSelect($event,'employee_code')" [value]="InputModel.employee_code" [multiple]="false" [list]="listEmployee" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'employee_code'" [title]="'Nhân viên'"></input-selectpicker-v2>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="form-group">
+                    <label for="begin_date1" class=" label-title">Từ ngày</label>
+                    <input-datepicker [disabled]="disabled" [ColumnName]="'begin_date'" name="begin_date" [value]="InputModel.begin_date" (ValueOutput)="valueStartDate($event,'begin_date')"></input-datepicker>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="form-group">
+                    <label for="end_date" class=" label-title">Đến ngày</label>
+                    <input-datepicker [disabled]="disabled" [ColumnName]="'end_date'" name="end_date" [value]="InputModel.end_date" (ValueOutput)="valueStartDate($event,'end_date')"></input-datepicker>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="form-group">
+                    <label for="contract_type_code" class=" label-title">Loại hợp đồng</label>
+                    <input-selectpicker-v2 #SelectTypeContractPicker (ValueOutput)="onSelect($event,'contract_type_code')" [value]="InputModel.contract_type_code" [multiple]="false" [list]="listContractType" [FieldValue]="'code'" [FieldDisplay]="'name'" [ColumnName]="'contract_type_code'"
+                        [title]="'Loại hợp đồng'"></input-selectpicker-v2>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="form-group">
+                    <label for="paid_holiday" class="label-title">Phép nghỉ có lương/năm</label>
+                    <input type="number" #paid_holiday="ngModel" name="paid_holiday" [(ngModel)]="InputModel.paid_holiday" [value]="InputModel.paid_holiday" class="form-control">
+                </div>
+            </div>
+            <div class="col-12"></div>
+            <div class="card-body" [style.display]="(!isEditLV?'block':'none')">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="py-12">
+                            <form class="form-jqgrid-edit" method="#" action="#">
+                                <jqgrid-edit [minHeight]="200" #gridSalaryEdit [colModel]="col_model_labour_edit" [table]="'HRM_Employee_Labour_Contract_Salary'" [title]="'1.0 Lương'"></jqgrid-edit>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="py-12">
+                            <form class="form-jqgrid-edit" method="#" action="#">
+                                <jqgrid-edit [minHeight]="200" #gridAppendixEdit [colModel]="col_model_appendix_edit" [table]="'HRM_Employee_Labour_Contract_Appendix'" [title]="'2.0 Phụ lục hợp đồng'"></jqgrid-edit>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="py-12">
+                            <form class="form-jqgrid-edit" method="#" action="#">
+                                <jqgrid-edit [minHeight]="200" #gridSalaryDeductionEdit [colModel]="col_model_salary_deduction_edit" [table]="'HRM_Employee_Labour_Contract_Salary_Deduction'" [title]="'3.0 Các khoản trừ vào lương'"></jqgrid-edit>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="py-12">
+                            <form class="form-jqgrid-edit" method="#" action="#">
+                                <jqgrid-edit [minHeight]="200" #gridCurriculumVitaeEdit [colModel]="col_model_curriculum_vitae_edit" [table]="'HRM_Employee_Labour_Contract_Curriculum_Vitae'" [title]="'4.0 Sơ yếu lý lịch'"></jqgrid-edit>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body" [style.display]="(isEditLV?'block':'none')">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card ">
+                            <div class="card-header ">
+                                <h4 class="card-title">Phụ lục hợp đồng doanh số bán hàng
+                                </h4>
+                            </div>
+                            <div class="card-body ">
+                                <ul class="nav nav-pills nav-pills-warning" role="tablist">
+                                    <li class="nav-item" *ngFor="let item of InputModel.hRM_Employee_Labour_Contract_Appendixs;let i=index;">
+                                        <a class="nav-link {{i==0?'active show':''}}" (click)="onClickSaleLevel(item)" data-toggle="tab" href="#link{{item.id}}" role="tablist">
+                                            {{item.name}}
+                                    </a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content tab-space">
+                                    <div class="col-md-12">
+                                        <div class="py-12">
+                                            <form class="form-jqgrid-edit" method="#" action="#">
+                                                <jqgrid-edit [minHeight]="350" #gridTargetSaleLevelEdit [colModel]="col_model_appendix_sale_level_edit" [table]="'hrM_Employee_Labour_Contract_Appendix_Target_Sale_Level'" [title]="'Danh sách phụ lục'"></jqgrid-edit>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</sidenav-add-edit>
+<!-- Edit -->

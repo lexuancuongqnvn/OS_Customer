@@ -1,0 +1,325 @@
+<!-- <div class="row">
+    <div class="col-12 div-title-project">
+        <span class="span-title-project">BÁO CÁO THEO DỰ ÁN</span>
+    </div>
+    <div id="accordion" class="col-12">
+        <div class="card">
+            <div class="card-header" id="heading1">
+                <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
+                        #Nhấn vào để lọc dữ liệu báo theo dự án
+              </button>
+                </h5>
+            </div>
+            <div id="collapse1" class="collapse" aria-labelledby="heading1" data-parent="#accordion">
+                <div class="card-body">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-6" id="chart_div_proj"></div>
+    <div class="col-6" id="chart_div_proj_sub"></div>
+</div>
+<div class="row">
+    <div class="col-6">
+        <div class="div-title-department">
+            <span class="span-title-department">BÁO CÁO THEO PHÒNG BAN</span>
+        </div>
+        <div id="chart_div_dep"></div>
+    </div>
+    <div class="col-6">
+        <div class="div-title-time">
+            <span class="span-title-time">BÁO CÁO THEO THỜI GIAN</span>
+        </div>
+        <div id="accordion">
+            <div class="card">
+            </div>
+        </div>
+        <div id="chart_div_dep_sub"></div>
+    </div>
+    <div class="col-12" id="div_Proj_Dep" style="display: none;">
+        <div class="div-title-department">
+            <span class="span-title-department"></span>
+        </div>
+        <div>
+            <div class="row" style="width: 102%;">
+                <div class="col-4 col-w-50 col-pie">
+                    <div id="chart_div_task_status"></div>
+                </div>
+                <div class="col-8 col-w-50 col-table-1">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th style="width:10%"></th>
+                                <th style="width:60%">Công việc</th>
+                                <th style="width:30%">Người thực hiện</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody-status">
+
+                        </tbody>
+                    </table>
+                    <a href="javascript:;" class="a-hiden" (click)="hidenProj_Dep()">Ẩn</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+<div class="content dashboard-workflow">
+    <div class="container-fluid">
+        <div class="container-fluid">
+            <div class="row div-chart-2">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="card card-stats card-stats-total-project">
+                        <div class="circle-icon circle-icon-total-project">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M2.58477 0.362793C1.35747 0.362793 0.362549 1.35773 0.362549 2.58502V18.1406C0.362549 19.3679 1.35747 20.3628 2.58477 20.3628H18.1403C19.3676 20.3628 20.3625 19.3679 20.3625 18.1406V2.58502C20.3625 1.35773 19.3676 0.362793 18.1403 0.362793H2.58477ZM5.9181 11.4739C5.9181 10.8602 5.42064 10.3628 4.80699 10.3628C4.19334 10.3628 3.69588 10.8602 3.69588 11.4739V15.9183C3.69588 16.532 4.19334 17.0295 4.80699 17.0295C5.42064 17.0295 5.9181 16.532 5.9181 15.9183V11.4739ZM10.3625 7.02946C10.9762 7.02946 11.4737 7.5269 11.4737 8.14057V15.9183C11.4737 16.532 10.9762 17.0295 10.3625 17.0295C9.7489 17.0295 9.25144 16.532 9.25144 15.9183V8.14057C9.25144 7.5269 9.7489 7.02946 10.3625 7.02946ZM17.0292 4.80724C17.0292 4.19356 16.5318 3.69613 15.9181 3.69613C15.3045 3.69613 14.807 4.19356 14.807 4.80724V15.9183C14.807 16.532 15.3045 17.0295 15.9181 17.0295C16.5318 17.0295 17.0292 16.532 17.0292 15.9183V4.80724Z" fill="white"></path>
+                            </svg>
+                        </div>
+                        <div class="card-header card-header-warning card-header-icon">
+                            <p class="card-category card-category-total-project">Tổng dự án</p>
+                            <h3 class="card-title">{{InputModel.total_project}}</h3>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <i class="material-icons">open_in_new</i> Dự án của tôi
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="card card-stats card-stats-total-task">
+                        <div class="circle-icon circle-icon-total-task">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="21" height="25" viewBox="0 0 21 25" fill="none">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M0.177734 5.09574C0.177734 2.42032 2.3466 0.251465 5.02203 0.251465H12.2885V5.09574C12.2885 7.77116 14.4573 9.94001 17.1328 9.94001H19.5549V19.6286C19.5549 22.304 17.3861 24.4728 14.7106 24.4728H5.02203C2.3466 24.4728 0.177734 22.304 0.177734 19.6286V5.09574ZM5.02203 11.1511C4.35317 11.1511 3.81096 11.6933 3.81096 12.3622C3.81096 13.031 4.35317 13.5732 5.02203 13.5732H7.44418C8.11304 13.5732 8.65525 13.031 8.65525 12.3622C8.65525 11.6933 8.11304 11.1511 7.44418 11.1511H5.02203ZM5.02203 15.9954C4.35317 15.9954 3.81096 16.5376 3.81096 17.2064C3.81096 17.8753 4.35317 18.4175 5.02203 18.4175H9.86633C10.5352 18.4175 11.0774 17.8753 11.0774 17.2064C11.0774 16.5376 10.5352 15.9954 9.86633 15.9954H5.02203ZM15.5363 2.91435L15.3777 5.293C15.329 6.0241 15.9356 6.63068 16.6667 6.58194L19.0454 6.42336C20.0836 6.35415 20.5569 5.09437 19.8212 4.35862L17.6011 2.13855C16.8653 1.40281 15.6055 1.87615 15.5363 2.91435Z" fill="white"/>
+                              </svg>
+                        </div>
+                        <div class="card-header card-header-rose card-header-icon">
+                            <p class="card-category  card-category-total-task">Tổng công việc</p>
+                            <h3 class="card-title">{{InputModel.total_task}}</h3>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <i class="material-icons">av_timer</i> Công việc của tôi
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="card card-stats card-stats-total-task-1">
+                        <div class="circle-icon circle-icon-total-task-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="23" height="18" viewBox="0 0 23 18" fill="none">
+                                <path d="M8.45802 16.8706L1.30801 9.71756C0.87845 9.28781 0.87845 8.59103 1.30801 8.16125L2.86361 6.60494C3.29317 6.17515 3.98969 6.17515 4.41925 6.60494L9.23584 11.4235L19.5524 1.10258C19.982 0.672838 20.6785 0.672838 21.1081 1.10258L22.6637 2.65889C23.0932 3.08863 23.0932 3.78541 22.6637 4.2152L10.0137 16.8707C9.58406 17.3004 8.88757 17.3004 8.45802 16.8706Z" fill="white"/>
+                              </svg>
+                        </div>
+                        <div class="card-header card-header-success card-header-icon">
+
+                            <p class="card-category card-category-total-task">Công việc đã hoàn thành</p>
+                            <h3 class="card-title">{{InputModel.total_task - (InputModel.total_task_inprogress+InputModel.total_task_expiry_task)}}</h3>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <i class="material-icons">av_timer</i> Công việc đã hoàn thành 100%
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="card card-stats card-stats-total-task-expiry-task">
+                        <div class="circle-icon circle-icon-expiry-task">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="9" height="23" viewBox="0 0 9 23" fill="none">
+                                <path d="M1.22757 19.2159H2.08209V13.0087H1.22757C0.755616 13.0087 0.373047 12.624 0.373047 12.1493V10.0967C0.373047 9.62205 0.755616 9.2373 1.22757 9.2373H6.01289C6.48484 9.2373 6.86741 9.62205 6.86741 10.0967V19.2159H7.72194C8.19389 19.2159 8.57646 19.6006 8.57646 20.0753V22.1279C8.57646 22.6026 8.19389 22.9873 7.72194 22.9873H1.22757C0.755616 22.9873 0.373047 22.6026 0.373047 22.1279V20.0753C0.373047 19.6006 0.755616 19.2159 1.22757 19.2159ZM4.47475 0.987305C2.77575 0.987305 1.39847 2.3724 1.39847 4.08105C1.39847 5.78971 2.77575 7.1748 4.47475 7.1748C6.17376 7.1748 7.55103 5.78971 7.55103 4.08105C7.55103 2.3724 6.17371 0.987305 4.47475 0.987305Z" fill="white"/>
+                              </svg>
+                        </div>
+                        <div class="card-header card-header-info card-header-icon">
+                            <p class="card-category card-category-total-task-expiry-task">Công việc quá hạn</p>
+                            <h3 class="card-title">{{InputModel.total_task_expiry_task}}</h3>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <i class="material-icons">av_timer</i> Công việc quá hạn so với kế hoạch
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row div-chart-3">
+                <div class="col-md-4">
+                    <div class="card">
+                        <!-- <div class="card-header card-header-primary card-header-icon">
+                            <div class="card-icon">
+                                <i class="material-icons">assignment</i>
+                            </div>
+                            <h4 class="card-title">Danh sách dự án</h4>
+                        </div> -->
+                        <div class="card-body">
+                            <div class="toolbar">
+                                <!--        Here you can write extra buttons/actions for the toolbar              -->
+                            </div>
+                            <div class="material-datatables">
+                                <!-- <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Tên dự án</th>
+                                            <th>Ngày bắt đầu</th>
+                                            <th>Ngày kết thúc</th>
+                                            <th>Tổng công việc</th>
+                                            <th>Biểu đồ</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of InputModel.list_projects" (click)="PieChartProject(item)">
+                                            <td>{{item.name}}</td>
+                                            <td style="text-align: left !important;">{{item.start_date_f}}</td>
+                                            <td style="text-align: left !important;">{{item.stop_date_f}}</td>
+                                            <td style="text-align: center !important;" class="disabled-sorting text-right">{{item.total_i}}</td>
+                                            <td class="text-right">
+                                                <a href="javascript:;" (click)="PieChartProject(item)" class="btn btn-link btn-info btn-just-icon like"><i class="material-icons">pie_chart</i></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table> -->
+                                <chart-full-stacked-bar></chart-full-stacked-bar>
+                            </div>
+                        </div>
+                        <!-- end content-->
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card card-chart">
+                        <!-- <div class="card-header card-header-icon card-header-danger">
+                            <div class="card-icon">
+                                <i class="material-icons">pie_chart</i>
+                            </div>
+                            <h4 class="card-title">{{pie_chart_project_name}}</h4>
+                        </div> -->
+                        <div class="card-body">
+                            <chart-doughnut></chart-doughnut>
+                            <!-- <div id="PieChartProject" class="ct-chart"></div> -->
+                        </div>
+                        <!-- <div class="card-footer">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <i class="fa fa-circle text-warning"></i> Đang hoàn thành
+                                    <i class="fa fa-circle text-success"></i> Đã hoàn thành
+                                    <i class="fa fa-circle text-info"></i> Công việc mới
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card card-chart">
+                        <!-- <div class="card-header card-header-icon card-header-danger">
+                            <div class="card-icon">
+                                <i class="material-icons">pie_chart</i>
+                            </div>
+                            <h4 class="card-title">{{pie_chart_project_name}}</h4>
+                        </div> -->
+                        <div class="card-body">
+                            <chart-standard-bar></chart-standard-bar>
+                            <!-- <div id="PieChartProject" class="ct-chart"></div> -->
+                        </div>
+                        <!-- <div class="card-footer">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <i class="fa fa-circle text-warning"></i> Đang hoàn thành
+                                    <i class="fa fa-circle text-success"></i> Đã hoàn thành
+                                    <i class="fa fa-circle text-info"></i> Công việc mới
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+            <div class="row div-chart-1">
+                <div class="col-md-4">
+                    <div class="card card-chart">
+                        <div class="card-header card-header-info">
+                            <div id="simpleBarChart" class="ct-chart"></div>
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title ">Công việc trong năm</h4>
+                            <p class="card-category"> <i class="material-icons">av_timer</i> Last 24 Hours</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card card-chart">
+                        <div class="card-header card-header-rose">
+                            <div id="roundedLineChart" class="ct-chart"></div>
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">Công việc trong tuần</h4>
+                            <p class="card-category"> <i class="material-icons">av_timer</i> Last 24 Hours</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card card-chart">
+                        <div class="card-header card-header-warning">
+                            <div id="straightLinesChart" class="ct-chart"></div>
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">Công việc trong ngày</h4>
+                            <p class="card-category"> <i class="material-icons">av_timer</i> Last 24 Hours</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row div-chart-3">
+                <div class="col-md-7">
+                    <div class="card">
+                        <div class="card-header card-header-icon card-header-info">
+                            <div class="card-icon">
+                                <i class="material-icons">timeline</i>
+                            </div>
+                            <h4 class="card-title">Biểu đồ số lượng công việc theo
+                                <small> - phòng ban</small>
+                            </h4>
+                        </div>
+                        <div class="card-body">
+                            <div id="colouredBarsChart" class="ct-chart"></div>
+                        </div>
+                        <div class="card-footer">
+                            <div *ngIf="InputModel.task_department">
+                                <div class="div-col-name-dep" *ngFor="let item of InputModel.task_department.list_name;let i = index">
+                                    <i class="fa fa-circle" [ngStyle]="{'color':arr_color[i]}"></i> {{item}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="card card-chart">
+                        <div class="card-header card-header-icon card-header-danger">
+                            <div class="card-icon">
+                                <i class="material-icons">pie_chart</i>
+                            </div>
+                            <h4 class="card-title">Tỉ lệ theo phòng ban</h4>
+                        </div>
+                        <div class="card-body">
+                            <div id="PieChartTask" class="ct-chart"></div>
+                        </div>
+                        <div class="card-footer">
+                            <div *ngIf="InputModel.task_department">
+                                <div class="div-col-name-dep" *ngFor="let item of InputModel.task_department.list_name;let i = index">
+                                    <i class="fa fa-circle" [ngStyle]="{'color':arr_color[i]}"></i> {{item}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="card card-chart">
+                        <div class="card-body">
+                            <chart-spline-area></chart-spline-area>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

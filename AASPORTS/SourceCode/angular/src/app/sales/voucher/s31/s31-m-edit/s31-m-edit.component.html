@@ -1,0 +1,4 @@
+<dialog-acction #dialogDelete [content]="translate('Bạn có chắc chắn muốn xóa?','Are you sure you want to delete?')" [title]="translate('Vui lòng xác nhận','Confirm ')" (confirmOutput)="onDelete($event)"></dialog-acction>
+<dialog-acction #dialogConfirmVAT [content]="translate('Bạn có muốn cập nhật thông tin chứng từ vào thuế đầu ra hay không?','Do you want to update document information at the beginning of taxes?')" [title]="translate('Vui lòng xác nhận','Confirm ')" (confirmOutput)="updateVATOUT('OK')"></dialog-acction>
+<form-edit-v2 #FromEditV2 (selectedRowsDataOutput)="onSelectedRowsDataOutput($event)" [tbName]="tbName" (onClickAcctionOutput)="onClickAcctionResponse($event)" [InputMaster]="InputMaster" (HandleValueChangedOutput)="handleValueChanged($event)" (HandleRowsDataGridOutput)="HandleRowsDataGridOutput($event)"
+    (onRefreshGridOutput)="onRefreshGridOutput($event)" [onRefreshGrid]="onRefreshGrid"></form-edit-v2>

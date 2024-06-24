@@ -1,0 +1,41 @@
+<div class="container-fluid">
+    <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-6">
+        <div class="form-group">
+            <label for="filter_date" class=" label-title">Ngày kết thúc (đến ngày)
+                <a href="javascript:;" class="btn" (click)="onLoadData()">Search</a>
+                <a href="javascript:;" class="btn" (click)="onClickChecked()">Checked all</a>
+            </label><br>
+            <input-datetimepicker [ColumnName]="'filter_date'" [value]="filterInput.filter_date" name="filter_date" (ValueOutput)="valueStartDate($event,'filter_date')"></input-datetimepicker>
+        </div>
+    </div>
+    <div *ngFor="let item of listData">
+        <h2>{{item.employee_name}}</h2>
+        <div class="row">
+            <div class="col-1 bg-img bg-warning" *ngFor="let data of item.list_datas" style="background-image: url('{{data.link_image_in}}')">
+                <div class="btn-action-group">
+                    <a href="javascript:;" (click)="onClickViewDetail(data,'link_image_in')" class="a-view-detail"> Xem Chi tiết</a>
+                    <button type="button" class="btn action ok btn-success">OK</button>
+                    <button type="button" class="btn action reject btn-danger" (click)="onClicReject(data)">Reject</button>
+                </div>
+            </div>
+            <!-- <div class="col-2 bg-img-big bg-warning" *ngIf="data.link_image_in" style="background-image: url('{{data.link_image_in}}')">
+            </div> -->
+            <div class="col-1 bg-img bg-warning" *ngFor="let data of item.list_datas" style="background-image: url('{{data.link_image_out}}')">
+                <div class="btn-action-group">
+                    <a href="javascript:;" (click)="onClickViewDetail(data,'link_image_out')" class="a-view-detail"> Xem Chi tiết</a>
+                    <button type="button" class="btn action ok btn-success">OK</button>
+                    <button type="button" class="btn action reject btn-danger" (click)="onClicReject(data)">Reject</button>
+                </div>
+            </div>
+            <!-- <div class="col-2 bg-img-big bg-warning" *ngIf="data.link_image_out" style="background-image: url('{{data.link_image_out}}')">
+            </div> -->
+        </div>
+    </div>
+
+    <dialog-acction #dialogShow [content]="''" [width]="600">
+        <div class="div-content-popup">
+            <img [src]="img" class="img-on-content-popup">
+            <span>{{itemCheckInOut.dates}}</span>
+        </div>
+    </dialog-acction>
+</div>

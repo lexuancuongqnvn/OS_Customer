@@ -1,0 +1,7 @@
+<form method="#" action="#" class="form-data form-view-master">
+    <app-toolbar #toolbar [tableName]="tbName" [CurrenFrom]="CurrenFrom" [classInsert]="'form-30082023'"></app-toolbar>
+    <alert-message #alertMessage></alert-message>
+
+    <osoft-data-grid #DataGridGenRowTable [tableName]="tbName" [dataFilter]="filterInput" [dataSource]="listData" (selectedRowsDataOutput)="onSelectedRowsData($event)" (OnSelectRow)="selectRow($event)"></osoft-data-grid>
+</form>
+<dialog-acction #dialogDelete [content]="translate('Bạn có chắc chắn muốn xóa?','Are you sure you want to delete?')" [title]="translate('Vui lòng xác nhận','Confirm ')" (confirmOutput)="onDelete($event)"></dialog-acction>

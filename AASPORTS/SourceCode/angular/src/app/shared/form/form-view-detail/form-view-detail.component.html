@@ -1,0 +1,51 @@
+<div class="card-container k-form-edit">
+    <!-- <layout-breadcrumb #breadcrumb></layout-breadcrumb> -->
+    <app-toolbar #toolbar [tableName]="tableName" [CurrenFrom]="CurrenFrom"></app-toolbar>
+    <div class="example-wrapper">
+        <div class="row example-wrapper form-group">
+            <div *ngFor="let item of inputFilter;let i=index;" [hidden]="item.columN_NAME == 'id' || item.typE_ID == 26" [ngClass]="{'col-md-3': item.clasS_INSERT == null}" class="{{item.clasS_INSERT}}" >
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <strong><kendo-label [for]="item.columN_NAME" [text]="item.name">: </kendo-label></strong>
+                            <input-view
+                                (ValueFilesOutput)="getValueFile($event,item.columN_NAME,item.tablE_NAME,IdEdit)"
+                                [id]="IdEdit"
+                                [codeEdit]="codeEdit"
+                                [CurrenFrom]="CurrenFrom"
+                                [myFiles]="arrayFiles"
+                                [colName]="item.columN_NAME"
+                                [tableName]="tableName"
+                                [displaY_EDIT]="item.displaY_EDIT"
+                                [displaY_EDIT]="item.displaY_EDIT"
+                                [displaY_LIST]="item.displaY_LIST"
+                                [shoW_REFERENCE]="item.shoW_REFERENCE"
+                                [storeD_PROCEDURES]="item.storeD_PROCEDURES"
+                                [reference]="item.reference"
+                                (ValueOutput)="GetdData($event,item.columN_NAME,item.typE_ID)"
+                                [inputMaster]="inputModel"
+                                [value]="inputModel[item.columN_NAME]"
+                                [type]="item.typE_ID"
+                                [isloadingData]="isloadingData"
+                                [name]="tableName+item.columN_NAME"
+                                [format]="item.format"></input-view>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-component form-group" *ngFor="let item of GenRowTableEditDetail">
+        <grid-view-detail
+        (ValueOutput)="GetdData($event,item.columN_NAME,16)"
+        [dataGrid]="inputModel"
+        [codeFather]="codeEdit"
+        [CurrenFrom]="CurrenFrom"
+        [tableNameFather]="tableName"
+        [IdFather]="IdEdit"
+        [InputMaster]="inputModel"
+        [GenRowTable]="item.syS_GenRowTable_Detail"
+        [GenRowTableMaster]="sYS_GenRowTable"
+        [title]="item.name"></grid-view-detail>
+    </div>
+</div>
