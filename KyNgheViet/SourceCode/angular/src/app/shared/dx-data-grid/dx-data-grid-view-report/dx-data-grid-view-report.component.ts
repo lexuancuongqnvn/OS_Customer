@@ -554,7 +554,9 @@ export class DXDataGridViewReportComponent extends LayoutComponentBase implement
     this.OnChangeDataFilter.emit({colName:rows.columN_NAME+'_start',value:this.filterDateFrom,data:this.dataFilter,event:e})
     this.OnChangeDataFilter.emit({colName:rows.columN_NAME+'_end',value:this.filterDateTo,data:this.dataFilter,event:e})
   }
-  getDataFilter(colName:string):any{
+  getDataFilter(colName:string,type:number = null):any{
+    if(type == 28)
+      return this.dataFilter[colName]?this.dataFilter[colName].split(''):[];
     return this.dataFilter[colName]?this.dataFilter[colName]:null;
   }
 
@@ -657,12 +659,17 @@ export class DXDataGridViewReportComponent extends LayoutComponentBase implement
       table_name:this.tableName,
       employee_code:this.appSession.user.code
     })).subscribe(res=>{
-      this.dataSourceTemplate = res;
+      if(res.length == 0){
+        this.showMessageWarning(this.translate('Mẫu báo cáo chưa được thiết lập','The report template has not been set up yet'))
+      }
+      else{
+        this.dataSourceTemplate = res;
     
-      this.selectedItem = this.dataSourceTemplate.find(r=>r.is_default == true);
-      if(!this.selectedItem)this.selectedItem = this.dataSourceTemplate[0]
-      this.popupVisible = true;
-      this.UpdateView()
+        this.selectedItem = this.dataSourceTemplate.find(r=>r.is_default == true);
+        if(!this.selectedItem)this.selectedItem = this.dataSourceTemplate[0]
+        this.popupVisible = true;
+        this.UpdateView()
+      }
     })
   }
   onEditReport(){

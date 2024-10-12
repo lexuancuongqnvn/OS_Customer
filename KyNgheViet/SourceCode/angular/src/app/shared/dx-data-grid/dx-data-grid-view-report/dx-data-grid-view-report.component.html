@@ -65,6 +65,19 @@
                             </dx-drop-down-box>
                         </div>
                     </div>
+                    <div class="form-group-filter-row-12" *ngIf="item.typE_ID == 28">
+                        <div>
+                            <dx-drop-down-box label="{{item.name }}" [opened]="item.isDropBoxOpened" (onOpened)="onOpenedDropDownOption($event,item)" [value]="getDataFilter(item.columN_NAME,28)" valueExpr="{{item.valueexpr}}" displayExpr="{{item.displayexpr}}" placeholder="Select a value..."
+                                [showClearButton]="true" [dataSource]="item.editoroptions.items" [stylingMode]="stylingMode" [labelMode]="labelMode">
+                                <dxo-drop-down-options [width]="item.editoroptions.optionWidth"></dxo-drop-down-options>
+                                <dx-validator *ngIf="item.required">
+                                    <dxi-validation-rule type="required" message="{{item.name}} {{translate('Không được phép trống','is not required')}}"></dxi-validation-rule>
+                                </dx-validator>
+                                <osoft-data-grid id="{{item.columN_NAME}}" #dropdownbox (onClickCancel)="onSaveDropDownOption($event,item)" (onClickOK)="onSaveDropDownOption($event,item)" [keyExpr]="item.valueexpr" [showFilterRow]="true" [currentSelectedRowKeys]="item.editoroptions.value"
+                                    [selection]="true" [height]="450" [tableName]="item.droP_DOWN_TABLE" [type]="'BY-TABLE-NAME'" [dataSource]="item.editoroptions.items" (OnSelectRow)="onSelectRowGridDropdown($event,item)" (selectedRowsDataOutput)="selectedRowsDataGridDropdown($event,item,item.valueexpr)"></osoft-data-grid>
+                            </dx-drop-down-box>
+                        </div>
+                    </div>
                 </div>
             </div>
             <!-- <dx-form id="form" [colCount]="24" class="form-group-filter-row-24">

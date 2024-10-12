@@ -6,8 +6,9 @@ export class AppConsts {
 
   static limit_length_uploadfile = 100;//Mb 
   //static baseUrl = "http://154.12.246.171:8081"; 
-  // static baseUrl = "https://localhost:44390";  
+   static baseUrl = "https://localhost:44390";  
   //static baseUrl = "https://api.erp.osoft.vn"; 
-  static baseUrl = "https://api.knv.osoft.vn"; 
+  //static baseUrl = "http://154.12.246.171:8086"; //knv us
+  // static baseUrl = "https://api.knv.osoft.vn"; 
 }
   

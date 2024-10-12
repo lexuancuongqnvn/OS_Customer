@@ -54,35 +54,29 @@ export class LoginComponent extends LayoutComponentBase implements OnInit {
   isBlock: boolean = false;
   userStorage:any;
   async ngOnInit(): Promise<void> {
-    var checkBlock = await this.authenticateService.a0226970B47B14288964566602C9C9646().toPromise();
-    if(checkBlock.SYS_Account_Infomation.status == 0){
-      this.isBlock = true;
-    }else {
-      var obj = {
-        status:-1,
-        message:'ready login'
-      }
-      try{
-          window['ReactNativeWebView'].postMessage(JSON.stringify(obj),'https://erpapp.osoft.vn',[]);
-      }catch{}
-      this.route.queryParams
-        .subscribe(params => {
-          if(params['token']){
-            this.userModel.tokens = params['token'];
-            this.loginToken();
-          }
-      });
-      setTimeout(() => {
-        $('.card').removeClass('card-hidden');
-      }, 700);
-      setTimeout(() => {
-        this.checkSession();
-      }, 50);
-      this.userStorage = JSON.parse(localStorage.getItem('userStorage'));
-      if(this.userStorage) 
-        this.userModel.username = this.userStorage.userlogin;
+    var obj = {
+      status:-1,
+      message:'ready login'
     }
-    
+    try{
+        window['ReactNativeWebView'].postMessage(JSON.stringify(obj),'https://erpapp.osoft.vn',[]);
+    }catch{}
+    this.route.queryParams
+      .subscribe(params => {
+        if(params['token']){
+          this.userModel.tokens = params['token'];
+          this.loginToken();
+        }
+    });
+    setTimeout(() => {
+      $('.card').removeClass('card-hidden');
+    }, 700);
+    setTimeout(() => {
+      this.checkSession();
+    }, 50);
+    this.userStorage = JSON.parse(localStorage.getItem('userStorage'));
+    if(this.userStorage) 
+      this.userModel.username = this.userStorage.userlogin;
   }
   get ShowUserName():boolean{
     return (this.userStorage && this.userStorage.userlogin)

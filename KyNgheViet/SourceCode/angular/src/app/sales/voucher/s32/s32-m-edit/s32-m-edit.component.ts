@@ -383,7 +383,7 @@ export class S32MEditComponent extends LayoutComponentBase implements OnInit, IU
    
   }
   HandleRowsDataGridOutput(event: any) {
-    if(this.editPageState !== EditPageState.add) return;
+    if(this.editPageState !== EditPageState.add && event.dataField !== 'customer_code') return;
     try{
       if (event.dataField == 'profession_code')
       {

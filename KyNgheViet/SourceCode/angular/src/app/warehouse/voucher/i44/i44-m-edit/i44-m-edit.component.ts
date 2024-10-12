@@ -194,7 +194,7 @@ export class I44MEditComponent  extends LayoutComponentBase implements OnInit, I
       this.ProfessionSelected =  event.value[0];
       if(this.InputMaster.i44_D && this.InputMaster.i44_D.length > 0) this.dialogreSetAccount.open();
     }
-    if(this.editPageState !== EditPageState.add) return;
+    if(this.editPageState !== EditPageState.add && event.dataField !== 'customer_code') return;
     try{
       if (event.dataField == 'customer_code')
       {

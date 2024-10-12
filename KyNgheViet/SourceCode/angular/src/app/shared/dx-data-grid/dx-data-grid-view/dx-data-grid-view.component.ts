@@ -50,6 +50,7 @@ export class DXDataGridViewComponent extends LayoutComponentBase implements OnIn
   editButtonOptions: any;
   editReportButtonOptions:any;
   selectedRowsData:any;
+  idSelect200MS: any;
   
   @Input() dataFilter:object={};
   @Input() dataSource:any[]=[];
@@ -403,11 +404,16 @@ export class DXDataGridViewComponent extends LayoutComponentBase implements OnIn
   }
   onSelectRow(e:any) {
     try{
+      if(this.idSelect200MS && this.idSelect200MS !== e.selectedRowKeys) return;
+      this.idSelect200MS = e.selectedRowKeys;
       this.currentSelectedRowKeys = e.selectedRowKeys;
       this.selectedRowsData = e.selectedRowsData;
       this.OnSelectRow.emit(e.currentSelectedRowKeys);
       this.OnSelectAllRow.emit(e.selectedRowKeys);
       this.selectedRowsDataOutput.emit(e.selectedRowsData);
+      setTimeout(() => {
+        this.idSelect200MS = undefined;
+      }, 200);
     }catch(err){
       console.log('onSelectRow()',err)
     }

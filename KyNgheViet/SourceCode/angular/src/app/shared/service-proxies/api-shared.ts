@@ -61413,6 +61413,7 @@ export class SALES_Report_S32_ENTITY implements ISALES_Report_S32_ENTITY {
     department_code?: string | undefined;
     case_code?: string | undefined;
     group_code?: string | undefined;
+    serial_no?: string | undefined;
     language_id?: number | undefined;
     voucher_year?: number | undefined;
 
@@ -61467,6 +61468,7 @@ export class SALES_Report_S32_ENTITY implements ISALES_Report_S32_ENTITY {
             this.department_code = _data["department_code"];
             this.case_code = _data["case_code"];
             this.group_code = _data["group_code"];
+            this.serial_no = _data["serial_no"];
             this.language_id = _data["language_id"];
             this.voucher_year = _data["voucher_year"];
         }
@@ -61521,6 +61523,7 @@ export class SALES_Report_S32_ENTITY implements ISALES_Report_S32_ENTITY {
         data["department_code"] = this.department_code;
         data["case_code"] = this.case_code;
         data["group_code"] = this.group_code;
+        data["serial_no"] = this.serial_no;
         data["language_id"] = this.language_id;
         data["voucher_year"] = this.voucher_year;
         return data;
@@ -61575,6 +61578,7 @@ export interface ISALES_Report_S32_ENTITY {
     department_code?: string | undefined;
     case_code?: string | undefined;
     group_code?: string | undefined;
+    serial_no?: string | undefined;
     language_id?: number | undefined;
     voucher_year?: number | undefined;
 }
@@ -63426,6 +63430,8 @@ export class SALE_Statement_Of_Changes_In_Financial_Position_ENTITY implements I
     date_modified?: moment.Moment | undefined;
     account_code_add?: string | undefined;
     account_code_modified?: string | undefined;
+    seller_code?: string | undefined;
+    seller_name?: string | undefined;
 
     constructor(data?: ISALE_Statement_Of_Changes_In_Financial_Position_ENTITY) {
         if (data) {
@@ -63466,6 +63472,8 @@ export class SALE_Statement_Of_Changes_In_Financial_Position_ENTITY implements I
             this.date_modified = _data["date_modified"] ? moment.parseZone(_data["date_modified"].toString()) : <any>undefined;
             this.account_code_add = _data["account_code_add"];
             this.account_code_modified = _data["account_code_modified"];
+            this.seller_code = _data["seller_code"];
+            this.seller_name = _data["seller_name"];
         }
     }
 
@@ -63506,6 +63514,8 @@ export class SALE_Statement_Of_Changes_In_Financial_Position_ENTITY implements I
         data["date_modified"] = this.date_modified ? this.date_modified.toISOString(true) : <any>undefined;
         data["account_code_add"] = this.account_code_add;
         data["account_code_modified"] = this.account_code_modified;
+        data["seller_code"] = this.seller_code;
+        data["seller_name"] = this.seller_name;
         return data;
     }
 
@@ -63546,6 +63556,8 @@ export interface ISALE_Statement_Of_Changes_In_Financial_Position_ENTITY {
     date_modified?: moment.Moment | undefined;
     account_code_add?: string | undefined;
     account_code_modified?: string | undefined;
+    seller_code?: string | undefined;
+    seller_name?: string | undefined;
 }
 
 export class SALE_The_detailed_Accounts_Receivable_Ledger_By_Invoice_ENTITY implements ISALE_The_detailed_Accounts_Receivable_Ledger_By_Invoice_ENTITY {
