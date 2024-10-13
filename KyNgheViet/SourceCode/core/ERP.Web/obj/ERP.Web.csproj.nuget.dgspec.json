@@ -1,0 +1,1113 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\ERP.Web\\ERP.Web.csproj": {}
+  },
+  "projects": {
+    "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\CASH\\CASH.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\CASH\\CASH.csproj",
+        "projectName": "CASH",
+        "projectPath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\CASH\\CASH.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\CASH\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\ERP.Common\\ERP.Common.csproj": {
+                "projectPath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\ERP.Common\\ERP.Common.csproj"
+              },
+              "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\ERP.System\\ERP.System.csproj": {
+                "projectPath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\ERP.System\\ERP.System.csproj"
+              },
+              "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\Sales\\Sales.csproj": {
+                "projectPath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\Sales\\Sales.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\Consolidation\\Consolidation.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\Consolidation\\Consolidation.csproj",
+        "projectName": "Consolidation",
+        "projectPath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\Consolidation\\Consolidation.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\Consolidation\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\ERP.Common\\ERP.Common.csproj": {
+                "projectPath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\ERP.Common\\ERP.Common.csproj"
+              },
+              "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\ERP.System\\ERP.System.csproj": {
+                "projectPath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\ERP.System\\ERP.System.csproj"
+              },
+              "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\Sales\\Sales.csproj": {
+                "projectPath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\Sales\\Sales.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\ERP.Common\\ERP.Common.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\ERP.Common\\ERP.Common.csproj",
+        "projectName": "ERP.Common",
+        "projectPath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\ERP.Common\\ERP.Common.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\ERP.Common\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "Abp": {
+              "target": "Package",
+              "version": "[4.6.0, )"
+            },
+            "Dapper": {
+              "target": "Package",
+              "version": "[2.0.90, )"
+            },
+            "DeviceId": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "MailKit": {
+              "target": "Package",
+              "version": "[2.15.0, )"
+            },
+            "Microsoft.AspNetCore.Mvc": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "System.ComponentModel.TypeConverter": {
+              "target": "Package",
+              "version": "[4.3.0, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\ERP.System\\ERP.System.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\ERP.System\\ERP.System.csproj",
+        "projectName": "ERP.System",
+        "projectPath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\ERP.System\\ERP.System.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\ERP.System\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\ERP.Common\\ERP.Common.csproj": {
+                "projectPath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\ERP.Common\\ERP.Common.csproj"
+              },
+              "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\SignalR\\SignalR.csproj": {
+                "projectPath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\SignalR\\SignalR.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\ERP.Warranty\\ERP.Warranty.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\ERP.Warranty\\ERP.Warranty.csproj",
+        "projectName": "ERP.Warranty",
+        "projectPath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\ERP.Warranty\\ERP.Warranty.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\ERP.Warranty\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\ERP.Common\\ERP.Common.csproj": {
+                "projectPath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\ERP.Common\\ERP.Common.csproj"
+              },
+              "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\HRMS\\HRMS.csproj": {
+                "projectPath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\HRMS\\HRMS.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\ERP.Web\\ERP.Web.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\ERP.Web\\ERP.Web.csproj",
+        "projectName": "ERP.Web",
+        "projectPath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\ERP.Web\\ERP.Web.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\ERP.Web\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\CASH\\CASH.csproj": {
+                "projectPath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\CASH\\CASH.csproj"
+              },
+              "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\Consolidation\\Consolidation.csproj": {
+                "projectPath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\Consolidation\\Consolidation.csproj"
+              },
+              "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\ERP.Common\\ERP.Common.csproj": {
+                "projectPath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\ERP.Common\\ERP.Common.csproj"
+              },
+              "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\ERP.System\\ERP.System.csproj": {
+                "projectPath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\ERP.System\\ERP.System.csproj"
+              },
+              "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\ERP.Warranty\\ERP.Warranty.csproj": {
+                "projectPath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\ERP.Warranty\\ERP.Warranty.csproj"
+              },
+              "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\POS\\POS.csproj": {
+                "projectPath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\POS\\POS.csproj"
+              },
+              "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\Process\\Process.csproj": {
+                "projectPath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\Process\\Process.csproj"
+              },
+              "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\Purchase\\Purchase.csproj": {
+                "projectPath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\Purchase\\Purchase.csproj"
+              },
+              "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\ReportViewer\\ReportViewer\\ReportViewer.csproj": {
+                "projectPath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\ReportViewer\\ReportViewer\\ReportViewer.csproj"
+              },
+              "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\Sales\\Sales.csproj": {
+                "projectPath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\Sales\\Sales.csproj"
+              },
+              "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\SignalR\\SignalR.csproj": {
+                "projectPath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\SignalR\\SignalR.csproj"
+              },
+              "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\TAX\\TAX.csproj": {
+                "projectPath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\TAX\\TAX.csproj"
+              },
+              "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\VMLLib\\VMLLib\\VMLLib.csproj": {
+                "projectPath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\VMLLib\\VMLLib\\VMLLib.csproj"
+              },
+              "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\WMS\\WMS\\WMS.csproj": {
+                "projectPath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\WMS\\WMS\\WMS.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "BoldReports.Net.Core": {
+              "target": "Package",
+              "version": "[5.2.38, )"
+            },
+            "ClosedXML": {
+              "target": "Package",
+              "version": "[0.95.4, )"
+            },
+            "Grpc.Core": {
+              "target": "Package",
+              "version": "[2.46.6, )"
+            },
+            "Microsoft.AspNetCore.Mvc": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.SignalR": {
+              "target": "Package",
+              "version": "[1.1.0, )"
+            },
+            "Microsoft.CodeAnalysis.Common": {
+              "target": "Package",
+              "version": "[3.8.0, )"
+            },
+            "Microsoft.Extensions.Caching.SqlServer": {
+              "target": "Package",
+              "version": "[6.0.0-preview.6.21355.2, )"
+            },
+            "Microsoft.Web.WebView2": {
+              "target": "Package",
+              "version": "[1.0.1774.30, )"
+            },
+            "NPOI": {
+              "target": "Package",
+              "version": "[2.6.0, )"
+            },
+            "PuppeteerSharp": {
+              "target": "Package",
+              "version": "[10.0.0, )"
+            },
+            "ReportViewerCore.NETCore": {
+              "target": "Package",
+              "version": "[15.1.19, )"
+            },
+            "RestSharp.Serializers.SystemTextJson": {
+              "target": "Package",
+              "version": "[106.15.0, )"
+            },
+            "Stimulsoft.Reports.Web.NetCore": {
+              "target": "Package",
+              "version": "[2023.4.2, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[5.6.3, )"
+            },
+            "System.IO.FileSystem": {
+              "target": "Package",
+              "version": "[4.3.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\HRMS\\HRMS.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\HRMS\\HRMS.csproj",
+        "projectName": "HRMS",
+        "projectPath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\HRMS\\HRMS.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\HRMS\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "Microsoft.AspNetCore.Mvc": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\POS\\POS.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\POS\\POS.csproj",
+        "projectName": "POS",
+        "projectPath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\POS\\POS.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\POS\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "Microsoft.AspNetCore.Mvc": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\Process\\Process.csproj": {
+      "restore": {
+        "projectUniqueName": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\Process\\Process.csproj",
+        "projectName": "Process",
+        "projectPath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\Process\\Process.csproj",
+        "frameworks": {
+          "net472": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net472": {}
+      }
+    },
+    "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\Purchase\\Purchase.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\Purchase\\Purchase.csproj",
+        "projectName": "Purchase",
+        "projectPath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\Purchase\\Purchase.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\Purchase\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\ERP.Common\\ERP.Common.csproj": {
+                "projectPath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\ERP.Common\\ERP.Common.csproj"
+              },
+              "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\ERP.System\\ERP.System.csproj": {
+                "projectPath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\ERP.System\\ERP.System.csproj"
+              },
+              "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\Sales\\Sales.csproj": {
+                "projectPath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\Sales\\Sales.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\ReportViewer\\ReportViewer\\ReportViewer.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\ReportViewer\\ReportViewer\\ReportViewer.csproj",
+        "projectName": "ReportViewer",
+        "projectPath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\ReportViewer\\ReportViewer\\ReportViewer.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\ReportViewer\\ReportViewer\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "Microsoft.AspNet.Mvc": {
+              "target": "Package",
+              "version": "[5.3.0, )"
+            },
+            "Microsoft.AspNetCore.Mvc.Abstractions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Mvc.Analyzers": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.CodeAnalysis.Analyzers": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.3.4, )"
+            },
+            "ReportViewerCore.NETCore": {
+              "target": "Package",
+              "version": "[15.1.19, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\Sales\\Sales.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\Sales\\Sales.csproj",
+        "projectName": "Sales",
+        "projectPath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\Sales\\Sales.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\Sales\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\ERP.Common\\ERP.Common.csproj": {
+                "projectPath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\ERP.Common\\ERP.Common.csproj"
+              },
+              "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\ERP.System\\ERP.System.csproj": {
+                "projectPath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\ERP.System\\ERP.System.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\SignalR\\SignalR.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\SignalR\\SignalR.csproj",
+        "projectName": "SignalR",
+        "projectPath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\SignalR\\SignalR.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\SignalR\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\HRMS\\HRMS.csproj": {
+                "projectPath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\HRMS\\HRMS.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "Microsoft.AspNetCore.SignalR": {
+              "target": "Package",
+              "version": "[1.1.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\TAX\\TAX.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\TAX\\TAX.csproj",
+        "projectName": "TAX",
+        "projectPath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\TAX\\TAX.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\TAX\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\ERP.Common\\ERP.Common.csproj": {
+                "projectPath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\ERP.Common\\ERP.Common.csproj"
+              },
+              "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\ERP.System\\ERP.System.csproj": {
+                "projectPath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\ERP.System\\ERP.System.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\VMLLib\\VMLLib\\VMLLib.csproj": {
+      "restore": {
+        "projectUniqueName": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\VMLLib\\VMLLib\\VMLLib.csproj",
+        "projectName": "VMLLib",
+        "projectPath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\VMLLib\\VMLLib\\VMLLib.csproj",
+        "frameworks": {
+          "net45": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net45": {}
+      }
+    },
+    "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\WMS\\WMS\\WMS.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\WMS\\WMS\\WMS.csproj",
+        "projectName": "WMS",
+        "projectPath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\WMS\\WMS\\WMS.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\WMS\\WMS\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\ERP.System\\ERP.System.csproj": {
+                "projectPath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\ERP.System\\ERP.System.csproj"
+              },
+              "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\POS\\POS.csproj": {
+                "projectPath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\POS\\POS.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

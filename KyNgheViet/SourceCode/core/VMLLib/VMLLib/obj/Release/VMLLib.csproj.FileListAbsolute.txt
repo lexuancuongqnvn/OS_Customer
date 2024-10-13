@@ -1,0 +1,6 @@
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\VMLLib\VMLLib\bin\Release\VMLLib.dll
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\VMLLib\VMLLib\bin\Release\VMLLib.pdb
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\VMLLib\VMLLib\obj\Release\VMLLib.csproj.AssemblyReference.cache
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\VMLLib\VMLLib\obj\Release\VMLLib.csproj.CoreCompileInputs.cache
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\VMLLib\VMLLib\obj\Release\VMLLib.dll
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\VMLLib\VMLLib\obj\Release\VMLLib.pdb

@@ -1,0 +1,11 @@
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\ReportViewer\ReportViewer\bin\Debug\netcoreapp3.1\ReportViewer.deps.json
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\ReportViewer\ReportViewer\bin\Debug\netcoreapp3.1\ReportViewer.dll
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\ReportViewer\ReportViewer\bin\Debug\netcoreapp3.1\ReportViewer.pdb
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\ReportViewer\ReportViewer\obj\Debug\netcoreapp3.1\ReportViewer.csproj.AssemblyReference.cache
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\ReportViewer\ReportViewer\obj\Debug\netcoreapp3.1\ReportViewer.GeneratedMSBuildEditorConfig.editorconfig
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\ReportViewer\ReportViewer\obj\Debug\netcoreapp3.1\ReportViewer.AssemblyInfoInputs.cache
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\ReportViewer\ReportViewer\obj\Debug\netcoreapp3.1\ReportViewer.AssemblyInfo.cs
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\ReportViewer\ReportViewer\obj\Debug\netcoreapp3.1\ReportViewer.csproj.CoreCompileInputs.cache
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\ReportViewer\ReportViewer\obj\Debug\netcoreapp3.1\ReportViewer.sourcelink.json
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\ReportViewer\ReportViewer\obj\Debug\netcoreapp3.1\ReportViewer.dll
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\ReportViewer\ReportViewer\obj\Debug\netcoreapp3.1\ReportViewer.pdb

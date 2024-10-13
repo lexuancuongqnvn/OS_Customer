@@ -1,0 +1,14 @@
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\HRMS\obj\Debug\netcoreapp3.1\HRMS.csproj.AssemblyReference.cache
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\HRMS\obj\Debug\netcoreapp3.1\HRMS.GeneratedMSBuildEditorConfig.editorconfig
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\HRMS\obj\Debug\netcoreapp3.1\HRMS.AssemblyInfoInputs.cache
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\HRMS\obj\Debug\netcoreapp3.1\HRMS.AssemblyInfo.cs
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\HRMS\obj\Debug\netcoreapp3.1\HRMS.csproj.CoreCompileInputs.cache
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\HRMS\obj\Debug\netcoreapp3.1\HRMS.sourcelink.json
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\HRMS\bin\Debug\netcoreapp3.1\HRMS.deps.json
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\HRMS\bin\Debug\netcoreapp3.1\HRMS.dll
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\HRMS\bin\Debug\netcoreapp3.1\HRMS.pdb
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\HRMS\bin\Debug\netcoreapp3.1\ERP.Common.dll
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\HRMS\bin\Debug\netcoreapp3.1\ERP.Common.pdb
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\HRMS\obj\Debug\netcoreapp3.1\HRMS.csproj.CopyComplete
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\HRMS\obj\Debug\netcoreapp3.1\HRMS.dll
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\HRMS\obj\Debug\netcoreapp3.1\HRMS.pdb

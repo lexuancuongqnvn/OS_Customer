@@ -1,0 +1,6 @@
+/r/n10:43:22 CH 29 Tháng Ba 2024
+  :Error parsing column 3 (account_name=Vật tư, hàng hóa nhận giữ  hộ, nhân gia công - String)
+--------------------------------------------------------------------------------------------
+/r/n2:16:47 CH 30 Tháng Ba 2024
+  :Could not find stored procedure 'CON_Statement_Of_Cash_Flows_Report_Search'.
+--------------------------------------------------------------------------------------------
