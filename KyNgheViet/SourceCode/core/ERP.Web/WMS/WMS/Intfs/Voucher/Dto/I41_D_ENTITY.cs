@@ -36,5 +36,7 @@ namespace WMS.Intfs.Voucher.Dto
         public int id { get; set; }
         public int? language_id { get; set; }
         public string company_code { get; set; }
+        public string voucher_code { get; set; }
+        public int? voucher_year { get; set; }
     }
 }

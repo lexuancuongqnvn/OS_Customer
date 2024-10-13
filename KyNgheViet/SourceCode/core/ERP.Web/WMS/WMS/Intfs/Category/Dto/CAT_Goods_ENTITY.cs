@@ -7,7 +7,7 @@ namespace WMS.Intfs.Category.Dto
 {
     public class CAT_Goods_ENTITY : IBase_ENTITY// hàng hóa vật tư
     {
-        public int? id { get; set; }
+        public int id { get; set; }
         public string code { get; set; }
         public string goods_symbol { get; set; }
         public string name { get; set; }
@@ -33,6 +33,7 @@ namespace WMS.Intfs.Category.Dto
         public decimal? selling_price_fc { get; set; }
         public decimal? selling_price { get; set; }
         public string tax_code { get; set; }
+        public string tax_name { get; set; }
         public string notes { get; set; }
         public string producer_code { get; set; }
         public string standard_code { get; set; }
@@ -56,6 +57,18 @@ namespace WMS.Intfs.Category.Dto
         public DateTime? date_modified { get; set; }
         public string account_code_add { get; set; }
         public string account_code_modified { get; set; }
-        int IBase_ENTITY.id { get; set; }
+
+        //Thông tin cấu hình máy laptop
+        public string sku { get; set; }
+        public string model { get; set; }
+        public string cpu { get; set; }
+        public int? ram { get; set; }
+        public int? hdd { get; set; }
+        public string hdd_unit { get; set; }
+        public int? ssd { get; set; }
+        public string ssd_unit { get; set; }
+        public string lcd { get; set; }
+        public string voucher_code { get; set; }
+        public int? voucher_year { get; set; }
     }
 }

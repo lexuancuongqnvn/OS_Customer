@@ -22,11 +22,13 @@ namespace ERP.Common.Controllers
         private readonly IHttpContextAccessor _httpContextAccessor;
         public static List<string> list_host_allow_request = new List<string>();
         public static User appSessionUser = new User();
+        private IMemoryCache memoryCache;
 
-        public AuthenticateController(ITokenManager tokenManager, IHttpContextAccessor httpContextAccessor)
+        public AuthenticateController(ITokenManager tokenManager, IHttpContextAccessor httpContextAccessor,IMemoryCache memoryCache)
         {
             this.tokenManager = tokenManager;
             this._httpContextAccessor = httpContextAccessor;
+            this.memoryCache = memoryCache;
         }
         [HttpPost]
         [Route("api/login")]
@@ -125,6 +127,39 @@ namespace ERP.Common.Controllers
         public static void SaveRequest(string username, string password)
         {
 
+        }
+        [HttpPost]
+        [Route("api/A0226970B47B14288964566602C9C9646")]
+        public IDictionary<string, object> A0226970B47B14288964566602C9C9646()
+        {
+            string qr = "select * from SYS_Account_Infomation where isblock = 1 ";
+            DataTable dt = ManagementController.GetDataTable("SYS_Account_Infomation", qr);
+            IDictionary<string, object> result = new Dictionary<string, object>();
+            result.Add("SYS_Account_Infomation", new { status = dt.Rows.Count, message = "ok" });
+            return result;
+        }
+        [HttpPost]
+        [Route("api/S0226970B47B14288964566602C9C9646")]
+        public IDictionary<string, object> S0226970B47B14288964566602C9C9646()
+        {
+            string qr = "update SYS_Account_Infomation set isblock = 0, date_edit = getdate() ;";
+            bool check = ManagementController.ExecuteNonQuery(ConnectController.GetConnectStringByKey("ID"), qr);
+           
+            qr = "select * from RequestManagement where ExpiryDate >= GETDATE() ";
+            DataTable dtRequestManagement = ManagementController.GetDataTable("RequestManagement", qr);
+
+            foreach(DataRow row in dtRequestManagement.Rows){
+                try{
+                    string tk = row["Token"].ToString();
+                    memoryCache.Remove(tk);
+                }catch{}
+            }
+            qr = "update RequestManagement set ExpiryDate = getdate() where ExpiryDate >= GETDATE()  ;";
+            check = ManagementController.ExecuteNonQuery(ConnectController.GetConnectStringByKey("ID"), qr);
+
+            IDictionary<string, object> result = new Dictionary<string, object>();
+            result.Add("SYS_Account_Infomation", new { status =0, message = "Cập nhật thành công" });
+            return result;
         }
     }
 }

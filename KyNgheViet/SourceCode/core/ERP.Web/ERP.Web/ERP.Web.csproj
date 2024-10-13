@@ -11,12 +11,38 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Reports\Template\KNV\001\HDB-PXK-A4.rdlc" />
+    <None Remove="Reports\Template\KNV\001\HDB-PXK-A5.rdlc" />
+    <None Remove="Reports\Template\KNV\001\PXK-A4.rdlc" />
+    <None Remove="Reports\Template\KNV\001\PXK-A5.rdlc" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Reports\Template\KNV\001\HDB-PXK-A4.rdlc">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Reports\Template\KNV\001\PXK-A4.rdlc">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Reports\Template\KNV\001\HDB-PXK-A5.rdlc">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Reports\Template\KNV\001\PXK-A5.rdlc">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="BoldReports.Net.Core" Version="5.2.38" />
     <PackageReference Include="ClosedXML" Version="0.95.4" />
     <PackageReference Include="Grpc.Core" Version="2.46.6" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.1.0" />
-    <PackageReference Include="Microsoft.CodeAnalysis.Common" Version="4.7.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Common" Version="3.8.0" />
     <PackageReference Include="Microsoft.Extensions.Caching.SqlServer" Version="6.0.0-preview.6.21355.2" />
     <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.1774.30" />
     <PackageReference Include="NPOI" Version="2.6.0" />
@@ -24,18 +50,20 @@
     <PackageReference Include="RestSharp.Serializers.SystemTextJson" Version="106.15.0" />
     <PackageReference Include="Stimulsoft.Reports.Web.NetCore" Version="2023.4.2" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
-	  <PackageReference Include="ReportViewerCore.NETCore" Version="15.1.17" />
+	  <PackageReference Include="ReportViewerCore.NETCore" Version="15.1.19" />
 	  <PackageReference Include="System.IO.FileSystem" Version="4.3.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\CASH\CASH.csproj" />
+    <ProjectReference Include="..\Consolidation\Consolidation.csproj" />
     <ProjectReference Include="..\ERP.Common\ERP.Common.csproj" />
     <ProjectReference Include="..\ERP.System\ERP.System.csproj" />
     <ProjectReference Include="..\ERP.Warranty\ERP.Warranty.csproj" />
     <ProjectReference Include="..\POS\POS.csproj" />
     <ProjectReference Include="..\Process\Process.csproj" />
     <ProjectReference Include="..\Purchase\Purchase.csproj" />
+    <ProjectReference Include="..\ReportViewer\ReportViewer\ReportViewer.csproj" />
     <ProjectReference Include="..\Sales\Sales.csproj" />
     <ProjectReference Include="..\SignalR\SignalR.csproj" />
     <ProjectReference Include="..\TAX\TAX.csproj" />
@@ -51,6 +79,7 @@
     <Folder Include="App_Data\Log\" />
     <Folder Include="UploadFiles\" />
     <Folder Include="wwwroot\FaceAI\EmployeeFace\" />
+    <Folder Include="wwwroot\Reports\FDMART\HRM\Employees\Output\" />
     <Folder Include="wwwroot\Reports\POS\Sale\Output\" />
     <Folder Include="wwwroot\UploadFiles\" />
     <Folder Include="wwwroot\UploadFiles\tb_TestTheme_Sub2\col_multimedia\" />
@@ -59,6 +88,11 @@
     <None Include="wwwroot\Reports\WarrantyLaptop\SoBaoHanh2022.rdlc" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Reports\Dataset\DataSetReport.Designer.cs">
+      <DependentUpon>DataSetReport.xsd</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
     <Compile Update="Shared\DataSet\Database\DataSet1.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -71,6 +105,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Update="Reports\Dataset\DataSetReport.xsd">
+      <SubType>Designer</SubType>
+      <LastGenOutput>DataSetReport.Designer.cs</LastGenOutput>
+      <Generator>MSDataSetGenerator</Generator>
+    </None>
     <None Update="Shared\DataSet\Database\DataSet1.xsd">
       <SubType>Designer</SubType>
       <LastGenOutput>DataSet1.Designer.cs</LastGenOutput>

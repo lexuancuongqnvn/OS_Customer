@@ -28,6 +28,16 @@ namespace ERP.Web.Controllers.System
         public async Task<List<SYS_GenRowTable>> SYS_GenRowTable_Data_Search([FromBody] SYS_GenRowTable input)
         {
             List<SYS_GenRowTable> result = await IGenRowTableService.SYS_GenRowTable_Search(input);
+            if(!string.IsNullOrEmpty(input.CODE) && result != null && result.Count > 0)
+            {
+                SYS_GenRowTable_Detail _input = new SYS_GenRowTable_Detail();
+
+                _input.FATHER = input.CODE;
+                _input.userID = input.userID;
+                List<SYS_GenRowTable_Detail> _result = await IGenRowTableService.SYS_GenRowTable_Detail_V2_Search(_input);
+                result[0].SYS_GenRowTable_Detail = _result;
+            }
+                
             return result;
         }
         [HttpPost]
@@ -44,7 +54,7 @@ namespace ERP.Web.Controllers.System
                 }
             }
             _input.FATHER = result[0].CODE;
-            _input.userID = result[0].userID;
+            _input.userID = input.userID;
             _input.TABLE_NAME = result[0].TABLE_NAME;
             _input.FORM = input.FORM;
             List<SYS_GenRowTable_Detail> _result = await IGenRowTableService.SYS_GenRowTable_Detail_Search(_input);

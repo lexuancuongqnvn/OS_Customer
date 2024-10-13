@@ -42,5 +42,31 @@ namespace ERP.Web.Controllers.Purchase
             var result = await this.IOBWMSService.OB_Account_Update(input);
             return result;
         }
+        #region Số dư khách hàng
+        [HttpPost]
+        public async Task<IDictionary<string, object>> OB_Customer_Delete([FromBody] OB_Customer_ENTITY input)
+        {
+            var result = await this.IOBWMSService.OB_Customer_Delete(input);
+            return result;
+        }
+        [HttpPost]
+        public async Task<IDictionary<string, object>> OB_Customer_Insert([FromBody] OB_Customer_ENTITY input)
+        {
+            var result = await this.IOBWMSService.OB_Customer_Insert(input);
+            return result;
+        }
+        [HttpPost]
+        public async Task<List<OB_Customer_ENTITY>> OB_Customer_Search([FromBody] OB_Customer_ENTITY input)
+        {
+            var result = await this.IOBWMSService.OB_Customer_Search(input);
+            return result;
+        }
+        [HttpPost]
+        public async Task<IDictionary<string, object>> OB_Customer_Update([FromBody] OB_Customer_ENTITY input)
+        {
+            var result = await this.IOBWMSService.OB_Customer_Update(input);
+            return result;
+        }
+        #endregion
     }
 }

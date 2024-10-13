@@ -35,3 +35,9 @@ D:\SourceCode\ERP\RELEASE\core\ERP.Web\FaceAPI\FaceAPI\obj\Debug\netcoreapp3.1\F
 D:\SourceCode\ERP\RELEASE\core\ERP.Web\FaceAPI\FaceAPI\obj\Debug\netcoreapp3.1\FaceAPI.genruntimeconfig.cache
 D:\SourceCode\ERP\RELEASE\core\ERP.Web\FaceAPI\FaceAPI\obj\Debug\netcoreapp3.1\FaceAPI.csproj.CopyComplete
 D:\SourceCode\ERP\RELEASE\core\ERP.Web\FaceAPI\FaceAPI\obj\Debug\netcoreapp3.1\Razor\Views\FaceAPI\Index.cshtml.g.cs
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\FaceAPI\FaceAPI\obj\Debug\netcoreapp3.1\FaceAPI.sourcelink.json
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\FaceAPI\FaceAPI\obj\Debug\netcoreapp3.1\staticwebassets\FaceAPI.StaticWebAssets.Pack.cache
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\FaceAPI\FaceAPI\obj\Debug\netcoreapp3.1\staticwebassets\msbuild.FaceAPI.Microsoft.AspNetCore.StaticWebAssets.props
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\FaceAPI\FaceAPI\obj\Debug\netcoreapp3.1\staticwebassets\msbuild.build.FaceAPI.props
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\FaceAPI\FaceAPI\obj\Debug\netcoreapp3.1\staticwebassets\msbuild.buildMultiTargeting.FaceAPI.props
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\FaceAPI\FaceAPI\obj\Debug\netcoreapp3.1\staticwebassets\msbuild.buildTransitive.FaceAPI.props

@@ -8,3 +8,4 @@ D:\SourceCode\ERP\RELEASE\core\ERP.Web\ERP.Common\obj\x64\Debug\netcoreapp3.1\ER
 D:\SourceCode\ERP\RELEASE\core\ERP.Web\ERP.Common\obj\x64\Debug\netcoreapp3.1\ERP.Common.csproj.CoreCompileInputs.cache
 D:\SourceCode\ERP\RELEASE\core\ERP.Web\ERP.Common\obj\x64\Debug\netcoreapp3.1\ERP.Common.dll
 D:\SourceCode\ERP\RELEASE\core\ERP.Web\ERP.Common\obj\x64\Debug\netcoreapp3.1\ERP.Common.pdb
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\ERP.Common\obj\x64\Debug\netcoreapp3.1\ERP.Common.sourcelink.json

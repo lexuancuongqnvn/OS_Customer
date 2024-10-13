@@ -1,4 +1,5 @@
-﻿using ERP.Common.Content.Helper;
+﻿using Common.Utils;
+using ERP.Common.Content.Helper;
 using ERP.Common.Filters;
 using ERP.System.Impls.Account.Dto;
 using ERP.System.Intfs.Menu;
@@ -29,6 +30,12 @@ namespace ERP.Web.Controllers.System
         public async Task<List<SYS_Menu>> SYS_Menu_Search([FromBody] SYS_Menu input)
         {
             var result = await SYS_MenuRepository.SYS_Menu_Search(input);
+            return result;
+        }
+        [HttpPost]
+        public async Task<IDictionary<string, object>> SYS_Menu_Sub_Pin([FromBody] SYS_Menu_Sub_Pin input)
+        {
+            var result = await SYS_MenuRepository.SYS_Menu_Sub_Pin(input);
             return result;
         }
         [HttpPost]
@@ -63,7 +70,7 @@ namespace ERP.Web.Controllers.System
         [HttpPost]
         public async Task<IDictionary<string, object>> SYS_Menu_Update([FromBody] SYS_Menu input)
         {
-            input.XML = XmlHelper.ToXML(input.SYS_Menu_Sub);
+            input.XML = input.SYS_Menu_Sub.ToXmlFromList();
             var result = await SYS_MenuRepository.SYS_Menu_Update(input);
             return result;
         }
@@ -71,6 +78,32 @@ namespace ERP.Web.Controllers.System
         public async Task<List<SYS_Account_Group>> SYS_Account_Group_Search()
         {
             var result = await SYS_MenuRepository.SYS_Account_Group_Search(new SYS_Account_Group());
+            return result;
+        }     
+        [HttpPost]
+        public async Task<IDictionary<string, object>> SYS_Menu_Permission_Update([FromBody] SYS_Menu input)
+        {
+            input.XML = input.SYS_Menu_Sub.ToXmlFromList();
+            var result = await SYS_MenuRepository.SYS_Menu_Permission_Update(input);
+            return result;
+        }
+        [HttpPost]
+        public async Task<List<SYS_Menu_Permission_ENTITY>> SYS_Menu_Permission_Search([FromBody] SYS_Menu_Permission_ENTITY input)
+        {
+            var result = await SYS_MenuRepository.SYS_Menu_Permission_Search(input);
+            if(!string.IsNullOrEmpty(input.code))
+            {
+                result = new List<SYS_Menu_Permission_ENTITY>();
+                SYS_Menu_Permission_ENTITY item = new SYS_Menu_Permission_ENTITY();
+                var menuSubs = await SYS_MenuRepository.SYS_Menu_Permission_Detail_Search(new SYS_Menu_Sub { CODE = input.code,userID=input.userID });
+                if(menuSubs != null && menuSubs.Count > 0)
+                {
+                    var menu = await SYS_MenuRepository.SYS_Menu_Search_byID(menuSubs[0].FATHER, (int)input.userID,"");
+                    item.sys_menu = menu;
+                    item.sys_menu.SYS_Menu_Sub = menuSubs;
+                }
+                result.Add(item);
+            }    
             return result;
         }
     }

@@ -42,6 +42,8 @@ namespace ERP.Common.Intfs.ERP.Dto
         public string module_name { get; set; }
         public string xml { get; set; }
         public int? language_id { get; set; }
+        public bool? is_block_auto { get; set; }
+        public int? per_day { get; set; }
         public List<SYS_List_Voucher_Detail_ENTITY> voucher_details { get; set; }
     }
 }

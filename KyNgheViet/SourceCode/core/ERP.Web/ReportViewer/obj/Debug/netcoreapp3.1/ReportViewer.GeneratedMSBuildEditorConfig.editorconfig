@@ -1,3 +1,5 @@
 is_global = true
 build_property.RootNamespace = ReportViewer
-build_property.ProjectDir = D:\SourceCode\ERP\RELEASE\core\ERP.Web\ReportViewer\
+build_property.ProjectDir = D:\SourceCode\GITHUP\OS_Customer\KyNgheViet\SourceCode\core\ERP.Web\ReportViewer\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 

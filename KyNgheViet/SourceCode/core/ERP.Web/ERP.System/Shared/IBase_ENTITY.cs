@@ -8,6 +8,8 @@ namespace ERP.System.Shared
     {
         public int id { get; set; }
         public int? language_id { get; set; }
+        public string voucher_code { get; set; }
+        public int? voucher_year { get; set; }
         public string code { get; set; }
         public string company_code { get; set; }
         public DateTime? date_add { get; set; }

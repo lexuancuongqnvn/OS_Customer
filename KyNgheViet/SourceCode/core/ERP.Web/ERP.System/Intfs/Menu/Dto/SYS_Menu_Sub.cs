@@ -6,6 +6,14 @@ using System.Web;
 
 namespace ERP.System.Intfs.Menu.Dto
 {
+    public class SYS_Menu_Sub_Pin
+    {
+        public int ID { get; set; }
+        public int? INDEX_PIN { get; set; }
+        public Boolean? IS_PIN { get; set; }
+        public string CODE { get; set; }
+        public string EMPLOYEE_CODE { get; set; }
+    }
     public class SYS_Menu_Sub 
     {
         public int ID { get; set; }
@@ -33,7 +41,12 @@ namespace ERP.System.Intfs.Menu.Dto
         public bool? APPROVE { get; set; }
         public string PARAM { get; set; }
         public string COMPONENT_APP { get; set; }
+        public string TABLE_NAME { get; set; }
         public Boolean? IS_SHOW_APP { get; set; }
+        public Boolean? IS_PIN { get; set; }
+        public int? INDEX_PIN { get; set; }
         public bool? IS_ROUTER_LINK { get; set; }
+        public string list_account { get; set; }
     }
+
 }

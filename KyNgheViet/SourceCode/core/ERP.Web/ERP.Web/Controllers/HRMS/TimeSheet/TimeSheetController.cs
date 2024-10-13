@@ -82,14 +82,75 @@ namespace ERP.Web.Controllers.HRMS.TimeSheet
         public async Task<IDictionary<string, object>> HRM_TimeSheet_Work_Shift_Actions([FromBody] HRM_TimeSheet_Work_Shift_ENTITY input)
         {
             List<HRM_TimeSheet_Work_Shift_Detail_ENTITY> Details = new List<HRM_TimeSheet_Work_Shift_Detail_ENTITY>();
-            if (input.monday == true) Details.Add(input.hRM_TimeSheet_Work_Shift_Details.Find(e=>e.name == "monday"));
-            if (input.tuesday == true) Details.Add(input.hRM_TimeSheet_Work_Shift_Details.Find(e=>e.name == "tuesday"));
-            if (input.wednesday == true) Details.Add(input.hRM_TimeSheet_Work_Shift_Details.Find(e=>e.name == "wednesday"));
-            if (input.thursday == true) Details.Add(input.hRM_TimeSheet_Work_Shift_Details.Find(e=>e.name == "thursday"));
-            if (input.friday == true) Details.Add(input.hRM_TimeSheet_Work_Shift_Details.Find(e=>e.name == "friday"));
-            if (input.saturday == true) Details.Add(input.hRM_TimeSheet_Work_Shift_Details.Find(e=>e.name == "saturday"));
-            if (input.sunday == true) Details.Add(input.hRM_TimeSheet_Work_Shift_Details.Find(e=>e.name == "sunday"));
-            input.hRM_TimeSheet_Work_Shift_Details = Details;
+            //if (input.monday == true) Details.Add(input.hRM_TimeSheet_Work_Shift_Details.Find(e=>e.name == "monday"));
+            //if (input.tuesday == true) Details.Add(input.hRM_TimeSheet_Work_Shift_Details.Find(e=>e.name == "tuesday"));
+            //if (input.wednesday == true) Details.Add(input.hRM_TimeSheet_Work_Shift_Details.Find(e=>e.name == "wednesday"));
+            //if (input.thursday == true) Details.Add(input.hRM_TimeSheet_Work_Shift_Details.Find(e=>e.name == "thursday"));
+            //if (input.friday == true) Details.Add(input.hRM_TimeSheet_Work_Shift_Details.Find(e=>e.name == "friday"));
+            //if (input.saturday == true) Details.Add(input.hRM_TimeSheet_Work_Shift_Details.Find(e=>e.name == "saturday"));
+            //if (input.sunday == true) Details.Add(input.hRM_TimeSheet_Work_Shift_Details.Find(e=>e.name == "sunday"));
+            //input.hRM_TimeSheet_Work_Shift_Details = Details;
+            if(input.hRM_TimeSheet_Work_Shift_Details != null)
+            {
+                foreach(var item in input.hRM_TimeSheet_Work_Shift_Details)
+                {
+                    if (item.start_relax != null && item.end_relax != null)
+                        item.relax = (item.end_relax.Value.Hour + item.end_relax.Value.Minute / 60) - (item.start_relax.Value.Hour + item.start_relax.Value.Minute / 60);
+                    else item.relax = 0;
+                    item.total_time = (item.end_time.Value.Hour + item.end_time.Value.Minute / 60) - (item.start_time.Value.Hour + item.start_time.Value.Minute / 60)- item.relax;
+                    switch (item.name)
+                    {
+                        case "monday":
+                            input.monday = false;
+                            break;
+                        case "tuesday":
+                            input.tuesday = false;
+                            break;
+                        case "wednesday":
+                            input.wednesday = false;
+                            break;
+                        case "thursday":
+                            input.thursday = false;
+                            break;
+                        case "friday":
+                            input.friday = false;
+                            break;
+                        case "saturday":
+                            input.saturday = false;
+                            break;
+                        case "sunday":
+                            input.sunday = false;
+                            break;
+                    }
+                    if (item.is_apply == true)
+                    {
+                        switch (item.name)
+                        {
+                            case "monday":
+                                input.monday = true;
+                                break;
+                            case "tuesday":
+                                input.tuesday = true;
+                                break;
+                            case "wednesday":
+                                input.wednesday = true;
+                                break;
+                            case "thursday":
+                                input.thursday = true;
+                                break;
+                            case "friday":
+                                input.friday = true;
+                                break;
+                            case "saturday":
+                                input.saturday = true;
+                                break;
+                            case "sunday":
+                                input.sunday = true;
+                                break;
+                        }
+                    }
+                }
+            }
             input.xml = input.hRM_TimeSheet_Work_Shift_Details.ToXmlFromList();
             var result = await HRM_TimeSheetService.HRM_TimeSheet_Work_Shift_Actions(input);
             return result;
@@ -674,8 +735,8 @@ namespace ERP.Web.Controllers.HRMS.TimeSheet
             tuples.Add(type);
             tuples.Add(user_login);
             DataSet dt = ManagementController.GetListTable(ConnectController.GetConnectStringByKey("HRM"), "HRM_Employee_Salary_By_Report_Attendance_V2_Search", tuples);
-            string p_from_date = input.from_date.Value.Year.ToString() + "-" + string.Format("{0:00}", input.from_date.Value.Month) + "-" + string.Format("{0:00}", input.from_date.Value.Day);
-            string p_to_date = input.to_date.Value.Year.ToString() + "-" + string.Format("{0:00}", input.to_date.Value.Month) + "-" + string.Format("{0:00}", input.to_date.Value.Day);
+            string p_from_date = input.from_date.Value.ToString("yyyy-MM-dd");
+            string p_to_date = input.to_date.Value.ToString("yyyy-MM-dd");
             //Begin check in / out
             string qr0 = @"EXEC [dbo].[HRM_Employee_Check_In_Out_Report_Attendance_v2_Search] @p_from_date= '" + p_from_date + @"' ,@p_to_date= '" + p_to_date + @"'";
 
@@ -729,6 +790,7 @@ namespace ERP.Web.Controllers.HRMS.TimeSheet
                 List<PointInOutModel> pointInOuts = new List<PointInOutModel>();
                 string[] listWorkShift = rowEmployee["work_shifts"].ToString().Split(";");
                 DataRow[] rowWorkShift = new DataRow[listWorkShift.Length];
+                List<HRM_TimeSheet_Work_Shift_Detail_ENTITY> rowWorkShiftDetail = new List<HRM_TimeSheet_Work_Shift_Detail_ENTITY>();
                 DateTime date_quit_company = DateTime.Now;
                 try { 
                     if(rowEmployee["date_quit_company"] != null)
@@ -737,8 +799,13 @@ namespace ERP.Web.Controllers.HRMS.TimeSheet
                 for (int i = 0; i < listWorkShift.Length; i++)
                 {
                     rowWorkShift[i] = DataWorkShiftAll.Select("code = '" + listWorkShift[i] + "'")[0];
+                    var detail = await HRM_TimeSheetService.HRM_TimeSheet_Work_Shift_Detail_Search(new HRM_TimeSheet_Work_Shift_Detail_ENTITY { work_shift_code = listWorkShift[i] });
+                    var concat = new List<HRM_TimeSheet_Work_Shift_Detail_ENTITY>(rowWorkShiftDetail.Count + detail.Count);
+                    concat.AddRange(rowWorkShiftDetail);
+                    concat.AddRange(detail);
+                    rowWorkShiftDetail = concat;
                 }
-                pointInOuts = HRMController.GetPointLandByWorkShift(rowWorkShift);
+                pointInOuts = HRMController.GetPointLandByWorkShift(rowWorkShift, rowWorkShiftDetail);
                 foreach(DataRow rowCheckInOut in dt.Tables[1].Rows)
                 {
                     if (rowCheckInOut["account_id"].ToString() == rowEmployee["account_id"].ToString())
@@ -1044,7 +1111,7 @@ namespace ERP.Web.Controllers.HRMS.TimeSheet
                         //Begin get work day check in/out
                         double wd = HRMController.GetDayWorkShift(pointInOuts, point_request);
                         if ((work_day_check_in_out + wd) > 1) wd = 1 - work_day_check_in_out;
-                        update_timkeeping_value = wd;
+                        update_timkeeping_value += wd;
                         //update_timkeeping_value = HRMController.GetDayWorkShift(pointInOuts, point_request);
                     }
                     else
@@ -1116,8 +1183,8 @@ namespace ERP.Web.Controllers.HRMS.TimeSheet
                 {
                     foreach (DataRow rowViolateSoon in list_violate_soon)
                     {
-                        DateTime soon_date = DateTime.Parse(rowViolateSoon["date_soon"].ToString());
-                        DateTime late_date = DateTime.Parse(rowViolateSoon["date_soon"].ToString());
+                        DateTime soon_date = DateTime.Parse(((DateTime)rowViolateSoon["date_soon"]).ToString("yyyy-MM-dd HH:mm"));
+                        DateTime late_date = DateTime.Parse(((DateTime)rowViolateSoon["date_soon"]).ToString("yyyy-MM-dd HH:mm"));
                         int minute = Convert.ToInt32(decimal.Parse(rowViolateSoon["minute_soon"].ToString()));
                         int minute_request = HRMController.FindAndReSetTimeSoonLate(attendances, listSoonLates, mission_allowances, soon_date, late_date, true, false);
                         decimal work_day = 0;
@@ -1133,8 +1200,8 @@ namespace ERP.Web.Controllers.HRMS.TimeSheet
                     DataRow[] list_violate_late = dt.Tables[12].Select("request_account = '" + request_account + "' and minute_late > 0");
                     foreach (DataRow rowViolateLate in list_violate_late)
                     {
-                        DateTime soon_date = DateTime.Parse(rowViolateLate["date_late"].ToString());
-                        DateTime late_date = DateTime.Parse(rowViolateLate["date_late"].ToString());
+                        DateTime soon_date = DateTime.Parse(((DateTime)rowViolateLate["date_late"]).ToString("yyyy-MM-dd HH:mm"));
+                        DateTime late_date = DateTime.Parse(((DateTime)rowViolateLate["date_late"]).ToString("yyyy-MM-dd HH:mm"));
                         int minute = Convert.ToInt32(decimal.Parse(rowViolateLate["minute_late"].ToString()));
                         int minute_request = HRMController.FindAndReSetTimeSoonLate(attendances, listSoonLates, mission_allowances, soon_date, late_date, false, true);
                         decimal work_day = 0;

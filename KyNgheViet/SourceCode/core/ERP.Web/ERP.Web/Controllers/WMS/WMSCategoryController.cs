@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using ERP.Common.Shared.Dto;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -47,6 +48,32 @@ namespace ERP.Web.Controllers.WMS
             return await this.ICategoryService.CAT_Goods_Insert(input);
         }
         [HttpPost]
+        public async Task<List<CAT_Goods_Configuration_ENTITY>> CAT_Goods_Configuration_Search_By_Goods([FromBody] CAT_Goods_Configuration_ENTITY input)
+        {
+            return await this.ICategoryService.CAT_Goods_Configuration_Search_By_Goods(input);
+        }
+        [HttpPost]
+        public async Task<List<CAT_Goods_Configuration_ENTITY>> CAT_Goods_Configuration_Search([FromBody] CAT_Goods_Configuration_ENTITY input)
+        {
+            return await this.ICategoryService.CAT_Goods_Configuration_Search(input);
+        }
+        [HttpPost]
+        public async Task<IDictionary<string, object>> CAT_Goods_Configuration_Delete([FromBody] CAT_Goods_Configuration_ENTITY input)
+        {
+            return await this.ICategoryService.CAT_Goods_Configuration_Delete(input);
+        }
+        [HttpPost]
+        public async Task<IDictionary<string, object>> CAT_Goods_Configuration_Update([FromBody] CAT_Goods_Configuration_ENTITY input)
+        {
+            return await this.ICategoryService.CAT_Goods_Configuration_Update(input);
+        }
+        [HttpPost]
+        public async Task<IDictionary<string, object>> CAT_Goods_Configuration_Insert([FromBody] CAT_Goods_Configuration_ENTITY input)
+        {
+            return await this.ICategoryService.CAT_Goods_Configuration_Insert(input);
+        }
+
+        [HttpPost]
         public async Task<IDictionary<string, object>> CAT_Goods_Group_Action_By_Type([FromBody] CAT_Goods_Group_ENTITY input)
         {
             return await this.ICategoryService.CAT_Goods_Group_Action_By_Type(input);
@@ -85,6 +112,27 @@ namespace ERP.Web.Controllers.WMS
         public async Task<List<CAT_Goods_Unit_Conversion_Factor_ENTITY>> CAT_Goods_Unit_Conversion_Factor_Search([FromBody] CAT_Goods_Unit_Conversion_Factor_ENTITY input)
         {
             return await this.ICategoryService.CAT_Goods_Unit_Conversion_Factor_Search(input);
+        }
+
+        [HttpPost]
+        public async Task<IDictionary<string, object>> CAT_Goods_Serial_Delete([FromBody] CAT_Goods_Serial_ENTITY input)
+        {
+            return await this.ICategoryService.CAT_Goods_Serial_Delete(input);
+        }
+        [HttpPost]
+        public async Task<IDictionary<string, object>> CAT_Goods_Serial_Update([FromBody] CAT_Goods_Serial_ENTITY input)
+        {
+            return await this.ICategoryService.CAT_Goods_Serial_Update(input);
+        }
+        [HttpPost]
+        public async Task<IDictionary<string, object>> CAT_Goods_Serial_Insert([FromBody] CAT_Goods_Serial_ENTITY input)
+        {
+            return await this.ICategoryService.CAT_Goods_Serial_Insert(input);
+        }
+        [HttpPost]
+        public async Task<List<CAT_Goods_Serial_ENTITY>> CAT_Goods_Serial_Search([FromBody] CAT_Goods_Serial_ENTITY input)
+        {
+            return await this.ICategoryService.CAT_Goods_Serial_Search(input);
         }
     }
 }

@@ -36,6 +36,7 @@ namespace ERP.System.Intfs.Menu.Dto
         public int? ACCOUNT_ID { get; set; }
         public string NOTES { get; set; }
         public string MODULE { get; set; }
+        public string list_account { get; set; }
         public bool? APPROVE { get; set; }
         public bool? IS_ROUTER_LINK { get; set; }
 

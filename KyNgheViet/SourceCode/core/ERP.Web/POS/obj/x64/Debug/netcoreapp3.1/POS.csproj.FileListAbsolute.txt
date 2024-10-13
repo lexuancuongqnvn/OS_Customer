@@ -11,3 +11,4 @@ D:\SourceCode\ERP\RELEASE\core\ERP.Web\POS\obj\x64\Debug\netcoreapp3.1\POS.cspro
 D:\SourceCode\ERP\RELEASE\core\ERP.Web\POS\obj\x64\Debug\netcoreapp3.1\POS.csproj.CopyComplete
 D:\SourceCode\ERP\RELEASE\core\ERP.Web\POS\obj\x64\Debug\netcoreapp3.1\POS.dll
 D:\SourceCode\ERP\RELEASE\core\ERP.Web\POS\obj\x64\Debug\netcoreapp3.1\POS.pdb
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\POS\obj\x64\Debug\netcoreapp3.1\POS.sourcelink.json

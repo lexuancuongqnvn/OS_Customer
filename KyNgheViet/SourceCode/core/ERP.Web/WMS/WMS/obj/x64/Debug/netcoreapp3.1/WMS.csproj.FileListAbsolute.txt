@@ -13,3 +13,10 @@ D:\SourceCode\ERP\RELEASE\core\ERP.Web\WMS\WMS\obj\x64\Debug\netcoreapp3.1\WMS.c
 D:\SourceCode\ERP\RELEASE\core\ERP.Web\WMS\WMS\obj\x64\Debug\netcoreapp3.1\WMS.csproj.CopyComplete
 D:\SourceCode\ERP\RELEASE\core\ERP.Web\WMS\WMS\obj\x64\Debug\netcoreapp3.1\WMS.dll
 D:\SourceCode\ERP\RELEASE\core\ERP.Web\WMS\WMS\obj\x64\Debug\netcoreapp3.1\WMS.pdb
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\WMS\WMS\bin\x64\Debug\netcoreapp3.1\ERP.System.dll
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\WMS\WMS\bin\x64\Debug\netcoreapp3.1\HRMS.dll
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\WMS\WMS\bin\x64\Debug\netcoreapp3.1\SignalR.dll
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\WMS\WMS\bin\x64\Debug\netcoreapp3.1\ERP.System.pdb
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\WMS\WMS\bin\x64\Debug\netcoreapp3.1\HRMS.pdb
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\WMS\WMS\bin\x64\Debug\netcoreapp3.1\SignalR.pdb
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\WMS\WMS\obj\x64\Debug\netcoreapp3.1\WMS.sourcelink.json

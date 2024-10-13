@@ -920,9 +920,11 @@ namespace ERP.Web.Controllers.HRMS.Employee
         [HttpPost]
         public async Task<HRM_Employee_Report_Salary_ENTITY> HRM_Employee_Report_Salary_v2_Search([FromBody] HRM_Employee_Report_Salary_ENTITY input)
         {
+            List<HRM_Branch_ENTITY> branch = await this.HRM_BranchService.HRM_Branch_Search(new HRM_Branch_ENTITY { company_code= AuthenticateController.appSessionUser.company_code });
+            string company_symbol = branch[0].company_symbol.ToString();
             HRM_Employee_Report_Salary_ENTITY result = new HRM_Employee_Report_Salary_ENTITY();
-            string startPath = FileManagerController.AppDirectory + "\\Reports\\HRM\\Employees\\" + input.start_datetime.Value.ToString("dd-MM-yyyy");
-            string zipOutputPath = FileManagerController.AppDirectory + "\\Reports\\HRM\\Employees\\Output";
+            string startPath = FileManagerController.AppDirectory + "\\Reports\\"+ company_symbol + "\\HRM\\Employees\\" + input.start_datetime.Value.ToString("dd-MM-yyyy");
+            string zipOutputPath = FileManagerController.AppDirectory + "\\Reports\\" + company_symbol + "\\HRM\\Employees\\Output";
             try
             {
                 Directory.Delete(startPath, true);
@@ -1148,6 +1150,18 @@ namespace ERP.Web.Controllers.HRMS.Employee
                             c_dtCacKhoanThuNhap.Rows.Add(newrow2);
                             total_salary1 += salary;
                         }
+ 
+                        var hRM_Employee_Bonus = await employeeService.HRM_Employee_Bonus_Search(new HRM_Employee_Bonus_ENTITY { employee_code = employee.code,bobus_date = input.start_datetime});
+                        foreach(var bonus in hRM_Employee_Bonus)
+                        {
+                            newrow2 = c_dtCacKhoanThuNhap.NewRow();
+
+                            newrow2["name"] = bonus.name;
+                            newrow2["salary"] = bonus.value;
+                            newrow2["employee_code"] = employee.code;
+                            c_dtCacKhoanThuNhap.Rows.Add(newrow2);
+                            total_salary1 += (decimal)bonus.value;
+                        }
 
                         if (r_dtCacKhoanThuNhap.Length == 0) c_dtCacKhoanThuNhap = dtCacKhoanThuNhap.Select($"employee_code = '{employee.code}'").CopyToDataTable();
                         DataTable c_dtCacKhoanTruVaoLuong = new DataTable();
@@ -1255,12 +1269,12 @@ namespace ERP.Web.Controllers.HRMS.Employee
                                 new ReportParameter("address_branch", row["address_branch"].ToString()),
                                 new ReportParameter("title", "PHIẾU CHI LƯƠNG THÁNG "+input.start_datetime.Value.Month+" NĂM "+input.start_datetime.Value.Year)
                             };
-                            report.ReportPath = $"{FileManagerController.AppDirectory}\\Reports\\HRM\\Employees\\PhieuLuongTungNhanVien.rdlc";
+                            report.ReportPath = $"{FileManagerController.AppDirectory}\\Reports\\" + company_symbol + "\\HRM\\Employees\\PhieuLuongTungNhanVien.rdlc";
                             report.SetParameters(parameters);
 
                             var pdf = report.Render(renderFormat);
                             string filename = $"{row["firstName"]} {row["lastName"]}." + extention;
-                            FileManagerController.SaveFile(pdf, $"{FileManagerController.AppDirectory}\\Reports\\HRM\\Employees\\{input.start_datetime.Value.ToString("dd-MM-yyyy")}\\", filename);
+                            FileManagerController.SaveFile(pdf, $"{FileManagerController.AppDirectory}\\Reports\\{company_symbol}\\HRM\\Employees\\{input.start_datetime.Value.ToString("dd-MM-yyyy")}\\", filename);
                         }
                         newrowAll["STT"] = stt;
                         newrowAll["employee_id"] = row["employee_code"].ToString();
@@ -1303,13 +1317,15 @@ namespace ERP.Web.Controllers.HRMS.Employee
                     }
                 }
                 reportAll.DataSources.Add(new ReportDataSource("SalaryAllEmployee", dtAll));
-                reportAll.ReportPath = $"{FileManagerController.AppDirectory}\\Reports\\HRM\\Employees\\PhieuLuongTongHop.rdlc";
+                reportAll.ReportPath = $"{FileManagerController.AppDirectory}\\Reports\\" + company_symbol + "\\HRM\\Employees\\PhieuLuongTongHop.rdlc";
 
                 var excel = reportAll.Render(renderFormat);
-                string filenameAll = $"Bảng tổng hợp lương." + extention;
-                FileManagerController.SaveFile(excel, $"{FileManagerController.AppDirectory}\\Reports\\HRM\\Employees\\{input.start_datetime.Value.ToString("dd-MM-yyyy")}\\", filenameAll);
+                string filenameAll = $"Bảng tổng hợp công." + extention;
+                FileManagerController.SaveFile(excel, $"{FileManagerController.AppDirectory}\\Reports\\{company_symbol}\\HRM\\Employees\\{input.start_datetime.Value.ToString("dd-MM-yyyy")}\\", filenameAll);
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { 
+            
+            }
 
             try { 
                 ZipFile.CreateFromDirectory(startPath, zipPath); 

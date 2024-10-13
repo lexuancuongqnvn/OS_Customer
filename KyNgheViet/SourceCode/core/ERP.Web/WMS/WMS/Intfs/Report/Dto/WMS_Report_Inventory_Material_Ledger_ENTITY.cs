@@ -20,6 +20,7 @@ namespace WMS.Intfs.Report.Dto
         public string notes            {get;set;}
         public decimal? price            {get;set;}
         public string goods_code       {get;set;}
+        public string goods_serial       {get;set;}
         public string warehouse_code   {get;set;}
         public decimal? quantity         {get;set;}
         public decimal? price_import     {get;set;}
@@ -33,5 +34,7 @@ namespace WMS.Intfs.Report.Dto
         public DateTime? date_modified {get;set;}
         public string account_code_add {get;set;}
         public string account_code_modified {get;set;}
+        public string voucher_code { get; set; }
+        public int? voucher_year { get; set; }
     }
 }

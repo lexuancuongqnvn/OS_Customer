@@ -39,6 +39,26 @@ namespace WMS.Intfs.Report.Dto
         public string account_code_add { get; set; }
         public string account_code_modified { get; set; }
         public int? voucher_year { set; get; }
-        public int? language_id { get; set; }
+        public decimal? arise_fc { set; get; }
+        public decimal? arise                       { set; get; }
+        public string unit_name                   { set; get; }
+        public string warehouse_symbol            { set; get; }
+        public decimal? quantity                    { set; get; }
+        public decimal? price_fc                    { set; get; }
+        public string goods_symbol                { set; get; }
+        public string goods_name                  { set; get; }
+        public string group_code                  { set; get; }
+        public string customer_symbol             { set; get; }
+        public decimal? price                       { set; get; }
+        public string creditor_account            { set; get; }
+        public string debitor_account             { set; get; }
+        public string fee_code                    { set; get; }
+        public string case_code                   { set; get; }
+        public string department_symbol           { set; get; }
+        public string construction_id             { set; get; }
+        public decimal? conversion_factor           { set; get; }
+        public decimal? conversion_quantity         { set; get; }
+        public decimal? conversion_price            { set; get; }
+        public int? language_id { set; get; }
     }
 }

@@ -42,8 +42,10 @@ namespace ERP.Common.Models
         public string fire_base_token { get; set; }
       
         public int? color_id { get; set; }
+        public bool? is_clear_cache { get; set; }
         public int voucher_year { get; set; }  
         public string company_code { get; set; }
         public string voucher_code { get; set; }
+        public string mail_domain { get; set; }
     }
 }

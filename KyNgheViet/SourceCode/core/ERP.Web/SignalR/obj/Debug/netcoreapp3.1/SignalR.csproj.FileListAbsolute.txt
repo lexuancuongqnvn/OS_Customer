@@ -1,3 +1,9 @@
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\SignalR\obj\Debug\netcoreapp3.1\SignalR.csproj.AssemblyReference.cache
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\SignalR\obj\Debug\netcoreapp3.1\SignalR.GeneratedMSBuildEditorConfig.editorconfig
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\SignalR\obj\Debug\netcoreapp3.1\SignalR.AssemblyInfoInputs.cache
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\SignalR\obj\Debug\netcoreapp3.1\SignalR.AssemblyInfo.cs
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\SignalR\obj\Debug\netcoreapp3.1\SignalR.csproj.CoreCompileInputs.cache
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\SignalR\obj\Debug\netcoreapp3.1\SignalR.sourcelink.json
 D:\SourceCode\ERP\RELEASE\core\ERP.Web\SignalR\bin\Debug\netcoreapp3.1\SignalR.deps.json
 D:\SourceCode\ERP\RELEASE\core\ERP.Web\SignalR\bin\Debug\netcoreapp3.1\SignalR.dll
 D:\SourceCode\ERP\RELEASE\core\ERP.Web\SignalR\bin\Debug\netcoreapp3.1\SignalR.pdb
@@ -6,12 +12,7 @@ D:\SourceCode\ERP\RELEASE\core\ERP.Web\SignalR\bin\Debug\netcoreapp3.1\ERP.Syste
 D:\SourceCode\ERP\RELEASE\core\ERP.Web\SignalR\bin\Debug\netcoreapp3.1\HRMS.dll
 D:\SourceCode\ERP\RELEASE\core\ERP.Web\SignalR\bin\Debug\netcoreapp3.1\HRMS.pdb
 D:\SourceCode\ERP\RELEASE\core\ERP.Web\SignalR\bin\Debug\netcoreapp3.1\ERP.Common.pdb
-D:\SourceCode\ERP\RELEASE\core\ERP.Web\SignalR\obj\Debug\netcoreapp3.1\SignalR.csproj.AssemblyReference.cache
-D:\SourceCode\ERP\RELEASE\core\ERP.Web\SignalR\obj\Debug\netcoreapp3.1\SignalR.GeneratedMSBuildEditorConfig.editorconfig
-D:\SourceCode\ERP\RELEASE\core\ERP.Web\SignalR\obj\Debug\netcoreapp3.1\SignalR.AssemblyInfoInputs.cache
-D:\SourceCode\ERP\RELEASE\core\ERP.Web\SignalR\obj\Debug\netcoreapp3.1\SignalR.AssemblyInfo.cs
-D:\SourceCode\ERP\RELEASE\core\ERP.Web\SignalR\obj\Debug\netcoreapp3.1\SignalR.csproj.CoreCompileInputs.cache
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\SignalR\bin\Debug\netcoreapp3.1\ERP.System.pdb
 D:\SourceCode\ERP\RELEASE\core\ERP.Web\SignalR\obj\Debug\netcoreapp3.1\SignalR.csproj.CopyComplete
 D:\SourceCode\ERP\RELEASE\core\ERP.Web\SignalR\obj\Debug\netcoreapp3.1\SignalR.dll
 D:\SourceCode\ERP\RELEASE\core\ERP.Web\SignalR\obj\Debug\netcoreapp3.1\SignalR.pdb
-D:\SourceCode\ERP\RELEASE\core\ERP.Web\SignalR\bin\Debug\netcoreapp3.1\ERP.System.pdb

@@ -84,6 +84,11 @@ namespace ERP.System.Impls.Account
         {
             var result = await ManagementController.GetDataFromStoredProcedure<SYS_Account_Group>(ConnectController.GetConnectStringByKey("ID"), CommonStoreProcedure.SYS_Account_Group_Search, input);
             return result;
+        } 
+        public async Task<List<SYS_Account_Group_Permission>> SYS_Account_Info_Permission_Search()
+        {
+            var result = await ManagementController.GetDataFromStoredProcedure<SYS_Account_Group_Permission>(ConnectController.GetConnectStringByKey("ID"), CommonStoreProcedure.SYS_Account_Info_Permission_Search, new SYS_Account_Group_Permission());
+            return result;
         }
 
         public async Task<IDictionary<string, object>> SYS_Account_Register(SYS_Account_Infomation input)

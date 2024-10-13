@@ -21,5 +21,7 @@ namespace TAX.Infs.Category.Dto
         public DateTime? date_modified { get; set; }
         public string account_code_add { get; set; }
         public string account_code_modified { get; set; }
+        public string voucher_code { get; set; }
+        public int? voucher_year { get; set; }
     }
 }

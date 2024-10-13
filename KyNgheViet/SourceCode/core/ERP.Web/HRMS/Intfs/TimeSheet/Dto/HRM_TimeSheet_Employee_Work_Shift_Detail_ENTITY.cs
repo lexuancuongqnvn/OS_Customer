@@ -35,5 +35,6 @@ namespace HRMS.Intfs.TimeSheet.Dto
         public string end_time_f { get; set; }
         public decimal? total_time { get; set; }
         public string work_shift_name { get; set; }
+        public bool? is_auto_clone { get; set; }
     }
 }

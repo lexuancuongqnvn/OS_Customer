@@ -15,7 +15,7 @@ namespace WMS.Impls.Voucher
         #region I41 phiếu nhập thành phẩm từ sản xuất
         public async Task<List<I41_M_ENTITY>> I41_M_Search(I41_M_ENTITY input)
         {
-            _ = await ManagementController.GetResultValueFromStore2(ConnectController.GetConnectStringByKey("ID"), "SYS_Generate_Table_Voucher", input);
+            
             var result = await ManagementController.GetDataFromStoredProcedure2<I41_M_ENTITY>(ConnectController.GetConnectStringByKey("WMS"), CommonStoredProcedures.I41_M_Search, input);
             return result;
         }
@@ -27,14 +27,14 @@ namespace WMS.Impls.Voucher
 
         public async Task<IDictionary<string, object>> I41_M_Insert(I41_M_ENTITY input)
         {
-            _ = await ManagementController.GetResultValueFromStore2(ConnectController.GetConnectStringByKey("ID"), "SYS_Generate_Table_Voucher", input);
+            
             var result = await ManagementController.GetResultValueFromStore2(ConnectController.GetConnectStringByKey("WMS"), CommonStoredProcedures.I41_M_Insert, input);
             return result;
         }
 
         public async Task<IDictionary<string, object>> I41_M_Update(I41_M_ENTITY input)
         {
-            _ = await ManagementController.GetResultValueFromStore2(ConnectController.GetConnectStringByKey("ID"), "SYS_Generate_Table_Voucher", input);
+            
             var result = await ManagementController.GetResultValueFromStore2(ConnectController.GetConnectStringByKey("WMS"), CommonStoredProcedures.I41_M_Update, input);
             return result;
         }
@@ -48,7 +48,7 @@ namespace WMS.Impls.Voucher
         #region I42
         public async Task<List<I42_M_ENTITY>> I42_M_Search(I42_M_ENTITY input)
         {
-            _ = await ManagementController.GetResultValueFromStore2(ConnectController.GetConnectStringByKey("ID"), "SYS_Generate_Table_Voucher", input);
+            
             var result = await ManagementController.GetDataFromStoredProcedure2<I42_M_ENTITY>(ConnectController.GetConnectStringByKey("WMS"), CommonStoredProcedures.I42_M_Search, input);
             return result;
         }
@@ -60,14 +60,14 @@ namespace WMS.Impls.Voucher
 
         public async Task<IDictionary<string, object>> I42_M_Insert(I42_M_ENTITY input)
         {
-            _ = await ManagementController.GetResultValueFromStore2(ConnectController.GetConnectStringByKey("ID"), "SYS_Generate_Table_Voucher", input);
+            
             var result = await ManagementController.GetResultValueFromStore2(ConnectController.GetConnectStringByKey("WMS"), CommonStoredProcedures.I42_M_Insert, input);
             return result;
         }
 
         public async Task<IDictionary<string, object>> I42_M_Update(I42_M_ENTITY input)
         {
-            _ = await ManagementController.GetResultValueFromStore2(ConnectController.GetConnectStringByKey("ID"), "SYS_Generate_Table_Voucher", input);
+            
             var result = await ManagementController.GetResultValueFromStore2(ConnectController.GetConnectStringByKey("WMS"), CommonStoredProcedures.I42_M_Update, input);
             return result;
         }
@@ -81,7 +81,7 @@ namespace WMS.Impls.Voucher
         #region I43
         public async Task<List<I43_M_ENTITY>> I43_M_Search(I43_M_ENTITY input)
         {
-            _ = await ManagementController.GetResultValueFromStore2(ConnectController.GetConnectStringByKey("ID"), "SYS_Generate_Table_Voucher", input);
+            
             var result = await ManagementController.GetDataFromStoredProcedure2<I43_M_ENTITY>(ConnectController.GetConnectStringByKey("WMS"), CommonStoredProcedures.I43_M_Search, input);
             return result;
         }
@@ -93,14 +93,14 @@ namespace WMS.Impls.Voucher
 
         public async Task<IDictionary<string, object>> I43_M_Insert(I43_M_ENTITY input)
         {
-            _ = await ManagementController.GetResultValueFromStore2(ConnectController.GetConnectStringByKey("ID"), "SYS_Generate_Table_Voucher", input);
+            
             var result = await ManagementController.GetResultValueFromStore2(ConnectController.GetConnectStringByKey("WMS"), CommonStoredProcedures.I43_M_Insert, input);
             return result;
         }
 
         public async Task<IDictionary<string, object>> I43_M_Update(I43_M_ENTITY input)
         {
-            _ = await ManagementController.GetResultValueFromStore2(ConnectController.GetConnectStringByKey("ID"), "SYS_Generate_Table_Voucher", input);
+            
             var result = await ManagementController.GetResultValueFromStore2(ConnectController.GetConnectStringByKey("WMS"), CommonStoredProcedures.I43_M_Update, input);
             return result;
         }
@@ -114,7 +114,7 @@ namespace WMS.Impls.Voucher
         #region I44
         public async Task<List<I44_M_ENTITY>> I44_M_Search(I44_M_ENTITY input)
         {
-            _ = await ManagementController.GetResultValueFromStore2(ConnectController.GetConnectStringByKey("ID"), "SYS_Generate_Table_Voucher", input);
+            
             var result = await ManagementController.GetDataFromStoredProcedure2<I44_M_ENTITY>(ConnectController.GetConnectStringByKey("WMS"), CommonStoredProcedures.I44_M_Search, input);
             return result;
         }
@@ -126,14 +126,14 @@ namespace WMS.Impls.Voucher
 
         public async Task<IDictionary<string, object>> I44_M_Insert(I44_M_ENTITY input)
         {
-            _ = await ManagementController.GetResultValueFromStore2(ConnectController.GetConnectStringByKey("ID"), "SYS_Generate_Table_Voucher", input);
+            
             var result = await ManagementController.GetResultValueFromStore2(ConnectController.GetConnectStringByKey("WMS"), CommonStoredProcedures.I44_M_Insert, input);
             return result;
         }
 
         public async Task<IDictionary<string, object>> I44_M_Update(I44_M_ENTITY input)
         {
-            _ = await ManagementController.GetResultValueFromStore2(ConnectController.GetConnectStringByKey("ID"), "SYS_Generate_Table_Voucher", input);
+            
             var result = await ManagementController.GetResultValueFromStore2(ConnectController.GetConnectStringByKey("WMS"), CommonStoredProcedures.I44_M_Update, input);
             return result;
         }
@@ -147,7 +147,7 @@ namespace WMS.Impls.Voucher
         #region I45 phiếu xuất công cụ lao động
         public async Task<List<I45_M_ENTITY>> I45_M_Search(I45_M_ENTITY input)
         {
-            _ = await ManagementController.GetResultValueFromStore2(ConnectController.GetConnectStringByKey("ID"), "SYS_Generate_Table_Voucher", input);
+            
             var result = await ManagementController.GetDataFromStoredProcedure2<I45_M_ENTITY>(ConnectController.GetConnectStringByKey("WMS"), CommonStoredProcedures.I45_M_Search, input);
             return result;
         }
@@ -159,14 +159,14 @@ namespace WMS.Impls.Voucher
 
         public async Task<IDictionary<string, object>> I45_M_Insert(I45_M_ENTITY input)
         {
-            _ = await ManagementController.GetResultValueFromStore2(ConnectController.GetConnectStringByKey("ID"), "SYS_Generate_Table_Voucher", input);
+            
             var result = await ManagementController.GetResultValueFromStore2(ConnectController.GetConnectStringByKey("WMS"), CommonStoredProcedures.I45_M_Insert, input);
             return result;
         }
 
         public async Task<IDictionary<string, object>> I45_M_Update(I45_M_ENTITY input)
         {
-            _ = await ManagementController.GetResultValueFromStore2(ConnectController.GetConnectStringByKey("ID"), "SYS_Generate_Table_Voucher", input);
+            
             var result = await ManagementController.GetResultValueFromStore2(ConnectController.GetConnectStringByKey("WMS"), CommonStoredProcedures.I45_M_Update, input);
             return result;
         }

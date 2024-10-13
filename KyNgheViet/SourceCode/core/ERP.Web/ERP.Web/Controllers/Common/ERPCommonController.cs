@@ -47,6 +47,11 @@ namespace ERP.Web.Controllers.Common
         {
             input.xml = input.voucher_details.ToXmlFromList2();
             return await this.ERPCommonService.SYS_List_Voucher_Block_Book_Update(input);
+        }  
+        [HttpPost]
+        public async Task<IDictionary<string, object>> ERP_Common_Check_Voucher_Save([FromBody] ERPCommon_ENTITY input)
+        {
+            return await this.ERPCommonService.ERP_Common_Check_Voucher_Save(input);
         }
     }
 }

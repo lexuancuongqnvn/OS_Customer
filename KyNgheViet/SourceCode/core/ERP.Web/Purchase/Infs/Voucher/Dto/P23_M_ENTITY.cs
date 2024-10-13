@@ -12,6 +12,8 @@ namespace Purchase.Infs.Voucher.Dto
         public string code    { get; set; }
         public string voucher_code { get; set; }
         public DateTime? voucher_date { get; set; }
+        public DateTime? voucher_date_start { get; set; }
+        public DateTime? voucher_date_end { get; set; }
         public string voucher_no { get; set; }
         public DateTime? invoice_date { get; set; }
         public string invoice_no { get; set; }
@@ -53,9 +55,13 @@ namespace Purchase.Infs.Voucher.Dto
         public string company_code { get; set; }
         public string xml_23d { get; set; }
         public string xml_vat_in { get; set; }
-        public List<Accounting_VAT_Input_ENTITY> accounting_vat_inputs { get; set; }
-        public List<P23_D_ENTITY> p23_D { get; set; }
+        public int? voucher_year { get; set; }
         public int? language_id { get; set; }
         public bool? is_tax { get; set; }
+        public string goods_serial { get; set; }
+        public string goods_symbol { get; set; }
+        public List<Accounting_VAT_Input_ENTITY> accounting_vat_inputs { get; set; }
+        public List<P23_D_ENTITY> p23_D { get; set; }
+
     }
 }

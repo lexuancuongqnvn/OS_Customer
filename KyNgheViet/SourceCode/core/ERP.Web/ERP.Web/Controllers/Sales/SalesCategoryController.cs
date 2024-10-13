@@ -49,6 +49,7 @@ namespace ERP.Web.Controllers.Sales
         [HttpPost]
         public async Task<IDictionary<string, object>> CAT_Customer_Insert([FromBody] CAT_Customer_ENTITY input)
         {
+            input.code = input.code.Trim(); 
             return await this.ISalesCategoryService.CAT_Customer_Insert(input);
         }
         [HttpPost]

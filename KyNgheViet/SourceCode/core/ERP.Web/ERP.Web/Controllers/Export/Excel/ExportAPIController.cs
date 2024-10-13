@@ -15,6 +15,8 @@ using HRMS.Intfs.Employee;
 using HRMS.Intfs.Employee.Dto;
 using ERP.Web.Controllers.Upload;
 using Common.Utils;
+using HRMS.Intfs.Branch;
+using HRMS.Intfs.Branch.Dto;
 
 namespace ERP.Web.Controllers.Export.Excel
 {
@@ -26,13 +28,14 @@ namespace ERP.Web.Controllers.Export.Excel
         private readonly IExportService IExportService;
         private readonly ISYSCommonService ICommonService;
         private readonly IEmployeeService IEmployeeService;
+        private readonly IHRM_BranchService HRM_BranchService;
 
-        public ExportAPIController(IExportService iExportService, ISYSCommonService iCommonService, IEmployeeService employeeService)
+        public ExportAPIController(IExportService iExportService, ISYSCommonService iCommonService, IEmployeeService employeeService, IHRM_BranchService hRM_BranchService)
         {
             this.IExportService = iExportService;
             this.ICommonService = iCommonService;
             this.IEmployeeService = employeeService;
-
+            this.HRM_BranchService = hRM_BranchService;
         }
         [HttpPost]
         public async Task<string> API_Data_Export_By_StoredProceduces([FromBody] ExportModdel input)
@@ -55,6 +58,7 @@ namespace ERP.Web.Controllers.Export.Excel
         [HttpPost]
         public async Task<IDictionary<string, object>> SYS_Report_Infomation_Insert([FromBody] SYS_Report_Infomation_ENTITY input)
         {
+            input.xml_detail = input.sYS_Report_Infomation_Details.ToXmlFromList2();
             var result = await this.IExportService.SYS_Report_Infomation_Insert(input);
             return result;
         }
@@ -64,9 +68,7 @@ namespace ERP.Web.Controllers.Export.Excel
             var result = await this.IExportService.SYS_Report_Infomation_Search(input);
             if(result != null && result.Count > 0 && !string.IsNullOrEmpty(input.table_name) && !string.IsNullOrEmpty(result[0].company_code))
             {
-                var pr = new SYS_List_Company_ENTITY();
-                pr.code = result[0].company_code;
-                result[0].sYS_List_Companys = await this.ICommonService.SYS_List_Company_Search(pr);
+                result[0].hRM_Branchs = await this.HRM_BranchService.HRM_Branch_Search(new HRM_Branch_ENTITY { company_code = result[0].company_code });
                 var pr1 = new SYS_Report_Infomation_Detail_ENTITY();
                 pr1.master_code = result[0].code;
                 result[0].sYS_Report_Infomation_Details = await this.IExportService.SYS_Report_Infomation_Detail_Search(pr1);
@@ -96,13 +98,21 @@ namespace ERP.Web.Controllers.Export.Excel
                                 sign.employee_info = new SYS_Report_Infomation_Detail_Signature_Employee_ENTITY();
                                 sign.employee_info.role_name = employeeInfo.title_name;
                                 //sign.employee_info.sub_role_name = "";
-                                sign.employee_info.default_sign = FileManagerController.GetImageTypeBase64OnHosting(employeeInfo.signature);
+                                if(!string.IsNullOrEmpty(employeeInfo.signature))
+                                    sign.employee_info.default_sign = FileManagerController.GetImageTypeBase64OnHosting(employeeInfo.signature);
                                 sign.show_date_sign = DateTime.Now.ToString("dd/MM/yyyy");
                                 sign.employee_info.sign_fullname = employeeInfo.fullName;
                             }
                     }
                 }
-            }  
+            }  else if (!string.IsNullOrEmpty(input.code))
+            {
+                result[0].hRM_Branchs = await this.HRM_BranchService.HRM_Branch_Search(new HRM_Branch_ENTITY { company_code = result[0].company_code });
+
+                var pr1 = new SYS_Report_Infomation_Detail_ENTITY();
+                pr1.master_code = result[0].code;
+                result[0].sYS_Report_Infomation_Details = await this.IExportService.SYS_Report_Infomation_Detail_Search(pr1);
+            }
             return result;
         }
         

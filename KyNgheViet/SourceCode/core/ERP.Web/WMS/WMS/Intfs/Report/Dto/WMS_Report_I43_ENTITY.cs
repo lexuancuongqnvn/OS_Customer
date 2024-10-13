@@ -9,6 +9,9 @@ namespace WMS.Intfs.Report.Dto
     {
         public string code { set; get; }
         public string company_code { set; get; }
+        public string warehouse_code { set; get; }
+        public string warehouse_name { set; get; }
+        public string warehouse_symbol { set; get; }
         public int? numerical_order { set; get; }
         public string voucher_code { set; get; }
         public DateTime? voucher_date { set; get; }
@@ -36,5 +39,22 @@ namespace WMS.Intfs.Report.Dto
         public string xml_43d { set; get; }
         public int id { get; set; }
         public int? language_id { get; set; }
+        public string code_symbol        { get; set; }
+        public string unit_name          { get; set; }
+        public decimal? quantity           { get; set; }
+        public decimal? price_fc           { get; set; }
+        public decimal? price              { get; set; }
+        public decimal? arise_fc           { get; set; }
+        public decimal? arise              { get; set; }
+        public string creditor_account   { get; set; }
+        public string debitor_account    { get; set; }
+        public string fee_code           { get; set; }
+        public string case_code          { get; set; }
+        public string department_name    { get; set; }
+        public string construction_name  { get; set; }
+        public decimal? conversion_factor  { get; set; }
+        public decimal? conversion_quantity { get; set; }
+        public decimal? conversion_price   { get; set; }
+        public string goods_name         { get; set; }
     }
 }

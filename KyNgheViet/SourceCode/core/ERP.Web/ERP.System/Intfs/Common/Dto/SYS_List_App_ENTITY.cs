@@ -15,6 +15,7 @@ namespace ERP.System.Intfs.Common.Dto
         public string key_app { get; set; }
         public string notes { get; set; }
         public string list_account_group { get; set; }
+        public string list_account { get; set; }
         public string icon { get; set; }
         public string description { get; set; }
         public string type { get; set; }

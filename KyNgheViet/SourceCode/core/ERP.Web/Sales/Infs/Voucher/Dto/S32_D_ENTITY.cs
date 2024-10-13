@@ -1,4 +1,5 @@
-﻿using ERP.System.Shared;
+﻿using ERP.Common.Shared.Dto;
+using ERP.System.Shared;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -50,5 +51,9 @@ namespace Sales.Infs.Voucher.Dto
         public string account_code_modified { get; set; }
         public int? language_id { get; set; }
         public DateTime? voucher_date { get; set; }
+        public int? voucher_year { get; set; }
+        public string voucher_code { get; set; }
+        public string notes { get; set; }
+        public List<CAT_Goods_Configuration_ENTITY> cat_goods_configurations { get; set; }
     }
 }

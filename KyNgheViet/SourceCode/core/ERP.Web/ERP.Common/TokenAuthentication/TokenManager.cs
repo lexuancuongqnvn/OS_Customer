@@ -155,6 +155,7 @@ namespace ERP.Common.TokenAuthentication
                 user.level = int.Parse(dataTable.Rows[0]["level"].ToString());
                 user.company_code = dataTable.Rows[0]["COMPANY_CODE"].ToString();
                 user.branch_name = dataTable.Rows[0]["branch_name"].ToString();
+                user.is_clear_cache = bool.Parse(dataTable.Rows[0]["is_clear_cache"].ToString());
                 
                 if(string.IsNullOrEmpty(dataTable.Rows[0]["LANGUAGE_ID"].ToString()))
                 user.languageId = 1;
@@ -216,6 +217,7 @@ namespace ERP.Common.TokenAuthentication
         public bool ClearTokenInMemory(string token)
         {
             memoryCache.Remove(token);
+           
             return true;
         }
         public bool VerifyToken(string token)

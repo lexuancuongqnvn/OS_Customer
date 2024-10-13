@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ERP.Models
 {
-    public class FileRecord : ISYS
+    public class FileRecord 
     {
         public int Id { get; set; }
         public string FileName { get; set; }
@@ -25,17 +25,11 @@ namespace ERP.Models
         public long? Size { get; set; }
         public string tbName { get; set; }
         public string colName { get; set; }
-        public bool? APPROVE { get; set; }
         public bool? approve { get ; set ; }
-        public DateTime? DATE_ADD { get; set; }
         public DateTime? date_add { get ; set ; }
-        public DateTime? DATE_EDIT { get; set; }
         public DateTime? date_edit { get ; set ; }
-        public int? ACCOUNT_ID { get; set; }
         public int? account_id { get ; set ; }
-        public string NOTES { get; set; }
         public string notes { get ; set ; }
-        public string DECENTRALIZATION { get; set; }
         public string decentralization { get ; set ; }
         public string base64 { get; set; }
         public string code { get; set; }

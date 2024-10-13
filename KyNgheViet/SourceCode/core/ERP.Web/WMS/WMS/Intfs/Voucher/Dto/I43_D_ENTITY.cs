@@ -8,6 +8,8 @@ namespace WMS.Intfs.Voucher.Dto
     public class I43_D_ENTITY : IBase_ENTITY
     {
         public DateTime? voucher_date { set; get; }
+        public string voucher_code { set; get; }
+        public int? voucher_year { set; get; }
         public string code { set; get; }
         public string master_code { set; get; }
         public string goods_code { set; get; }

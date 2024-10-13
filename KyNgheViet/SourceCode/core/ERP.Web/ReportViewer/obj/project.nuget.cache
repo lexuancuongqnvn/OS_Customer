@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "snzba3IarMEg6PmRWZydZ2I05M/ogvqkVx514s3gQ8ulwfanKSm1BjvwKLmhxbweU/2bZI8OodTgIYR44UfW4A==",
+  "dgSpecHash": "JGmuc6HhobQBW9gWZxds1fKW/SrRJUKwag14cF8KX3P1IzqJ81EgpFDmbhqlMylAUFx2FVoBbhTJQyuj2Fd+kQ==",
   "success": true,
-  "projectFilePath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\ReportViewer\\ReportViewer.csproj",
+  "projectFilePath": "D:\\SourceCode\\GITHUP\\OS_Customer\\KyNgheViet\\SourceCode\\core\\ERP.Web\\ReportViewer\\ReportViewer.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.aspnetcore.antiforgery\\2.2.0\\microsoft.aspnetcore.antiforgery.2.2.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",

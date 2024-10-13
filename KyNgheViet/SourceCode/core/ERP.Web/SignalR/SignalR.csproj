@@ -18,7 +18,7 @@
       <HintPath>..\ERP.Common\bin\Debug\netcoreapp3.1\ERP.Common.dll</HintPath>
     </Reference>
     <Reference Include="ERP.System">
-      <HintPath>..\ERP.System\bin\Debug\netcoreapp3.1\ERP.System.dll</HintPath>
+      <HintPath>..\ERP.System\obj\Release\netcoreapp3.1\ERP.System.dll</HintPath>
     </Reference>
   </ItemGroup>
 

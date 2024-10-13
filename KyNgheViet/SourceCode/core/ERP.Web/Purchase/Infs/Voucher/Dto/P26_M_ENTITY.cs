@@ -10,6 +10,8 @@ namespace Purchase.Infs.Voucher.Dto
         public int id { get; set; }
         public string code    {get;set;}
         public DateTime? voucher_date { get; set; }
+        public DateTime? voucher_date_start { get; set; }
+        public DateTime? voucher_date_end { get; set; }
         public string voucher_code {get;set;}
         public string voucher_no {get;set;}
         public string customer_code {get;set;}
@@ -33,6 +35,9 @@ namespace Purchase.Infs.Voucher.Dto
         public string company_code {get;set;}
         public string xml_26d { get;set;}
         public bool? is_tax { get; set; }
+        public int? voucher_year { get; set; }
+        public string goods_serial { get; set; }
+        public string goods_symbol { get; set; }
         public List<P26_D_ENTITY> p26_D { get;set;}
 
     }

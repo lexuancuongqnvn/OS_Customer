@@ -15,6 +15,9 @@ namespace HRMS.Intfs.Employee.Dto
         public string check_out { get; set; }
         public string username { get; set; }
         public Boolean? is_check_out { get; set; }
+        public string check_in_relax { get; set; }
+        public string check_out_relax { get; set; }
+        public Boolean? is_checkin_relax { get; set; }
         public string employee_code { get; set; }
         public int? status_checkin { get; set; }
         public int? status { get; set; }
@@ -71,6 +74,7 @@ namespace HRMS.Intfs.Employee.Dto
         public decimal? gender_probability { get; set; }
         public string gender { get; set; }
         public string requestUri { get; set; }
+
         public HRM_Employee_Check_In_Out_Image_Training_ENTITY hRM_Employee_Check_In_Out_Image_Trainings { get; set; }
     }
 }

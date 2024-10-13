@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Sales.Infs.Category.Dto;
+using Sales.Infs.Report.Dto;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Sales.Shared
 {
@@ -65,5 +68,21 @@ namespace Sales.Shared
         public const string CAT_Tax_Insert = "CAT_Tax_Insert";
         public const string CAT_Tax_Update = "CAT_Tax_Update";
         public const string CAT_Tax_Delete = "CAT_Tax_Delete";
+
+        public const string Sales_Report_Of_Accounts_Receivable_Balances_Search = "Sales_Report_Of_Accounts_Receivable_Balances_Search";
+        public const string Sales_Report_Inventory_Materials_Search = "Sales_Report_Inventory_Materials_Search";
+        public const string SALES_Report_S32_Search = "SALES_Report_S32_Search";
+        public const string SALES_Report_S33_Search = "SALES_Report_S33_Search";
+        public const string SALES_Report_S32_Sales_Search = "SALES_Report_S32_Sales_Search";
+        public const string SALES_Report_Gross_Profit_Search = "SALES_Report_Gross_Profit_Search";
+        public const string SALES_Report_Sales_Daybook_Search = "SALES_Report_Sales_Daybook_Search";
+        public const string SALES_Report_Accounts_Receivable_Subsidiary_Ledger_Search = "SALES_Report_Accounts_Receivable_Subsidiary_Ledger_Search";
+        public const string Sales_CAT_Goods_Configuration_Report_Search = "Sales_CAT_Goods_Configuration_Report_Search";
+
+        public const string SALE_Year_End_Balance_Sheet_Compilation_Search = "SALE_Year_End_Balance_Sheet_Compilation_Search";
+        public const string SALE_Accounts_Receivable_Ledger_Search = "SALE_Accounts_Receivable_Ledger_Search";
+        public const string SALE_Statement_Of_Changes_In_Financial_Position_Search = "SALE_Statement_Of_Changes_In_Financial_Position_Search";
+        public const string SALE_The_detailed_Accounts_Receivable_Ledger_By_Invoice_Search = "SALE_The_detailed_Accounts_Receivable_Ledger_By_Invoice_Search";
+
     }
 }

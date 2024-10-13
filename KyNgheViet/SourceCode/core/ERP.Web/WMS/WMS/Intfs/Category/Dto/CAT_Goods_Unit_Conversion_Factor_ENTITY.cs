@@ -23,5 +23,7 @@ namespace WMS.Intfs.Category.Dto
         public decimal? exchange_rate { get; set; }
         public bool? is_active { get; set; }
         public int? language_id { get; set ; }
+        public string voucher_code { get; set; }
+        public int? voucher_year { get; set; }
     }
 }

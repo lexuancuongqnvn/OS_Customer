@@ -9,6 +9,7 @@ namespace ERP.System.Intfs.Export.Dto
         public int id { get; set; }
         public string code { get; set; }
         public string name { get; set; }
+        public string report_name { get; set; }
         public bool? is_co_name { get; set; }
         public bool? is_co_address { get; set; }
         public bool? is_co_tax { get; set; }

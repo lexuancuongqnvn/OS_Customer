@@ -6,6 +6,11 @@ using System.Web;
 
 namespace ERP.System.Impls.Account.Dto
 {
+    public class SYS_Account_Group_Permission
+    {
+        public string code { get; set; }
+        public string name { get; set; }
+    }
     public class SYS_Account_Group : ISYS
     {
         public int ID { get; set; }

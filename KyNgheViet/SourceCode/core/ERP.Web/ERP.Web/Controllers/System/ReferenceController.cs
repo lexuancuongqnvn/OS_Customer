@@ -19,6 +19,8 @@ using Common.Utils;
 using ERP.System.Shared;
 using ERP.Common.Controllers;
 using System.Text.RegularExpressions;
+using static Castle.MicroKernel.ModelBuilder.Descriptors.InterceptorDescriptor;
+using Stimulsoft.System.Web.Caching;
 
 namespace ERP.Web.Controllers.System
 {
@@ -28,7 +30,30 @@ namespace ERP.Web.Controllers.System
     public class ReferenceController : ControllerBase
     {
         private readonly IReferenceService Reference;
-
+        public static Dictionary<string, (List<REFERENCE_ENTITY> data, DateTime expiration) > listDataReference = new Dictionary<string, (List<REFERENCE_ENTITY> data, DateTime expiration)>();
+        [ApiExplorerSettings(IgnoreApi = true)]
+        public void SetCache(string key, List<REFERENCE_ENTITY> value, TimeSpan expirationTime)
+        {
+            DateTime expiration = DateTime.UtcNow.Add(expirationTime);
+            listDataReference[key] = (value, expiration);
+        }
+        [ApiExplorerSettings(IgnoreApi = true)]
+        public List<REFERENCE_ENTITY> GetCache(string key)
+        {
+            if (listDataReference.TryGetValue(key, out var cachedItem))
+            {
+                if (cachedItem.expiration > DateTime.UtcNow)
+                {
+                    return cachedItem.data;
+                }
+                else
+                {
+                    // Remove the item from the cache if it has expired
+                    listDataReference.Remove(key);
+                }
+            }
+            return null; // Cache miss or expired item
+        }
         public ReferenceController(IReferenceService reference)
         {
             this.Reference = reference;
@@ -194,6 +219,7 @@ namespace ERP.Web.Controllers.System
 		            @p_TABLE_NAME = '" + input.TABLE_NAME + @"',
 		            @p_CODE = '" + input.code + @"'
                 ");
+               
                 string qrMaster = @"select * from " + genRowTable.Rows[0]["TABLE_NAME"] + @" where Code = '" + input.code_master + "'";
                 if(!string.IsNullOrEmpty(genRowTable.Rows[0]["QUERY_GET_MASTER"].ToString())) 
                     qrMaster = genRowTable.Rows[0]["QUERY_GET_MASTER"].ToString().Replace("{param_master}", input.code_master).Replace("({ID})", input.user.id.ToString())
@@ -281,7 +307,7 @@ namespace ERP.Web.Controllers.System
                         .Replace("({POSITION_CODE})", ""+input.user.position_code+"")
                         .Replace("({COMPANY_CODE})", ""+input.user.company_code+"")
                         .Replace("({LEVEL})", input.user.level.ToString())
-                        .Replace("({VOUCHER_CODE})", "" + AuthenticateController.appSessionUser.voucher_code.ToString() + "")
+                        .Replace("({VOUCHER_CODE})", "" + AuthenticateController.appSessionUser.voucher_code + "")
                         .Replace("({VOUCHER_YEAR})", AuthenticateController.appSessionUser.voucher_year.ToString());
                 }
                 //Check param in master
@@ -313,6 +339,16 @@ namespace ERP.Web.Controllers.System
                 queryReference = Regex.Replace(queryReference, @"\{.*?\}", string.Empty);
                 if(queryReference.IndexOf("dbo")<0)
                     queryReference = Regex.Replace(queryReference, @"\[.*?\]", string.Empty);
+                string refr = "";
+                try
+                {
+                    refr = queryReference;
+                    refr = Regex.Replace(refr, @"[^a-zA-Z0-9]", "");
+                    var cache = GetCache(refr);
+                    if (cache != null)
+                        return cache;
+                }
+                catch { }
                 DataTable dataStored = ManagementController.GetDataTable("dataStored", @"" + queryReference + ps);
                 //DataTable dataStored = ManagementController.GetDataTable("dataStored", @"EXEC " + storeReference.Split("[")[0] + ps);
                 //render data to JSON
@@ -360,6 +396,14 @@ namespace ERP.Web.Controllers.System
 
                                     obj[i][COLUMN_NAME] = "ARRAY[" + value + "]";
                                 }
+                            }else if (dataRowDetail["TYPE_ID"].ToString() == "5" || dataRowDetail["TYPE_ID"].ToString() == "9" || dataRowDetail["TYPE_ID"].ToString() == "10" || dataRowDetail["TYPE_ID"].ToString() == "11")
+                            {
+                                string VALUEEXPR = dataRowDetail["VALUEEXPR"].ToString(), DISPLAYEXPR = dataRowDetail["DISPLAYEXPR"].ToString(), COLUMN_NAME = dataRowDetail["COLUMN_NAME"].ToString();
+                                for (int i = 0; i < obj.Count; i++)
+                                {
+                                    string value = obj[i][COLUMN_NAME].ToString();
+                                    if(!string.IsNullOrEmpty(value)) obj[i][COLUMN_NAME] = "DateTime-" + DateTime.Parse(value).ToString("yyyy-MM-ddTHH:mm");
+                                }
                             }
                         }
                     }
@@ -403,6 +447,8 @@ namespace ERP.Web.Controllers.System
                 output.OutputData = OutputData;
                 //output.OutputData = ConnectController.DataTableToJSONWithStringBuilder(dt);
                 result.Add(output);
+                if(!string.IsNullOrEmpty(refr))
+                    SetCache(refr, result, TimeSpan.FromSeconds(5));
                 return result;
             }
             catch (Exception ex)

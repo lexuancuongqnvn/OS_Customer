@@ -8,6 +8,7 @@ namespace ERP.Common.Intfs.ERP
 {
     public interface IERPCommonService
     {
+        Task<IDictionary<string, object>> ERP_Common_Check_Voucher_Save(ERPCommon_ENTITY input);
         Task<IDictionary<string, object>> ERP_Common_Generate_Voucher_No(ERPCommon_ENTITY input);
         Task<List<SYS_List_Voucher_ENTITY>> SYS_List_Voucher_Search(SYS_List_Voucher_ENTITY input);  
         Task<IDictionary<string, object>> SYS_Language_Translate_Action_By_Type(SYS_Language_Translate_ENTITY input);

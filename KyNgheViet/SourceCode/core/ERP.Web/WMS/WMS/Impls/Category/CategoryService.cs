@@ -1,4 +1,5 @@
 ﻿using ERP.Common.Controllers;
+using ERP.Common.Shared.Dto;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -92,6 +93,59 @@ namespace WMS.Impls.Category
         public async Task<List<CAT_Goods_Unit_Conversion_Factor_ENTITY>> CAT_Goods_Unit_Conversion_Factor_Search(CAT_Goods_Unit_Conversion_Factor_ENTITY input)
         {
             var result = await ManagementController.GetDataFromStoredProcedure2<CAT_Goods_Unit_Conversion_Factor_ENTITY>(ConnectController.GetConnectStringByKey("WMS"), CommonStoredProcedures.CAT_Goods_Unit_Conversion_Factor_Search, input);
+            return result;
+        }
+
+        public async Task<IDictionary<string, object>> CAT_Goods_Serial_Delete(CAT_Goods_Serial_ENTITY input)
+        {
+            var result = await ManagementController.GetResultValueFromStore2(ConnectController.GetConnectStringByKey("WMS"), CommonStoredProcedures.CAT_Goods_Serial_Delete, input);
+            return result;
+        }
+
+        public async Task<IDictionary<string, object>> CAT_Goods_Serial_Update(CAT_Goods_Serial_ENTITY input)
+        {
+            var result = await ManagementController.GetResultValueFromStore2(ConnectController.GetConnectStringByKey("WMS"), CommonStoredProcedures.CAT_Goods_Serial_Update, input);
+            return result;
+        }
+
+        public async Task<IDictionary<string, object>> CAT_Goods_Serial_Insert(CAT_Goods_Serial_ENTITY input)
+        {
+            var result = await ManagementController.GetResultValueFromStore2(ConnectController.GetConnectStringByKey("WMS"), CommonStoredProcedures.CAT_Goods_Serial_Insert, input);
+            return result;
+        }
+
+        public async Task<List<CAT_Goods_Serial_ENTITY>> CAT_Goods_Serial_Search(CAT_Goods_Serial_ENTITY input)
+        {
+            var result = await ManagementController.GetDataFromStoredProcedure2<CAT_Goods_Serial_ENTITY>(ConnectController.GetConnectStringByKey("WMS"), CommonStoredProcedures.CAT_Goods_Serial_Search, input);
+            return result;
+        }
+        public async Task<IDictionary<string, object>> CAT_Goods_Configuration_Delete(CAT_Goods_Configuration_ENTITY input)
+        {
+            var result = await ManagementController.GetResultValueFromStore2(ConnectController.GetConnectStringByKey("WMS"), CommonStoredProcedures.CAT_Goods_Configuration_Delete, input);
+            return result;
+        }
+
+        public async Task<IDictionary<string, object>> CAT_Goods_Configuration_Insert(CAT_Goods_Configuration_ENTITY input)
+        {
+            var result = await ManagementController.GetResultValueFromStore2(ConnectController.GetConnectStringByKey("WMS"), CommonStoredProcedures.CAT_Goods_Configuration_Insert, input);
+            return result;
+        }
+
+        public async Task<List<CAT_Goods_Configuration_ENTITY>> CAT_Goods_Configuration_Search(CAT_Goods_Configuration_ENTITY input)
+        {
+            var result = await ManagementController.GetDataFromStoredProcedure2<CAT_Goods_Configuration_ENTITY>(ConnectController.GetConnectStringByKey("WMS"), CommonStoredProcedures.CAT_Goods_Configuration_Search, input);
+            return result;
+        }      
+
+        public async Task<List<CAT_Goods_Configuration_ENTITY>> CAT_Goods_Configuration_Search_By_Goods(CAT_Goods_Configuration_ENTITY input)
+        {
+            var result = await ManagementController.GetDataFromStoredProcedure2<CAT_Goods_Configuration_ENTITY>(ConnectController.GetConnectStringByKey("WMS"), CommonStoredProcedures.CAT_Goods_Configuration_Search_By_Goods, input);
+            return result;
+        }
+
+        public async Task<IDictionary<string, object>> CAT_Goods_Configuration_Update(CAT_Goods_Configuration_ENTITY input)
+        {
+            var result = await ManagementController.GetResultValueFromStore2(ConnectController.GetConnectStringByKey("WMS"), CommonStoredProcedures.CAT_Goods_Configuration_Update, input);
             return result;
         }
     }

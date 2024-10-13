@@ -13,13 +13,18 @@ namespace HRMS.Impls.Branch
     {
         public async Task<IDictionary<string, object>> HRM_Branch_Actions(HRM_Branch_ENTITY input)
         {
-            var result = await ManagementController.GetResultValueFromStore(ConnectController.GetConnectStringByKey("HRM"), CommonStoredProcedule.HRM_Branch_Actions, input);
+            var result = await ManagementController.GetResultValueFromStore2(ConnectController.GetConnectStringByKey("HRM"), CommonStoredProcedule.HRM_Branch_Actions, input);
             return result;
         }
 
         public async Task<List<HRM_Branch_ENTITY>> HRM_Branch_Search(HRM_Branch_ENTITY input)
         {
-            var result = await ManagementController.GetDataFromStoredProcedure<HRM_Branch_ENTITY>(ConnectController.GetConnectStringByKey("HRM"), CommonStoredProcedule.HRM_Branch_Search, input);
+            var result = await ManagementController.GetDataFromStoredProcedure2<HRM_Branch_ENTITY>(ConnectController.GetConnectStringByKey("HRM"), CommonStoredProcedule.HRM_Branch_Search, input);
+            return result;
+        }
+        public async Task<List<HRM_Branch_Detail_ENTITY>> HRM_Branch_Detail_Search(HRM_Branch_Detail_ENTITY input)
+        {
+            var result = await ManagementController.GetDataFromStoredProcedure2<HRM_Branch_Detail_ENTITY>(ConnectController.GetConnectStringByKey("HRM"), CommonStoredProcedule.HRM_Branch_Detail_Search, input);
             return result;
         }
     }

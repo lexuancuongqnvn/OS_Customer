@@ -1,6 +1,7 @@
 ﻿using Abp.Application.Services.Dto;
 using ERP.Common.Controllers;
 using ERP.System.Impls.Account.Dto;
+using ERP.System.Intfs.Acction.Dto;
 using ERP.System.Intfs.Menu;
 using ERP.System.Intfs.Menu.Dto;
 using ERP.System.Shared;
@@ -62,6 +63,15 @@ namespace ERP.System.Impls.Menu
         {
             var result = (await ManagementController.GetResultValueFromStore(ConnectController.GetConnectStringByKey("ID"), CommonStoreProcedure.SYS_Menu_Update, input));
             return result;
+        }  public async Task<IDictionary<string, object>> SYS_Menu_Sub_Pin(SYS_Menu_Sub_Pin input)
+        {
+            var result = (await ManagementController.GetResultValueFromStore(ConnectController.GetConnectStringByKey("ID"), CommonStoreProcedure.SYS_Menu_Sub_Pin, input));
+            return result;
+        }
+        public async Task<IDictionary<string, object>> SYS_Menu_Permission_Update(SYS_Menu input)
+        {
+            var result = (await ManagementController.GetResultValueFromStore(ConnectController.GetConnectStringByKey("ID"), CommonStoreProcedure.SYS_Menu_Permission_Update, input));
+            return result;
         }
 
         public async Task<List<SYS_Account_Group>> SYS_Account_Group_Search(SYS_Account_Group input)
@@ -69,5 +79,17 @@ namespace ERP.System.Impls.Menu
             var result = await ManagementController.GetDataFromStoredProcedure<SYS_Account_Group>(ConnectController.GetConnectStringByKey("ID"), CommonStoreProcedure.SYS_Account_Group_Search, input);
             return result;
         }
+
+        public async Task<List<SYS_Menu_Permission_ENTITY>> SYS_Menu_Permission_Search(SYS_Menu_Permission_ENTITY input)
+        {
+            var result = await ManagementController.GetDataFromStoredProcedure2<SYS_Menu_Permission_ENTITY>(ConnectController.GetConnectStringByKey("ID"), CommonStoreProcedure.SYS_Menu_Permission_Search, input);
+            return result;
+        }
+        public async Task<List<SYS_Menu_Sub>> SYS_Menu_Permission_Detail_Search(SYS_Menu_Sub input)
+        {
+            var result = await ManagementController.GetDataFromStoredProcedure2<SYS_Menu_Sub>(ConnectController.GetConnectStringByKey("ID"), CommonStoreProcedure.SYS_Menu_Permission_Detail_Search, input);
+            return result;
+        }
+
     }
 }

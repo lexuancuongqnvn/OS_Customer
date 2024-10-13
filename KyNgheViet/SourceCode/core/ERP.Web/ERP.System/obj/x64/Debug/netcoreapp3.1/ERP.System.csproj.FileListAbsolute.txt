@@ -11,3 +11,8 @@ D:\SourceCode\ERP\RELEASE\core\ERP.Web\ERP.System\obj\x64\Debug\netcoreapp3.1\ER
 D:\SourceCode\ERP\RELEASE\core\ERP.Web\ERP.System\obj\x64\Debug\netcoreapp3.1\ERP.System.csproj.CopyComplete
 D:\SourceCode\ERP\RELEASE\core\ERP.Web\ERP.System\obj\x64\Debug\netcoreapp3.1\ERP.System.dll
 D:\SourceCode\ERP\RELEASE\core\ERP.Web\ERP.System\obj\x64\Debug\netcoreapp3.1\ERP.System.pdb
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\ERP.System\bin\x64\Debug\netcoreapp3.1\HRMS.dll
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\ERP.System\bin\x64\Debug\netcoreapp3.1\SignalR.dll
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\ERP.System\bin\x64\Debug\netcoreapp3.1\SignalR.pdb
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\ERP.System\bin\x64\Debug\netcoreapp3.1\HRMS.pdb
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\ERP.System\obj\x64\Debug\netcoreapp3.1\ERP.System.sourcelink.json

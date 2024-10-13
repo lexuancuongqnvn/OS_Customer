@@ -21,7 +21,7 @@ namespace HRMS.Impls.TimeSheet
 
         public async Task<IDictionary<string, object>> HRM_TimeSheet_Attendance_Insert(HRM_TimeSheet_Attendance_ENTITY input)
         {
-            var result = await ManagementController.GetResultValueFromStore(ConnectController.GetConnectStringByKey("HRM"), CommonStoredProcedule.HRM_TimeSheet_Attendance_Insert, input);
+            var result = await ManagementController.GetResultValueFromStore2(ConnectController.GetConnectStringByKey("HRM"), CommonStoredProcedule.HRM_TimeSheet_Attendance_Insert, input);
             return result;
         }
         public async Task<IDictionary<string, object>> HRM_TimeSheet_Attendance_Approve(HRM_TimeSheet_Attendance_ENTITY input)

@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Purchase.Infs.Report.Dto;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Purchase.Shared
 {
@@ -41,5 +43,18 @@ namespace Purchase.Shared
         public const string P26_M_Insert = "P26_M_Insert";
         public const string P26_M_Update = "P26_M_Update";
         public const string P26_M_Delete = "P26_M_Delete";
+
+        public const string PUR_Accounts_Payable_Ledger_Search = "PUR_Accounts_Payable_Ledger_Search";
+        public const string PUR_Accounts_Payable_Report_By_Invoice_Search = "PUR_Accounts_Payable_Report_By_Invoice_Search";
+        public const string PUR_Aggregate_Cost_Coupon_Print_Search = "PUR_Aggregate_Cost_Coupon_Print_Search";
+        public const string PUR_Aggregate_Print_Import_Slips_At_Cost_Search = "PUR_Aggregate_Print_Import_Slips_At_Cost_Search";
+        public const string PUR_Combined_Purchases_Imported_Inventory_Search = "PUR_Combined_Purchases_Imported_Inventory_Search";
+        public const string PUR_Expense_Report_Search = "PUR_Expense_Report_Search";
+        public const string PUR_Import_Invoice_Report_Search = "PUR_Import_Invoice_Report_Search";
+        public const string PUR_Inventory_Return_Report_Search = "PUR_Inventory_Return_Report_Search";
+        public const string PUR_Journal_Search = "PUR_Journal_Search";
+        public const string PUR_Order_Report_Search = "PUR_Order_Report_Search";
+        public const string PUR_Service_Purchase_Invoice_Report_Search = "PUR_Service_Purchase_Invoice_Report_Search";
+
     }
 }

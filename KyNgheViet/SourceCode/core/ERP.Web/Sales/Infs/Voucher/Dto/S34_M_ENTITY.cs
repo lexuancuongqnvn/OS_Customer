@@ -10,7 +10,9 @@ namespace Sales.Infs.Voucher.Dto
        public int id { get; set; }
        public string code    { get; set; }
        public DateTime? voucher_date { get; set; }
-       public string voucher_code { get; set; }
+        public DateTime? voucher_date_start { get; set; }
+        public DateTime? voucher_date_end { get; set; }
+        public string voucher_code { get; set; }
        public string voucher_no { get; set; }
        public int? voucher_year { get; set; }
        public string customer_code { get; set; }
@@ -35,5 +37,7 @@ namespace Sales.Infs.Voucher.Dto
         public List<S34_D_ENTITY> s34_D { get; set; }
         public int? language_id { get; set; }
         public bool? is_tax { get; set; }
+        public string goods_serial { get; set; }
+        public string goods_symbol { get; set; }
     }
 }

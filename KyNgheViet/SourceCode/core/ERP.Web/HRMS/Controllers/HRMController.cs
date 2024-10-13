@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using ERP.Common.Controllers;
+using HRMS.Intfs.TimeSheet.Dto;
 using HRMS.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -13,7 +14,7 @@ namespace HRMS.Controllers
 {
     public class HRMController : Controller
     {
-        public static List<PointInOutModel> GetPointLandByWorkShift(DataRow[] list_code_workshift)
+        public static List<PointInOutModel> GetPointLandByWorkShift(DataRow[] list_code_workshift, List<HRM_TimeSheet_Work_Shift_Detail_ENTITY> rowWorkShiftDetail)
         {
             List<PointInOutModel> points = new List<PointInOutModel>();
 
@@ -24,8 +25,8 @@ namespace HRMS.Controllers
                 PointInOutModel point = new PointInOutModel();
                 DateTime start_time = DateTime.Parse(row["start_time"].ToString());
                 DateTime end_time = DateTime.Parse(row["end_time"].ToString());
-          
-                if(string.IsNullOrEmpty(row["start_relax"].ToString()) || string.IsNullOrEmpty(row["end_relax"].ToString()))
+                var detail = rowWorkShiftDetail.Find(ws => ws.name.ToLower() == start_time.DayOfWeek.ToString().ToLower());
+                if (detail != null && string.IsNullOrEmpty(detail.start_relax.ToString()) || string.IsNullOrEmpty(detail.end_relax.ToString()))
                 {
                     point.in1 = new TimeSpan(start_time.Hour, start_time.Minute, 0);
                     point.out1 = new TimeSpan(end_time.Hour, end_time.Minute, 0);
@@ -34,8 +35,8 @@ namespace HRMS.Controllers
                 }
                 else
                 {
-                    DateTime start_relax = DateTime.Parse(row["start_relax"].ToString());
-                    DateTime end_relax = DateTime.Parse(row["end_relax"].ToString());
+                    DateTime start_relax = (DateTime)detail.start_relax;
+                    DateTime end_relax = (DateTime)detail.end_relax;
                     point.in1 = new TimeSpan(start_time.Hour, start_time.Minute, 0);
                     point.out1 = new TimeSpan(start_relax.Hour, start_relax.Minute, 0);
                     point.in2 = new TimeSpan(end_relax.Hour, end_relax.Minute, 0);
@@ -62,16 +63,35 @@ namespace HRMS.Controllers
                 else//work shift has relax
                 {
                     double totalMinutes = 0;
-                    TimeSpan tsDiff = DiffTimeSpan((TimeSpan)point.in1, (TimeSpan)point.out1, (TimeSpan)point_input.in1, (TimeSpan)point_input.out1);
+                    //Tính tổng công bao gồm giờ giải lao
+                    TimeSpan tsDiff = DiffTimeSpan((TimeSpan)point.in1, (TimeSpan)point.out2, (TimeSpan)point_input.in1, (TimeSpan)point_input.out1);
                     if(tsDiff.TotalMinutes > 0) totalMinutes += tsDiff.TotalMinutes;
-                    tsDiff = DiffTimeSpan((TimeSpan)point.in2, (TimeSpan)point.out2, (TimeSpan)point_input.in1, (TimeSpan)point_input.out1);
-                    if (tsDiff.TotalMinutes > 0) totalMinutes += tsDiff.TotalMinutes;
+                    //tsDiff = DiffTimeSpan((TimeSpan)point.in2, (TimeSpan)point.out2, (TimeSpan)point_input.in1, (TimeSpan)point_input.out1);
+                    //if (tsDiff.TotalMinutes > 0) totalMinutes += tsDiff.TotalMinutes;
+                    
+                    //Tính giờ giải lao
+                    TimeSpan relex =(TimeSpan)(point.in2 - point.out1);
+                    double minuteRelax = 0;
+
+                    int cpIn1 = TimeSpan.Compare((TimeSpan)point.out1, (TimeSpan)point_input.in1);
+                    int cpOut1 = TimeSpan.Compare((TimeSpan)point.out1, (TimeSpan)point_input.out1);
+                    int cpIn2 = TimeSpan.Compare((TimeSpan)point.in2, (TimeSpan)point_input.in1);
+                    int cpOut2 = TimeSpan.Compare((TimeSpan)point.in2, (TimeSpan)point_input.out1);
+
+                    if ((cpIn1 == 1 && cpOut1 == -1) && (cpIn2 == 1 && cpOut2 == 1)) minuteRelax = ((TimeSpan)(point_input.out1 - point.out1)).TotalMinutes;
+                    else if ((cpIn1 == 0 && cpOut1 == -1) && (cpIn2 == 1 && cpOut2 == 1)) minuteRelax = ((TimeSpan)(point_input.out1 - point.out1)).TotalMinutes;
+                    else if ((cpIn1 == 0 && cpOut1 == -1) && (cpIn2 == 1 && cpOut2 == 0)) minuteRelax = ((TimeSpan)(point.in2 - point.out1)).TotalMinutes;
+                    else if ((cpIn1 == -1 && cpOut1 == -1) && (cpIn2 == 1 && cpOut2 == 0)) minuteRelax = ((TimeSpan)(point.in2 - point_input.in1)).TotalMinutes;
+                    else if ((cpIn1 == -1 && cpOut1 == -1) && (cpIn2 == 1 && cpOut2 == -1)) minuteRelax = ((TimeSpan)(point.in2 - point_input.in1)).TotalMinutes;
+                    else if ((cpIn1 == 1 && cpOut1 == -1) && (cpIn2 == 1 && cpOut2 == -1)) minuteRelax = relex.TotalMinutes;
+
+                    //=> trừ giờ giải lao
+                    totalMinutes = totalMinutes - minuteRelax;
 
                     day_work_shift = (((TimeSpan)point.out2 - (TimeSpan)point.in1).TotalMinutes - ((TimeSpan)point.in2 - (TimeSpan)point.out1).TotalMinutes)/60;
                     result += ((totalMinutes / 60) / day_work_shift);
                 }
             }
-
             return result;
         }
         public static TimeSpan DiffTimeSpan(TimeSpan tsIn1, TimeSpan tsOut1,TimeSpan tsIn2, TimeSpan tsOut2)
@@ -117,6 +137,52 @@ namespace HRMS.Controllers
             }
             return new TimeSpan(0,0,0);
         }
+        public static TimeSpan DiffTimeSpanv2(TimeSpan tsIn1, TimeSpan tsOut1, TimeSpan tsIn2, TimeSpan tsOut2)
+        {
+            int cpIn1 = TimeSpan.Compare(tsIn1, tsIn2);
+            int cpOut1 = TimeSpan.Compare(tsOut1, tsOut2);
+
+            if (cpIn1 == 1 && cpOut1 == 1)//1:1
+            {
+                return (tsOut2 - tsIn1);
+            }
+            else if (cpIn1 == -1 && cpOut1 == -1)//-1:-1
+            {
+                return (tsOut1 - tsIn2);
+            }
+            else if (cpIn1 == -1 && cpOut1 == 1)//-1:1
+            {
+                return (tsOut2 - tsIn2);
+            }
+            else if (cpIn1 == 1 && cpOut1 == -1)//1:-1
+            {
+                //version 2 updated
+                return (tsOut1 - tsIn2);
+            }
+            else if (cpIn1 == 0 && cpOut1 == 0)//0:0
+            {
+                return (tsOut1 - tsIn1);
+            }
+            else if (cpIn1 == 0 && cpOut1 == 1)//0:1
+            {
+                return (tsOut2 - tsIn1);
+            }
+            else if (cpIn1 == -1 && cpOut1 == 0)//-1:0
+            {
+                return (tsOut1 - tsIn2);
+            }
+            else if (cpIn1 == 0 && cpOut1 == -1)//0:-1
+            {
+                return (tsOut1 - tsIn1);
+            }
+            else if (cpIn1 == 1 && cpOut1 == 0)//1:0
+            {
+                //version 2 updated
+                return (tsOut1 - tsIn1);
+            }
+            return new TimeSpan(0, 0, 0);
+        }
+
         public static void FindAndSetRegulation(int minute, DateTime date,decimal work_day, ref List<RegulationModel> regulations)
         {
             for (int i = 1; i < regulations.Count; i++)

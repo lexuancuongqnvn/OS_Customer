@@ -25,5 +25,7 @@ namespace Sales.Infs.Category.Dto
         public string decentralization { get; set; }
         public int? language_id { get; set; }
         public string company_code { get; set; }
+        public string voucher_code { get; set; }
+        public int? voucher_year { get; set; }
     }
 }

@@ -73,6 +73,21 @@ namespace ERP.Warranty.Intfs.Laptop.Dto
         public bool? is_done { get; set; }
         public DateTime? doc_date_from { get; set; }
         public DateTime? doc_date_to { get; set; }
+        public string sku { get; set; }
+        public string account_code_add { get; set; }
+        public string account_code_modified { get; set; }
+        public DateTime? date_add { get; set; }
+        public DateTime? date_modified { get; set; }
+        public string move_warehouse_from { get; set; }
+        public string move_warehouse_to { get; set; }
+        public string warehouse_code { get; set; }
+        public string company_code { get; set; }
+        public string goods_name { get; set; }
+        public string voucher_no { set; get; }
+        public string goods_symbol { set; get; }
+        public int? voucher_year { set; get; }
+        public int? language_id { get; set; }
+        public bool? is_import_goods { get; set; }
         public HRM_Project_Management_Task_ENTITY hRM_Project_Management_Task { get; set; }
     }
 }

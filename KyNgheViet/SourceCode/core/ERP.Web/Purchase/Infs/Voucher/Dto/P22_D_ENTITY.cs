@@ -49,5 +49,7 @@ namespace Purchase.Infs.Voucher.Dto
         public string account_code_modified  { get; set; }
         public string company_code { get; set; }
         public int? language_id { get; set; }
+        public int? voucher_year { get; set; }
+        public string notes { get; set; }
     }
 }

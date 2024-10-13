@@ -16,11 +16,17 @@ namespace WMS.Intfs.OB
         Task<IDictionary<string, object>> OB_Input_Output_Inventory_Delete(OB_Input_Output_Inventory_ENTITY input);
         Task<IDictionary<string, object>> OB_Input_Output_Inventory_Update(OB_Input_Output_Inventory_ENTITY input);
         Task<IDictionary<string, object>> OB_Input_Output_Inventory_Insert(OB_Input_Output_Inventory_ENTITY input);
+        Task<IDictionary<string, object>> OB_Input_Output_Inventory_Synchronized(OB_Input_Output_Inventory_Synchronized_ENTITY input);
         Task<List<OB_Input_Output_Inventory_ENTITY>> OB_Input_Output_Inventory_Search(OB_Input_Output_Inventory_ENTITY input);
 
         Task<IDictionary<string, object>> OB_Account_Delete(OB_Account_ENTITY input);
         Task<IDictionary<string, object>> OB_Account_Update(OB_Account_ENTITY input);
         Task<IDictionary<string, object>> OB_Account_Insert(OB_Account_ENTITY input);
-        Task<List<OB_Account_ENTITY>> OB_Account_Search(OB_Account_ENTITY input);
+        Task<List<OB_Account_ENTITY>> OB_Account_Search(OB_Account_ENTITY input);   
+        
+        Task<IDictionary<string, object>> OB_Customer_Delete(OB_Customer_ENTITY input);
+        Task<IDictionary<string, object>> OB_Customer_Update(OB_Customer_ENTITY input);
+        Task<IDictionary<string, object>> OB_Customer_Insert(OB_Customer_ENTITY input);
+        Task<List<OB_Customer_ENTITY>> OB_Customer_Search(OB_Customer_ENTITY input);
     }
 }

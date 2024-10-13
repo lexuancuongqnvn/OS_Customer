@@ -1,4 +1,5 @@
-﻿using ERP.System.Shared;
+﻿using ERP.Common.Shared.Dto;
+using ERP.System.Shared;
 using Sales.Infs.VAT.Dto;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,8 @@ namespace Sales.Infs.Voucher.Dto
         public string code    { get; set; }
         public string voucher_code { get; set; }
         public DateTime? voucher_date { get; set; }
+        public DateTime? voucher_date_start { get; set; }
+        public DateTime? voucher_date_end { get; set; }
         public string voucher_no { get; set; }
         public string invoice_no { get; set; }
         public string serial_no { get; set; }
@@ -21,9 +24,11 @@ namespace Sales.Infs.Voucher.Dto
         public string profession_code { get; set; }
         public string notes { get; set; }
         public string code_fc { get; set; }
+        public string code_symbol { get; set; }
         public decimal? exchange_rate { get; set; }
         public string debitor_account { get; set; }
         public string tax_code { get; set; }
+        public decimal? tax { get; set; }
         public string tax_account { get; set; }
         public string discount_account { get; set; }
         public decimal? total_money_goods_fc { get; set; }
@@ -55,12 +60,18 @@ namespace Sales.Infs.Voucher.Dto
         public string xml_32d { get; set; }
         public string xml_vat_out { get; set; }
         public string xml_32_kit { get; set; }
-
+        public string xml_cat_goods_configurations { get; set; }
+        public string goods_serial { get; set; }
+        public string goods_symbol { get; set; }
         public List<S32_D_ENTITY> s32_D { get; set; }
+        public List<CAT_Goods_Configuration_ENTITY> cat_goods_configurations { get; set; }
         public List<Accounting_VAT_Output_ENTITY> accounting_VAT_Outputs { get; set; }
         public List<S32_KIT_ENTITY> s32_KIT { get; set; }
         public int? language_id { get; set; }
         public string company_code { get; set; }
+        public string branch_code { get; set; }
         public bool? is_tax { get; set; }
+        public bool? is_costing { get; set; }
+        public int? voucher_year { get; set; }
     }
 }

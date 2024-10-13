@@ -14,7 +14,7 @@ namespace Sales.Impls.Voucher
         #region S31 Hóa đơn dịch vụ
         public async Task<List<S31_M_ENTITY>> S31_M_Search(S31_M_ENTITY input)
         {
-            _ = await ManagementController.GetResultValueFromStore(ConnectController.GetConnectStringByKey("ID"), "SYS_Generate_Table_Voucher", input);
+            
 
             var result = await ManagementController.GetDataFromStoredProcedure2<S31_M_ENTITY>(ConnectController.GetConnectStringByKey("WMS"), CommonStoredProcedures.S31_M_Search, input);
             return result;
@@ -27,14 +27,14 @@ namespace Sales.Impls.Voucher
 
         public async Task<IDictionary<string, object>> S31_M_Insert(S31_M_ENTITY input)
         {
-            _ = await ManagementController.GetResultValueFromStore(ConnectController.GetConnectStringByKey("ID"), "SYS_Generate_Table_Voucher", input);
+            
             var result = await ManagementController.GetResultValueFromStore2(ConnectController.GetConnectStringByKey("WMS"), CommonStoredProcedures.S31_M_Insert, input);
             return result;
         }
 
         public async Task<IDictionary<string, object>> S31_M_Update(S31_M_ENTITY input)
         {
-            _ = await ManagementController.GetResultValueFromStore(ConnectController.GetConnectStringByKey("ID"), "SYS_Generate_Table_Voucher", input);
+            
             var result = await ManagementController.GetResultValueFromStore2(ConnectController.GetConnectStringByKey("WMS"), CommonStoredProcedures.S31_M_Update, input);
             return result;
         }
@@ -51,7 +51,7 @@ namespace Sales.Impls.Voucher
         #region S32 Hóa đơn bán hàng
         public async Task<List<S32_M_ENTITY>> S32_M_Search(S32_M_ENTITY input)
         {
-            _ = await ManagementController.GetResultValueFromStore(ConnectController.GetConnectStringByKey("ID"), "SYS_Generate_Table_Voucher", input);
+            
 
             var result = await ManagementController.GetDataFromStoredProcedure2<S32_M_ENTITY>(ConnectController.GetConnectStringByKey("WMS"), CommonStoredProcedures.S32_M_Search, input);
             return result;
@@ -64,14 +64,14 @@ namespace Sales.Impls.Voucher
 
         public async Task<IDictionary<string, object>> S32_M_Insert(S32_M_ENTITY input)
         {
-            _ = await ManagementController.GetResultValueFromStore(ConnectController.GetConnectStringByKey("ID"), "SYS_Generate_Table_Voucher", input);
+            
             var result = await ManagementController.GetResultValueFromStore2(ConnectController.GetConnectStringByKey("WMS"), CommonStoredProcedures.S32_M_Insert, input);
             return result;
         }
 
         public async Task<IDictionary<string, object>> S32_M_Update(S32_M_ENTITY input)
         {
-            _ = await ManagementController.GetResultValueFromStore(ConnectController.GetConnectStringByKey("ID"), "SYS_Generate_Table_Voucher", input);
+            
             var result = await ManagementController.GetResultValueFromStore2(ConnectController.GetConnectStringByKey("WMS"), CommonStoredProcedures.S32_M_Update, input);
             return result;
         }
@@ -110,7 +110,7 @@ namespace Sales.Impls.Voucher
         #region S33 Hóa đơn giảm giá, hàng bán trả lại
         public async Task<List<S33_M_ENTITY>> S33_M_Search(S33_M_ENTITY input)
         {
-            _ = await ManagementController.GetResultValueFromStore(ConnectController.GetConnectStringByKey("ID"), "SYS_Generate_Table_Voucher", input);
+            
 
             var result = await ManagementController.GetDataFromStoredProcedure2<S33_M_ENTITY>(ConnectController.GetConnectStringByKey("WMS"), CommonStoredProcedures.S33_M_Search, input);
             return result;
@@ -123,14 +123,14 @@ namespace Sales.Impls.Voucher
 
         public async Task<IDictionary<string, object>> S33_M_Insert(S33_M_ENTITY input)
         {
-            _ = await ManagementController.GetResultValueFromStore(ConnectController.GetConnectStringByKey("ID"), "SYS_Generate_Table_Voucher", input);
+            
             var result = await ManagementController.GetResultValueFromStore2(ConnectController.GetConnectStringByKey("WMS"), CommonStoredProcedures.S33_M_Insert, input);
             return result;
         }
 
         public async Task<IDictionary<string, object>> S33_M_Update(S33_M_ENTITY input)
         {
-            _ = await ManagementController.GetResultValueFromStore(ConnectController.GetConnectStringByKey("ID"), "SYS_Generate_Table_Voucher", input);
+            
             var result = await ManagementController.GetResultValueFromStore2(ConnectController.GetConnectStringByKey("WMS"), CommonStoredProcedures.S33_M_Update, input);
             return result;
         }
@@ -145,7 +145,7 @@ namespace Sales.Impls.Voucher
         #region S34 phiếu thu công nợ theo hóa đơn
         public async Task<List<S34_M_ENTITY>> S34_M_Search(S34_M_ENTITY input)
         {
-            _ = await ManagementController.GetResultValueFromStore(ConnectController.GetConnectStringByKey("ID"), "SYS_Generate_Table_Voucher", input);
+            
 
             var result = await ManagementController.GetDataFromStoredProcedure2<S34_M_ENTITY>(ConnectController.GetConnectStringByKey("WMS"), CommonStoredProcedures.S34_M_Search, input);
             return result;
@@ -158,14 +158,14 @@ namespace Sales.Impls.Voucher
 
         public async Task<IDictionary<string, object>> S34_M_Insert(S34_M_ENTITY input)
         {
-            _ = await ManagementController.GetResultValueFromStore(ConnectController.GetConnectStringByKey("ID"), "SYS_Generate_Table_Voucher", input);
+            
             var result = await ManagementController.GetResultValueFromStore2(ConnectController.GetConnectStringByKey("WMS"), CommonStoredProcedures.S34_M_Insert, input);
             return result;
         }
 
         public async Task<IDictionary<string, object>> S34_M_Update(S34_M_ENTITY input)
         {
-            _ = await ManagementController.GetResultValueFromStore(ConnectController.GetConnectStringByKey("ID"), "SYS_Generate_Table_Voucher", input);
+            
             var result = await ManagementController.GetResultValueFromStore2(ConnectController.GetConnectStringByKey("WMS"), CommonStoredProcedures.S34_M_Update, input);
             return result;
         }

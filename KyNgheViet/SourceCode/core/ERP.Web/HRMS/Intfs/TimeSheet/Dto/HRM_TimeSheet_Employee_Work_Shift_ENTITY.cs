@@ -20,6 +20,7 @@ namespace HRMS.Intfs.TimeSheet.Dto
         public string create_name { get; set; }
         public string type { get; set; }
         public string title { get; set; }
+        public bool? is_auto_clone { get; set; }
         public string xml { get; set; }
         public List<HRM_Employee_ENTITY> hRM_Employees { get; set; }
         public List<HRM_TimeSheet_Employee_Work_Shift_Detail_ENTITY> HRM_TimeSheet_Employee_Work_Shift_Details { get; set; }   

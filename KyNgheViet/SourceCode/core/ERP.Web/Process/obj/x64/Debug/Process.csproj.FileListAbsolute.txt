@@ -47,3 +47,9 @@ D:\SourceCode\ERP\RELEASE\core\ERP.Web\Process\obj\x64\Debug\Process.csproj.Core
 D:\SourceCode\ERP\RELEASE\core\ERP.Web\Process\obj\x64\Debug\Process.csproj.CopyComplete
 D:\SourceCode\ERP\RELEASE\core\ERP.Web\Process\obj\x64\Debug\Process.dll
 D:\SourceCode\ERP\RELEASE\core\ERP.Web\Process\obj\x64\Debug\Process.pdb
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\Process\bin\x64\Debug\ERP.System.dll
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\Process\bin\x64\Debug\ERP.Common.dll
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\Process\bin\x64\Debug\HRMS.dll
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\Process\bin\x64\Debug\ERP.System.pdb
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\Process\bin\x64\Debug\ERP.Common.pdb
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\Process\bin\x64\Debug\HRMS.pdb

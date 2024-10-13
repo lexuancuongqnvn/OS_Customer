@@ -72,5 +72,6 @@ namespace ERP.System.Intfs.GenRowTable.Dto
         public bool? showInGroupFooter_GROUP { get; set; }
         public bool? alignByColumn_GROUP { get; set; }
         public bool? disabled_arised { get; set; }
+        public int? DROP_DOWN_WIDTH { get; set; }
     }
 }

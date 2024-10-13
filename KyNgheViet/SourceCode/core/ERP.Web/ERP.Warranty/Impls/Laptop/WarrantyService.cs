@@ -20,7 +20,7 @@ namespace ERP.Warranty.Impls.Laptop
 
         public async Task<IDictionary<string, object>> Warranty_Laptop_Inserst(Warranty_Laptop_ENTITY input)
         {
-            var result = await ManagementController.GetResultValueFromStore(ConnectController.GetConnectStringByKey("HRM"), CommonStoreProcedure.Warranty_Laptop_Insert, input);
+            var result = await ManagementController.GetResultValueFromStore2(ConnectController.GetConnectStringByKey("HRM"), CommonStoreProcedure.Warranty_Laptop_Insert, input);
             return result;
         }
 
@@ -44,7 +44,7 @@ namespace ERP.Warranty.Impls.Laptop
 
         public async Task<IDictionary<string, object>> Warranty_Laptop_Update(Warranty_Laptop_ENTITY input)
         {
-            var result = await ManagementController.GetResultValueFromStore(ConnectController.GetConnectStringByKey("HRM"), CommonStoreProcedure.Warranty_Laptop_Update, input);
+            var result = await ManagementController.GetResultValueFromStore2(ConnectController.GetConnectStringByKey("HRM"), CommonStoreProcedure.Warranty_Laptop_Update, input);
             return result;
         }
     }

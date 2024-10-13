@@ -34,7 +34,18 @@ namespace WMS.Shared
         public const string CAT_Goods_Delete = "CAT_Goods_Delete";
         public const string CAT_Goods_Search = "CAT_Goods_Search";
         public const string CAT_Goods_Insert = "CAT_Goods_Insert";
-        public const string CAT_Goods_Update = "CAT_Goods_Update";        
+        public const string CAT_Goods_Update = "CAT_Goods_Update";         
+        
+        public const string CAT_Goods_Configuration_Delete = "CAT_Goods_Configuration_Delete";
+        public const string CAT_Goods_Configuration_Search = "CAT_Goods_Configuration_Search";
+        public const string CAT_Goods_Configuration_Search_By_Goods = "CAT_Goods_Configuration_Search_By_Goods";
+        public const string CAT_Goods_Configuration_Insert = "CAT_Goods_Configuration_Insert";
+        public const string CAT_Goods_Configuration_Update = "CAT_Goods_Configuration_Update"; 
+        
+        public const string CAT_Goods_Serial_Delete = "CAT_Goods_Serial_Delete";
+        public const string CAT_Goods_Serial_Search = "CAT_Goods_Serial_Search";
+        public const string CAT_Goods_Serial_Insert = "CAT_Goods_Serial_Insert";
+        public const string CAT_Goods_Serial_Update = "CAT_Goods_Serial_Update";        
         
         public const string CAT_Goods_Unit_Conversion_Factor_Delete = "CAT_Goods_Unit_Conversion_Factor_Delete";
         public const string CAT_Goods_Unit_Conversion_Factor_Search = "CAT_Goods_Unit_Conversion_Factor_Search";
@@ -58,12 +69,18 @@ namespace WMS.Shared
         public const string OB_Account_Delete = "OB_Account_Delete";
         public const string OB_Account_Insert = "OB_Account_Insert";
         public const string OB_Account_Search = "OB_Account_Search";
-        public const string OB_Account_Update = "OB_Account_Update";
+        public const string OB_Account_Update = "OB_Account_Update";      
+        
+        public const string OB_Customer_Delete = "OB_Customer_Delete";
+        public const string OB_Customer_Insert = "OB_Customer_Insert";
+        public const string OB_Customer_Search = "OB_Customer_Search";
+        public const string OB_Customer_Update = "OB_Customer_Update";
 
         public const string OB_Input_Output_Inventory_Delete = "OB_Input_Output_Inventory_Delete";
         public const string OB_Input_Output_Inventory_Insert = "OB_Input_Output_Inventory_Insert";
         public const string OB_Input_Output_Inventory_Search = "OB_Input_Output_Inventory_Search";
         public const string OB_Input_Output_Inventory_Update = "OB_Input_Output_Inventory_Update";
+        public const string OB_Input_Output_Inventory_Synchronized = "OB_Input_Output_Inventory_Synchronized";
 
         public const string I41_M_Search = "I41_M_Search";
         public const string I41_D_Search = "I41_D_Search";
@@ -106,6 +123,7 @@ namespace WMS.Shared
 
         public const string WMS_Report_Inventory_Movement = "WMS_Report_Inventory_Movement";
         public const string WMS_Report_Inventory = "WMS_Report_Inventory";
+        public const string WMS_Report_Inventory_Have_Serial = "WMS_Report_Inventory_Have_Serial";
         public const string WMS_Report_I41_Search = "WMS_Report_I41_Search";
         public const string WMS_Report_I42_Search = "WMS_Report_I42_Search";
         public const string WMS_Report_I43_Search = "WMS_Report_I43_Search";
@@ -118,5 +136,21 @@ namespace WMS.Shared
         public const string WMS_Report_Inventory_Import_Export_Search = "WMS_Report_Inventory_Import_Export_Search";
         public const string WMS_Report_Inventory_Incoming_Summary_Search = "WMS_Report_Inventory_Incoming_Summary_Search";
         public const string WMS_Report_Inventory_Issued_Summary_Search = "WMS_Report_Inventory_Issued_Summary_Search";
+        public const string WMS_Report_Calculate_The_Average_Costing_Search = "WMS_Report_Calculate_The_Average_Costing_Search";
+        public const string WMS_Realtime_Inventory_Search = "WMS_Realtime_Inventory_Search";
+        public const string WMS_Report_Inventory_Realtime_Search = "WMS_Report_Inventory_Realtime_Search";
+        public const string WMS_Report_Inventory_Realtime_Have_Serial_Search = "WMS_Report_Inventory_Realtime_Have_Serial_Search";
+
+        public const string WMS_Calculate_The_Average_Costing_Search = "WMS_Calculate_The_Average_Costing_Search";
+        public const string WMS_Calculate_The_Average_Costing_Run_Process_Search = "WMS_Calculate_The_Average_Costing_Run_Process_Search";
+        public const string WMS_Calculate_The_Average_Costing_Data_Search = "WMS_Calculate_The_Average_Costing_Data_Search";
+        public const string WMS_Calculate_The_Average_Costing_DataTable_Search = "WMS_Calculate_The_Average_Costing_DataTable_Search";
+        public const string WMS_Calculate_The_Average_Costing_DataTable2_Search = "WMS_Calculate_The_Average_Costing_DataTable2_Search";
+        public const string WMS_Calculate_The_Average_Costing_DataTable3_Search = "WMS_Calculate_The_Average_Costing_DataTable3_Search";
+        public const string WMS_Calculate_The_Average_Costing_DataTable4_Search = "WMS_Calculate_The_Average_Costing_DataTable4_Search";
+        public const string WMS_Calculate_The_Average_Costing_Inventory_Book_Group_Search = "WMS_Calculate_The_Average_Costing_Inventory_Book_Group_Search";
+        public const string WMS_Calculate_The_Average_Costing_Inventory_Book_Search = "WMS_Calculate_The_Average_Costing_Inventory_Book_Search";
+        public const string WMS_Costing_Price = "WMS_Costing_Price";
+        public const string WMS_Specific_Identification_Costing_Search = "WMS_Specific_Identification_Costing_Search";
     }
 }

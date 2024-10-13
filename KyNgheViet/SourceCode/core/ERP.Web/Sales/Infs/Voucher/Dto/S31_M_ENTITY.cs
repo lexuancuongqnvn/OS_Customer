@@ -14,6 +14,8 @@ namespace Sales.Infs.Voucher.Dto
         public string voucher_code  { get; set; }
         public string voucher_no  { get; set; }
         public DateTime? voucher_date { get; set; }
+        public DateTime? voucher_date_start { get; set; }
+        public DateTime? voucher_date_end { get; set; }
         public DateTime? invoice_date { get; set; }
         public string invoice_no  { get; set; }
         public string seri_no  { get; set; }
@@ -52,6 +54,8 @@ namespace Sales.Infs.Voucher.Dto
         public string xml_vat_out { get; set; }
         public string xml_31_kit { get; set; }
         public bool? is_tax { get; set; }
+        public string goods_serial { get; set; }
+        public string goods_symbol { get; set; }
         public List<S31_D_ENTITY> s31_D { get; set; }
         public List<Accounting_VAT_Output_ENTITY> accounting_VAT_Outputs { get; set; }
     }

@@ -32,6 +32,7 @@ namespace HRMS.Intfs.ProjectManagement.Dto
         public string project_code { get; set; }
         public string create_user_name { get; set; }
         public string executor_name { get; set; }
+        public string executor_avatar { get; set; }
         public string project_name { get; set; }
         public string status_name { get; set; }
         public string start_date_f { get; set; }
@@ -65,6 +66,9 @@ namespace HRMS.Intfs.ProjectManagement.Dto
         public string order_by_date_add { get; set; }
         public string date_add_f { get; set; }
         public int? drop_index { get; set; }
+        public string move_warehouse_from { get; set; }
+        public string move_warehouse_to { get; set; }
+        public Boolean? is_move_warehouse { get; set; }
         public List<HRM_Project_Management_Task_Comment_ENTITY> hRM_Project_Management_Task_Comments { get; set; }
         public List<HRM_Project_Management_Task_Level_ENTITY> hRM_Project_Management_Task_Levels { get; set; }
         public List<HRM_Project_Management_Task_History_ENTITY> hRM_Project_Management_Task_Historys { get; set; }

@@ -1,4 +1,5 @@
-﻿using ERP.System.Shared;
+﻿using ERP.Common.Shared.Dto;
+using ERP.System.Shared;
 using HRMS.Intfs.Employee.Dto;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,8 @@ namespace WMS.Intfs.Voucher.Dto
         public string company_code { set; get; }
         public string voucher_code { get; set; }
         public DateTime? voucher_date { get; set; }
+        public DateTime? voucher_date_start { get; set; }
+        public DateTime? voucher_date_end { get; set; }
         public string voucher_no { get; set; }
         public string customer_code { get; set; }
         public string address { get; set; }
@@ -28,7 +31,9 @@ namespace WMS.Intfs.Voucher.Dto
         public bool? is_direct_import_and_export { get; set; }
         public string customer_name { get; set; }
         public string xml_42d { get; set; }
+        public string xml_cat_goods_configurations { get; set; }
         public List<I42_D_ENTITY> i42_D { get; set; }
+        public List<CAT_Goods_Configuration_ENTITY> cat_goods_configurations { get; set; }
         public string code { get; set; }
         public bool? approve { get; set; }
         public DateTime? date_add { get; set; }
@@ -37,7 +42,10 @@ namespace WMS.Intfs.Voucher.Dto
         public string decentralization { get; set; }
         public string account_code_add { get; set; }
         public string account_code_modified { get; set; }
+        public string warehouse_code { get; set; }
         public int? voucher_year { set; get; }
         public int? language_id { get; set; }
+        public string goods_serial { get; set; }
+        public string goods_symbol { get; set; }
     }
 }

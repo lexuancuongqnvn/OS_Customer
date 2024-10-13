@@ -9,7 +9,8 @@
       "CASH/1.0.0": {
         "dependencies": {
           "ERP.Common": "1.0.0",
-          "ERP.System": "1.0.0"
+          "ERP.System": "1.0.0",
+          "Sales": "1.0.0"
         },
         "runtime": {
           "CASH.dll": {}
@@ -2282,6 +2283,15 @@
           "HRMS.dll": {}
         }
       },
+      "Sales/1.0.0": {
+        "dependencies": {
+          "ERP.Common": "1.0.0",
+          "ERP.System": "1.0.0"
+        },
+        "runtime": {
+          "Sales.dll": {}
+        }
+      },
       "SignalR/1.0.0": {
         "dependencies": {
           "HRMS": "1.0.0",
@@ -3801,6 +3811,11 @@
       "sha512": ""
     },
     "HRMS/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Sales/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

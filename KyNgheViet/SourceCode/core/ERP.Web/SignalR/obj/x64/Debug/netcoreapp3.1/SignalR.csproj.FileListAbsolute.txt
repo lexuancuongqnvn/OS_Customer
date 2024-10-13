@@ -13,3 +13,6 @@ D:\SourceCode\ERP\RELEASE\core\ERP.Web\SignalR\obj\x64\Debug\netcoreapp3.1\Signa
 D:\SourceCode\ERP\RELEASE\core\ERP.Web\SignalR\obj\x64\Debug\netcoreapp3.1\SignalR.csproj.CopyComplete
 D:\SourceCode\ERP\RELEASE\core\ERP.Web\SignalR\obj\x64\Debug\netcoreapp3.1\SignalR.dll
 D:\SourceCode\ERP\RELEASE\core\ERP.Web\SignalR\obj\x64\Debug\netcoreapp3.1\SignalR.pdb
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\SignalR\bin\x64\Debug\netcoreapp3.1\ERP.System.dll
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\SignalR\bin\x64\Debug\netcoreapp3.1\ERP.System.pdb
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\SignalR\obj\x64\Debug\netcoreapp3.1\SignalR.sourcelink.json

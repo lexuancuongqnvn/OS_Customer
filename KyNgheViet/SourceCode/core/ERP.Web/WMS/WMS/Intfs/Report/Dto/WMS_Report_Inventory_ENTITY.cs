@@ -5,6 +5,26 @@ using System.Text;
 
 namespace WMS.Intfs.Report.Dto
 {
+    public class WMS_Report_Inventory_Check_ENTITY
+    {
+        public DateTime? voucher_date { get; set; }
+        public DateTime? voucher_date_end { get; set; }
+        public DateTime? voucher_date_start { get; set; }
+        public string code { get; set; }
+        public string warehouse_code { get; set; }
+        public string goods_symbol { get; set; }
+        public string goods_code { get; set; }
+        public string goods_name { get; set; }
+        public int id { get; set; }
+        public int? language_id { get; set; }
+        public int? voucher_year { get; set; }
+        public string company_code { get; set; }
+        public DateTime? date_add { get; set; }
+        public DateTime? date_modified { get; set; }
+        public string account_code_add { get; set; }
+        public string account_code_modified { get; set; }
+        public string tasck_code { get; set; }
+    }
     public class WMS_Report_Inventory_ENTITY : IBase_ENTITY
     {
         public DateTime? voucher_date { get; set; }
@@ -13,7 +33,10 @@ namespace WMS.Intfs.Report.Dto
         public string code { get; set; }
         public string group_code { get; set; }
         public string warehouse_symbol { get; set; }
+        public string warehouse_code { get; set; }
+        public string warehouse_name { get; set; }
         public string goods_symbol { get; set; }
+        public string goods_serial { get; set; }
         public string goods_code { get; set; }
         public string goods_name { get; set; }
         public string goods_unit_name { get; set; }
@@ -30,6 +53,7 @@ namespace WMS.Intfs.Report.Dto
         public decimal? arise_debit_start { get; set; }
         public decimal? arise_debit_end { get; set; }
         public decimal? quantity_export { get; set; }
+        public decimal? inventory_quantity { get; set; }
         public decimal? quantity_export_start { get; set; }
         public decimal? quantity_export_end { get; set; }
         public decimal? arise_credit { get; set; }
@@ -43,6 +67,8 @@ namespace WMS.Intfs.Report.Dto
         public decimal? ending_balance_end { get; set; }
         public string group_symbol { get; set; }
         public string group_name { get; set; }
+        public string sku { get; set; }
+        public string serial { get; set; }
         public int id { get; set; }
         public int? language_id { get; set; }
         public string company_code { get; set; }
@@ -50,5 +76,7 @@ namespace WMS.Intfs.Report.Dto
         public DateTime? date_modified { get; set; }
         public string account_code_add { get; set; }
         public string account_code_modified { get; set; }
+        public string voucher_code { get; set; }
+        public int? voucher_year { get; set; }
     }
 }

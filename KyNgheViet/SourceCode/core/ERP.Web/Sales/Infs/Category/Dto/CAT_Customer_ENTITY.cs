@@ -25,6 +25,9 @@ namespace Sales.Infs.Category.Dto
         public string group1 { get; set; }
         public string group2 { get; set; }
         public string group3 { get; set; }
+        public string group1_name { get; set; }
+        public string group2_name { get; set; }
+        public string group3_name { get; set; }
         public int? payment_term { get; set; }
         public decimal? debt_code { get; set; }
         public string employee_code { get; set; }
@@ -41,5 +44,7 @@ namespace Sales.Infs.Category.Dto
         public int id { get; set; }
         public int? language_id { get; set; }
         public string company_code { get; set; }
+        public string voucher_code { get; set; }
+        public int? voucher_year { get; set; }
     }
 }

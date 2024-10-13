@@ -157,6 +157,56 @@ namespace ERP.Common.Controllers
                 return null;
             }
         }
+        public async static Task<List<TModel>> GetDataFromStoredProcedureFreeTimeOut<TModel>(string connectstring, string storedProcName, object parameters)
+        {
+            //https://khalidabuhakmeh.com/multiple-result-sets-with-net-core-sql-server
+            try
+            {
+                if (parameters != null)
+                {
+                    var properties = parameters.GetType().GetProperties();
+                    foreach (var property in properties)
+                    {
+                        var PropertyName = property.Name;
+                        var PropetyValue = parameters.GetType().GetProperty(property.Name).GetValue(parameters, null);
+                        if (PropetyValue == null)
+                        {
+                            if (PropertyName == "company_code")
+                                parameters.GetType().GetProperty(property.Name).SetValue(parameters, AuthenticateController.appSessionUser.company_code);
+                            else if (PropertyName == "date_add")
+                                parameters.GetType().GetProperty(property.Name).SetValue(parameters, DateTime.Now);
+                            else if (PropertyName == "date_modified")
+                                parameters.GetType().GetProperty(property.Name).SetValue(parameters, DateTime.Now);
+                            else if (PropertyName == "account_code_add")
+                                parameters.GetType().GetProperty(property.Name).SetValue(parameters, AuthenticateController.appSessionUser.code);
+                            else if (PropertyName == "account_code_modified")
+                                parameters.GetType().GetProperty(property.Name).SetValue(parameters, AuthenticateController.appSessionUser.code);
+                            else if (PropertyName == "language_id")
+                                parameters.GetType().GetProperty(property.Name).SetValue(parameters, AuthenticateController.appSessionUser.language_id);
+                            else if (PropertyName == "voucher_year")
+                                parameters.GetType().GetProperty(property.Name).SetValue(parameters, AuthenticateController.appSessionUser.voucher_year);
+                        }
+                    }
+                }
+            }
+            catch { }
+            try
+            {
+                var dbPara = new DynamicParameters();
+                GetParamStored2(connectstring, storedProcName, parameters, ref dbPara);
+                using (var conn = new SqlConnection(connectstring))
+                {
+                    var rr = (List<TModel>)conn.Query<TModel>(storedProcName, dbPara, null, true, 10000, System.Data.CommandType.StoredProcedure);
+                    return rr;
+                }
+            }
+            catch (Exception ex)
+            {
+                DirAppend.Main(ex.Message);
+                return null;
+            }
+        }
+
         //public async static Task<DataTable> GetDataTableFromStoredProcedure<TModel>(string connectstring, string storedProcName, object parameters)
         //{
         //    //https://khalidabuhakmeh.com/multiple-result-sets-with-net-core-sql-server
@@ -315,6 +365,54 @@ namespace ERP.Common.Controllers
                     param = dbPara;
                 }
                 
+            }
+            catch (Exception ex)
+            {
+                DirAppend.Main(ex.Message);
+                param = null;
+            }
+        }
+        public static void GetParamTupleStored(string connectstring, string storedProcName, object parameters, ref List<Tuple<string, string>> param)
+        {
+            try
+            {
+                var dbPara = new List<Tuple<string, string>>();
+                DataTable PARAMETERS = GetDataTable(connectstring, "PARAMETERS", @"SELECT PARAMETER_NAME FROM INFORMATION_SCHEMA.PARAMETERS WHERE SPECIFIC_NAME='" + storedProcName + "' ORDER BY ORDINAL_POSITION");
+                if (parameters != null)
+                {
+                    var properties = parameters.GetType().GetProperties();
+                    foreach (var property in properties)
+                    {
+                        var PropertyName = property.Name;
+                        var PropetyValue = parameters.GetType().GetProperty(property.Name).GetValue(parameters, null);
+                        foreach (DataRow dataRow in PARAMETERS.Rows)
+                        {
+                            if (dataRow["PARAMETER_NAME"].ToString() == "@p_" + PropertyName.ToString())
+                            {
+                                if (PropetyValue == null || PropetyValue.ToString() == "undefined")
+                                {
+                                    dbPara.Add(new Tuple<string, string>(dataRow["PARAMETER_NAME"].ToString(), ""));
+                                }
+                                else
+                                {
+                                    dbPara.Add(new Tuple<string, string>(dataRow["PARAMETER_NAME"].ToString(), PropetyValue.ToString()));
+                                }
+
+                                break;
+                            }
+                        }
+                    }
+                    param = dbPara;
+                }
+                else
+                {
+                    foreach (DataRow dataRow in PARAMETERS.Rows)
+                    {
+                        dbPara.Add(new Tuple<string, string>(dataRow["PARAMETER_NAME"].ToString(), ""));
+                    }
+                    param = dbPara;
+                }
+
             }
             catch (Exception ex)
             {
@@ -879,6 +977,10 @@ namespace ERP.Common.Controllers
                 SqlDataAdapter ad = new SqlDataAdapter();
                 ad.SelectCommand = cmd;
                 DataSet ds = new DataSet();
+                //if(string.IsNullOrEmpty(tbName))
+                //ad.Fill(ds, "table1");
+                //else 
+                //ad.Fill(ds, tbName);
                 ad.Fill(ds, "table1");
                 ad.Dispose();
                 DataTable table = new DataTable(tbName);

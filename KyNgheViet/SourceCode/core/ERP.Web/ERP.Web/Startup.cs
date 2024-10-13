@@ -1,5 +1,15 @@
 ﻿using CASH.Impls.Category;
+using CASH.Impls.Report;
+using CASH.Impls.Voucher;
 using CASH.Infs.Category;
+using CASH.Infs.Report;
+using CASH.Infs.Voucher;
+using Consolidation.Impls.Category;
+using Consolidation.Impls.Report;
+using Consolidation.Impls.Voucher;
+using Consolidation.Infs.Category;
+using Consolidation.Infs.Report;
+using Consolidation.Infs.Voucher;
 using ERP.Common.Controllers;
 using ERP.Common.Impls.ERP;
 using ERP.Common.Intfs.ERP;
@@ -53,12 +63,16 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Purchase.Impls.Report;
 using Purchase.Impls.Voucher;
+using Purchase.Infs.Report;
 using Purchase.Infs.Voucher;
 using Sales.Impls.Category;
+using Sales.Impls.Report;
 using Sales.Impls.VAT;
 using Sales.Impls.Voucher;
 using Sales.Infs.Category;
+using Sales.Infs.Report;
 using Sales.Infs.VAT;
 using Sales.Infs.Voucher;
 using SignalR.Impls.HubClient;
@@ -155,6 +169,7 @@ namespace ERP.Web
             services.AddTransient<ISalesCategoryService,SalesCategoryService> ();
             services.AddTransient<ISalesVoucherService,SalesVoucherService> ();
             services.AddTransient<ISaleVATService, SaleVATService> ();
+            services.AddTransient<ISaleReportService,SaleReportService> ();
 
             services.AddTransient<ICashCategoryService,CashCategoryService> ();
 
@@ -167,7 +182,16 @@ namespace ERP.Web
             services.AddTransient<IERPCommonService,ERPCommonService>();
             services.AddTransient<IExportService, ExportService>();
 
+            services.AddTransient<IConsolidationVoucherService,ConsolidationVoucherService>();
+
             services.AddTransient<IPurchaseVoucherService, PurchaseVoucherService>();
+            services.AddTransient<IConsolidationCategoryService, ConsolidationCategoryService>();
+
+            services.AddTransient<ICashVoucherService, CashVoucherService>();
+            services.AddTransient<ICashReportService, CashReportService>();
+
+            services.AddTransient<IPurchaseReportService, PurchaseReportService>();
+            services.AddTransient<IConsolidationReport, ConsolidationReport>();
 
             services.AddScoped<ExportAPIController>();
 
@@ -245,7 +269,7 @@ namespace ERP.Web
             app.UseSession();
 
             app.UseAuthorization();
-            
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

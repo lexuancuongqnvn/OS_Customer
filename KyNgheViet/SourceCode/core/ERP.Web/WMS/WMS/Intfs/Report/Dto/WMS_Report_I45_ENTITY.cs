@@ -20,6 +20,7 @@ namespace WMS.Intfs.Report.Dto
         public string profession_code {get;set;}
         public string notes {get;set;}
         public string code_fc {get;set;}
+        public string code_symbol {get;set;}
         public decimal? exchange_rate {get;set;}
         public decimal? total_money_fc {get;set;}
         public decimal? total_money  {get;set;}
@@ -33,8 +34,11 @@ namespace WMS.Intfs.Report.Dto
         public string account_code_modified {get;set;} 
         public string master_code  {get;set;}
         public string goods_code   {get;set;}
+        public string goods_group   {get;set;}
+        public string goods_symbol   {get;set;}
         public string goods_name   {get;set;}
         public string unit_code    {get;set;}
+        public string unit_name    {get;set;}
         public string warehouse_code {get;set;}
         public decimal? quantity     {get;set;}
         public decimal? price_fc     {get;set;}
@@ -48,6 +52,7 @@ namespace WMS.Intfs.Report.Dto
         public string expense_account {get;set;}
         public string fee_code     {get;set;}
         public string case_code    {get;set;}
+        public string case_name    {get;set;}
         public string department_code {get;set;}
         public string goods_code1  {get;set;}
         public string construction_id {get;set;}
@@ -58,5 +63,6 @@ namespace WMS.Intfs.Report.Dto
         public int id { get; set; }
         public int? language_id { get; set; }
         public string company_code { get; set; }
+        public int? voucher_year { get; set; }
     }
 }

@@ -57,6 +57,12 @@ namespace ERP.Web.Controllers.WMS
         {
             var result = await this.IOBWMSService.OB_Input_Output_Inventory_Insert(input);
             return result;
+        } 
+        [HttpPost]
+        public async Task<IDictionary<string, object>> OB_Input_Output_Inventory_Synchronized([FromBody] OB_Input_Output_Inventory_Synchronized_ENTITY input)
+        {
+            var result = await this.IOBWMSService.OB_Input_Output_Inventory_Synchronized(input);
+            return result;
         }
         [HttpPost]
         public async Task<List<OB_Input_Output_Inventory_ENTITY>> OB_Input_Output_Inventory_Search([FromBody] OB_Input_Output_Inventory_ENTITY input)

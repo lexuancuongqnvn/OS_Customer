@@ -33,5 +33,6 @@ namespace Purchase.Infs.Voucher.Dto
         public string goods_name { get; set; }
         public string voucher_no { get; set; }
         public int? language_id { get; set; }
+        public int? voucher_year { get; set; }
     }
 }

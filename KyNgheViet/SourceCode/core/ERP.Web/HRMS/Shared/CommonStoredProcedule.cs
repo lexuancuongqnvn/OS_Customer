@@ -93,6 +93,7 @@ namespace HRMS.Shared
         public const string HRM_Workspace_Timesheet_Search_By_IDCalendar = "HRM_Workspace_Timesheet_Search_By_IDCalendar";
         //Branch CuongLX 21/11/2021
         public const string HRM_Branch_Search = "HRM_Branch_Search";
+        public const string HRM_Branch_Detail_Search = "HRM_Branch_Detail_Search";
         public const string HRM_Branch_Actions = "HRM_Branch_Actions";
         //TimeSheet CuongLX 21/11/2021
         public const string HRM_TimeSheet_Search_Detail = "HRM_TimeSheet_Search_Detail";

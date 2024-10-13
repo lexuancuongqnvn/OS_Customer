@@ -331,7 +331,7 @@ namespace ERP.Web.Controllers.Upload
                 bool checkresize = resizeImage(model.base64, new Size(255, 256), FileManagerController.AppDirectory + path, name,100000,is_android);
                 if (checkresize)
                 {
-                    await RequestForStart(model.code);
+                    //await RequestForStart(model.code);
                     return path.Replace("\\", "/") + name;
                 }
             }
@@ -359,6 +359,10 @@ namespace ERP.Web.Controllers.Upload
                 var client = new RestClient("https://ai.erp.osoft.vn/verify");
                 client.Timeout = -1;
                 var request = new RestRequest(Method.POST);
+                if (!string.IsNullOrEmpty(emplyee_code))
+                {
+                    emplyee_code = "face-template";
+                }
                 request.AddHeader("Content-Type", "application/json");
                 var body = @"{""img1_path"":"""+ host + @"/FaceAI/EmployeeTraining/" + emplyee_code + @"/" + emplyee_code + @"-Left.jpg"", " + "\n" +
                 @" ""img2_path"": """ + host + @"/FaceAI/CheckInOut/Temp/" + emplyee_code + @".jpg""," + "\n" +

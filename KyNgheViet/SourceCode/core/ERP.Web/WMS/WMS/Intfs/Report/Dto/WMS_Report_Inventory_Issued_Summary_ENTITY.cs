@@ -20,6 +20,7 @@ namespace WMS.Intfs.Report.Dto
 		public int? language_id { get; set; }
 		public string goods_symbol { get; set; }
 		public string goods_name { get; set; }
+		public string goods_serial { get; set; }
 		public string unit_name { get; set; }
 		public decimal? quantity { get; set; }
 		public decimal? arise_credit { get; set; }
@@ -32,5 +33,6 @@ namespace WMS.Intfs.Report.Dto
 		public DateTime? date_modified { get; set; }
 		public string account_code_add { get; set; }
 		public string account_code_modified { get; set; }
+		public int? voucher_year { get; set; }
 	}
 }

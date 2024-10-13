@@ -185,24 +185,31 @@ namespace ERP.Web.Controllers.Recognition
                 }
                 try
                 {
+                    if(trainings.face_info_left == null || trainings.face_info_right == null || trainings.face_info_top == null || trainings.face_info_bottom == null)
+                    {
+                        trainings.face_info_left = new FaceInfo();
+                        trainings.face_info_right = new FaceInfo();
+                        trainings.face_info_top = new FaceInfo();
+                        trainings.face_info_bottom = new FaceInfo();
+                    }
                     string qr = @"EXEC [dbo].[HRM_Employee_Check_In_Out_Face_Training_Insert]
 		                        @p_employee_code = N'" + input.employee_code + @"',
 		                        @p_img_left = N'" + trainings.left + @"',
 		                        @p_img_right = N'" + trainings.right + @"',
 		                        @p_img_top = N'" + trainings.top + @"',
 		                        @p_img_bottom = N'" + trainings.bottom + @"',
-		                        @p_img_left_age = " + trainings.face_info_left.age.ToString().Replace(",", ".") + @",
-		                        @p_img_left_gender = N'" + trainings.face_info_left.gender + @"',
-		                        @p_img_right_age = " + trainings.face_info_right.age.ToString().Replace(",", ".") + @",
-		                        @p_img_right_gender = N'" + trainings.face_info_right.gender + @"',
-		                        @p_img_top_age = " + trainings.face_info_top.age.ToString().Replace(",", ".") + @",
-		                        @p_img_top_gender = N'" + trainings.face_info_top.gender + @"',
-		                        @p_img_bottom_age = " + trainings.face_info_bottom.age.ToString().Replace(",", ".") + @",
-		                        @p_img_bottom_gender = N'" + trainings.face_info_bottom.gender + @"',
-		                        @p_img_left_gender_probability = " + trainings.face_info_left.gender_probability.ToString().Replace(",", ".") + @",
-		                        @p_img_right_gender_probability = " + trainings.face_info_right.gender_probability.ToString().Replace(",", ".") + @",
-		                        @p_img_top_gender_probability = " + trainings.face_info_top.gender_probability.ToString().Replace(",", ".") + @",
-		                        @p_img_bottom_gender_probability = " + trainings.face_info_bottom.gender_probability.ToString().Replace(",", ".") + @"";
+		                        @p_img_left_age = 0,
+		                        @p_img_left_gender = N'',
+		                        @p_img_right_age = 0,
+		                        @p_img_right_gender = N'',
+		                        @p_img_top_age =0,
+		                        @p_img_top_gender = N'',
+		                        @p_img_bottom_age = 0,
+		                        @p_img_bottom_gender = N'',
+		                        @p_img_left_gender_probability = 0,
+		                        @p_img_right_gender_probability = 0,
+		                        @p_img_top_gender_probability = 0,
+		                        @p_img_bottom_gender_probability = 0";
                     bool is_training = ManagementController.ExecuteNonQuery(ConnectController.GetConnectStringByKey("HRM"), qr);
                     if (is_training)
                         input.status = 0;

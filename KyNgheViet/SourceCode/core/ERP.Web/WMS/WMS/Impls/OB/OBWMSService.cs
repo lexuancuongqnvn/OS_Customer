@@ -13,13 +13,13 @@ namespace WMS.Impls.OB
     {
         public async Task<IDictionary<string, object>> OB_Goods_Delete(OB_Goods_ENTITY input)
         {
-            var result = await ManagementController.GetResultValueFromStore(ConnectController.GetConnectStringByKey("WMS"), CommonStoredProcedures.OB_Goods_Delete, input);
+            var result = await ManagementController.GetResultValueFromStore2(ConnectController.GetConnectStringByKey("WMS"), CommonStoredProcedures.OB_Goods_Delete, input);
             return result;
         }
 
         public async Task<IDictionary<string, object>> OB_Goods_Insert(OB_Goods_ENTITY input)
         {
-            var result = await ManagementController.GetResultValueFromStore(ConnectController.GetConnectStringByKey("WMS"), CommonStoredProcedures.OB_Goods_Insert, input);
+            var result = await ManagementController.GetResultValueFromStore2(ConnectController.GetConnectStringByKey("WMS"), CommonStoredProcedures.OB_Goods_Insert, input);
             return result;
         }
 
@@ -31,19 +31,24 @@ namespace WMS.Impls.OB
 
         public async Task<IDictionary<string, object>> OB_Goods_Update(OB_Goods_ENTITY input)
         {
-            var result = await ManagementController.GetResultValueFromStore(ConnectController.GetConnectStringByKey("WMS"), CommonStoredProcedures.OB_Goods_Update, input);
+            var result = await ManagementController.GetResultValueFromStore2(ConnectController.GetConnectStringByKey("WMS"), CommonStoredProcedures.OB_Goods_Update, input);
             return result;
         }
 
         public async Task<IDictionary<string, object>> OB_Input_Output_Inventory_Delete(OB_Input_Output_Inventory_ENTITY input)
         {
-            var result = await ManagementController.GetResultValueFromStore(ConnectController.GetConnectStringByKey("WMS"), CommonStoredProcedures.OB_Input_Output_Inventory_Delete, input);
+            var result = await ManagementController.GetResultValueFromStore2(ConnectController.GetConnectStringByKey("WMS"), CommonStoredProcedures.OB_Input_Output_Inventory_Delete, input);
             return result;
         }
 
         public async Task<IDictionary<string, object>> OB_Input_Output_Inventory_Insert(OB_Input_Output_Inventory_ENTITY input)
         {
-            var result = await ManagementController.GetResultValueFromStore(ConnectController.GetConnectStringByKey("WMS"), CommonStoredProcedures.OB_Input_Output_Inventory_Insert, input);
+            var result = await ManagementController.GetResultValueFromStore2(ConnectController.GetConnectStringByKey("WMS"), CommonStoredProcedures.OB_Input_Output_Inventory_Insert, input);
+            return result;
+        }
+        public async Task<IDictionary<string, object>> OB_Input_Output_Inventory_Synchronized(OB_Input_Output_Inventory_Synchronized_ENTITY input)
+        {
+            var result = await ManagementController.GetResultValueFromStore2(ConnectController.GetConnectStringByKey("WMS"), CommonStoredProcedures.OB_Input_Output_Inventory_Synchronized, input);
             return result;
         }
 
@@ -55,18 +60,18 @@ namespace WMS.Impls.OB
 
         public async Task<IDictionary<string, object>> OB_Input_Output_Inventory_Update(OB_Input_Output_Inventory_ENTITY input)
         {
-            var result = await ManagementController.GetResultValueFromStore(ConnectController.GetConnectStringByKey("WMS"), CommonStoredProcedures.OB_Input_Output_Inventory_Update, input);
+            var result = await ManagementController.GetResultValueFromStore2(ConnectController.GetConnectStringByKey("WMS"), CommonStoredProcedures.OB_Input_Output_Inventory_Update, input);
             return result;
         }
         public async Task<IDictionary<string, object>> OB_Account_Delete(OB_Account_ENTITY input)
         {
-            var result = await ManagementController.GetResultValueFromStore(ConnectController.GetConnectStringByKey("WMS"), CommonStoredProcedures.OB_Account_Delete, input);
+            var result = await ManagementController.GetResultValueFromStore2(ConnectController.GetConnectStringByKey("WMS"), CommonStoredProcedures.OB_Account_Delete, input);
             return result;
         }
 
         public async Task<IDictionary<string, object>> OB_Account_Insert(OB_Account_ENTITY input)
         {
-            var result = await ManagementController.GetResultValueFromStore(ConnectController.GetConnectStringByKey("WMS"), CommonStoredProcedures.OB_Account_Insert, input);
+            var result = await ManagementController.GetResultValueFromStore2(ConnectController.GetConnectStringByKey("WMS"), CommonStoredProcedures.OB_Account_Insert, input);
             return result;
         }
 
@@ -78,7 +83,31 @@ namespace WMS.Impls.OB
 
         public async Task<IDictionary<string, object>> OB_Account_Update(OB_Account_ENTITY input)
         {
-            var result = await ManagementController.GetResultValueFromStore(ConnectController.GetConnectStringByKey("WMS"), CommonStoredProcedures.OB_Account_Update, input);
+            var result = await ManagementController.GetResultValueFromStore2(ConnectController.GetConnectStringByKey("WMS"), CommonStoredProcedures.OB_Account_Update, input);
+            return result;
+        }
+
+        public async Task<IDictionary<string, object>> OB_Customer_Delete(OB_Customer_ENTITY input)
+        {
+            var result = await ManagementController.GetResultValueFromStore2(ConnectController.GetConnectStringByKey("WMS"), CommonStoredProcedures.OB_Customer_Delete, input);
+            return result;
+        }
+
+        public async Task<IDictionary<string, object>> OB_Customer_Insert(OB_Customer_ENTITY input)
+        {
+            var result = await ManagementController.GetResultValueFromStore2(ConnectController.GetConnectStringByKey("WMS"), CommonStoredProcedures.OB_Customer_Insert, input);
+            return result;
+        }
+
+        public async Task<List<OB_Customer_ENTITY>> OB_Customer_Search(OB_Customer_ENTITY input)
+        {
+            var result = await ManagementController.GetDataFromStoredProcedure2<OB_Customer_ENTITY>(ConnectController.GetConnectStringByKey("WMS"), CommonStoredProcedures.OB_Customer_Search, input);
+            return result;
+        }
+
+        public async Task<IDictionary<string, object>> OB_Customer_Update(OB_Customer_ENTITY input)
+        {
+            var result = await ManagementController.GetResultValueFromStore2(ConnectController.GetConnectStringByKey("WMS"), CommonStoredProcedures.OB_Customer_Update, input);
             return result;
         }
     }

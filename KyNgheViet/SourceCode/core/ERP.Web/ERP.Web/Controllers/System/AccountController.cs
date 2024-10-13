@@ -48,6 +48,13 @@ namespace ERP.Web.Controllers.System
         {
             var result = await IAccountService.SYS_Account_Search(input);
             return result;
+        }   
+        [HttpPost]
+        [TokenAuthenticationFilter]
+        public async Task<List<SYS_Account_Group_Permission>> SYS_Account_Info_Permission_Search()
+        {
+            var result = await IAccountService.SYS_Account_Info_Permission_Search();
+            return result;
         }
         [HttpPost]
         public async Task<IDictionary<string, object>> SYS_Account_Infomation_Delete(string USER_NAME, int ACCOUNT_ID)
@@ -101,6 +108,7 @@ namespace ERP.Web.Controllers.System
             result.Add("SYS_Account_Infomation", new { StatusCode = 0, message = "Cập nhật ngôn ngữ thành công" });
             return result;
         }
+       
         [HttpPost]
         public async Task<List<RequestManagement_ENTITY>> RequestManagement_Search(string username)
         {

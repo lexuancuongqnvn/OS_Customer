@@ -5,6 +5,30 @@ using System.Text;
 
 namespace ERP.System.Intfs.Acction.Dto
 {
+    public class SYS_ActionsOnTable_Permission_ENTITY
+    {
+        public int id { get; set; }
+        public string tbName { get; set; }
+        public string code { get; set; }
+        public string code_menu_sub { get; set; }
+        public string xml { get; set; }
+        public int? userID { get; set; }
+        public int? language_id { get; set; }
+        public List<SYS_ActionsOnTable_Permission_Detail_ENTITY> details { get; set; }
+    }
+    public class SYS_ActionsOnTable_Permission_Detail_ENTITY
+    {
+        public int id { get; set; }
+        public string code { get; set; }
+        public string code_menu_sub { get; set; }
+        public string name { get; set; }
+        public string tbName { get; set; }
+        public string xml { get; set; }
+        public int? userID { get; set; }
+        public int? language_id { get; set; }
+        public bool? active { get; set; }
+        public string permission { get; set; }
+    }
     public class SYS_ActionsOnTable_ENTITY : ISYS
     {
 
@@ -23,6 +47,7 @@ namespace ERP.System.Intfs.Acction.Dto
         public string icon { get; set; }
         public int? Position { get; set; }
         public int? userID { get; set; }
+        public int? language_id { get; set; }
         public string KeyService { get; set; }
         public string Permission { get; set; }
         public string NAME_VN { get; set; }

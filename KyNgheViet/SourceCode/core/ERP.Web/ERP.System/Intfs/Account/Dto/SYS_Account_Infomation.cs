@@ -69,6 +69,7 @@ namespace ERP.System.Impls.Account.Dto
         public string XML { get; set; }
         public DateTime? chat_time { get; set; }
         public string chat_time_f { get; set; }
+        public string employee_code { get; set; }
         public Boolean? is_view { get; set; }
     }
 }

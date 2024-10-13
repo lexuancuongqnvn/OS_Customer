@@ -10,6 +10,8 @@ namespace ERP.Common.Intfs.ERP.Dto
         public string account_code { get; set; }
         public string voucher_code { get; set; }
         public string voucher_no { get; set; }
+        public int? voucher_year { get; set; }
+        public int? language_id { get; set; }
         public DateTime voucher_date { get; set; }
     }
 }

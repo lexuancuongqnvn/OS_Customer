@@ -12,6 +12,8 @@ namespace WMS.Intfs.Voucher.Dto
         public string voucher_code { get; set; }
         public int? voucher_year { get; set; }
         public DateTime? voucher_date { get; set; }
+        public DateTime? voucher_date_start { get; set; }
+        public DateTime? voucher_date_end { get; set; }
         public string voucher_no { get; set; }
         public string customer_code { get; set; }
         public string customer_name { get; set; }
@@ -44,6 +46,8 @@ namespace WMS.Intfs.Voucher.Dto
         public string company_code { get; set; }
         public string code { get; set; }
         public DateTime? voucher_date { get; set; }
+        public DateTime? voucher_date_start { get; set; }
+        public DateTime? voucher_date_end { get; set; }
         public string voucher_no { get; set; }
         public string voucher_code { get; set; }
         public int? voucher_year { get; set; }

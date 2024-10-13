@@ -11,6 +11,7 @@ namespace Sales.Infs.Voucher.Dto
         public string code { get; set; }
         public DateTime? voucher_date { get; set; }
         public string voucher_code { get; set; }
+        public int? voucher_year { get; set; }
         public string master_code { get; set; }
         public string goods_code { get; set; }
         public string unit_code { get; set; }
@@ -46,6 +47,7 @@ namespace Sales.Infs.Voucher.Dto
         public string account_code_add { get; set; }
         public string account_code_modified { get; set; }
         public string company_code { get; set; }
+        public string notes { get; set; }
         public int? language_id { get; set; }
     }
 }

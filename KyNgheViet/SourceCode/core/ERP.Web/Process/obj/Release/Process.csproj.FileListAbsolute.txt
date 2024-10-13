@@ -144,3 +144,7 @@ D:\SourceCode\ERP_Main\RELEASE\core\ERP.Web\Process\obj\Release\Process.dll
 D:\SourceCode\ERP_Main\RELEASE\core\ERP.Web\Process\obj\Release\Process.pdb
 D:\SourceCode\ERP\RELEASE\core\ERP.Web\Process\obj\Release\Process.csproj.AssemblyReference.cache
 D:\SourceCode\ERP\RELEASE\core\ERP.Web\Process\obj\Release\Process.csproj.CopyComplete
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\Process\bin\Release\ERP.System.dll
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\Process\bin\Release\ERP.Common.dll
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\Process\bin\Release\ERP.System.pdb
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\Process\bin\Release\ERP.Common.pdb

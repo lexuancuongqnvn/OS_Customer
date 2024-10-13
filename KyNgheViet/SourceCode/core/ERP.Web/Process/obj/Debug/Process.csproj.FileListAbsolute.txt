@@ -196,3 +196,5 @@ D:\SourceCode\ERP\RELEASE\core\ERP.Web\Process\bin\Debug\ERP.System.dll
 D:\SourceCode\ERP\RELEASE\core\ERP.Web\Process\bin\Debug\ERP.Common.dll
 D:\SourceCode\ERP\RELEASE\core\ERP.Web\Process\bin\Debug\ERP.System.pdb
 D:\SourceCode\ERP\RELEASE\core\ERP.Web\Process\bin\Debug\ERP.Common.pdb
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\Process\bin\Debug\HRMS.dll
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\Process\bin\Debug\HRMS.pdb

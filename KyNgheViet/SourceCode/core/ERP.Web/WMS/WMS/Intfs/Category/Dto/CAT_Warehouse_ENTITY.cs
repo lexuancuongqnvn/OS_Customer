@@ -20,5 +20,7 @@ namespace WMS.Intfs.Category.Dto
         public string account_code_modified { set; get; }
         public int? language_id { get; set; }
         public string company_code { get; set; }
+        public string voucher_code { get; set; }
+        public int? voucher_year { get; set; }
     }
 }

@@ -45,8 +45,11 @@ namespace WMS.Intfs.Report.Dto
         public string warehouse_out_symbol { get; set; }
         public string warehouse_in_symbol  { get; set; }
         public decimal? quantity             { get; set; }
+        public string goods_serial         { get; set; }
         public string goods_symbol         { get; set; }
         public string goods_name           { get; set; }
+        public string goods_code           { get; set; }
+        public string group_code { get; set; }
         public decimal? price                { get; set; }
         public decimal? price_fc             { get; set; }
         public decimal? arise                { get; set; }

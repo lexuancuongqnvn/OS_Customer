@@ -12,9 +12,12 @@ namespace WMS.Intfs.Report.Dto
         public DateTime? voucher_date_end { get; set; }
         public string code { get; set; }
         public string group_code {get;set;}
+        public string group_name {get;set;}
+        public string group_symbol { get;set;}
         public string goods_code {get;set;}
         public string warehouse_symbol { get;set;}
         public string goods_symbol {get;set;}
+        public string goods_serial {get;set;}
         public string goods_name {get;set;}
         public string unit_name {get;set;}
         public decimal? ob_inventory_quantity {get;set;}
@@ -32,5 +35,11 @@ namespace WMS.Intfs.Report.Dto
         public DateTime? date_modified {get;set;}
         public string account_code_add {get;set;}
         public string account_code_modified {get;set;}
+        public string warehouse_code { get; set; }
+        public string warehouse_account { get; set; }
+        public int? goods_type { get; set; }
+        public string goods_unit_code { get; set; }
+        public string voucher_code { get; set; }
+        public int? voucher_year { get; set; }
     }
 }

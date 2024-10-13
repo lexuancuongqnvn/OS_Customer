@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "DGGaSOO5lv+J/TswVvoKvC1VPd1TpvQuhMKqbl3/xoYuOoM9DJ2IAWgUA/0QgtxlptQjl+F3CZ0oxlsPuwqTTw==",
+  "dgSpecHash": "9ImNeSE0jFn585RxmYX01joZeSmxUbtMCJjL/ygipxiBHmYvHy5YjpX6Db4CFNPGYhFcuMUMLyaE0P8CNxOODA==",
   "success": true,
   "projectFilePath": "D:\\SourceCode\\ERP\\RELEASE\\core\\ERP.Web\\ERP.Common\\ERP.Common.csproj",
   "expectedPackageFiles": [
@@ -207,5 +207,26 @@
     "C:\\Users\\Admin\\.nuget\\packages\\system.xml.xpath.xmldocument\\4.3.0\\system.xml.xpath.xmldocument.4.3.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\timezoneconverter\\3.1.0\\timezoneconverter.3.1.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1902",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'System.Data.SqlClient' 4.8.2 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-8g2p-5pqh-5jmc",
+      "libraryId": "System.Data.SqlClient",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1"
+      ]
+    },
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'System.Data.SqlClient' 4.8.2 has a known high severity vulnerability, https://github.com/advisories/GHSA-98g6-xh36-x2p7",
+      "libraryId": "System.Data.SqlClient",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1"
+      ]
+    }
+  ]
 }

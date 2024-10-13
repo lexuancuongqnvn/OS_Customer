@@ -10,11 +10,14 @@ namespace WMS.Intfs.OB.Dto
         public int id { get; set; }
         public string code    { get; set; }
         public string account { get; set; }
+        public string account_name { get; set; }
         public decimal? creditor_money_fc  { get; set; }
         public decimal? creditor_money  { get; set; }
         public decimal? debitor_money_fc  { get; set; }
         public decimal? debitor_money  { get; set; }
         public string code_fc { get; set; }
+        public string code_symbol { get; set; }
+        public decimal? exchange_rate { get; set; }
         public string department_code { get; set; }
         public string case_code { get; set; }
         public string fee_code { get; set; }
@@ -26,5 +29,7 @@ namespace WMS.Intfs.OB.Dto
         public string account_code_add { get; set; }
         public string account_code_modified { get; set; }
         public int? language_id { get; set; }
+        public string voucher_code { get; set; }
+        public int? voucher_year { get; set; }
     }
 }

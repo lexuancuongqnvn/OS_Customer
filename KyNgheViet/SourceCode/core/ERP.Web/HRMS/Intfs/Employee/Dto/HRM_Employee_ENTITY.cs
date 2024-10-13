@@ -26,6 +26,7 @@ namespace HRMS.Intfs.Employee.Dto
         public string text { get; set; }
         public string phone { get; set; }
         public string user_login { get; set; }
+        public string address_branch { get; set; }
 
         public string address_detail { get; set; }//Số nhà thường trú
         public string address_sub_district_code { get; set; }//Nơi sinh phường/ xã

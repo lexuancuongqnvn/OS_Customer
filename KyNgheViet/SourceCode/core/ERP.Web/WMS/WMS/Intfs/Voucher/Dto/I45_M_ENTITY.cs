@@ -12,6 +12,8 @@ namespace WMS.Intfs.Voucher.Dto
         public int? numerical_order { get; set; }
         public string voucher_code { get; set; }
         public DateTime? voucher_date { get; set; }
+        public DateTime? voucher_date_start { get; set; }
+        public DateTime? voucher_date_end { get; set; }
         public string voucher_no { get; set; }
         public string customer_code { get; set; }
         public string customer_name { get; set; }
@@ -32,6 +34,8 @@ namespace WMS.Intfs.Voucher.Dto
         public string account_code_modified { get; set; }
         public string xml_45d { get; set; }
         public int? voucher_year { set; get; }
+        public string goods_serial { get; set; }
+        public string goods_symbol { get; set; }
         public List<I45_D_ENTITY> i45_D { get; set; }
         public int id { get; set; }
         public int? language_id { get; set; }

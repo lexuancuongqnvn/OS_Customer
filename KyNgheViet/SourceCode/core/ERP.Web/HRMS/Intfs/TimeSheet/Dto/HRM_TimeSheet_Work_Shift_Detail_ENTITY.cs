@@ -18,5 +18,8 @@ namespace HRMS.Intfs.TimeSheet.Dto
         public int? hour_end_relax { get; set; }
         public DateTime? start_relax { get; set; }
         public DateTime? end_relax { get; set; }
+        public Boolean? is_apply { get; set; }
+        public Boolean? is_checkin_relax { get; set; }
+        public string apply_name { get; set; }
     }
 }

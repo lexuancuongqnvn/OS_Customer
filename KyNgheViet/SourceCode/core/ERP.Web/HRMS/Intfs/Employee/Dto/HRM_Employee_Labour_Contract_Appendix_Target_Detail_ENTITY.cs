@@ -27,6 +27,7 @@ namespace HRMS.Intfs.Employee.Dto
         public string contact_name { get; set; }
         public string contact_phone { get; set; }
         public string machine_code { get; set; }
+        public string machine_serial { get; set; }
         public string machine_name { get; set; }
         public string machine_type { get; set; }
         public string machine_type_name { get; set; }

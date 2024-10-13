@@ -4,11 +4,29 @@ using System.Text;
 
 namespace HRMS.Intfs.Branch.Dto
 {
+    public class HRM_Branch_Detail_ENTITY
+    {
+        public int? ID { get; set; }
+        public string code { get; set; }
+        public string work_shift_code { get; set; }
+        public DateTime? start_time { get; set; }
+        public DateTime? end_time { get; set; }
+        public decimal? total_time { get; set; }
+        public string name { get; set; }
+        public decimal? relax { get; set; }
+        public int? hour_start_relax { get; set; }
+        public int? hour_end_relax { get; set; }
+        public DateTime? start_relax { get; set; }
+        public DateTime? end_relax { get; set; }
+        public Boolean? is_apply { get; set; }
+        public string apply_name { get; set; }
+    }
     public class HRM_Branch_ENTITY
     {
         public int id { get; set; }
         public string code { get; set; }
         public string company_code { get; set; }
+        public string company_symbol { get; set; }
         public string name { get; set; }
         public string name1 { get; set; }
         public string name2 { get; set; }
@@ -40,6 +58,15 @@ namespace HRMS.Intfs.Branch.Dto
         public bool? is_su { get; set; }
         public DateTime? from_su { get; set; }
         public DateTime? to_su { get; set; }
-
+        public string tax { get; set; }
+        public DateTime? birth_day { get; set; }
+        public string phone { get; set; }
+        public string tel { get; set; }
+        public string hotline { get; set; }
+        public DateTime? date_add { get; set; }
+        public DateTime? date_modified { get; set; }
+        public string account_code_add { get; set; }
+        public string account_code_modified { get; set; }
+        public List<HRM_Branch_Detail_ENTITY> hRM_Branch_Details { get; set; }
     }
 }

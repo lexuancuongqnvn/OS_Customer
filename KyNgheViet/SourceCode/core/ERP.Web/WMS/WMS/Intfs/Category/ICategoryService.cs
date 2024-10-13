@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ERP.Common.Shared.Dto;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,5 +27,17 @@ namespace WMS.Intfs.Category
         Task<IDictionary<string, object>> CAT_Goods_Unit_Conversion_Factor_Update(CAT_Goods_Unit_Conversion_Factor_ENTITY input);
         Task<IDictionary<string, object>> CAT_Goods_Unit_Conversion_Factor_Insert(CAT_Goods_Unit_Conversion_Factor_ENTITY input);
         Task<List<CAT_Goods_Unit_Conversion_Factor_ENTITY>> CAT_Goods_Unit_Conversion_Factor_Search(CAT_Goods_Unit_Conversion_Factor_ENTITY input);
+
+        Task<IDictionary<string, object>> CAT_Goods_Serial_Delete(CAT_Goods_Serial_ENTITY input);
+        Task<IDictionary<string, object>> CAT_Goods_Serial_Update(CAT_Goods_Serial_ENTITY input);
+        Task<IDictionary<string, object>> CAT_Goods_Serial_Insert(CAT_Goods_Serial_ENTITY input);
+        Task<List<CAT_Goods_Serial_ENTITY>> CAT_Goods_Serial_Search(CAT_Goods_Serial_ENTITY input);
+
+        Task<IDictionary<string, object>> CAT_Goods_Configuration_Delete(CAT_Goods_Configuration_ENTITY input);
+        Task<IDictionary<string, object>> CAT_Goods_Configuration_Update(CAT_Goods_Configuration_ENTITY input);
+        Task<IDictionary<string, object>> CAT_Goods_Configuration_Insert(CAT_Goods_Configuration_ENTITY input);
+        Task<List<CAT_Goods_Configuration_ENTITY>> CAT_Goods_Configuration_Search(CAT_Goods_Configuration_ENTITY input);
+        Task<List<CAT_Goods_Configuration_ENTITY>> CAT_Goods_Configuration_Search_By_Goods(CAT_Goods_Configuration_ENTITY input);
+
     }
 }

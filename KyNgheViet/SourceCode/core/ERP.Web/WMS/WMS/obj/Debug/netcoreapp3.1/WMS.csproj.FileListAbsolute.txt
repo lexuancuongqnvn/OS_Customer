@@ -1,3 +1,9 @@
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\WMS\WMS\obj\Debug\netcoreapp3.1\WMS.csproj.AssemblyReference.cache
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\WMS\WMS\obj\Debug\netcoreapp3.1\WMS.GeneratedMSBuildEditorConfig.editorconfig
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\WMS\WMS\obj\Debug\netcoreapp3.1\WMS.AssemblyInfoInputs.cache
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\WMS\WMS\obj\Debug\netcoreapp3.1\WMS.AssemblyInfo.cs
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\WMS\WMS\obj\Debug\netcoreapp3.1\WMS.csproj.CoreCompileInputs.cache
+D:\SourceCode\ERP\RELEASE\core\ERP.Web\WMS\WMS\obj\Debug\netcoreapp3.1\WMS.sourcelink.json
 D:\SourceCode\ERP\RELEASE\core\ERP.Web\WMS\WMS\bin\Debug\netcoreapp3.1\WMS.deps.json
 D:\SourceCode\ERP\RELEASE\core\ERP.Web\WMS\WMS\bin\Debug\netcoreapp3.1\WMS.dll
 D:\SourceCode\ERP\RELEASE\core\ERP.Web\WMS\WMS\bin\Debug\netcoreapp3.1\WMS.pdb
@@ -11,11 +17,6 @@ D:\SourceCode\ERP\RELEASE\core\ERP.Web\WMS\WMS\bin\Debug\netcoreapp3.1\POS.pdb
 D:\SourceCode\ERP\RELEASE\core\ERP.Web\WMS\WMS\bin\Debug\netcoreapp3.1\ERP.Common.pdb
 D:\SourceCode\ERP\RELEASE\core\ERP.Web\WMS\WMS\bin\Debug\netcoreapp3.1\HRMS.pdb
 D:\SourceCode\ERP\RELEASE\core\ERP.Web\WMS\WMS\bin\Debug\netcoreapp3.1\SignalR.pdb
-D:\SourceCode\ERP\RELEASE\core\ERP.Web\WMS\WMS\obj\Debug\netcoreapp3.1\WMS.csproj.AssemblyReference.cache
-D:\SourceCode\ERP\RELEASE\core\ERP.Web\WMS\WMS\obj\Debug\netcoreapp3.1\WMS.GeneratedMSBuildEditorConfig.editorconfig
-D:\SourceCode\ERP\RELEASE\core\ERP.Web\WMS\WMS\obj\Debug\netcoreapp3.1\WMS.AssemblyInfoInputs.cache
-D:\SourceCode\ERP\RELEASE\core\ERP.Web\WMS\WMS\obj\Debug\netcoreapp3.1\WMS.AssemblyInfo.cs
-D:\SourceCode\ERP\RELEASE\core\ERP.Web\WMS\WMS\obj\Debug\netcoreapp3.1\WMS.csproj.CoreCompileInputs.cache
 D:\SourceCode\ERP\RELEASE\core\ERP.Web\WMS\WMS\obj\Debug\netcoreapp3.1\WMS.csproj.CopyComplete
 D:\SourceCode\ERP\RELEASE\core\ERP.Web\WMS\WMS\obj\Debug\netcoreapp3.1\WMS.dll
 D:\SourceCode\ERP\RELEASE\core\ERP.Web\WMS\WMS\obj\Debug\netcoreapp3.1\WMS.pdb

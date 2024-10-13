@@ -106,6 +106,23 @@ namespace ERP.Common.Impls.ERP
             var result = await ManagementController.GetResultValueFromStore2(ConnectController.GetConnectStringByKey("HRM"), CommonStoredProcedule.SYS_Language_Translate_Action_By_Type, input);
             return result;
         }
+        public async Task<IDictionary<string, object>> ERP_Common_Check_Voucher_Save(ERPCommon_ENTITY input)
+        {
+            string msg = "";
+            if(input.voucher_date.Year != input.voucher_year)
+            {
+                if (input.language_id == 1) msg = "Ngày Chứng từ không thuộc năm tài chính hiện tại " + input.voucher_year;
+                else msg = "Voucher Date does not belong to the current financial year " + input.voucher_year;
+                return new Dictionary<string, object>{
+                    { "status" ,1 },
+                    { "message",msg }
+                 };
+            }
+               
+            var result = await ManagementController.GetResultValueFromStore2(ConnectController.GetConnectStringByKey("HRM"), CommonStoredProcedule.ERP_Common_Check_Voucher_Date_Block, input);
+            
+            return result;
+        }
 
         public async Task<List<SYS_Language_Translate_ENTITY>> SYS_Language_Translate_Search(SYS_Language_Translate_ENTITY input)
         {

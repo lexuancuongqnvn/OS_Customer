@@ -21,6 +21,7 @@ namespace ERP.System.Shared
         public const string SYS_Account_Group_Actions = "SYS_Account_Group_Actions";
         public const string SYS_Account_Infomation_Insert = "SYS_Account_Infomation_Insert";
         public const string SYS_Account_Infomation_UpdatePassword = "SYS_Account_Infomation_UpdatePassword";
+        public const string SYS_Account_Info_Permission_Search = "SYS_Account_Info_Permission_Search";
 
         //Menu
         public const string SYS_Menu_Delete = "SYS_Menu_Delete";
@@ -31,6 +32,10 @@ namespace ERP.System.Shared
         public const string SYS_Menu_Detail_Search = "SYS_Menu_Detail_Search";
         public const string SYS_Menu_Search_byID = "SYS_Menu_Search_byID";
         public const string SYS_Menu_Update = "SYS_Menu_Update";
+        public const string SYS_Menu_Permission_Search = "SYS_Menu_Permission_Search";
+        public const string SYS_Menu_Permission_Detail_Search = "SYS_Menu_Permission_Detail_Search";
+        public const string SYS_Menu_Permission_Update = "SYS_Menu_Permission_Update";
+        public const string SYS_Menu_Sub_Pin = "SYS_Menu_Sub_Pin";
 
         //GenrowTable
         public const string SYS_GenRowTable_Search = "SYS_GenRowTable_Search";
@@ -65,11 +70,14 @@ namespace ERP.System.Shared
 
         //Acction
         public const string Acction_Search = "Acction_Search";
+        public const string Acction_V3_Search = "Acction_V3_Search";
         public const string Acction_Search_byTableName = "Acction_Search_byTableName";
         public const string Acction_Delete_ListID = "Acction_Delete_ListID";
         public const string Acction_Autorenew = "Acction_Autorenew";
         public const string Acction_Update = "Acction_Update";
         public const string Acction_Update_v2 = "Acction_Update_v2";
+        public const string Action_Permission_Search = "Action_Permission_Search";
+        public const string Action_Permission_Update = "Action_Permission_Update";
 
         //Department
         public const string Department_Actions = "Department_Actions";

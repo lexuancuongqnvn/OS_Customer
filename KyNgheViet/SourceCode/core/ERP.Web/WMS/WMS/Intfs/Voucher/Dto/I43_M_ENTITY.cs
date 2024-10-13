@@ -1,4 +1,5 @@
-﻿using ERP.System.Shared;
+﻿using ERP.Common.Shared.Dto;
+using ERP.System.Shared;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,6 +13,8 @@ namespace WMS.Intfs.Voucher.Dto
         public int? numerical_order { set; get; }
         public string voucher_code { set; get; }
         public DateTime? voucher_date { set; get; }
+        public DateTime? voucher_date_start { get; set; }
+        public DateTime? voucher_date_end { get; set; }
         public string voucher_no { set; get; }
         public string customer_code { set; get; }
         public string address { set; get; }
@@ -32,8 +35,14 @@ namespace WMS.Intfs.Voucher.Dto
         public string name_fc { set; get; }
         public int? voucher_year { set; get; }
         public string xml_43d { set; get; }
+        public string xml_cat_goods_configurations { get; set; }
+        public string goods_serial { get; set; }
+        public string goods_symbol { get; set; }
+        public string s32_detail_code { get; set; }
         public List<I43_D_ENTITY> i43_D { set; get; }
+        public List<CAT_Goods_Configuration_ENTITY> cat_goods_configurations { get; set; }
         public int id { get; set; }
         public int? language_id { get; set; }
+        public bool? is_costing { get; set; }
     }
 }

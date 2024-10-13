@@ -16,6 +16,21 @@ namespace ERP.System.Impls.Acction
         {
             var result = await ManagementController.GetDataFromStoredProcedure<SYS_ActionsOnTable_ENTITY>(ConnectController.GetConnectStringByKey("ID"), CommonStoreProcedure.Acction_Search,input);
             return result;
+        } 
+        public async Task<List<SYS_ActionsOnTable_ENTITY>> Acction_V3_Search(SYS_ActionsOnTable_ENTITY input)
+        {
+            var result = await ManagementController.GetDataFromStoredProcedure<SYS_ActionsOnTable_ENTITY>(ConnectController.GetConnectStringByKey("ID"), CommonStoreProcedure.Acction_V3_Search, input);
+            return result;
+        }
+        public async Task<List<SYS_ActionsOnTable_Permission_Detail_ENTITY>> Action_Permission_Search(SYS_ActionsOnTable_Permission_Detail_ENTITY input)
+        {
+            var result = await ManagementController.GetDataFromStoredProcedure2<SYS_ActionsOnTable_Permission_Detail_ENTITY>(ConnectController.GetConnectStringByKey("ID"), CommonStoreProcedure.Action_Permission_Search, input);
+            return result;
+        } 
+        public async Task<IDictionary<string, object>> Action_Permission_Update(SYS_ActionsOnTable_Permission_ENTITY input)
+        {
+            var result = await ManagementController.GetResultValueFromStore2(ConnectController.GetConnectStringByKey("ID"), CommonStoreProcedure.Action_Permission_Update, input);
+            return result;
         }
 
         public async Task<List<SYS_ActionsOnTable_ENTITY>> Acction_Search_byTableName(int userID, string TABLE_NAME)
