@@ -1,0 +1,17 @@
+﻿
+Addons
+@using Stimulsoft.Report.Web;
+@using Stimulsoft.Report.Mvc;
+
+@{
+	ViewData["Title"] = "Report.mdc - Viewer";
+}
+
+@Html.StiNetCoreViewer(new StiNetCoreViewerOptions()
+{
+	Actions =
+	{
+		GetReport = "GetReport",
+		ViewerEvent = "ViewerEvent"
+	}
+})

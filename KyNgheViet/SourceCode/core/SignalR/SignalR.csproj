@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Platforms>AnyCPU;x64</Platforms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HRMS\HRMS.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="ERP.Common">
+      <HintPath>..\ERP.Common\bin\Debug\netcoreapp3.1\ERP.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="ERP.System">
+      <HintPath>..\ERP.System\obj\Release\netcoreapp3.1\ERP.System.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,240 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Báo giá sản phẩm Anh Phát Computer</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<style>
+  body {
+  	background-color: #ffffff;
+  }
+.list_table {
+	border-collapse:collapse;
+}
+.list_table td{border:solid 1px #aaa; padding:5px; text-algin:center; vertical-align:middle;}
+.cart_first_tr {
+	background-color:#cccccc;
+}
+BODY, FORM, TABLE, TD, SPAN, DIV {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:12px;
+}
+.title a {
+	color:#0000FF;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	text-decoration:none;
+}
+.title a:hover {
+	color:#0000FF;
+	text-decoration:underline;
+}
+</style>
+</head>
+<body>
+<div style="width: 700px;margin: 0 auto;">
+  <table width="700">
+    <tr>
+      <td colspan="3" valign="top">
+        <img src="https://tinhocanhphat.vn/template/default/images/logo_export.png" alt="" style="height:70px"/>
+      </td>
+      <td colspan="5" align="right" style="line-height: 19px;">
+        <b style="color: #e51f28;font-size: 20px;">ANH PHÁT COMPUTER</b><br />
+        Địa Chỉ 1: ANH Phát - Số 114/12 Bùi Đình Túy, P. 12, Q. Bình Thạnh, TP. HCM<br>
+        Điện Thoại : 090.677.8965
+
+      </td>
+    </tr>
+    <tr><td colspan="8"></td></tr>
+    <tr>
+      <td colspan="8" style="border-top: 4px double #ccc;;font-size:21px; font-weight:bold; text-align:center; padding:15px 0;">BẢNG BÁO GIÁ THIẾT BỊ</td>
+    </tr>
+  </table>  
+
+  <table><tr><td colspan="8">&nbsp;</td></tr></table>
+  <table width="700">
+    <tr>
+      <td colspan="5" align="left"></td>
+      <td colspan="3" align="right">
+        Ngày báo giá: <span id="price_time">05-10-2021, 3:17 pm</span>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="5" align="left"></td>
+      <td colspan="3" align="right">
+        <i>Đơn vị tính: VNĐ</i>
+      </td>
+    </tr>
+  </table>  
+
+  <div style="padding: 10px;"></div>
+
+  <table width="700" class="list_table" border="1">
+    <tr style="color: #ffffff; background-color:#e00;">
+      <td>STT</td>
+      <td>Mã sản phẩm</td>
+      <td colspan="2">Tên sản phẩm</td>
+      <td>Bảo hành</td>
+      <td>Số lượng</td>
+      <td>Đơn giá</td>
+      <td>Thành tiền</td>
+    </tr>
+    
+    
+    
+    
+    <tr>
+      <td>1</td>
+      <td>VGGL0049</td>
+      <td colspan="2"><a href="https://tinhocanhphat.vn/card-man-hinh-gtx-750ti-galax-vga-y-2gb-ddr5-cu.html">Card màn hình GTX 750Ti GALAX Y 2Gb Ddr5 Cũ (Cái)</a></td>
+      <td>Cũ, bảo hành 3 tháng</td>
+      <td>1</td>
+      <td>2.050.000</td>
+      <td>
+         
+        <!--2050000-->
+
+        2.050.000
+      </td>
+    </tr>
+    <!--1-->
+    
+    
+    
+    <tr>
+      <td>2</td>
+      <td>RMKT0085</td>
+      <td colspan="2"><a href="https://tinhocanhphat.vn/ram-desktop-32gb-ddr4-3200mhz-kingston-hyperx-fury-rgb-hx432c16fb3ak232-2x16gb.html">RAM Desktop Kingston Hyperx Fury 32GB DDR4 3200Mhz RGB (HX432C16FB3AK2|32 ) (2x16GB) (Cái)</a></td>
+      <td>Mới, bảo hành 36 tháng</td>
+      <td>1</td>
+      <td>3.890.000</td>
+      <td>
+         
+        <!--5940000-->
+
+        3.890.000
+      </td>
+    </tr>
+    <!--2-->
+    
+    
+    
+    <tr>
+      <td>3</td>
+      <td>MBHU0005</td>
+      <td colspan="2"><a href="https://tinhocanhphat.vn/mainboard-huananzhi-x79-dual-8d.html">MainBoard Huananzhi X79 Dual-8D (Cái)</a></td>
+      <td>Mới, bảo hành 36 tháng</td>
+      <td>1</td>
+      <td>3.490.000</td>
+      <td>
+         
+        <!--9430000-->
+
+        3.490.000
+      </td>
+    </tr>
+    <!--3-->
+    
+    
+    
+    <tr>
+      <td>4</td>
+      <td>CPUI0079</td>
+      <td colspan="2"><a href="https://tinhocanhphat.vn/cpu-intel-xeon-e5-2678-v3-2.5ghz-12-nhan-24-luong-30mb-cache-120w-socket-intel-lga-2011-v3-t.html">CPU Intel Xeon E5 2678 V3 (2.5GHz, 12 nhân 24 luồng, 30MB Cache, 120W) SocKet Intel LGA 2011v3 (T) (Con)</a></td>
+      <td>Mới, bảo hành 36 tháng</td>
+      <td>2</td>
+      <td>2.640.000</td>
+      <td>
+         
+        <!--14710000-->
+
+        5.280.000
+      </td>
+    </tr>
+    <!--4-->
+    
+    
+    
+    <tr>
+      <td>5</td>
+      <td>VC1ST0001</td>
+      <td colspan="2"><a href="https://tinhocanhphat.vn/vo-case-1st-player-case-x2-black.html">Vỏ Case 1St Player X2 Black (Cái)</a></td>
+      <td>Mới, bảo hành 36 tháng</td>
+      <td>1</td>
+      <td>499.000</td>
+      <td>
+         
+        <!--15209000-->
+
+        499.000
+      </td>
+    </tr>
+    <!--5-->
+    
+    
+    
+    <tr>
+      <td>6</td>
+      <td>PSCL0018</td>
+      <td colspan="2"><a href="https://tinhocanhphat.vn/nguon-may-tinh-460w-cooler-master-psu-hbh.html">Nguồn Máy Tính 460W Cooler Master HBH (Cái)</a></td>
+      <td>Mới, bảo hành 36 tháng</td>
+      <td>1</td>
+      <td>400.000</td>
+      <td>
+         
+        <!--15609000-->
+
+        400.000
+      </td>
+    </tr>
+    <!--6-->
+    
+    
+    
+    <tr>
+      <td>7</td>
+      <td>SDTE0015</td>
+      <td colspan="2"><a href="https://tinhocanhphat.vn/o-cung-ssd-250gb-sata-3-sata-team-t-force-delta-max-rgb-2.5-inch-3-doc-560mbs-ghi-500mbs-t253tm250g3c302.html">Ổ cứng SSD 250GB Sata 3 Team T-Force Delta Max RGB 2.5 inch 3 (Đọc 560MB|s - Ghi 500MB|s) - (T253TM250G3C302) (Cái)</a></td>
+      <td>Mới, bảo hành 36 tháng</td>
+      <td>1</td>
+      <td>2.140.000</td>
+      <td>
+         
+        <!--17749000-->
+
+        2.140.000
+      </td>
+    </tr>
+    <!--7-->
+    
+    
+    <tr>
+      <td colspan="5"></td>
+      <td colspan="2" style="background:#b8cce4;">Phí vận chuyển</td>
+      <td style="background:#b8cce4;">0</td>
+    </tr>
+    <tr>
+      <td colspan="5"></td>
+      <td colspan="2" style="background:#b8cce4;">Chi phí khác</td>
+      <td style="background:#b8cce4;">0</td>
+    </tr>
+    <tr>
+      <td colspan="5"></td>
+      <td colspan="2" style="background:#b8cce4;">Tổng tiền đơn hàng</td>
+      <td style="background:#b8cce4;">17.749.000</td>
+    </tr>
+  </table>
+
+  <table><tr><td colspan="8">&nbsp;</td></tr></table>
+
+  <table width="700">
+    <tr><td colspan="8"><b>Quý khách lưu ý:</b> Giá bán, khuyến mại của sản phẩm và tình trạng còn hàng có thể bị thay đổi bất cứ lúc nào mà không kịp báo trước</td></tr>
+    <tr><td colspan="8">
+      Để biết thêm chi tiết, Quý khách vui lòng liên hệ Anh Phát Computer qua hotline 090.677.8965 (8h00-21h30 tất cả các ngày trong tuần) 
+      </td></tr>
+    <tr><td colspan="8">Một lần nữa Anh Phát Computer cảm ơn quý khách!</td></tr>
+  </table>
+
+</div>
+
+</body>
+</html>
