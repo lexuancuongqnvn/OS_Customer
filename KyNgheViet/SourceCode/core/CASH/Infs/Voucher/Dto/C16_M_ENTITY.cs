@@ -40,6 +40,10 @@ namespace CASH.Infs.Voucher.Dto
         public int? voucher_year { get; set; }
         public string xml_16d { get; set; }
         public string xml_vat_in { get; set; }
+        public string date_add_f { get; set; }
+        public string date_modified_f { get; set; }
+        public string account_code_add_f { get; set; }
+        public string account_code_modified_f { get; set; }
         public List<C16_D_ENTITY> c16_d { get; set; }
         public List<Accounting_VAT_Input_ENTITY> accounting_vat_inputs { get; set; }
     }

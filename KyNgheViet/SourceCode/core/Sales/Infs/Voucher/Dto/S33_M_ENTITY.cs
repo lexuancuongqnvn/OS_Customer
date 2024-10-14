@@ -60,6 +60,11 @@ namespace Sales.Infs.Voucher.Dto
         public string goods_serial { get; set; }
         public string goods_symbol { get; set; }
         public bool? is_costing { get; set; }
+
+        public string date_add_f { get; set; }
+        public string date_modified_f { get; set; }
+        public string account_code_add_f { get; set; }
+        public string account_code_modified_f { get; set; }
         public List<S33_D_ENTITY> s33_D { get; set; }
         public List<Accounting_VAT_Output_ENTITY> accounting_VAT_Outputs { get; set; }
     }

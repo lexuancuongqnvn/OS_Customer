@@ -56,6 +56,11 @@ namespace Sales.Infs.Voucher.Dto
         public bool? is_tax { get; set; }
         public string goods_serial { get; set; }
         public string goods_symbol { get; set; }
+
+        public string date_add_f { get; set; }
+        public string date_modified_f { get; set; }
+        public string account_code_add_f { get; set; }
+        public string account_code_modified_f { get; set; }
         public List<S31_D_ENTITY> s31_D { get; set; }
         public List<Accounting_VAT_Output_ENTITY> accounting_VAT_Outputs { get; set; }
     }

@@ -63,15 +63,21 @@ namespace Sales.Infs.Voucher.Dto
         public string xml_cat_goods_configurations { get; set; }
         public string goods_serial { get; set; }
         public string goods_symbol { get; set; }
-        public List<S32_D_ENTITY> s32_D { get; set; }
-        public List<CAT_Goods_Configuration_ENTITY> cat_goods_configurations { get; set; }
-        public List<Accounting_VAT_Output_ENTITY> accounting_VAT_Outputs { get; set; }
-        public List<S32_KIT_ENTITY> s32_KIT { get; set; }
+
         public int? language_id { get; set; }
         public string company_code { get; set; }
         public string branch_code { get; set; }
         public bool? is_tax { get; set; }
         public bool? is_costing { get; set; }
         public int? voucher_year { get; set; }
+
+        public string date_add_f { get; set; }
+        public string date_modified_f { get; set; }
+        public string account_code_add_f { get; set; }
+        public string account_code_modified_f { get; set; }
+        public List<S32_D_ENTITY> s32_D { get; set; }
+        public List<CAT_Goods_Configuration_ENTITY> cat_goods_configurations { get; set; }
+        public List<Accounting_VAT_Output_ENTITY> accounting_VAT_Outputs { get; set; }
+        public List<S32_KIT_ENTITY> s32_KIT { get; set; }
     }
 }

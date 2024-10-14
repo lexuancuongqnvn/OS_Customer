@@ -41064,6 +41064,10 @@ export class C11_M_ENTITY implements IC11_M_ENTITY {
     language_id?: number | undefined;
     voucher_year?: number | undefined;
     xml_11d?: string | undefined;
+    date_add_f?: string | undefined;
+    date_modified_f?: string | undefined;
+    account_code_add_f?: string | undefined;
+    account_code_modified_f?: string | undefined;
     c11_d?: C11_D_ENTITY[] | undefined;
 
     constructor(data?: IC11_M_ENTITY) {
@@ -41103,6 +41107,10 @@ export class C11_M_ENTITY implements IC11_M_ENTITY {
             this.language_id = _data["language_id"];
             this.voucher_year = _data["voucher_year"];
             this.xml_11d = _data["xml_11d"];
+            this.date_add_f = _data["date_add_f"];
+            this.date_modified_f = _data["date_modified_f"];
+            this.account_code_add_f = _data["account_code_add_f"];
+            this.account_code_modified_f = _data["account_code_modified_f"];
             if (Array.isArray(_data["c11_d"])) {
                 this.c11_d = [] as any;
                 for (let item of _data["c11_d"])
@@ -41146,6 +41154,10 @@ export class C11_M_ENTITY implements IC11_M_ENTITY {
         data["language_id"] = this.language_id;
         data["voucher_year"] = this.voucher_year;
         data["xml_11d"] = this.xml_11d;
+        data["date_add_f"] = this.date_add_f;
+        data["date_modified_f"] = this.date_modified_f;
+        data["account_code_add_f"] = this.account_code_add_f;
+        data["account_code_modified_f"] = this.account_code_modified_f;
         if (Array.isArray(this.c11_d)) {
             data["c11_d"] = [];
             for (let item of this.c11_d)
@@ -41189,6 +41201,10 @@ export interface IC11_M_ENTITY {
     language_id?: number | undefined;
     voucher_year?: number | undefined;
     xml_11d?: string | undefined;
+    date_add_f?: string | undefined;
+    date_modified_f?: string | undefined;
+    account_code_add_f?: string | undefined;
+    account_code_modified_f?: string | undefined;
     c11_d?: C11_D_ENTITY[] | undefined;
 }
 
@@ -41551,6 +41567,10 @@ export class C12_M_ENTITY implements IC12_M_ENTITY {
     voucher_year?: number | undefined;
     xml_12d?: string | undefined;
     xml_vat_in?: string | undefined;
+    date_add_f?: string | undefined;
+    date_modified_f?: string | undefined;
+    account_code_add_f?: string | undefined;
+    account_code_modified_f?: string | undefined;
     c12_d?: C12_D_ENTITY[] | undefined;
     accounting_vat_inputs?: Accounting_VAT_Input_ENTITY[] | undefined;
 
@@ -41597,6 +41617,10 @@ export class C12_M_ENTITY implements IC12_M_ENTITY {
             this.voucher_year = _data["voucher_year"];
             this.xml_12d = _data["xml_12d"];
             this.xml_vat_in = _data["xml_vat_in"];
+            this.date_add_f = _data["date_add_f"];
+            this.date_modified_f = _data["date_modified_f"];
+            this.account_code_add_f = _data["account_code_add_f"];
+            this.account_code_modified_f = _data["account_code_modified_f"];
             if (Array.isArray(_data["c12_d"])) {
                 this.c12_d = [] as any;
                 for (let item of _data["c12_d"])
@@ -41651,6 +41675,10 @@ export class C12_M_ENTITY implements IC12_M_ENTITY {
         data["voucher_year"] = this.voucher_year;
         data["xml_12d"] = this.xml_12d;
         data["xml_vat_in"] = this.xml_vat_in;
+        data["date_add_f"] = this.date_add_f;
+        data["date_modified_f"] = this.date_modified_f;
+        data["account_code_add_f"] = this.account_code_add_f;
+        data["account_code_modified_f"] = this.account_code_modified_f;
         if (Array.isArray(this.c12_d)) {
             data["c12_d"] = [];
             for (let item of this.c12_d)
@@ -41705,6 +41733,10 @@ export interface IC12_M_ENTITY {
     voucher_year?: number | undefined;
     xml_12d?: string | undefined;
     xml_vat_in?: string | undefined;
+    date_add_f?: string | undefined;
+    date_modified_f?: string | undefined;
+    account_code_add_f?: string | undefined;
+    account_code_modified_f?: string | undefined;
     c12_d?: C12_D_ENTITY[] | undefined;
     accounting_vat_inputs?: Accounting_VAT_Input_ENTITY[] | undefined;
 }
@@ -41867,6 +41899,10 @@ export class C15_M_ENTITY implements IC15_M_ENTITY {
     language_id?: number | undefined;
     voucher_year?: number | undefined;
     xml_15d?: string | undefined;
+    date_add_f?: string | undefined;
+    date_modified_f?: string | undefined;
+    account_code_add_f?: string | undefined;
+    account_code_modified_f?: string | undefined;
     c15_d?: C15_D_ENTITY[] | undefined;
 
     constructor(data?: IC15_M_ENTITY) {
@@ -41906,6 +41942,10 @@ export class C15_M_ENTITY implements IC15_M_ENTITY {
             this.language_id = _data["language_id"];
             this.voucher_year = _data["voucher_year"];
             this.xml_15d = _data["xml_15d"];
+            this.date_add_f = _data["date_add_f"];
+            this.date_modified_f = _data["date_modified_f"];
+            this.account_code_add_f = _data["account_code_add_f"];
+            this.account_code_modified_f = _data["account_code_modified_f"];
             if (Array.isArray(_data["c15_d"])) {
                 this.c15_d = [] as any;
                 for (let item of _data["c15_d"])
@@ -41949,6 +41989,10 @@ export class C15_M_ENTITY implements IC15_M_ENTITY {
         data["language_id"] = this.language_id;
         data["voucher_year"] = this.voucher_year;
         data["xml_15d"] = this.xml_15d;
+        data["date_add_f"] = this.date_add_f;
+        data["date_modified_f"] = this.date_modified_f;
+        data["account_code_add_f"] = this.account_code_add_f;
+        data["account_code_modified_f"] = this.account_code_modified_f;
         if (Array.isArray(this.c15_d)) {
             data["c15_d"] = [];
             for (let item of this.c15_d)
@@ -41992,6 +42036,10 @@ export interface IC15_M_ENTITY {
     language_id?: number | undefined;
     voucher_year?: number | undefined;
     xml_15d?: string | undefined;
+    date_add_f?: string | undefined;
+    date_modified_f?: string | undefined;
+    account_code_add_f?: string | undefined;
+    account_code_modified_f?: string | undefined;
     c15_d?: C15_D_ENTITY[] | undefined;
 }
 
@@ -42159,6 +42207,10 @@ export class C16_M_ENTITY implements IC16_M_ENTITY {
     voucher_year?: number | undefined;
     xml_16d?: string | undefined;
     xml_vat_in?: string | undefined;
+    date_add_f?: string | undefined;
+    date_modified_f?: string | undefined;
+    account_code_add_f?: string | undefined;
+    account_code_modified_f?: string | undefined;
     c16_d?: C16_D_ENTITY[] | undefined;
     accounting_vat_inputs?: Accounting_VAT_Input_ENTITY[] | undefined;
 
@@ -42205,6 +42257,10 @@ export class C16_M_ENTITY implements IC16_M_ENTITY {
             this.voucher_year = _data["voucher_year"];
             this.xml_16d = _data["xml_16d"];
             this.xml_vat_in = _data["xml_vat_in"];
+            this.date_add_f = _data["date_add_f"];
+            this.date_modified_f = _data["date_modified_f"];
+            this.account_code_add_f = _data["account_code_add_f"];
+            this.account_code_modified_f = _data["account_code_modified_f"];
             if (Array.isArray(_data["c16_d"])) {
                 this.c16_d = [] as any;
                 for (let item of _data["c16_d"])
@@ -42259,6 +42315,10 @@ export class C16_M_ENTITY implements IC16_M_ENTITY {
         data["voucher_year"] = this.voucher_year;
         data["xml_16d"] = this.xml_16d;
         data["xml_vat_in"] = this.xml_vat_in;
+        data["date_add_f"] = this.date_add_f;
+        data["date_modified_f"] = this.date_modified_f;
+        data["account_code_add_f"] = this.account_code_add_f;
+        data["account_code_modified_f"] = this.account_code_modified_f;
         if (Array.isArray(this.c16_d)) {
             data["c16_d"] = [];
             for (let item of this.c16_d)
@@ -42313,6 +42373,10 @@ export interface IC16_M_ENTITY {
     voucher_year?: number | undefined;
     xml_16d?: string | undefined;
     xml_vat_in?: string | undefined;
+    date_add_f?: string | undefined;
+    date_modified_f?: string | undefined;
+    account_code_add_f?: string | undefined;
+    account_code_modified_f?: string | undefined;
     c16_d?: C16_D_ENTITY[] | undefined;
     accounting_vat_inputs?: Accounting_VAT_Input_ENTITY[] | undefined;
 }
@@ -43934,6 +43998,10 @@ export class C51_M_ENTITY implements IC51_M_ENTITY {
     goods_serial?: string | undefined;
     goods_symbol?: string | undefined;
     is_tax?: boolean | undefined;
+    date_add_f?: string | undefined;
+    date_modified_f?: string | undefined;
+    account_code_add_f?: string | undefined;
+    account_code_modified_f?: string | undefined;
     accounting_vat_inputs?: Accounting_VAT_Input_ENTITY[] | undefined;
     c51_D?: C51_D_ENTITY[] | undefined;
 
@@ -43979,6 +44047,10 @@ export class C51_M_ENTITY implements IC51_M_ENTITY {
             this.goods_serial = _data["goods_serial"];
             this.goods_symbol = _data["goods_symbol"];
             this.is_tax = _data["is_tax"];
+            this.date_add_f = _data["date_add_f"];
+            this.date_modified_f = _data["date_modified_f"];
+            this.account_code_add_f = _data["account_code_add_f"];
+            this.account_code_modified_f = _data["account_code_modified_f"];
             if (Array.isArray(_data["accounting_vat_inputs"])) {
                 this.accounting_vat_inputs = [] as any;
                 for (let item of _data["accounting_vat_inputs"])
@@ -44032,6 +44104,10 @@ export class C51_M_ENTITY implements IC51_M_ENTITY {
         data["goods_serial"] = this.goods_serial;
         data["goods_symbol"] = this.goods_symbol;
         data["is_tax"] = this.is_tax;
+        data["date_add_f"] = this.date_add_f;
+        data["date_modified_f"] = this.date_modified_f;
+        data["account_code_add_f"] = this.account_code_add_f;
+        data["account_code_modified_f"] = this.account_code_modified_f;
         if (Array.isArray(this.accounting_vat_inputs)) {
             data["accounting_vat_inputs"] = [];
             for (let item of this.accounting_vat_inputs)
@@ -44085,6 +44161,10 @@ export interface IC51_M_ENTITY {
     goods_serial?: string | undefined;
     goods_symbol?: string | undefined;
     is_tax?: boolean | undefined;
+    date_add_f?: string | undefined;
+    date_modified_f?: string | undefined;
+    account_code_add_f?: string | undefined;
+    account_code_modified_f?: string | undefined;
     accounting_vat_inputs?: Accounting_VAT_Input_ENTITY[] | undefined;
     c51_D?: C51_D_ENTITY[] | undefined;
 }
@@ -58042,10 +58122,14 @@ export class P21_M_ENTITY implements IP21_M_ENTITY {
     xml_vat_in?: string | undefined;
     is_tax?: boolean | undefined;
     voucher_year?: number | undefined;
-    accounting_vat_inputs?: Accounting_VAT_Input_ENTITY[] | undefined;
-    p21_D?: P21_D_ENTITY[] | undefined;
+    date_add_f?: string | undefined;
+    date_modified_f?: string | undefined;
+    account_code_add_f?: string | undefined;
+    account_code_modified_f?: string | undefined;
     goods_serial?: string | undefined;
     goods_symbol?: string | undefined;
+    accounting_vat_inputs?: Accounting_VAT_Input_ENTITY[] | undefined;
+    p21_D?: P21_D_ENTITY[] | undefined;
 
     constructor(data?: IP21_M_ENTITY) {
         if (data) {
@@ -58100,6 +58184,12 @@ export class P21_M_ENTITY implements IP21_M_ENTITY {
             this.xml_vat_in = _data["xml_vat_in"];
             this.is_tax = _data["is_tax"];
             this.voucher_year = _data["voucher_year"];
+            this.date_add_f = _data["date_add_f"];
+            this.date_modified_f = _data["date_modified_f"];
+            this.account_code_add_f = _data["account_code_add_f"];
+            this.account_code_modified_f = _data["account_code_modified_f"];
+            this.goods_serial = _data["goods_serial"];
+            this.goods_symbol = _data["goods_symbol"];
             if (Array.isArray(_data["accounting_vat_inputs"])) {
                 this.accounting_vat_inputs = [] as any;
                 for (let item of _data["accounting_vat_inputs"])
@@ -58110,8 +58200,6 @@ export class P21_M_ENTITY implements IP21_M_ENTITY {
                 for (let item of _data["p21_D"])
                     this.p21_D.push(P21_D_ENTITY.fromJS(item));
             }
-            this.goods_serial = _data["goods_serial"];
-            this.goods_symbol = _data["goods_symbol"];
         }
     }
 
@@ -58166,6 +58254,12 @@ export class P21_M_ENTITY implements IP21_M_ENTITY {
         data["xml_vat_in"] = this.xml_vat_in;
         data["is_tax"] = this.is_tax;
         data["voucher_year"] = this.voucher_year;
+        data["date_add_f"] = this.date_add_f;
+        data["date_modified_f"] = this.date_modified_f;
+        data["account_code_add_f"] = this.account_code_add_f;
+        data["account_code_modified_f"] = this.account_code_modified_f;
+        data["goods_serial"] = this.goods_serial;
+        data["goods_symbol"] = this.goods_symbol;
         if (Array.isArray(this.accounting_vat_inputs)) {
             data["accounting_vat_inputs"] = [];
             for (let item of this.accounting_vat_inputs)
@@ -58176,8 +58270,6 @@ export class P21_M_ENTITY implements IP21_M_ENTITY {
             for (let item of this.p21_D)
                 data["p21_D"].push(item.toJSON());
         }
-        data["goods_serial"] = this.goods_serial;
-        data["goods_symbol"] = this.goods_symbol;
         return data;
     }
 
@@ -58232,10 +58324,14 @@ export interface IP21_M_ENTITY {
     xml_vat_in?: string | undefined;
     is_tax?: boolean | undefined;
     voucher_year?: number | undefined;
-    accounting_vat_inputs?: Accounting_VAT_Input_ENTITY[] | undefined;
-    p21_D?: P21_D_ENTITY[] | undefined;
+    date_add_f?: string | undefined;
+    date_modified_f?: string | undefined;
+    account_code_add_f?: string | undefined;
+    account_code_modified_f?: string | undefined;
     goods_serial?: string | undefined;
     goods_symbol?: string | undefined;
+    accounting_vat_inputs?: Accounting_VAT_Input_ENTITY[] | undefined;
+    p21_D?: P21_D_ENTITY[] | undefined;
 }
 
 export class P22_D_ENTITY implements IP22_D_ENTITY {
@@ -58499,13 +58595,17 @@ export class P22_M_ENTITY implements IP22_M_ENTITY {
     company_code?: string | undefined;
     xml_22d?: string | undefined;
     xml_vat_in?: string | undefined;
-    p22_D?: P22_D_ENTITY[] | undefined;
-    accounting_vat_inputs?: Accounting_VAT_Input_ENTITY[] | undefined;
+    date_add_f?: string | undefined;
+    date_modified_f?: string | undefined;
+    account_code_add_f?: string | undefined;
+    account_code_modified_f?: string | undefined;
     language_id?: number | undefined;
     voucher_year?: number | undefined;
     is_tax?: boolean | undefined;
     goods_serial?: string | undefined;
     goods_symbol?: string | undefined;
+    p22_D?: P22_D_ENTITY[] | undefined;
+    accounting_vat_inputs?: Accounting_VAT_Input_ENTITY[] | undefined;
 
     constructor(data?: IP22_M_ENTITY) {
         if (data) {
@@ -58563,6 +58663,15 @@ export class P22_M_ENTITY implements IP22_M_ENTITY {
             this.company_code = _data["company_code"];
             this.xml_22d = _data["xml_22d"];
             this.xml_vat_in = _data["xml_vat_in"];
+            this.date_add_f = _data["date_add_f"];
+            this.date_modified_f = _data["date_modified_f"];
+            this.account_code_add_f = _data["account_code_add_f"];
+            this.account_code_modified_f = _data["account_code_modified_f"];
+            this.language_id = _data["language_id"];
+            this.voucher_year = _data["voucher_year"];
+            this.is_tax = _data["is_tax"];
+            this.goods_serial = _data["goods_serial"];
+            this.goods_symbol = _data["goods_symbol"];
             if (Array.isArray(_data["p22_D"])) {
                 this.p22_D = [] as any;
                 for (let item of _data["p22_D"])
@@ -58573,11 +58682,6 @@ export class P22_M_ENTITY implements IP22_M_ENTITY {
                 for (let item of _data["accounting_vat_inputs"])
                     this.accounting_vat_inputs.push(Accounting_VAT_Input_ENTITY.fromJS(item));
             }
-            this.language_id = _data["language_id"];
-            this.voucher_year = _data["voucher_year"];
-            this.is_tax = _data["is_tax"];
-            this.goods_serial = _data["goods_serial"];
-            this.goods_symbol = _data["goods_symbol"];
         }
     }
 
@@ -58635,6 +58739,15 @@ export class P22_M_ENTITY implements IP22_M_ENTITY {
         data["company_code"] = this.company_code;
         data["xml_22d"] = this.xml_22d;
         data["xml_vat_in"] = this.xml_vat_in;
+        data["date_add_f"] = this.date_add_f;
+        data["date_modified_f"] = this.date_modified_f;
+        data["account_code_add_f"] = this.account_code_add_f;
+        data["account_code_modified_f"] = this.account_code_modified_f;
+        data["language_id"] = this.language_id;
+        data["voucher_year"] = this.voucher_year;
+        data["is_tax"] = this.is_tax;
+        data["goods_serial"] = this.goods_serial;
+        data["goods_symbol"] = this.goods_symbol;
         if (Array.isArray(this.p22_D)) {
             data["p22_D"] = [];
             for (let item of this.p22_D)
@@ -58645,11 +58758,6 @@ export class P22_M_ENTITY implements IP22_M_ENTITY {
             for (let item of this.accounting_vat_inputs)
                 data["accounting_vat_inputs"].push(item.toJSON());
         }
-        data["language_id"] = this.language_id;
-        data["voucher_year"] = this.voucher_year;
-        data["is_tax"] = this.is_tax;
-        data["goods_serial"] = this.goods_serial;
-        data["goods_symbol"] = this.goods_symbol;
         return data;
     }
 
@@ -58707,13 +58815,17 @@ export interface IP22_M_ENTITY {
     company_code?: string | undefined;
     xml_22d?: string | undefined;
     xml_vat_in?: string | undefined;
-    p22_D?: P22_D_ENTITY[] | undefined;
-    accounting_vat_inputs?: Accounting_VAT_Input_ENTITY[] | undefined;
+    date_add_f?: string | undefined;
+    date_modified_f?: string | undefined;
+    account_code_add_f?: string | undefined;
+    account_code_modified_f?: string | undefined;
     language_id?: number | undefined;
     voucher_year?: number | undefined;
     is_tax?: boolean | undefined;
     goods_serial?: string | undefined;
     goods_symbol?: string | undefined;
+    p22_D?: P22_D_ENTITY[] | undefined;
+    accounting_vat_inputs?: Accounting_VAT_Input_ENTITY[] | undefined;
 }
 
 export class P23_D_ENTITY implements IP23_D_ENTITY {
@@ -58996,6 +59108,10 @@ export class P23_M_ENTITY implements IP23_M_ENTITY {
     is_tax?: boolean | undefined;
     goods_serial?: string | undefined;
     goods_symbol?: string | undefined;
+    date_add_f?: string | undefined;
+    date_modified_f?: string | undefined;
+    account_code_add_f?: string | undefined;
+    account_code_modified_f?: string | undefined;
     accounting_vat_inputs?: Accounting_VAT_Input_ENTITY[] | undefined;
     p23_D?: P23_D_ENTITY[] | undefined;
 
@@ -59062,6 +59178,10 @@ export class P23_M_ENTITY implements IP23_M_ENTITY {
             this.is_tax = _data["is_tax"];
             this.goods_serial = _data["goods_serial"];
             this.goods_symbol = _data["goods_symbol"];
+            this.date_add_f = _data["date_add_f"];
+            this.date_modified_f = _data["date_modified_f"];
+            this.account_code_add_f = _data["account_code_add_f"];
+            this.account_code_modified_f = _data["account_code_modified_f"];
             if (Array.isArray(_data["accounting_vat_inputs"])) {
                 this.accounting_vat_inputs = [] as any;
                 for (let item of _data["accounting_vat_inputs"])
@@ -59136,6 +59256,10 @@ export class P23_M_ENTITY implements IP23_M_ENTITY {
         data["is_tax"] = this.is_tax;
         data["goods_serial"] = this.goods_serial;
         data["goods_symbol"] = this.goods_symbol;
+        data["date_add_f"] = this.date_add_f;
+        data["date_modified_f"] = this.date_modified_f;
+        data["account_code_add_f"] = this.account_code_add_f;
+        data["account_code_modified_f"] = this.account_code_modified_f;
         if (Array.isArray(this.accounting_vat_inputs)) {
             data["accounting_vat_inputs"] = [];
             for (let item of this.accounting_vat_inputs)
@@ -59210,6 +59334,10 @@ export interface IP23_M_ENTITY {
     is_tax?: boolean | undefined;
     goods_serial?: string | undefined;
     goods_symbol?: string | undefined;
+    date_add_f?: string | undefined;
+    date_modified_f?: string | undefined;
+    account_code_add_f?: string | undefined;
+    account_code_modified_f?: string | undefined;
     accounting_vat_inputs?: Accounting_VAT_Input_ENTITY[] | undefined;
     p23_D?: P23_D_ENTITY[] | undefined;
 }
@@ -59460,6 +59588,10 @@ export class P24_M_ENTITY implements IP24_M_ENTITY {
     xml_vat_in?: string | undefined;
     goods_serial?: string | undefined;
     goods_symbol?: string | undefined;
+    date_add_f?: string | undefined;
+    date_modified_f?: string | undefined;
+    account_code_add_f?: string | undefined;
+    account_code_modified_f?: string | undefined;
     p24_D?: P24_D_ENTITY[] | undefined;
     accounting_vat_inputs?: Accounting_VAT_Input_ENTITY[] | undefined;
 
@@ -59520,6 +59652,10 @@ export class P24_M_ENTITY implements IP24_M_ENTITY {
             this.xml_vat_in = _data["xml_vat_in"];
             this.goods_serial = _data["goods_serial"];
             this.goods_symbol = _data["goods_symbol"];
+            this.date_add_f = _data["date_add_f"];
+            this.date_modified_f = _data["date_modified_f"];
+            this.account_code_add_f = _data["account_code_add_f"];
+            this.account_code_modified_f = _data["account_code_modified_f"];
             if (Array.isArray(_data["p24_D"])) {
                 this.p24_D = [] as any;
                 for (let item of _data["p24_D"])
@@ -59588,6 +59724,10 @@ export class P24_M_ENTITY implements IP24_M_ENTITY {
         data["xml_vat_in"] = this.xml_vat_in;
         data["goods_serial"] = this.goods_serial;
         data["goods_symbol"] = this.goods_symbol;
+        data["date_add_f"] = this.date_add_f;
+        data["date_modified_f"] = this.date_modified_f;
+        data["account_code_add_f"] = this.account_code_add_f;
+        data["account_code_modified_f"] = this.account_code_modified_f;
         if (Array.isArray(this.p24_D)) {
             data["p24_D"] = [];
             for (let item of this.p24_D)
@@ -59656,6 +59796,10 @@ export interface IP24_M_ENTITY {
     xml_vat_in?: string | undefined;
     goods_serial?: string | undefined;
     goods_symbol?: string | undefined;
+    date_add_f?: string | undefined;
+    date_modified_f?: string | undefined;
+    account_code_add_f?: string | undefined;
+    account_code_modified_f?: string | undefined;
     p24_D?: P24_D_ENTITY[] | undefined;
     accounting_vat_inputs?: Accounting_VAT_Input_ENTITY[] | undefined;
 }
@@ -59850,6 +59994,10 @@ export class P25_M_ENTITY implements IP25_M_ENTITY {
     is_tax?: boolean | undefined;
     goods_serial?: string | undefined;
     goods_symbol?: string | undefined;
+    date_add_f?: string | undefined;
+    date_modified_f?: string | undefined;
+    account_code_add_f?: string | undefined;
+    account_code_modified_f?: string | undefined;
     p25_D?: P25_D_ENTITY[] | undefined;
     accounting_vat_inputs?: Accounting_VAT_Input_ENTITY[] | undefined;
 
@@ -59910,6 +60058,10 @@ export class P25_M_ENTITY implements IP25_M_ENTITY {
             this.is_tax = _data["is_tax"];
             this.goods_serial = _data["goods_serial"];
             this.goods_symbol = _data["goods_symbol"];
+            this.date_add_f = _data["date_add_f"];
+            this.date_modified_f = _data["date_modified_f"];
+            this.account_code_add_f = _data["account_code_add_f"];
+            this.account_code_modified_f = _data["account_code_modified_f"];
             if (Array.isArray(_data["p25_D"])) {
                 this.p25_D = [] as any;
                 for (let item of _data["p25_D"])
@@ -59978,6 +60130,10 @@ export class P25_M_ENTITY implements IP25_M_ENTITY {
         data["is_tax"] = this.is_tax;
         data["goods_serial"] = this.goods_serial;
         data["goods_symbol"] = this.goods_symbol;
+        data["date_add_f"] = this.date_add_f;
+        data["date_modified_f"] = this.date_modified_f;
+        data["account_code_add_f"] = this.account_code_add_f;
+        data["account_code_modified_f"] = this.account_code_modified_f;
         if (Array.isArray(this.p25_D)) {
             data["p25_D"] = [];
             for (let item of this.p25_D)
@@ -60046,6 +60202,10 @@ export interface IP25_M_ENTITY {
     is_tax?: boolean | undefined;
     goods_serial?: string | undefined;
     goods_symbol?: string | undefined;
+    date_add_f?: string | undefined;
+    date_modified_f?: string | undefined;
+    account_code_add_f?: string | undefined;
+    account_code_modified_f?: string | undefined;
     p25_D?: P25_D_ENTITY[] | undefined;
     accounting_vat_inputs?: Accounting_VAT_Input_ENTITY[] | undefined;
 }
@@ -60237,6 +60397,10 @@ export class P26_M_ENTITY implements IP26_M_ENTITY {
     voucher_year?: number | undefined;
     goods_serial?: string | undefined;
     goods_symbol?: string | undefined;
+    date_add_f?: string | undefined;
+    date_modified_f?: string | undefined;
+    account_code_add_f?: string | undefined;
+    account_code_modified_f?: string | undefined;
     p26_D?: P26_D_ENTITY[] | undefined;
 
     constructor(data?: IP26_M_ENTITY) {
@@ -60281,6 +60445,10 @@ export class P26_M_ENTITY implements IP26_M_ENTITY {
             this.voucher_year = _data["voucher_year"];
             this.goods_serial = _data["goods_serial"];
             this.goods_symbol = _data["goods_symbol"];
+            this.date_add_f = _data["date_add_f"];
+            this.date_modified_f = _data["date_modified_f"];
+            this.account_code_add_f = _data["account_code_add_f"];
+            this.account_code_modified_f = _data["account_code_modified_f"];
             if (Array.isArray(_data["p26_D"])) {
                 this.p26_D = [] as any;
                 for (let item of _data["p26_D"])
@@ -60329,6 +60497,10 @@ export class P26_M_ENTITY implements IP26_M_ENTITY {
         data["voucher_year"] = this.voucher_year;
         data["goods_serial"] = this.goods_serial;
         data["goods_symbol"] = this.goods_symbol;
+        data["date_add_f"] = this.date_add_f;
+        data["date_modified_f"] = this.date_modified_f;
+        data["account_code_add_f"] = this.account_code_add_f;
+        data["account_code_modified_f"] = this.account_code_modified_f;
         if (Array.isArray(this.p26_D)) {
             data["p26_D"] = [];
             for (let item of this.p26_D)
@@ -60377,6 +60549,10 @@ export interface IP26_M_ENTITY {
     voucher_year?: number | undefined;
     goods_serial?: string | undefined;
     goods_symbol?: string | undefined;
+    date_add_f?: string | undefined;
+    date_modified_f?: string | undefined;
+    account_code_add_f?: string | undefined;
+    account_code_modified_f?: string | undefined;
     p26_D?: P26_D_ENTITY[] | undefined;
 }
 
@@ -64372,6 +64548,10 @@ export class S31_M_ENTITY implements IS31_M_ENTITY {
     is_tax?: boolean | undefined;
     goods_serial?: string | undefined;
     goods_symbol?: string | undefined;
+    date_add_f?: string | undefined;
+    date_modified_f?: string | undefined;
+    account_code_add_f?: string | undefined;
+    account_code_modified_f?: string | undefined;
     s31_D?: S31_D_ENTITY[] | undefined;
     accounting_VAT_Outputs?: Accounting_VAT_Output_ENTITY[] | undefined;
 
@@ -64434,6 +64614,10 @@ export class S31_M_ENTITY implements IS31_M_ENTITY {
             this.is_tax = _data["is_tax"];
             this.goods_serial = _data["goods_serial"];
             this.goods_symbol = _data["goods_symbol"];
+            this.date_add_f = _data["date_add_f"];
+            this.date_modified_f = _data["date_modified_f"];
+            this.account_code_add_f = _data["account_code_add_f"];
+            this.account_code_modified_f = _data["account_code_modified_f"];
             if (Array.isArray(_data["s31_D"])) {
                 this.s31_D = [] as any;
                 for (let item of _data["s31_D"])
@@ -64504,6 +64688,10 @@ export class S31_M_ENTITY implements IS31_M_ENTITY {
         data["is_tax"] = this.is_tax;
         data["goods_serial"] = this.goods_serial;
         data["goods_symbol"] = this.goods_symbol;
+        data["date_add_f"] = this.date_add_f;
+        data["date_modified_f"] = this.date_modified_f;
+        data["account_code_add_f"] = this.account_code_add_f;
+        data["account_code_modified_f"] = this.account_code_modified_f;
         if (Array.isArray(this.s31_D)) {
             data["s31_D"] = [];
             for (let item of this.s31_D)
@@ -64574,6 +64762,10 @@ export interface IS31_M_ENTITY {
     is_tax?: boolean | undefined;
     goods_serial?: string | undefined;
     goods_symbol?: string | undefined;
+    date_add_f?: string | undefined;
+    date_modified_f?: string | undefined;
+    account_code_add_f?: string | undefined;
+    account_code_modified_f?: string | undefined;
     s31_D?: S31_D_ENTITY[] | undefined;
     accounting_VAT_Outputs?: Accounting_VAT_Output_ENTITY[] | undefined;
 }
@@ -65166,16 +65358,20 @@ export class S32_M_ENTITY implements IS32_M_ENTITY {
     xml_cat_goods_configurations?: string | undefined;
     goods_serial?: string | undefined;
     goods_symbol?: string | undefined;
-    s32_D?: S32_D_ENTITY[] | undefined;
-    cat_goods_configurations?: CAT_Goods_Configuration_ENTITY[] | undefined;
-    accounting_VAT_Outputs?: Accounting_VAT_Output_ENTITY[] | undefined;
-    s32_KIT?: S32_KIT_ENTITY[] | undefined;
     language_id?: number | undefined;
     company_code?: string | undefined;
     branch_code?: string | undefined;
     is_tax?: boolean | undefined;
     is_costing?: boolean | undefined;
     voucher_year?: number | undefined;
+    date_add_f?: string | undefined;
+    date_modified_f?: string | undefined;
+    account_code_add_f?: string | undefined;
+    account_code_modified_f?: string | undefined;
+    s32_D?: S32_D_ENTITY[] | undefined;
+    cat_goods_configurations?: CAT_Goods_Configuration_ENTITY[] | undefined;
+    accounting_VAT_Outputs?: Accounting_VAT_Output_ENTITY[] | undefined;
+    s32_KIT?: S32_KIT_ENTITY[] | undefined;
 
     constructor(data?: IS32_M_ENTITY) {
         if (data) {
@@ -65242,6 +65438,16 @@ export class S32_M_ENTITY implements IS32_M_ENTITY {
             this.xml_cat_goods_configurations = _data["xml_cat_goods_configurations"];
             this.goods_serial = _data["goods_serial"];
             this.goods_symbol = _data["goods_symbol"];
+            this.language_id = _data["language_id"];
+            this.company_code = _data["company_code"];
+            this.branch_code = _data["branch_code"];
+            this.is_tax = _data["is_tax"];
+            this.is_costing = _data["is_costing"];
+            this.voucher_year = _data["voucher_year"];
+            this.date_add_f = _data["date_add_f"];
+            this.date_modified_f = _data["date_modified_f"];
+            this.account_code_add_f = _data["account_code_add_f"];
+            this.account_code_modified_f = _data["account_code_modified_f"];
             if (Array.isArray(_data["s32_D"])) {
                 this.s32_D = [] as any;
                 for (let item of _data["s32_D"])
@@ -65262,12 +65468,6 @@ export class S32_M_ENTITY implements IS32_M_ENTITY {
                 for (let item of _data["s32_KIT"])
                     this.s32_KIT.push(S32_KIT_ENTITY.fromJS(item));
             }
-            this.language_id = _data["language_id"];
-            this.company_code = _data["company_code"];
-            this.branch_code = _data["branch_code"];
-            this.is_tax = _data["is_tax"];
-            this.is_costing = _data["is_costing"];
-            this.voucher_year = _data["voucher_year"];
         }
     }
 
@@ -65334,6 +65534,16 @@ export class S32_M_ENTITY implements IS32_M_ENTITY {
         data["xml_cat_goods_configurations"] = this.xml_cat_goods_configurations;
         data["goods_serial"] = this.goods_serial;
         data["goods_symbol"] = this.goods_symbol;
+        data["language_id"] = this.language_id;
+        data["company_code"] = this.company_code;
+        data["branch_code"] = this.branch_code;
+        data["is_tax"] = this.is_tax;
+        data["is_costing"] = this.is_costing;
+        data["voucher_year"] = this.voucher_year;
+        data["date_add_f"] = this.date_add_f;
+        data["date_modified_f"] = this.date_modified_f;
+        data["account_code_add_f"] = this.account_code_add_f;
+        data["account_code_modified_f"] = this.account_code_modified_f;
         if (Array.isArray(this.s32_D)) {
             data["s32_D"] = [];
             for (let item of this.s32_D)
@@ -65354,12 +65564,6 @@ export class S32_M_ENTITY implements IS32_M_ENTITY {
             for (let item of this.s32_KIT)
                 data["s32_KIT"].push(item.toJSON());
         }
-        data["language_id"] = this.language_id;
-        data["company_code"] = this.company_code;
-        data["branch_code"] = this.branch_code;
-        data["is_tax"] = this.is_tax;
-        data["is_costing"] = this.is_costing;
-        data["voucher_year"] = this.voucher_year;
         return data;
     }
 
@@ -65426,16 +65630,20 @@ export interface IS32_M_ENTITY {
     xml_cat_goods_configurations?: string | undefined;
     goods_serial?: string | undefined;
     goods_symbol?: string | undefined;
-    s32_D?: S32_D_ENTITY[] | undefined;
-    cat_goods_configurations?: CAT_Goods_Configuration_ENTITY[] | undefined;
-    accounting_VAT_Outputs?: Accounting_VAT_Output_ENTITY[] | undefined;
-    s32_KIT?: S32_KIT_ENTITY[] | undefined;
     language_id?: number | undefined;
     company_code?: string | undefined;
     branch_code?: string | undefined;
     is_tax?: boolean | undefined;
     is_costing?: boolean | undefined;
     voucher_year?: number | undefined;
+    date_add_f?: string | undefined;
+    date_modified_f?: string | undefined;
+    account_code_add_f?: string | undefined;
+    account_code_modified_f?: string | undefined;
+    s32_D?: S32_D_ENTITY[] | undefined;
+    cat_goods_configurations?: CAT_Goods_Configuration_ENTITY[] | undefined;
+    accounting_VAT_Outputs?: Accounting_VAT_Output_ENTITY[] | undefined;
+    s32_KIT?: S32_KIT_ENTITY[] | undefined;
 }
 
 export class S33_D_ENTITY implements IS33_D_ENTITY {
@@ -65698,6 +65906,10 @@ export class S33_M_ENTITY implements IS33_M_ENTITY {
     goods_serial?: string | undefined;
     goods_symbol?: string | undefined;
     is_costing?: boolean | undefined;
+    date_add_f?: string | undefined;
+    date_modified_f?: string | undefined;
+    account_code_add_f?: string | undefined;
+    account_code_modified_f?: string | undefined;
     s33_D?: S33_D_ENTITY[] | undefined;
     accounting_VAT_Outputs?: Accounting_VAT_Output_ENTITY[] | undefined;
 
@@ -65764,6 +65976,10 @@ export class S33_M_ENTITY implements IS33_M_ENTITY {
             this.goods_serial = _data["goods_serial"];
             this.goods_symbol = _data["goods_symbol"];
             this.is_costing = _data["is_costing"];
+            this.date_add_f = _data["date_add_f"];
+            this.date_modified_f = _data["date_modified_f"];
+            this.account_code_add_f = _data["account_code_add_f"];
+            this.account_code_modified_f = _data["account_code_modified_f"];
             if (Array.isArray(_data["s33_D"])) {
                 this.s33_D = [] as any;
                 for (let item of _data["s33_D"])
@@ -65838,6 +66054,10 @@ export class S33_M_ENTITY implements IS33_M_ENTITY {
         data["goods_serial"] = this.goods_serial;
         data["goods_symbol"] = this.goods_symbol;
         data["is_costing"] = this.is_costing;
+        data["date_add_f"] = this.date_add_f;
+        data["date_modified_f"] = this.date_modified_f;
+        data["account_code_add_f"] = this.account_code_add_f;
+        data["account_code_modified_f"] = this.account_code_modified_f;
         if (Array.isArray(this.s33_D)) {
             data["s33_D"] = [];
             for (let item of this.s33_D)
@@ -65912,6 +66132,10 @@ export interface IS33_M_ENTITY {
     goods_serial?: string | undefined;
     goods_symbol?: string | undefined;
     is_costing?: boolean | undefined;
+    date_add_f?: string | undefined;
+    date_modified_f?: string | undefined;
+    account_code_add_f?: string | undefined;
+    account_code_modified_f?: string | undefined;
     s33_D?: S33_D_ENTITY[] | undefined;
     accounting_VAT_Outputs?: Accounting_VAT_Output_ENTITY[] | undefined;
 }
@@ -66099,11 +66323,15 @@ export class S34_M_ENTITY implements IS34_M_ENTITY {
     account_code_add?: string | undefined;
     account_code_modified?: string | undefined;
     xml_34d?: string | undefined;
-    s34_D?: S34_D_ENTITY[] | undefined;
     language_id?: number | undefined;
     is_tax?: boolean | undefined;
     goods_serial?: string | undefined;
     goods_symbol?: string | undefined;
+    date_add_f?: string | undefined;
+    date_modified_f?: string | undefined;
+    account_code_add_f?: string | undefined;
+    account_code_modified_f?: string | undefined;
+    s34_D?: S34_D_ENTITY[] | undefined;
 
     constructor(data?: IS34_M_ENTITY) {
         if (data) {
@@ -66143,15 +66371,19 @@ export class S34_M_ENTITY implements IS34_M_ENTITY {
             this.account_code_add = _data["account_code_add"];
             this.account_code_modified = _data["account_code_modified"];
             this.xml_34d = _data["xml_34d"];
+            this.language_id = _data["language_id"];
+            this.is_tax = _data["is_tax"];
+            this.goods_serial = _data["goods_serial"];
+            this.goods_symbol = _data["goods_symbol"];
+            this.date_add_f = _data["date_add_f"];
+            this.date_modified_f = _data["date_modified_f"];
+            this.account_code_add_f = _data["account_code_add_f"];
+            this.account_code_modified_f = _data["account_code_modified_f"];
             if (Array.isArray(_data["s34_D"])) {
                 this.s34_D = [] as any;
                 for (let item of _data["s34_D"])
                     this.s34_D.push(S34_D_ENTITY.fromJS(item));
             }
-            this.language_id = _data["language_id"];
-            this.is_tax = _data["is_tax"];
-            this.goods_serial = _data["goods_serial"];
-            this.goods_symbol = _data["goods_symbol"];
         }
     }
 
@@ -66191,15 +66423,19 @@ export class S34_M_ENTITY implements IS34_M_ENTITY {
         data["account_code_add"] = this.account_code_add;
         data["account_code_modified"] = this.account_code_modified;
         data["xml_34d"] = this.xml_34d;
+        data["language_id"] = this.language_id;
+        data["is_tax"] = this.is_tax;
+        data["goods_serial"] = this.goods_serial;
+        data["goods_symbol"] = this.goods_symbol;
+        data["date_add_f"] = this.date_add_f;
+        data["date_modified_f"] = this.date_modified_f;
+        data["account_code_add_f"] = this.account_code_add_f;
+        data["account_code_modified_f"] = this.account_code_modified_f;
         if (Array.isArray(this.s34_D)) {
             data["s34_D"] = [];
             for (let item of this.s34_D)
                 data["s34_D"].push(item.toJSON());
         }
-        data["language_id"] = this.language_id;
-        data["is_tax"] = this.is_tax;
-        data["goods_serial"] = this.goods_serial;
-        data["goods_symbol"] = this.goods_symbol;
         return data;
     }
 
@@ -66239,11 +66475,15 @@ export interface IS34_M_ENTITY {
     account_code_add?: string | undefined;
     account_code_modified?: string | undefined;
     xml_34d?: string | undefined;
-    s34_D?: S34_D_ENTITY[] | undefined;
     language_id?: number | undefined;
     is_tax?: boolean | undefined;
     goods_serial?: string | undefined;
     goods_symbol?: string | undefined;
+    date_add_f?: string | undefined;
+    date_modified_f?: string | undefined;
+    account_code_add_f?: string | undefined;
+    account_code_modified_f?: string | undefined;
+    s34_D?: S34_D_ENTITY[] | undefined;
 }
 
 export class SYS_List_App_ENTITY implements ISYS_List_App_ENTITY {
@@ -71186,6 +71426,10 @@ export class CAT_Goods_ENTITY implements ICAT_Goods_ENTITY {
     lcd?: string | undefined;
     voucher_code?: string | undefined;
     voucher_year?: number | undefined;
+    date_add_f?: string | undefined;
+    date_modified_f?: string | undefined;
+    account_code_add_f?: string | undefined;
+    account_code_modified_f?: string | undefined;
 
     constructor(data?: ICAT_Goods_ENTITY) {
         if (data) {
@@ -71259,6 +71503,10 @@ export class CAT_Goods_ENTITY implements ICAT_Goods_ENTITY {
             this.lcd = _data["lcd"];
             this.voucher_code = _data["voucher_code"];
             this.voucher_year = _data["voucher_year"];
+            this.date_add_f = _data["date_add_f"];
+            this.date_modified_f = _data["date_modified_f"];
+            this.account_code_add_f = _data["account_code_add_f"];
+            this.account_code_modified_f = _data["account_code_modified_f"];
         }
     }
 
@@ -71332,6 +71580,10 @@ export class CAT_Goods_ENTITY implements ICAT_Goods_ENTITY {
         data["lcd"] = this.lcd;
         data["voucher_code"] = this.voucher_code;
         data["voucher_year"] = this.voucher_year;
+        data["date_add_f"] = this.date_add_f;
+        data["date_modified_f"] = this.date_modified_f;
+        data["account_code_add_f"] = this.account_code_add_f;
+        data["account_code_modified_f"] = this.account_code_modified_f;
         return data;
     }
 
@@ -71405,6 +71657,10 @@ export interface ICAT_Goods_ENTITY {
     lcd?: string | undefined;
     voucher_code?: string | undefined;
     voucher_year?: number | undefined;
+    date_add_f?: string | undefined;
+    date_modified_f?: string | undefined;
+    account_code_add_f?: string | undefined;
+    account_code_modified_f?: string | undefined;
 }
 
 export class CAT_Goods_Group_ENTITY implements ICAT_Goods_Group_ENTITY {
@@ -75406,9 +75662,13 @@ export class I41_M_ENTITY implements II41_M_ENTITY {
     voucher_year?: number | undefined;
     goods_serial?: string | undefined;
     goods_symbol?: string | undefined;
-    i41_D?: I41_D_ENTITY[] | undefined;
+    date_add_f?: string | undefined;
+    date_modified_f?: string | undefined;
+    account_code_add_f?: string | undefined;
+    account_code_modified_f?: string | undefined;
     id?: number;
     language_id?: number | undefined;
+    i41_D?: I41_D_ENTITY[] | undefined;
 
     constructor(data?: II41_M_ENTITY) {
         if (data) {
@@ -75450,13 +75710,17 @@ export class I41_M_ENTITY implements II41_M_ENTITY {
             this.voucher_year = _data["voucher_year"];
             this.goods_serial = _data["goods_serial"];
             this.goods_symbol = _data["goods_symbol"];
+            this.date_add_f = _data["date_add_f"];
+            this.date_modified_f = _data["date_modified_f"];
+            this.account_code_add_f = _data["account_code_add_f"];
+            this.account_code_modified_f = _data["account_code_modified_f"];
+            this.id = _data["id"];
+            this.language_id = _data["language_id"];
             if (Array.isArray(_data["i41_D"])) {
                 this.i41_D = [] as any;
                 for (let item of _data["i41_D"])
                     this.i41_D.push(I41_D_ENTITY.fromJS(item));
             }
-            this.id = _data["id"];
-            this.language_id = _data["language_id"];
         }
     }
 
@@ -75498,13 +75762,17 @@ export class I41_M_ENTITY implements II41_M_ENTITY {
         data["voucher_year"] = this.voucher_year;
         data["goods_serial"] = this.goods_serial;
         data["goods_symbol"] = this.goods_symbol;
+        data["date_add_f"] = this.date_add_f;
+        data["date_modified_f"] = this.date_modified_f;
+        data["account_code_add_f"] = this.account_code_add_f;
+        data["account_code_modified_f"] = this.account_code_modified_f;
+        data["id"] = this.id;
+        data["language_id"] = this.language_id;
         if (Array.isArray(this.i41_D)) {
             data["i41_D"] = [];
             for (let item of this.i41_D)
                 data["i41_D"].push(item.toJSON());
         }
-        data["id"] = this.id;
-        data["language_id"] = this.language_id;
         return data;
     }
 
@@ -75546,9 +75814,13 @@ export interface II41_M_ENTITY {
     voucher_year?: number | undefined;
     goods_serial?: string | undefined;
     goods_symbol?: string | undefined;
-    i41_D?: I41_D_ENTITY[] | undefined;
+    date_add_f?: string | undefined;
+    date_modified_f?: string | undefined;
+    account_code_add_f?: string | undefined;
+    account_code_modified_f?: string | undefined;
     id?: number;
     language_id?: number | undefined;
+    i41_D?: I41_D_ENTITY[] | undefined;
 }
 
 export class I42_D_ENTITY implements II42_D_ENTITY {
@@ -75754,8 +76026,6 @@ export class I42_M_ENTITY implements II42_M_ENTITY {
     customer_name?: string | undefined;
     xml_42d?: string | undefined;
     xml_cat_goods_configurations?: string | undefined;
-    i42_D?: I42_D_ENTITY[] | undefined;
-    cat_goods_configurations?: CAT_Goods_Configuration_ENTITY[] | undefined;
     code?: string | undefined;
     approve?: boolean | undefined;
     date_add?: moment.Moment | undefined;
@@ -75769,6 +76039,12 @@ export class I42_M_ENTITY implements II42_M_ENTITY {
     language_id?: number | undefined;
     goods_serial?: string | undefined;
     goods_symbol?: string | undefined;
+    date_add_f?: string | undefined;
+    date_modified_f?: string | undefined;
+    account_code_add_f?: string | undefined;
+    account_code_modified_f?: string | undefined;
+    i42_D?: I42_D_ENTITY[] | undefined;
+    cat_goods_configurations?: CAT_Goods_Configuration_ENTITY[] | undefined;
 
     constructor(data?: II42_M_ENTITY) {
         if (data) {
@@ -75804,16 +76080,6 @@ export class I42_M_ENTITY implements II42_M_ENTITY {
             this.customer_name = _data["customer_name"];
             this.xml_42d = _data["xml_42d"];
             this.xml_cat_goods_configurations = _data["xml_cat_goods_configurations"];
-            if (Array.isArray(_data["i42_D"])) {
-                this.i42_D = [] as any;
-                for (let item of _data["i42_D"])
-                    this.i42_D.push(I42_D_ENTITY.fromJS(item));
-            }
-            if (Array.isArray(_data["cat_goods_configurations"])) {
-                this.cat_goods_configurations = [] as any;
-                for (let item of _data["cat_goods_configurations"])
-                    this.cat_goods_configurations.push(CAT_Goods_Configuration_ENTITY.fromJS(item));
-            }
             this.code = _data["code"];
             this.approve = _data["approve"];
             this.date_add = _data["date_add"] ? moment.parseZone(_data["date_add"].toString()) : <any>undefined;
@@ -75827,6 +76093,20 @@ export class I42_M_ENTITY implements II42_M_ENTITY {
             this.language_id = _data["language_id"];
             this.goods_serial = _data["goods_serial"];
             this.goods_symbol = _data["goods_symbol"];
+            this.date_add_f = _data["date_add_f"];
+            this.date_modified_f = _data["date_modified_f"];
+            this.account_code_add_f = _data["account_code_add_f"];
+            this.account_code_modified_f = _data["account_code_modified_f"];
+            if (Array.isArray(_data["i42_D"])) {
+                this.i42_D = [] as any;
+                for (let item of _data["i42_D"])
+                    this.i42_D.push(I42_D_ENTITY.fromJS(item));
+            }
+            if (Array.isArray(_data["cat_goods_configurations"])) {
+                this.cat_goods_configurations = [] as any;
+                for (let item of _data["cat_goods_configurations"])
+                    this.cat_goods_configurations.push(CAT_Goods_Configuration_ENTITY.fromJS(item));
+            }
         }
     }
 
@@ -75862,16 +76142,6 @@ export class I42_M_ENTITY implements II42_M_ENTITY {
         data["customer_name"] = this.customer_name;
         data["xml_42d"] = this.xml_42d;
         data["xml_cat_goods_configurations"] = this.xml_cat_goods_configurations;
-        if (Array.isArray(this.i42_D)) {
-            data["i42_D"] = [];
-            for (let item of this.i42_D)
-                data["i42_D"].push(item.toJSON());
-        }
-        if (Array.isArray(this.cat_goods_configurations)) {
-            data["cat_goods_configurations"] = [];
-            for (let item of this.cat_goods_configurations)
-                data["cat_goods_configurations"].push(item.toJSON());
-        }
         data["code"] = this.code;
         data["approve"] = this.approve;
         data["date_add"] = this.date_add ? this.date_add.toISOString(true) : <any>undefined;
@@ -75885,6 +76155,20 @@ export class I42_M_ENTITY implements II42_M_ENTITY {
         data["language_id"] = this.language_id;
         data["goods_serial"] = this.goods_serial;
         data["goods_symbol"] = this.goods_symbol;
+        data["date_add_f"] = this.date_add_f;
+        data["date_modified_f"] = this.date_modified_f;
+        data["account_code_add_f"] = this.account_code_add_f;
+        data["account_code_modified_f"] = this.account_code_modified_f;
+        if (Array.isArray(this.i42_D)) {
+            data["i42_D"] = [];
+            for (let item of this.i42_D)
+                data["i42_D"].push(item.toJSON());
+        }
+        if (Array.isArray(this.cat_goods_configurations)) {
+            data["cat_goods_configurations"] = [];
+            for (let item of this.cat_goods_configurations)
+                data["cat_goods_configurations"].push(item.toJSON());
+        }
         return data;
     }
 
@@ -75920,8 +76204,6 @@ export interface II42_M_ENTITY {
     customer_name?: string | undefined;
     xml_42d?: string | undefined;
     xml_cat_goods_configurations?: string | undefined;
-    i42_D?: I42_D_ENTITY[] | undefined;
-    cat_goods_configurations?: CAT_Goods_Configuration_ENTITY[] | undefined;
     code?: string | undefined;
     approve?: boolean | undefined;
     date_add?: moment.Moment | undefined;
@@ -75935,6 +76217,12 @@ export interface II42_M_ENTITY {
     language_id?: number | undefined;
     goods_serial?: string | undefined;
     goods_symbol?: string | undefined;
+    date_add_f?: string | undefined;
+    date_modified_f?: string | undefined;
+    account_code_add_f?: string | undefined;
+    account_code_modified_f?: string | undefined;
+    i42_D?: I42_D_ENTITY[] | undefined;
+    cat_goods_configurations?: CAT_Goods_Configuration_ENTITY[] | undefined;
 }
 
 export class I43_D_ENTITY implements II43_D_ENTITY {
@@ -76140,6 +76428,10 @@ export class I43_M_ENTITY implements II43_M_ENTITY {
     goods_serial?: string | undefined;
     goods_symbol?: string | undefined;
     s32_detail_code?: string | undefined;
+    date_add_f?: string | undefined;
+    date_modified_f?: string | undefined;
+    account_code_add_f?: string | undefined;
+    account_code_modified_f?: string | undefined;
     i43_D?: I43_D_ENTITY[] | undefined;
     cat_goods_configurations?: CAT_Goods_Configuration_ENTITY[] | undefined;
     id?: number;
@@ -76188,6 +76480,10 @@ export class I43_M_ENTITY implements II43_M_ENTITY {
             this.goods_serial = _data["goods_serial"];
             this.goods_symbol = _data["goods_symbol"];
             this.s32_detail_code = _data["s32_detail_code"];
+            this.date_add_f = _data["date_add_f"];
+            this.date_modified_f = _data["date_modified_f"];
+            this.account_code_add_f = _data["account_code_add_f"];
+            this.account_code_modified_f = _data["account_code_modified_f"];
             if (Array.isArray(_data["i43_D"])) {
                 this.i43_D = [] as any;
                 for (let item of _data["i43_D"])
@@ -76244,6 +76540,10 @@ export class I43_M_ENTITY implements II43_M_ENTITY {
         data["goods_serial"] = this.goods_serial;
         data["goods_symbol"] = this.goods_symbol;
         data["s32_detail_code"] = this.s32_detail_code;
+        data["date_add_f"] = this.date_add_f;
+        data["date_modified_f"] = this.date_modified_f;
+        data["account_code_add_f"] = this.account_code_add_f;
+        data["account_code_modified_f"] = this.account_code_modified_f;
         if (Array.isArray(this.i43_D)) {
             data["i43_D"] = [];
             for (let item of this.i43_D)
@@ -76300,6 +76600,10 @@ export interface II43_M_ENTITY {
     goods_serial?: string | undefined;
     goods_symbol?: string | undefined;
     s32_detail_code?: string | undefined;
+    date_add_f?: string | undefined;
+    date_modified_f?: string | undefined;
+    account_code_add_f?: string | undefined;
+    account_code_modified_f?: string | undefined;
     i43_D?: I43_D_ENTITY[] | undefined;
     cat_goods_configurations?: CAT_Goods_Configuration_ENTITY[] | undefined;
     id?: number;
@@ -76507,12 +76811,16 @@ export class I44_M_ENTITY implements II44_M_ENTITY {
     voucher_year?: number | undefined;
     goods_serial?: string | undefined;
     goods_symbol?: string | undefined;
-    i44_D?: I44_D_ENTITY[] | undefined;
     approve?: boolean | undefined;
     is_costing?: boolean | undefined;
     account_id?: number | undefined;
     decentralization?: string | undefined;
     language_id?: number | undefined;
+    date_add_f?: string | undefined;
+    date_modified_f?: string | undefined;
+    account_code_add_f?: string | undefined;
+    account_code_modified_f?: string | undefined;
+    i44_D?: I44_D_ENTITY[] | undefined;
 
     constructor(data?: II44_M_ENTITY) {
         if (data) {
@@ -76557,16 +76865,20 @@ export class I44_M_ENTITY implements II44_M_ENTITY {
             this.voucher_year = _data["voucher_year"];
             this.goods_serial = _data["goods_serial"];
             this.goods_symbol = _data["goods_symbol"];
-            if (Array.isArray(_data["i44_D"])) {
-                this.i44_D = [] as any;
-                for (let item of _data["i44_D"])
-                    this.i44_D.push(I44_D_ENTITY.fromJS(item));
-            }
             this.approve = _data["approve"];
             this.is_costing = _data["is_costing"];
             this.account_id = _data["account_id"];
             this.decentralization = _data["decentralization"];
             this.language_id = _data["language_id"];
+            this.date_add_f = _data["date_add_f"];
+            this.date_modified_f = _data["date_modified_f"];
+            this.account_code_add_f = _data["account_code_add_f"];
+            this.account_code_modified_f = _data["account_code_modified_f"];
+            if (Array.isArray(_data["i44_D"])) {
+                this.i44_D = [] as any;
+                for (let item of _data["i44_D"])
+                    this.i44_D.push(I44_D_ENTITY.fromJS(item));
+            }
         }
     }
 
@@ -76611,16 +76923,20 @@ export class I44_M_ENTITY implements II44_M_ENTITY {
         data["voucher_year"] = this.voucher_year;
         data["goods_serial"] = this.goods_serial;
         data["goods_symbol"] = this.goods_symbol;
-        if (Array.isArray(this.i44_D)) {
-            data["i44_D"] = [];
-            for (let item of this.i44_D)
-                data["i44_D"].push(item.toJSON());
-        }
         data["approve"] = this.approve;
         data["is_costing"] = this.is_costing;
         data["account_id"] = this.account_id;
         data["decentralization"] = this.decentralization;
         data["language_id"] = this.language_id;
+        data["date_add_f"] = this.date_add_f;
+        data["date_modified_f"] = this.date_modified_f;
+        data["account_code_add_f"] = this.account_code_add_f;
+        data["account_code_modified_f"] = this.account_code_modified_f;
+        if (Array.isArray(this.i44_D)) {
+            data["i44_D"] = [];
+            for (let item of this.i44_D)
+                data["i44_D"].push(item.toJSON());
+        }
         return data;
     }
 
@@ -76665,12 +76981,16 @@ export interface II44_M_ENTITY {
     voucher_year?: number | undefined;
     goods_serial?: string | undefined;
     goods_symbol?: string | undefined;
-    i44_D?: I44_D_ENTITY[] | undefined;
     approve?: boolean | undefined;
     is_costing?: boolean | undefined;
     account_id?: number | undefined;
     decentralization?: string | undefined;
     language_id?: number | undefined;
+    date_add_f?: string | undefined;
+    date_modified_f?: string | undefined;
+    account_code_add_f?: string | undefined;
+    account_code_modified_f?: string | undefined;
+    i44_D?: I44_D_ENTITY[] | undefined;
 }
 
 export class I45_D_ENTITY implements II45_D_ENTITY {
@@ -76882,9 +77202,13 @@ export class I45_M_ENTITY implements II45_M_ENTITY {
     voucher_year?: number | undefined;
     goods_serial?: string | undefined;
     goods_symbol?: string | undefined;
-    i45_D?: I45_D_ENTITY[] | undefined;
     id?: number;
     language_id?: number | undefined;
+    date_add_f?: string | undefined;
+    date_modified_f?: string | undefined;
+    account_code_add_f?: string | undefined;
+    account_code_modified_f?: string | undefined;
+    i45_D?: I45_D_ENTITY[] | undefined;
 
     constructor(data?: II45_M_ENTITY) {
         if (data) {
@@ -76926,13 +77250,17 @@ export class I45_M_ENTITY implements II45_M_ENTITY {
             this.voucher_year = _data["voucher_year"];
             this.goods_serial = _data["goods_serial"];
             this.goods_symbol = _data["goods_symbol"];
+            this.id = _data["id"];
+            this.language_id = _data["language_id"];
+            this.date_add_f = _data["date_add_f"];
+            this.date_modified_f = _data["date_modified_f"];
+            this.account_code_add_f = _data["account_code_add_f"];
+            this.account_code_modified_f = _data["account_code_modified_f"];
             if (Array.isArray(_data["i45_D"])) {
                 this.i45_D = [] as any;
                 for (let item of _data["i45_D"])
                     this.i45_D.push(I45_D_ENTITY.fromJS(item));
             }
-            this.id = _data["id"];
-            this.language_id = _data["language_id"];
         }
     }
 
@@ -76974,13 +77302,17 @@ export class I45_M_ENTITY implements II45_M_ENTITY {
         data["voucher_year"] = this.voucher_year;
         data["goods_serial"] = this.goods_serial;
         data["goods_symbol"] = this.goods_symbol;
+        data["id"] = this.id;
+        data["language_id"] = this.language_id;
+        data["date_add_f"] = this.date_add_f;
+        data["date_modified_f"] = this.date_modified_f;
+        data["account_code_add_f"] = this.account_code_add_f;
+        data["account_code_modified_f"] = this.account_code_modified_f;
         if (Array.isArray(this.i45_D)) {
             data["i45_D"] = [];
             for (let item of this.i45_D)
                 data["i45_D"].push(item.toJSON());
         }
-        data["id"] = this.id;
-        data["language_id"] = this.language_id;
         return data;
     }
 
@@ -77022,9 +77354,13 @@ export interface II45_M_ENTITY {
     voucher_year?: number | undefined;
     goods_serial?: string | undefined;
     goods_symbol?: string | undefined;
-    i45_D?: I45_D_ENTITY[] | undefined;
     id?: number;
     language_id?: number | undefined;
+    date_add_f?: string | undefined;
+    date_modified_f?: string | undefined;
+    account_code_add_f?: string | undefined;
+    account_code_modified_f?: string | undefined;
+    i45_D?: I45_D_ENTITY[] | undefined;
 }
 
 export class I45_Damaged_Tools_Equipment_ENTITY implements II45_Damaged_Tools_Equipment_ENTITY {

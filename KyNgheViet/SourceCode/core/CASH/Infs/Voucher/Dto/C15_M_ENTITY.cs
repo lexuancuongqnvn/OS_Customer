@@ -33,6 +33,10 @@ namespace CASH.Infs.Voucher.Dto
         public int? language_id { get; set; }
         public int? voucher_year { get; set; }
         public string xml_15d { get; set; }
+        public string date_add_f { get; set; }
+        public string date_modified_f { get; set; }
+        public string account_code_add_f { get; set; }
+        public string account_code_modified_f { get; set; }
         public List<C15_D_ENTITY> c15_d { get; set; }
     }
 }

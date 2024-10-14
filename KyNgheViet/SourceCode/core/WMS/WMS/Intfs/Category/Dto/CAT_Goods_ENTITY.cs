@@ -70,5 +70,10 @@ namespace WMS.Intfs.Category.Dto
         public string lcd { get; set; }
         public string voucher_code { get; set; }
         public int? voucher_year { get; set; }
+
+        public string date_add_f { get; set; }
+        public string date_modified_f { get; set; }
+        public string account_code_add_f { get; set; }
+        public string account_code_modified_f { get; set; }
     }
 }

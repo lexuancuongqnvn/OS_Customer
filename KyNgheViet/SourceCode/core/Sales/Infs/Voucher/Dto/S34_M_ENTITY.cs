@@ -34,10 +34,15 @@ namespace Sales.Infs.Voucher.Dto
         public string account_code_add { get; set; }
        public string account_code_modified { get; set; }
         public string xml_34d { get; set; }
-        public List<S34_D_ENTITY> s34_D { get; set; }
         public int? language_id { get; set; }
         public bool? is_tax { get; set; }
         public string goods_serial { get; set; }
         public string goods_symbol { get; set; }
+        public string date_add_f { get; set; }
+        public string date_modified_f { get; set; }
+        public string account_code_add_f { get; set; }
+        public string account_code_modified_f { get; set; }
+        public List<S34_D_ENTITY> s34_D { get; set; }
+
     }
 }

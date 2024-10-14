@@ -53,12 +53,17 @@ namespace Purchase.Infs.Voucher.Dto
         public string company_code  { get; set; }
         public string xml_22d { get; set; }
         public string xml_vat_in { get; set; }
-        public List<P22_D_ENTITY> p22_D  { get; set; }
-        public List<Accounting_VAT_Input_ENTITY> accounting_vat_inputs { get; set; }
+        public string date_add_f { get; set; }
+        public string date_modified_f { get; set; }
+        public string account_code_add_f { get; set; }
+        public string account_code_modified_f { get; set; }
         public int? language_id { get; set; }
         public int? voucher_year { get; set; }
         public bool? is_tax { get; set; }
         public string goods_serial { get; set; }
         public string goods_symbol { get; set; }
+        public List<P22_D_ENTITY> p22_D  { get; set; }
+        public List<Accounting_VAT_Input_ENTITY> accounting_vat_inputs { get; set; }
+
     }
 }

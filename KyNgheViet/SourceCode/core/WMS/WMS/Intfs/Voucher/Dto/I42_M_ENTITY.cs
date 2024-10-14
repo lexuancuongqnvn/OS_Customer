@@ -32,8 +32,7 @@ namespace WMS.Intfs.Voucher.Dto
         public string customer_name { get; set; }
         public string xml_42d { get; set; }
         public string xml_cat_goods_configurations { get; set; }
-        public List<I42_D_ENTITY> i42_D { get; set; }
-        public List<CAT_Goods_Configuration_ENTITY> cat_goods_configurations { get; set; }
+
         public string code { get; set; }
         public bool? approve { get; set; }
         public DateTime? date_add { get; set; }
@@ -47,5 +46,11 @@ namespace WMS.Intfs.Voucher.Dto
         public int? language_id { get; set; }
         public string goods_serial { get; set; }
         public string goods_symbol { get; set; }
+        public string date_add_f { get; set; }
+        public string date_modified_f { get; set; }
+        public string account_code_add_f { get; set; }
+        public string account_code_modified_f { get; set; }
+        public List<I42_D_ENTITY> i42_D { get; set; }
+        public List<CAT_Goods_Configuration_ENTITY> cat_goods_configurations { get; set; }
     }
 }

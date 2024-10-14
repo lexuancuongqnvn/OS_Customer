@@ -38,6 +38,10 @@ namespace Purchase.Infs.Voucher.Dto
         public int? voucher_year { get; set; }
         public string goods_serial { get; set; }
         public string goods_symbol { get; set; }
+        public string date_add_f { get; set; }
+        public string date_modified_f { get; set; }
+        public string account_code_add_f { get; set; }
+        public string account_code_modified_f { get; set; }
         public List<P26_D_ENTITY> p26_D { get;set;}
 
     }
